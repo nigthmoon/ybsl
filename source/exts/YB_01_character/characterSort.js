@@ -1,0 +1,57 @@
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
+export { characterSort }
+
+const characterSort = {
+	ybslj:{
+		'ybsl_ssln':[
+			'ybsl_001sunlisong','ybsl_002chenailin','ybsl_003yanshuang','ybsl_004zhangyujie','ybsl_005wangruobing',
+			'ybsl_006wanghanzhen','ybsl_007wugege','ybsl_008wuyuxin','ybsl_009liyushan','ybsl_010zhouyue',
+			'ybsl_011gaoyuhang','ybsl_012zhengjiayi','ybsl_014liutianyu','ybsl_015wanghairu',
+			'ybsl_016manchengqi','ybsl_017xiaohong','ybsl_018zhangqing','ybsl_019shengyan','ybsl_020jiayutong',
+			'ybsl_021liuyufeng','ybsl_022salt','ybsl_024yuetong','ybsl_025shiwang','ybsl_025shiqingyu',
+			'ybsl_025wanghe','ybsl_032baiyichen','ybsl_033xiaohui',/*'ybsl_025shiqingyu',*/
+			'ybsl_042pingzi','ybsl_043fangjiayu','ybsl_044huruihang','ybsl_045gaocong',
+			'ybsl_046jiangxuewu','ybsl_047shan','ybsl_038bianqiuwen','ybsl_048wushuang','ybsl_049waner',
+			'ybsl_050zunjian',
+			'ybsl_051fomalhaut','ybsl_052trees','ybsl_053qiuer','ybsl_054yueer','ybsl_055zhengyan',
+			'ybsl_056dongjianchao','ybsl_057sunmeiqi','ybsl_058sunshibo','ybsl_059starsFall','ybsl_060liutianhang',
+			'ybsl_061zheyu','ybsl_062yuhongyan','ybsl_063weimingli','ybsl_064lvmingyan','ybsl_065yanxiwen',
+			'ybsl_066wujun','ybsl_068qingyue','ybsl_070lvyanqiu',
+			'ybsl_079xiaoxin','ybsl_085DGY','ybsl_086GJ','ybsl_087tianlu',
+			'ybsl_088lijiaxin','ybsl_089lvjinling','ybsl_090dengtingyue','ybsl_091wangcaiyu','ybsl_092handan'
+		],
+		'ybsl_mztz':[
+			'ybsl_018huanqing',
+			'ybsl_026can','ybsl_027rain','ybsl_028crystal','ybsl_029dawn','ybsl_030book',
+			'ybsl_034zhoulianyuan','ybsl_035stamp',
+			'ybsl_036bright','ybsl_037diamondqueen','db_ybsl_038tengwu','ybsl_039zhafu','ybsl_014ether',
+			'ybsl_047zhangmi',
+			'db_ybsl_067snake','ybsl_069xiangzi','ybsl_076zhujun','ybsl_077yangqixu','ybsl_078zhuyahai',
+			'ybsl_081chenli','ybsl_081chensi','ybsl_083xiaozhu',
+			'ybsl_107tushanshuili'
+		],
+		//'ybsl_sixp':[],
+		'ybsl_dzsl':[
+			'dzsl_013yinji','dzsl_014liutianyu'/*,'dzsl_014xinzhikui'*/,'dzsl_015wanghairu',
+			'dzsl_016manchengqi','dzsl_017xiaohong'
+		],
+		'ybsl_spsp':[
+			'db_ybsp_014liutianyu','ybsp_016manchengqi','ybsp_072sulingyi','db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain'
+		],
+		'ybsl_sjfk':[
+			'ybslshen_014liutianyu','ybslshen_018zhangqing','ybslshen_017xiaohong','ybslshen_002chenailin','ybslshen_071faraway',
+			'ybslshen_073Al','ybslshen_074piao','ybsl_075dogcard','ybsl_080phoenix','ybslshen_001sunlisong',
+			'ybslshen_100Cosette',
+		],
+		ybsl_jxtp:[
+			'ybnb_034zhoulianyuan'
+		],
+		'ybsl_mjgx':[
+			'dzsl_luxun','ybsl_machao','ybsl_zhouyuxiaoqiao','ybsl_zhanghe',
+			'ybnb_guanyinping',
+		],
+		'ybsl_laji':[
+			'ybold_018zhangqing','yboldshen_002chenailin','ybsb_047zhangmi','ybsb_077yangqixu','ybsb_068qingyue','ybsb_048wushuang','ybold_019shengyan',
+		],
+	},
+}
