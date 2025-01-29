@@ -110,7 +110,7 @@ const characterTitle = {//称号
 	'ybsl_086GJ':'<font color=cyan>似水流年</font>',
 	//---------------------------------//忆包SP
 	'db_ybsp_014liutianyu':'<font color=cyan>暗流涌动</font>',
-	'ybsp_016manchengqi':'<font color=cyan>清明节限定</font>',
+	'ybsp_016manchengqi':'<font color=cyan>强饰的丽影</font>',
 	'db_ybsp_038tengwu':'<font color=cyan>缘尽梦碎</font>',
 	'ybsp_072sulingyi':'<font color=cyan>不祥的命运</font>',
 	'ybsp_001sunlisong':'<font color=cyan>皓腕凝霜雪</font>',
@@ -144,6 +144,7 @@ const characterTitle = {//称号
 	'ybslshen_001sunlisong':'<span class=yellowtext>流年易逝</span>',
 	'ybslshen_100Cosette':'<span class=yellowtext>Cosette！</span>',//珂赛特
 	//---------------------------------//忆包废稿
+	'ybold_016manchengqi':'<font color=cyan>清明节限定</font>',
 	'yboldshen_002chenailin':'<span class=yellowtext>初见与告别</span>',
 	'ybold_018zhangqing':'<font color=cyan>似水流年</font>',
 	'ybsb_047zhangmi':'<font color=cyan>痴惘之妒魂</font>',

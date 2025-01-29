@@ -4,10 +4,14 @@ import { character } from '../exts/YB_03_character/character.js'
 import { characterIntro } from '../exts/YB_03_character/characterIntro.js'
 import { perfectPair } from '../exts/YB_03_character/perfectPair.js'
 import { characterTitle } from '../exts/YB_03_character/characterTitle.js'
+import { characterCopyright } from '../exts/YB_03_character/characterCopyright.js';
+import { characterCitetext } from '../exts/YB_03_character/characterCitetext.js'
+import { characterUndertext } from '../exts/YB_03_character/characterUndertext.js'
 import { skill } from '../exts/YB_03_character/skill.js'
 import { card } from '../exts/YB_03_character/card.js'
 import { translate } from '../exts/YB_03_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_03_character/dynamicTranslate.js'
+import { YB_characterIntro } from '../packages/function.js';
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	var ybxh={ 
 		name:'ybxh',//武将包命名（必填） 
@@ -15,7 +19,11 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		connectBanned:[],
 		characterSort:characterSort,
 		character:character,//武将（必填） 
+		// characterIntro:YB_characterIntro(characterCopyright,characterCitetext,characterUndertext,characterIntro),//武将介绍（选填） 
 		characterIntro:characterIntro,//武将介绍（选填） 
+		characterCopyright:characterCopyright,
+		characterCitetext:characterCitetext,
+		characterUndertext:characterUndertext,
 		/*快捷复制：
 		<span class=yellowtext>文字</span>暗亮双色
 		<span class=thundertext>文字</span>

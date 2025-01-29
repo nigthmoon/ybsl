@@ -36,7 +36,8 @@ const characterSort = {
 			'dzsl_016manchengqi','dzsl_017xiaohong'
 		],
 		'ybsl_spsp':[
-			'db_ybsp_014liutianyu','ybsp_016manchengqi','ybsp_072sulingyi','db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain'
+			'db_ybsp_014liutianyu','ybsp_016manchengqi','ybsp_072sulingyi',
+			'db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain'
 		],
 		'ybsl_sjfk':[
 			'ybslshen_014liutianyu','ybslshen_018zhangqing','ybslshen_017xiaohong','ybslshen_002chenailin','ybslshen_071faraway',
@@ -51,7 +52,8 @@ const characterSort = {
 			'ybnb_guanyinping',
 		],
 		'ybsl_laji':[
-			'ybold_018zhangqing','yboldshen_002chenailin','ybsb_047zhangmi','ybsb_077yangqixu','ybsb_068qingyue','ybsb_048wushuang','ybold_019shengyan',
+			'ybold_018zhangqing','yboldshen_002chenailin','ybsb_047zhangmi','ybsb_077yangqixu',
+			'ybsb_068qingyue','ybsb_048wushuang','ybold_019shengyan','ybold_016manchengqi',
 		],
 	},
 }

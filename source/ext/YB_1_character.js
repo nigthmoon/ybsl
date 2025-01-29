@@ -5,10 +5,16 @@ import { character } from '../exts/YB_01_character/character.js'
 import { characterIntro } from '../exts/YB_01_character/characterIntro.js'
 import { perfectPair } from '../exts/YB_01_character/perfectPair.js'
 import { characterTitle } from '../exts/YB_01_character/characterTitle.js'
+import { characterCopyright } from '../exts/YB_01_character/characterCopyright.js';
+import { characterCitetext } from '../exts/YB_01_character/characterCitetext.js'
+import { characterUndertext } from '../exts/YB_01_character/characterUndertext.js'
+import { characterLightext } from '../exts/YB_01_character/characterLightext.js';
+import { characterLightextParent } from '../exts/YB_01_character/characterLightext.js';
 import { skill } from '../exts/YB_01_character/skill.js'
 import { card } from '../exts/YB_01_character/card.js'
 import { translate } from '../exts/YB_01_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_01_character/dynamicTranslate.js'
+import { YB_characterIntro } from '../packages/function.js';
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	var ybslj={ 
 		name:'ybslj',//武将包命名（必填） 
@@ -16,7 +22,14 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		connectBanned:['ybold_018zhangqing','yboldshen_002chenailin'],
 		characterSort:characterSort,
 		character:character,//武将（必填） 
-		characterIntro:characterIntro,//武将介绍（选填） 
+		// characterIntro:YB_characterIntro(characterCopyright,characterCitetext,characterUndertext,characterIntro),//武将介绍（选填） 
+		characterIntro:characterIntro,
+		characterCopyright:characterCopyright,
+		characterCitetext:characterCitetext,
+		characterUndertext:characterUndertext,
+
+		characterLightextParent:characterLightextParent,
+		characterLightext:characterLightext,
 		/*快捷复制：
 		<span class=yellowtext>文字</span>暗亮双色
 		<span class=thundertext>文字</span>
@@ -33,7 +46,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		// characterReplace:{//同名武将切换
 		// 	dzsl_013yinji:['dzsl_013yinji','ybsl_013yinji'],//尹姬
 		// 	dzsl_014liutianyu:['dzsl_014liutianyu','db_ybsp_014liutianyu','ybart_014liutianyu'],//夜白
-		// 	dzsl_016manchengqi:['dzsl_016manchengqi','ybsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi'],//满城柒
+		// 	dzsl_016manchengqi:['dzsl_016manchengqi','ybsl_016manchengqi','ybart_016manchengqi','ybold_016manchengqi'],//满城柒
 		// 	dzsl_017xiaohong:['dzsl_017xiaohong','ybsl_017xiaohong','ybart_017xiaohong'],//涂山小红
 		// 	ybsl_018zhangqing:['ybsl_018zhangqing','ybold_018zhangqing'],//张晴
 		// 	db_ybsl_038tengwu:['db_ybsl_038tengwu','db_ybsp_038tengwu'],//滕武
