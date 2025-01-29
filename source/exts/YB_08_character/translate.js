@@ -83,4 +83,19 @@ const translate = {
 	ybmjz_diaochan:'名将貂蝉',
 	ybmjz_diaochan_prefix:'名将',
 	//----------------------装备及其他
+
+
+	
+	ybmjz_zhangqiying:'名将张琪瑛',
+	ybmjz_zhangqiying_prefix:'名将',
+	ybmjz_shen_zhugeliang:'名将神诸葛亮',
+	ybmjz_shen_zhugeliang_prefix:'名将神',
+	ybmjz_hina:'名将佐藤雏',
+	ybmjz_hina_prefix:'名将',
+	ybmjz_kotori:'名将神户小鸟',
+	ybmjz_kotori_prefix:'名将',
+	ybmjz_kagari:'名将篝',
+	ybmjz_kagari_prefix:'名将',
+	ybmjz_majun:'名将马钧',
+	ybmjz_majun_prefix:'名将',
 }

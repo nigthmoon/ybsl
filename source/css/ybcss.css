@@ -121,3 +121,7 @@ span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0
 	border: 2px solid rgb(255, 174, 0);
 	filter: drop-shadow(0 0 10px #ff7b00);
 }
+#shiroha_bilibili:link,
+#shiroha_bilibili:visited {
+	color: white;
+}

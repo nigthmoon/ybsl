@@ -181,6 +181,11 @@ export async function precontent() {
 			color:'#28e3ce',
 			nature:'black',
 		})
+		lib.namePrefix.set('名将神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('名将')}${get.prefixSpan('神')}`
+			},
+		})
 		// lib.namePrefix.set('名',{
 		// 	showName:'名',
 		// 	color:'#ff7b00',
@@ -772,22 +777,20 @@ export async function precontent() {
 			var skills = player.getSkills(null, false, false);
 			var skills2 = game.expandSkills(skills);
 			var skills3 = skills2.filter(function (i) {
-				if(lib.skill[i].enable&&lib.skill[i].enable=='phaseUse'&&lib.skill[i].usable&&lib.skill[i].usable==1)return true;
+				if(lib.skill[i].enable&&lib.skill[i].enable=='phaseUse'&&lib.skill[i].usable&&(lib.skill[i].usable==1||lib.skill[i].usable(i,player)==1))return true;
 			});
-			// var skills = player.getSkills(null, false, false).filter(function (i) {
-				// if(lib.skill[i].enable&&lib.skill[i].enable=='phaseUse'&&lib.skill[i].usable&&lib.skill[i].usable==1)return true;
-			// });
-			return skills3;
+			if(skills3)return skills3;
+			else return [];
 		}
 		//至子虚：复制到这里截止
 		//全技能库的出限一的夜白式筛选
-		get.YB_allpu1 = function(){
-			var skills=[];
-			for(var i in lib.skill){
-				if(lib.skill[i].enable&&lib.skill[i].enable=='phaseUse'&&lib.skill[i].usable&&lib.skill[i].usable==1&&lib.skill[i].precontent)skills.push(i);
-			}
-			return skills;
-		}
+		// get.YB_allpu1 = function(player){
+		// 	var skills=[];
+		// 	for(var i in lib.skill){
+		// 		if(lib.skill[i].enable&&lib.skill[i].enable=='phaseUse'&&lib.skill[i].usable&&(lib.skill[i].usable==1||lib.skill[i].usable(i,player)==1))skills.push(i);
+		// 	}
+		// 	return skills;
+		// }
 		//---------此处函数抄自子虚扩展↓
 		lib.element.player.getClan = function (unseen) {
 			var list = []

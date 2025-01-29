@@ -873,6 +873,7 @@ const skill = {
 			let player=map.player,trigger=map.trigger;
 			let num = trigger.cards.length;
 			var result =yield player.chooseTarget([1,num]).set('ai',function(target){
+				var player=_status.event.player;
 				return get.damageEffect(target,player,'fire');
 			}).set('prompt',`请选择至多${num}名角色，对这些角色各造成一点由这些牌造成的火焰伤害`);
 			if(result.bool){

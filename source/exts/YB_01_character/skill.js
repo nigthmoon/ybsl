@@ -6177,7 +6177,7 @@ const skill = {
 				mark:true,
 				intro:{
 					content:function(storage,player){
-						var list = lib.skill.yb020_zhuangrong_damage.YB_usable(player,i);
+						var list = lib.skill.yb020_zhuangrong_damage.YB_usable(player,true);
 						return `<span class=thundertext>${list[0]}/${list[1]}</span>、<span class=firetext>${list[2]}/${list[3]}</span>`
 					}
 				},
