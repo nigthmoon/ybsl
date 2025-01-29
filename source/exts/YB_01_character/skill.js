@@ -1462,208 +1462,208 @@ const skill = {
 		},
 	},
 	//群里抄的双持
-	ybsl_doubleEquip: {
-		silent: true,
-		locked: true,
-		trigger: {
-			player: 'equipBegin',
-		},
-		filter: function (event, player) {
-			var subtype = get.subtype(event.card);
-			if (subtype != 'equip1') return false;//判定装备的类型
-			return player.countCards('e', {subtype: 'equip1'});
-		},
-		content: function () {
-			// game.log('event.name',event.name)
-			trigger.setContent(lib.skill[event.name].equip);
-		},
-		equip: function () {
-			'step 0'
-			var owner = get.owner(card);
-			if (owner) owner.lose(card, ui.special, 'visible').set('type', 'equip');
-			'step 1'
-			if (event.cancelled) {
-				event.finish();
-				return;
-			}
-			if (card.destroyed) {
-				if (player.hasSkill(card.destroyed)) {
-					delete card.destroyed;
-				} else {
-					event.finish();
-					return;
-				}
-			}
-			if (event.draw) {
-				game.delay(0, 300);
-				player.$draw(card);
-			}
-			'step 2'
-			if (card.clone) {
-				game.broadcast(function (card, player) {
-					if (card.clone) {
-						card.clone.moveDelete(player);
-					}
-				}, card, player);
-				card.clone.moveDelete(player);
-				game.addVideo('gain2', player, get.cardsInfo([card.clone]));
-			}
-			player.equiping = true;
-			'step 3'
-			var cards = player.getCards('e', {subtype: get.subtype(card)});
-			if (cards.length > 1) {//这里的数字是武器栏上限-1
-				player.chooseCardButton(cards, true, '选择要替换的装备');
-			} else event.goto(5);
-			'step 4'
-			player.lose(result.links, false, 'visible').set('type', 'equip').set('getlx', false).swapEquip = true;
-			if (get.info(card, false).loseThrow) {
-				player.$throw(result.links);
-			}
-			event.swapped = true;
-			'step 5'
-			if (player.isMin()) {
-				event.finish();
-				game.cardsDiscard(card);
-				delete player.equiping;
-				return;
-			}
-			if (lib.config.background_audio) {
-				game.playAudio('effect', get.subtype(card));
-			}
-			game.broadcast(function (type) {
-				if (lib.config.background_audio) {
-					game.playAudio('effect', type);
-				}
-			}, get.subtype(card));
-			player.$equip(card);
-			game.addVideo('equip', player, get.cardInfo(card));
-			game.log(player, '装备了', card);
-			'step 6'
-			var info = get.info(card, false);
-			if (info.onEquip && (!info.filterEquip || info.filterEquip(card, player))) {
-				if (Array.isArray(info.onEquip)) {
-					for (var i = 0; i < info.onEquip.length; i++) {
-						var next = game.createEvent('equip_' + card.name);
-						next.setContent(info.onEquip[i]);
-						next.player = player;
-						next.card = card;
-					}
-				} else {
-					var next = game.createEvent('equip_' + card.name);
-					next.setContent(info.onEquip);
-					next.player = player;
-					next.card = card;
-				}
-				if (info.equipDelay != 'false') game.delayx();
-			}
-			delete player.equiping;
-			if (event.delay) {
-				game.delayx();
-			}
-		},
-	},
-	///吴六剑同时穿戴依托于这个
-	ybsl_infEquip: {
-		silent: true,
-		locked: true,
-		trigger: {
-			player: 'equipBegin',
-		},
-		filter: function (event, player) {
-			// var subtype = get.subtype(event.card);
-			// if (subtype != 'equip1') return false;//判定装备的类型
-			// return player.countCards('e', {subtype: 'equip1'});
-			return true;
-		},
-		content: function () {
-			// game.log('event.name',event.name)
-			trigger.setContent(lib.skill[event.name].equip);
-		},
-		equip: function () {
-			'step 0'
-			var owner = get.owner(card);
-			if (owner) owner.lose(card, ui.special, 'visible').set('type', 'equip');
-			'step 1'
-			if (event.cancelled) {
-				event.finish();
-				return;
-			}
-			if (card.destroyed) {
-				if (player.hasSkill(card.destroyed)) {
-					delete card.destroyed;
-				} else {
-					event.finish();
-					return;
-				}
-			}
-			if (event.draw) {
-				game.delay(0, 300);
-				player.$draw(card);
-			}
-			'step 2'
-			if (card.clone) {
-				game.broadcast(function (card, player) {
-					if (card.clone) {
-						card.clone.moveDelete(player);
-					}
-				}, card, player);
-				card.clone.moveDelete(player);
-				game.addVideo('gain2', player, get.cardsInfo([card.clone]));
-			}
-			player.equiping = true;
-			'step 3'
-			var cards = player.getCards('e', {subtype: get.subtype(card)});
-			if (cards.length > 114514) {//这里的数字是武器栏上限-1
-				player.chooseCardButton(cards, true, '选择要替换的装备');
-			} else event.goto(5);
-			'step 4'
-			player.lose(result.links, false, 'visible').set('type', 'equip').set('getlx', false).swapEquip = true;
-			if (get.info(card, false).loseThrow) {
-				player.$throw(result.links);
-			}
-			event.swapped = true;
-			'step 5'
-			if (player.isMin()) {
-				event.finish();
-				game.cardsDiscard(card);
-				delete player.equiping;
-				return;
-			}
-			if (lib.config.background_audio) {
-				game.playAudio('effect', get.subtype(card));
-			}
-			game.broadcast(function (type) {
-				if (lib.config.background_audio) {
-					game.playAudio('effect', type);
-				}
-			}, get.subtype(card));
-			player.$equip(card);
-			game.addVideo('equip', player, get.cardInfo(card));
-			game.log(player, '装备了', card);
-			'step 6'
-			var info = get.info(card, false);
-			if (info.onEquip && (!info.filterEquip || info.filterEquip(card, player))) {
-				if (Array.isArray(info.onEquip)) {
-					for (var i = 0; i < info.onEquip.length; i++) {
-						var next = game.createEvent('equip_' + card.name);
-						next.setContent(info.onEquip[i]);
-						next.player = player;
-						next.card = card;
-					}
-				} else {
-					var next = game.createEvent('equip_' + card.name);
-					next.setContent(info.onEquip);
-					next.player = player;
-					next.card = card;
-				}
-				if (info.equipDelay != 'false') game.delayx();
-			}
-			delete player.equiping;
-			if (event.delay) {
-				game.delayx();
-			}
-		},
-	},
+	// ybsl_doubleEquip: {
+	// 	silent: true,
+	// 	locked: true,
+	// 	trigger: {
+	// 		player: 'equipBegin',
+	// 	},
+	// 	filter: function (event, player) {
+	// 		var subtype = get.subtype(event.card);
+	// 		if (subtype != 'equip1') return false;//判定装备的类型
+	// 		return player.countCards('e', {subtype: 'equip1'});
+	// 	},
+	// 	content: function () {
+	// 		// game.log('event.name',event.name)
+	// 		trigger.setContent(lib.skill[event.name].equip);
+	// 	},
+	// 	equip: function () {
+	// 		'step 0'
+	// 		var owner = get.owner(card);
+	// 		if (owner) owner.lose(card, ui.special, 'visible').set('type', 'equip');
+	// 		'step 1'
+	// 		if (event.cancelled) {
+	// 			event.finish();
+	// 			return;
+	// 		}
+	// 		if (card.destroyed) {
+	// 			if (player.hasSkill(card.destroyed)) {
+	// 				delete card.destroyed;
+	// 			} else {
+	// 				event.finish();
+	// 				return;
+	// 			}
+	// 		}
+	// 		if (event.draw) {
+	// 			game.delay(0, 300);
+	// 			player.$draw(card);
+	// 		}
+	// 		'step 2'
+	// 		if (card.clone) {
+	// 			game.broadcast(function (card, player) {
+	// 				if (card.clone) {
+	// 					card.clone.moveDelete(player);
+	// 				}
+	// 			}, card, player);
+	// 			card.clone.moveDelete(player);
+	// 			game.addVideo('gain2', player, get.cardsInfo([card.clone]));
+	// 		}
+	// 		player.equiping = true;
+	// 		'step 3'
+	// 		var cards = player.getCards('e', {subtype: get.subtype(card)});
+	// 		if (cards.length > 1) {//这里的数字是武器栏上限-1
+	// 			player.chooseCardButton(cards, true, '选择要替换的装备');
+	// 		} else event.goto(5);
+	// 		'step 4'
+	// 		player.lose(result.links, false, 'visible').set('type', 'equip').set('getlx', false).swapEquip = true;
+	// 		if (get.info(card, false).loseThrow) {
+	// 			player.$throw(result.links);
+	// 		}
+	// 		event.swapped = true;
+	// 		'step 5'
+	// 		if (player.isMin()) {
+	// 			event.finish();
+	// 			game.cardsDiscard(card);
+	// 			delete player.equiping;
+	// 			return;
+	// 		}
+	// 		if (lib.config.background_audio) {
+	// 			game.playAudio('effect', get.subtype(card));
+	// 		}
+	// 		game.broadcast(function (type) {
+	// 			if (lib.config.background_audio) {
+	// 				game.playAudio('effect', type);
+	// 			}
+	// 		}, get.subtype(card));
+	// 		player.$equip(card);
+	// 		game.addVideo('equip', player, get.cardInfo(card));
+	// 		game.log(player, '装备了', card);
+	// 		'step 6'
+	// 		var info = get.info(card, false);
+	// 		if (info.onEquip && (!info.filterEquip || info.filterEquip(card, player))) {
+	// 			if (Array.isArray(info.onEquip)) {
+	// 				for (var i = 0; i < info.onEquip.length; i++) {
+	// 					var next = game.createEvent('equip_' + card.name);
+	// 					next.setContent(info.onEquip[i]);
+	// 					next.player = player;
+	// 					next.card = card;
+	// 				}
+	// 			} else {
+	// 				var next = game.createEvent('equip_' + card.name);
+	// 				next.setContent(info.onEquip);
+	// 				next.player = player;
+	// 				next.card = card;
+	// 			}
+	// 			if (info.equipDelay != 'false') game.delayx();
+	// 		}
+	// 		delete player.equiping;
+	// 		if (event.delay) {
+	// 			game.delayx();
+	// 		}
+	// 	},
+	// },
+	// ///吴六剑同时穿戴依托于这个
+	// ybsl_infEquip: {
+	// 	silent: true,
+	// 	locked: true,
+	// 	trigger: {
+	// 		player: 'equipBegin',
+	// 	},
+	// 	filter: function (event, player) {
+	// 		// var subtype = get.subtype(event.card);
+	// 		// if (subtype != 'equip1') return false;//判定装备的类型
+	// 		// return player.countCards('e', {subtype: 'equip1'});
+	// 		return true;
+	// 	},
+	// 	content: function () {
+	// 		// game.log('event.name',event.name)
+	// 		trigger.setContent(lib.skill[event.name].equip);
+	// 	},
+	// 	equip: function () {
+	// 		'step 0'
+	// 		var owner = get.owner(card);
+	// 		if (owner) owner.lose(card, ui.special, 'visible').set('type', 'equip');
+	// 		'step 1'
+	// 		if (event.cancelled) {
+	// 			event.finish();
+	// 			return;
+	// 		}
+	// 		if (card.destroyed) {
+	// 			if (player.hasSkill(card.destroyed)) {
+	// 				delete card.destroyed;
+	// 			} else {
+	// 				event.finish();
+	// 				return;
+	// 			}
+	// 		}
+	// 		if (event.draw) {
+	// 			game.delay(0, 300);
+	// 			player.$draw(card);
+	// 		}
+	// 		'step 2'
+	// 		if (card.clone) {
+	// 			game.broadcast(function (card, player) {
+	// 				if (card.clone) {
+	// 					card.clone.moveDelete(player);
+	// 				}
+	// 			}, card, player);
+	// 			card.clone.moveDelete(player);
+	// 			game.addVideo('gain2', player, get.cardsInfo([card.clone]));
+	// 		}
+	// 		player.equiping = true;
+	// 		'step 3'
+	// 		var cards = player.getCards('e', {subtype: get.subtype(card)});
+	// 		if (cards.length > 114514) {//这里的数字是武器栏上限-1
+	// 			player.chooseCardButton(cards, true, '选择要替换的装备');
+	// 		} else event.goto(5);
+	// 		'step 4'
+	// 		player.lose(result.links, false, 'visible').set('type', 'equip').set('getlx', false).swapEquip = true;
+	// 		if (get.info(card, false).loseThrow) {
+	// 			player.$throw(result.links);
+	// 		}
+	// 		event.swapped = true;
+	// 		'step 5'
+	// 		if (player.isMin()) {
+	// 			event.finish();
+	// 			game.cardsDiscard(card);
+	// 			delete player.equiping;
+	// 			return;
+	// 		}
+	// 		if (lib.config.background_audio) {
+	// 			game.playAudio('effect', get.subtype(card));
+	// 		}
+	// 		game.broadcast(function (type) {
+	// 			if (lib.config.background_audio) {
+	// 				game.playAudio('effect', type);
+	// 			}
+	// 		}, get.subtype(card));
+	// 		player.$equip(card);
+	// 		game.addVideo('equip', player, get.cardInfo(card));
+	// 		game.log(player, '装备了', card);
+	// 		'step 6'
+	// 		var info = get.info(card, false);
+	// 		if (info.onEquip && (!info.filterEquip || info.filterEquip(card, player))) {
+	// 			if (Array.isArray(info.onEquip)) {
+	// 				for (var i = 0; i < info.onEquip.length; i++) {
+	// 					var next = game.createEvent('equip_' + card.name);
+	// 					next.setContent(info.onEquip[i]);
+	// 					next.player = player;
+	// 					next.card = card;
+	// 				}
+	// 			} else {
+	// 				var next = game.createEvent('equip_' + card.name);
+	// 				next.setContent(info.onEquip);
+	// 				next.player = player;
+	// 				next.card = card;
+	// 			}
+	// 			if (info.equipDelay != 'false') game.delayx();
+	// 		}
+	// 		delete player.equiping;
+	// 		if (event.delay) {
+	// 			game.delayx();
+	// 		}
+	// 	},
+	// },
 	//-------------------孙丽松
 	'yb001_fufeng':{
 		audio:'ext:夜白神略/audio/character:1',//听吧，这是风的呼吸
@@ -4400,6 +4400,62 @@ const skill = {
 		}
 	},
 	//----------------------SP满城柒
+	yb016_shanbiao:{
+		audio:'ext:夜白神略/audio/character:2',
+		init:function(player,skill){
+			player.storage.yb016_shanbiao=true;
+		},
+		zhuanhuanji:true,
+		mark:true,
+		marktext:'☯',
+		intro:{
+			content:function(storage,player,skill){
+				if (player.storage.yb016_shanbiao==true){
+					return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的一点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
+				}
+				return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的一点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
+			},
+		},
+		group:['yb016_shanbiao_damage'],
+		subSkill:{
+			damage:{
+				forced:true,
+				trigger:{
+					player:'damageBegin4',
+					source:'damageBegin2',
+				},
+				filter(event,player,name){
+					if(name=='damageBegin4')return player.storage.yb016_shanbiao;
+					return !player.storage.yb016_shanbiao;
+				},
+				content(){
+					trigger.num--;
+				},
+			},
+			yang:{},
+			ying:{},
+		},
+		forced:true,
+		trigger:{
+			player:['phaseEnd','turnOverEnd'],
+		},
+		filter(){return true},
+		content(){
+			if(player.storage.yb016_shanbiao==true){
+				player.draw(2);
+				player.changeZhuanhuanji('yb016_shanbiao');
+			}
+			else {
+				player.damage(_status.currentPhase||'nosource');
+				player.changeZhuanhuanji('yb016_shanbiao');
+			}
+		}
+	},
+	yb016_jiushi:{
+		audio:'ext:夜白神略/audio/character:2',
+		inherit:'jiushi',
+	},
+	//----------------------废案
 	'yb016_xianyue':{
 		audio:'ext:夜白神略/audio/character:2',
 		trigger:{
@@ -6091,6 +6147,80 @@ const skill = {
 	// yb019_zhiyu:{
 		
 	// },
+	ybsl_cu_discard:{
+		trigger: {
+			player:'loseAfter',
+			// player: ["loseAfter", "compare"],
+			// global: [
+			// 	"equipAfter",
+			// 	"addJudgeAfter",
+			// 	"gainAfter",
+			// 	"loseAsyncAfter",
+			// 	"addToExpansionAfter",
+			// ],
+			// target: "compare",
+		},
+		cardSkill: true,
+		// filter: function (event, player, name) {
+		// 	if(event.type!='discard')return false;
+		// 	var evt = event.getl(player);
+		// 	if (
+		// 		!evt ||
+		// 		!evt.hs ||
+		// 		!evt.hs.filter(function (i) {
+		// 			return get.name(i, player) == "ybsl_cu";
+		// 		}).length
+		// 	)
+		// 		return false;
+		// 	// for (var i of lib.skill.ybsl_cu.whiteListFilter) {
+		// 	// 	if (i(event, player)) return false;
+		// 	// }
+		// 	return true;
+		// },
+		getIndex:function (event, player, name) {
+			if(event.type!='discard')return false;
+			var evt = event.getl(player);
+			if (
+				!evt ||
+				!evt.hs ||
+				!evt.hs.filter(function (i) {
+					return get.name(i, player) == "ybsl_cu";
+				}).length
+			)
+				return false;
+			// for (var i of lib.skill.ybsl_cu.whiteListFilter) {
+			// 	if (i(event, player)) return false;
+			// }
+			var num = evt.hs.filter(function (i) {
+				return get.name(i, player) == "ybsl_cu";
+			}).length;
+			if(num>0){
+				game.log(player, "触发了", "#g【醋】", "的效果");
+				return num;
+			}
+		},
+		whiteListFilter: [
+			//豁免
+			// (event) => event.getParent().name == "g_du_give",
+			// (event) => event.getParent(3).name == "guaguliaodu",
+		],
+		forced: true,
+		popup: false,
+		content: function () {
+			"step 0";
+			if (trigger.delay === false) game.delayx();
+			"step 1";
+			// var num = 1;
+			// if (typeof trigger.getl == "function") {
+			// 	num = trigger.getl(player).hs.filter(function (i) {
+			// 		return get.name(i, player) == "ybsl_cu";
+			// 	}).length;
+			// }
+			// player.loseHp(num).type = "du";
+			player.chooseToDiscard().type='ybsl_cu';
+		},
+
+	},
 	//--------------贾雨桐
 	'yb020_shange':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -6188,7 +6318,7 @@ const skill = {
 				async cost(event, trigger, player) {
 					event.result = { bool: true, cost_data: { index: 0 } };
 					var list = lib.skill.yb020_zhuangrong_damage.YB_usable(player);
-					var list2 = lib.skill.yb020_zhuangrong_damage.YB_usable(player,i);
+					var list2 = lib.skill.yb020_zhuangrong_damage.YB_usable(player,true);
 					if(list[0]>0&&list[1]>0&&player.isDamaged()){
 						const { index } = await player
 							.chooseControl()
@@ -6628,6 +6758,48 @@ const skill = {
 	*/
 	//--------------023
 	//--------------024
+	ybsl_tang_used:{
+		trigger: {
+			player:'useCard1',
+		},
+		// forecd:true,
+		cardSkill: true,
+		filter:function(event,player){
+			var cards=event.cards;
+			if(!cards.length)return false;
+			for(var i of cards){
+				if(i.name!='ybsl_tang')return false;
+			}
+			return player.countCards('h')>0;
+		},
+		forced: true,
+		popup: false,
+		content(){
+			'step 0'
+			player.chooseCard('h',true).set('prompt2','请选择一张手牌加入此牌实体牌');
+			'step 1'
+			if(result.cards){
+				player.lose(result.cards[0]);
+				trigger.cards.push(result.cards[0]);
+			}
+			else{
+				event.goto(4);
+			}
+			'step 2'
+			var cards=trigger.cards;
+			for(var i of cards){
+				if(i.name!='ybsl_tang')event.goto(4);
+			}
+			'step 3'
+			event.goto(0);
+			'step 4'
+			var cards=trigger.cards;
+			var num=cards.filter(function (i) {
+				return i.name == "ybsl_tang";
+			}).length;
+			trigger.baseDamage=num;
+		}
+	},
 	//--------------025
 	
 	// //-----------------------史庆宇（待写）
@@ -12054,42 +12226,7 @@ const skill = {
 			if(name=='ybsl_wuhua') return true;
 		},
 	},
-	_ybsl_zhezhiqiang_lose:{
-		trigger:{global:['loseEnd','cardsDiscardEnd']},
-		forced:true,
-		charlotte:true,
-		filter:function(event,player){
-			var cs=event.cards;
-			for(var i=0;i<cs.length;i++){
-				if(get.name(cs[i])=='ybsl_zhezhiqiang'&&get.position(cs[i],true)=='d') return true;
-			}
-			return false;
-		},
-		forceDie:true,
-		content:function(){
-			// var list=[];
-			var cs=trigger.cards;
-			for(var i=0;i<cs.length;i++){
-		// 	card.fix();
-		// 	// card.remove();
-		// 	// card.destroyed=true;
-				var suit=cs[i].suit,num=cs[i].number,nature=cs[i].nature;
-				switch(suit){
-					case 'club':var name='ybsl_meihua';break;
-					case 'diamond':var name='ybsl_lanhua';break;
-					case 'spade':var name='ybsl_zhuzi';break;
-					case 'heart':var name='ybsl_juhua';break;
-					case 'none':var name='ybsl_nohua';break;
-				}
-				if(get.name(cs[i])=='ybsl_zhezhiqiang'&&get.position(cs[i],true)=='d'){
-					cs[i].init([suit,num,name,nature]);
-					game.log('折枝枪变成了花朵。');
-				}
-			}
-			// game.log(list,'已被移出游戏');
-			// game.cardsGotoSpecial(list);
-		},
-	},
+	//折枝枪全局技能加入special了
 	//---------------071想去远方
 	'ybsl_xinghen':{
 		mod:{
@@ -15704,6 +15841,165 @@ const skill = {
 		},
 		filterCard:function(){return false},
 		selectCard:-1,
+	},
+	//整个活
+	ybsl_yiji:{
+		enable:'phaseUse',
+		usable:1,
+		filter(){return true},
+		content(){
+			'step 0'
+			var cards=get.cards(2);
+			game.cardsGotoOrdering(cards);
+			player.showCards(cards);//
+			var num10=get.number(cards[0])||4;
+			var num11=get.number(cards[1])||4;
+			if(num10<num11){
+				event.num1=num11;
+				event.num2=num10;
+			}
+			else {
+				event.num1=num10;
+				event.num2=num11;
+			}
+			'step 1'
+			event.cardsxx=get.cards(event.num1);
+			event.cards2=game.cardsGotoOrdering(event.cardsxx);
+			var yb = {};
+			// var relu = player.YB_yiji(event,{cards:event.cards2,num:event.num2},player);
+			var relu = player.YB_yiji(event.num2,event.cards2);
+			relu;
+			'step 2'
+			var cards3=event.cardsxx.filterInD();
+			if(cards3.length){
+				player.addToExpansion(cards3).gaintag.add('ybsl_yiji');
+			}
+		},
+		intro:{
+			markcount:function(storage,player){
+				var content=player.getExpansions('ybsl_yiji');
+				return content.length;
+			},
+			mark:function(dialog,content,player){
+				var content=player.getExpansions('ybsl_yiji');
+				if(content&&content.length){
+					if(player==game.me||player.isUnderControl()){
+						dialog.addAuto(content);
+					}
+					else{
+						return '共有'+get.cnNumber(content.length)+'张遗计';
+					}
+				}
+			},
+			content:function(content,player){
+				var content=player.getExpansions('ybsl_yiji');
+				if(content&&content.length){
+					if(player==game.me||player.isUnderControl()){
+						return get.translation(content);
+					}
+					return '共有'+get.cnNumber(content.length)+'张遗计';
+				}
+			}
+		},
+		group:'ybsl_yiji_gain',
+		subSkill:{
+			gain:{
+				trigger:{player:'damageAfter'},
+				filter(event,player){
+					var content=player.getExpansions('ybsl_yiji');
+					return content.length&&event.num;
+				},
+				async cost(event, trigger, player){
+					var cards = player.getExpansions('ybsl_yiji');
+					if(!cards){
+						event.result = {
+							bool: false,
+						};
+					}
+					else {
+						var num = Math.min(trigger.num*2,cards.length)
+						const { result } = await player.chooseButton([get.prompt("ybsl_yiji"), cards], num).set("ai", function () {
+							return 1;
+						});
+						if (result.bool)
+							event.result = {
+								bool: true,
+								cards: result.links,
+							};
+					}
+				},
+				content(){
+					if(!event.cards){
+						event.finish();
+					}
+					else player.gain(event.cards,'gain2');
+				}
+			},
+		}
+	},
+	ybsl_liangying:{
+		enable:'phaseUse',
+		usable:1,
+		filter(){return true},
+		content(){
+			'step 0'
+			var cards = player.draw(5);
+			event.cardsx=cards;
+			'step 1'
+			var cardsx=[];
+			for(var k of event.cardsx.result){
+				if(player.getCards('h').includes(k))cardsx.push(k);
+			}
+			event.cardsxx=cardsx;
+			if(cardsx?.length){
+				var ddd =player.YB_liangying(cardsx,true,3);
+				event.ddd=ddd;
+			}
+			'step 2'
+			console.log(event.ddd.result)
+			var list9=event.ddd.result;
+			var listx1=[];
+			for(var j of list9){
+				listx1.push(j[1][0]);
+			}
+			var cards2=listx1;
+			var cards3=[];
+			var cards4=event.cardsxx;
+			for(var k of cards4){
+				if(player.getCards('h').includes(k)&&!cards2.includes(k))cards3.push(k);
+			}
+			console.log(cards3)
+			if(cards3.length){
+				player.addToExpansion(cards3).gaintag.add('ybsl_yiji');
+			}
+		},
+		intro:{
+			markcount:function(storage,player){
+				var content=player.getExpansions('ybsl_yiji');
+				return content.length;
+			},
+			mark:function(dialog,content,player){
+				var content=player.getExpansions('ybsl_yiji');
+				if(content&&content.length){
+					if(player==game.me||player.isUnderControl()){
+						dialog.addAuto(content);
+					}
+					else{
+						return '共有'+get.cnNumber(content.length)+'张遗计';
+					}
+				}
+			},
+			content:function(content,player){
+				var content=player.getExpansions('ybsl_yiji');
+				if(content&&content.length){
+					if(player==game.me||player.isUnderControl()){
+						return get.translation(content);
+					}
+					return '共有'+get.cnNumber(content.length)+'张遗计';
+				}
+			}
+		},
+		
 	},
 	//---------------------属性杀遗址
 }

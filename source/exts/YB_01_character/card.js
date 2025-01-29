@@ -353,6 +353,17 @@ const card = {
 		postAi:function (targets){
 			return targets.length==1&&targets[0].countCards('j');
 		},
+		filterTarget:function(card,player,target){
+			// if(get.is.versus()){
+			// 	return player.side==target.side&&target.hp!=target.maxHp;
+			// }
+			// else{
+			// 	return target.hp!=target.maxHp;
+			// }
+			return target.countDiscardableCards(player,get.is.single()?'he':'hej');
+		},
+		selectTarget:1,
+		global:'ybsl_cu_discard',
 		// filterTarget:function (card,player,target){
 			// if(player==target) return false;
 			// return target.countDiscardableCards(player,get.is.single()?'he':'hej');
@@ -360,7 +371,7 @@ const card = {
 		defaultYingbianEffect:"add",
 		content:function (){
 			'step 0'
-			arget.recover();
+			if(cards.length)target.recover();
 			'step 1'
 			if(target.countDiscardableCards(player,'hej')){
 				player.discardPlayerCard('hej',target,true);
@@ -419,6 +430,176 @@ const card = {
 			tag:{
 				loseCard:1,
 				discard:1,
+			},
+		},
+	},
+	'ybsl_tang':{
+		derivation:'ybsl_024yuetong',
+		global:'ybsl_tang_used',
+		enable:true,
+		audio:true,
+		fullskin: true,
+		type: "basic",
+		savable: true,
+		selectTarget:1,
+		filterTarget:function(card,player,target){
+			if(get.is.versus()){
+				return player.side==target.side&&target.hp!=target.maxHp;
+			}
+			else{
+				return target.hp!=target.maxHp;
+			}
+		},
+		content: function () {
+			target.recover();
+		},
+		ai: {
+			basic: {
+				order: (card, player) => {
+					if (player.hasSkillTag("pretao")) return 9;
+					return 2;
+				},
+				useful: (card, i) => {
+					let player = _status.event.player;
+					if (!game.checkMod(card, player, "unchanged", "cardEnabled2", player)) return 2 / (1 + i);
+					let fs = game.filterPlayer(current => {
+							return get.attitude(player, current) > 0 && current.hp <= 2;
+						}),
+						damaged = 0,
+						needs = 0;
+					fs.forEach(f => {
+						if (f.hp > 3 || !lib.filter.cardSavable(card, player, f)) return;
+						if (f.hp > 1) damaged++;
+						else needs++;
+					});
+					if (needs && damaged) return 5 * needs + 3 * damaged;
+					if (needs + damaged > 1 || player.hasSkillTag("maixie")) return 8;
+					if (player.hp / player.maxHp < 0.7) return 7 + Math.abs(player.hp / player.maxHp - 0.5);
+					if (needs) return 7;
+					if (damaged) return Math.max(3, 7.8 - i);
+					return Math.max(1, 7.2 - i);
+				},
+				value: (card, player) => {
+					let fs = game.filterPlayer(current => {
+							return get.attitude(_status.event.player, current) > 0;
+						}),
+						damaged = 0,
+						needs = 0;
+					fs.forEach(f => {
+						if (!player.canUse("tao", f)) return;
+						if (f.hp <= 1) needs++;
+						else if (f.hp == 2) damaged++;
+					});
+					if ((needs && damaged) || player.hasSkillTag("maixie")) return Math.max(9, 5 * needs + 3 * damaged);
+					if (needs || damaged > 1) return 8;
+					if (damaged) return 7.5;
+					return Math.max(5, 9.2 - player.hp);
+				},
+			},
+			result: {
+				target: (player, target) => {
+					if (target.hasSkillTag("maixie")) return 3;
+					return 2;
+				},
+				target_use: (player, target, card) => {
+					let mode = get.mode(),
+						taos = player.getCards("hs", i => get.name(i) === "tao" && lib.filter.cardEnabled(i, target, "forceEnable"));
+					if (target !== _status.event.dying) {
+						if (
+							!player.isPhaseUsing() ||
+							player.needsToDiscard(0, (i, player) => {
+								return !player.canIgnoreHandcard(i) && taos.includes(i);
+							}) ||
+							player.hasSkillTag(
+								"nokeep",
+								true,
+								{
+									card: card,
+									target: target,
+								},
+								true
+							)
+						)
+							return 2;
+						let min = 8.1 - (4.5 * player.hp) / player.maxHp,
+							nd = player.needsToDiscard(0, (i, player) => {
+								return !player.canIgnoreHandcard(i) && (taos.includes(i) || get.value(i) >= min);
+							}),
+							keep = nd ? 0 : 2;
+						if (nd > 2 || (taos.length > 1 && (nd > 1 || (nd && player.hp < 1 + taos.length))) || (target.identity === "zhu" && (nd || target.hp < 3) && (mode === "identity" || mode === "versus" || mode === "chess")) || !player.hasFriend()) return 2;
+						if (
+							game.hasPlayer(current => {
+								return player !== current && current.identity === "zhu" && current.hp < 3 && (mode === "identity" || mode === "versus" || mode === "chess") && get.attitude(player, current) > 0;
+							})
+						)
+							keep = 3;
+						else if (nd === 2 || player.hp < 2) return 2;
+						if (nd === 2 && player.hp <= 1) return 2;
+						if (keep === 3) return 0;
+						if (taos.length <= player.hp / 2) keep = 1;
+						if (
+							keep &&
+							game.countPlayer(current => {
+								if (player !== current && current.hp < 3 && player.hp > current.hp && get.attitude(player, current) > 2) {
+									keep += player.hp - current.hp;
+									return true;
+								}
+								return false;
+							})
+						) {
+							if (keep > 2) return 0;
+						}
+						return 2;
+					}
+					if (target.isZhu2() || target === game.boss) return 2;
+					if (player !== target) {
+						if (target.hp < 0 && taos.length + target.hp <= 0) return 0;
+						if (Math.abs(get.attitude(player, target)) < 1) return 0;
+					}
+					if (!player.getFriends().length) return 2;
+					let tri = _status.event.getTrigger(),
+						num = game.countPlayer(current => {
+							if (get.attitude(current, target) > 0) return current.countCards("hs", i => get.name(i) === "tao" && lib.filter.cardEnabled(i, target, "forceEnable"));
+						}),
+						dis = 1,
+						t = _status.currentPhase || game.me;
+					while (t !== target) {
+						let att = get.attitude(player, t);
+						if (att < -2) dis++;
+						else if (att < 1) dis += 0.45;
+						t = t.next;
+					}
+					if (mode === "identity") {
+						if (tri && tri.name === "dying") {
+							if (target.identity === "fan") {
+								if ((!tri.source && player !== target) || (tri.source && tri.source !== target && player.getFriends().includes(tri.source.identity))) {
+									if (num > dis || (player === target && player.countCards("hs", { type: "basic" }) > 1.6 * dis)) return 2;
+									return 0;
+								}
+							} else if (tri.source && tri.source.isZhu && (target.identity === "zhong" || target.identity === "mingzhong") && (tri.source.countCards("he") > 2 || (player === tri.source && player.hasCard(i => i.name !== "tao", "he")))) return 2;
+							//if(player!==target&&!target.isZhu&&target.countCards('hs')<dis) return 0;
+						}
+						if (player.identity === "zhu") {
+							if (
+								player.hp <= 1 &&
+								player !== target &&
+								taos + player.countCards("hs", "jiu") <=
+									Math.min(
+										dis,
+										game.countPlayer(current => {
+											return current.identity === "fan";
+										})
+									)
+							)
+								return 0;
+						}
+					} else if (mode === "stone" && target.isMin() && player !== target && tri && tri.name === "dying" && player.side === target.side && tri.source !== target.getEnemy()) return 0;
+					return 2;
+				},
+			},
+			tag: {
+				recover: 1,
+				save: 1,
 			},
 		},
 	},

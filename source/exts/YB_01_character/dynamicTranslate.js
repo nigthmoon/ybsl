@@ -105,6 +105,11 @@ const dynamicTranslate = {//动态翻译
 		if(!player.storage.yb016_juli_add)return '当一名角色成为除其外的角色使用【杀】的目标时，若你至该角色的距离不大于'+info[1]+'，你可以重铸至多'+info[0]+'张牌，然后令此牌的使用者弃置'+ info[2] +'张牌，（该牌的类型须为你重铸的牌中包含的类型）否则此牌对你无效。';
 		return '当一名角色成为除其外的角色使用【伤害牌】的目标时，若你至该角色的距离不大于'+info[1]+'，你可以重铸至多'+info[0]+'张牌，然后令此牌的使用者弃置'+ info[2] +'张牌，（该牌的类型须为你重铸的牌中包含的类型）否则此牌对你无效。';
 	},
+	yb016_shanbiao:function(player){
+		var storage=player.storage.yb016_shanbiao;
+		if(!storage) return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的一点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
+		return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的一点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
+	},
 	yb033_shuhui:function(player){//淑慧
 		if(player.storage.yb033_shuhui==true){
 			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去一点体力。<span class=yellowtext>然后你展示牌堆顶一张牌，将隅泣任意一个数字改为该数字，至多为当前最低的数字+2。</span>';

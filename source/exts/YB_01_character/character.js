@@ -145,12 +145,12 @@ const character = { //武将格式 :
 	'ybnb_034zhoulianyuan':['male','YB_dream',3,['yb034_rebifa','yb034_rejiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','epic','name:周|怜渊','linkTo:ybsl_034zhoulianyuan']],//梦——界周怜渊
 	//----------------------忆包SP（所谓SP，其实是一种创意的异构，难免参差不齐）
 	'db_ybsp_014liutianyu':['male','shen','3/6',['yb014_yingbian','yb014_yazhi'],['doublegroup:YB_memory:shen','legend','name:夜|白','linkTo:ybsl_014liutianyu']],//SP夜白
-	'ybsp_016manchengqi':['female','YB_memory',3,['yb016_xianyue','yb016_tianliao','yb016_qingjie','yb016_pojie'],['rare','name:满城|柒','linkTo:ybsl_016manchengqi']],//SP满城柒（其实是清明节设计的，机制很清奇但貌似很弱）
 	'ybsp_072sulingyi':['female','qun',3,['yb072_ezhao','yb072_toujiang'],['epic','name:苏|令燚']],//SP苏令燚
 	'db_ybsp_038tengwu':['female','YB_dream','3/4',['yb038_quanlu','yb038_fusheng','ybsl_sanmeng'],['doublegroup:YB_memory:YB_dream','legend','name:滕|叔颖-武|宁','linkTo:db_ybsl_038tengwu']],//SP滕叔颖＆武宁（其实是旧案）
 	'ybsp_002chenailin':['female','YB_memory','3/4',['yb002_touxin','yb002_zheye','QQQ002_xiangyun'],['epic','name:陈|爱琳','linkTo:ybsl_002chenailin']],//SP陈爱琳（其实是旧案）
 	'ybsp_027rain':['female','YB_dream',3,['yb027_mili','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rare','name:null|雨','linkTo:ybsl_027rain']],//梦——雨
 	'ybsp_001sunlisong':['female','YB_memory','3/4',['yb001_yongyue','yb001_haowan'],['epic','name:孙|丽松','linkTo:ybsl_001sunlisong']],//孙丽松
+	'ybsp_016manchengqi':['female','YB_memory',3,['yb016_shanbiao','yb016_jiushi'],['epic','name:满城|柒','linkTo:ybsl_016manchengqi']],//孙丽松
 	//----------------------忆包神将
 	'ybslshen_014liutianyu':['male','shen','3/5',['yb014_shizhui','ybsl_xuxian'],['YB_memory','legend','name:夜|白']],//神夜白
 	'ybslshen_017xiaohong':['female','shen',3,['yb017_mizhu','yb017_guangzhu','yb017_zhenshi','ybsl_xuxian'],['YB_memory','legend','name:涂山|小红']],//神涂山小红
@@ -168,7 +168,19 @@ const character = { //武将格式 :
 	'ybsb_077yangqixu':['male','YB_dream',3,['yb077_shensu','yb077_yingmu','ybsl_sanmeng'],['YB_memory','rare','name:羊|祈絮','linkTo:ybsl_077yangqixu']],//羊祈絮
 	'ybsb_068qingyue':['female','YB_memory',3,['yb010_mingzhu','yb068_chenyu','yb068_jingyue'],['rare','forbidai','name:null|清月','linkTo:ybsl_068qingyue']],//清月姑娘
 	'ybsb_048wushuang':['female','YB_memory',3,['yb048_ningyuan','yb048_wuling','yb048_huanjie'],['legend','name:吴|爽','linkTo:ybsl_048wushuang']],//吴爽
-	ybsl_windmoon:['female','wei',4,['kagari_ybzongsi','xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua',/*'ybsl_kuwang','ybsl_guqu',*/'ybsl_aocai','ybsl_clanxingzu','xinfu_ybjingxie','ybsl_kegu'],['clan:吴郡陆氏','name:null|null']],
+	'ybold_016manchengqi':['female','YB_memory',3,['yb016_xianyue','yb016_tianliao','yb016_qingjie','yb016_pojie'],['rare','name:满城|柒','linkTo:ybsl_016manchengqi']],//旧版SP满城柒（其实是清明节设计的，机制很清奇但貌似很弱）
+
+	ybsl_windmoon:['female','wei',4,[
+		'kagari_ybzongsi',
+		'xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua',
+		/*'ybsl_kuwang','ybsl_guqu',*/
+		'ybsl_aocai',
+		'ybsl_clanxingzu',
+		'xinfu_ybjingxie',
+		'ybsl_kegu',
+		'ybsl_yiji','ybsl_liangying',
+		'ybsl_clanqianlei',
+	],['clan:吴郡陆氏','name:null|null']],
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }

@@ -4,6 +4,7 @@ export {translate}
 const translate = {
 	//---------------------技能翻译
 	yingbian_lianDa_tag:'(连打)',
+	yingbian_cunZhi_tag:'(寸止)',
 	_yingbian_doubleBlow:'连打',
 	_ybsl_yingbian:'连打',
 	'ybsl_tianhuoduan_skill':'天火煅',
@@ -312,9 +313,9 @@ const translate = {
 	'rewrite_ybsl_liujinguan_bg':'智',
 	'rewrite_ybsl_liujinguan_info':'锁定技，每当你使用一张锦囊牌结算完成时，本回合你的手牌上限便+1；你的回合外，若你的手牌数大于体力值，此装备牌无法被其他角色获得或弃置。',
 	//--------------------------衍生
-	'ybsl_cu':'醋',//达成
-	'ybsl_cu_info':'出牌阶段，对区域里有牌的一名其他角色使用。你弃置其区域里的一张牌。',
-	'ybsl_lumingqianzhuan':'鹿鸣千转',//达成
-	'ybsl_lumingqianzhuan_bg':'鸣',
-	'ybsl_lumingqianzhuan_info':'出牌阶段，对一名其他角色使用。你将目标角色标记为“喜啼”或“悲鸣”（对其他角色不可见）。然后目标角色可以打出一张【杀】或【闪】。若其是“喜啼”且未打出【杀】，则你对其造成1点伤害；若其是“悲鸣”且未打出【闪】，则你获得其一张牌。',
+	// 'ybsl_cu':'醋',//达成
+	// 'ybsl_cu_info':'出牌阶段，对区域里有牌的一名其他角色使用。你弃置其区域里的一张牌。',
+	// 'ybsl_lumingqianzhuan':'鹿鸣千转',//达成
+	// 'ybsl_lumingqianzhuan_bg':'鸣',
+	// 'ybsl_lumingqianzhuan_info':'出牌阶段，对一名其他角色使用。你将目标角色标记为“喜啼”或“悲鸣”（对其他角色不可见）。然后目标角色可以打出一张【杀】或【闪】。若其是“喜啼”且未打出【杀】，则你对其造成1点伤害；若其是“悲鸣”且未打出【闪】，则你获得其一张牌。',
 }

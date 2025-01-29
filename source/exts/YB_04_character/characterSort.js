@@ -10,7 +10,7 @@ const characterSort = {
 			'ybslshen_pangtong'
 		],
 		ybsl_ybzs: [
-			'ybsl_hairi','ybsl_youta','sp_key_umi'
+			'ybsl_hairi','ybsl_youta','sp_key_umi','ybsl_pujing',
 		],
 		ybsl_qygc: [
 			'ybsl_xuyou'

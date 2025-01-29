@@ -31,10 +31,11 @@ const character = { //武将格式 :
 	//夜白杂设
 	ybsl_hairi:['male','key',1,['hairi_shangshi','hairi_zheyi','hairi_zhongxia'],['epic','name:鹰原|羽依里']],
 	sp_key_umi:['female','key',3,['caiyi','guili'],['epic','name:加藤|うみ','linkTo:key_umi']],
+	ybsl_pujing:['male','qun',4,['ybsl_reshidao','ybsl_duhun'],['epic','linkTo:pujing']],
 	//别群比赛
 	ybsl_lvyi:['male','shu',3,['ybsl_jianyue','ybsl_tuntian','ybsl_quanfan'],['legend','name:吕|乂']], //吕乂
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['epic',"border:wu",'name:隐|蕃']], //隐蕃
-	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxin','ybsl_fuju'],['legend','name:李|昭仪']], //李昭仪
+	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxinx','ybsl_fuju'],['legend','name:李|昭仪']], //李昭仪
 	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['legend','name:孙|韶']], //孙韶
 	//宗族武将
 	//吴郡陆氏

@@ -4,7 +4,7 @@ export {perfectPair}
 const perfectPair = {//珠联璧合
     'db_ybsp_014liutianyu':[
         'ybsl_002chenailin','ybsl_009liyushan','ybsl_010zhouyue','dzsl_015wanghairu',
-        'ybsl_008wuyuxin','ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'ybsl_008wuyuxin','ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybart_017xiaohong','dzsl_017xiaohong','ybslshen_017xiaohong','ybsl_017xiaohong',
         'ybsl_018zhangqing','ybslshen_018zhangqing','ybold_018zhangqing',
         'ybsl_025shiqingyu','db_ybsl_038tengwu','db_ybsp_038tengwu',
@@ -13,7 +13,7 @@ const perfectPair = {//珠联璧合
     ],
     'ybslshen_014liutianyu':[
         'ybsl_002chenailin','ybsl_009liyushan','ybsl_010zhouyue','dzsl_015wanghairu',
-        'ybsl_008wuyuxin','ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'ybsl_008wuyuxin','ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybart_017xiaohong','dzsl_017xiaohong','ybslshen_017xiaohong','ybsl_017xiaohong',
         'ybsl_018zhangqing','ybslshen_018zhangqing','ybold_018zhangqing',
         'ybsl_025shiqingyu','db_ybsl_038tengwu','db_ybsp_038tengwu',
@@ -21,31 +21,31 @@ const perfectPair = {//珠联璧合
         'ybsl_047shan',
     ],
     'dzsl_017xiaohong':[
-        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_019shengyan','dzsl_015wanghairu','ybsl_015wanghairu',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'ybart_017xiaohong':[
-        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_019shengyan','dzsl_015wanghairu','ybsl_015wanghairu',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'ybslshen_017xiaohong':[
-        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_019shengyan','dzsl_015wanghairu','ybsl_015wanghairu',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'ybsl_017xiaohong':[
-        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'dzsl_016manchengqi','ybart_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_019shengyan','dzsl_015wanghairu','ybsl_015wanghairu',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'dzsl_015wanghairu':[
-        'ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'ybsl_015wanghairu':[
-        'ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybsl_016manchengqi',
+        'ybart_016manchengqi','dzsl_016manchengqi','ybsp_016manchengqi','ybold_016manchengqi','ybsl_016manchengqi',
         'ybsl_018zhangqing','ybold_018zhangqing','ybslshen_018zhangqing',
     ],
     'ybsl_001sunlisong':[

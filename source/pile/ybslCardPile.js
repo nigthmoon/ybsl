@@ -639,6 +639,21 @@ window.cardPile=[
 	['club','9','ybsl_tianhuoduan','fire'],
 
 	['diamond','12','ybsl_tianhuoduan','fire'],
+
+	['heart','10','ybsl_tang',null,['yingbian_zhuzhan','yingbian_add']],
+	['heart','11','ybsl_tang',null,['yingbian_zhuzhan','yingbian_add']],
+	['heart','13','ybsl_tang',null,['yingbian_zhuzhan','yingbian_add']],
+	['diamond','1','ybsl_tang'],
+	['diamond','2','ybsl_tang'],
+	['diamond','3','ybsl_tang'],
+
+	['spade','1','ybsl_cu'],
+	['spade','2','ybsl_cu'],
+	['spade','3','ybsl_cu'],
+	['spade','4','ybsl_cu'],
+	['spade','11','ybsl_cu'],
+	['spade','13','ybsl_cu'],
+	//ybsl_tang
 	// ['heart','13','ybsl_hsbwp','fire',['yingbian_zhuzhan','yingbian_all']],
 	// ['heart','13','ybsl_hsbwp','fire',['yingbian_zhuzhan','yingbian_all']],
 	// ['heart','13','ybsl_hsbwp','fire',['yingbian_zhuzhan','yingbian_all']],

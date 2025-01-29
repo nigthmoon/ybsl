@@ -34,8 +34,8 @@ const character = { //武将格式 :
 
 	ybmjz_zhangqiying:['female','qun',3,['xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua'],['legend','name:张|琪瑛','linkTo:zhangqiying','YB_mjz:zhangqiying']],//张琪瑛
 	ybmjz_shen_zhugeliang:['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['eqic','name:诸葛|亮','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang']],//诸葛亮
-	ybmjz_hina:['male','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','legend','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina']],//佐藤雏
-	ybmjz_kotori:['male','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['legend','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori']],//神户小鸟
+	ybmjz_hina:['female','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','legend','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina']],//佐藤雏
+	ybmjz_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['legend','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori']],//神户小鸟
 	ybmjz_kagari:["female","shen",3,["kagari_ybzongsi"],['legend','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari']],//篝
 	ybmjz_majun:['male','wei',3,['xinfu_ybjingxie','qiaosi'],['epic','linkTo:majun','YB_mjz:majun']],//马钧
 }

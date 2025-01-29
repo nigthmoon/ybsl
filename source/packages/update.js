@@ -1,5 +1,5 @@
 
-export { YB_update }
+export { ybslb_update }
 window.ybslb_update={
 	//这是从金庸里抄来的更新公告格式，不过我仿佛不会用……
 	//感谢狂神对于这种写法的帮助，
@@ -1543,4 +1543,4 @@ window.ybslb_update={
 }
 // const num = window.ybslb_update.version
 // const text = window.ybslb_update[num]['changeLog']
-const YB_update = window.ybslb_update
+const ybslb_update = window.ybslb_update
