@@ -2837,6 +2837,259 @@ const skill = {
 	// ybsl_fuju_info:'锁定技，其他角色获得你的牌/对你造成伤害时，你改为弃置之/失去1点体力。然后你依次执行：①若其体力值大于你，你对其造成1点伤害；②若其手牌数大于你，你弃置其一张牌。',
 	//宗族武将
 
+	ybsl_rongjie:{
+		audio: 'ext:夜白神略/audio/character:2',
+		usable:1,
+		trigger:{
+			player:'useCardToTargeted',
+			target:'useCardToTargeted',
+		},
+		filter(event,player){
+			if(!get.tag(event.card, "damage"))return false;
+			if(event.player==player){
+				return event.targets.length==1&&event.target!=player;
+			}
+			return true;
+		},
+		content(){
+			'step 0'
+			var targetx = trigger.player==player?trigger.target:trigger.player;
+			event.list=[player,targetx];
+			event.list2=[];
+			event.count=0;
+			'step 1'
+			event.source=event.list[event.count];
+			event.target=event.list[1-event.count];
+			var list66 = get.YB_pu1(event.source);
+			if(list66.length>0){
+				event.source.YB_control(list66, 8, '请选择一个出限一技能发动，选错了不能取消');
+			}
+			else {
+				event._result=false;
+				event.goto(4);
+			}
+			'step 2'
+			if(result.control&&result.control!='cancel2'){
+				if(!event.source.getStat('skill')[result.control])event.source.getStat('skill')[result.control]=0;
+				event.source.getStat('skill')[result.control]--;
+				event.skillName = result.control;
+				//↓此段代码感谢霸天大佬的指导
+				var next = event.source.chooseToUse();
+				next.set("openskilldialog", get.prompt(event.skillName));
+				next.set("norestore", true);
+				next.set("_backupevent", event.skillName);
+				next.set("custom", {
+					add: {},
+					replace: {
+						window: function() {}
+					},
+				});
+				// next.set('addCount',false);
+				next._triggered = null;
+				next.backup(event.skillName);
+				next;
+			}
+			'step 3'
+			if(!result.bool){
+				event.source.getStat('skill')[event.skillName]++;
+			}
+			'step 4'
+			if(!result.bool){
+				if (event.source.countGainableCards(event.target,"h")) 
+					event.target.gainPlayerCard('h', event.source, true).set("target", event.source).set("complexSelect", false).set("ai", button => {
+						let val = get.buttonValue(button);
+						if (get.event("att") > 0) return 1 - val;
+						return val;
+					}).set("att", get.attitude(event.target,  event.source));
+				// event.target
+				// 	.choosePlayerCard(get.prompt("ybsl_rongjie", event.source),true, event.source,"he")
+				// 	.set("ai", button => {
+				// 		let val = get.buttonValue(button);
+				// 		if (get.event("att") > 0) return 1 - val;
+				// 		return val;
+				// 	})
+				// 	.set("att", get.attitude(event.target,  event.source));
+			}
+			else event.list2.push(event.source);
+			'step 5'
+			event.count++;
+			'step 6'
+			if(event.count<2)event.goto(1);
+			else{
+				if(event.list2.length>=2)
+					trigger.getParent().excluded.add(trigger.target);
+			}
+		}
+	},
+	ybsl_xiangcha:{
+		audio: 'ext:夜白神略/audio/character:2',
+		usable:1,
+		enable:'phaseUse',
+		zhuanhuanji:true,
+		mark:true,
+		marktext:'☯',
+		// init(skill){
+		// 	// player.storage[skill]=true;
+		// },
+		intro:{
+			content:function(storage,player,skill){
+				if (player.storage[skill]==true){
+					return '转换技，出牌阶段限一次，<span class="bluetext">阳：你可以将一张红色牌当【洞烛先机】使用</span>；阴，你可以将一张黑色牌当【知己知彼】。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+1。';
+				}
+				return '转换技，出牌阶段限一次，阳：你可以将一张红色牌当【洞烛先机】使用；<span class="bluetext">阴，你可以将一张黑色牌当【知己知彼】</span>。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+1。';
+			},
+		},
+		viewAs(cards, player) {
+			var storage = player.storage.ybsl_xiangcha;
+			var name = storage==true? "dongzhuxianji" : "ybsl_zhijizhibi";
+			return { name: name ,ybsl_xiangcha:true};
+		},
+		check(card) {
+			var player = _status.event.player;
+			var storage = player.storage.ybsl_xiangcha;
+			var name = storage==true? "dongzhuxianji" : "ybsl_zhijizhibi";
+			return (get.value({ name: name }, player)+6 - get.value(card)) * 2;
+		},
+		position: "hes",
+		filterCard(card, player) {
+			var storage = player.storage.ybsl_xiangcha;
+			return get.color(card) == (storage==true? "red" : "black");
+		},
+		prompt() {
+			var storage = _status.event.player.storage.ybsl_xiangcha;
+			if (storage==true) return "将一张红色牌当【洞烛先机】使用";
+			return "将一张黑色牌当【知己知彼】使用";
+		},
+		precontent() {
+			"step 0";
+			var skill = "ybsl_xiangcha";
+			// player.logSkill(skill);
+			player.changeZhuanhuanji(skill);
+			// player.awakenSkill(skill, true);
+			// delete event.result.skill;
+		},
+		group:'ybsl_xiangcha_watch',
+		subSkill:{
+			watch:{
+				audio:'ybsl_xiangcha',
+				trigger:{
+					player:['chooseToGuanxingAfter','chooseControlAfter'],
+				},
+				filter(event,player,name){
+					// if(event.card)game.log('eevent.card:',event.card)
+					// game.log('event.getParent():',event.getParent())
+					// game.log('event.getParent(1):',event.getParent(1))
+					// if(event.getParent(1).name)game.log('event.getParent(1).name:',event.getParent(1).name)
+					// if(event.getParent(1).card)game.log('event.getParent(1).card:',event.getParent(1).card)
+					// if(event.getParent(1).card.ybsl_xiangcha)game.log('event.getParent(1).card.ybsl_xiangcha:',event.getParent(1).card.ybsl_xiangcha)
+					// game.log('event.getParent(2):',event.getParent(2))
+					// game.log('event.getParent(3):',event.getParent(3))
+					// game.log('event.getParent(4):',event.getParent(4))
+					if(event.getParent(1).card&&event.getParent(1).card.ybsl_xiangcha){
+						return true;
+					}
+					return false;
+					// if(name=='chooseToGuanxingAfter'){
+					// 	// if(event.getParent(1).card)var card = event.getParent(1).card;
+					// }
+				},
+				async cost(event, trigger, player){
+					// var cards=[];
+					if(event.triggername=='chooseToGuanxingAfter'){
+						// var cards=[];
+						var cards1=trigger.result.moved[0];
+						var cards2=trigger.result.moved[1];
+						var cards = cards1.concat(cards2);
+						// cards.concat(cards2);
+						// game.log(cards)
+						// if(trigger.result.moved[0])cards.push(trigger.result.moved[0]);
+						// if(trigger.result.moved[1])cards.push(trigger.result.moved[1]);
+					}
+					else {
+						if(trigger.dialog)var dialog = trigger.dialog;
+						if(dialog){
+							var cardsxx=dialog.buttons;
+							var cards=[];
+							for(var j of cardsxx){
+								cards.push(j.link);
+							}
+							// console.log(cards)
+							// var list =[];
+							// // game.log(cards.textContent)
+							// for(var i in cards){
+							// 	if(cards[i]&&typeof cards[i]!='function'){
+							// 		list.push(i);
+							// 		list.push(':');
+							// 		list.push(cards[i]);
+							// 	}
+							// }
+							// game.log(list)
+							// game.log(cards.buttons)
+							// var cards2=cards.buttons;
+							// for(var z of cards2){
+							// 	game.log(z.link);
+							// 	console.log(z.link);
+							// }
+							// game.log(Array.from(cards.buttons))
+							// console.log(list666)
+							// game.log(list666)
+							// var kk=cards.view;
+							// var list2=[];
+							// for(var k in kk){
+							// 	list2.push(k);
+							// 	list2.push(':');
+							// 	list2.push(kk[k]);
+
+							// }
+						}
+					}
+					if(cards){
+						const {
+							result: { bool, links },
+						} = await player.chooseButton(['详查：请选择欲展示之牌',cards],[1,cards.length]).set('ai',function(button){
+							return true;
+						}).set('filterButton',function(button){
+							var card = trigger.getParent(1).card;
+							return get.color(button.link)==get.color(card);
+						});
+						event.result = {
+							bool: bool,
+							cost_data: links,
+						};
+					}
+					// player.chooseControl('ok').set('dialog',cards);
+					// player.showCards(cards)
+				},
+				content(){
+					player.showCards(event.cost_data);
+					player.YB_tempx('ybsl_xiangcha_damage',event.cost_data.length);
+				}
+			},
+			damage:{
+				audio:'ybsl_xiangcha',
+				onremove:true,
+				charlotte:true,
+				forced:true,
+				mark:true,
+				intro:{
+					content:'本回合下次伤害+$',
+				},
+				trigger:{
+					source:'damageBegin1',
+				},
+				filter:(event,player)=>player.countMark('ybsl_xiangcha_damage')>0,
+				content(){
+					const num=player.countMark('ybsl_xiangcha_damage');
+					player.removeMark('ybsl_xiangcha_damage',num);
+					trigger.num+=num;
+				},
+			}
+		},
+	},
+	// ybsl_rongjie:'戎戒',
+	// ybsl_rongjie_info:'每回合限一次，当你使用伤害牌指定其他角色为唯一目标或成为其他角色使用伤害牌的目标时，你可以令你和对方依次选择发动一个出牌阶段限一次的主动技能（不计入发动次数），不如此做（或无法如此做）者令对方获得自己一张手牌。若双方均如此做，此牌对目标无效。',
+	// ybsl_xiangcha:'详查',
+	// ybsl_xiangcha_info:'转换技，出牌阶段限一次，阳：你可以将一张红色牌当【洞烛先机】使用；阴，你可以将一张黑色牌当【知己知彼】。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+1。',
 
 	ybsl_clanxingzu: {
 		// audio:'ext:夜白神略/audio/character:2',
@@ -2919,7 +3172,9 @@ const skill = {
 				next.backup(skillName);
 				
 				yield next;
-				
+				if(!next.bool){
+					yield targets[0].getStat('skill')[skill.control]++;
+				}
 				// if(targets[0].getStat('skill')[skill.control]&&targets[0].getStat('skill')[skill.control]>0)
 				// yield targets[0].getStat('skill')[skill.control]--;
 				// yield game.log('发动兴族后',targets[0].getStat('skill')[skill.control]);
@@ -3874,6 +4129,10 @@ const skill = {
 	sgsh_zhishui:'治水',
 	'sgsh_zhishui_info':'出牌阶段限一次，你可以令至多X名角色弃置所有牌并摸等量的牌，X为你当前体力值。',
 	*/
-
+	ybsl_kegu:{
+		enable:'chooseToUse',
+		usable:1,
+		
+	},
 
 }

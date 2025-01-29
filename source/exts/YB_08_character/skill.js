@@ -526,7 +526,7 @@ const skill = {
 		content: function () {
 			"step 0";
 			player
-				.chooseCard(get.translation(trigger.player) + "的" + (trigger.judgestr || "") + "判定为" + get.translation(trigger.player.judging[0]) + "，" + get.prompt("reguicai"), "hes", function (card) {
+				.chooseCard(get.translation(trigger.player) + "的" + (trigger.judgestr || "") + "判定为" + get.translation(trigger.player.judging[0]) + "，" + get.prompt("ybmjz_guicai"), "hes", function (card) {
 					var player = _status.event.player;
 					var mod2 = game.checkMod(card, player, "unchanged", "cardEnabled2", player);
 					if (mod2 != "unchanged") return mod2;
@@ -552,7 +552,7 @@ const skill = {
 				.set("judging", trigger.player.judging[0]);
 			"step 1";
 			if (result.bool) {
-				player.respond(result.cards, "reguicai", "highlight", "noOrdering");
+				player.respond(result.cards, "ybmjz_guicai", "highlight", "noOrdering");
 			} else {
 				event.finish();
 			}

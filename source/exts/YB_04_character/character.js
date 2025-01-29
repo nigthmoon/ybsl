@@ -35,6 +35,7 @@ const character = { //武将格式 :
 	ybsl_lvyi:['male','shu',3,['ybsl_jianyue','ybsl_tuntian','ybsl_quanfan'],['legend','name:吕|乂']], //吕乂
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['epic',"border:wu",'name:隐|蕃']], //隐蕃
 	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxin','ybsl_fuju'],['legend','name:李|昭仪']], //李昭仪
+	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['legend','name:孙|韶']], //孙韶
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji:['male','wu',3,['ybsl_ljfumin','ybsl_ljguihang','ybsl_clanxingzu'],['epic','clan:吴郡陆氏','name:陆|绩','linkTo:luji']], //族陆绩

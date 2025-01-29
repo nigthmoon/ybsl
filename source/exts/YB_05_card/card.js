@@ -854,7 +854,7 @@ const card = {
 		},
 		content:function (){
 			'step 0'
-			player.addTempSkill('ybsl_tianhuoduan_skill');
+			// player.addTempSkill('ybsl_tianhuoduan_skill');
 			'step 1'
 			var list=lib.skill.xinfu_ybjingxie.getJingxie();
 			if(player.countCards('he',function(card,player){
