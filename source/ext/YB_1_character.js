@@ -14,7 +14,7 @@ import { skill } from '../exts/YB_01_character/skill.js'
 import { card } from '../exts/YB_01_character/card.js'
 import { translate } from '../exts/YB_01_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_01_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+// import { YB_characterIntro } from '../packages/function.js';
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	var ybslj={ 
 		name:'ybslj',//武将包命名（必填） 

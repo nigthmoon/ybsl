@@ -896,26 +896,26 @@ const skill = {
 				});
 			if (relu.index == 0) {
 				yield trigger.player.addTempSkill('ybsl_shidao_paoxiao');
-				if(!player.storage.ybsl_shidao_paoxiao)yield player.storage.ybsl_shidao_paoxiao=[];
+				if (!player.storage.ybsl_shidao_paoxiao) yield player.storage.ybsl_shidao_paoxiao = [];
 				yield trigger.player.storage.ybsl_shidao_paoxiao.push(get.color(cards[0]));
 			}
 			else {
 				yield trigger.player.addTempSkill('ybsl_shidao_wusheng');
-				if(!player.storage.ybsl_shidao_wusheng)yield player.storage.ybsl_shidao_wusheng=[];
+				if (!player.storage.ybsl_shidao_wusheng) yield player.storage.ybsl_shidao_wusheng = [];
 				yield trigger.player.storage.ybsl_shidao_wusheng.push(get.color(cards[0]));
 			}
-			if(get.type(cards[0])=='equip'){
-				yield trigger.player.addTempSkill(lib.card[cards[0].name].skills,{player:'phaseUseAfter'});
+			if (get.type(cards[0]) == 'equip') {
+				yield trigger.player.addTempSkill(lib.card[cards[0].name].skills, { player: 'phaseUseAfter' });
 			}
 		},
 		subSkill: {
 			wusheng: {
 				forced: true,
 				init: function (player) {
-					if(!player.storage.ybsl_shidao_wusheng)player.storage.ybsl_shidao_wusheng=[];
+					if (!player.storage.ybsl_shidao_wusheng) player.storage.ybsl_shidao_wusheng = [];
 				},
-				onremove:true,
-				enable:'chooseToUse',
+				onremove: true,
+				enable: 'chooseToUse',
 				filterCard(card, player) {
 					const color = get.color(card);
 					return player.getStorage("ybsl_shidao_wusheng").includes(color);
@@ -927,12 +927,12 @@ const skill = {
 						ybsl_shidao: true,
 					},
 				},
-				filter(event,player,name){
-					if(name&&name=='shaBegin')return event.card.name == "sha"&&event.card?.storage?.ybsl_shidao==true;
+				filter(event, player, name) {
+					if (name && name == 'shaBegin') return event.card.name == "sha" && event.card?.storage?.ybsl_shidao == true;
 					return player.getStorage("ybsl_shidao_wusheng");
 				},
 				viewAsFilter(player) {
-					if (!player.countCards("hes", function(card){
+					if (!player.countCards("hes", function (card) {
 						const color = get.color(card);
 						return player.getStorage("ybsl_shidao_wusheng").includes(color);
 					})) return false;
@@ -944,14 +944,14 @@ const skill = {
 				},
 				trigger: { player: "shaBegin" },
 				content: function () {
-					if(trigger&&event.triggername&&event.triggername=='shaBegin')trigger.directHit = true;
+					if (trigger && event.triggername && event.triggername == 'shaBegin') trigger.directHit = true;
 				},
 				ai: {
 					respondSha: true,
 					skillTagFilter: function (player) {
-						if(!player.countCards('he'))return false;
-						var cards=player.getCards('he');
-						for(var card of cards){
+						if (!player.countCards('he')) return false;
+						var cards = player.getCards('he');
+						for (var card of cards) {
 							const color = get.color(card);
 							if (player.getStorage("ybsl_shidao_wusheng").includes(color)) return true;
 						}
@@ -961,15 +961,15 @@ const skill = {
 			paoxiao: {
 				forced: true,
 				init: function (player) {
-					if(!player.storage.ybsl_shidao_paoxiao)player.storage.ybsl_shidao_paoxiao=[];
+					if (!player.storage.ybsl_shidao_paoxiao) player.storage.ybsl_shidao_paoxiao = [];
 				},
-				mod:{
+				mod: {
 					cardUsable(card, player) {
 						const color = get.color(card);
 						if (color == "unsure" || player.getStorage("ybsl_shidao_paoxiao").includes(color)) return Infinity;
 					},
 				},
-				onremove:true,
+				onremove: true,
 			},
 		},
 		ai: {
@@ -977,7 +977,7 @@ const skill = {
 		}
 	},
 	ybsl_reshidao: {
-		inherit:'ybsl_shidao',
+		inherit: 'ybsl_shidao',
 		filter(event, player) {
 			// if (_status.currentPhase == player) return false;
 			return player.countCards('he') > 0;
@@ -986,7 +986,7 @@ const skill = {
 	ybsl_duhun: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: { global: "die" },
-		filter(event,player){return event.player!=player},
+		filter(event, player) { return event.player != player },
 		// direct: true,
 		skillAnimation: true,
 		animationColor: "wood",
@@ -3455,20 +3455,20 @@ const skill = {
 	// ybsl_xiangcha:'详查',
 	// ybsl_xiangcha_info:'转换技，出牌阶段限一次，阳：你可以将一张红色牌当【洞烛先机】使用；阴，你可以将一张黑色牌当【知己知彼】。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+1。',
 
-	ybsl_clanqianlei:{//谦累
+	ybsl_clanqianlei: {//谦累
 		clanSkill: true,
 		trigger: {
-			player:['YB_anySkipped','YB_anyCancelled'],
+			player: ['YB_anySkipped', 'YB_anyCancelled'],
 			// target: "shaMiss",
 			// global: "eventNeutralized",
 		},
-		forced:true,
-		content(){
+		forced: true,
+		content() {
 			'step 0'
 			player.loseHp();
 			'step 1'
 			var list = get.YB_clan(player, true);
-			if(list.length)player.chooseTarget(1,true, function (card, player, target) {
+			if (list.length) player.chooseTarget(1, true, function (card, player, target) {
 				return list.includes(target)
 			}).set('prompt', '请选择一名同族角色，令其执行一个额外回合').set('ai', function (target) {
 				if (list.includes(player)) return target == player;
@@ -3477,7 +3477,7 @@ const skill = {
 				}
 			});
 			'step 2'
-			if(result.targets){
+			if (result.targets) {
 				result.targets[0].insertPhase();
 			}
 			var evt = _status.event.getParent("phase");
@@ -3561,10 +3561,10 @@ const skill = {
 				var skillName = skill.control;
 				//↓此段代码感谢霸天大佬的指导
 
-				var ybnext=game.createEvent('YB_xingzu');
-				ybnext.tar=targets[0];
-				ybnext.skillname=skillName;
-				ybnext.setContent(function(){
+				var ybnext = game.createEvent('YB_xingzu');
+				ybnext.tar = targets[0];
+				ybnext.skillname = skillName;
+				ybnext.setContent(function () {
 					'step 0'
 					var next = event.tar.chooseToUse();
 					next.set("openskilldialog", get.prompt(event.skillname));
@@ -3991,233 +3991,73 @@ const skill = {
 	// ybsl_ljguihang_info:'使命技，锁定技，当你失去手牌后，若你手牌数小于体力上限，你获得【影】补充至体力上限；成功：准备阶段，若你手牌中均为【影】，你弃置所有手牌，并摸等量手牌（至多5张），然后增加一点体力上限并回复一点体力。
 
 
-
-
-	//-------------------------华胥
-	'sgsh_talei': {
-		preHidden: true,
+	/** */
+	//---------天帝
+	sgsk_zhizun: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			global: 'phaseZhunbeiBegin',
-		},
-		check: function (event, player) {
-			return get.attitude(player, event.player) <= 0;
-		},
-		content: function () {
-			// 'step 0'
-			// event.judgestr="闪电";
-			// trigger.player.judge(event.judgestr,function(card){
-			// if(get.suit(card)=='spade'&&get.number(card)>1&&get.number(card)<10)return -5;
-			// return 1;
-			// });
-			// 'step 1'
-			// if(result.bool==false){
-			// trigger.player.damage(3,'thunder','nosource');
-			// }
-			// else{
-			// event.finish();
-			// }
-			trigger.player.executeDelayCardEffect('shandian');
-		},
-		ai: {
-			expose: 1,//跳立场
-			threaten: 0.5,//嘲讽值
-		},
 	},
-	'sgsh_yunyuu': {
-		preHidden: true,
+	sgsk_zhizunx: {
+		audio: 'sgsk_zhizun',
+	},
+	//---------神农
+	sgsk_wugu: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			global: 'judgeEnd',
-		},
-		preHidden: true,
-		frequent: true,
-		filter: function (event, player) {
-			return get.suit(event.result.card) == 'heart'
-		},
-		content: function () {
-			player.draw(1);
-		},
 	},
-	//-----------------------------太子长琴
-	'sgsh_yuefeng': {
-		preHidden: true,
+	sgsk_changcao: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			player: 'phaseJieshuBefore',
-		},
-		filter: function (event, player) {
-			return !event.numFixed;
-		},
-		frequent: true,
-		content: function () {
-			player.YB_shelie(3, '乐风');
-		},
-		ai: {
-			threaten: 1.2,//嘲讽值
-		},
 	},
-	'sgsh_zhisheng': {
-		preHidden: true,
+	sgsk_changcaox: {
+		audio: 'sgsk_changcao',
+	},
+	//---------轩辕
+	sgsk_xiude: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			global: 'useCardAfter',
-		},
-		filter: function (event, player) {
-			if (player.countCards('hes') == 0) return false;
-			if (event.player != player && event.card.isCard && event.player.isPhaseUsing()) {
-				return event.player.getHistory('useCard').indexOf(event) == player.hp - 1;
-			}
-		},
-		check: function (event, player) {
-			return get.attitude(player, event.player) < 0;
-		},
-		// nopop:true,
-		async cost(event, trigger, player) {
-			event.result = await player.chooseToDiscard('he').forResult();
-		},
-		content: function () {
-			// 'step 0'
-			// player.chooseToDiscard('he');
-			// 'step 1'
-			// if(result.bool){
-			// player.logSkill('sgsh_zhisheng')
-			var evt = _status.event.getParent('phaseUse');
-			if (evt && evt.name == 'phaseUse') {
-				evt.skipped = true;
-				event.finish();
-			}
-			// }
-		},
-		ai: {
-			result: {
-				player: -0.5,
-				target: function (target) {
-					return -0.5 * (Math.pow(target.countCards('h') - target.maxHandcard))
-				},
-			},
-			threaten: 3,//嘲讽值
-			expose: 1,//跳立场
-		},
 	},
-	//-----------------------女魃
-	'sgsh_buyu': {
-		preHidden: true,
+	sgsk_wending: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			global: 'phaseZhunbeiBegin',
-		},
-		check: function (event, player) {
-			if (get.attitude(player, event.player) < -2) {
-				var cards = player.getCards('h');
-				if (cards.length > player.hp) return true;
-				for (var i = 0; i < cards.length; i++) {
-					var useful = get.useful(cards[i]);
-					if (useful < 5) return true;
-					if (cards[i].number > 9 && useful < 7) return true;
-				}
-			}
-			return false;
-		},
-		logTarget: 'player',
-		filter: function (event, player) {
-			return player.canCompare(event.player);
-		},
-		content: function () {
-			'step 0'
-			player.chooseToCompare(trigger.player);
-			'step 1'
-			if (result.bool) {
-				trigger.player.addTempSkill('sgsh_buyu2')
-			}
-		},
-		ai: {
-			threaten: 3,//嘲讽值
-			expose: 1,//跳立场
-		},
 	},
-	'sgsh_hanshen': {
-		preHidden: true,
+	//---------少昊
+	sgsk_qiongsang: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			global: ['equipAfter', 'addJudgeAfter', 'loseAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
-		},
-		forced: true,
-		filter: function (event, player) {
-			return game.hasPlayer(function (current) {
-				var evt = event.getl(current);
-				return evt && evt.hs && evt.hs.length && current.countCards('h') == 0;
-			});
-		},
-		content: function () {
-			player.draw();
-		},
-		ai: {
-			threaten: 1.3,//嘲讽值
-			noh: true,
-		},
 	},
-	'sgsh_hanshenx': {
-		preHidden: true,
-		audio: 'sgsh_hanshen',
-		trigger: {
-			global: ['YB_anyEnd'],
-		},
-		forced: true,
-		filter: function (event, player) {
-			return game.hasPlayer(function (current) {
-				return current.countCards('h') == 0;
-			});
-		},
-		content: function () {
-			player.draw();
-		},
-		ai: {
-			threaten: 1.3,//嘲讽值
-			// noh:true,
-		},
+	sgsk_qiongsangx: {
+		audio: 'sgsk_qiongsang',
 	},
-	'sgsh_buyu2': {
+	sgsk_qiongsangy: {
+		audio: 'sgsk_qiongsang',
+	},
+	//---------颛顼
+	sgsk_chuangzhi: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			player: 'phaseDrawBefore',
-		},
-		forced: true,
-		content: function () {
-			trigger.cancel();
-		},
 	},
-	//-----------------------罗睺
-	'sgsh_yueshi': {
-		preHidden: true,
+	//---------青龙
+	sgsk_longxiao: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: {
-			player: 'useCardAfter',
-		},
-		// direct:true,
-		// popup:false,
-		filter: function (event, player) {
-			return player.countCards('he') != 0;
-		},
-		async cost(event, trigger, player) {
-			event.result = await player.chooseCard('he').forResult();
-		},
-		content: function () {
-			// player.logSkill('sgsh_yueshi',player);
-			player.recast(event.cards)
-		},
-		// content:function (){
-		// 'step 0'
-		// player.choosePlayerCard(player,'he');
-		// 'step 1'
-		// if(result.bool){
-		// player.logSkill('sgsh_yueshi',player);
-		// player.recast(result.cards)
-		// }
-		// },
+	},
+	//---------白虎
+	sgsk_huwei: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------朱雀
+	sgsk_zhiyan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_zhiyanx: {
+		audio: 'sgsk_zhiyan',
+	},
+	sgsk_zhiyany: {
+		audio: 'sgsk_zhiyan',
+	},
+	//---------玄武
+	sgsk_xuanzhen: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------麒麟
+	sgsk_decai: {
+		audio: 'ext:夜白神略/audio/character:2',
 	},
 	//------------------------东王公
-	'sgsh_baigong': {
+	'sgsk_baigong': {
 		preHidden: true,
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: {
@@ -4237,7 +4077,7 @@ const skill = {
 			}
 		},
 	},
-	'sgsh_cangling': {
+	'sgsk_cangling': {
 		preHidden: true,
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: {
@@ -4270,100 +4110,8 @@ const skill = {
 			player.recover();
 		},
 	},
-	//---------------------------应龙
-	'sgsh_zongshui': {
-		audio: 'ext:夜白神略/audio/character:2',
-		enable: 'phaseUse',
-		usable: 1,
-		animationColor: 'thunder',
-		skillAnimation: true,
-		filterCard: function (card) {
-			var suit = get.suit(card);
-			for (var i = 0; i < ui.selected.cards.length; i++) {
-				if (get.suit(ui.selected.cards[i]) == suit) return false;
-			}
-			return true;
-		},
-		selectCard: [1, Infinity],
-		complexCard: true,
-		filterTarget: function (card, player, target) {
-			return player != target && target.countDiscardableCards(player, get.is.single() ? 'he' : 'hej');
-		},
-		selectTarget: [1, Infinity],
-		content: function () {
-			'step 0'
-			player.discardPlayerCard(target, 'he', 1, true);
-			'step 1'
-			event.card = result.cards[0];
-			event.cards = cards;
-			for (var i of event.cards) {
-				var t = get.suit(i, false);
-				if (get.suit(event.card) == t) {
-					target.addTempSkill('sgsh_zongshui_mo');
-				}
-			}
-		},
-		check: function (card) {
-			return 6 - get.value(card);
-		},
-		position: 'he',
-		ai: {
-			threaten: 1.5,//嘲讽值
-			damage: true,
-			expose: 1,//跳立场
-			order: 8,//主动技使用的先后，杀是3，酒是3.2。这个技能排在最前面
-			result: {//主动技的收益
-				player: function (player, target) {
-					return 1;
-				},
-				target: function (player, target) {
-					return get.damageEffect(target, player);
-				},
-			},
-		},
-		subSkill: {
-			mo: {
-				mark: true,
-				mod: {
-					cardEnabled: function () {
-						return false;
-					},
-					cardRespondable: function () {
-						return false;
-					},
-					cardSavable: function () {
-						return false;
-					}
-				},
-				intro: {
-					content: '不能使用或打出卡牌'
-				}
-			}
-		}
-	},
-	///-------------刑天
-	sgsh_fuchou: {
-		audio: 'ext:夜白神略/audio/character:2',
-		trigger: { global: 'phaseAfter' },
-		filter: function (event, player) {
-			var target = event.player;
-			return target.getHistory('sourceDamage', function (evt) {
-				return evt.player == player;
-			}).length > 0;
-		},
-		check: function (event, player) {
-			var target = event.player;
-			if (get.effect(target, { name: 'sha' }, target, player) > 0) return true;
-			return false;
-		},
-		content: function () {
-			'step 0'
-			player.draw();
-			player.useCard({ name: 'sha', isCard: false }, trigger.player, 'sgsh_fuchou');
-		},
-	},
 	//--------------西王母
-	sgsh_kunlun: {
+	sgsk_kunlun: {
 		audio: 'ext:夜白神略/audio/character:2',
 		forced: true,
 		trigger: {
@@ -4380,7 +4128,7 @@ const skill = {
 			if (!player.isDamaged()) player.chooseToDiscard('he', 2, true);
 		},
 	},
-	sgsh_huasheng: {
+	sgsk_huasheng: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: {
 			player: 'phaseUseAfter',
@@ -4405,7 +4153,7 @@ const skill = {
 		// },
 		// direct:true,
 		async cost(event, trigger, player) {
-			event.result = await player.chooseCard('h', get.prompt('sgsh_huasheng'), '展示并视为使用一张基本牌或普通锦囊牌', function (card, player) {
+			event.result = await player.chooseCard('h', get.prompt('sgsk_huasheng'), '展示并视为使用一张基本牌或普通锦囊牌', function (card, player) {
 				var type = get.type(card, player);
 				return type == 'basic' || type == 'trick';
 			}).set('ai', function (card) {
@@ -4420,7 +4168,7 @@ const skill = {
 		},
 		content: function () {
 			// 'step 0'
-			// player.chooseCard('h',get.prompt('sgsh_huasheng'),'展示并视为使用一张基本牌或普通锦囊牌',function(card,player){
+			// player.chooseCard('h',get.prompt('sgsk_huasheng'),'展示并视为使用一张基本牌或普通锦囊牌',function(card,player){
 			// var type=get.type(card,player);
 			// return type=='basic'||type=='trick';
 			// }).set('ai',function(card){
@@ -4434,7 +4182,7 @@ const skill = {
 			// });
 			// 'step 1'
 			// if(result.bool){
-			// player.logSkill('sgsh_huasheng');
+			// player.logSkill('sgsk_huasheng');
 			var cardv = event.cards[0];
 			player.showCards(cardv, get.translation(player) + '发动了【化生】');
 			var card = {
@@ -4446,8 +4194,106 @@ const skill = {
 			// }
 		},
 	},
+	//-------------------------华胥
+	'sgsk_talei': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'phaseZhunbeiBegin',
+		},
+		check: function (event, player) {
+			return get.attitude(player, event.player) <= 0;
+		},
+		content: function () {
+			// 'step 0'
+			// event.judgestr="闪电";
+			// trigger.player.judge(event.judgestr,function(card){
+			// if(get.suit(card)=='spade'&&get.number(card)>1&&get.number(card)<10)return -5;
+			// return 1;
+			// });
+			// 'step 1'
+			// if(result.bool==false){
+			// trigger.player.damage(3,'thunder','nosource');
+			// }
+			// else{
+			// event.finish();
+			// }
+			trigger.player.executeDelayCardEffect('shandian');
+		},
+		ai: {
+			expose: 1,//跳立场
+			threaten: 0.5,//嘲讽值
+		},
+	},
+	'sgsk_yunyuu': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'judgeEnd',
+		},
+		preHidden: true,
+		frequent: true,
+		filter: function (event, player) {
+			return get.suit(event.result.card) == 'heart'
+		},
+		content: function () {
+			player.draw(1);
+		},
+	},
+
+	//---------瑶姬
+	sgsk_yunyu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_mengzhen: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------鸿钧老祖
+	sgsk_pudu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_xiansheng: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_xianshengx: {
+		audio: 'sgsk_xiansheng',
+	},
+	//---------共工
+	sgsk_taotian: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------祝融
+	sgsk_fentian: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------句芒
+	sgsk_fusang: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_mangtong: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_mangtongx: {
+		audio: 'sgsk_mangtong',
+	},
+	sgsk_mushen: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_mushenx: {
+		audio: 'sgsk_mushen',
+	},
+	//---------后土
+	sgsk_yutu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_yutux: {
+		audio: 'sgsk_yutu',
+	},
+	sgsk_shengtu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
 	//---------禺强
-	sgsh_zhihai: {
+	sgsk_zhihai: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: { global: 'phaseBegin' },
 		filter: function (event, player) {
@@ -4457,14 +4303,14 @@ const skill = {
 		},
 		content: function () {
 			'step 0'
-			player.storage.sgsh_zhihai_list = ui.cardPile;
-			player.storage.sgsh_zhihai_list2 = ui.discardPile;
+			player.storage.sgsk_zhihai_list = ui.cardPile;
+			player.storage.sgsk_zhihai_list2 = ui.discardPile;
 			'step 1'
-			ui.cardPile = player.storage.sgsh_zhihai_list2;
-			ui.discardPile = player.storage.sgsh_zhihai_list;
+			ui.cardPile = player.storage.sgsk_zhihai_list2;
+			ui.discardPile = player.storage.sgsk_zhihai_list;
 		},
 	},
-	sgsh_xuanming: {
+	sgsk_xuanming: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: { global: 'phaseAfter' },
 		filter: function (event, player) {
@@ -4511,8 +4357,23 @@ const skill = {
 			}//QQQ
 		},
 	},
+	//---------伏羲
+	sgsk_yuhan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_jiabian: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------相柳
+	sgsk_jiushou: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------后羿
+	sgsk_sheri: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
 	//---------------大禹
-	sgsh_zhishui: {
+	sgsk_zhishui: {
 		audio: 'ext:夜白神略/audio/character:2',
 		usable: 1,
 		enable: 'phaseUse',
@@ -4529,58 +4390,436 @@ const skill = {
 			target.draw(event.num);
 		}
 	},
-	/*
-	sgsh_kunlun:'昆仑',
-	'sgsh_kunlun_info':'锁定技，当你成为黑桃牌的目标时，若你已受伤，你摸两张牌。',
-	sgsh_huasheng:'化生',
-	'sgsh_huasheng_info':'若你出牌阶段未使用任何牌，结束阶段开始时，你可以将一张手牌当任意基本牌或非延时锦囊牌使用。',
-	sgsh_zhihai:'治海',
-	'sgsh_zhihai_info':'一名其他角色的出牌阶段开始时，你可以将弃牌堆与牌堆交换。',
-	sgsh_xuanming:'玄冥',
-	'sgsh_xuanming_info':'每当一名角色的回合结束后，你可以将此回合进入弃牌堆的牌任意顺序放置在弃牌堆顶或弃牌堆底。',
-	sgsh_zhishui:'治水',
-	'sgsh_zhishui_info':'出牌阶段限一次，你可以令至多X名角色弃置所有牌并摸等量的牌，X为你当前体力值。',
-	*/
+	//---------夸父
+	sgsk_zhuiri: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_zhuirix: {
+		audio: 'sgsk_zhuiri',
+	},
+	//---------土伯
+	sgsk_xuemu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_jiuqu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------精卫
+	sgsk_xianmu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_tianhai: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------岐伯
+	sgsk_suwen: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_lingjiu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//-----------------------------太子长琴
+	'sgsk_yuefeng': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'phaseJieshuBefore',
+		},
+		filter: function (event, player) {
+			return !event.numFixed;
+		},
+		frequent: true,
+		content: function () {
+			player.YB_shelie(3, '乐风');
+		},
+		ai: {
+			threaten: 1.2,//嘲讽值
+		},
+	},
+	'sgsk_zhisheng': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'useCardAfter',
+		},
+		filter: function (event, player) {
+			if (player.countCards('hes') == 0) return false;
+			if (event.player != player && event.card.isCard && event.player.isPhaseUsing()) {
+				return event.player.getHistory('useCard').indexOf(event) == player.hp - 1;
+			}
+		},
+		check: function (event, player) {
+			return get.attitude(player, event.player) < 0;
+		},
+		// nopop:true,
+		async cost(event, trigger, player) {
+			event.result = await player.chooseToDiscard('he').forResult();
+		},
+		content: function () {
+			// 'step 0'
+			// player.chooseToDiscard('he');
+			// 'step 1'
+			// if(result.bool){
+			// player.logSkill('sgsk_zhisheng')
+			var evt = _status.event.getParent('phaseUse');
+			if (evt && evt.name == 'phaseUse') {
+				evt.skipped = true;
+				event.finish();
+			}
+			// }
+		},
+		ai: {
+			result: {
+				player: -0.5,
+				target: function (target) {
+					return -0.5 * (Math.pow(target.countCards('h') - target.maxHandcard))
+				},
+			},
+			threaten: 3,//嘲讽值
+			expose: 1,//跳立场
+		},
+	},
+	//---------噎鸣
+	sgsk_cunyin: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_sanqiu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_sanqiux: {
+		audio: 'sgsk_sanqiu',
+	},
+	sgsk_sanqiuy: {
+		audio: 'sgsk_sanqiu',
+	},
+	//---------------------------应龙
+	sgsk_zongshuit: {
+		audio: 'sgsk_zongshui',
+	},
+	'sgsk_zongshui': {
+		audio: 'ext:夜白神略/audio/character:2',
+		enable: 'phaseUse',
+		usable: 1,
+		animationColor: 'thunder',
+		skillAnimation: true,
+		filterCard: function (card) {
+			var suit = get.suit(card);
+			for (var i = 0; i < ui.selected.cards.length; i++) {
+				if (get.suit(ui.selected.cards[i]) == suit) return false;
+			}
+			return true;
+		},
+		selectCard: [1, Infinity],
+		complexCard: true,
+		filterTarget: function (card, player, target) {
+			return player != target && target.countDiscardableCards(player, get.is.single() ? 'he' : 'hej');
+		},
+		selectTarget: [1, Infinity],
+		content: function () {
+			'step 0'
+			player.discardPlayerCard(target, 'he', 1, true);
+			'step 1'
+			event.card = result.cards[0];
+			event.cards = cards;
+			for (var i of event.cards) {
+				var t = get.suit(i, false);
+				if (get.suit(event.card) == t) {
+					target.addTempSkill('sgsk_zongshui_mo');
+				}
+			}
+		},
+		check: function (card) {
+			return 6 - get.value(card);
+		},
+		position: 'he',
+		ai: {
+			threaten: 1.5,//嘲讽值
+			damage: true,
+			expose: 1,//跳立场
+			order: 8,//主动技使用的先后，杀是3，酒是3.2。这个技能排在最前面
+			result: {//主动技的收益
+				player: function (player, target) {
+					return 1;
+				},
+				target: function (player, target) {
+					return get.damageEffect(target, player);
+				},
+			},
+		},
+		subSkill: {
+			mo: {
+				mark: true,
+				mod: {
+					cardEnabled: function () {
+						return false;
+					},
+					cardRespondable: function () {
+						return false;
+					},
+					cardSavable: function () {
+						return false;
+					}
+				},
+				intro: {
+					content: '不能使用或打出卡牌'
+				}
+			}
+		}
+	},
+	//-----------------------女魃
+	'sgsk_buyu': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'phaseZhunbeiBegin',
+		},
+		check: function (event, player) {
+			if (get.attitude(player, event.player) < -2) {
+				var cards = player.getCards('h');
+				if (cards.length > player.hp) return true;
+				for (var i = 0; i < cards.length; i++) {
+					var useful = get.useful(cards[i]);
+					if (useful < 5) return true;
+					if (cards[i].number > 9 && useful < 7) return true;
+				}
+			}
+			return false;
+		},
+		logTarget: 'player',
+		filter: function (event, player) {
+			return player.canCompare(event.player);
+		},
+		content: function () {
+			'step 0'
+			player.chooseToCompare(trigger.player);
+			'step 1'
+			if (result.bool) {
+				trigger.player.addTempSkill('sgsk_buyu2')
+			}
+		},
+		ai: {
+			threaten: 3,//嘲讽值
+			expose: 1,//跳立场
+		},
+	},
+	'sgsk_hanshen': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: ['equipAfter', 'addJudgeAfter', 'loseAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+		},
+		forced: true,
+		filter: function (event, player) {
+			return game.hasPlayer(function (current) {
+				var evt = event.getl(current);
+				return evt && evt.hs && evt.hs.length && current.countCards('h') == 0;
+			});
+		},
+		content: function () {
+			player.draw();
+		},
+		ai: {
+			threaten: 1.3,//嘲讽值
+			noh: true,
+		},
+	},
+	'sgsk_hanshenx': {
+		preHidden: true,
+		audio: 'sgsk_hanshen',
+		trigger: {
+			global: ['YB_anyEnd'],
+		},
+		forced: true,
+		filter: function (event, player) {
+			return game.hasPlayer(function (current) {
+				return current.countCards('h') == 0;
+			});
+		},
+		content: function () {
+			player.draw();
+		},
+		ai: {
+			threaten: 1.3,//嘲讽值
+			// noh:true,
+		},
+	},
+	'sgsk_buyu2': {
+		audio: 'sgsk_buyu',
+		trigger: {
+			player: 'phaseDrawBefore',
+		},
+		forced: true,
+		content: function () {
+			trigger.cancel();
+		},
+	},
+	//---------蚩尤
+	sgsk_zhanshen: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_shizhan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------风后
+	sgsk_sinan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_shence: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_shencex: {
+		audio: 'sgsk_shence',
+	},
+	//---------九天玄女
+	sgsk_taolue: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_xuanji: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_xuanjix: {
+		audio: 'sgsk_xuanji',
+	},
+	sgsk_xuanjiy: {
+		audio: 'sgsk_xuanji',
+	},
+	sgsk_xuanjiz: {
+		audio: 'sgsk_xuanji',
+	},
+	//---------螺祖
+	sgsk_sangcan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_bianjuan: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_bianjuanx: {
+		audio: 'sgsk_bianjuan',
+	},
+	//---------仓颉
+	sgsk_zuoshu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_zuoshux: {
+		audio: 'sgsk_zuoshu',
+	},
+	//---------力牧
+	sgsk_qianjun: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------常先
+	sgsk_zhangu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_sanggu: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------鬼臾区
+	sgsk_zhanxing: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_wuxing: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//---------释迦牟尼
+	sgsk_dianhua: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	sgsk_wuwo: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//-----------------------罗睺
+	'sgsk_yueshi': {
+		preHidden: true,
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'useCardAfter',
+		},
+		// direct:true,
+		// popup:false,
+		filter: function (event, player) {
+			return player.countCards('he') != 0;
+		},
+		async cost(event, trigger, player) {
+			event.result = await player.chooseCard('he').forResult();
+		},
+		content: function () {
+			// player.logSkill('sgsk_yueshi',player);
+			player.recast(event.cards)
+		},
+		// content:function (){
+		// 'step 0'
+		// player.choosePlayerCard(player,'he');
+		// 'step 1'
+		// if(result.bool){
+		// player.logSkill('sgsk_yueshi',player);
+		// player.recast(result.cards)
+		// }
+		// },
+	},
+	///-------------刑天
+	sgsk_fuchou: {
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: { global: 'phaseAfter' },
+		filter: function (event, player) {
+			var target = event.player;
+			return target.getHistory('sourceDamage', function (evt) {
+				return evt.player == player;
+			}).length > 0;
+		},
+		check: function (event, player) {
+			var target = event.player;
+			if (get.effect(target, { name: 'sha' }, target, player) > 0) return true;
+			return false;
+		},
+		content: function () {
+			'step 0'
+			player.draw();
+			player.useCard({ name: 'sha', isCard: false }, trigger.player, 'sgsk_fuchou');
+		},
+	},
+
 	ybsl_kegu: {//刻骨
 		enable: 'chooseToUse',
 		usable: 1,
 		audio: 'ext:夜白神略/audio/character:2',
-		filter:function(event,player){
-			return player.countCards('h')>0;
+		filter: function (event, player) {
+			return player.countCards('h') > 0;
 		},
-		filterCard:function(card,player,event){
-			event=event||_status.event;
-			var filter=event._backup.filterCard;
-			if(filter({name:get.name(card),isCard:false,nature:get.nature(card)},player,event))return true;
+		filterCard: function (card, player, event) {
+			event = event || _status.event;
+			var filter = event._backup.filterCard;
+			if (filter({ name: get.name(card), isCard: false, nature: get.nature(card) }, player, event)) return true;
 			return false;
 		},
-		selectCard:1,
-		viewAs:function(cards,player){
-			var cardx=cards[0];
-			if(!cardx)return false;
-			var name=get.name(cardx);
-			var nature=get.nature(cardx);
-			var suit=get.suit(cardx);
+		selectCard: 1,
+		viewAs: function (cards, player) {
+			var cardx = cards[0];
+			if (!cardx) return false;
+			var name = get.name(cardx);
+			var nature = get.nature(cardx);
+			var suit = get.suit(cardx);
 			var card = {
 				name: name,
 				nature: nature,
-				suit:suit,
+				suit: suit,
 				isCard: true,
 			};
-			if(name) return card;
+			if (name) return card;
 			return null;
 		},
 		// filterTarget:function(card,player,target){
 		// },
-		discard:false,
-		losecard:false,
-		lose:false,
-		position:'h',
-		precontent:function(){
+		discard: false,
+		losecard: false,
+		lose: false,
+		position: 'h',
+		precontent: function () {
 			'step 0'
 			player.showCards(event.result.cards);
 			'step 1'
 			event.result.cards = [];
 		},
 	},
+
 }
