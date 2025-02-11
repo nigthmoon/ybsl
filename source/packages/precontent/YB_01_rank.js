@@ -16,20 +16,44 @@ const YBSL_rank = function(){
 		// })
 	}
 	{//武将第五格评级--------狂神著
+		// lib.arenaReady.push(function(){
+		// 	for(var pack of packages){
+		// 		for(var name in lib.characterPack[pack]){
+		// 			for(var rarity of ['junk','common','rare','epic','legend']){//废材，普通，精品，史诗，传说
+		// 				if(lib.characterPack[pack][name][4]){
+		// 					if(lib.characterPack[pack][name][4].includes(rarity)){
+		// 						lib.rank.rarity[rarity].add(name);
+		// 						break;
+		// 					}
+		// 				}
+		// 			}
+		// 			if(lib.characterPack[pack][name]['yb_rank']){
+		// 				var rarity = lib.characterPack[pack][name]['yb_rank'];
+		// 				lib.rank.rarity[rarity].add(name);
+		// 			}
+		// 		}
+		// 	}
+		// });
 		lib.arenaReady.push(function(){
 			for(var pack of packages){
 				for(var name in lib.characterPack[pack]){
-					for(var rarity of ['junk','common','rare','epic','legend']){//废材，普通，精品，史诗，传说
-						if(lib.characterPack[pack][name][4]){
-							if(lib.characterPack[pack][name][4].includes(rarity)){
-								lib.rank.rarity[rarity].add(name);
-								break;
-							}
+					//['junk','common','rare','epic','legend']
+					var infoy = lib.characterPack[pack][name][4];
+					for(var infox of infoy){
+						if(infox.startsWith('rankAdd:')){
+							var rarity = infox.slice(8);
+							if(lib.rank.rarity[rarity])lib.rank.rarity[rarity].add(name);
+						}
+						if(infox.startsWith('rankS:')){
+							var infoz = infox.slice(6);
+							if(lib.rank[infoz])lib.rank[infoz].add(name);
 						}
 					}
-					if(lib.characterPack[pack][name]['yb_rank']){
-						var rarity = lib.characterPack[pack][name]['yb_rank'];
-						lib.rank.rarity[rarity].add(name);
+					if(lib.characterPack[pack][name]['rankAdd']){
+						var rarity = lib.characterPack[pack][name]['rankAdd'];
+						if(lib.rank.rarity[rarity])lib.rank.rarity[rarity].add(name);
+						var rarityS = lib.characterPack[pack][name]['rankS'];
+						if(lib.rank[rarityS])lib.rank[rarityS].add(name);
 					}
 				}
 			}
@@ -55,8 +79,8 @@ const YBSL_rank = function(){
 							if(!lib.characterReplace[char2].includes(name))lib.characterReplace[char2].push(name);
 						}
 					}
-					if(lib.characterPack[pack][name]['yb_linkTo']){
-						var linkTo = lib.characterPack[pack][name]['yb_linkTo'];
+					if(lib.characterPack[pack][name]['linkTo']){
+						var linkTo = lib.characterPack[pack][name]['linkTo'];
 						// get.YB_linkTo(name,linkTo)
 						var char2 = get.sourceCharacter(linkTo);
 						if(!lib.characterReplace[char2])lib.characterReplace[char2]=[char2];
