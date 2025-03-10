@@ -27,14 +27,14 @@ const character = { //武将格式 :
 	// 'sgsh_chiyou':['male','shen',16,['sgsk_shizhan'],['rankAdd:legend','name:null|null']],//蚩尤
 	// 'sgsh_jingwei':['female','shen',3,['sgsk_xianmu','sgsk_tianhai'],['rankAdd:legend','name:null|null']],//精卫
 	
-	sgsh_tiandi:['male','shen',4,['sgsk_zhizun'],['rankAdd:legend','name:null|null']],//天帝
-	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:legend','name:null|null']],//神农
-	sgsh_xuanyuan:['male','shen',4,['sgsk_xiude','sgsk_wending'],['rankAdd:legend','name:null|null']],//轩辕
-	sgsh_shaohao:['male','shen',4,['sgsk_qiongsang'],['rankAdd:legend','name:null|null']],//少昊
+	sgsh_tiandi:['male','shen',4,['sgsk_zhizunx'],['rankAdd:legend','name:null|null']],//天帝
+	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:rare','name:null|null']],//神农
+	sgsh_xuanyuan:['male','shen',4,['sgsk_xiudexy','sgsk_wending'],['rankAdd:legend','name:null|null']],//轩辕
+	sgsh_shaohao:['male','shen',4,['sgsk_qiongsangy'],['rankAdd:legend','name:null|null']],//少昊
 	sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','name:null|null']],//颛顼
 	sgsh_qinglong:['none','shen',4,['sgsk_longxiao'],['rankAdd:legend','name:null|null']],//青龙
 	sgsh_baihu:['none','shen',4,['sgsk_huwei'],['rankAdd:legend','name:null|null']],//白虎
-	sgsh_zhuque:['none','shen',4,['sgsk_zhiyan'],['rankAdd:legend','name:null|null']],//朱雀
+	sgsh_zhuque:['none','shen',4,['sgsk_zhiyany'],['rankAdd:legend','name:null|null']],//朱雀
 	sgsh_xuanwu:['none','shen',4,['sgsk_xuanzhen'],['rankAdd:legend','name:null|null']],//玄武
 	sgsh_qilin:['none','shen',4,['sgsk_decai'],['rankAdd:legend','name:null|null']],//麒麟
 

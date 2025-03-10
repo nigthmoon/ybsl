@@ -154,6 +154,7 @@ const characterCopyright = {
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	'ybsl_107tushanshuili': '<font color=cyan>忆-107·巡梦归途</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白，潜水的火（踏野，妖异）<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
+	ybsl_121tujing:'<font color=cyan>忆-121·天妒娇女</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
 	//---------------------------------//忆包SP
 	'db_ybsp_014liutianyu':'<font color=cyan>忆☆SP-001·暗流涌动</font><br>✿技能设计：夜白<br>✿代码撰写者：夜白<br>✿插图：QQ小世界AI绘图<br>✿配音：暂无',
 	'ybsp_016manchengqi':'<font color=cyan>忆☆SP-002·清明节限定</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',

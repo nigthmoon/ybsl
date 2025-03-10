@@ -140,6 +140,8 @@ const translate = {
 
 	ybsl_092handan:'玉蝶心',
 
+	ybsl_121tujing:'涂静',
+
 
 	// 'ybnb_034zhoulianyuan_ab':'周怜渊',//√
 	'ybnb_034zhoulianyuan':'界周怜渊',

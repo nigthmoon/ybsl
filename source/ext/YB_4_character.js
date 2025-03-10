@@ -69,6 +69,6 @@ game.import('character', function(lib, game, ui, get, ai, _status) {
 	}
 	lib.config.all.characters.push('ybnew1');
 	if (!lib.config.characters.includes('ybnew1')) lib.config.characters.remove('ybnew1');
-	lib.translate['ybnew1_character_config'] = '<span style=\'color:#28e3ce\'>其他武将</span>';
+	lib.translate['ybnew1_character_config'] = '<span style=\'color:#28e3ce\'>夜白杂设</span>';
 	return ybnew1;
 });

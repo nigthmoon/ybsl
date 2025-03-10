@@ -28,7 +28,7 @@ const characterSort = {
 			'ybsl_047zhangmi',
 			'db_ybsl_067snake','ybsl_069xiangzi','ybsl_076zhujun','ybsl_077yangqixu','ybsl_078zhuyahai',
 			'ybsl_081chenli','ybsl_081chensi','ybsl_083xiaozhu',
-			'ybsl_107tushanshuili'
+			'ybsl_107tushanshuili','ybsl_121tujing'
 		],
 		//'ybsl_sixp':[],
 		'ybsl_dzsl':[

@@ -5427,7 +5427,7 @@ const skill = {
 					if(player.countMark('yb018_huaimeng')>3) return '弃梦';
 					return '打牌';
 				})
-				else return player.chooseControl('打牌').set('prompt','你没有梦，请点击打牌。');
+				else player.chooseControl('打牌').set('prompt','你没有梦，请点击打牌。');
 			'step 2'
 			if(result.control=='弃梦'){
 				player.removeMark('yb018_huaimeng',1);

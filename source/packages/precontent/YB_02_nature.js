@@ -134,6 +134,11 @@ const YBSL_nature = function(){
 		// 	color:'#ff7b00',
 		// 	nature:'black',
 		// })
+		lib.namePrefix.set('没写完',{
+			showName:'坑',
+			color:'#a4a4a4',
+			nature:'black',
+		})
 		
 	}
 }

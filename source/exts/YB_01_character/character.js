@@ -140,6 +140,7 @@ const character = { //武将格式 :
 	// 'ybsl_105cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	// 'ybsl_106cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	'ybsl_107tushanshuili':['female','YB_dream',3,['yb107_xunhu','QQQ107_taye','QQQ107_yaoyi','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:涂山|水璃']], //涂山水璃
+	ybsl_121tujing:['female','YB_dream',3,[],['YB_memory','rankAdd:epic','name:涂|静']],//涂静
 	
 	//----------------------夜白界限突破（能更新出这个系列离不开大家不离不弃的支持）
 	'ybnb_034zhoulianyuan':['male','YB_dream',3,['yb034_rebifa','yb034_rejiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:周|怜渊','linkTo:ybsl_034zhoulianyuan']],//梦——界周怜渊
@@ -171,7 +172,8 @@ const character = { //武将格式 :
 	'ybold_016manchengqi':['female','YB_memory',3,['yb016_xianyue','yb016_tianliao','yb016_qingjie','yb016_pojie'],['rankAdd:rare','name:满城|柒','linkTo:ybsl_016manchengqi']],//旧版SP满城柒（其实是清明节设计的，机制很清奇但貌似很弱）
 
 	ybsl_windmoon:['female','wei',4,[
-		'kagari_ybzongsi',
+		// 'kagari_ybzongsi',
+		'kagari_ybzongsix',
 		'xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua',
 		/*'ybsl_kuwang','ybsl_guqu',*/
 		'ybsl_aocai',
@@ -180,7 +182,7 @@ const character = { //武将格式 :
 		'ybsl_kegu',
 		'ybsl_yiji','ybsl_liangying',
 		'ybsl_clanqianlei',
-	],['clan:吴郡陆氏','name:null|null']],
+	],['clan:吴郡陆氏','name:null|null','forbidai']],
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }
