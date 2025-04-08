@@ -2909,7 +2909,39 @@ const skill = {
 	},
 	yb006_xueyan:{
 		audio:'ext:夜白神略/audio/character:2',
-
+		usable:1,
+		trigger:{
+			global:'useCardToTargeted',
+		},
+		filter(event,player){
+			return event.targets.length==1&&event.target!=event.player&&get.suit(event.card);
+		},
+		cost(){
+			var suit =get.suit(trigger.card);
+			event.result = player.chooseToDiscard('he').set('filterCard',function(card){
+				return get.suit(card)==suit;
+			})
+			.set('prompt',get.translation(trigger.player)+'对'+get.translation(trigger.target)+'使用了'+get.translation(trigger.card))
+			.set('prompt2',get.prompt('yb006_xueyan')+"<br>弃置一张同花色的牌，令此牌无效？<br>然后此牌原目标摸两张牌。")
+			.set("chooseonly", true).set('ai',function(card){
+				var att = get.attitude(_status.event.player,trigger.target);
+				if(att>5)return 6-get.value(card);
+			}).forResult();
+		},
+		logTarget(event,player){
+			return event.target;
+		},
+		content(){
+			'step 0'
+			event.target = trigger.target;
+			player.discard(event.cards);
+			'step 1'
+			game.log(player,'令'+get.translation(trigger.card)+'无效了。')
+			trigger.targets.length = 0;
+			trigger.all_excluded = true;
+			'step 2'
+			event.target.draw(2);
+		}
 	},
 	//----------------吴格格007
 	// 'yb007_renqing':{
@@ -8479,7 +8511,20 @@ const skill = {
 	},
 	yb033_qijue:{
 		audio:'ext:夜白神略/audio/character:2',
-		
+		forced:true,
+		trigger:{
+			player:'phaseUseBegin',
+		},
+		filter(){
+			return true;
+		},
+		content(){
+			player.chooseControl()
+				.set("choiceList", ["失去一点体力", "受到一点伤害","弃置一张牌"])
+				.set('ai',function(){
+					return 2;
+				})
+		}
 	},
 	//---------------------周怜渊
 	yb034_bifa:{
