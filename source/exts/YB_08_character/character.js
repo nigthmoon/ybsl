@@ -38,4 +38,6 @@ const character = { //武将格式 :
 	ybmjz_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['rankAdd:legend','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori']],//神户小鸟
 	ybmjz_kagari:["female","shen",3,["kagari_ybzongsi"],['rankAdd:legend','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari']],//篝
 	ybmjz_majun:['male','wei',3,['xinfu_ybjingxie','qiaosi'],['rankAdd:epic','linkTo:majun','YB_mjz:majun']],//马钧
+
+	ybmjz_youta:['male','key',4,['ybmjz_fengshen','ybmjz_yingshen','ybmjz_huanshen'],['rankAdd:legend','linkTo:key_youta','YB_mjz:key_youta','forbidai']],
 }

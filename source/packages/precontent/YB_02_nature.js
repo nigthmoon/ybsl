@@ -99,12 +99,12 @@ const YBSL_nature = function(){
 			},
 		})
 		lib.namePrefix.set('旧版',{
-			showName:'废',
+			showName:'旧',
 			color:'#a4a4a4',
 			nature:'black',
 		})
 		lib.namePrefix.set('通渠',{
-			showName:'废',
+			showName:'削',
 			color:'#a4a4a4',
 			nature:'black',
 		})
@@ -134,6 +134,11 @@ const YBSL_nature = function(){
 		// 	color:'#ff7b00',
 		// 	nature:'black',
 		// })
+		lib.namePrefix.set('没写完',{
+			showName:'坑',
+			color:'#a4a4a4',
+			nature:'black',
+		})
 		
 	}
 }

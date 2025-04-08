@@ -154,6 +154,7 @@ const characterCopyright = {
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	'ybsl_107tushanshuili': '<font color=cyan>忆-107·巡梦归途</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白，潜水的火（踏野，妖异）<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
+	ybsl_121tujing:'<font color=cyan>忆-121·天妒娇女</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
 	//---------------------------------//忆包SP
 	'db_ybsp_014liutianyu':'<font color=cyan>忆☆SP-001·暗流涌动</font><br>✿技能设计：夜白<br>✿代码撰写者：夜白<br>✿插图：QQ小世界AI绘图<br>✿配音：暂无',
 	'ybsp_016manchengqi':'<font color=cyan>忆☆SP-002·清明节限定</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
@@ -162,7 +163,8 @@ const characterCopyright = {
 	'ybsp_002chenailin':'<font color=cyan>忆☆SP-003·玉殒香消</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白，潜水的火（香陨）<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>B站成品图片<br>❀配音：暂无',
 	'ybsp_027rain':'<font color=cyan>忆☆SP-006·巡梦鸣觉</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>B站成品图片<br>◈配音：暂无',
 	'ybsp_001sunlisong':'<font color=cyan>忆☆SP-005·皓腕凝霜雪</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片<br>❀配音：暂无',
-	
+	'ybsp_006wanghanzhen':'<font color=cyan>忆☆SP-007·似水流年</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>B站发布成品<br>❀配音：暂无',
+	'ybsp_033xiaohui':'<font color=cyan>忆☆SP-008·断肠人在天涯</font><br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：QQ小世界AI绘图<br>❅配音：暂无',
 	//---------------------------------//界限突破（什么沙比玩意）
 	'ybnb_034zhoulianyuan':'<font color=cyan>忆☆界-034·庄子的执剑人</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：暂无<br>◈配音：暂无',
 	

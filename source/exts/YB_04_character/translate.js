@@ -145,6 +145,13 @@ const translate = {
 	ybsl_xiangcha:'详查',
 	ybsl_xiangcha_info:'转换技，出牌阶段限一次，阳：你可以将一张红色牌当【洞烛先机】使用；阴，你可以将一张黑色牌当【知己知彼】使用。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+X(X为本次展示的牌数)。',
 
+	ybsl_suojing:'索靖',
+	ybsl_feimo:'飞墨',
+	ybsl_feimo_info:'当你使用草花牌后，你可以摸一张牌。',
+	ybsl_benzhan:'奔战',
+	ybsl_benzhan_info:'转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。',
+	ybsl_benzhan_append:'奔战没写呢。我不管你是怎么调出来的这个将，别用！！',
+
 	ybsl_ybzs:'<font color=cyan>夜白杂设</font>',
 
 	ybsl_hairi:'鹰原羽依里',
@@ -194,6 +201,9 @@ const translate = {
 	//------------界篝
 	kagari_ybzongsi:'纵丝',
 	kagari_ybzongsi_info:'出牌阶段限一次，你可以选择一张不在游戏外的牌，然后将其置于牌堆/弃牌堆的顶部/底部或一名角色的对应区域内，<span class=yellowtext>并赋予该牌合理的视为牌名直到此牌离开该区域。</span>',
+
+	kagari_ybzongsix:'纵丝',
+	kagari_ybzongsix_info:'出牌阶段限一次，你可以选择一张不在游戏外的牌，然后将其置于牌堆/弃牌堆的顶部/底部或一名角色的对应区域内，<span class=yellowtext>并赋予该牌合理的视为牌名直到此牌离开该区域。</span>',
 
 	//------------界张琪瑛
 	xinfu_ybfalu:'法箓',
@@ -246,7 +256,7 @@ const translate = {
 	sgsh_shennong:'神农',
 	sgsh_xuanyuan:'轩辕',
 	sgsh_shaohao:'少昊',
-	sgsh_zhuanxu:"颛顼",
+	sgsh_zhuanxu:"没写完颛顼",
 	sgsh_qinglong:'青龙',
 	sgsh_baihu:'白虎',
 	sgsh_zhuque:'朱雀',
@@ -268,23 +278,42 @@ const translate = {
 	'sgsh_dayu':'大禹',
 	sgsh_kuafu:'夸父',
 	sgsh_tubo:'土伯',
-	sgsh_jingwei:'精卫',
+	sgsh_jingwei:'没写完精卫',
 	sgsh_qibo:'岐伯',
 	'sgsh_taizichangqin':'太子长琴',
-	sgsh_yeming:'噎鸣',
+	sgsh_yeming:'没写完噎鸣',
 	'sgsh_yinglong':'应龙',
 	'sgsh_nvba':'女魃',
 	sgsh_chiyou:'蚩尤',
-	sgsh_fenghou:'风后',
-	sgsh_jiutianxuannv:'九天玄女',
-	sgsh_luozu:'螺祖',
-	sgsh_cangjie:'仓颉',
-	sgsh_limu:'力牧',
-	sgsh_changxian:'常先',
-	sgsh_guiyuqu:'鬼臾区',
-	sgsh_shijiamouni:'释迦牟尼',
+	sgsh_fenghou:'没写完风后',
+	sgsh_jiutianxuannv:'没写完九天玄女',
+	sgsh_luozu:'没写完螺祖',
+	sgsh_cangjie:'没写完仓颉',
+	sgsh_limu:'没写完力牧',
+	sgsh_changxian:'没写完常先',
+	sgsh_guiyuqu:'没写完鬼臾区',
+	sgsh_shijiamouni:'没写完释迦牟尼',
 	'sgsh_luohou':'罗睺',
 	'sgsh_xingtian':'刑天',
+
+	sgsh_zhuanxu_prefix:"没写完",
+	sgsh_fuxi_prefix:"没写完",
+	sgsh_xiangliu_prefix:"没写完",
+	sgsh_houyi_prefix:"没写完",
+	sgsh_kuafu_prefix:"没写完",
+	sgsh_tubo_prefix:"没写完",
+	sgsh_jingwei_prefix:"没写完",
+	sgsh_qibo_prefix:"没写完",
+	sgsh_yeming_prefix:"没写完",
+	sgsh_chiyou_prefix:"没写完",
+	sgsh_fenghou_prefix:"没写完",
+	sgsh_jiutianxuannv_prefix:"没写完",
+	sgsh_luozu_prefix:"没写完",
+	sgsh_cangjie_prefix:"没写完",
+	sgsh_limu_prefix:"没写完",
+	sgsh_changxian_prefix:"没写完",
+	sgsh_guiyuqu_prefix:"没写完",
+	sgsh_shijiamouni_prefix:"没写完",
 
 	// 'sgsh_tiandi','sgsh_shennong','sgsh_xuanyuan','sgsh_shaohao','sgsh_zhuanxu',
 	// 'sgsh_qinglong','sgsh_baihu','sgsh_zhuque','sgsh_xuanwu','sgsh_qilin',
@@ -298,12 +327,12 @@ const translate = {
 	//--------------------天帝
 	sgsk_zhizun:'至尊',
 	'sgsk_zhizun_info':'此技能仅提供一条语音。',
-	'sgsk_zhizun_append':'锁定技，当弃牌堆顶牌的点数为5或9时，你获得免疫；你使用点数为5或9的牌后，你摸一张牌。（免疫：无法成为技能或牌的目标）',
+	'sgsk_zhizun_append':'技能原文：锁定技，当弃牌堆顶牌的点数为5或9时，你获得免疫；你使用点数为5或9的牌后，你摸一张牌。（免疫：无法成为技能或牌的目标）',
 	sgsk_zhizunx:'至尊',
-	'sgsk_zhizunx_info':'锁定技，当弃牌堆顶牌的点数为5或9时：防止你受到的伤害；你不能成为牌的目标；你使用点数为5或9的牌后，你摸一张牌。',
+	'sgsk_zhizunx_info':'锁定技，当弃牌堆顶牌的点数为5或9时：防止你受到的伤害；你不能成为牌的目标。你使用点数为5或9的牌后，你摸一张牌。',
 	//--------------------神农
 	sgsk_wugu:'五谷',
-	'sgsk_wugu_info':'出牌阶段限一次，你可以展示你的手牌，若如此做，其他角色以此选择一张获得之，若你以此法失去了所有手牌，你回复一点体力。',
+	'sgsk_wugu_info':'出牌阶段限一次，你可以展示你的手牌，若如此做，其他角色依次选择一张获得之，若你以此法失去了所有手牌，你回复一点体力。',
 	sgsk_changcao:'尝草',
 	'sgsk_changcao_info':'出牌阶段，你可展示牌堆顶的一张牌并获得之，若为黑桃，你失去一点体力。',
 	sgsk_changcaox:'尝草',
@@ -311,6 +340,12 @@ const translate = {
 	//--------------------轩辕
 	sgsk_xiude:'修德',
 	'sgsk_xiude_info':'当你使用或打出一张基本牌后，你可进行一次判定，若结果为基本牌，你可以令一名角色摸一张牌。',
+	sgsk_xiudex:'修德',
+	'sgsk_xiudex_info':'当你使用或打出一张基本牌后，你可进行一次判定，若结果为基本牌，你可以与一名角色各摸一张牌。',
+	sgsk_xiudey:'修德',
+	'sgsk_xiudey_info':'当你使用或打出一张牌后，你可进行一次判定，若结果与本次使用的牌类型相同，你可以令一名角色摸一张牌。',
+	sgsk_xiudexy:'修德',
+	'sgsk_xiudexy_info':'当你使用或打出一张牌后，你可进行一次判定，若结果与本次使用的牌类型相同，你可以与一名角色各摸一张牌。',
 	sgsk_wending:'问鼎',
 	'sgsk_wending_info':'锁定技，若你的装备区放置了所有装备且有至少四种花色，你所在的阵营获得游戏胜利。',
 	//--------------------少昊
@@ -345,6 +380,8 @@ const translate = {
 	//--------------------麒麟
 	sgsk_decai:'德才',
 	'sgsk_decai_info':'出牌阶段开始时，你可以令一名体力值少于你的角色回复一点体力或令一名手牌数少于你的角色摸一张牌。',
+	sgsk_decaix:'德才',
+	'sgsk_decaix_info':'出牌阶段开始时，你可以选组一名其他角色，若其体力值少于你，其回复一点体力；若其手牌数少于你，其摸一张牌。',
 	//--------------------东王公
 	sgsk_baigong:'拜公',
 	'sgsk_baigong_info':'锁定技，你始终跳过摸牌阶段；其他角色的摸牌阶段结束时，你获得其一张牌（若触发技能前场上角色数不大于4人且对方牌数比你多，你再获得其一张牌。）。',
@@ -363,7 +400,9 @@ const translate = {
 	'sgsk_yunyuu_info':'一名角色的红桃判定牌生效后，你可以摸一张牌。',
 	//--------------------瑶姬
 	sgsk_yunyu:'云雨',
-	'sgsk_yunyu_info':'当你受到伤害后，你可以另一名男性角色回复一点体力；当一名男性角色受到伤害后，其可以令你回复一点体力。',
+	'sgsk_yunyu_info':'当你受到伤害后，你可以令一名男性角色回复一点体力；当一名男性角色受到伤害后，其可以令你回复一点体力。',
+	// sgsk_yunyux:'云雨',
+	// 'sgsk_yunyux_info':'当你受到伤害后，你可以令一名异性角色回复一点体力；当一名异性角色受到伤害后，其可以令你回复一点体力。',
 	sgsk_mengzhen:'梦枕',
 	'sgsk_mengzhen_info':'结束阶段开始时，你可以将武将牌翻面，然后摸X张牌，X为场上存活的角色数。',
 	//--------------------鸿钧老祖
@@ -378,7 +417,8 @@ const translate = {
 	'sgsk_taotian_info':'出牌阶段限一次，你可以打出一张牌，若如此做，其他角色须依次打出一张不同花色的牌，否则你摸一张牌。',
 	//--------------------祝融
 	sgsk_fentian:'焚天',
-	'sgsk_fentian_info':'出牌阶段限一次，你可以展示手牌，若均为红色，你可以分配X点火焰伤害，X为你的手牌数。',
+	'sgsk_fentian_info':'出牌阶段限一次，你可以展示手牌，若均为红色，你可以对至多X名角色各造成1点火焰伤害，X为你的手牌数。',
+	// 'sgsk_fentian_info':'出牌阶段限一次，你可以展示手牌，若均为红色，你可以分配X点火焰伤害，X为你的手牌数。',
 	//--------------------句芒
 	sgsk_fusang:'扶桑',
 	'sgsk_fusang_info':'出牌阶段开始时，你可以将手牌补至场上手牌数最多。',
@@ -392,7 +432,8 @@ const translate = {
 	'sgsk_mushenx_info':'限定技，当你进入濒死状态时，你可以弃置所有牌，回复体力至X，并重置武将牌，X为其中梅花牌数，若回复值溢出，则增加溢出值的体力上限。',
 	//--------------------后土
 	sgsk_yutu:'御土',
-	'sgsk_yutu_info':'每当你受到一次伤害后，原文失考。',
+	'sgsk_yutu_info':'每当你受到一次伤害后，你可以摸X张牌，X为你空置区域的数量，至少为1。',
+	// 'sgsk_yutu_info':'每当你受到一次伤害后，原文失考。',
 	sgsk_yutux:'御土',
 	'sgsk_yutux_info':'每当你受到一次伤害后，你可以将场上一张装备牌移入自己装备区，若替换原装备，你摸两张牌。',
 	sgsk_shengtu:'生土',
@@ -468,7 +509,7 @@ const translate = {
 	'sgsk_buyu2_info':'受到旱神的诅咒，本回合跳过摸排阶段。',
 	//--------------------蚩尤
 	sgsk_zhanshen:'战神',
-	'sgsk_zhanshen_info':'锁定技，出牌阶段，每当你使用一张牌后，你须分配一点伤害；结束阶段，若你未于此回合杀死至少一名角色，你失去一点体力。',
+	'sgsk_zhanshen_info':'锁定技，出牌阶段，每当你使用一张牌后，你须分配一点伤害；回合结束时，若你未于此回合杀死至少一名角色，你失去一点体力。',
 	sgsk_shizhan:'嗜战',
 	'sgsk_shizhan_info':'锁定技，当你于出牌阶段使用牌时，若此牌点数为你本阶段使用牌的唯一最大/最小点数，你对一名体力值大于等于你/小于等于你的角色造成一点伤害；回合结束时，若你本回合没有杀死过角色，所有本回合受到过你伤害的其他角色依次对你造成一点伤害。',
 	//--------------------风后

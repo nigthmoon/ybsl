@@ -36,7 +36,7 @@ const character = { //武将格式 :
 	
 	
 	
-	//'ybsl_015wanghairu':['female','YB_memory',4,[/*'技能'*/],['rankAdd:epic','name:王|海茹']],//王海茹
+	'ybsl_015wanghairu':['female','YB_memory',3,['yb015_liangquan','yb015_bixin'],['rankAdd:epic','name:王|海茹']],//王海茹
 	'ybsl_016manchengqi':['female','YB_memory',4,['yb016_juli','yb016_shenzou'],['rankAdd:epic','name:满城|柒']],//满城柒（新版
 	'ybsl_017xiaohong':['female','YB_memory',3,['yb017_chuanxin','yb017_zuigui'],['rankAdd:legend','name:涂山|小红']],//涂山小红（新版
 	'ybsl_018zhangqing':['female','YB_memory',3,['yb018_huaimeng','yb018_minxing','yb018_fanling'],['rankAdd:legend','name:张|晴']],//张晴
@@ -140,6 +140,7 @@ const character = { //武将格式 :
 	// 'ybsl_105cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	// 'ybsl_106cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	'ybsl_107tushanshuili':['female','YB_dream',3,['yb107_xunhu','QQQ107_taye','QQQ107_yaoyi','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:涂山|水璃']], //涂山水璃
+	ybsl_121tujing:['female','YB_dream',3,[],['YB_memory','rankAdd:epic','name:涂|静']],//涂静
 	
 	//----------------------夜白界限突破（能更新出这个系列离不开大家不离不弃的支持）
 	'ybnb_034zhoulianyuan':['male','YB_dream',3,['yb034_rebifa','yb034_rejiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:周|怜渊','linkTo:ybsl_034zhoulianyuan']],//梦——界周怜渊
@@ -151,6 +152,8 @@ const character = { //武将格式 :
 	'ybsp_027rain':['female','YB_dream',3,['yb027_mili','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','name:null|雨','linkTo:ybsl_027rain']],//梦——雨
 	'ybsp_001sunlisong':['female','YB_memory','3/4',['yb001_yongyue','yb001_haowan'],['rankAdd:epic','name:孙|丽松','linkTo:ybsl_001sunlisong']],//孙丽松
 	'ybsp_016manchengqi':['female','YB_memory',3,['yb016_shanbiao','yb016_jiushi'],['rankAdd:epic','name:满城|柒','linkTo:ybsl_016manchengqi']],//孙丽松
+	'ybsp_033xiaohui':['female','YB_memory',3,['yb033_beilei','yb033_qijue'],['rankAdd:legend','name:null|小慧','linkTo:ybsl_033xiaohui']],//小慧
+	'ybsp_006wanghanzhen':['female','YB_memory',3,['yb006_xueyan'],['rankAdd:legend','name:王|汉桢','linkTo:ybsl_006wanghanzhen']],//王汉桢
 	//----------------------忆包神将
 	'ybslshen_014liutianyu':['male','shen','3/5',['yb014_shizhui','ybsl_xuxian'],['YB_memory','rankAdd:legend','name:夜|白']],//神夜白
 	'ybslshen_017xiaohong':['female','shen',3,['yb017_mizhu','yb017_guangzhu','yb017_zhenshi','ybsl_xuxian'],['YB_memory','rankAdd:legend','name:涂山|小红']],//神涂山小红
@@ -171,7 +174,8 @@ const character = { //武将格式 :
 	'ybold_016manchengqi':['female','YB_memory',3,['yb016_xianyue','yb016_tianliao','yb016_qingjie','yb016_pojie'],['rankAdd:rare','name:满城|柒','linkTo:ybsl_016manchengqi']],//旧版SP满城柒（其实是清明节设计的，机制很清奇但貌似很弱）
 
 	ybsl_windmoon:['female','wei',4,[
-		'kagari_ybzongsi',
+		// 'kagari_ybzongsi',
+		'kagari_ybzongsix',
 		'xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua',
 		/*'ybsl_kuwang','ybsl_guqu',*/
 		'ybsl_aocai',
@@ -180,7 +184,7 @@ const character = { //武将格式 :
 		'ybsl_kegu',
 		'ybsl_yiji','ybsl_liangying',
 		'ybsl_clanqianlei',
-	],['clan:吴郡陆氏','name:null|null']],
+	],['clan:吴郡陆氏','name:null|null','forbidai']],
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }

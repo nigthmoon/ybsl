@@ -12,19 +12,22 @@ import { YBSL_update }from './precontent/YB_09_update.js'
 import { YBSL_destiny } from './precontent/YB_10_destiny.js'
 // import { characterIntro,nodeintro } from './function.js';
 export async function precontent() {
-	const scriptPaths=[
-		'ext/YB_1_character.js','ext/YB_2_character.js','ext/YB_3_character.js','ext/YB_4_character.js',
-		'ext/YB_5_card.js','ext/YB_6_card.js','ext/YB_7_card.js','ext/YB_8_character.js','ext/YB_9_character.js',
-		// 'ext/YB_01_character.js'
-	];
-	Promise.all(
-		scriptPaths.map(path => import('../' + path))
-	).then(modules => {
-		
-	}).catch(error => {
-		alert('error '+error+'导入失败 !')
-		console.error(error.message);
-	});
+	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
+		// const scriptPaths=[
+		// 	'ext/YB_01_character.js','ext/YB_02_character.js','ext/YB_03_character.js','ext/YB_04_character.js',
+		// 	'ext/YB_05_card.js','ext/YB_06_card.js','ext/YB_07_card.js','ext/YB_08_character.js','ext/YB_09_character.js',
+		// 	// 'ext/YB_01_character.js'
+		// ];
+		let scriptPaths = files;
+		Promise.all(
+			scriptPaths.map(path => import('../ext/' + path))
+		).then(modules => {
+			
+		}).catch(error => {
+			alert('error '+error+'导入失败 !')
+			console.error(error.message);
+		});
+	})
 	//window.list24
 	{//css
 		var nor=lib.assetURL+'extension/夜白神略/source/css';

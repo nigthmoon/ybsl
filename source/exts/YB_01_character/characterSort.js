@@ -28,7 +28,7 @@ const characterSort = {
 			'ybsl_047zhangmi',
 			'db_ybsl_067snake','ybsl_069xiangzi','ybsl_076zhujun','ybsl_077yangqixu','ybsl_078zhuyahai',
 			'ybsl_081chenli','ybsl_081chensi','ybsl_083xiaozhu',
-			'ybsl_107tushanshuili'
+			'ybsl_107tushanshuili','ybsl_121tujing'
 		],
 		//'ybsl_sixp':[],
 		'ybsl_dzsl':[
@@ -37,7 +37,8 @@ const characterSort = {
 		],
 		'ybsl_spsp':[
 			'db_ybsp_014liutianyu','ybsp_016manchengqi','ybsp_072sulingyi',
-			'db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain'
+			'db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain',
+			'ybsp_033xiaohui','ybsp_006wanghanzhen',
 		],
 		'ybsl_sjfk':[
 			'ybslshen_014liutianyu','ybslshen_018zhangqing','ybslshen_017xiaohong','ybslshen_002chenailin','ybslshen_071faraway',

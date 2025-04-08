@@ -1161,7 +1161,7 @@ const YBSL_ybslf = function () {
 			let atk = get[i] || get.suit;
 			var list2 = [];
 			for (var k of cards) {
-				if (list2.length == 0 || !list2.contains(atk(k))) list2.add(atk(k));
+				if (list2.length == 0 || !list2.includes(atk(k))) list2.add(atk(k));
 			}
 			return list2;
 		}
@@ -2327,7 +2327,68 @@ const YBSL_ybslf = function () {
 			return player.storage[skill];
 		}
 		//-------------
-
+		/**
+		 * 判断该角色一次性失去多少张手牌会不再是手牌数最多
+		 * @param {player} target 
+		 */
+		get.YB_cardMaxLose = function(target){
+			// if(!target.isMaxHandcard(true))var num=1;
+			// else{
+				var players=game.filterPlayer(c=>c!=target);
+				var numb=0;
+				for(var i of players){
+					if(i.countCards('h')>numb)numb=i.countCards('h')
+				}
+			return target.countCards('h')+1-numb;
+			// }
+		}
+		lib.element.player.YB_recover = function(num){
+			var next = game.createEvent('YB_recover');
+			next.player=this;
+			next.num=num;
+			next.setContent('YB_recover');
+			return next;
+		}
+		lib.element.content.YB_recover = function(){
+			var n1=num,n2=player.getDamagedHp();
+			if(n1>n2){
+				var n3=n1-n2;
+				player.recover(n2);
+				player.gainMaxHp(n3);
+			}
+			else{
+				player.recover(n1);
+			}
+		}
+		// game.YB_yuanfenText= function(player,bool){
+		// 	if(player&&player.name1&&lib.characterLightext&&lib.characterLightext[player.name1]&&lib.characterLightext[player.name1](player)){
+		// 		var ybstr = lib.characterLightext[player.name1](player)[lib.characterLightext[player.name1](player).length-1]
+		// 		if(bool!=false)ui.create.div(".xcaption", "武将缘分", rightPane.firstChild);
+		// 		ui.create.div(".xskill", ybstr, rightPane.firstChild)
+		// 		// ui.create.div(".xskill","<div data-color>" + ybstr+ "</div>", rightPane.firstChild)
+		// 	}
+		// };
 		//-------------
+		/**
+		 * 交换主副将函数
+		 * @returns 
+		 */
+		lib.element.player.YB_exchange = function(){
+			var next = game.createEvent('YB_exchange');
+			next.player=this;
+			next.setContent(function(){
+				'step 0'
+				game.log(player,'交换了主副将')
+				if(player.name2==undefined){
+					player.changeCharacter(player.name1);
+				}
+				else{
+					player.changeCharacter([player.name2, player.name1]);
+					player.node.avatar.setBackground(player.name2, "character");
+					player.node.name.innerHTML = get.slimName(player.name2);
+				}
+			});
+			return next;
+		}
 	}
 }

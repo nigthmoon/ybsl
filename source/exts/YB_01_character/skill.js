@@ -2907,7 +2907,10 @@ const skill = {
 			4:{onremove:true,},
 		}
 	},
+	yb006_xueyan:{
+		audio:'ext:夜白神略/audio/character:2',
 
+	},
 	//----------------吴格格007
 	// 'yb007_renqing':{
 		// audio:'ext:夜白神略/audio/character:2',
@@ -4120,6 +4123,109 @@ const skill = {
 	'yb014_jumeng':'聚梦',
 	'yb014_jumeng_info':'准备阶段，你可以展示牌堆顶三张牌，获得其中每种花色的牌各一张。',
 	*/
+	//-----------王海茹
+	yb015_liangquan:{
+		audio:'ext:夜白神略/audio/character:2',
+		usable:1,
+		trigger:{
+			global:['useCardToTargeted'],
+		},
+		filter(event,player){
+			return event.target!=event.player&&event.targets.length==1&& player.canCompare(event.player);
+		},
+		logTarget: "player",
+		content() {
+			"step 0";
+			player.chooseToCompare(trigger.player);
+			"step 1";
+			event.winer=[],event.loser=[];
+			if (!result.tie) {
+				if (result.bool) {
+					event.loser.push(trigger.player);
+					event.winer.push(player);
+				} else {
+					event.loser.push(player);
+					event.winer.push(trigger.player);
+				}
+			}
+			else{
+				event.loser.push(trigger.player);
+				event.loser.push(player);
+			}
+			'step 2'
+			if(event.loser.length>0){
+				for(var i of event.loser){
+					trigger.getParent().targets.push(i);
+				}
+			}
+			'step 3'
+			delete result.bool;
+			'step 4'
+			if(event.winer.length>0){
+				event.winer[0].chooseBool('是否摸两张牌令'+get.translation(trigger.card)+'无效？');
+			}
+			else event.finish();
+			'step 5'
+			if(result.bool){
+				event.winer[0].draw(2);
+				trigger.targets.length = 0;
+				trigger.all_excluded = true;
+			}
+			// if (result.bool) {
+			// 	trigger.getParent().excluded.add(player);
+			// }
+		},
+	},
+	yb015_bixin:{
+		audio:'ext:夜白神略/audio/character:2',
+		mod: {
+			cardnumber(card) {
+				if (card.suit == "heart") return 13;
+				if (card.suit == "spade") return 1;
+			},
+		},
+		forced:true,
+		group: "yb015_bixin_number",
+		subSkill: {
+			number: {
+				trigger: { player: "compare", target: "compare" },
+				filter(event, player) {
+					if (event.player == player) {
+						return !event.iwhile && ["heart",'spade'].includes(get.suit(event.card1));
+					} else {
+						return ["heart",'spade'].includes(get.suit(event.card2));
+					}
+				},
+				// silent: true,
+				forced:true,
+				content() {
+					if (player == trigger.player) {
+						if(get.suit(trigger.card1)=='heart'){
+							game.log(player, "拼点牌点数视为", "#yK");
+							trigger.num1 = 13;
+						}
+						else {
+							game.log(player, "拼点牌点数视为", "#yA");
+							trigger.num1 = 1;
+						}
+					} else {
+						if(get.suit(trigger.card2)=='heart'){
+							game.log(player, "拼点牌点数视为", "#yK");
+							trigger.num2 = 13;
+						}
+						else {
+							game.log(player, "拼点牌点数视为", "#yA");
+							trigger.num2 = 1;
+						}
+					}
+				},
+			},
+		},
+	},
+	// yb015_liangquan:'良劝',
+	// yb015_liangquan_info:'每回合限一次，当有其他角色使用牌指定另一名角色为唯一目标时，你可以与其拼点。然后败者成为此牌额外目标，胜者可以令此牌无效并摸两张牌。',
+	// yb015_bixin:'比心',
+	// yb015_bixin_info:'锁定技，你的红桃牌点数均视为K，你的黑桃牌点数均视为A。（包括手牌，拼点牌，判定牌）',
 	//----------------新满城柒
 	'yb016_shenzou':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -4338,7 +4444,7 @@ const skill = {
 		},
 		direct:true,
 		trigger:{
-			target:'useCardToTargeted',
+			global:'useCardToTargeted',
 		},
 		filter:function(event,player){
 			if(event.player==event.target)return false;
@@ -4362,7 +4468,7 @@ const skill = {
 					var bool=_status.event.bool;
 					if(att>0) return bool;
 					else return !bool;
-				}).set('bool',bool);
+				});
 			}
 			'step 1'
 			if(result.bool){
@@ -5427,7 +5533,7 @@ const skill = {
 					if(player.countMark('yb018_huaimeng')>3) return '弃梦';
 					return '打牌';
 				})
-				else return player.chooseControl('打牌').set('prompt','你没有梦，请点击打牌。');
+				else player.chooseControl('打牌').set('prompt','你没有梦，请点击打牌。');
 			'step 2'
 			if(result.control=='弃梦'){
 				player.removeMark('yb018_huaimeng',1);
@@ -6779,7 +6885,7 @@ const skill = {
 			player.chooseCard('h',true).set('prompt2','请选择一张手牌加入此牌实体牌');
 			'step 1'
 			if(result.cards){
-				player.lose(result.cards[0]);
+				player.lose(result.cards[0],"visible");
 				trigger.cards.push(result.cards[0]);
 			}
 			else{
@@ -8347,6 +8453,34 @@ const skill = {
 		// inherit:'yb014_lvxin',
 		audio:'ext:夜白神略/audio/character:2',
 	},
+	yb033_beilei:{
+		forced:true,
+		audio:'ext:夜白神略/audio/character:2',
+		mod:{
+			cardUsable(card, player, num) {
+				return Infinity;
+			},
+			cardEnabled2(card) {
+				if (get.position(card) == "h"&&card.hasGaintag('yb033_beilei')) return false;
+			},
+		},
+		trigger:{
+			player:'drawAfter',
+		},
+		filter(event,player){
+			return true;
+		},
+		content(){
+			var cards = player.getCards('h');
+			for(var i of cards){
+				if((!trigger.result.includes(i)))i.addGaintag('yb033_beilei')
+			}
+		},
+	},
+	yb033_qijue:{
+		audio:'ext:夜白神略/audio/character:2',
+		
+	},
 	//---------------------周怜渊
 	yb034_bifa:{
 		// usable:1,
@@ -8537,6 +8671,15 @@ const skill = {
 	'yb036_sanmeng':{
 		audio:'ext:夜白神略/audio/character:2',
 		inherit:'ybsl_sanmeng',
+	},
+	yb036_qianjin:{
+		audio:'ext:夜白神略/audio/character:2',
+	},
+	yb036_chongzheng:{
+		audio:'ext:夜白神略/audio/character:2',
+	},
+	yb036_aoxiang:{
+		audio:'ext:夜白神略/audio/character:2',
 	},
 	//----------------------方块Q
 	'yb037_yizhong':{
@@ -9790,13 +9933,11 @@ const skill = {
 			player.storage.yb047_youhun=false;
 		},
 		hiddenCard:function(player,name){
-			if(player.storage.yb047_youhun&&player.countDisabled()>=5) return false;
 			var type=get.type(name);
 			if(player.storage.yb047_youhun) return type=='basic';
 			return type=='trick';
 		},
 		filter:function(event,player){
-			if(player.storage.yb047_youhun&&player.countDisabled()>=5) return false;
 			var type=player.storage.yb047_youhun?'basic':'trick';
 			for(var name of lib.inpile){
 				if(get.type(name)!=type) continue;

@@ -104,10 +104,11 @@ const characterTitle = {//称号
 	'ybsl_081chenli':'<font color=cyan>巡梦迷失者</font>',
 	'ybsl_081chensi':'<font color=cyan>巡梦迷失者</font>',
 	
-	'ybsl_083xiaozhu':'<font color=cyan>巡梦天合</font>,',
+	'ybsl_083xiaozhu':'<font color=cyan>巡梦天合</font>',
 	//047
-	'ybsl_085DGY':'<font color=cyan>雨漫孤城</font>,',
+	'ybsl_085DGY':'<font color=cyan>雨漫孤城</font>',
 	'ybsl_086GJ':'<font color=cyan>似水流年</font>',
+	'ybsl_092handan':'<font color=cyan>似水流年</font>',
 	//---------------------------------//忆包SP
 	'db_ybsp_014liutianyu':'<font color=cyan>暗流涌动</font>',
 	'ybsp_016manchengqi':'<font color=cyan>强饰的丽影</font>',

@@ -65,6 +65,10 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 					ybmjz.character[i][4].push(`ext:../../image/character/${char}.jpg`);
 					ybmjz.character[i][4].push(`die:../../audio/die/${char}.mp3`);
 				}
+				// else {
+				// 	ybmjz.character[i][4].push(`ext:夜白神略/image/ybmjz/${i}.jpg`);
+				// 	ybmjz.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
+				// }
 			}
 		}
 		else {
@@ -73,8 +77,17 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				ybmjz.character[i].img = `ext:../../image/character/${infoy}.jpg`;
 				ybmjz.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
 			}
+			// else {
+			// 	ybmjz.character[i].img = `ext:夜白神略/image/ybmjz/${i}.jpg`;
+			// 	ybmjz.character[i].die = `die:夜白神略/audio/die/${i}.mp3`;
+			// }
 		}
 	} 
+	// for(var i in ybmjz.character){
+	// 	if(ybmjz.character[i][4])ybmjz.character[i][4].push(`ext:夜白神略/image/ybsl001/${i}.jpg`);
+	// 	else ybmjz.character[i].img=`extension/夜白神略/image/ybsl001/${i}.jpg`;
+		
+	// } 
 	for(var i in ybmjz.card){
 		if(!ybmjz.card[i].image) ybmjz.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

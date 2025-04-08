@@ -27,14 +27,14 @@ const character = { //武将格式 :
 	// 'sgsh_chiyou':['male','shen',16,['sgsk_shizhan'],['rankAdd:legend','name:null|null']],//蚩尤
 	// 'sgsh_jingwei':['female','shen',3,['sgsk_xianmu','sgsk_tianhai'],['rankAdd:legend','name:null|null']],//精卫
 	
-	sgsh_tiandi:['male','shen',4,['sgsk_zhizun'],['rankAdd:legend','name:null|null']],//天帝
-	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:legend','name:null|null']],//神农
-	sgsh_xuanyuan:['male','shen',4,['sgsk_xiude','sgsk_wending'],['rankAdd:legend','name:null|null']],//轩辕
-	sgsh_shaohao:['male','shen',4,['sgsk_qiongsang'],['rankAdd:legend','name:null|null']],//少昊
+	sgsh_tiandi:['male','shen',4,['sgsk_zhizunx'],['rankAdd:legend','name:null|null']],//天帝
+	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:rare','name:null|null']],//神农
+	sgsh_xuanyuan:['male','shen',4,['sgsk_xiudexy','sgsk_wending'],['rankAdd:legend','name:null|null']],//轩辕
+	sgsh_shaohao:['male','shen',4,['sgsk_qiongsangy'],['rankAdd:legend','name:null|null']],//少昊
 	sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','name:null|null']],//颛顼
 	sgsh_qinglong:['none','shen',4,['sgsk_longxiao'],['rankAdd:legend','name:null|null']],//青龙
 	sgsh_baihu:['none','shen',4,['sgsk_huwei'],['rankAdd:legend','name:null|null']],//白虎
-	sgsh_zhuque:['none','shen',4,['sgsk_zhiyan'],['rankAdd:legend','name:null|null']],//朱雀
+	sgsh_zhuque:['none','shen',4,['sgsk_zhiyany'],['rankAdd:legend','name:null|null']],//朱雀
 	sgsh_xuanwu:['none','shen',4,['sgsk_xuanzhen'],['rankAdd:legend','name:null|null']],//玄武
 	sgsh_qilin:['none','shen',4,['sgsk_decai'],['rankAdd:legend','name:null|null']],//麒麟
 
@@ -49,11 +49,11 @@ const character = { //武将格式 :
 	sgsh_houtu:['male','shen',3,['sgsk_yutu','sgsk_shengtu'],['rankAdd:legend','name:null|null']],//后土
 	'sgsh_yuqiang':['male','shen',4,['sgsk_zhihai','sgsk_xuanming'],['rankAdd:junk','name:null|null']],//禺强√
 	
-	sgsh_fuxi:['male','shen',4,['sgsk_yuhan','sgsk_jiabian'],['rankAdd:legend','name:null|null']],//伏羲
+	sgsh_fuxi:['male','shen',4,['sgsk_yuhan'/*,'sgsk_jiabian'*/],['rankAdd:legend','name:null|null']],//伏羲
 	sgsh_xiangliu:['male','shen',4,['sgsk_jiushou'],['rankAdd:legend','name:null|null']],//相柳
 	sgsh_houyi:['male','shen',4,['sgsk_sheri'],['rankAdd:legend','name:null|null']],//后羿
 	'sgsh_dayu':['male','shen',4,['sgsk_zhishui'],['rankAdd:epic','name:null|null']],//大禹√
-	sgsh_kuafu:['male','shen',4,['sgsk_zhuiri'],['rankAdd:legend','name:null|null']],//夸父
+	sgsh_kuafu:['male','shen',4,['sgsk_zhuirix'],['rankAdd:legend','name:null|null']],//夸父
 	sgsh_tubo:['male','shen',3,['sgsk_xuemu','sgsk_jiuqu'],['rankAdd:legend','name:null|null']],//土伯
 	'sgsh_jingwei':['female','shen',3,['sgsk_xianmu','sgsk_tianhai'],['rankAdd:legend','name:null|null']],//精卫
 	sgsh_qibo:['male','shen',3,['sgsk_suwen','sgsk_lingjiu'],['rankAdd:legend','name:null|null']],//岐伯
@@ -62,7 +62,7 @@ const character = { //武将格式 :
 	
 	'sgsh_yinglong':['male','shen',4,['sgsk_zongshui'],['rankAdd:epic','name:null|null']],//应龙√
 	'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
-	'sgsh_chiyou':['male','shen',16,['sgsk_shizhan'],['rankAdd:legend','name:null|null']],//蚩尤
+	'sgsh_chiyou':['male','shen',5,['sgsk_zhanshen'],['rankAdd:legend','name:null|null']],//蚩尤
 	sgsh_fenghou:['female','shen',3,['sgsk_sinan','sgsk_shence'],['rankAdd:legend','name:null|null']],//风后
 	sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','name:null|null']],//九天玄女
 	sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','name:null|null']],//螺祖
@@ -92,6 +92,7 @@ const character = { //武将格式 :
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['rankAdd:epic',"border:wu",'name:隐|蕃']], //隐蕃
 	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxinx','ybsl_fuju'],['rankAdd:legend','name:李|昭仪']], //李昭仪
 	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['rankAdd:legend','name:孙|韶']], //孙韶
+	ybsl_suojing:['male','jin',3,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji:['male','wu',3,['ybsl_ljfumin','ybsl_ljguihang','ybsl_clanxingzu'],['rankAdd:epic','clan:吴郡陆氏','name:陆|绩','linkTo:luji']], //族陆绩

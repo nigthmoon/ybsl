@@ -1055,4 +1055,234 @@ const skill = {
 			}
 		}
 	},
+	ybmjz_fengshen:{
+		audio:'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		forced:true,
+		filter: function (event, player) {
+			if (player.name2 != undefined)return false;
+			var list = ['db_key_hina','ybmjz_hina'];
+			if(game.filterPlayer(c=>{
+				return list.includes(c.name)||list.includes(c.name1)||list.includes(c.name2)
+			}).length>0)return false;
+			return event.name != 'phase' || game.phaseNumber == 0;
+		},
+		content: function () {
+			'step 0'
+			player.loseMaxHp();
+			'step 1'
+			var name = lib.character['ybmjz_hina']?'ybmjz_hina':'db_key_hina';
+			player.changeCharacter([player.name,name])
+			// game.broadcastAll(
+			// 	function (player, first, chosen) {
+			// 		player.name2 = name;
+			// 		player.skin.name2 = name;
+			// 		player.classList.add("fullskin2");
+			// 		player.node.avatar2.classList.remove("hidden");
+			// 		player.node.avatar2.setBackground(chosen, "character");
+			// 		player.node.name2.innerHTML = get.slimName(name);
+			// 		if (player == game.me && ui.fakeme) {
+			// 			ui.fakeme.style.backgroundImage = player.node.avatar.style.backgroundImage;
+			// 		}
+			// 	},
+			// 	player,
+			// );
+		},
+	},
+	ybmjz_yingshen:{
+		group:['ybmjz_yingshen_zhuzhan','ybmjz_yingshen_discard','ybmjz_yingshen_exchange'],
+		subSkill:{
+			zhuzhan: {
+				trigger: { player: "yingbianZhuzhanBegin" },
+				forced: true,
+				locked: false,
+				popup: false,
+				firstDo: true,
+				content() {
+					trigger.setContent(get.info("ybmjz_yingshen").yingbian);
+				},
+			},
+			discard: {
+				// trigger: { player: "chooseCardBegin" },
+				// filter(event, player) {
+				// 	return event.getParent().name == "yingbianZhuzhan";
+				// },
+				// forced: true,
+				// popup: false,
+				// firstDo: true,
+				// content() {
+				// 	trigger.filterCard = lib.filter.cardDiscardable;
+				// },
+			},
+			exchange:{
+				trigger:{player:['useSkill','logSkillBegin']},
+				// filter(event,player){return true},
+				filter(event,player){return event.skill=='ybmjz_yingshen'&&(!player.storage.ybmjz_huanshen)},
+				forced: true,
+				popup: false,
+				content(){
+					player.YB_exchange();
+				}
+			},
+		},
+		yingbian() {
+			"step 0";
+			event._global_waiting = true;
+			event.send = (player, card, source, targets, id, id2, yingbianZhuzhanAI, skillState) => {
+				if (skillState) player.applySkills(skillState);
+				var type = get.type2(card),
+					str = get.translation(source);
+				if (targets && targets.length) str += `对${get.translation(targets)}`;
+				str += `使用了${get.translation(card)}，是否弃置一张${get.translation(type)}为其助战？`;
+				player.chooseCard({
+					filterCard: (card, player) => get.type2(card) == type && lib.filter.cardDiscardable(card, player),
+					prompt: str,
+					position: "h",
+					_global_waiting: true,
+					id: id,
+					id2: id2,
+					ai:
+						typeof yingbianZhuzhanAI == "function"
+							? yingbianZhuzhanAI(player, card, source, targets)
+							: cardx => {
+									var info = get.info(card);
+									if (info && info.ai && info.ai.yingbian) {
+										var ai = info.ai.yingbian(card, source, targets, player);
+										if (!ai) return 0;
+										return ai - get.value(cardx);
+									} else if (get.attitude(player, source) <= 0) return 0;
+									return 5 - get.value(cardx);
+								},
+				});
+				if (!game.online) return;
+				_status.event._resultid = id;
+				game.resume();
+			};
+			"step 1";
+			var type = get.type2(card);
+			event.list = game.filterPlayer(current => current.countCards("h") && (_status.connectMode || current.hasCard(cardx => get.type2(cardx) == type, "h"))).sortBySeat(_status.currentPhase || player);
+			event.id = get.id();
+			"step 2";
+			if (!event.list.length) event.finish();
+			else if (_status.connectMode && (event.list[0].isOnline() || event.list[0] == game.me)) event.goto(4);
+			else event.send((event.current = event.list.shift()), event.card, player, trigger.targets, event.id, trigger.parent.id, trigger.yingbianZhuzhanAI);
+			"step 3";
+			if (result.bool) {
+				event.zhuzhanresult = event.current;
+				event.zhuzhanresult2 = result;
+				if (event.current != game.me) game.delayx();
+				event.goto(8);
+			} else event.goto(2);
+			"step 4";
+			var id = event.id,
+				sendback = (result, player) => {
+					if (result && result.id == id && !event.zhuzhanresult && result.bool) {
+						event.zhuzhanresult = player;
+						event.zhuzhanresult2 = result;
+						game.broadcast("cancel", id);
+						if (_status.event.id == id && _status.event.name == "chooseCard" && _status.paused)
+							return () => {
+								event.resultOL = _status.event.resultOL;
+								ui.click.cancel();
+								if (ui.confirm) ui.confirm.close();
+							};
+					} else if (_status.event.id == id && _status.event.name == "chooseCard" && _status.paused) return () => (event.resultOL = _status.event.resultOL);
+				},
+				withme = false,
+				withol = false,
+				list = event.list;
+			for (var i = 0; i < list.length; i++) {
+				var current = list[i];
+				if (current.isOnline()) {
+					withol = true;
+					current.wait(sendback);
+					current.send(event.send, current, event.card, player, trigger.targets, event.id, trigger.parent.id, trigger.yingbianZhuzhanAI, get.skillState(current));
+					list.splice(i--, 1);
+				} else if (current == game.me) {
+					withme = true;
+					event.send(current, event.card, player, trigger.targets, event.id, trigger.parent.id, trigger.yingbianZhuzhanAI);
+					list.splice(i--, 1);
+				}
+			}
+			if (!withme) event.goto(6);
+			if (_status.connectMode && (withme || withol))
+				game.players.forEach(value => {
+					if (value != player) value.showTimer();
+				});
+			event.withol = withol;
+			"step 5";
+			if (!result || !result.bool || event.zhuzhanresult) return;
+			game.broadcast("cancel", event.id);
+			event.zhuzhanresult = game.me;
+			event.zhuzhanresult2 = result;
+			"step 6";
+			if (event.withol && !event.resultOL) game.pause();
+			"step 7";
+			game.players.forEach(value => value.hideTimer());
+			"step 8";
+			if (event.zhuzhanresult) {
+				var target = event.zhuzhanresult;
+				if (target == player && player.hasSkill("ybmjz_yingshen")) player.logSkill("ybmjz_yingshen");
+				target.line(player, "green");
+				target.discard(event.zhuzhanresult2.cards).discarder = target;
+				if (typeof event.afterYingbianZhuzhan == "function") event.afterYingbianZhuzhan(event, trigger);
+				var yingbianCondition = event.name.slice(8).toLowerCase(),
+					yingbianConditionTag = `yingbian_${yingbianCondition}_tag`;
+				target.popup(yingbianConditionTag, lib.yingbian.condition.color.get(yingbianCondition));
+				game.log(target, "响应了", '<span class="bluetext">' + (target == player ? "自己" : get.translation(player)) + "</span>", "发起的", yingbianConditionTag);
+				target.addExpose(0.2);
+				event.result = {
+					bool: true,
+				};
+			} else
+				event.result = {
+					bool: false,
+				};
+		},
+		audio:'ext:夜白神略/audio/character:2',
+		enable:'chooseCard',
+		filter(event, player) {
+			return event.getParent().name == "yingbianZhuzhan";
+		},
+		// content(){
+		// if(!player.storage.ybmjz_huanshen)player.YB_exchange();
+		// 	console.log(trigger.getParent())
+		// 	// trigger.getParent().forceYingbian=true;
+		// 	// trigger.getParent().zhuzhanresult=player;
+		// 	// trigger.getParent().zhuzhanresult.YB_exchange();
+		// }
+		
+	},
+	ybmjz_huanshen:{
+		audio:'ext:夜白神略/audio/character:2',
+		groupSkill: "shen",
+		unique: true,
+		skillAnimation:true,
+		limited:true,
+		animationColor: "key",
+		trigger: { global: "dying" },
+		mark:true,
+		filter:function(event,player){
+			if(player.storage.ybmjz_huanshen) return false;
+			if(_status.currentPhase==event.player)return false;
+			return true;
+		},
+		content:function(){
+			'step 0'
+			player.awakenSkill('ybmjz_huanshen');
+			player.storage.ybmjz_huanshen=true;
+			'step 1'
+			if(player!=trigger.player)player.line(trigger.player,'key');
+			'step 2'
+			player.YB_exchange();
+			'step 3'
+			trigger.player.recover(1 - trigger.player.hp);
+		},
+		ai:{
+			save:true,
+		}
+	},
 }
