@@ -627,8 +627,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -643,8 +643,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -662,8 +662,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -681,8 +681,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -697,8 +697,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -717,8 +717,8 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
@@ -738,11 +738,28 @@ const card = {
 			equipValue: 9
 		},
 		onLose: function() {
-			var card = event.card;
-			if (!card) return;
+			var card = event.cards[0];
+			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
 				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
 			}
+		},
+		content:function(){
+			'step 0'
+			if(cards.length&&get.position(cards[0],true)=='o'){
+				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
+				player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备');
+				
+			}
+			else event,finish();
+			'step 1'
+			if (result.control) {
+				var num = result.index + 1;
+				var name = 'ybsl_107xiaohu' + num;
+				cards[0].init([cards[0].suit, cards[0].number, name, cards[0].nature /*,tag*/]);
+				player.equip(cards[0]);
+			}
+
 		},
 	},
 	group_YB_dream:{fullskin:true},

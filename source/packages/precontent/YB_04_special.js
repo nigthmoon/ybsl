@@ -21,6 +21,7 @@ const YBSL_special = function () {
 		lib.arenaReady.push(function () {
 			if (!lib.skill.tiandu.audioname2) lib.skill.tiandu.audioname2 = {};
 			lib.skill.tiandu.audioname2.ybslclan_luyan = 'ybsl_lytiandu';
+			// lib.skill.tiandu.audioname2.ybsl_121tujing = 'yb121_tiandu';
 			if (!lib.skill.zhaxiang.audioname2) lib.skill.zhaxiang.audioname2 = {};
 			lib.skill.zhaxiang.audioname2.ybsl_yinfan = 'ybsl_zhaxiang';
 			// var listx=clan_list;
@@ -347,17 +348,18 @@ const YBSL_special = function () {
 				// }
 				return false;
 			},
-			content: function () {
-				'step 0'
-				event.list1 = ['武器', '防具', '进攻马', '防御马', '宝物', '双格马'];
-				player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备');
-				'step 1'
+			content: function*(event,map) {
+				let trigger=map.trigger,player=map.player;
+				trigger.cancel();
+				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
+				var result = yield player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备');
+				
 				if (result.control) {
 					var num = result.index + 1;
-					// var equiptype='equip'+num;
 					var name = 'ybsl_107xiaohu' + num;
 					let card = trigger.cards[0];
-					trigger.cards[0].init([card.suit, card.number, name, card.nature /*,tag*/]);
+					card.init([card.suit, card.number, name, card.nature /*,tag*/]);
+					player.equip(card);
 				}
 			}
 		}

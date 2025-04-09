@@ -140,7 +140,7 @@ const character = { //武将格式 :
 	// 'ybsl_105cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	// 'ybsl_106cat':['female','YB_memory',3,[],['rankAdd:epic']],//
 	'ybsl_107tushanshuili':['female','YB_dream',3,['yb107_xunhu','QQQ107_taye','QQQ107_yaoyi','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:涂山|水璃']], //涂山水璃
-	ybsl_121tujing:['female','YB_dream',3,[],['YB_memory','rankAdd:epic','name:涂|静']],//涂静
+	ybsl_121tujing:['female','YB_dream',3,['yb121_yuanjie','yb121_tiandu'],['YB_memory','rankAdd:epic','name:涂|静']],//涂静
 	
 	//----------------------夜白界限突破（能更新出这个系列离不开大家不离不弃的支持）
 	'ybnb_034zhoulianyuan':['male','YB_dream',3,['yb034_rebifa','yb034_rejiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','name:周|怜渊','linkTo:ybsl_034zhoulianyuan']],//梦——界周怜渊

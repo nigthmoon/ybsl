@@ -5062,8 +5062,10 @@ const skill = {
 			var targets1 = game.filterPlayer(c=>c.countCards('h')<player.countCards('h'));
 			var targets2 = game.filterPlayer(c=>c.hp<player.hp);
 			player.chooseTarget().set('filterTarget',function(card,player,target){
-				if(targets1.includes(target))target.prompt('其可摸牌<br>');
-				if(targets2.includes(target))target.prompt('其可回血<br>');
+				var str = '';
+				if(targets1.includes(target))str+='其可摸牌<br>'
+				if(targets2.includes(target))str+='其可回血<br>'
+				target.prompt(str);
 				return targets1.includes(target)||targets2.includes(target);
 			}).set('ai',function(target){
 				return get.attitude(_status.event.player,target)-5-target.hp-target.countCards('h');
@@ -5076,8 +5078,8 @@ const skill = {
 			else{
 				event.tar = result.targets[0];
 				var list = [];
-				if(event.tar.countCards('h')<player.countCards('h'))list.oush('令其摸牌');
-				if(event.tar.hp<player.hp)list.oush('令其回血');
+				if(event.tar.countCards('h')<player.countCards('h'))list.push('令其摸牌');
+				if(event.tar.hp<player.hp)list.push('令其回血');
 				list.push('回上一步');
 				player.chooseControl(list).set('prompt2','令'+get.translation(event.tar)+'怎么样？')
 			}
@@ -5126,8 +5128,10 @@ const skill = {
 			var targets1 = game.filterPlayer(c=>c.countCards('h')<player.countCards('h'));
 			var targets2 = game.filterPlayer(c=>c.hp<player.hp);
 			event.result = player.chooseTarget().set('filterTarget',function(card,player,target){
-				if(targets1.includes(target))target.prompt('其可摸牌<br>');
-				if(targets2.includes(target))target.prompt('其可回血<br>');
+				var str = '';
+				if(targets1.includes(target))str+='其可摸牌<br>'
+				if(targets2.includes(target))str+='其可回血<br>'
+				target.prompt(str);
 				return targets1.includes(target)||targets2.includes(target);
 			}).set('ai',function(target){
 				return get.attitude(_status.event.player,target)-5-target.hp-target.countCards('h');
@@ -5392,6 +5396,7 @@ const skill = {
 		},
 		filter(){return true},
 		content(){
+			trigger.changeToZero();
 			var tars=game.filterPlayer().sortBySeat();
 			for(var i of tars){
 				i.draw();
@@ -5473,7 +5478,7 @@ const skill = {
 			},
 		}
 	},
-	//---------共工
+	//---------共工//测试通过
 	sgsk_taotian: {
 		audio: 'ext:夜白神略/audio/character:2',
 		enable:'phaseUse',
@@ -5486,6 +5491,9 @@ const skill = {
 			var mod=game.checkMod(card,player,'unchanged','cardRespondable',player);
 			if(mod!='unchanged') return mod;
 			return true;
+		},
+		check(card){
+			return 6-get.value(card,target);
 		},
 		discard:false,
 		lose:false,
@@ -5503,16 +5511,22 @@ const skill = {
 				next.suit=suit;
 				next.setContent(function(){
 					'step 0'
-					target.chooseToRespond('请打出一张非'+get.translation(suit)+'牌，否则'+get.translation(player)+'摸一张牌。',function(card,player){
+					target.chooseToRespond('请打出一张非'+get.translation(event.suit)+'牌，否则'+get.translation(player)+'摸一张牌。',function(card,player){
 						var suitx=get.suit(card);
-						return suitx!=suit;
+						return suitx!=event.suit;
 					}).set('ai',function(card){
 						if(get.attitude(_status.event.player,player)>5)return false;
-						return get.value(card,target);
+						return -get.value(card,target);
 					});
 					'step 1'
 					if(!result.bool)player.draw();
 				});
+			}
+		},
+		ai:{
+			order:10,
+			result:{
+				player:1,
 			}
 		}
 	},
@@ -5597,12 +5611,12 @@ const skill = {
 		content:function (){
 			event.num=Math.abs(trigger.num);
 			if(trigger.num>0)player.draw(event.num);
-			else player.chooseToDiscard(event.num);
+			else player.chooseToDiscard(event.num,true,'he');
 		},
 	},
 	sgsk_mangtongx: {
 		audio: 'sgsk_mangtong',
-		inherits:'yb018_zheye',
+		inherit:'yb018_zheye',
 	},
 	sgsk_mushen: {
 		audio: 'ext:夜白神略/audio/character:2',
@@ -5789,14 +5803,17 @@ const skill = {
 			}//QQQ
 		},
 	},
-	//---------伏羲
+	//---------伏羲//测试完成
 	sgsk_yuhan: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger:{
-			player:'damegeAfter',
+			player:'damageAfter',
+		},
+		filter(event,player){
+			return true;
 		},
 		cost(){
-			event.result = player.chooseToDiscard('he').set("chooseonly", true);
+			event.result = player.chooseToDiscard('he').set("chooseonly", true).forResult();
 		},
 		content(){
 			'step 0'
@@ -5875,13 +5892,13 @@ const skill = {
 		}
 	},
 	//---------夸父
-	sgsk_zhuiri: {
+	sgsk_zhuiri: {//实测不影响游玩
 		audio: 'ext:夜白神略/audio/character:2',
 		group: ["sgsk_zhuiri_summer"],
 		audio: 2,
-		trigger: {
-			player: "useCard2",
-		},
+		// trigger: {
+		// 	player: "useCard2",
+		// },
 		forced: true,
 		mod: {
 			globalFrom(from, to, distance) {
@@ -5889,14 +5906,10 @@ const skill = {
 					return distance - from.storage.sgsk_zhuiri;
 				}
 			},
-			wuxieRespondable(card, player, target, current) {
-				if (player != current && player.storage.sgsk_zhuiri_directHit.includes(card)) {
-					return false;
-				}
-			},
 		},
 		init(player) {
 			player.storage.sgsk_zhuiri = 0;
+			player.markSkill('sgsk_zhuiri');
 		},
 		trigger:{
 			player:'phaseJieshuBefore'
@@ -5904,9 +5917,16 @@ const skill = {
 		filter(trigger, player) {
 			return (
 				!game.hasPlayer(function (current) {
-					return get.distance(player, current) > 1;
+					return get.distance(player, current)>1;
 				})
 			);
+		},
+		marktext:'追',
+		intro:{
+			content(event,player,storage,name,skill){
+				var storage = player.storage.sgsk_zhuiri;
+				return '计算至其他角色的距离-'+storage;
+			}
 		},
 		content(){
 			var winners = player.getFriends();
@@ -5914,7 +5934,6 @@ const skill = {
 		},
 		subSkill:{
 			summer: {
-				sub: true,
 				trigger: { player: ["phaseAfter", "useCard"] },
 				silent: true,
 				filter(event, player) {
@@ -5937,10 +5956,10 @@ const skill = {
 		},
 	},
 	sgsk_zhuirix: {
+		inherit:'sgsk_zhuiri',
 		audio: 'sgsk_zhuiri',
-		inherits:'sgsk_zhuiri',
 		content(){
-			var num = game.filterPlayer();
+			var num = game.countPlayer();
 			player.draw(num||1);
 		},
 	},
@@ -6275,6 +6294,7 @@ const skill = {
 	//---------蚩尤
 	sgsk_zhanshen: {
 		audio: 'ext:夜白神略/audio/character:2',
+		// locked:true,
 		forced:true,
 		trigger:{
 			player:'useCardAfter',
@@ -6284,21 +6304,23 @@ const skill = {
 			if (!evt || evt.player != player) return false;
 			return true;
 		},
-		cost(){
-			event.result = player.chooseTarget(true,'请选择对一名角色造成一点伤害').set('ai',function(target){
+		// cost(){
+		// },
+		content(){
+			'step 0'
+			player.chooseTarget(true,'请选择对一名角色造成一点伤害').set('ai',function(target){
 				return get.damageEffect(target, player, player);
 			})
-		},
-		content(){
-			event.targets[0].damage();
+			'step 1'
+			if(result.bool)result.targets[0].damage();
 		},
 		group:'sgsk_zhanshen_debuff',
 		subSkill:{
 			debuff:{
-				trigger: { global: "phaseAfter" },
+				trigger: { player: "phaseAfter" },
 				forced: true,
 				filter(event, player) {
-					return player.getStat("kill") <= 0;
+					return !player.getStat("kill")||player.getStat("kill") <= 0;
 				},
 				content() {
 					player.damage();

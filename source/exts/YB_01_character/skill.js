@@ -6967,7 +6967,7 @@ const skill = {
 			var num=event.cards.length;
 			yield player.draw(num);
 			if(player.hp>=num){
-				var result=yield player.chooseControl('是','否').set('ai',function(){
+				var result=yield player.chooseBool().set('ai',function(){
 					if(player.hp-num>1) return bool;
 					else return !bool;
 				}).set('prompt','是否失去'+num+'点体力，然后再摸'+num+'张牌');
@@ -15922,6 +15922,79 @@ const skill = {
 	锁定技，当你受到伤害后，你展示手牌（没有则跳过），然后摸五张牌。锁定技，你手牌中每有一种花色，你以任意途径的摸牌数-1。
 	当有装备牌即将进入你的装备区时，你可将此装备牌置入弃牌堆，然后【小狐】进入你的该装备栏。
 	*/
+	yb121_yuanjie:{
+		audio:'ext:夜白神略/audio/character:2',
+		usable:1,
+		trigger:{
+			global:'damageSource',
+		},
+		filter(event,player){
+			return event.source&&event.source.isIn()&&event.player&&event.player.isIn();
+		},
+		content(){
+			'step 0'
+			trigger.player.recover();
+			if(!trigger.player.countMark('yb121_yuanjie_mark'))trigger.player.addMark('yb121_yuanjie_mark');
+			'step 1'
+			trigger.source.draw(2);
+			'step 2'
+			var num = game.countPlayer(c=>c.countMark('yb121_yuanjie_mark')>0);
+			player.draw(num);
+		},
+		check(event, player) {
+			// var tar=trigger.player,sou = trigger.source;
+			// if(get.attitude(player,tar)<0&&get.attitude(player,sou)<0)return false;
+			// if(get.attitude(player,tar)>0&&get.attitude(player,sou)<0)return tar.getDamagedHp()-1;
+			// if(get.attitude(player,tar)<0&&get.attitude(player,sou)>0)return false;
+			// if(get.attitude(player,tar)>0&&get.attitude(player,sou)>0)return true;
+			return true;
+
+		},
+		subSkill:{
+			mark:{
+				mark:true,
+				marktext:'缘',
+			}
+		},
+	},
+	yb121_tiandu:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			player:'phaseZhunbei',
+		},
+		filter(event,player){
+			return true;
+		},
+		async content(event,trigger,player){
+			let result = await player.judge('天妒',function(card){
+				if(get.tag(card,'damage')>0.5){
+					return player.hp-1.5;
+				}
+				return 0;//这里return 的数字别私自改
+			}).forResult();
+			if(result.card){
+				if(get.tag(result.card,'damage')>0.5){
+					await player.damage(result.card,'nosource');
+				}
+			}
+		},
+		group:['yb121_tiandu_tiandu'],
+		subSkill:{
+			tiandu:{
+				audio:'yb121_tiandu',
+				trigger: { player: "judgeEnd" },
+				forced: true,
+				filter(event, player) {
+					return get.position(event.result.card, true) == "o";
+				},
+				async content(event, trigger, player) {
+					player.gain(trigger.result.card, "gain2");
+				},
+
+			}
+		}
+	},
 	//-------夜白示范的傲才
 	ybsl_aocai:{
 		audio:'ext:夜白神略/audio/character:2',
