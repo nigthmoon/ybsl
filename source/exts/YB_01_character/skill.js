@@ -8725,10 +8725,11 @@ const skill = {
 				trigger:{
 					player:'loseHpEnd',
 				},
-				lastDo:true,
+				firstDo:true,
+				// lastDo:true,
 				forced:true,
 				filter(event,player){
-					console.log('player.storage.yb033_qijue_loseHp',player.storage.yb033_qijue_loseHp)
+					// console.log('player.storage.yb033_qijue_loseHp',player.storage.yb033_qijue_loseHp)
 					return !player.storage.yb033_qijue_loseHp;
 				},
 				content(){
@@ -8740,7 +8741,9 @@ const skill = {
 						var storage = player.storage.yb033_qijue_lh;
 						player.when({player:storage[0][1]}).filter(function(event,player){
 							return event!=trigger;
-						}).then(storage[1][1]).then(storage[2][1]);
+						}).then(storage[1][1]).then(storage[2][1]).then(function(){
+							delete player.storage.yb033_qijue_loseHp;
+						});
 					// }
 					// else delete player.storage.yb033_qijue_loseHp;
 				},
@@ -8750,10 +8753,11 @@ const skill = {
 				trigger:{
 					player:'damageEnd',
 				},
-				lastDo:true,
+				firstDo:true,
+				// lastDo:true,
 				forced:true,
 				filter(event,player){
-					console.log('player.storage.yb033_qijue_damage',player.storage.yb033_qijue_damage)
+					// console.log('player.storage.yb033_qijue_damage',player.storage.yb033_qijue_damage)
 					return !player.storage.yb033_qijue_damage;
 				},
 				content(){
@@ -8766,7 +8770,9 @@ const skill = {
 						var storage = player.storage.yb033_qijue_da;
 						player.when({player:storage[0][1]}).filter(function(event,player){
 							return event!=trigger;
-						}).then(storage[1][1]).then(storage[2][1]);
+						}).then(storage[1][1]).then(storage[2][1]).then(function(){
+							delete player.storage.yb033_qijue_damage;
+						});
 					// }
 					// else delete player.storage.yb033_qijue_damage;
 				},
@@ -8776,10 +8782,11 @@ const skill = {
 				trigger:{
 					player:'discardEnd',
 				},
-				lastDo:true,
+				firstDo:true,
+				// lastDo:true,
 				forced:true,
 				filter(event,player){
-					console.log('player.storage.yb033_qijue_discard',player.storage.yb033_qijue_discard)
+					// console.log('player.storage.yb033_qijue_discard',player.storage.yb033_qijue_discard)
 					return !player.storage.yb033_qijue_discard;
 				},
 				content(){
@@ -8791,7 +8798,9 @@ const skill = {
 						var storage = player.storage.yb033_qijue_dc;
 						player.when({player:storage[0][1]}).filter(function(event,player){
 							return event!=trigger;
-						}).then(storage[1][1]).then(storage[2][1]);
+						}).then(storage[1][1]).then(storage[2][1]).then(function(){
+							delete player.storage.yb033_qijue_discard;
+						});
 					// }
 					// else delete player.storage.yb033_qijue_dc;
 				},

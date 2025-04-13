@@ -107,7 +107,7 @@ const YBSL_special = function () {
 			ruleSkill: true,
 			content: function () {
 				player.addTempSkill('YB_damageCancel2');
-				player.addMark('YB_damageCancel2');
+				player.addMark('YB_damageCancel2',1,false);
 			},
 		}
 		lib.skill.YB_damageCancel2 = {
