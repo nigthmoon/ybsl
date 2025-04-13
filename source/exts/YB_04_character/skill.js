@@ -4319,7 +4319,7 @@ const skill = {
 	sgsk_zhizunx: {
 		audio: 'sgsk_zhizun',
 		filter(event, player) {
-			if (event.name == 'usrCard') return [5, 9].includes.get.number(event.card);
+			if (event.name == 'useCard') return get.number(event.card) == 5 || get.number(event.card) == 9;
 			return lib.skill.sgsk_zhizun.zhizunFilter();
 		},
 		trigger: {
@@ -4994,6 +4994,7 @@ const skill = {
 		},
 		filter(event, player) {
 			if (get.type(event.card) != "trick") return false;
+			if (!event.targets) return false;
 			return true;
 		},
 		firstDo: true,
@@ -5351,10 +5352,10 @@ const skill = {
 					.set('prompt2', '是否令一名男性角色回复一点体力？')
 					.set('filterTarget',function(card,player,target){
 						return target.hasSex("male")&&target.isDamaged()
-					});
+					}).forResult();
 				},
 				content(){
-					event.target.recover();
+					event.targets[0].recover();
 				}
 			},
 			2:{
@@ -5367,7 +5368,7 @@ const skill = {
 				},
 				cost(){
 					event.result = trigger.player.chooseBool().set('ai', function () { return get.attitude(_status.event.player,player)>5 })
-					.set('prompt2', '是否令'+get.translation(player)+'回复一点体力？');
+					.set('prompt', '是否令'+get.translation(player)+'回复一点体力？').forResult();
 				},
 				content(){
 					player.recover();

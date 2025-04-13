@@ -2391,4 +2391,7 @@ const YBSL_ybslf = function () {
 			return next;
 		}
 	}
+	{//----------自定义函数2
+		
+	}
 }
