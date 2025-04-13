@@ -4640,7 +4640,7 @@ const skill = {
 			'step 2'
 			if (result.bool) {
 				player.line(target, "green");
-				target.draw();
+				result.targets[0].draw();
 			}
 		},
 	},
@@ -4676,7 +4676,7 @@ const skill = {
 			if (result.bool) {
 				player.line(target, "green");
 				player.draw();
-				target.draw();
+				result.targets[0].draw();
 			}
 		},
 	},
@@ -4712,7 +4712,7 @@ const skill = {
 			'step 2'
 			if (result.bool) {
 				player.line(target, "green");
-				target.draw();
+				result.targets[0].draw();
 			}
 		},
 	},
@@ -4736,7 +4736,7 @@ const skill = {
 			});
 			'step 1'
 			if (result.bool) {
-				var next = player.chooseTarget("令一名角色摸一张牌");
+				var next = player.chooseTarget("与一名角色摸一张牌");
 				next.set("ai", function (target) {
 					var player = _status.event.player;
 					var att = get.attitude(player, target) / Math.sqrt(1 + target.countCards("h"));
@@ -4749,7 +4749,7 @@ const skill = {
 			if (result.bool) {
 				player.line(target, "green");
 				player.draw();
-				target.draw();
+				result.targets[0].draw();
 			}
 		},
 	},
@@ -4787,10 +4787,12 @@ const skill = {
 			}
 			return false;
 		},
+		direct:true,
+		
 		content() {
 			player.when('phaseJieshuBegin').then(function () {
 				player.chooseBool().set('ai', function () { return true })
-					.set('prompt2', '是否摸三张牌并回复一点体力？');
+					.set('prompt', '是否摸三张牌并回复一点体力？');
 			}).then(function () {
 				if (result.bool) {
 					player.draw(3);
@@ -4840,7 +4842,7 @@ const skill = {
 		},
 		hiddenCard: function (player, name) {
 			var type = get.type(name);
-			return type == 'basic' && player.countCards('h') >= 1;
+			return type == 'basic';
 		},
 		chooseButton: {
 			dialog: function (player) {
@@ -5064,8 +5066,8 @@ const skill = {
 			player.chooseTarget().set('filterTarget',function(card,player,target){
 				var str = '';
 				if(targets1.includes(target))str+='其可摸牌<br>'
-				if(targets2.includes(target))str+='其可回血<br>'
-				target.prompt(str);
+				if(targets2.includes(target)&&target.getDamagedHp())str+='其可回血<br>'
+				target.prompt(str,'wood');
 				return targets1.includes(target)||targets2.includes(target);
 			}).set('ai',function(target){
 				return get.attitude(_status.event.player,target)-5-target.hp-target.countCards('h');
@@ -5079,7 +5081,7 @@ const skill = {
 				event.tar = result.targets[0];
 				var list = [];
 				if(event.tar.countCards('h')<player.countCards('h'))list.push('令其摸牌');
-				if(event.tar.hp<player.hp)list.push('令其回血');
+				if(event.tar.hp<player.hp&&event.tar.getDamagedHp())list.push('令其回血');
 				list.push('回上一步');
 				player.chooseControl(list).set('prompt2','令'+get.translation(event.tar)+'怎么样？')
 			}
@@ -5130,8 +5132,8 @@ const skill = {
 			event.result = player.chooseTarget().set('filterTarget',function(card,player,target){
 				var str = '';
 				if(targets1.includes(target))str+='其可摸牌<br>'
-				if(targets2.includes(target))str+='其可回血<br>'
-				target.prompt(str);
+				if(targets2.includes(target)&&target.getDamagedHp())str+='其可回血<br>'
+				target.prompt(str,'wood');
 				return targets1.includes(target)||targets2.includes(target);
 			}).set('ai',function(target){
 				return get.attitude(_status.event.player,target)-5-target.hp-target.countCards('h');
@@ -5493,7 +5495,7 @@ const skill = {
 			return true;
 		},
 		check(card){
-			return 6-get.value(card,target);
+			return 6-get.value(card);
 		},
 		discard:false,
 		lose:false,

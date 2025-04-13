@@ -6917,6 +6917,7 @@ const skill = {
 			player.chooseCard('h',true).set('prompt2','请选择一张手牌加入此牌实体牌');
 			'step 1'
 			if(result.cards){
+				game.log(player,'将'+get.translation(result.cards[0])+'加入了'+get.translation(trigger.card)+'的实体牌中')
 				player.lose(result.cards[0],"visible");
 				trigger.cards.push(result.cards[0]);
 			}
@@ -8519,11 +8520,282 @@ const skill = {
 			return true;
 		},
 		content(){
+			'step 0'
+			var choiceList = ["失去一点体力", "受到一点伤害","弃置一张牌"];
+			if(!player.countDiscardableCards(player, 'h'))choiceList.remove("弃置一张牌");
 			player.chooseControl()
-				.set("choiceList", ["失去一点体力", "受到一点伤害","弃置一张牌"])
-				.set('ai',function(){
-					return 2;
-				})
+			.set("choiceList", choiceList)
+			.set('ai',function(){
+				if(choiceList.length>2&&!event.not2)return 2;
+				return 0;
+			})
+			'step 1'
+			if(result.index == 2){
+				player.chooseToDiscard('h');
+			}
+			else if(result.index == 0){
+				player.loseHp();
+				event.finish();
+			}
+			else if(result.index == 1){
+				player.damage();
+				event.finish();
+			}
+			
+			'step 2'
+			if(result.index = 2&&!result.cards){
+				event.not2=true;
+				event.goto(0);
+			}
+		},
+		// content:[
+		// 	async function(event,trigger,player){
+		// 		event.result = player.chooseControl()
+		// 			.set("choiceList", ["失去一点体力", "受到一点伤害","弃置一张牌"])
+		// 			.set('ai',function(){
+		// 				return 2;
+		// 			})
+		// 	},
+		// 	async function(event,trigger,player){
+				
+		// 	}
+		// ],
+		init(player){
+			if(!player.storage.yb033_qijue_lh)player.storage.yb033_qijue_lh=[
+				['①你下次失去体力后','loseHpEnd'],
+				['②恢复此数值*2点体力',function(){
+					player.recover(trigger.num*2);
+				}],
+				['③弃置一张手牌',function(){
+					player.chooseToDiscard('h',true);
+					// delete player.storage.yb033_qijue_loseHp;
+				}]
+			];
+			if(!player.storage.yb033_qijue_da)player.storage.yb033_qijue_da=[
+				['①你下次受到伤害后','damageEnd'],
+				['②摸此数值*3张牌',function(){
+					player.draw(trigger.num*3);
+				}],
+				['③失去一点体力',function(){
+					// player.chooseToDiscard('h',true);
+					player.loseHp(1);
+					// delete player.storage.yb033_qijue_damage;
+				}]
+			];
+			if(!player.storage.yb033_qijue_dc)player.storage.yb033_qijue_dc=[
+				['①你下次弃置牌后','discardEnd'],
+				['②对场上角色各造成一点伤害',function(){
+					var targets = game.filterPlayer().sortBySeat(player);
+					for(var i of targets){
+						if(i.isIn())i.damage(player);
+					}
+				}],
+				['③令一个数字之后的效果向前错位',function(){
+					// var targets = game.filterPlayer().sortBySeat(player);
+					// for(var i of targets){
+					// 	if(i.isIn())i.loseHp();
+					// }
+					// delete player.storage.yb033_qijue_discard;
+					//'step 0'
+					/*var storage1=player.storage.yb033_qijue_lh;
+					var storage2=player.storage.yb033_qijue_da;
+					var storage3=player.storage.yb033_qijue_dc;
+					var dialog = ui.create.dialog('泣绝','forcebutton','hidden');
+					dialog.add('锁定技，<span class=firetext>当你失去体力后，'+storage1[0][0]+'，'+storage1[1][0]+'，然后'+storage1[2][0]+'</span>；<span class=yellowtext>当你受到伤害后，'+storage2[0][0]+'，'+storage2[1][0]+'，然后'+storage2[2][0]+'</span>；<span class=thundertext>当你弃置牌后，'+storage3[0][0]+'，'+storage3[1][0]+'，然后'+storage3[2][0]+'</span>。');
+					var dialogChangeAfter=function(){
+						let storageC1=player.storage.yb033_qijue_lh;
+						let storageC2=player.storage.yb033_qijue_da;
+						let storageC3=player.storage.yb033_qijue_dc;
+						if(ui.selected.buttons){
+							if(ui.selected.buttons[0]=='错动①'){
+								var storageC4=storageC1;
+								storageC1[0]=storageC2[0];
+								storagec1[1]=storageC2[1];
+								storageC1[2]=storageC2[2];
+								storageC2[0]=storageC3[0];
+								storageC2[1]=storageC3[1];
+								storageC2[2]=storageC3[2];
+								storageC3[0]=storageC4[0];
+								storageC3[1]=storageC4[1];
+								storageC3[2]=storageC4[2];
+							}
+							else if(ui.selected.buttons[0]=='错动②'){
+								var storageC4=storageC1;
+								storagec1[1]=storageC2[1];
+								storageC1[2]=storageC2[2];
+								storageC2[1]=storageC3[1];
+								storageC2[2]=storageC3[2];
+								storageC3[1]=storageC4[1];
+								storageC3[2]=storageC4[2];
+							}
+							else if(ui.selected.buttons[0]=='错动③'){
+								var storageC4=storageC1;
+								storageC1[2]=storageC2[2];
+								storageC2[2]=storageC3[2];
+								storageC3[2]=storageC4[2];
+							}
+						}
+						return '锁定技，<span class=firetext>当你失去体力后，'+storageC1[0][0]+'，'+storageC1[1][0]+'，然后'+storageC1[2][0]+'</span>；<span class=yellowtext>当你受到伤害后，'+storageC2[0][0]+'，'+storageC2[1][0]+'，然后'+storageC2[2][0]+'</span>；<span class=thundertext>你下次弃置牌后，'+storageC3[0][0]+'，'+storageC3[1][0]+'，然后'+storageC3[2][0]+'</span>。'
+					}
+					dialog.add('↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓');
+					dialog.add(dialogChangeAfter());
+					dialog.add([['错动①','错动②','错动③'],'tdnodes']);
+					var chooseButton=player.chooseButton(dialog,1,true);
+					chooseButton.set('ai',function(button){
+						return '错动③';
+					});*/
+					const dialog = ui.create.dialog('泣绝：令一个数字之后的效果上移','forcebutton','hidden')
+					const sto1=player.storage.yb033_qijue_lh
+					const sto2=player.storage.yb033_qijue_da
+					const sto3=player.storage.yb033_qijue_dc
+					const str = '<div style = "font-size : 16px">'
+					let itemContainerCss = { border: 'solid #c6b3b3 2px' }
+					function clickItemContainer(container) {
+						if (!container.classList.contains('selected')) {
+							if (ui.selected.buttons.length) return
+							container.classList.add('selected')
+							ui.selected.buttons.add(container)
+							for (let i = container.link; i < dialog.itemContainers.length - 1; i ++) dialog.itemContainers[i + 1].innerHTML = '<div class="caption item">' + str + sto2[i][0] + '<br>' + sto3[i][0] + '<br> ' + sto1[i][0]
+						}
+						else {
+							container.classList.remove('selected')
+							ui.selected.buttons.remove(container)
+							for (let i = container.link; i < dialog.itemContainers.length - 1; i ++) dialog.itemContainers[i + 1].innerHTML = '<div class="caption item">' + str + sto1[i][0] + '<br>' + sto2[i][0] + '<br> ' + sto3[i][0]
+						}
+						game.check()
+					}
+					dialog.addNewRow(
+						{item : str + '当你失去体力后<br>当你失去体力后<br>你下次弃置牌后', ratio : 1},
+						{item : str + sto1[0][0] + '<br>' + sto2[0][0] + '<br> ' + sto3[0][0], ratio : 1.3, itemContainerCss, clickItemContainer},
+						{item : str + sto1[1][0] + '<br>' + sto2[1][0] + '<br> ' + sto3[1][0], ratio : 1.7, itemContainerCss, clickItemContainer},
+						{item : str + sto1[2][0] + '<br>' + sto2[2][0] + '<br> ' + sto3[2][0], ratio : 2, itemContainerCss, clickItemContainer}
+					)
+					for (const i in dialog.itemContainers) dialog.itemContainers[i].link = i - 1
+					player.chooseButton(dialog, true)
+						.set('processAI', () => ({ bool : true, links : [2]}))
+						.set('custom', {
+							add : {},
+							replace : { window() {} }
+						})
+						.set('callback', function(player, result) {
+							var link=result.links;
+							let storageC1=player.storage.yb033_qijue_lh;
+							let storageC2=player.storage.yb033_qijue_da;
+							let storageC3=player.storage.yb033_qijue_dc;
+							if(link){
+								if(link[0] == 0){
+									var storageC4=storageC1;
+									player.storage.yb033_qijue_lh[0]=storageC2[0];
+									player.storage.yb033_qijue_lh[1]=storageC2[1];
+									player.storage.yb033_qijue_lh[2]=storageC2[2];
+									player.storage.yb033_qijue_da[0]=storageC3[0];
+									player.storage.yb033_qijue_da[1]=storageC3[1];
+									player.storage.yb033_qijue_da[2]=storageC3[2];
+									player.storage.yb033_qijue_dc[0]=storageC4[0];
+									player.storage.yb033_qijue_dc[1]=storageC4[1];
+									player.storage.yb033_qijue_dc[2]=storageC4[2];
+								}
+								else if(link[0] == 1){
+									var storageC4=storageC1;
+									player.storage.yb033_qijue_lh[1]=storageC2[1];
+									player.storage.yb033_qijue_lh[2]=storageC2[2];
+									player.storage.yb033_qijue_da[1]=storageC3[1];
+									player.storage.yb033_qijue_da[2]=storageC3[2];
+									player.storage.yb033_qijue_dc[1]=storageC4[1];
+									player.storage.yb033_qijue_dc[2]=storageC4[2];
+								}
+								else if(link[0] == 2){
+									var storageC4=storageC1;
+									player.storage.yb033_qijue_lh[2]=storageC2[2];
+									player.storage.yb033_qijue_da[2]=storageC3[2];
+									player.storage.yb033_qijue_dc[2]=storageC4[2];
+								}
+								player.syncStorage('yb033_qijue_lh')
+								player.syncStorage('yb033_qijue_da')
+								player.syncStorage('yb033_qijue_dc')
+							}
+						})
+				}]
+			];
+		},
+		group:['yb033_qijue_lh','yb033_qijue_da','yb033_qijue_dc'],
+		subSkill:{
+			lh:{
+				audio:'yb033_qijue',
+				trigger:{
+					player:'loseHpEnd',
+				},
+				lastDo:true,
+				forced:true,
+				filter(event,player){
+					console.log('player.storage.yb033_qijue_loseHp',player.storage.yb033_qijue_loseHp)
+					return !player.storage.yb033_qijue_loseHp;
+				},
+				content(){
+					'step 0'
+					if(!player.storage.yb033_qijue_lh)lib.skill.yb033_qijue.init(player);
+					// if(!player.storage.yb033_qijue_loseHp){
+						player.storage.yb033_qijue_loseHp=true;
+					'step 1'
+						var storage = player.storage.yb033_qijue_lh;
+						player.when({player:storage[0][1]}).filter(function(event,player){
+							return event!=trigger;
+						}).then(storage[1][1]).then(storage[2][1]);
+					// }
+					// else delete player.storage.yb033_qijue_loseHp;
+				},
+			},
+			da:{
+				audio:'yb033_qijue',
+				trigger:{
+					player:'damageEnd',
+				},
+				lastDo:true,
+				forced:true,
+				filter(event,player){
+					console.log('player.storage.yb033_qijue_damage',player.storage.yb033_qijue_damage)
+					return !player.storage.yb033_qijue_damage;
+				},
+				content(){
+					'step 0'
+					if(!player.storage.yb033_qijue_da)lib.skill.yb033_qijue.init(player);
+					// if(!player.storage.yb033_qijue_damage){
+						player.storage.yb033_qijue_damage=true;
+					
+					'step 1'
+						var storage = player.storage.yb033_qijue_da;
+						player.when({player:storage[0][1]}).filter(function(event,player){
+							return event!=trigger;
+						}).then(storage[1][1]).then(storage[2][1]);
+					// }
+					// else delete player.storage.yb033_qijue_damage;
+				},
+			},
+			dc:{
+				audio:'yb033_qijue',
+				trigger:{
+					player:'discardEnd',
+				},
+				lastDo:true,
+				forced:true,
+				filter(event,player){
+					console.log('player.storage.yb033_qijue_discard',player.storage.yb033_qijue_discard)
+					return !player.storage.yb033_qijue_discard;
+				},
+				content(){
+					'step 0'
+					if(!player.storage.yb033_qijue_dc)lib.skill.yb033_qijue.init(player);
+					// if(!player.storage.yb033_qijue_discard){
+						player.storage.yb033_qijue_discard=true;
+					'step 1'
+						var storage = player.storage.yb033_qijue_dc;
+						player.when({player:storage[0][1]}).filter(function(event,player){
+							return event!=trigger;
+						}).then(storage[1][1]).then(storage[2][1]);
+					// }
+					// else delete player.storage.yb033_qijue_dc;
+				},
+			},
 		}
 	},
 	//---------------------周怜渊

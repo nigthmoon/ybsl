@@ -122,6 +122,15 @@ const dynamicTranslate = {//动态翻译
 		var info=lib.skill.yb033_yuqi.getInfo(player);
 		return '每回合限三次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>'+info[0]+'</span>，则你可以观看牌堆顶的<span class=firetext>'+info[1]+'</span>张牌。你将其中至多<span class=greentext>'+info[2]+'</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>'+info[3]+'</span>张牌，并将其余牌以原顺序放回牌堆顶。（理论上所有具有颜色的数字至多为13，因为点数最大也才13）';
 	},
+	yb033_qijue:function(player){
+		var storage1=player.storage.yb033_qijue_lh;
+		var storage2=player.storage.yb033_qijue_da;
+		var storage3=player.storage.yb033_qijue_dc;
+		if(storage1&&storage2&&storage3){
+			return '锁定技，出牌阶段开始时，你选择一项：失去一点体力，受到一点伤害，弃置一张牌。'+'锁定技，<span class=firetext>当你失去体力后，'+storage1[0][0]+'，'+storage1[1][0]+'，然后'+storage1[2][0]+'</span>；<span class=yellowtext>当你受到伤害后，'+storage2[0][0]+'，'+storage2[1][0]+'，然后'+storage2[2][0]+'</span>；<span class=thundertext>当你弃置牌后，'+storage3[0][0]+'，'+storage3[1][0]+'，然后'+storage3[2][0]+'</span>。';
+		}
+		else return '锁定技，出牌阶段开始时，你选择一项：失去一点体力，受到一点伤害，弃置一张牌。锁定技，当你失去体力后，①你下次失去体力后，②恢复此数值*2点体力，然后③弃置一张手牌；当你受到伤害后，①你下次受到伤害后，②摸此数值*3张牌，然后③失去一点体力；当你弃置牌后，①你下次弃置牌后，②对场上角色各造成一点伤害，然后③令一个数字之后的效果向前错位。。';
+	},
 	yb037_kexie:function(player){//咳血
 		var str='锁定技，每当你弃置一张';
 		if(player.storage.yb037_kexie==0) str+='<span class=firetext>牌</span>';

@@ -9,7 +9,8 @@ import { YBSL_starmap } from './precontent/YB_06_starmap.js';
 import { YBSL_qianhuan } from './precontent/YB_07_qianhuan.js';
 import { YBSL_ybslf } from './precontent/YB_08_ybslf.js';
 import { YBSL_update }from './precontent/YB_09_update.js'
-import { YBSL_destiny } from './precontent/YB_10_destiny.js'
+// import { YBSL_destiny } from './precontent/YB_10_destiny.js'
+// import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
@@ -48,7 +49,8 @@ export async function precontent() {
 		YBSL_qianhuan();
 		YBSL_ybslf();
 		YBSL_update();
-		YBSL_destiny();
+		// YBSL_destiny();
+		// YB_11_cardBrowser();
 
 	}
 	//嗨梨相关的整理完后挪到对应将包

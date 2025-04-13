@@ -152,7 +152,7 @@ const character = { //武将格式 :
 	'ybsp_027rain':['female','YB_dream',3,['yb027_mili','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','name:null|雨','linkTo:ybsl_027rain']],//梦——雨
 	'ybsp_001sunlisong':['female','YB_memory','3/4',['yb001_yongyue','yb001_haowan'],['rankAdd:epic','name:孙|丽松','linkTo:ybsl_001sunlisong']],//孙丽松
 	'ybsp_016manchengqi':['female','YB_memory',3,['yb016_shanbiao','yb016_jiushi'],['rankAdd:epic','name:满城|柒','linkTo:ybsl_016manchengqi']],//孙丽松
-	// 'ybsp_033xiaohui':['female','YB_memory',3,['yb033_beilei','yb033_qijue'],['rankAdd:legend','name:null|小慧','linkTo:ybsl_033xiaohui']],//小慧
+	'ybsp_033xiaohui':['female','YB_memory',6,['yb033_beilei','yb033_qijue'],['rankAdd:legend','name:null|小慧','linkTo:ybsl_033xiaohui']],//小慧
 	'ybsp_006wanghanzhen':['female','YB_memory',3,['yb006_xueyan'],['rankAdd:legend','name:王|汉桢','linkTo:ybsl_006wanghanzhen']],//王汉桢
 	//----------------------忆包神将
 	'ybslshen_014liutianyu':['male','shen','3/5',['yb014_shizhui','ybsl_xuxian'],['YB_memory','rankAdd:legend','name:夜|白']],//神夜白

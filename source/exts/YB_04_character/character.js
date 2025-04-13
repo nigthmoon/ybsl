@@ -36,7 +36,7 @@ const character = { //武将格式 :
 	sgsh_baihu:['none','shen',4,['sgsk_huwei'],['rankAdd:legend','name:null|null']],//白虎
 	sgsh_zhuque:['none','shen',4,['sgsk_zhiyany'],['rankAdd:legend','name:null|null']],//朱雀
 	sgsh_xuanwu:['none','shen',4,['sgsk_xuanzhen'],['rankAdd:legend','name:null|null']],//玄武
-	sgsh_qilin:['none','shen',4,['sgsk_decai'],['rankAdd:legend','name:null|null']],//麒麟
+	sgsh_qilin:['none','shen',4,['sgsk_decaix'],['rankAdd:legend','name:null|null']],//麒麟
 
 	'sgsh_dongwanggong':['male','shen',3,['sgsk_baigong','sgsk_cangling'],['rankAdd:legend','name:null|null']],//东王公√
 	'sgsh_xiwangmu':['female','shen',3,['sgsk_kunlun','sgsk_huasheng'],['rankAdd:legend','name:null|null']],//西王母√

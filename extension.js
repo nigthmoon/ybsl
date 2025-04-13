@@ -27,3 +27,14 @@ export default async function () {
 	}
 	return extension
 }
+// game.addMode('YB_11_cardBrowser',{
+// 	start:function(){
+// 		lib.init.js(lib.assetURL+'extension/夜白神略/source/pile','ybslCardPile')
+// 		var dialog = ui.create.dialog([['牌堆浏览'],'tdnodes']);
+// 		var list =  Array.from(window.cardPile);
+// 		dialog.addSmall([list,'vcard']);
+
+// 	},
+// },{
+// 	translate: '牌堆浏览',
+// })

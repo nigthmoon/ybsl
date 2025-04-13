@@ -443,12 +443,12 @@ const card = {
 		savable: true,
 		selectTarget:1,
 		filterTarget:function(card,player,target){
-			if(get.is.versus()){
-				return player.side==target.side&&target.hp!=target.maxHp;
-			}
-			else{
+			// if(get.is.versus()){
+			// 	return player.side==target.side&&target.hp!=target.maxHp;
+			// }
+			// else{
 				return target.hp!=target.maxHp;
-			}
+			// }
 		},
 		content: function () {
 			target.recover();
