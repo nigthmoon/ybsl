@@ -5976,9 +5976,9 @@ const skill = {
 			return event.num;
 		},
 		cost(){
-			event.result = player.chooseToDiscard('he').set('filterCard',function(card){
+			event.result = player.chooseToDiscard('he',[1,Infinity]).set('filterCard',function(card){
 				return get.color(card)=='red';
-			}).set("chooseonly", true);
+			}).set('prompt2',get.prompt2('sgsk_xuemu')).set("chooseonly", true).forResult();
 		},
 		content(){
 			'step 0'
@@ -5999,6 +5999,14 @@ const skill = {
 	//---------精卫
 	sgsk_xianmu: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger:{
+			global:'loseAfter',
+		},
+		filter:(event,player)=>{
+			if(event.type!='discard') return false;
+			if(event.player==player) return false;
+			return true;
+		},
 	},
 	sgsk_tianhai: {
 		audio: 'ext:夜白神略/audio/character:2',
@@ -6381,6 +6389,10 @@ const skill = {
 	},
 	sgsk_shence: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger:{
+			player:'damageEnd',
+			source:'damageSource',
+		},
 	},
 	sgsk_shencex: {
 		audio: 'sgsk_shence',

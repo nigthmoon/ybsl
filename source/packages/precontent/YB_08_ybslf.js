@@ -1891,6 +1891,18 @@ const YBSL_ybslf = function () {
 			card.storage.vanish = true;
 			return card.init([suit, number, name, nature, tag]);
 		}
+		get.YB_tag = function(card){
+			var tags=[];
+			if(!_status.cardtag){
+				_status.cardtag={};
+			}
+			for(var m in _status.cardtag){
+				if(_status.cardtag[m].contains(card.cardid)){
+					tags.add(m);
+				}
+			}
+			return tags;
+		}
 		//--------函数演示，定向火焰伤害
 		//--------未知bug，禁止使用
 		// lib.element.player.YB_toFire=function(targets,numb){

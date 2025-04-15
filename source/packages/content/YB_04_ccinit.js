@@ -16,6 +16,7 @@ const YBSL_ccinit = function(){
 		// game.saveConfig('characters',lib.config.characters.concat('ybgz'));
 		game.saveConfig('characters',lib.config.characters.concat('ybxh'));
 		game.saveConfig('characters',lib.config.characters.concat('ybsc'));
+		game.saveConfig('characters',lib.config.characters.concat('yhky'));
 		// game.saveConfig('characters',lib.config.characters.concat('ybart'));//六艺篇的六艺之前被人反馈说不喜欢，希望关掉，因此此包不设为自动开启
 		game.saveConfig('cards',lib.config.cards.concat('ybslc'));
 		game.saveConfig('cards',lib.config.cards.concat('ybgod'));

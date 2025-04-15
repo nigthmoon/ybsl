@@ -6,7 +6,7 @@ export { YBSL_rank }
 const YBSL_rank = function(){
     
 	var packages = [
-		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz',
+		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky'
 		// 'YB_one'
 	]
 	{//修改函数以防止失灵

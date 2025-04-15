@@ -139,6 +139,11 @@ const YBSL_nature = function(){
 			color:'#a4a4a4',
 			nature:'black',
 		})
+		lib.namePrefix.set('恒',{
+			showName:'恒',
+			color:'#ffff00',
+			nature:'black',
+		})
 		
 	}
 }

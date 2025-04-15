@@ -14534,29 +14534,42 @@ const skill = {
 		trigger:{
 			global:'loseAfter',
 		},
-		direct:true,
+		// direct:true,
 		filter:(event,player)=>{
 			if(event.type!='discard') return false;
 			if(event.player==player) return false;
 			return event.player.isAlive();
 		},
 		usable:1,
-		content:function(){
-			'step 0'
-			player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		async cost(event,trigger,player){
+			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
-			});
-			'step 1'
-			if(result.bool&&result.links&&result.links.length){
-				player.storage.yb047_pomen_card.add(result.links[0]);
-				trigger.player.gain(result.links[0],'gain2');
-				trigger.player.damage(1,result.links[0],trigger.player);
-			}
-			else{
-				player.storage.counttrigger.yb047_pomen--;
-			}
+			}).forResult();
+			event.result.cards = event.result.links;
 		},
+		async content(event,trigger,player){
+			if(!player.storage.yb047_pomen_card)player.storage.yb047_pomen_card=[];
+			player.storage.yb047_pomen_card.add(event.cards[0]);
+			await trigger.player.gain(event.cards[0],'gain2');
+			await trigger.player.damage(1,event.cards[0],trigger.player);
+		},
+		// content:function(){
+		// 	'step 0'
+		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		// 		if(get.attitude(_status.event.player,trigger.player)>0) return false;
+		// 		return 6 - get.value(card);
+		// 	});
+		// 	'step 1'
+		// 	if(result.bool&&result.links&&result.links.length){
+		// 		player.storage.yb047_pomen_card.add(result.links[0]);
+		// 		trigger.player.gain(result.links[0],'gain2');
+		// 		trigger.player.damage(1,result.links[0],trigger.player);
+		// 	}
+		// 	else{
+		// 		player.storage.counttrigger.yb047_pomen--;
+		// 	}
+		// },
 		init:function(player){
 			if(!player.storage.yb047_pomen_card)player.storage.yb047_pomen_card=[];
 		},
@@ -14611,25 +14624,38 @@ const skill = {
 		trigger:{
 			global:'loseAfter',
 		},
-		direct:true,
+		// direct:true,
 		filter:(event,player)=>{
 			if(event.type!='discard') return false;
 			if(event.player==player) return false;
 			return event.player.isAlive();
 		},
-		content:function(){
-			'step 0'
-			player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		async cost(event,trigger,player){
+			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
-			});
-			'step 1'
-			if(result.bool&&result.links&&result.links.length){
-				player.storage.yb047_pomen_card.add(result.links[0]);
-				trigger.player.gain(result.links[0],'gain2');
-				trigger.player.damage(1,result.links[0],trigger.player);
-			}
+			}).forResult();
+			event.result.cards = event.result.links;
 		},
+		async content(event,trigger,player){
+			if(!player.storage.yb047_pomen_card)player.storage.yb047_pomen_card=[];
+			player.storage.yb047_pomen_card.add(event.cards[0]);
+			await trigger.player.gain(event.cards[0],'gain2');
+			await trigger.player.damage(1,event.cards[0],trigger.player);
+		},
+		// content:function(){
+		// 	'step 0'
+		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		// 		if(get.attitude(_status.event.player,trigger.player)>0) return false;
+		// 		return 6 - get.value(card);
+		// 	});
+		// 	'step 1'
+		// 	if(result.bool&&result.links&&result.links.length){
+		// 		player.storage.yb047_pomen_card.add(result.links[0]);
+		// 		trigger.player.gain(result.links[0],'gain2');
+		// 		trigger.player.damage(1,result.links[0],trigger.player);
+		// 	}
+		// },
 		init:function(player){
 			if(!player.storage.yb047_pomen_card)player.storage.yb047_pomen_card=[];
 		},
