@@ -6,7 +6,8 @@ if(!lib.characterLightextParent)lib.characterLightextParent={}
 if(!lib.characterUndertext)lib.characterUndertext={}
 import { characterIntro , nodeintro } from './source/packages/function.js'
 get.characterIntro = characterIntro;
-get.nodeintro = nodeintro;
+// get.nodeintro = nodeintro;
+//_nointro
 import { Package } from './source/packages/package.js'
 import { config, help, files } from './source/packages/config.js'
 import { precontent } from './source/packages/precontent.js'
