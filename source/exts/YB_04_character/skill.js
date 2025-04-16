@@ -4845,7 +4845,7 @@ const skill = {
 			return type == 'basic';
 		},
 		chooseButton: {
-			dialog: function (player) {
+			dialog: function (event,player) {
 				var list = [];
 				// var nature = null;
 				for (var i = 0; i < lib.inpile.length; i++) {
@@ -6007,9 +6007,266 @@ const skill = {
 			if(event.player==player) return false;
 			return true;
 		},
+		async cost(event,trigger,player){
+			var dialog = ui.create.dialog('衔木');
+			dialog.addText('选择一张获得或置入任意装备栏');
+			dialog.add(trigger.cards.filter(i=>get.position(i,true)=='d'));
+			dialog.add([['获得','武器','防具','防马','攻马','宝物','双格马'],'tdnodes'])
+			event.result = await player.chooseButton(dialog,2).set('filterButton',function(button){
+				var type=typeof button.link;
+				if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
+				return true;
+			}).set('ai',function(card){
+				return get.value(card);
+			}).forResult();
+			event.result.cost_data = event.result.links;
+		},
+		async content(event,trigger,player){
+			let links=event.cost_data;
+			if(typeof links[0]=='string'){
+				links = [links[1],links[0]];
+			}
+			var type = null;
+			// switch(links[1]){
+			// 	case '武器':type = 'equip1';break;
+			// 	case '防具':type = 'equip2';break;
+			// 	case '防马':type = 'equip3';break;
+			// 	case '攻马':type = 'equip4';break;
+			// 	case '宝物':type = 'equip5';break;
+			// 	case '双格马':type = 'equip6';break;
+			// 	default :type = null;break;
+			// }
+			const sub = ['武器', '防具', '防马', '攻马', '宝物', '双格马'];
+			type = sub.includes(links[1])?'equip'.concat(sub.indexOf(links[1])+1):null;
+			if(type == null){
+				await player.gain(links[0],'gain2');
+			}
+			else {
+				const card = get.autoViewAs(links[0]);
+				card.subtypes = [type];
+				await player.equip(card);
+			}
+		},
+		group:'sgsk_xianmu_pu',
+		subSkill:{
+			pu:{
+				audio: 'sgsk_xianmu',
+				trigger:{
+					player:'phaseUseBegin',
+				},
+				filter:(event,player)=>{
+					if(ui.discardPile.hasChildNodes()) return true;
+					return false;
+				},
+				async cost(event,trigger,player){
+					var source = ui.discardPile.childNodes;
+					var list = [];
+					for (var i = 0; i < source.length; i++) list.push(source[i]);
+					var dialog = ui.create.dialog('衔木');
+					dialog.addText('选择一张获得或置入任意装备栏');
+					dialog.add(list);
+					dialog.add([['获得','武器','防具','防马','攻马','宝物','双格马'],'tdnodes'])
+					event.result = await player.chooseButton(dialog,2).set('filterButton',function(button){
+						var type=typeof button.link;
+						if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
+						return true;
+					}).set('ai',function(card){
+						return get.value(card);
+					}).forResult();
+					event.result.cost_data = event.result.links;
+				},
+				async content(event,trigger,player){
+					let links=event.cost_data;
+					if(typeof links[0]=='string'){
+						links = [links[1],links[0]];
+					}
+					var type = null;
+					// switch(links[1]){
+					// 	case '武器':type = 'equip1';break;
+					// 	case '防具':type = 'equip2';break;
+					// 	case '防马':type = 'equip3';break;
+					// 	case '攻马':type = 'equip4';break;
+					// 	case '宝物':type = 'equip5';break;
+					// 	case '双格马':type = 'equip6';break;
+					// 	default :type = null;break;
+					// }
+					const sub = ['武器', '防具', '防马', '攻马', '宝物', '双格马'];
+					type = sub.includes(links[1])?'equip'.concat(sub.indexOf(links[1])+1):null;
+					if(type == null){
+						await player.gain(links[0],'gain2');
+					}
+					else {
+						const card = get.autoViewAs(links[0]);
+						card.subtypes = [type];
+						await player.equip(card);
+					}
+				},
+				
+			}
+		},
 	},
 	sgsk_tianhai: {
 		audio: 'ext:夜白神略/audio/character:2',
+		usable(skill,player){
+			return player.countCards('e',c=>get.type(c)!='equip');
+		},
+		enable:'chooseToUse',
+		filter: function (event, player) {
+			if(player.countCards('e')<=0)return false;
+			if (player.countCards('e',c=>get.type(c)!='equip')<=0) return false;
+			var evt=lib.filter.filterCard;
+			var cards =player.getCards('e',c=>get.type(c)!='equip')
+			for (var i of cards) {
+				if (evt({ name: get.name(i) }, player, event)) return true;
+			};
+			return false;
+		},
+		hiddenCard: function (player, name) {
+			if(player.countCards('e')<=0)return false;
+			var cards = player.getCards('e',c=>get.type(c)!='equip')
+			// var names=[];
+			if(cards.length)for(var i of cards){
+				// names.push()
+				if(get.name(i)==name)return true;
+			}
+			// return names.includes(name);
+		},
+		chooseButton: {
+			dialog: function (event,player) {
+				var list = [];
+				var cards = player.getCards('e',c=>get.type(c)!='equip');
+				for (var i = 0; i < cards.length; i++) {
+					list.push(['填海', '', get.name(cards[i]), get.nature(cards[i])]);
+				}
+				var dialog = ui.create.dialog("填海", [list, "vcard"], "hidden");
+				// dialog.direct = true;
+				return dialog;
+			},
+			filter:function (button,player){
+				return _status.event.getParent().filterCard({name:button.link[2]},player,_status.event.getParent());
+			},
+			backup: function (links, player) {
+				return {
+					// filterCard(card, player) {
+					// 	return get.type2(card) == "basic";
+					// },
+					// filterCard(){return false},
+					viewAs: {
+						name: links[0][2],
+						nature: links[0][3],
+					},
+					precontent: function () {
+						player.logSkill("sgsk_tianhai");
+					},
+				};
+			},
+			prompt: function (links, player) {
+				return "填海：视为使用一张【" + links[0][3] ? get.translation(links[0][3]) : '' + get.translation(links[0][2]) + "】？";
+			},
+		},
+		// enable:'phaseUse',
+		// filterCard(card, player) {
+		// 	return !ui.selected.cards.some(cardx => get.suit(cardx, player) == get.suit(card, player));
+		// },
+		// position:'he',
+		// selectCard:4,
+		// selectTarget:[1,4],
+		// filterTarget(card, player, target){
+		// 	if(target==player) return target.hasCard(card => lib.filter.canBeDiscarded(card, player, target)&&!ui.selected.cards.includes(card), "he")
+		// 	return target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), "he");
+		// },
+		// complexCard: true,
+		// complexSelect: true,
+		// multitarget:true,
+		// multiline: true,
+		// async content(event,trigger,player){
+		// 	// let targets=result.targets;
+		// 	// console.log(trigger,targets);
+		// 	await targets.sortBySeat();
+		// 	let list = {}
+		// 	var dialog = ui.create.dialog('填海');
+		// 	for(var target of targets){
+		// 		if(target.countCards(card => lib.filter.canBeDiscarded(card, player, target), "he")<=0)targets.remove(target);
+		// 		else {
+		// 			list[target]=target.getCards(card => lib.filter.canBeDiscarded(card, player, target),'he');
+		// 			dialog.addText(get.translation(target),'title');
+		// 			dialog.add(list[target]);
+		// 		}
+		// 	}
+		// 	if(Object.keys(list)){
+		// 		var listy = Object.keys(list);
+		// 		event.result = await player.chooseButton(dialog,listy.length,true).set('filterButton',function(button){
+		// 			var listx = ui.selected.buttons;
+		// 			var listz = [];
+		// 			if(listx.length>0){
+		// 				for(var i of listy){
+		// 					for(var k of list[i]){
+		// 						if(listx.includes(k)){
+		// 							listz.push(listy[i]);
+		// 						}
+		// 					}
+		// 					// if(list[1].includes())
+		// 				}
+		// 				return !listz.includes(button);
+		// 			}
+		// 			else return true;
+		// 		}).forResult();
+		// 		if(result.bool&&result.links){
+		// 			await game.loseAsync({ lose_list: result.links }).setContent("discardMultiple");
+		// 			if(targets.includes(player)){
+		// 				await player.recover();
+		// 			}
+		// 		}
+		// 	}
+		// 	// else {
+		// 	// 	event.finish();
+		// 	// }
+		// },
+		// content(){
+		// 	'step 0'
+		// 	console.log(targets);
+		// 	targets.sortBySeat();
+		// 	'step 1'
+		// 	let list = {}
+		// 	var dialog = ui.create.dialog('填海');
+		// 	for(var target of targets){
+		// 		if(target.countCards('he',card => lib.filter.canBeDiscarded(card, player, target))<=0)targets.remove(target);
+		// 		else {
+		// 			list[target.playerid]=target.getCards('he',card => lib.filter.canBeDiscarded(card, player, target));
+		// 			dialog.add(get.translation(target),'title');
+		// 			dialog.add(target.getCards('he',card => lib.filter.canBeDiscarded(card, player, target)));
+		// 		}
+		// 	}
+		// 	if(Object.keys(list)){
+		// 		var listy = Object.keys(list);
+		// 		event.result = player.chooseButton(dialog,listy.length,true).set('filterButton',function(button){
+		// 			var listx = ui.selected.buttons;
+		// 			var listz = [];
+		// 			if(listx.length>0){
+		// 				for(var i of listy){
+		// 					for(var k of list[i]){
+		// 						if(listx.includes(k)){
+		// 							listz.push(listy[i]);
+		// 						}
+		// 					}
+		// 					// if(list[1].includes())
+		// 				}
+		// 				return !listz.includes(button);
+		// 			}
+		// 			else return true;
+		// 		});
+		// 	}
+		// 	else{
+		// 		event.finish();
+		// 	}
+		// 	'step 2'
+		// 	if(result.bool&&result.links){
+		// 		game.loseAsync({ lose_list: result.links }).setContent("discardMultiple");
+		// 		if(targets.includes(player)){
+		// 			player.recover();
+		// 		}
+		// 	}
+		// },
 	},
 	//---------岐伯
 	sgsk_suwen: {

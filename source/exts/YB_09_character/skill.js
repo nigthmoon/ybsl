@@ -3896,7 +3896,7 @@ const skill = {
 			return (type=='trick'&&cards.length)||(type=='basic'&&cards2.length);
 		},
 		chooseButton:{
-			dialog:function (player){
+			dialog:function (event,player){
 				var list=[];
 				var player=_status.event.player||player;
 				var cards=player.getExpansions('North_cxch_lingxi_yuping');
@@ -5451,7 +5451,7 @@ const skill = {
 		],
 		delay:['shandian','lebu','bingliang'],
 		chooseButton:{
-			dialog:function (player){
+			dialog:function (event,player){
 				var list=[];
 				for(var i of lib.skill.North_mouhua.basic){
 					list.push(['基本','',i]);

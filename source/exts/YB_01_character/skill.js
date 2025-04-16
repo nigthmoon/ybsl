@@ -364,7 +364,7 @@ const skill = {
 			return false;
 		},
 		chooseButton:{
-			dialog:function (player){
+			dialog:function (event,player){
 				var list=[];
 				for(var i=0;i<lib.inpile.length;i++){
 					if(get.type(lib.inpile[i])=='trick') list.push(['锦囊','',lib.inpile[i]]);
@@ -9999,7 +9999,7 @@ const skill = {
 		},
 		group:'yb043_shuhai_2',
 		chooseButton:{
-			dialog:function (player){
+			dialog:function (event,player){
 				var list=[];
 				for(var i=0;i<lib.inpile.length;i++){
 					if(get.type(lib.inpile[i])=='trick') list.push(['锦囊','',lib.inpile[i]]);
@@ -10115,7 +10115,7 @@ const skill = {
 			return type=='basic'&&player.countCards('h')>=1;
 		},
 		chooseButton:{
-			dialog:function (player){
+			dialog:function (event,player){
 				var list=[];
 				var nature=null;
 				for(var i=0;i<lib.inpile.length;i++){
