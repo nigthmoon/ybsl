@@ -5827,6 +5827,84 @@ const skill = {
 	},
 	sgsk_jiabian: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: "judge",
+		},
+		audio: true,
+		direct: true,
+		lastDo: true,
+		content: function () {
+			"step 0";
+			var card = trigger.player.judging[0];
+			var judge0 = trigger.judge(card);
+			var judge1 = 0;
+			var choice = "cancel2";
+			event.suitchoice = "cancel2";
+			var attitude = get.attitude(player, trigger.player);
+			var list = [];
+			event.suitx = ["heart", "diamond", "club", "spade"];
+			for (var x = 0; x < 4; x++) {
+				for (var i = 1; i < 14; i++) {
+					list.add(i);
+					var judge2 =
+						(trigger.judge({
+							name: get.name(card),
+							suit: event.suitx[x],
+							number: i,
+							nature: get.nature(card),
+						}) -
+							judge0) *
+						attitude;
+					if (judge2 > judge1) {
+						choice = i;
+						event.suitchoice = event.suitx[x];
+						judge1 = judge2;
+					}
+				}
+			}
+			list.push("cancel2");
+			event.suitx.push("cancel2");
+			player
+				.chooseControl(list)
+				.set("ai", function () {
+					return _status.event.choice;
+				})
+				.set("choice", choice).prompt = get.prompt2(event.name);
+			"step 1";
+			if (result.control != "cancel2") {
+				if (!event.logged) {
+					event.logged = true;
+					player.logSkill(event.name, trigger.player);
+				}
+				game.log(trigger.player, "判定结果点数为", "#g" + result.control);
+				player.popup(result.control, "fire");
+				if (!trigger.fixedResult) trigger.fixedResult = {};
+				trigger.fixedResult.number = result.control;
+			}
+			player
+				.chooseControl(event.suitx)
+				.set("ai", function () {
+					return _status.event.choice;
+				})
+				.set("choice", event.suitchoice).prompt = get.prompt2(event.name);
+			"step 2";
+			if (result.control != "cancel2") {
+				if (!event.logged) {
+					event.logged = true;
+					player.logSkill(event.name, trigger.player);
+				}
+				game.log(trigger.player, "判定结果花色为", "#g" + result.control);
+				player.popup(result.control, "fire");
+				if (!trigger.fixedResult) trigger.fixedResult = {};
+				trigger.fixedResult.suit = result.control;
+				if (result.control == "club" || result.control == "spade") {
+					trigger.fixedResult.color = "black";
+				} else if (result.control == "heart" || result.control == "diamond") {
+					trigger.fixedResult.color = "red";
+				}
+			}
+		},
+	
 	},
 	//---------相柳
 	sgsk_jiushou: {
@@ -6016,8 +6094,10 @@ const skill = {
 				var type=typeof button.link;
 				if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
 				return true;
-			}).set('ai',function(card){
-				return get.value(card);
+			}).set('ai',function(button){
+				var type=typeof button.link;
+				if(type == 'string')return '获得';
+				else return get.value(button.link);
 			}).forResult();
 			event.result.cost_data = event.result.links;
 		},
@@ -6070,8 +6150,10 @@ const skill = {
 						var type=typeof button.link;
 						if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
 						return true;
-					}).set('ai',function(card){
-						return get.value(card);
+					}).set('ai',function(button){
+						var type=typeof button.link;
+						if(type == 'string')return '获得';
+						else return get.value(button.link);
 					}).forResult();
 					event.result.cost_data = event.result.links;
 				},
@@ -6371,32 +6453,69 @@ const skill = {
 			return true;
 		},
 		content(){
-			player.addMark('sgsk_cunyin',false);
+			player.logSkill('sgsk_cunyin');
+			player.addMark('sgsk_cunyin',1,false);
 		},
+		direct:true,
+		// popup:true,
 		mark:true,
-		marktext:'秋',
+		marktext:'阴',
 		intro:{
 			content:'攻击范围加$',
 		},
 	},
 	sgsk_sanqiu: {
 		audio: 'ext:夜白神略/audio/character:2',
-		// trigger: { player: ["useCard"] },
-		// silent: true,
-		// filter(event, player) {
-		// 	var evt = event.getParent("phaseUse");
-		// 	if (!evt || evt.player != player) return false;
-		// 	return true;
-		// },
-		// content() {
-		// 	if()
-		// },
+		subSkill:{
+			storage:{
+				charlotte:true,
+				onremove:true,
+				mark:true,
+				marktext:'秋',
+				intro:{
+					content:'本阶段已使用过$牌。'
+				},
+			}
+		}
 	},
 	sgsk_sanqiux: {
 		audio: 'sgsk_sanqiu',
 	},
 	sgsk_sanqiuy: {
 		audio: 'sgsk_sanqiu',
+		trigger: { player: ["useCardAfter"] },
+		filter(event, player) {
+			var evt = event.getParent("phaseUse");
+			if (!evt || evt.player != player) return false;
+			return true;
+		},
+		nopop:true,
+		cost(){
+			if(!player.hasSkill('sgsk_sanqiu_storage')){
+				player.addTempSkill('sgsk_sanqiu_storage',{player:['phaseUseAfter']})
+				player.storage.sgsk_sanqiu_storage=[];
+			}
+			if(!player.storage.sgsk_sanqiu_storage.includes(get.type2(trigger.card))&&['trick','basic','equip'].includes(get.type2(trigger.card))){
+				player.storage.sgsk_sanqiu_storage.push(get.type2(trigger.card));
+			}
+			if(player.storage.sgsk_sanqiu_storage.length&&player.storage.sgsk_sanqiu_storage.length==3){
+				event.result = player.chooseBool(get.prompt2('sgsk_sanqiuy')).set('ai',function(){return true}).forResult();
+			}
+		},
+		content() {
+			'step 0'
+			trigger.trigger('sgsk_sanqiuok');
+			var evt=_status.event.getParent('phaseUse');
+			if(evt&&evt.name=='phaseUse'&&trigger.player.isPhaseUsing()){
+				evt.skipped=true;
+			}
+			player.when('phaseUseAfter').then(function(){
+				player.draw(3);
+				var next=player.phaseUse();
+				event.next.remove(next);
+				trigger.next.push(next);
+			})
+		},
 	},
 	//---------------------------应龙
 	sgsk_zongshuit: {
@@ -6650,6 +6769,41 @@ const skill = {
 			player:'damageEnd',
 			source:'damageSource',
 		},
+		filter(event,player){
+			return true;
+		},
+		async content(event,trigger,player){
+			event.result = await player.judge(function(card){
+				if(get.type2(card)=='trick') return 2;
+				return -1;
+			}).forResult();
+			if(result.judge==2){
+				event.result2 = await player.chooseTarget(1,true,'令一名角色翻面并摸两张牌。').set("ai", target => {
+					if (target.hasSkillTag("noturn")) return 0;
+					const player = _status.event.player;
+					const current = _status.currentPhase;
+					const dis = current ? get.distance(current, target, "absolute") : 1;
+					const draw = 2;
+					const att = get.attitude(player, target);
+					if (att == 0) return target.hasJudge("lebu") ? Math.random() / 3 : Math.sqrt(get.threaten(target)) / 5 + Math.random() / 2;
+					if (att > 0) {
+						if (target.isTurnedOver()) return att + draw;
+						if (draw < 4) return -1;
+						if (current && target.getSeatNum() > current.getSeatNum()) return att + draw / 3;
+						return (10 * Math.sqrt(Math.max(0.01, get.threaten(target)))) / (3.5 - draw) + dis / (2 * game.countPlayer());
+					} else {
+						if (target.isTurnedOver()) return att - draw;
+						if (draw >= 5) return -1;
+						if (current && target.getSeatNum() <= current.getSeatNum()) return -att + draw / 3;
+						return (4.25 - draw) * 10 * Math.sqrt(Math.max(0.01, get.threaten(target))) + (2 * game.countPlayer()) / dis;
+					}
+				}).forResult();
+				if(result2.bool){
+					result2.targets[0].turnOver();
+					result2.targets[0].draw(2);
+				}
+			}
+		}
 	},
 	sgsk_shencex: {
 		audio: 'sgsk_shence',
@@ -6657,6 +6811,55 @@ const skill = {
 	//---------九天玄女
 	sgsk_taolue: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: { player: "phaseJieshuBegin" },
+		// direct: true,
+		// content() {
+		// 	"step 0";
+		// 	player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复一点体力").set("ai", function (target) {
+		// 		return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
+		// 	});
+		// 	"step 1";
+		// 	if (result.bool) {
+		// 		event.target = result.targets[0];
+		// 		player.logSkill("xinzhiyan", result.targets);
+		// 		event.bool = false;
+		// 		event.target.draw("visible");
+		// 	} else {
+		// 		event.finish();
+		// 	}
+		// 	"step 2";
+		// 	var card = result[0];
+		// 	event.card = card;
+		// 	if (get.type(card) == "basic") player.draw();
+		// 	"step 3";
+		// 	if (get.type(card) == "equip") {
+		// 		if (target.getCards("h").includes(card) && target.hasUseTarget(card)) {
+		// 			event.target.chooseUseTarget(card, true, "nopopup");
+		// 			game.delay();
+		// 		}
+		// 		event.bool = true;
+		// 	}
+		// 	"step 4";
+		// 	if (event.bool) target.recover();
+		// },
+		cost(){
+			event.result = player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复一点体力").set("ai", function (target) {
+				return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
+			}).forResult();
+		},
+		content(){
+			'step 0'
+			event.target = event.targets[0];
+			player.line(event.target);
+			event.target.draw("visible");
+			'step 1'
+			var card = result[0];
+			if (get.suit(card) == "heart") event.target.recover();
+		},
+		ai: {
+			expose: 0.2,
+			threaten: 1.2,
+		},
 	},
 	sgsk_xuanji: {
 		audio: 'ext:夜白神略/audio/character:2',

@@ -58,7 +58,7 @@ const character = { //武将格式 :
 	'sgsh_jingwei':['female','shen',3,['sgsk_xianmu','sgsk_tianhai'],['rankAdd:legend','name:null|null']],//精卫
 	sgsh_qibo:['male','shen',3,['sgsk_suwen','sgsk_lingjiu'],['rankAdd:legend','name:null|null']],//岐伯
 	'sgsh_taizichangqin':['male','shen',3,['sgsk_yuefeng','sgsk_zhisheng'],['rankAdd:legend','name:null|null']],//太子长琴√
-	sgsh_yeming:['male','shen',3,['sgsk_cunyin','sgsk_sanqiu'],['rankAdd:legend','name:null|null']],//噎鸣
+	sgsh_yeming:['male','shen',3,['sgsk_cunyin','sgsk_sanqiuy'],['rankAdd:legend','name:null|null']],//噎鸣
 	
 	'sgsh_yinglong':['male','shen',4,['sgsk_zongshui'],['rankAdd:epic','name:null|null']],//应龙√
 	'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
