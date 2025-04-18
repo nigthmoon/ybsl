@@ -49,7 +49,7 @@ const character = { //武将格式 :
 	sgsh_houtu:['male','shen',3,['sgsk_yutu','sgsk_shengtu'],['rankAdd:legend','name:null|null']],//后土
 	'sgsh_yuqiang':['male','shen',4,['sgsk_zhihai','sgsk_xuanming'],['rankAdd:junk','name:null|null']],//禺强√
 	
-	sgsh_fuxi:['male','shen',4,['sgsk_yuhan'/*,'sgsk_jiabian'*/],['rankAdd:legend','name:null|null']],//伏羲
+	sgsh_fuxi:['male','shen',4,['sgsk_yuhan','sgsk_jiabian'],['rankAdd:legend','name:null|null']],//伏羲
 	sgsh_xiangliu:['male','shen',4,['sgsk_jiushou'],['rankAdd:legend','name:null|null']],//相柳
 	sgsh_houyi:['male','shen',4,['sgsk_sheri'],['rankAdd:legend','name:null|null']],//后羿
 	'sgsh_dayu':['male','shen',4,['sgsk_zhishui'],['rankAdd:epic','name:null|null']],//大禹√
