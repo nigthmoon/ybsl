@@ -206,6 +206,7 @@ const card = {
 		},
 	},
 	ybsl_zhezhiqiang:{
+		derivation:'ybsl_070lvyanqiu',
 		type:'equip',
 		subtype:'equip1',
 		fullskin:true,
@@ -291,6 +292,7 @@ const card = {
 		audio:true,
 		fullskin:true,
 		type:'delay',
+		derivation:'ybsl_059starsFall4',
 		// judge:function(card){
 		// 	return 0;
 		// },
@@ -725,6 +727,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu0: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip0',
