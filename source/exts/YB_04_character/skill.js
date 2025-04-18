@@ -2405,7 +2405,8 @@ const skill = {
 				if (card.name == 'hongshui') { card.name = 'shandian' }
 				if (card.name == 'huoshan') { card.name = 'shandian' }
 				if (card.name == 'wutiesuolian') { card.name = 'fangtian' }
-				card.init([card.suit, card.number, 'rewrite_' + card.name, card.nature/*,tag*/]);
+				var tag = get.YB_tag(card)
+				card.YB_init([card.suit, card.number, 'rewrite_' + card.name, card.nature,tag]);
 				//
 				if (bool && card.card && player.vcardsMap?.equips) {
 					const cardx = game.createCard("rewrite_" + card.card.name, card.card.suit, card.card.number);

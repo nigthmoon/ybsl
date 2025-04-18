@@ -271,9 +271,10 @@ const YBSL_special = function () {
 					if (j) {
 						var cards = j;
 						var card = get.copy(cards);
-						var tag = [];
-						if (get.cardtag(card, 'gifts')) var tag = ['gifts'];
-						cards.init([card.suit, card.number + 1, card.name, card.nature, tag]);
+						// var tag = [];
+						// if (get.cardtag(card, 'gifts')) var tag = ['gifts'];
+						var tag = get.YB_tag(card)
+						cards.YB_init([card.suit, card.number + 1, card.name, card.nature, tag]);
 						if (card.cardtag) cards.cardtag = card.cardtag;
 						// j.number++;
 						game.countPlayer(function (current) {// if(current.getEquip(j)) {
@@ -358,7 +359,7 @@ const YBSL_special = function () {
 					var num = result.index + 1;
 					var name = 'ybsl_107xiaohu' + num;
 					let card = trigger.cards[0];
-					card.init([card.suit, card.number, name, card.nature /*,tag*/]);
+					card.YB_init([card.suit, card.number, name, card.nature ,tag]);
 					player.equip(card);
 				}
 			}
@@ -390,7 +391,7 @@ const YBSL_special = function () {
 			// 	card.fix();
 			// 	// card.remove();
 			// 	// card.destroyed=true;
-					var suit=cs[i].suit,num=cs[i].number,nature=cs[i].nature;
+					var suit=cs[i].suit,num=cs[i].number,nature=cs[i].nature,tag=get.YB_tag(cs[i]);
 					switch(suit){
 						case 'club':var name='ybsl_meihua';break;
 						case 'diamond':var name='ybsl_lanhua';break;
@@ -399,7 +400,7 @@ const YBSL_special = function () {
 						case 'none':var name='ybsl_nohua';break;
 					}
 					if(get.name(cs[i])=='ybsl_zhezhiqiang'&&get.position(cs[i],true)=='d'){
-						cs[i].init([suit,num,name,nature]);
+						cs[i].YB_init([suit,num,name,nature,tag]);
 						game.log('折枝枪变成了花朵。');
 					}
 				}

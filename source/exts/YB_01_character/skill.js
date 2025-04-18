@@ -11057,9 +11057,10 @@ const skill = {
 			'step 0'
 			var cards=trigger.cards[0];
 			var card=get.copy(cards);
-			var tag=[];
-			if(get.cardtag(card,'gifts'))var tag=['gifts'];
-			cards.init([card.suit,card.number-1,card.name,card.nature,tag]);
+			// var tag=[];
+			// if(get.cardtag(card,'gifts'))var tag=['gifts'];
+			var tag = get.YB_tag(card)
+			cards.YB_init([card.suit,card.number-1,card.name,card.nature,tag]);
 			// if(card.cardtag)cards.cardtag=card.cardtag;
 			event.card=game.YB_createCard(trigger.card.name,trigger.card.suit,1,trigger.card.nature,tag)
 			// game.me.gain(game.YB_createCard('YB_shashan','none',1,'fire'),'gain2')

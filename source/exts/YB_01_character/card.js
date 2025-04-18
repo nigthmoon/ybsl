@@ -632,7 +632,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -648,7 +648,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -667,7 +667,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -686,7 +686,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -702,7 +702,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -722,7 +722,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 	},
@@ -744,7 +744,7 @@ const card = {
 			var card = event.cards[0];
 			if (!card||card.name.slice(-1)=='ybsl_107xiaohu') return;
 			else {
-				card.init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature /*,tag*/ ]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature ,tag ]);
 			}
 		},
 		content:function(){
@@ -759,7 +759,8 @@ const card = {
 			if (result.control) {
 				var num = result.index + 1;
 				var name = 'ybsl_107xiaohu' + num;
-				cards[0].init([cards[0].suit, cards[0].number, name, cards[0].nature /*,tag*/]);
+				var tag = get.YB_tag(cards[0])
+				cards[0].YB_init([cards[0].suit, cards[0].number, name, cards[0].nature ,tag]);
 				player.equip(cards[0]);
 			}
 

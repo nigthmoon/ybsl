@@ -1897,11 +1897,16 @@ const YBSL_ybslf = function () {
 				_status.cardtag={};
 			}
 			for(var m in _status.cardtag){
-				if(_status.cardtag[m].contains(card.cardid)){
+				if(_status.cardtag[m].includes(card.cardid)){
 					tags.add(m);
 				}
 			}
 			return tags;
+		}
+		lib.element.card.YB_init = function(...objects){
+			let id = this.cardid;
+			this.init(...objects);
+			this.cardid=id;
 		}
 		//--------函数演示，定向火焰伤害
 		//--------未知bug，禁止使用

@@ -1404,7 +1404,8 @@ const skill = {
 			var bool=(get.position(card)=='e');
 			if(bool) player.removeEquipTrigger(card);
 			game.broadcastAll(function(card){
-				card.init([event.card.suit,event.card.number,'ybsl_tianleiyubi']);
+				var tag = get.YB_tag(card)
+				card.YB_init([event.card.suit,event.card.number,'ybsl_tianleiyubi',tag]);
 			},card);
 			var bool=(get.position(card)=='e');
 			if(bool) player.removeEquipTrigger(card);
@@ -1443,7 +1444,8 @@ const skill = {
 			var bool=(get.position(card)=='e');
 			if(bool) player.removeEquipTrigger(card);
 			game.broadcastAll(function(card){
-				card.init([event.card.suit,event.card.number,'ybsl_tianleiyubi']);
+				var tag = get.YB_tag(card)
+				card.YB_init([event.card.suit,event.card.number,'ybsl_tianleiyubi',tag]);
 			},card);
 			var bool=(get.position(card)=='e');
 			if(bool) player.removeEquipTrigger(card);

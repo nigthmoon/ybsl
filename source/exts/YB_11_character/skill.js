@@ -572,7 +572,7 @@ const skill = {
 					}
 				}
 				else {
-					return card.init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
+					card.YB_init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
 				}
 			}
 			if (cardx.length) {
@@ -629,7 +629,7 @@ const skill = {
 							}
 						}
 						else {
-							return card.init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
+							card.YB_init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
 						}
 					}
 					game.log(cards, "变成了火【杀】");
