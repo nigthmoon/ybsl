@@ -31,7 +31,7 @@ const character = { //武将格式 :
 	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:rare','name:null|null']],//神农
 	sgsh_xuanyuan:['male','shen',4,['sgsk_xiudexy','sgsk_wending'],['rankAdd:legend','name:null|null']],//轩辕
 	sgsh_shaohao:['male','shen',4,['sgsk_qiongsangy'],['rankAdd:legend','name:null|null']],//少昊
-	sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','name:null|null']],//颛顼
+	// sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','name:null|null']],//颛顼
 	sgsh_qinglong:['none','shen',4,['sgsk_longxiao'],['rankAdd:legend','name:null|null']],//青龙
 	sgsh_baihu:['none','shen',4,['sgsk_huwei'],['rankAdd:legend','name:null|null']],//白虎
 	sgsh_zhuque:['none','shen',4,['sgsk_zhiyany'],['rankAdd:legend','name:null|null']],//朱雀
@@ -64,14 +64,14 @@ const character = { //武将格式 :
 	'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
 	'sgsh_chiyou':['male','shen',5,['sgsk_zhanshen'],['rankAdd:legend','name:null|null']],//蚩尤
 	sgsh_fenghou:['female','shen',3,['sgsk_sinan','sgsk_shence'],['rankAdd:legend','name:null|null']],//风后
-	sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','name:null|null']],//九天玄女
-	sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','name:null|null']],//螺祖
-	sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','name:null|null']],//仓颉
-	'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
-	sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','name:null|null']],//常先
-	sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','name:null|null']],//鬼臾区
+	// sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','name:null|null']],//九天玄女
+	// sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','name:null|null']],//螺祖
+	// sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','name:null|null']],//仓颉
+	// 'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
+	// sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','name:null|null']],//常先
+	// sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','name:null|null']],//鬼臾区
 
-	sgsh_shijiamouni:['male','shen',4,['sgsk_dianhua','sgsk_wuwo'],['rankAdd:legend','name:null|null']],//释迦牟尼
+	// sgsh_shijiamouni:['male','shen',4,['sgsk_dianhua','sgsk_wuwo'],['rankAdd:legend','name:null|null']],//释迦牟尼
 	'sgsh_luohou':['male','shen',4,['sgsk_yueshi'],['rankAdd:epic','name:null|null']],//罗睺√
 	'sgsh_xingtian':['male','shen',4,['sgsk_fuchou'],['rankAdd:epic','name:null|null']],//刑天√
 
