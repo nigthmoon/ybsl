@@ -90,7 +90,7 @@ const YBSL_rank = function(){
 			}
 		})
 	}
-	{
+	{//characterIntro重做
 		//characterIntro重做
 		var YB_characterIntro = get.characterIntro;
 		get.characterIntro=function(name){
@@ -123,7 +123,7 @@ const YBSL_rank = function(){
 			}
 			var i, translation, intro, str;
 			if (node._nointro) return;
-			if(node.classList.contains('player') && node.linkplayer){
+			if(node.classList.contains('player') && node.linkplayer&&(lib.characterTitle[node.name]||lib.characterCitetext[node.name]||(lib.characterLightext[node.name1]&&lib.characterLightext[node.name1](node))||lib.characterUndertext[node.name])){
 				if (node.linkplayer) {
 					node = node.link;
 				}
@@ -600,7 +600,7 @@ const YBSL_rank = function(){
 				}
 		
 				YB_intro.add(ui.create.div(".placeholder.slim"));
-			} else if (node.classList.contains("character")) {
+			} else if (node.classList.contains("character")&&(lib.characterTitle[node.link]||lib.characterCitetext[node.link]||(lib.characterLightext[node.link]&&lib.characterLightext[node.link](node.link))||lib.characterUndertext[node.link])) {
 				const character = node.link,
 					characterInfo = get.character(node.link);
 				let capt = get.translation(character);
