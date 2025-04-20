@@ -3,8 +3,82 @@ export { ybslb_update }
 window.ybslb_update={
 	//这是从金庸里抄来的更新公告格式，不过我仿佛不会用……
 	//感谢狂神对于这种写法的帮助，
-	version:'5.7.0-1.8',
+	version:'5.7.0-1.9',
 	
+	'5.7.0-1.9':{
+		changeLog:[
+			//----------------5.7.0-1.8--------------//
+			'理论上可联机',
+			'当前版本：5.7.0-1.9',
+			'更新日期：2025-04-20',
+			'本条公告可在扩展介绍页面查看',
+			'------------更新详情------------',
+			'- 新武将：上古神话一堆武将。',
+			'- 新武将：名许褚，名曹操，名司马懿，名夏侯惇，名成神阳太。',
+			'- 新武将：贾雨桐，姜森，孙韶，sp满城柒，涂静，王海茹，sp小慧，sp王汉桢，恒李昭仪。',
+			'- 改武将：韩丹更名玉蝶心。',
+			'- 新卡牌：糖，醋。',
+			'- 改卡牌：弥仙神术不再摸牌。',
+			'- 新函数：get.YB_cardMaxLose()，lib.element.player.YB_recover，火烧博望坡，懒得介绍了，反正除了我没人用。',
+			'------------修复相关------------',
+			'- 夜白旅程常驻。',
+			'- 修复夜白旅程盐之后敌方出bug的bug。',
+			'- 名将传咕。',
+			'- 修复菊ai救濒死敌人的bug（可能仍然有bug）。',
+			'- 修复火烧博望坡对0牌目标使用报错的bug。',
+			'- 修复女魃bug。',
+			'- 修改了get.characterIntro。',
+			'- 修改了get.nodeintro。',
+			'- 整了缘分系统，目前仅有房佳谕贾雨桐互为缘分。',
+			'- 修复了兴族的一个潜在问题。',
+			'- 小狐修复。',
+			'- 补充了大量图片素材，以便于十周年ui游玩。',
+			'------------注意事项------------',
+			'- 本扩展需本体版本为1.10.17.1以上，建议最新版！。',
+			'- 修复若干bug，可能添加若干bug。',
+			'- 晶的水剑元交换位置部分仍旧有点bug，无法发动，还望体谅',
+			'------------鸣谢清单------------',
+			'- 狂神is NB！',
+			'- 经过我和B站up主鸣濑白羽酱的沟通，现本扩展包部分武将插图采用他的ai制图，具体被应用的武将在该角色的简介里备注。',
+			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
+			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
+			'- 制作仓促，有bug烦请加群反馈。',
+			'- 进群答案合理即可。',
+			'- 交流QQ群：369015096。',
+			'- 感谢一直以来各位游玩者的关注与支持。',
+			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
+			'- 感谢火佬对本扩展的无私奉献',
+			'- 感谢子虚对本扩展的无私奉献',
+			'- 铝宝就是天使！。',
+			'- <span class=yellowtext>感谢Angle为本扩展的想去远方撰写ai，以及优化张晴。</span>',
+			'- <span class=yellowtext>感谢周子鱼为本扩展制作的十周年美化卡牌。</span>',
+			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
+			//为什么用黄色？因为这些是我花钱搞的=w=
+			'- 铝宝就是天使！。',
+		],
+		players:[
+			'sgsh_tiandi','sgsh_shennong','sgsh_xuanyuan','sgsh_shaohao',
+			'sgsh_qinglong','sgsh_baihu','sgsh_zhuque','sgsh_xuanwu','sgsh_qilin',
+			'sgsh_yaoji','sgsh_hongjunlaozu',
+			'sgsh_gonggong','sgsh_zhurong','sgsh_goumang','sgsh_houtu',
+			'sgsh_fuxi','sgsh_xiangliu','sgsh_houyi','sgsh_kuafu',
+			'sgsh_tubo','sgsh_jingwei','sgsh_qibo','sgsh_yeming',
+			'sgsh_chiyou','sgsh_fenghou',
+			'ybmjz_caocao','ybmjz_simayi','ybmjz_xiahoudun','ybmjz_xuzhu','ybmjz_youta',
+			'ybsl_sunshaoo','ybsl_020jiayutong','ybsl_052trees','ybsp_016manchengqi','ybsl_121tujing',
+			'ybsl_015wanghairu','ybsp_033xiaohui','ybsp_006wanghanzhen',
+			
+			'yhky_shlizhaoyi',
+
+			'ybsl_092handan',
+		],
+		cards:[
+			'ybsl_tang','ybsl_cu','ybsl_107xiaohu0','ybsl_mixianshenshu'
+		],
+		files:[
+			
+		],
+	},
 	'5.7.0-1.8':{
 		changeLog:[
 			//----------------5.7.0-1.8--------------//

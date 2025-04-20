@@ -12,5 +12,9 @@ const characterSort = {
 			'ybmjz_zhouyu','ybmjz_daqiao','ybmjz_luxun','ybmjz_sunshangxiang',
 			'ybmjz_huatuo','ybmjz_lvbu','ybmjz_diaochan',
 		],
+		ybmjz_lunwai:[
+			'ybmjz_zhangqiying','ybmjz_shen_zhugeliang','ybmjz_hina','ybmjz_kotori','ybmjz_kagari',
+			'ybmjz_majun','ybmjz_youta',
+		],
 	},
 }
