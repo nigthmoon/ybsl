@@ -89,13 +89,40 @@ const YBSL_rank = function(){
 				}
 			}
 		})
-	}{
+	}
+	{
+		//characterIntro重做
+		var YB_characterIntro = get.characterIntro;
+		get.characterIntro=function(name){
+			var str = '';
+			if (lib.characterCopyright[name]) {//版权信息
+				str += lib.characterCopyright[name];
+				str += '<br>';
+			}
+			if (lib.characterCitetext[name]) {//上引文
+				str += lib.characterCitetext[name];
+				str += '<br>';
+			}
+			if (lib.characterUndertext[name]) {//下引文
+				str += lib.characterUndertext[name];
+				str += '<br>';
+			}
+			if (lib.characterLightext[name]&&lib.characterLightext[name](name)) {//缘分点亮
+				str += lib.characterLightext[name](name)[lib.characterLightext[name](name).length-1];
+				str += '<br>';
+			}
+			return str += YB_characterIntro.apply(this,arguments);
+		}
+	}
+	{//nodeintro修复
 		var YB_nodeIntro = get.nodeintro;
 		get.nodeintro=function(node,simple,evt){
 			var YB_intro = ui.create.dialog("hidden", "notouchscroll");
 			if (node.classList.contains("player") && !node.name) {
 				return uiintro;
 			}
+			var i, translation, intro, str;
+			if (node._nointro) return;
 			if(node.classList.contains('player') && node.linkplayer){
 				if (node.linkplayer) {
 					node = node.link;

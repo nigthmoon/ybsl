@@ -4,8 +4,8 @@ if(!lib.characterCitetext)lib.characterCitetext={}
 if(!lib.characterLightext)lib.characterLightext={}
 if(!lib.characterLightextParent)lib.characterLightextParent={}
 if(!lib.characterUndertext)lib.characterUndertext={}
-import { characterIntro , nodeintro } from './source/packages/function.js'
-get.characterIntro = characterIntro;
+// import { characterIntro , nodeintro } from './source/packages/function.js'
+// get.characterIntro = characterIntro;
 // get.nodeintro = nodeintro;
 //_nointro
 import { Package } from './source/packages/package.js'
