@@ -85,6 +85,7 @@ const translate = {
 	//----------------------装备及其他
 
 
+	ybmjz_lunwai:'其他杂设',
 	
 	ybmjz_zhangqiying:'名将张琪瑛',
 	ybmjz_zhangqiying_prefix:'名将',

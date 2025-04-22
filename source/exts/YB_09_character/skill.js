@@ -5746,4 +5746,71 @@ const skill = {
 			},
 		},
 	},
+	// yuanxing: {
+	// 	audio: '',
+	// 	forced: true,
+	// 	locked: false,
+	// 	enable: 'chooseToUse',
+	// 	trigger: {player: 'chooseButtonBegin'},
+	// 	hiddenCard: () => true,
+	// 	filter: function (event, player, name, data) {
+	// 		if (event.name == 'chooseButton') return event.type == 'chooseToUse_button' && event.getParent().result.skill == 'yuanxing';
+	// 		return (!event.customArgs || !event.customArgs['yuanxing']) && lib.inpile.some(name => event.filterCard(get.autoViewAs({name}, 'unsure'), player, event));
+	// 	},
+	// 	filterCard: () => false,
+	// 	selectCard: () => lib.config.auto_confirm ? [0, 1] : -1,
+	// 	prompt: '令所有其他角色各摸一张牌，然后你观看并可以使用其中一张手牌',
+	// 	chooseButton: {
+	// 		dialog: function (event, player) {
+	// 			const dialog = ui.create.dialog('你可以使用其中一张牌', 'hidden');
+	// 			const map = new Map(game.filterPlayer(target => target != player).map(target => [target, target.getGainableCards(player, 'h')]));
+	// 			for (const [target, cards] of map) if (cards.length) dialog.addText(`${get.translation(target)}的手牌区`).add(cards);
+	// 			if (dialog.content.childElementCount == 1) dialog.addText('无');
+	// 			return dialog;
+	// 		},
+	// 		filter: function ({link}) {
+	// 			const {event, event: {player}} = _status, parent = event.getParent();
+	// 			if (parent.dying) event.dying = parent.dying;
+	// 			const bool = parent.filterCard(get.autoViewAs(link, [link]), player, parent);
+	// 			delete event.dying;
+	// 			return bool;
+	// 		},
+	// 		backup: function ([link], player) {
+	// 			const backup = get.copy(lib.skill['yuanxing_backup']);
+	// 			return Object.assign(backup, {viewAs: link});
+	// 		},
+	// 		prompt: function ([link], player) {
+	// 			return `使用${get.translation(get.owner(link))}的${get.translation(link)}`;
+	// 		},
+	// 	},
+	// 	content: async function (event, trigger, player) {
+	// 		const parent = trigger.getParent(), targets = game.filterPlayer(target => target != player);
+	// 		parent.set('customArgs', Object.assign(parent.customArgs || {}, {yuanxing: true}));
+	// 		player.line(targets)
+	// 		await game.asyncDraw(targets);
+	// 		trigger.set('dialog', get.info(event.name).chooseButton.dialog(parent, parent.player));
+	// 		if (!game.hasPlayer(target => target != player && target.countGainableCards(player, 'h'))) {
+	// 			trigger.set('result', {bool: false});
+	// 			trigger.finish();
+	// 		}
+	// 	},
+	// 	subSkill: {
+	// 		backup: {
+	// 			log: false,
+	// 			popname: true,
+	// 			filterCard: () => false,
+	// 			selectCard: -1,
+	// 			precontent: function* (event, {player}) {
+	// 				const {result, result: {card}} = event;
+	// 				if (!result.cards?.length) result.cards = card.cards;
+	// 				const owner = get.owner(result.cards[0]);
+	// 				if (owner) {
+	// 					player.line(owner);
+	// 					owner.$give(result.cards, player, false);
+	// 					game.delayx();
+	// 				}
+	// 			},
+	// 		},
+	// 	},
+	// },
 }

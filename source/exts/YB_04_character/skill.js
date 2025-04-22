@@ -6084,7 +6084,9 @@ const skill = {
 		filter:(event,player)=>{
 			if(event.type!='discard') return false;
 			if(event.player==player) return false;
-			return true;
+			var cards = event.cards.filter(i=>get.position(i,true)=='d');
+			if(cards.length>0)return true;
+			return false;
 		},
 		async cost(event,trigger,player){
 			var dialog = ui.create.dialog('衔木');

@@ -262,7 +262,7 @@ const skill = {
 		}
 	},
 	ybmjz_zhishuo:{
-		audio:'rehujia',
+		audio:'ybmjz_hujia',
 		unique: true,
 		zhuSkill: true,
 		group:['ybmjz_zhishuo_txgx','ybmjz_hujia_zhishuo','ybmjz_zhishuo_damage'],
@@ -310,7 +310,7 @@ const skill = {
 					global:'damageEnd',
 				},
 				filter:function(event,player,name){
-					if(name=='damageEnd')return event.card.YB_zhishuo&&event.source==player&&event.player.isIn();
+					if(name=='damageEnd')return event.card&&event.card.YB_zhishuo&&event.source==player&&event.player.isIn();
 					else return event.card.YB_zhishuo;
 				},
 				*content(event,map){
@@ -989,7 +989,7 @@ const skill = {
 			return player.countCards('he')>0;
 		},
 		async cost(event, trigger, player){
-			event.result=await player.chooseToDiscard('he').set("chooseonly", true).forResult();
+			event.result=await player.chooseToDiscard('he').set('prompt2',get.prompt2('ybmjz_luoyi')).set("chooseonly", true).forResult();
 		},
 		init:function(){
 			if(!lib.skill.reluoyi2.mark){
@@ -1055,6 +1055,7 @@ const skill = {
 			}
 		}
 	},
+	//成神阳太
 	ybmjz_fengshen:{
 		audio:'ext:夜白神略/audio/character:2',
 		trigger: {
