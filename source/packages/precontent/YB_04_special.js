@@ -19,11 +19,21 @@ const YBSL_special = function () {
 	var clan_list = ['陆逊', '陆抗', '陆郁生', '陆绩', '陆凯', '陆机', '陆云', '陆延', '陆康'];
 	{//吴郡陆氏角色添加宗族
 		lib.arenaReady.push(function () {
+			//天妒
 			if (!lib.skill.tiandu.audioname2) lib.skill.tiandu.audioname2 = {};
 			lib.skill.tiandu.audioname2.ybslclan_luyan = 'ybsl_lytiandu';
 			// lib.skill.tiandu.audioname2.ybsl_121tujing = 'yb121_tiandu';
+			//诈降
 			if (!lib.skill.zhaxiang.audioname2) lib.skill.zhaxiang.audioname2 = {};
 			lib.skill.zhaxiang.audioname2.ybsl_yinfan = 'ybsl_zhaxiang';
+			//倾国
+			if (!lib.skill.reqingguo.audioname2) lib.skill.reqingguo.audioname2 = {};
+			lib.skill.reqingguo.audioname2.ybsl_wangbi = 'ybsl_qingguo';
+			lib.skill.reqingguo.audioname2.ybnb_wangbi = 'ybsl_qingguo';
+			//失路
+			if (!lib.skill.olshilu.audioname2) lib.skill.olshilu.audioname2 = {};
+			lib.skill.olshilu.audioname2.ybsl_wangbi = 'ybsl_shilu';
+			lib.skill.olshilu.audioname2.ybnb_wangbi = 'ybsl_shilu';
 			// var listx=clan_list;
 			for (var i in lib.character) {
 				// if(lib.character[i]['names'])

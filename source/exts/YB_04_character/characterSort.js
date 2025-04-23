@@ -16,7 +16,7 @@ const characterSort = {
 			'ybsl_xuyou'
 		],
 		ybsl_bqbs: [
-			'ybsl_lvyi', 'ybsl_yinfan', 'ybsl_shlizhaoyi','ybsl_sunshaoo',
+			'ybsl_lvyi', 'ybsl_yinfan', 'ybsl_shlizhaoyi','ybsl_sunshaoo','ybsl_wangbi','ybnb_wangbi',
 			'ybsl_suojing',
 		],
 		ybsl_clanwjls: [

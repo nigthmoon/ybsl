@@ -3665,6 +3665,189 @@ const skill = {
 	// ybsl_xiangcha:'详查',
 	// ybsl_xiangcha_info:'转换技，出牌阶段限一次，阳：你可以将一张红色牌当【洞烛先机】使用；阴，你可以将一张黑色牌当【知己知彼】。若因此观看到了与本次使用牌相同颜色的牌，你可以展示之，令你本回合下次造成的伤害+1。',
 
+
+	ybsl_xijian:{
+		audio:'ext:夜白神略/audio/character:2',
+		unique:true,
+		mark:true,
+		skillAnimation:true,
+		limited:true,
+		animationColor:'water',
+		init:function(player){
+			player.storage.ybsl_xijian=false;
+		},
+		trigger:{
+			global:['dyingAfter'],
+		},
+		filter(event,player){
+			return event.player.isIn()&&event.player.hp>0;
+		},
+		async content(event,trigger,player){
+			player.awakenSkill('ybsl_xijian');
+			player.storage.ybsl_xijian=true;
+			await trigger.player.loseHp(trigger.player.hp);			
+		},
+	},
+	ybsl_shilu:{
+		audio: 'ext:夜白神略/audio/character:2',
+		// inherit:'olshilu',
+	},
+	ybsl_qingguo:{
+		audio: 'ext:夜白神略/audio/character:2',
+		// inherit:'reqingguo',
+	},
+	ybsl_yedun:{
+		audio: 'ext:夜白神略/audio/character:2',
+		// forecd:true,
+		locked:true,
+		init(player){
+			if(!player.storage.ybsl_yedun)player.storage.ybsl_yedun=[];
+		},
+		trigger: { player: "damageEnd" },
+		filter(event,player){
+			return player.getHistory("damage").indexOf(event) == 0;
+		},
+		async cost(event,trigger,player){
+			if(!player.storage.ybsl_yedun)player.storage.ybsl_yedun=[];
+			if(game.countPlayer(c=>!player.storage.ybsl_yedun.includes(c)&&player!=c)>0){
+				event.result = await player.chooseTarget(true).set('prompt2',get.prompt2('ybsl_yedun')).set('filterTarget',function(event,player,target){
+					return !player.storage.ybsl_yedun.includes(target)&&player!=target;
+				}).forResult();
+			}
+		},
+		async content(event,trigger,player){
+			var target=event.targets[0];
+			if(!player.storage.ybsl_yedun)player.storage.ybsl_yedun=[];
+			await player.storage.ybsl_yedun.push(target);
+			var list = ['令你摸3张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得【失路】'];
+			event.result2 = await target.chooseControl().set('choiceList',list).set('ai',function(){
+				var att = get.attitude(_status.event.player,player);
+				if(att>0&&player.hp<3)return 0;
+				return 1;
+			}).forResult();
+			if(event.result2.index){
+				if(event.result2.index==0){
+					await player.draw(3);
+					await player.addTempSkill('ybsl_yedun_weimu');
+				}
+				else{
+					await player.loseHp();
+					await player.addSkill('olshilu');
+				}
+			}
+		},
+		subSkill:{
+			weimu:{
+				trigger: { global: "useCard1" },
+				audio: 'ybsl_yedun',
+				forced: true,
+				firstDo: true,
+				filter(event, player) {
+					if (event.player == player) return false;
+					if (get.color(event.card) != "black" ) return false;
+					var info = lib.card[event.card.name];
+					return info && info.selectTarget && info.selectTarget == -1 && !info.toself;
+				},
+				async content() {},
+				mod: {
+					targetEnabled(card) {
+						if (get.color(card) == "black") return false;
+					},
+				},
+				mark:true,
+				marktext:'遁',
+				intro:{
+					content:'本回合不能成为黑色牌目标',
+				},
+			}
+		}
+	},
+	ybsl_yedunx:{
+		audio: 'ybsl_yedun',
+		// forecd:true,
+		locked:true,
+		init(player){
+			if(!player.storage.ybsl_yedunx)player.storage.ybsl_yedunx=[];
+		},
+		trigger: { player: "damageEnd" },
+		filter(event,player){
+			return player.getHistory("damage").indexOf(event) == 0;
+		},
+		async cost(event,trigger,player){
+			if(!player.storage.ybsl_yedunx)player.storage.ybsl_yedunx=[];
+			if(game.countPlayer(c=>!player.storage.ybsl_yedunx.includes(c)&&player!=c)>0){
+				event.result = await player.chooseTarget(true).set('prompt2',get.prompt2('ybsl_yedunx')).set('filterTarget',function(event,player,target){
+					return !player.storage.ybsl_yedunx.includes(target)&&player!=target;
+				}).forResult();
+			}
+		},
+		async content(event,trigger,player){
+			var target=event.targets[0];
+			if(!player.storage.ybsl_yedunx)player.storage.ybsl_yedunx=[];
+			await player.storage.ybsl_yedunx.push(target);
+			var list = ['令你摸3张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得【失路】（可以获得多个）'];
+			event.result2 = await target.chooseControl().set('choiceList',list).set('ai',function(){
+				var att = get.attitude(_status.event.player,player);
+				if(att>0&&player.hp<3)return 0;
+				return 1;
+			}).forResult();
+			if(event.result2.index){
+				if(event.result2.index==0){
+					await player.draw(3);
+					await player.addTempSkill('ybsl_yedunx_weimu');
+				}
+				else{
+					await player.loseHp();
+					// if(!lib.skill.ybsl_shilu.subSkill)lib.skill.ybsl_shilu.subSkill={}
+					lib.skill['ybsl_shilu_'+target.playerid]=lib.skill.olshilu;
+					lib.translate['ybsl_shilu_'+target.playerid]=lib.translate.olshilu;
+					lib.translate['ybsl_shilu_'+target.playerid+'_info']=lib.translate.olshilu_info;
+					await player.addSkill('ybsl_shilu_'+target.playerid);
+				}
+			}
+		},
+		subSkill:{
+			weimu:{
+				trigger: { global: "useCard1" },
+				audio: 'ybsl_yedun',
+				forced: true,
+				firstDo: true,
+				filter(event, player) {
+					if (event.player == player) return false;
+					if (get.color(event.card) != "black" ) return false;
+					var info = lib.card[event.card.name];
+					return info && info.selectTarget && info.selectTarget == -1 && !info.toself;
+				},
+				async content() {},
+				mod: {
+					targetEnabled(card) {
+						if (get.color(card) == "black") return false;
+					},
+				},
+				mark:true,
+				marktext:'遁',
+				intro:{
+					content:'本回合不能成为黑色牌目标',
+				},
+			}
+		}
+	},
+	ybsl_shilu:{
+		audio: 'ext:夜白神略/audio/character:2',
+		subSkill:{
+
+		},
+	},
+	// ybsl_xijian:'悉谏',
+	// ybsl_xijian_info:'限定技，当有角色脱离濒死状态时，你可令该角色失去全部体力。',
+	// ybsl_yedun:'夜遁',
+	// ybsl_yedun_info:'锁定技，当你每回合首次受到伤害后，你需选择一名其他角色（不能是本局游戏以此法选择过的角色），其需选择：①令你摸3张牌，然后你本回合不能成为黑色牌目标；②令你失去1点体力，然后你本局游戏获得【失路】。',
+	// ybsl_yedunx:'夜遁',
+	// ybsl_yedunx_info:'锁定技，当你每回合首次受到伤害后，你需选择一名其他角色（不能是本局游戏以此法选择过的角色），其需选择：①令你摸3张牌，然后你本回合不能成为黑色牌目标；②令你失去1点体力，然后你本局游戏获得【失路】。',
+	// ybsl_shilu:'失路',
+	// ybsl_shilu_info:'锁定技。当你受到伤害后，你摸X张牌（X为你的体力值且至多为5）。然后你展示攻击范围内一名角色的一张手牌并令此牌视为无属性【杀】。',
+	// ybsl_qingguo:'倾国',
+	// ybsl_qingguo_info:'你可以将一张黑色牌当做【闪】使用或打出。',
 	/**
 	 * 索靖
 	 */

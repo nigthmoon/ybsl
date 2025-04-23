@@ -74,6 +74,8 @@ const characterCopyright = {
 	ybsl_yinfan:'<font color=cyan>别群比赛-小白杯（重在参与）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //隐蕃
 	ybsl_shlizhaoyi:'<font color=cyan>别群比赛-小白杯（重在参与）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //李昭仪
 	ybsl_sunshaoo:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //孙韶
+	ybsl_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
+	ybnb_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
 	ybsl_suojing:'<font color=cyan>别群比赛-鸿渐赛·笔走龙蛇（待评审）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：鸿渐赛笔走龙蛇（若有）<br>♦︎配音：鸿渐赛笔走龙蛇（若有）',//索靖
 	//宗族武将
 	//吴郡陆氏

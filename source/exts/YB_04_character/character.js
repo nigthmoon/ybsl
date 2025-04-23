@@ -92,6 +92,8 @@ const character = { //武将格式 :
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['rankAdd:epic',"border:wu",'name:隐|蕃']], //隐蕃
 	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxinx','ybsl_fuju'],['rankAdd:legend','name:李|昭仪']], //李昭仪
 	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['rankAdd:legend','name:孙|韶']], //孙韶
+	ybsl_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedun'],['rankAdd:legend','name:王|必']], //王必
+	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','name:王|必']], //王必
 	ybsl_suojing:['male','jin',3,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
 	//宗族武将
 	//吴郡陆氏
