@@ -16,7 +16,7 @@ const YBSL_qianhuan = function(){
 		// 	filterCharacter:function(name){
 		// 		var qianzhui=[
 		// 			'dzsl_','dzsp_','ybsl_','ybsp_','db_ybsl_','db_ybsp_',
-		// 			'ybslshen_','sgsh_','ybxh_','North_','ybnb_','ybart_',
+		// 			'ybslshen_','sgsh_','ssj_ybxh_','North_','ybnb_','ybart_',
 		// 			'ybmo_','ybhao_','ybdi_','ybhaoshen_','ybsc_',
 		// 		];
 		// 		for(var i=0;i<qianzhui.length;i++){

@@ -146,4 +146,31 @@ const YBSL_nature = function(){
 		})
 		
 	}
+	{//校花包元素
+		game.addGroup('XHSS_linyi','逸','世俗界林逸势力',{
+			// color: 'YB_snow',
+			color:'#ffa600',
+			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+		})
+		game.addGroup('XHSS_wuxingmen','五','世俗界五行门',{
+			// color: 'YB_snow',
+			color:'#c2c269',
+			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+		})
+		game.addGroup('XHSS_zhongxin','中','世俗界中心',{
+			// color: 'YB_snow',
+			color:'#e32870',
+			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+		})
+		game.addGroup('XHSS_sanxiu','散','世俗界散修与凡人',{
+			// color: 'YB_snow',
+			color:'#95bec9',
+			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+		})
+		lib.namePrefix.set('世俗',{
+			showName:'俗',
+			color:'#28e3ce',
+			nature:'black',
+		})
+	}
 }

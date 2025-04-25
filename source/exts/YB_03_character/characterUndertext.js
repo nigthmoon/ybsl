@@ -2,8 +2,8 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { characterUndertext }
 
 const characterUndertext = {
-	// 'ybxh_linyi':'',
-	// 'ybxh_zhanglongliyao':'',
+	// 'ssj_ybxh_linyi':'',
+	// 'ssj_ybxh_zhanglongliyao':'',
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
 	//---------------------------------//忆包武将

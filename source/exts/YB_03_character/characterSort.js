@@ -3,8 +3,8 @@ export { characterSort }
 
 const characterSort = {
 	ybxh:{
-		ybxh_ssj:[
-			'ybxh_linyi','ybxh_zhanglongliyao',
+		ssj_ybxh_ssj:[
+			'ssj_ybxh_linyi','ssj_ybxh_zhanglongliyao','ssj_ybxh_wangzhifeng',
 		],
 	},
 

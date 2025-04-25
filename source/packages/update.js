@@ -590,7 +590,7 @@ window.ybslb_update={
 			'- 铝宝就是天使！。',
 		],
 		players:[
-			'ybxh_zhanglongliyao','ybsl_078zhuyahai',
+			'ssj_ybxh_zhanglongliyao','ybsl_078zhuyahai',
 		],
 		cards:[
 			'ybsl_qinglinkui',
@@ -1343,7 +1343,7 @@ window.ybslb_update={
 			'- <span style="text-decoration: line-through;">广告位招商</span>。',
 		],
 		players:[
-			'ybxh_linyi'
+			'ssj_ybxh_linyi'
 		],
 		cards:[
 			

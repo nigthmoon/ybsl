@@ -2,9 +2,10 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { characterCopyright }
 
 const characterCopyright = {
-	'ybxh_linyi':'校花的贴身高手（编号待定）<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：校花梦工厂<br>❀配音：暂无',
-	'ybxh_zhanglongliyao':'校花的贴身高手（编号待定）<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：暂无<br>❀配音：暂无',
-		
+	'ssj_ybxh_linyi':'校花的贴身高手（编号待定）<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：校花梦工厂<br>❀配音：暂无',
+	'ssj_ybxh_zhanglongliyao':'校花的贴身高手（编号待定）<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：暂无<br>❀配音：暂无',
+	'ssj_ybxh_wangzhifeng':'校花的贴身高手（编号待定）<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：暂无<br>❀配音：暂无',
+
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
 	//---------------------------------//忆包武将
