@@ -605,6 +605,147 @@ const card = {
 			},
 		},
 	},
+	ybsl_minimahua:{
+		derivation:'ybsl_003yanshuang',
+		fullskin: true,
+		type:'ybsl_lingshi',
+		enable(card, player) {
+			return player.YB_canEat();
+		},
+		toself: true,
+		// filter(event,player){
+		// 	return player.YB_canEat();
+		// },
+		selectTarget(){
+			return -1;
+		},
+		modTarget(card, player, target) {
+			return target.YB_canEat();
+		},
+		filterTarget(card, player, target) {
+			return target == player && target.YB_canEat() ;
+		},
+		content(){
+			'step 0'
+			target.YB_addBaoshidu(1);
+			'step 1'
+			target.changeHujia(2);
+		},
+		ai:{
+			order:10,
+			value:2,
+			result:{
+				target:4,
+			},
+		},
+	},
+	ybsl_yumiruantang:{
+		derivation:'ybsl_003yanshuang',
+		fullskin: true,
+		type:'ybsl_lingshi',
+		enable(card, player) {
+			return player.YB_canEat();
+		},
+		toself: true,
+		// filter(event,player){
+		// 	return player.YB_canEat();
+		// },
+		selectTarget(){
+			return -1;
+		},
+		modTarget(card, player, target) {
+			return target.YB_canEat();
+		},
+		filterTarget(card, player, target) {
+			return target == player && target.YB_canEat() ;
+		},
+		content(){
+			'step 0'
+			target.YB_addBaoshidu(1);
+			'step 1'
+			target.recover(2);
+		},
+		savable: true,
+		ai:{
+			order:10,
+			value:2,
+			result:{
+				target:4,
+			},	
+			tag:{
+				recover:2,
+				save:2,
+			}
+		},
+	},
+	ybsl_weihuabinggan:{
+		derivation:'ybsl_003yanshuang',
+		fullskin: true,
+		type:'ybsl_lingshi',
+		enable(card, player) {
+			return player.YB_canEat();
+		},
+		toself: true,
+		// filter(event,player){
+		// 	return player.YB_canEat();
+		// },
+		selectTarget(){
+			return -1;
+		},
+		modTarget(card, player, target) {
+			return target.YB_canEat();
+		},
+		filterTarget(card, player, target) {
+			return target == player && target.YB_canEat() ;
+		},
+		content(){
+			'step 0'
+			target.YB_addBaoshidu(1);
+			'step 1'
+			target.gainMaxHp(1);
+		},
+		ai:{
+			order:10,
+			value:2,
+			result:{
+				target:4,
+			},
+		},
+	},
+	ybsl_qiaokelibang:{
+		derivation:'ybsl_003yanshuang',
+		fullskin: true,
+		type:'ybsl_lingshi',
+		enable(card, player) {
+			return player.YB_canEat();
+		},
+		toself: true,
+		// filter(event,player){
+		// 	return player.YB_canEat();
+		// },
+		selectTarget(){
+			return -1;
+		},
+		modTarget(card, player, target) {
+			return target.YB_canEat();
+		},
+		filterTarget(card, player, target) {
+			return target == player && target.YB_canEat() ;
+		},
+		content(){
+			'step 0'
+			target.YB_addBaoshidu(1);
+			'step 1'
+			target.draw(3);
+		},
+		ai:{
+			order:10,
+			value:2,
+			result:{
+				target:4,
+			},
+		},
+	},
 	'faraway_spade':{
 		fullskin:true,
 	},

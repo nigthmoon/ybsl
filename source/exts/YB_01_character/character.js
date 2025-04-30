@@ -17,7 +17,7 @@ const character = { //武将格式 :
 	'ybsl_001sunlisong':['female','YB_memory',3,['yb001_fufeng','yb001_wanyue','yb001_beige'/*,'yb001_chuilian'*//*,'yb001_shenian'*/],['rankAdd:epic','name:孙|丽松']],//孙丽松
 	'ybsl_002chenailin':['female','YB_memory','3/4',['yb002_ziren','yb002_shangyuan'],['rankAdd:epic','name:陈|爱琳']],//陈爱琳
 	
-	//'ybsl_003yanshuang':['female','YB_memory',3,['yb009_wucai','yb003_toushi','yb003_fenxaing'],['rankAdd:legend','name:闫|爽']],//闫爽
+	'ybsl_003yanshuang':['female','YB_memory',3,['yb009_wucai','yb003_yeyan','yb003_xiangyan'],['rankAdd:legend','name:闫|爽']],//闫爽
 	'ybsl_004zhangyujie':['female','YB_memory',3,['yb004_wunv','yb004_tianqi','yb004_shangyuan'/*,'yb004_yujie'*/],['rankAdd:legend','name:张|玉洁']],//张玉洁
 	//'ybsl_005wangruobing':['female','YB_memory',4,['yb005_bingqing','yb005_ruyu','yb005_jieshen'],['rankAdd:legend','name:王|若冰']],//王若冰//太抽象了…
 	'ybsl_005wangruobing':['female','YB_memory',4,['yb005_bingqing','yb005_qianxun','yb005_jieshen'],['rankAdd:legend','name:王|若冰']],//王若冰

@@ -470,4 +470,46 @@ const YBSL_special = function () {
 			}
 		})
 	}
+	{//闫爽零食
+		/**
+		 * 
+		 * @returns 判断目标角色是否可以吃零食的函数
+		 */
+		lib.element.player.YB_canEat= function(){
+			var player=this;
+			return player.countMark('ybsl_baoshidu')<player.YB_maxBaoshi();
+		}
+		/**
+		 * 
+		 * @returns 判断目标角色饱食度上限的函数
+		 */
+		lib.element.player.YB_maxBaoshi = function(){
+			var num=2;
+			var player=this;
+			if(game.checkMod(event,player,0,'YB_maxBaoshi',player))num=game.checkMod(event,player,0,'YB_maxBaoshi',player);
+			if(game.checkMod(event,player,0,'YB_maxBaoshiAdd',player))num+=game.checkMod(event,player,0,'YB_maxBaoshiAdd',player);
+			return num;
+		}
+		/**
+		 * 增加饱食度的函数，没有判断上限
+		 * @param {*} num 
+		 */
+		lib.element.player.YB_addBaoshidu = function(num){
+			this.addTempSkill('ybsl_baoshidu');
+			this.addMark('ybsl_baoshidu',num);
+		}
+		lib.translate.ybsl_baoshidu='饱腹值'
+		lib.translate.ybsl_baoshidu_info='一般情况下，上限两点，回合结束清空'
+		lib.skill.ybsl_baoshidu={
+			//写在这
+			mark:true,
+			marktext:'饱',
+			onremove:true,
+			intro:{
+				content(storage,player,skill){
+					return player.countMark('ybsl_baoshidu')+'/'+player.YB_maxBaoshi();
+				}
+			}
+		}
+	}
 }

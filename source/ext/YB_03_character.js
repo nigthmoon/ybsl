@@ -62,6 +62,6 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		if(!ybxh.card[i].image) ybxh.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}
 	lib.config.all.characters.add('ybxh');
-	lib.translate['ssj_ybxh_character_config'] = '<span style=\'color:#28e3ce\'>校花</span>';
+	lib.translate['ybxh_character_config'] = '<span style=\'color:#28e3ce\'>校花</span>';
 	return ybxh; 
 }); 

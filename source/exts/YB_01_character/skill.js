@@ -2445,6 +2445,124 @@ const skill = {
 	'yb003_fenxiang':{
 		audio:'ext:夜白神略/audio/character:2',
 	},
+	yb003_yeyan:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			global:'phaseBefore',
+			player:'enterGame',
+		},
+		filter:function (event,player){
+			return (event.name!='phase'||game.phaseNumber==0)&&!lib.inpile.includes('ybsl_lumingqianzhuan');
+		},
+		content:function (){
+			var listup = ['ybsl_minimahua','ybsl_yumiruantang','ybsl_weihuabinggan','ybsl_qiaokelibang'];
+			var list = [];
+			var numb=Math.ceil(ui.cardPile.childElementCount/54)+1;
+			for(var i=0;i< numb;i++){
+				for(var k of listup){
+					list.push(k);
+				}
+			}
+			list.sort(() => Math.random() - 0.5);
+			console.log(list)
+			var numc=numb*4;
+			var suits=['spade','heart','club','diamond'];
+			var numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13];
+			suits.sort(() => Math.random() - 0.5);
+			numbers.sort(() => Math.random() - 0.5);
+			for(var k=0;k<numc;k++){
+				var card=game.createCard2(list[k%list.length],suits[k%4],numbers[k%13]);
+				ui.cardPile.insertBefore(card,ui.cardPile.childNodes[get.rand(0,ui.cardPile.childNodes.length)]);
+			}
+			game.broadcastAll(function(){
+				lib.inpile.add('ybsl_minimahua')
+				lib.inpile.add('ybsl_yumiruantang')
+				lib.inpile.add('ybsl_weihuabinggan')
+				lib.inpile.add('ybsl_qiaokelibang')
+			});
+			game.updateRoundNumber();
+		},
+	},
+	yb003_xiangyan:{
+		audio:'ext:夜白神略/audio/character:2',
+		global:'yb003_xiangyan_global',
+		forced:true,
+		subSkill:{
+			global:{
+				audio:'yb003_xiangyan',
+				trigger:{
+					player:'useCard2',
+				},
+				filter(event,player){
+					return get.type2(event.card)=='ybsl_lingshi'&&game.filterPlayer(c=>c.hasSkillTag('YB_fenxiang'));
+				},
+				async cost(event,trigger,player){
+					event.result = await player.chooseTarget('请选择'+get.translation(trigger.card)+'的额外目标').set('selectTarget',function(){
+						// var targets = ui.selected.targets;
+						// if(player.hasSkillTag('YB_fenxiang')){
+						// 	if(targets){
+						// 		for(var i of targets){
+						// 			if(!i.hasSkillTag('YB_fenxiang'))return target!=player&&target.hasSkillTag('YB_fenxiang');
+						// 		}
+						// 		return target!=player;
+						// 	}
+						// 	else return target!=player;
+						// }
+						// else{
+						// 	return target!=player&&target.hasSkillTag('YB_fenxiang');
+						// }
+						return [1,game.countPlayer(c=>c.hasSkillTag('YB_fenxiang'))];
+					}).set('filterTarget',function(card,player,target){
+						// var targets = ui.selected.targets;
+						if(target.hasSkillTag('YB_fenxiang')){
+							return !trigger.targets.includes(target);
+						}
+						else {
+							if(player.hasSkillTag('YB_fenxiang')){
+								var targets = ui.selected.targets;
+								if(targets){
+									for(var i of targets){
+										if(!i.hasSkillTag('YB_fenxiang'))return false;
+									}
+									return !trigger.targets.includes(target);
+								}
+								else return !trigger.targets.includes(target);
+							}
+							else{
+								return !trigger.targets.includes(target);
+							}
+						}
+						// if(player.hasSkillTag('YB_fenxiang')){
+						// 	if(targets){
+						// 		for(var i of targets){
+						// 			if(!i.hasSkillTag('YB_fenxiang'))return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
+						// 		}
+						// 		return !trigger.targets.includes(target);
+						// 	}
+						// 	else return !trigger.targets.includes(target);
+						// }
+						// else{
+						// 	return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
+						// }
+					}).set('multitarget',function(){return true}).set('ai',function(target){
+						var player=get.player();//定义变量player为选目标的发起者(不懂可以先不写)
+						return get.attitude(player,target)>5;//选队友
+					}).forResult();
+				},
+				content(){
+					var targets=event.targets;
+					game.log(player, "令", targets, "也成为了", trigger.card, "的目标");
+					for(var i of targets){
+						trigger.targets.add(i);
+					}
+				}
+			},
+		},
+		ai:{
+			YB_fenxiang:true,
+		}
+	},
 	//----------------张玉洁004
 	'yb004_wunv':{
 		audio:'ext:夜白神略/audio/character:2',

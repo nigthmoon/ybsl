@@ -911,14 +911,24 @@ const YB_xnqbd=function(){
 						ui.arena.classList.add('choose-character');
 						game.me.identity='zhu';
 						game.zhu=game.me;
-						game.YB_memory01=game.me.next;
-						game.YB_memory01.identity='fan';
 						game.zhu.setIdentity();
 						game.zhu.identityShown=true;
 						game.zhu.node.identity.classList.remove('guessing');
+						game.YB_memory01=game.me.next;
+						game.YB_memory01.identity='nei';
 						game.YB_memory01.setIdentity();
 						game.YB_memory01.identityShown=true;
 						game.YB_memory01.node.identity.classList.remove('guessing');
+						game.YB_memory02=game.me.next;
+						game.YB_memory02.identity='nei';
+						game.YB_memory02.setIdentity();
+						game.YB_memory02.identityShown=true;
+						game.YB_memory02.node.identity.classList.remove('guessing');
+						game.YB_memory03=game.me.next;
+						game.YB_memory03.identity='nei';
+						game.YB_memory03.setIdentity();
+						game.YB_memory03.identityShown=true;
+						game.YB_memory03.node.identity.classList.remove('guessing');
 						event.list=[];
 						for(var i in lib.character){
 							if(lib.filter.characterDisabled(i)) continue;
@@ -1033,10 +1043,11 @@ const YB_xnqbd=function(){
 						game.zhu.init(result.buttons[0].link);
 						_status.characterlist.remove(result.buttons[0].link);
 						_status.yebailvcheng.used.add(result.buttons[0].link);
-						game.zhu.chooseControl('一阶','二阶','三阶','四阶','五阶').set('prompt','请选择武将等阶');
+						// game.zhu.chooseControl('一阶','二阶','三阶','四阶','五阶').set('prompt','请选择武将等阶');
 						'step 2'
-						var hp=Math.floor(result.index/2);
-						event.draw=Math.floor((result.index+1)/2);
+						var numb = 4;
+						var hp=Math.floor(numb/2);
+						event.draw=Math.floor((numb+1)/2);
 						if(hp){
 							game.zhu.hp+=hp;
 							game.zhu.maxHp+=hp;
@@ -1044,15 +1055,17 @@ const YB_xnqbd=function(){
 						}
 						// game.zhu.addMark('_YBLC_level');
 						// var list666=_status.characterlist.randomGets(lib.config.extension_夜白神略_ybsl_wujianghouxuan);
-						var list666=[];
+						// var list666=[];
 						// list666.push('ybsl_059starsFall3');
-						list666.push('ybsl_012zhengjiayi');
-						game.zhu.chooseButton(['请选择对手的登场武将',[list666,'character']],true);
+						// list666.push('ybsl_012zhengjiayi');
+						// game.zhu.chooseButton(['请选择对手的登场武将',[list666,'character']],true);
 						'step 3'
-						game.YB_memory01.init(result.links[0]);
+						game.YB_memory01.init('ybsl_012zhengjiayi');
+						game.YB_memory02.init('ybsl_005wangruobing');
+						game.YB_memory01.init('ybsl_012zhengjiayi');
 						// game.YB_memory01.addMark('_YBLC_level');
-						_status.characterlist.remove(result.links[0]);
-						_status.yebailvcheng.used.add(result.links[0]);
+						_status.characterlist.remove(character);
+						_status.yebailvcheng.used.add(character);
 						if(event.draw){
 							game.zhu.directgain(get.cards(event.draw));
 						}
@@ -1060,8 +1073,8 @@ const YB_xnqbd=function(){
 							ui.arena.classList.remove('choose-character');
 						},500);
 						_status.yebailvcheng.completeYbsl.push([
-							'在下一关中召唤'+get.translation(result.links[0])+'一同战斗',
-							function(){_status.yebailvcheng.addFellow(result.links[0]);
+							'在下一关中召唤'+get.translation(character)+'一同战斗',
+							function(){_status.yebailvcheng.addFellow(character);
 						}])
 						var pack={
 							character:{
