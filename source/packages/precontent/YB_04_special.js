@@ -461,7 +461,12 @@ const YBSL_special = function () {
 								lib.skill[namex].superCharlotte = true;
 								lib.translate[namex] = '缘分';
 								lib.skill[namex].mainSkill = true;
-								lib.character[name][3].push(namex);
+								if (lib.character[name]) {
+									lib.character[name][3].push(namex);
+								}//QQQ
+								else {
+									debugger;
+								}
 							}
 						}
 
@@ -494,22 +499,76 @@ const YBSL_special = function () {
 		 * 增加饱食度的函数，没有判断上限
 		 * @param {*} num 
 		 */
-		lib.element.player.YB_addBaoshidu = function(num){
-			this.addTempSkill('ybsl_baoshidu');
-			this.addMark('ybsl_baoshidu',num);
-		}
+		// lib.element.player.YB_addBaoshidu = function(num){
+		// 	this.addTempSkill('ybsl_baoshidu');
+		// 	this.addMark('ybsl_baoshidu',num);
+		// }
+		lib.element.player.YB_addBaoshidu = function (num) {
+			const player = this;
+			player.addTempSkill('ybsl_baoshidu');
+			player.addMark('ybsl_baoshidu', num);
+			if (!player.baoshidu) {
+				player.baoshidu = ui.create.div('.nengliangtiao', player);
+				ui.create.div('.jindutiao', player.baoshidu);
+			}
+			const jindutiao = player.baoshidu.firstChild;
+			const v = player.countMark('ybsl_baoshidu') / player.YB_maxBaoshi();
+			if (player.dataset.position == 0) {
+				jindutiao.style.width = `${100 * v}%`;
+				jindutiao.style.height = `100%`;
+			}
+			else {
+				jindutiao.style.width = `100%`;
+				jindutiao.style.height = `${100 * v}%`;
+			}
+			jindutiao.innerHTML = '<span style="font-size:24px;">'+player.countMark('ybsl_baoshidu')+'</span>';
+		};
 		lib.translate.ybsl_baoshidu='饱腹值'
 		lib.translate.ybsl_baoshidu_info='一般情况下，上限两点，回合结束清空'
-		lib.skill.ybsl_baoshidu={
+		
+		// lib.skill.ybsl_baoshidu={
+		// 	//写在这
+		// 	mark:true,
+		// 	marktext:'饱',
+		// 	onremove:true,
+		// 	intro:{
+		// 		content(storage,player,skill){
+		// 			return player.countMark('ybsl_baoshidu')+'/'+player.YB_maxBaoshi();
+		// 		}
+		// 	}
+		// }
+		lib.skill.ybsl_baoshidu = {
 			//写在这
-			mark:true,
-			marktext:'饱',
-			onremove:true,
-			intro:{
-				content(storage,player,skill){
-					return player.countMark('ybsl_baoshidu')+'/'+player.YB_maxBaoshi();
+			mark: true,
+			marktext: '饱',
+			// onremove: true,
+			onremove:function(player){
+				if (player.baoshidu) {
+					player.baoshidu.remove();
+					delete player.baoshidu;
 				}
-			}
-		}
+				player.clearMark('ybsl_baoshidu');
+			},
+			intro: {
+				content(storage, player, skill) {
+					return player.countMark('ybsl_baoshidu') + '/' + player.YB_maxBaoshi();
+				},
+			},
+			// trigger: {
+			// 	player: ['phaseEnd'],
+			// },
+			charlotte:true,
+			forced: true,
+			// filter(event, player) {
+			// 	return player.countMark('ybsl_baoshidu');
+			// },
+			// async content(event, trigger, player) {
+			// 	if (player.baoshidu) {
+			// 		player.baoshidu.remove();
+			// 		delete player.baoshidu;
+			// 	}
+			// 	player.clearMark('ybsl_baoshidu');
+			// },
+		};
 	}
 }

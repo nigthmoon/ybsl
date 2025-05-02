@@ -1879,7 +1879,8 @@ const skill = {
 			player.addSkill('hina_shenshi_yingbian');
 			'step 1'
 			var cards = player.getCards('h', function (card) {
-				return card.hasGaintag('hina_shenshi');
+				// return card.hasGaintag('hina_shenshi');
+				return true
 			});
 			if (!cards.length) event.finish();
 			else if (cards.length == 1) event._result = { bool: true, cards: cards };

@@ -1286,4 +1286,159 @@ const skill = {
 			save:true,
 		}
 	},
+	ybmjz_reshuishi:{
+		audio: "shuishi",
+		enable: "phaseUse",
+		usable: 1,
+		frequent: true,
+		filter(event, player) {
+			return true;
+		},
+		content() {
+			"step 0";
+			event.cards = [];
+			event.suits = [];
+			"step 1";
+			player
+				.judge(function (result) {
+					var evt = _status.event.getParent("ybmjz_reshuishi");
+					if (evt && evt.suits && evt.suits.includes(get.suit(result))) return 0;
+					return 1;
+				})
+				.set("callback", lib.skill.reshuishi.callback).judge2 = function (result) {
+				return result.bool ? true : false;
+			};
+			"step 2";
+			var cards = cards.filterInD();
+			if (cards.length)
+				player
+					.chooseTarget("将" + get.translation(cards) + "交给一名角色", true)
+					.set("ai", function (target) {
+						var player = _status.event.player,
+							att = get.attitude(player, target);
+						if (att <= 0) return att;
+						if (target.countCards("h") + _status.event.num >= _status.event.max) att /= 3;
+						if (target.hasSkillTag("nogain")) att /= 10;
+						return att;
+					})
+					.set("num", cards.length)
+					.set(
+						"max",
+						game.filterPlayer().reduce((num, i) => {
+							return Math.max(num, i.countCards("h"));
+						}, 0)
+					);
+			else event.finish();
+			"step 3";
+			if (result.bool) {
+				var target = result.targets[0];
+				event.target = target;
+				player.line(target, "green");
+				target.gain(cards, "gain2").giver = player;
+			} else event.finish();
+			"step 4";
+			if (target.isMaxHandcard()) player.loseMaxHp();
+		},
+		callback() {
+			"step 0";
+			var evt = event.getParent(2);
+			event.getParent().orderingCards.remove(event.judgeResult.card);
+			evt.cards.push(event.judgeResult.card);
+			if (event.getParent().result.bool) {
+				evt.suits.push(event.getParent().result.suit);
+				if(player.maxHp < 10)player.gainMaxHp();
+				player.chooseBool("是否继续发动【慧识】？").set("frequentSkill", "reshuishi");
+			} else event._result = { bool: false };
+			"step 1";
+			if (result.bool) event.getParent(2).redo();
+		},
+		ai: {
+			order: 9,
+			result: {
+				player: 1,
+			},
+		},
+	},
+	ybmjz_stianyi:{
+		audio: "stianyi",
+		trigger: { player: "phaseZhunbeiBegin" },
+		forced: true,
+		juexingji: true,
+		skillAnimation: true,
+		animationColor: "gray",
+		filter(event, player) {
+			return !game.hasPlayer(function (current) {
+				return current.getAllHistory("damage").length == 0;
+			});
+		},
+		content() {
+			"step 0";
+			player.awakenSkill("stianyi");
+			player.gainMaxHp(2);
+			player.recover();
+			"step 1";
+			player.chooseTarget(true, "令一名角色获得技能〖佐幸〗").set("ai", function (target) {
+				return get.attitude(_status.event.player, target);
+			});
+			"step 2";
+			if (result.bool) {
+				var target = result.targets[0];
+				player.line(target, "green");
+				target.storage.ybmjz_zuoxing = player;
+				target.addSkills("ybmjz_zuoxing");
+			}
+		},
+		derivation: "ybmjz_zuoxing",
+	},
+	ybmjz_zuoxing:{
+		audio: 'zuoxing',
+		enable: "chooseToUse",
+		usable: 1,
+		filter(event, player) {
+			var target = player.storage.ybmjz_zuoxing;
+			if (!target || !target.isIn() || target.maxHp < 2) return false;
+			for (var i of lib.inpile) {
+				if (get.type(i) == "trick" && event.filterCard({ name: i, isCard: true }, player, event)) return true;
+			}
+			return false;
+		},
+		hiddenCard:function (player,name){
+			var target = player.storage.ybmjz_zuoxing;
+			var type=get.type(name);
+			return type=='trick'&&target&&target.isIn()&&target.maxHp >= 2;
+		},
+		chooseButton: {
+			dialog(event, player) {
+				var list = [];
+				for (var i of lib.inpile) {
+					if (get.type(i) == "trick" && event.filterCard({ name: i, isCard: true }, player, event)) list.push(["锦囊", "", i]);
+				}
+				return ui.create.dialog("佐幸", [list, "vcard"]);
+			},
+			check(button) {
+				return _status.event.player.getUseValue({ name: button.link[2], isCard: true });
+			},
+			backup(links, player) {
+				return {
+					viewAs: {
+						name: links[0][2],
+						isCard: true,
+					},
+					filterCard: () => false,
+					selectCard: -1,
+					popname: true,
+					log: false,
+					precontent() {
+						player.logSkill("ybmjz_zuoxing");
+						var target = player.storage.ybmjz_zuoxing;
+						target.loseMaxHp();
+					},
+				};
+			},
+			prompt(links, player) {
+				return "请选择" + get.translation(links[0][2]) + "的目标";
+			},
+		},
+		ai: { order: 1, result: { player: 1 } },
+	},
 }

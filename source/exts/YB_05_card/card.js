@@ -488,13 +488,14 @@ const card = {
 		// yingbian:function (event){
 		// 	event.yingbian_addTarget=true;
 		// },
-		content:function (){
+		contentBefore(){
 			'step 0'
 			if(player.hp>1)player.loseHp();
 			'step 1'
-			var num=Math.max(player.maxHp-player.hp||1);
-			event.baseDamage=num;
-			return target.damage();
+			event.getParent().baseDamage=Math.max(player.maxHp-player.hp||1);
+		},
+		content:function (){
+			target.damage();
 		},
 		ai:{
 			basic:{

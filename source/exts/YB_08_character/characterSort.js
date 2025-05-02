@@ -14,7 +14,7 @@ const characterSort = {
 		],
 		ybmjz_lunwai:[
 			'ybmjz_zhangqiying','ybmjz_shen_zhugeliang','ybmjz_hina','ybmjz_kotori','ybmjz_kagari',
-			'ybmjz_majun','ybmjz_youta',
+			'ybmjz_majun','ybmjz_youta','ybmjz_shen_guojia',
 		],
 	},
 }

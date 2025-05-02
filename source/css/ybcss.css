@@ -125,3 +125,46 @@ span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0
 #shiroha_bilibili:visited {
 	color: white;
 }
+/* 能量条 */
+.player[data-position="0"]>.nengliangtiao {
+	width: 50%;
+	height: 10%;
+	left: 25%;
+	top: -20%;
+	background-color: rgb(231, 172, 9);
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/* 能量条 */
+.player[data-position="0"]>.nengliangtiao>.jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 100%;
+	width: 50%;
+	z-index: 20;
+	background-color: #e328b7;
+}
+
+/* 能量条 */
+.player:not([data-position="0"])>.nengliangtiao {
+	width: 10%;
+	height: 100%;
+	left: 100%;
+	background-color: rgb(231, 172, 9);
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/* 能量条 */
+.player:not([data-position="0"])>.nengliangtiao>.jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 50%;
+	width: 100%;
+	bottom: 0;
+	z-index: 20;
+	background-color: #e328b7;
+}

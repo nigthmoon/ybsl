@@ -2499,52 +2499,21 @@ const skill = {
 				},
 				async cost(event,trigger,player){
 					event.result = await player.chooseTarget('请选择'+get.translation(trigger.card)+'的额外目标').set('selectTarget',function(){
-						// var targets = ui.selected.targets;
-						// if(player.hasSkillTag('YB_fenxiang')){
-						// 	if(targets){
-						// 		for(var i of targets){
-						// 			if(!i.hasSkillTag('YB_fenxiang'))return target!=player&&target.hasSkillTag('YB_fenxiang');
-						// 		}
-						// 		return target!=player;
-						// 	}
-						// 	else return target!=player;
-						// }
-						// else{
-						// 	return target!=player&&target.hasSkillTag('YB_fenxiang');
-						// }
 						return [1,game.countPlayer(c=>c.hasSkillTag('YB_fenxiang'))];
 					}).set('filterTarget',function(card,player,target){
-						// var targets = ui.selected.targets;
-						if(target.hasSkillTag('YB_fenxiang')){
-							return !trigger.targets.includes(target);
-						}
-						else {
-							if(player.hasSkillTag('YB_fenxiang')){
-								var targets = ui.selected.targets;
-								if(targets){
-									for(var i of targets){
-										if(!i.hasSkillTag('YB_fenxiang'))return false;
-									}
-									return !trigger.targets.includes(target);
+						var targets = ui.selected.targets;
+						if(player.hasSkillTag('YB_fenxiang')){
+							if(targets){
+								for(var i of targets){
+									if(!i.hasSkillTag('YB_fenxiang'))return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
 								}
-								else return !trigger.targets.includes(target);
-							}
-							else{
 								return !trigger.targets.includes(target);
 							}
+							else return !trigger.targets.includes(target);
 						}
-						// if(player.hasSkillTag('YB_fenxiang')){
-						// 	if(targets){
-						// 		for(var i of targets){
-						// 			if(!i.hasSkillTag('YB_fenxiang'))return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
-						// 		}
-						// 		return !trigger.targets.includes(target);
-						// 	}
-						// 	else return !trigger.targets.includes(target);
-						// }
-						// else{
-						// 	return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
-						// }
+						else{
+							return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
+						}
 					}).set('multitarget',function(){return true}).set('ai',function(target){
 						var player=get.player();//定义变量player为选目标的发起者(不懂可以先不写)
 						return get.attitude(player,target)>5;//选队友
