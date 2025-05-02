@@ -16,6 +16,17 @@ export { YBSL_special }
  */
 const YBSL_special = function () {
 	//宗族：吴郡陆氏
+	game.YB_addAudio= function(...objects){
+		// if(typeof objects=='')
+		objects.forEach((currentObj, index) => {
+			// if(!lib.skill[currentObj[0]])continue;
+			if(!lib.skill[currentObj[0]].audioname2)lib.skill[currentObj[0]].audioname2={}
+			for(var i in currentObj[1]){
+				lib.skill[currentObj[0]].audioname2[i]=currentObj[1][i];
+			}
+		});
+	}
+
 	var clan_list = ['陆逊', '陆抗', '陆郁生', '陆绩', '陆凯', '陆机', '陆云', '陆延', '陆康'];
 	{//吴郡陆氏角色添加宗族
 		lib.arenaReady.push(function () {
@@ -570,5 +581,32 @@ const YBSL_special = function () {
 			// 	player.clearMark('ybsl_baoshidu');
 			// },
 		};
+	}
+	{//名神曹丕
+		lib.dynamicTranslate.chuyuan = function(player){
+			var str = '一名角色受到伤害后，若你武将牌上「储」的数量小于体力上限，你可以令其摸一张牌。然后其将一张手牌置于你的武将牌上，称为「储」。';
+			if(player.storage.ybmjz_chuyuan==true)str+='准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。'
+			return str;
+		}
+		lib.dynamicTranslate.ybmjz_chuyuan = function(player){
+			var str = '一名角色受到伤害后，若你武将牌上「储」的数量小于体力上限，你可以令其摸一张牌。然后其将一张手牌置于你的武将牌上，称为「储」。';
+			if(player.storage.ybmjz_chuyuan==true)str+='准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。'
+			return str;
+		}
+		lib.arenaReady.push(function(){
+			if(!lib.skill.chuyuan.group)lib.skill.chuyuan.group=[];
+			lib.skill.chuyuan.group.push('ybmjz_chuyuan_wenji');
+			if(!lib.skill.rejianxiong_shen_caopi)lib.skill.rejianxiong_shen_caopi={
+				audio:2,
+			}
+			game.YB_addAudio(
+				['new_rejianxiong',{ybmjz_shen_caopi:'rejianxiong_shen_caopi'}],
+				['rerende',{ybmjz_shen_caopi:'rerende_shen_caopi'}],
+				['rezhiheng',{ybmjz_shen_caopi:'rezhiheng_shen_caopi'}],
+				['olluanji',{ybmjz_shen_caopi:'olluanji_shen_caopi'}],
+				// ['sbxingshang',{ybmjz_shen_caopi:'caopi_xinkui'}],
+			)
+			// if()lib.skill.new_rejianxiong.audioname2
+		})
 	}
 }

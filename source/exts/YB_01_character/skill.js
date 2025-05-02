@@ -16,6 +16,9 @@ const skill = {
 	//---------------------------本人（鬼神易）
 	'dz014_xianji':{
 		audio:'ext:夜白神略/audio/character:1',
+		audioname2:{
+			ybmjz_shen_caopi_kui:'',
+		},
 		enable:'chooseToUse',
 		filter:function (event,player){
 			if(!player.storage.dz014_xinkui) return false;
@@ -53,7 +56,13 @@ const skill = {
 			},
 			save:true,
 			result:{
-				player:10,
+				player:function(){
+					let tri = _status.event.getTrigger()
+					if (tri && tri.name === "dying"){
+						return 1;
+					}
+					else return -114514;
+				},
 			},
 		},
 	},

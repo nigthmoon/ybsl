@@ -1286,6 +1286,7 @@ const skill = {
 			save:true,
 		}
 	},
+	//神郭嘉
 	ybmjz_reshuishi:{
 		audio: "shuishi",
 		enable: "phaseUse",
@@ -1440,5 +1441,192 @@ const skill = {
 			},
 		},
 		ai: { order: 1, result: { player: 1 } },
+	},
+	//神曹丕
+	ybmjz_chuyuan:{
+		audio: 'chuyuan',
+		trigger: { global: "damageEnd" },
+		filter(event, player) {
+			return event.player.isIn() && player.getExpansions("chuyuan").length < player.maxHp;
+		},
+		logTarget: "player",
+		locked: false,
+		content() {
+			"step 0";
+			trigger.player.draw();
+			"step 1";
+			if (!trigger.player.countCards("h")) event.finish();
+			else trigger.player.chooseCard("h", true, "选择一张牌置于" + get.translation(player) + "的武将牌上作为「储」");
+			"step 2";
+			player.addToExpansion(result.cards, trigger.player, "give").gaintag.add("chuyuan");
+		},
+		intro: {
+			content: "expansion",
+			markcount: "expansion",
+		},
+		onremove(player, skill) {
+			var cards = player.getExpansions('chuyuan');
+			if (cards.length) player.loseToDiscardpile(cards);
+		},
+		levelUp(player){
+			player.storage.ybmjz_chuyuan=true;
+		},
+		group:'ybmjz_chuyuan_wenji',
+		subSkill:{
+			wenji:{
+				audio: 'chuyuan',
+				trigger: { player: "phaseZhunbeiBegin" },
+				filter(event,player){
+					var cards = player.getExpansions('chuyuan');
+					return cards.length&&cards.length>=player.maxHp&&player.storage.ybmjz_chuyuan==true;
+				},
+				forced:true,
+				content(){
+					player.gain(player.getExpansions("chuyuan"), "gain2", "fromStorage");
+					player.gainMaxHp();
+				}
+			},
+		},
+		ai: {
+			notemp: true,
+		},
+	},
+	ybmjz_dengji:{
+		audio:'dengji',
+		derivation: ["ybmjz_tianxing", "new_rejianxiong", "rerende", "rezhiheng", "olluanji", "caopi_xingdong",'caopi_xinkui'],
+		trigger: { player: "phaseZhunbeiBegin" },
+		forced: true,
+		unique: true,
+		juexingji: true,
+		skillAnimation: true,
+		animationColor: "water",
+		filter(event, player) {
+			return player.getExpansions("chuyuan").length >= 3;
+		},
+		content() {
+			player.awakenSkill(event.name);
+			player.addSkills(["ybmjz_tianxing", "new_rejianxiong"]);
+			player.loseMaxHp();
+			player.gain(player.getExpansions("chuyuan"), "gain2", "fromStorage");
+		},
+		ai: {
+			combo: "chuyuan",
+		},
+	},
+	ybmjz_tianxing:{
+		audio:'tianxing',
+		trigger: { player: "phaseZhunbeiBegin" },
+		forced: true,
+		unique: true,
+		juexingji: true,
+		skillAnimation: true,
+		animationColor: "thunder",
+		filter(event, player) {
+			return player.getExpansions("chuyuan").length >= 3;
+		},
+		content() {
+			"step 0";
+			player.awakenSkill(event.name);
+			player.loseMaxHp();
+			player.gain(player.getExpansions("chuyuan"), "gain2", "fromStorage");
+			"step 1";
+			// player.YB_levelUp("ybmjz_chuyuan");
+			player.storage.ybmjz_chuyuan=true;
+			player
+				.chooseControl("rerende", "rezhiheng", "olluanji", "caopi_xingdong","caopi_xinkui")
+				.set("prompt", "选择获得一个技能")
+				.set("ai", function () {
+					var player = _status.event.player;
+					if (!player.hasSkill("luanji") && !player.hasSkill("olluanji") && player.getUseValue({ name: "wanjian" }) > 4) return "olluanji";
+					if (!player.hasSkill("rezhiheng")) return "rezhiheng";
+					if (!player.hasSkill("caopi_xingdong")) return "caopi_xingdong";
+					if (!player.hasSkill("caopi_xinkui")) return "caopi_xinkui";
+					return "rerende";
+				});
+			"step 2";
+			player.addSkills(result.control);
+		},
+		ai: {
+			combo: "chuyuan",
+		},
+
+	},
+	caopi_xinkui:{
+		preHidden:true,
+		audio:'sbxingshang',
+		trigger:{
+			global:'dieAfter',
+		},
+		forced:true,
+		filter:function (event,player){
+			if(!player.side) player.side=player.playerid;
+			return !event.player.isAlive()&&(!event.player.side||event.player.side!=player.side);
+		},
+		available:function (mode){
+			if(['versus','boss','chess'].includes(mode)) return false;
+		},
+		logTarget:'player',
+		content:function (){
+			game.addGlobalSkill('autoswap');
+			var fun=function(self,me){
+				me=(me||game.me);
+				var that=this._trueMe||this;
+				if(that.isMad()||game.notMe) return false;
+				if(this===me){
+					if(self) return true;
+					return false;
+				}
+				if(that===me||this==me._trueMe) return true;
+				if(_status.connectMode) return false;
+				if(lib.config.mode=='versus'){
+					if(_status.mode=='three') return this.side==me.side;
+					if(_status.mode=='standard') return lib.storage.single_control&&this.side==me.side;
+					if(_status.mode=='four') return get.config('four_phaseswap')&&this.side==me.side;
+					if(_status.mode=='two') return get.config('two_phaseswap')&&this.side==me.side;
+					return false;
+				}
+				else if(lib.config.mode=='boss'){
+					if(me.side) return false;
+					return this.side==me.side&&get.config('single_control');
+				}
+				else if(game.chess){
+					if(lib.config.mode=='chess'){
+						if(_status.mode=='combat'&&!get.config('single_control')) return false;
+					}
+					return this.side==me.side;
+				};
+				if(this.side&&this.side==me.side) return true;
+				return false;
+			};
+			lib.element.player.isUnderControl=fun;
+			for(var i of game.players){
+				i.isUnderControl=fun;
+			};
+			if(!player.side) player.side=player.playerid;
+			trigger.player.side=player.side;
+			trigger.player._trueMe=player;
+			if(trigger.player==game.me){
+				game.notMe=true;
+				if(!_status.auto) ui.click.auto();
+			}
+			trigger.player.init('ybmjz_shen_caopi_kui');
+			trigger.player.storage.dz014_xinkui=player;
+			if (!lib.translate['commoner']) lib.translate['commoner'] = '民';
+			trigger.player.identity = 'commoner';
+			trigger.player.setIdentity('commoner');
+			trigger.player.identityShown = trigger.player.storage.dz014_xinkui.identityShown;
+			trigger.player.ai.modAttitudeFrom = function (from, to, att) {
+				const source = game.findPlayer(target => target == from.side || target.side == from.side && target.identity != 'commoner');
+				if (to == from.side || to.side == from.side) return 20;
+				return get.attitude(source, to);
+			};
+			trigger.player.ai.modAttitudeTo = function (from, to, att) {
+				const source = game.findPlayer(target => target == to.side || target.side == to.side && target.identity != 'commoner');
+				if (from == to.side || from.side == to.side) return 20;
+				return get.attitude(from, source) * (to.identity == 'commoner' ? 0.8 : 1);
+			};
+			trigger.player.revive(3,false);
+			trigger.player.draw(4);
+		},
 	},
 }
