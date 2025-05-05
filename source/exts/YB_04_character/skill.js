@@ -6096,7 +6096,7 @@ const skill = {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: { player: "dying" },
 		forced: true,
-		group: "sanku_nogain",
+		// group: "sanku_nogain",
 		content() {
 			"step 0";
 			player.loseMaxHp();

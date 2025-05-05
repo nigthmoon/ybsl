@@ -19,7 +19,7 @@ const skill = {
 		locked: false,
 		beginMarkCount: 20,
 		maxMarkCount: 99,
-		derivation: ["yhky_lzyzhanjue", "yhky_lzyfengpo", "yhky_lzyzhaolie", "yhky_lzyfenshen"],
+		derivation: ["yhky_lzyzhanjue", "yhky_lzyfengpo", "yhky_lzyfengjian", "yhky_lzyfenshen"],
 		addMark(player, num) {
 			num = Math.min(num, lib.skill.yhky_lzyjuekang.maxMarkCount - player.countMark("yhky_lzyjuekang"));
 			player.addMark("yhky_lzyjuekang", num);
@@ -525,6 +525,33 @@ const skill = {
 		// 		},
 		// 	},
 		// },
+	},
+	yhky_lzyfengjian:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger: { source: "damageSource" },
+		forced: true,
+		locked: false,
+		filter: function (event, player) {
+			return event.player.isAlive();
+		},
+		logTarget: "player",
+		content: function () {
+			trigger.player.addTempSkill("yhky_lzyfengjian2", { player: "phaseAfter" });
+			trigger.player.markAuto("yhky_lzyfengjian2", [player]);
+		},
+	},
+	yhky_lzyfengjian2:{
+		persevereSkill: true,
+		onremove: true,
+		intro: {
+			content: "不能对$使用牌",
+		},
+		mod: {
+			playerEnabled: function (card, player, target) {
+				if (player.getStorage("yhky_lzyfengjian2").includes(target)) return false;
+			},
+		},
 	},
 	yhky_lzyfenshen:{
 		audio: 'ext:夜白神略/audio/character:2',

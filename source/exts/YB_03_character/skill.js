@@ -57,7 +57,8 @@ const skill = {
 					return !player.hasSkill(i, null, null, false);
 				})
 				.randomGets(3);
-			if (list.length == 0) event.result={bool:true,cost_data:list};
+			if (list.length == 0) event.result={bool:false};
+			if (list.length == 1) event.result={bool:true,cost_data:list};
 			else {
 				event.videoId = lib.status.videoId++;
 				var func = function (skills, id, target) {
@@ -90,7 +91,16 @@ const skill = {
 			lib.skill[event.cost_data].audioname2.ssj_ybxh_linyi='xhly_yulong'
 			player.addSkills(event.cost_data);
 		},
-
+		init(player){
+			if(player
+				.getAllHistory("custom", evt => evt.xhly_yulong_num)
+				.map(evt => evt.xhly_yulong_num)
+			){
+				for(var i of player.getAllHistory("custom")){
+					if(i['xhly_yulong_num'])delete i['xhly_yulong_num'];
+				}
+			}
+		}
 	},
 	'xhly_tiancan':{
 		audio:'ext:夜白神略/audio/character:2',
