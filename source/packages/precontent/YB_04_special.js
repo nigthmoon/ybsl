@@ -275,43 +275,49 @@ const YBSL_special = function () {
 			},
 			forceDie: true,
 			content: function () {
-				var list = [];
-				var list2 = [];
-				var cs = trigger.cards;
-				for (var i = 0; i < cs.length; i++) {
-					if (cs[i].storage._yb054_caijin && get.position(cs[i], true) == 'd') {
-						list.push(cs[i]);
-						var card1 = cs[i].storage._yb054_caijin;
-						list2.push(card1);
-					}
-				}
-				game.log(list, '已被移出游戏');
-				game.log(list2, '的点数已被加了回来');
-				game.cardsGotoSpecial(list);
-				for (var j of list2) {
-					if (j) {
-						var cards = j;
-						var card = get.copy(cards);
-						// var tag = [];
-						// if (get.cardtag(card, 'gifts')) var tag = ['gifts'];
-						var tag = get.YB_tag(card)
-						cards.YB_init([card.suit, card.number + 1, card.name, card.nature, tag]);
-						if (card.cardtag) cards.cardtag = card.cardtag;
-						// j.number++;
-						game.countPlayer(function (current) {// if(current.getEquip(j)) {
-							if (current.getCards('e').includes(j)) {
-								current.recover();
-								game.log(j, '在', get.translation(current), '的装备区，因而回血');
-								// break;
+				game.broadcastAll(
+					function(trigger){
+						var list = [];
+						var list2 = [];
+						var cs = trigger.cards;
+						for (var i = 0; i < cs.length; i++) {
+							if (cs[i].storage._yb054_caijin && get.position(cs[i], true) == 'd') {
+								list.push(cs[i]);
+								var card1 = cs[i].storage._yb054_caijin;
+								list2.push(card1);
 							}
-							else if (current.getCards('j').includes(j)) {
-								current.recover();
-								game.log(j, '在', get.translation(current), '的判定区，因而回血');
-								// break;
+						}
+						game.log(list, '已被移出游戏');
+						game.log(list2, '的点数已被加了回来');
+						game.cardsGotoSpecial(list);
+						for (var j of list2) {
+							if (j) {
+								var cards = j;
+								var card = get.copy(cards);
+								// var tag = [];
+								// if (get.cardtag(card, 'gifts')) var tag = ['gifts'];
+								var tag = get.YB_tag(card)
+								cards.YB_init([card.suit, card.number + 1, card.name, card.nature, tag]);
+								if (card.cardtag) cards.cardtag = card.cardtag;
+								// j.number++;
+								game.countPlayer(function (current) {// if(current.getEquip(j)) {
+									if (current.getCards('e').includes(j)) {
+										current.recover();
+										game.log(j, '在', get.translation(current), '的装备区，因而回血');
+										// break;
+									}
+									else if (current.getCards('j').includes(j)) {
+										current.recover();
+										game.log(j, '在', get.translation(current), '的判定区，因而回血');
+										// break;
+									}
+								})
 							}
-						})
-					}
-				}
+						}
+
+					},
+					trigger,
+				)
 			},
 		}
 	}
@@ -518,21 +524,26 @@ const YBSL_special = function () {
 			const player = this;
 			player.addTempSkill('ybsl_baoshidu');
 			player.addMark('ybsl_baoshidu', num);
-			if (!player.baoshidu) {
-				player.baoshidu = ui.create.div('.nengliangtiao', player);
-				ui.create.div('.jindutiao', player.baoshidu);
-			}
-			const jindutiao = player.baoshidu.firstChild;
-			const v = player.countMark('ybsl_baoshidu') / player.YB_maxBaoshi();
-			if (player.dataset.position == 0) {
-				jindutiao.style.width = `${100 * v}%`;
-				jindutiao.style.height = `100%`;
-			}
-			else {
-				jindutiao.style.width = `100%`;
-				jindutiao.style.height = `${100 * v}%`;
-			}
-			jindutiao.innerHTML = '<span style="font-size:24px;">'+player.countMark('ybsl_baoshidu')+'</span>';
+			// game.broadcastAll(
+			// 	function(player){
+			// 		if (!player.baoshidu) {
+			// 			player.baoshidu = ui.create.div('.nengliangtiao', player);
+			// 			ui.create.div('.jindutiao', player.baoshidu);
+			// 		}
+			// 		const jindutiao = player.baoshidu.firstChild;
+			// 		const v = player.countMark('ybsl_baoshidu') / player.YB_maxBaoshi();
+			// 		if (player.dataset.position == 0) {
+			// 			jindutiao.style.width = `${100 * v}%`;
+			// 			jindutiao.style.height = `100%`;
+			// 		}
+			// 		else {
+			// 			jindutiao.style.width = `100%`;
+			// 			jindutiao.style.height = `${100 * v}%`;
+			// 		}
+			// 		jindutiao.innerHTML = '<span style="font-size:24px;">'+player.countMark('ybsl_baoshidu')+'</span>';
+			// 	},
+			// 	player
+			// )
 		};
 		lib.translate.ybsl_baoshidu='饱腹值'
 		lib.translate.ybsl_baoshidu_info='一般情况下，上限两点，回合结束清空'
@@ -552,14 +563,19 @@ const YBSL_special = function () {
 			//写在这
 			mark: true,
 			marktext: '饱',
-			// onremove: true,
-			onremove:function(player){
-				if (player.baoshidu) {
-					player.baoshidu.remove();
-					delete player.baoshidu;
-				}
-				player.clearMark('ybsl_baoshidu');
-			},
+			onremove: true,
+			// onremove:function(player){
+			// 	game.broadcastAll(
+			// 		function(player){
+			// 			if (player.baoshidu) {
+			// 				player.baoshidu.remove();
+			// 				delete player.baoshidu;
+			// 			}
+			// 		},
+			// 		player
+			// 	)
+			// 	player.clearMark('ybsl_baoshidu');
+			// },
 			intro: {
 				content(storage, player, skill) {
 					return player.countMark('ybsl_baoshidu') + '/' + player.YB_maxBaoshi();
@@ -608,5 +624,70 @@ const YBSL_special = function () {
 			)
 			// if()lib.skill.new_rejianxiong.audioname2
 		})
+	}
+	{//符咒世界
+		lib.translate._yzdel_mana='蓝量'
+		
+		lib.skill._yzdel_mana = {
+			//写在这
+			mark: true,
+			marktext: 'MP',
+			intro: {
+				content(storage, player, skill) {
+					return player.countMark('_yzdel_mana') + '/' + player.YB_yzdel_maxMana();
+				},
+			},
+			charlotte:true,
+			forced: true,
+		};
+		lib.element.player.YB_yzdel_maxMana = function(){
+			var num=15;
+			var player=this;
+			if(game.checkMod(event,player,0,'YB_yzdel_maxMana',player))num=game.checkMod(event,player,0,'YB_yzdel_maxMana',player);
+			if(game.checkMod(event,player,0,'YB_yzdel_maxManaAdd',player))num+=game.checkMod(event,player,0,'YB_yzdel_maxManaAdd',player);
+			return num;
+		}
+		lib.element.player.YB_yzdel_noneMana = function(){
+			return player.YB_yzdel_maxMana()-player.countMark('_yzdel_mana');
+		}
+		lib.element.player.YB_gainMana = function (num) {
+			const player = this;
+			if(num==0)return ;
+			if(num>player.YB_yzdel_noneMana())return player.YB_gainMana(player.YB_yzdel_noneMana());
+			player.addMark('_yzdel_mana', num);
+			player.YB_updateMana();
+		};
+		lib.element.player.YB_loseMana = function (num) {
+			const player = this;
+			if(num==0)return ;
+			if(num>player.countMark('_yzdel_mana'))return player.YB_loseMana(player.countMark('_yzdel_mana'));
+			player.removeMark('_yzdel_mana', num);
+			player.YB_updateMana();
+		};
+		/**
+		 * 更新Mana条
+		 */
+		lib.element.player.YB_updateMana = function(){
+			game.broadcastAll(
+				function(player){
+					if (!player._yzdel_mana) {
+						player._yzdel_mana = ui.create.div('.mana_nengliangtiao', player);
+						ui.create.div('.mana_jindutiao', player._yzdel_mana);
+					}
+					const mana_jindutiao = player._yzdel_mana.firstChild;
+					const v = player.countMark('_yzdel_mana') / player.YB_yzdel_maxMana();
+					if (player.dataset.position == 0) {
+						mana_jindutiao.style.width = `${100 * v}%`;
+						mana_jindutiao.style.height = `100%`;
+					}
+					else {
+						mana_jindutiao.style.width = `100%`;
+						mana_jindutiao.style.height = `${100 * v}%`;
+					}
+					mana_jindutiao.innerHTML = '<span style="font-size:24px;">'+player.countMark('_yzdel_mana')+'</span>';
+				},
+				player
+			)
+		}
 	}
 }

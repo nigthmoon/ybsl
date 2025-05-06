@@ -2510,6 +2510,7 @@ const skill = {
 					event.result = await player.chooseTarget('请选择'+get.translation(trigger.card)+'的额外目标').set('selectTarget',function(){
 						return [1,game.countPlayer(c=>c.hasSkillTag('YB_fenxiang'))];
 					}).set('filterTarget',function(card,player,target){
+						var trigger = _status.event.getTrigger();
 						var targets = ui.selected.targets;
 						if(player.hasSkillTag('YB_fenxiang')){
 							if(targets){
@@ -2523,6 +2524,7 @@ const skill = {
 						else{
 							return !trigger.targets.includes(target)&&target.hasSkillTag('YB_fenxiang');
 						}
+						// return true;
 					}).set('multitarget',function(){return true}).set('ai',function(target){
 						var player=get.player();//定义变量player为选目标的发起者(不懂可以先不写)
 						return get.attitude(player,target)>5;//选队友
@@ -6920,7 +6922,7 @@ const skill = {
 			var list=[];
 			event.source=trigger.source;
 			event.target=trigger.player;
-			var source=event.source,target=event.target;
+			var source=_status.event.getTrigger().source,target=_status.event.getTrigger().player;
 			var num1=source.countCards('h')-target.hp;
 			var num2=target.countCards('h')-source.hp;
 			if(num1!=0){
@@ -6948,8 +6950,9 @@ const skill = {
 			dialog.add([list,'tdnodes']);
 			var chooseButton=player.chooseButton(dialog,[0,1]);
 			chooseButton.set('ai',function(button){
+				var trigger = _status.event.getTrigger();
 				var player=_status.event.player;
-				var att1=get.attitude(player,event.source),att2=get.attitude(player,event.target);
+				var att1=get.attitude(player,trigger.source),att2=get.attitude(player,trigger.target);
 				if(att1>0&&num1<0){
 					if(button.link==1)return true;
 				};
@@ -7491,7 +7494,10 @@ const skill = {
 					'step 0'
 					player.chooseToDiscard(2,'he').set('prompt','是否弃置两张牌，令手牌上限+1？'
 					).set('ai',function(card){
-						return player.countCards('h')-2>player.getHandcardLimit();
+						var trigger = _status.event.getTrigger();
+						var player = _status.event.player;
+						if(trigger.player.countCards('h')-2>=trigger.player.getHandcardLimit())return -get.value(card);
+						else return 6-get.value(card);
 					});
 					'step 1'
 					if(result.bool){
@@ -7519,7 +7525,7 @@ const skill = {
 				return '摸一张牌';
 			});
 			'step 1'
-			game.log(trigger.player,trigger.target);
+			// game.log(trigger.player,trigger.target);
 			if(result.control!='cancel2'){
 				player.logSkill('yb026_xiaoye');
 				if(result.control=='摸一张牌'){
@@ -11156,9 +11162,7 @@ const skill = {
 			// var tag=[];
 			// if(get.cardtag(card,'gifts'))var tag=['gifts'];
 			var tag = get.YB_tag(card)
-			cards.YB_init([card.suit,card.number-1,card.name,card.nature,tag]);
 			// if(card.cardtag)cards.cardtag=card.cardtag;
-			event.card=game.YB_createCard(trigger.card.name,trigger.card.suit,1,trigger.card.nature,tag)
 			// game.me.gain(game.YB_createCard('YB_shashan','none',1,'fire'),'gain2')
 			// game.YB_createCard(trigger.card.name,trigger.card.suit,1,trigger.card.nature,tag)
 			// YB_shashan
@@ -11166,9 +11170,14 @@ const skill = {
 			// if(card.cardtag)event.card.cardtag=card.cardtag;
 			// event.card.number=1;
 			// 'step 1'
-			event.card.storage._yb054_caijin=cards;
-			player.gain(event.card,'gain2');
-			player.chooseUseTarget(event.card);
+			var cardxx;
+			game.broadcastAll(function(card,cards,tag,cardx){
+				cards.YB_init([card.suit,card.number-1,card.name,card.nature,tag]);
+				cardxx=game.YB_createCard(cardx.name,cardx.suit,1,cardx.nature,tag)
+				cardxx.storage._yb054_caijin=cards;
+			},card,cards,tag,trigger.card)
+			player.gain(cardxx,'gain2');
+			player.chooseUseTarget(cardxx);
 			// 'step 1'
 			
 		},
@@ -14549,6 +14558,7 @@ const skill = {
 				str+='造成的一点伤害还是改为其获得这些牌';
 			}
 			tar.chooseControl('伤害','交牌').set('prompt',str).set('ai',function(control){
+				// var trigger = _status.event.getTrigger();
 				if(_status.event.player==trigger.player){
 					if(get.attitude(_status.event.player,player)>0){
 						return '交牌';
@@ -14600,9 +14610,11 @@ const skill = {
 			if(event.triggername=='useCard'){str+='无效？';}
 			else{str+='追加一次伤害？'}
 			player.chooseCard('he',function(card){
+				var trigger = _status.event.getTrigger();
 				if(get.name(card)!=get.name(trigger.card)) return false;
 				return true;
 			}).set('ai',function(card){
+				var trigger = _status.event.getTrigger();
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return true;
 			}).set('prompt',str);
@@ -14640,6 +14652,7 @@ const skill = {
 		usable:1,
 		async cost(event,trigger,player){
 			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+				var trigger = _status.event.getTrigger();
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
 			}).forResult();
@@ -14729,6 +14742,7 @@ const skill = {
 		},
 		async cost(event,trigger,player){
 			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+				var trigger = _status.event.getTrigger();
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
 			}).forResult();

@@ -36,8 +36,8 @@ window.cardPile=[
 	['club',6,'sha'],
 	['club',7,'nanman',null,['yingbian_fujia','yingbian_remove']],//应变新增应变
 	['club',8,'sha'],
-	['club',9,'sha','thunder'],//应变替换杀--------☆
-	['club',10,'sha','thunder'],//应变替换杀--------☆
+	['club',9,'sha','thunder|YB_wind'],//应变替换杀--------☆
+	['club',10,'sha','thunder|YB_wind'],//应变替换杀--------☆
 	['club',11,'sha'],
 	['club',12,'wuxie'],
 	['club',13,'wuxie',null,['yingbian_canqu','yingbian_draw']],//应变新增应变
@@ -51,7 +51,7 @@ window.cardPile=[
 	['diamond',7,'sha'],
 	['diamond',8,'sha',null,['yingbian_canqu','yingbian_hit']],//应变新增应变
 	['diamond',9,'sha'],
-	['diamond',10,'sha','fire'],//应变替换杀--------☆
+	['diamond',10,'sha','fire|YB_wind'],//应变替换杀--------☆
 	['diamond',11,'shan'],
 	['diamond',12,'tao'],
 	['diamond',13,'sha'],
@@ -65,8 +65,8 @@ window.cardPile=[
 	['spade',4,'shuiyanqijunx',null,['yingbian_zhuzhan','yingbian_add']],//应变替换顺手--------☆
 	['spade',5,'jueying'],
 	['spade',6,'lebu'],
-	['spade',7,'sha','ice'],//应变替换杀--------☆
-	['spade',8,'sha','ice'],//应变替换杀--------☆
+	['spade',7,'sha','ice|YB_wind'],//应变替换杀--------☆
+	['spade',8,'sha','ice|YB_wind'],//应变替换杀--------☆
 	['spade',9,'sha',null,['yingbian_canqu','yingbian_add']],//应变新增应变
 	['spade',10,'sha',null,['yingbian_zhuzhan','yingbian_add']],//应变新增应变
 	['spade',11,'shunshou'],
@@ -82,7 +82,7 @@ window.cardPile=[
 	['heart',7,'dongzhuxianji'],//应变替换无中--------☆
 	['heart',8,'dongzhuxianji'],//应变替换无中--------☆
 	['heart',9,'dongzhuxianji'],//应变替换无中--------☆
-	['heart',10,'sha'],
+	['heart',10,'sha','YB_wind'],
 	['heart',11,'dongzhuxianji'],//应变替换无中--------☆
 	['heart',12,'tao'],
 	['heart',13,'zhuahuang'],
@@ -95,8 +95,8 @@ window.cardPile=[
 	['club',6,'lebu'],
 	['club',7,'sha'],
 	['club',8,'sha'],
-	['club',9,'sha','thunder'],//应变替换杀--------☆
-	['club',10,'sha','thunder'],//应变替换杀--------☆
+	['club',9,'sha','thunder|YB_wind'],//应变替换杀--------☆
+	['club',10,'sha','thunder|YB_wind'],//应变替换杀--------☆
 	['club',11,'sha',null,['yingbian_canqu','yingbian_add']],//应变新增应变
 	['club',12,'tianjitu'],//应变替换借刀--------☆
 	['club',13,'tongque'],//应变替换借刀--------☆
@@ -124,7 +124,7 @@ window.cardPile=[
 	['spade',4,'sha','thunder'],
 	['spade',5,'sha','thunder'],
 	['spade',6,'sha','thunder'],
-	['spade',7,'sha','ice'],//应变替换雷杀--------☆
+	['spade',7,'sha','ice|YB_wind'],//应变替换雷杀--------☆
 	['spade',8,'sha','ice'],//应变替换雷杀--------☆
 	['spade',9,'jiu'],
 	['spade',10,'bingliang'],
@@ -153,7 +153,7 @@ window.cardPile=[
 	['club',5,'sha','thunder'],
 	['club',6,'sha','thunder'],
 	['club',7,'sha','thunder'],
-	['club',8,'sha','thunder'],
+	['club',8,'sha','thunder|YB_wind'],
 	['club',9,'jiu'],
 	['club',10,'tiesuo'],
 	['club',11,'tiesuo'],
@@ -163,8 +163,8 @@ window.cardPile=[
 	['diamond',1,'wuxinghelingshan'],//应变替换朱雀--------☆
 	['diamond',2,'tao'],
 	['diamond',3,'tao'],
-	['diamond',4,'sha','fire',['yingbian_kongchao','yingbian_damage']],//应变新增应变
-	['diamond',5,'sha','fire'],
+	['diamond',4,'sha','fire|YB_wind',['yingbian_kongchao','yingbian_damage']],//应变新增应变
+	['diamond',5,'sha','fire|YB_wind'],
 	['diamond',6,'shan'],
 	['diamond',7,'shan'],
 	['diamond',8,'shan'],
@@ -195,7 +195,7 @@ window.cardPile=[
 	['heart',2,'shan',null,['gifts']],
 	['heart',3,'wugu',null,['gifts']],
 	['heart',4,'xinge',null,['gifts']],
-	['heart',5,'sha',null,['gifts']],
+	['heart',5,'sha','YB_wind',['gifts']],
 	['heart',6,'chenghuodajie'],
 	['heart',7,'tao'],
 	['heart',8,'tao'],

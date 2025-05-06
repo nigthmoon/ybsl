@@ -51,8 +51,21 @@ export async function precontent() {
 		YBSL_update();
 		// YBSL_destiny();
 		YB_11_cardBrowser();
-
 	}
+	lib.arenaReady.push(function(){
+		//导入数据
+		YBSL_rank();
+		YBSL_nature();
+		YBSL_trigger();
+		YBSL_special();
+		YBSL_pinyin();
+		YBSL_starmap();
+		YBSL_qianhuan();
+		YBSL_ybslf();
+		YBSL_update();
+		// YBSL_destiny();
+		YB_11_cardBrowser();
+	})
 	//嗨梨相关的整理完后挪到对应将包
 
 

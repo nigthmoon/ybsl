@@ -3,7 +3,7 @@ export { skill }
 
 const skill = {
 	ybsl_magicSkill:{
-
+		
 	},
 	ybsl_spMagicSkill:{
 

@@ -1306,7 +1306,7 @@ const skill = {
 					if (evt && evt.suits && evt.suits.includes(get.suit(result))) return 0;
 					return 1;
 				})
-				.set("callback", lib.skill.reshuishi.callback).judge2 = function (result) {
+				.set("callback", lib.skill.ybmjz_reshuishi.callback).judge2 = function (result) {
 				return result.bool ? true : false;
 			};
 			"step 2";

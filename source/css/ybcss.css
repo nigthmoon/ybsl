@@ -58,7 +58,24 @@ span[data-nature="YB_moneym"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0
 div[data-nature="YB_moneymm"],
 span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,
 	rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,black 0 0 1px;
+}/*----------------定义风颜色----------------*/
+.player .identity[data-color="YB_snow"],
+div[data-nature="YB_snow"],
+span[data-nature="YB_snow"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 10px,
+	rgba(255, 237, 123,1) 0 0 10px
 }
+div[data-nature="YB_snowm"],
+span[data-nature="YB_snowm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 5px,
+	rgba(255, 237, 123,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_snowmm"],
+span[data-nature="YB_snowmm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,
+	rgba(255, 237, 123,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(255, 237, 123,1) 0 0 20px,rgba(255, 237, 123,1) 0 0 20px,black 0 0 1px;*/
 /*--------雪属性卡牌字体颜色-------*/
 .card.fullskin.YB_snow>.name {
 	color: #1EB1A1;
@@ -76,6 +93,10 @@ span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0
 	color: #E328B7;
 	border: 1px solid #E328B7;
 }*/
+.card.fullskin.YB_windy>.name {
+	color: #ffed7a;
+	border: 1px solid #ffdd00;
+}
 /*--------血属性卡牌字体颜色-------*/
 .card.fullskin.YB_mystery>.name {
 	color: #E328B7;
@@ -167,4 +188,49 @@ span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0
 	bottom: 0;
 	z-index: 20;
 	background-color: #e328b7;
+}
+
+/*  蓝条  */
+/*  蓝条  */
+.player[data-position="0"]>.mana_nengliangtiao {
+	width: 50%;
+	height: 10%;
+	left: 25%;
+	top: -20%;
+	background-color: #fff;
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/*  蓝条  */
+.player[data-position="0"]>.mana_nengliangtiao>.mana_jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 100%;
+	width: 50%;
+	z-index: 20;
+	background-color: #28e3ce;
+}
+
+/*  蓝条  */
+.player:not([data-position="0"])>.mana_nengliangtiao {
+	width: 10%;
+	height: 100%;
+	left: 100%;
+	background-color: #fff;
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/*  蓝条  */
+.player:not([data-position="0"])>.mana_nengliangtiao>.mana_jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 50%;
+	width: 100%;
+	bottom: 0;
+	z-index: 20;
+	background-color: #28e3ce;
 }

@@ -1145,6 +1145,7 @@ const skill = {
 			'step 8'
 
 			//-----------此处设置此牌的视为牌名
+			
 			var list55 = [];
 			for (var yb of lib.inpile) {
 				// for(var yb in lib.card){
@@ -1153,6 +1154,7 @@ const skill = {
 				// if(!lib.card[yb].type||['db_atk','db_def','pss','hstuteng'].includes(lib.card[yb].type)) continue;
 				// if(lib.card[yb].type!='equip'){
 				if (yb == 'sha') {
+					list55.add([get.type2(yb), '', 'sha']);
 					for (var kkk of lib.inpile_nature) {
 						switch (kkk) {
 							case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;
@@ -1179,9 +1181,16 @@ const skill = {
 				var name = result.links[0][2];
 				var nature = result.links[0][3];
 				//主代码页有_kagari_ybzongsi_card全局技能
-				card.addGaintag('_kagari_ybzongsi_card');
-				_status.kagari_ybzongsi[card.cardid] = name;
-				_status.kagari_ybzongsi_nature[card.cardid] = nature;
+				game.broadcastAll(
+					function(card,name,nature){
+						card.addGaintag('_kagari_ybzongsi_card');
+						_status.kagari_ybzongsi[card.cardid] = name;
+						_status.kagari_ybzongsi_nature[card.cardid] = nature;
+					},
+					card,
+					name,
+					nature
+				)
 
 			}
 			game.updateRoundNumber();
@@ -1388,9 +1397,16 @@ const skill = {
 				var name = result.links[0][2];
 				var nature = result.links[0][3];
 				//主代码页有_kagari_ybzongsi_card全局技能
-				card.addGaintag('_kagari_ybzongsi_card');
-				_status.kagari_ybzongsi[card.cardid] = name;
-				_status.kagari_ybzongsi_nature[card.cardid] = nature;
+				game.broadcastAll(
+					function(card,name,nature){
+						card.addGaintag('_kagari_ybzongsi_card');
+						_status.kagari_ybzongsi[card.cardid] = name;
+						_status.kagari_ybzongsi_nature[card.cardid] = nature;
+					},
+					card,
+					name,
+					nature
+				)
 
 			}
 			game.updateRoundNumber();
@@ -5179,6 +5195,7 @@ const skill = {
 		},
 		filter(event, player) {
 			if (get.type(event.card) != "trick") return false;
+			if(get.name(event.card)=='wuxie')return false;
 			if (!event.targets) return false;
 			return true;
 		},

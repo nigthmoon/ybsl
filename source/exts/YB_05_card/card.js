@@ -856,7 +856,6 @@ const card = {
 		content:function (){
 			'step 0'
 			// player.addTempSkill('ybsl_tianhuoduan_skill');
-			'step 1'
 			var list=lib.skill.xinfu_ybjingxie.getJingxie();
 			if(player.countCards('he',function(card,player){
 				return list.includes(card.name)
@@ -865,9 +864,9 @@ const card = {
 				return list.includes(card.name)
 			})}
 			else{event.finish();}
-			'step 2'
+			'step 1'
 			player.showCards(result.cards);
-			'step 3'
+			'step 2'
 			var card=result.cards[0];
 			var bool=(get.position(card)=='e');
 			// var tag=[];
