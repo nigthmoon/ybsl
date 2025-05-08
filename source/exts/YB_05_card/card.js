@@ -847,7 +847,7 @@ const card = {
 		toself:true,
 		filterTarget:function(card,player,target){
 			var he=player.getCards('he');
-			var list=lib.skill.xinfu_ybjingxie.getJingxie();
+			var list=_status.YB_jingxieList;
 			for(var i=0;i<he.length;i++){
 				if(list.includes(he[i].name)) return target==player;
 			}
@@ -855,14 +855,15 @@ const card = {
 		},
 		content:function (){
 			'step 0'
-			// player.addTempSkill('ybsl_tianhuoduan_skill');
-			var list=lib.skill.xinfu_ybjingxie.getJingxie();
-			if(player.countCards('he',function(card,player){
+			var list=_status.YB_jingxieList;
+			if(player.countCards('he',function(card){
 				return list.includes(card.name)
 			})>0){
-			player.chooseCard('he',1,true,function(card,player){
-				return list.includes(card.name)
-			})}
+				player.chooseCard('he',1,true,function(card){
+					var list=_status.YB_jingxieList;
+					return list.includes(card.name)
+				})
+			}
 			else{event.finish();}
 			'step 1'
 			player.showCards(result.cards);
@@ -876,7 +877,7 @@ const card = {
 			// }
 			if(bool) player.removeEquipTrigger(card);
 			game.addVideo('skill',player,['xinfu_ybjingxie',[bool,get.cardInfo(card)]])
-			game.broadcastAll(function(card){
+			game.broadcastAll(function(card,bool){
 				if(card.name=='wuxinghelingshan'){card.name='zhuque'}
 				if(card.name=='chiyanzhenhunqin'){card.name='zhuque'}
 				if(card.name=='shandian'&&card.suit=='spade'){card.name='fulei'}

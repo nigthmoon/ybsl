@@ -2385,14 +2385,14 @@ const skill = {
 		enable: 'phaseUse',
 		filter: function (event, player) {
 			var he = player.getCards('he');
-			var list = lib.skill.xinfu_ybjingxie.getJingxie();
+			var list = _status.YB_jingxieList;
 			for (var i = 0; i < he.length; i++) {
 				if (list.includes(he[i].name)) return true;
 			}
 			return false;
 		},
 		filterCard: function (card, player) {
-			var list = lib.skill.xinfu_ybjingxie.getJingxie();
+			var list = _status.YB_jingxieList;
 			return list.includes(card.name);
 		},
 		discard: false,
@@ -2414,7 +2414,7 @@ const skill = {
 			// }
 			if (bool) player.removeEquipTrigger(card);
 			game.addVideo('skill', player, ['xinfu_ybjingxie', [bool, get.cardInfo(card)]])
-			game.broadcastAll(function (card) {
+			game.broadcastAll(function (card,bool) {
 				if (card.name == 'wuxinghelingshan') { card.name = 'zhuque' }
 				if (card.name == 'chiyanzhenhunqin') { card.name = 'zhuque' }
 				if (card.name == 'shandian' && card.suit == 'spade') { card.name = 'fulei' }

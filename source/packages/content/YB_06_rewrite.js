@@ -96,14 +96,14 @@ const YBSL_rewrite = function(){
 			// 	enable:'phaseUse',
 			// 	filter:function(event,player){
 			// 		var he=player.getCards('he');
-			// 		var list=lib.skill.xinfu_ybjingxie.getJingxie();
+			// 		var list=_status.YB_jingxieList;
 			// 		for(var i=0;i<he.length;i++){
 			// 			if(list.includes(he[i].name)) return true;
 			// 		}
 			// 		return false;
 			// 	},
 			// 	filterCard:function(card,player){
-			// 		var list=lib.skill.xinfu_ybjingxie.getJingxie();
+			// 		var list=_status.YB_jingxieList;
 			// 		return list.includes(card.name);
 			// 	},
 			// 	discard:false,

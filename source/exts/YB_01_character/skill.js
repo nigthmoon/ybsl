@@ -6832,34 +6832,64 @@ const skill = {
 					event[n]=true;
 				}
 			};
-			var dialog=ui.create.dialog('<font size=6><b>臆断</b></font>','forcebutton','hidden');
-			dialog.add('选择若干个类型，令其交给你一张符合其中一种类型的手牌，若不执行则受到等量伤害。');
-			dialog.add([listk,'tdnodes']);
-			var chooseButton=player.chooseButton(dialog,[1,Infinity],true);
+			event.listk=listk;
+			event.listn=listn;
+			// event.videoId = lib.status.videoId++;
+			// game.broadcastAll(
+			// 	function (id, listk) {
+			// 		var dialog =ui.create.dialog('<font size=6><b>臆断</b></font><br>选择若干个类型，令其交给你一张符合其中一种类型的手牌，若不执行则受到等量伤害。',[listk,'tdnodes']);
+			// 		dialog.videoId = id;
+			// 	},
+			// 	event.videoId,
+			// 	event.listk
+			// );
+			event.videoId = lib.status.videoId++;
+			if (event.isMine()) {
+				event.dialog =ui.create.dialog('<font size=6><b>臆断</b></font><br>选择若干个类型，令其交给你一张符合其中一种类型的手牌，若不执行则受到等量伤害。',[listk,'tdnodes']);
+				event.dialog.videoId = event.videoId;
+			} else if (player.isOnline2()) {
+				player.send(
+					function (listk,id) {
+						var dialog =ui.create.dialog('<font size=6><b>臆断</b></font><br>选择若干个类型，令其交给你一张符合其中一种类型的手牌，若不执行则受到等量伤害。',[listk,'tdnodes']);
+						dialog.videoId = id;
+					},
+					listk,
+					event.videoId
+				);
+			}
+			// var dialog=ui.create.dialog('<font size=6><b>臆断</b></font>','forcebutton','hidden');
+			// dialog.add('选择若干个类型，令其交给你一张符合其中一种类型的手牌，若不执行则受到等量伤害。');
+			// dialog.add([listk,'tdnodes']);
+			'step 1'
+			var chooseButton=player.chooseButton([1,Infinity],true);
+			chooseButton.set('dialog',event.videoId);
 			chooseButton.set('ai',function(button){
 				if(button.link=='ybsl_flower')return true;
 				return false;
-			}).set('filterButton',function(button){
+			});
+			chooseButton.set('filterButton',function(button){
+				var listn = _status.event.getParent().listn;
 				for(var i=0;i<ui.selected.buttons.length;i++){
 					if(!listn.includes(ui.selected.buttons[i].link)||!listn.includes(button.link)) return false;
 				}
 				return true;
 			});
 			
-			'step 1'
+			'step 2'
+			game.broadcastAll("closeDialog", event.videoId);
 			if(result.links){
 				event.lists=result.links;
 				game.log(player,'选择了',event.lists)
 				event.types=get.YB_map(event.lists,event.list);
 				target.chooseCard('h',function(card){
-					if(!event.types.includes(get.type(card))) return false;
+					if(!_status.event.getParent().types.includes(get.type(card))) return false;
 					return true;
 				}).set('ai',function(card){
 					return true;
 				})
 			}
 			else{event.finish();}
-			'step 2'
+			'step 3'
 			if(result.cards){
 				target.give(result.cards,player);
 			}
@@ -6908,7 +6938,7 @@ const skill = {
 		// usable:1,
 		trigger:{global:'damageEnd'},
 		filter:(event,player)=>{
-			if(player.hasSkill('yb022_duanxiangxin_mark'))return false;
+			// if(player.hasSkill('yb022_duanxiangxin_mark'))return false;
 			if(!event.source||!event.source.isAlive()||!event.player.isAlive())return false;
 			var source=event.source,target=event.player;
 			var num1=source.countCards('h')-target.hp;
@@ -6916,43 +6946,44 @@ const skill = {
 			if(num1!=0||num2!=0)return true;
 			return false;
 		},
-		direct:true,
-		content:function(){
+		usable:1,
+		cost(){
 			'step 0'
-			var list=[];
-			event.source=trigger.source;
-			event.target=trigger.player;
-			var source=_status.event.getTrigger().source,target=_status.event.getTrigger().player;
+			event.result = {bool:false,cost_data:null}
+			var list = [];
+			var trigger = _status.event.getTrigger();
+			var source=trigger.source,target=trigger.player;
 			var num1=source.countCards('h')-target.hp;
 			var num2=target.countCards('h')-source.hp;
-			if(num1!=0){
-				if(num1<0) {
-					var numx=-num1;
-					list.push([1,'令'+get.translation(source)+'将手牌摸'+numx+'张']);
-				}
-				if(num1>0) {
-					// var numx=-num1;
-					list.push([2,'令'+get.translation(source)+'将手牌弃'+num1+'张']);
-				}
+			if(num1<0)list.push([1,'令'+get.translation(source)+'将手牌摸'+(-num1)+'张']);
+			if(num1>0)list.push([2,'令'+get.translation(source)+'将手牌弃'+(num1)+'张']);
+			if(num2<0)list.push([3,'令'+get.translation(target)+'将手牌摸'+(-num2)+'张']);
+			if(num2>0)list.push([4,'令'+get.translation(target)+'将手牌弃'+(num2)+'张']);
+			
+			event.videoId = lib.status.videoId++;
+			if (event.isMine()) {
+				event.dialog = ui.create.dialog('<font size=6><b>断想</b></font><br>是否选择一项',[list,'tdnodes']);
+				event.dialog.videoId = event.videoId;
+			} else if (player.isOnline2()) {
+				player.send(
+					function (list,id) {
+						var dialog = ui.create.dialog('<font size=6><b>断想</b></font><br>是否选择一项',[list,'tdnodes']);
+						event.dialog.videoId = id;
+					},
+					list,
+					event.videoId
+				);
 			}
-			if(num2!=0){
-				if(num2<0) {
-					var numy=-num2;
-					list.push([3,'令'+get.translation(target)+'将手牌摸'+numy+'张']);
-				}
-				if(num2>0) {
-					// var numy=-num1;
-					list.push([4,'令'+get.translation(target)+'将手牌弃'+num2+'张']);
-				}
-			}
-			var dialog=ui.create.dialog('<font size=6><b>断想</b></font>','forcebutton','hidden');
-			dialog.add('是否选择一项');
-			dialog.add([list,'tdnodes']);
-			var chooseButton=player.chooseButton(dialog,[0,1]);
-			chooseButton.set('ai',function(button){
+			'step 1'
+			player.chooseButton(1,true)
+			.set('dialog',event.videoId)
+			.set('ai',function(button){
 				var trigger = _status.event.getTrigger();
 				var player=_status.event.player;
+				var source=trigger.source,target=trigger.player;
 				var att1=get.attitude(player,trigger.source),att2=get.attitude(player,trigger.target);
+				var num1=source.countCards('h')-target.hp;
+				var num2=target.countCards('h')-source.hp;
 				if(att1>0&&num1<0){
 					if(button.link==1)return true;
 				};
@@ -6968,26 +6999,105 @@ const skill = {
 				return false;
 			}).set('filterButton',function(button){
 				return true;
-			});
-			event.numo=(numx||num1);
-			event.nump=(numy||num2);
-			'step 1'
-			if(result.links){
-				player.addTempSkill('yb022_duanxiangxin_mark');
-				player.logSkill('yb022_duanxiangxin');
-				switch(result.links[0]){
-					case 1:event.source.draw(event.numo);break;
-					case 2:event.source.discardPlayerCard('h',event.source,event.numo,true);break;
-					case 3:event.target.draw(event.nump);break;
-					case 4:event.target.discardPlayerCard('h',event.target,event.nump,true);break;
-				}
-			}
+			}).forResult();
+			'step 2'
+			game.broadcastAll("closeDialog", event.videoId);
+			if(result.links)event.result = {bool:true,cost_data:result.links[0]};
 		},
-		subSkill:{
-			mark:{
-				onremove:true,
+		content(){
+			var trigger = trigger||_status.event.getTrigger();
+			var source=trigger.source,target=trigger.player;
+			var num1=source.countCards('h')-target.hp;
+			var num2=target.countCards('h')-source.hp;
+			switch(event.cost_data){
+				case 1:source.draw(-num1);break;
+				case 2:source.discardPlayerCard('h',source,num1,true);break;
+				case 3:target.draw(-num2);break;
+				case 4:target.discardPlayerCard('h',target,num2,true);break;
 			}
-		}
+
+		},
+		// direct:true,
+		// content:function(){
+		// 	'step 0'
+		// 	var list=[];
+		// 	event.source=trigger.source;
+		// 	event.target=trigger.player;
+		// 	var source=_status.event.getTrigger().source,target=_status.event.getTrigger().player;
+		// 	var num1=source.countCards('h')-target.hp;
+		// 	var num2=target.countCards('h')-source.hp;
+		// 	if(num1!=0){
+		// 		if(num1<0) {
+		// 			var numx=-num1;
+		// 			list.push([1,'令'+get.translation(source)+'将手牌摸'+numx+'张']);
+		// 		}
+		// 		if(num1>0) {
+		// 			// var numx=-num1;
+		// 			list.push([2,'令'+get.translation(source)+'将手牌弃'+num1+'张']);
+		// 		}
+		// 	}
+		// 	if(num2!=0){
+		// 		if(num2<0) {
+		// 			var numy=-num2;
+		// 			list.push([3,'令'+get.translation(target)+'将手牌摸'+numy+'张']);
+		// 		}
+		// 		if(num2>0) {
+		// 			// var numy=-num1;
+		// 			list.push([4,'令'+get.translation(target)+'将手牌弃'+num2+'张']);
+		// 		}
+		// 	}
+		// 	event.videoId = lib.status.videoId++;
+		// 	game.broadcastAll(
+		// 		function (id, list) {
+		// 			var dialog=ui.create.dialog('<font size=6><b>断想</b></font><br>是否选择一项',[list,'tdnodes']);
+		// 			dialog.videoId = id;
+		// 		},
+		// 		event.videoId,
+		// 		list
+		// 	);
+		// 	var chooseButton=player.chooseButton(event.videoId,[0,1]);
+		// 	chooseButton.set('ai',function(button){
+		// 		var trigger = _status.event.getTrigger();
+		// 		var player=_status.event.player;
+		// 		var att1=get.attitude(player,trigger.source),att2=get.attitude(player,trigger.target);
+		// 		if(att1>0&&num1<0){
+		// 			if(button.link==1)return true;
+		// 		};
+		// 		if(att1<0&&num1>0){
+		// 			if(button.link==2)return true;
+		// 		};
+		// 		if(att2>0&&num2<0){
+		// 			if(button.link==3)return true;
+		// 		};
+		// 		if(att2<0&&num2>0){
+		// 			if(button.link==4)return true;
+		// 		};
+		// 		return false;
+		// 	}).set('filterButton',function(button){
+		// 		return true;
+		// 	}).set('filterOk',function(){
+		// 		return ui.selected.buttons.length>0;
+		// 	});
+		// 	event.numo=(numx||num1);
+		// 	event.nump=(numy||num2);
+		// 	'step 1'
+		// 	game.broadcastAll("closeDialog", event.videoId);
+		// 	if(result.links){
+		// 		player.addTempSkill('yb022_duanxiangxin_mark');
+		// 		player.logSkill('yb022_duanxiangxin');
+		// 		switch(result.links[0]){
+		// 			case 1:event.source.draw(event.numo);break;
+		// 			case 2:event.source.discardPlayerCard('h',event.source,event.numo,true);break;
+		// 			case 3:event.target.draw(event.nump);break;
+		// 			case 4:event.target.discardPlayerCard('h',event.target,event.nump,true);break;
+		// 		}
+		// 	}
+		// },
+		// subSkill:{
+		// 	mark:{
+		// 		onremove:true,
+		// 	}
+		// }
 	},
 	/*
 	'yb022_duanxiangxin':'断想',

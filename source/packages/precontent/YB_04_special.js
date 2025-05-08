@@ -15,6 +15,26 @@ export { YBSL_special }
  * 缘分机制
  */
 const YBSL_special = function () {
+	_status.YB_jingxieList=[
+		'bagua', 'baiyin', 'lanyinjia', 'renwang', 'tengjia', 'zhuge',
+		'ybsl_wangzhui', 'chitu', 'zhuque', 'wuxinghelingshan', 'yitianjian',
+		'shandian', 'fulei', 'taigongyinfu', 'ybsl_tianleiyubi', 'hongshui',
+		'huoshan',/*'du',*/'chiyanzhenhunqin', 'tongque', 'qinglong',
+		'fangtian', 'wutiesuolian', 'huxinjing', 'goujiangdesidai'
+	];
+	//天火煅
+	// lib.arenaReady.push(function(){
+	// 	game.broadcastAll(function(){
+	// 		if(!_status.YB_jingxieList)
+	// 			_status.YB_jingxieList=[
+	// 				'bagua', 'baiyin', 'lanyinjia', 'renwang', 'tengjia', 'zhuge',
+	// 				'ybsl_wangzhui', 'chitu', 'zhuque', 'wuxinghelingshan', 'yitianjian',
+	// 				'shandian', 'fulei', 'taigongyinfu', 'ybsl_tianleiyubi', 'hongshui',
+	// 				'huoshan',/*'du',*/'chiyanzhenhunqin', 'tongque', 'qinglong',
+	// 				'fangtian', 'wutiesuolian', 'huxinjing', 'goujiangdesidai'
+	// 			];
+	// 	})
+	// })
 	//宗族：吴郡陆氏
 	game.YB_addAudio= function(...objects){
 		// if(typeof objects=='')
