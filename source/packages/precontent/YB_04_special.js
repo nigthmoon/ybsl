@@ -710,4 +710,62 @@ const YBSL_special = function () {
 			)
 		}
 	}
+	{//应变
+		lib.yingbian.effect.set('lianDa',()=>{
+			// trigger.yingbian_lianDa=true;
+			player.addTempSkill('_yingbian_doubleBlow','phaseUseAfter');
+			trigger._yingbian_doubleBlow=player;
+			game.log(card,'触发连打，额外执行一次');
+			// trigger.getParent().effectCount++;
+		})
+		lib.yingbian.prompt.set('lianDa','连打')
+		lib.yingbian.effect.set('cunZhi',()=>{
+			// trigger.yingbian_lianDa=true;
+			player.addTempSkill('_yingbian_doubleBlow','phaseUseAfter');
+			trigger._yingbian_Cunzhi=player;
+			game.log(card,'触发寸止，执行次数减一');
+			// trigger.getParent().effectCount++;
+		})
+		lib.yingbian.prompt.set('cunZhi','寸止')
+		lib.yingbian.effect.set('luLi',()=>{
+			trigger._yingbian_luLi=player;
+			game.log(card,'触发勠力，横置所有目标');
+		})
+		lib.yingbian.prompt.set('luLi','勠力')
+		lib.skill._yingbian_doubleBlow={
+			trigger:{player:'useCardToTargeted'},
+			forced:true,
+			charlotte:true,
+			ruleSkill:true,
+			popup:false,
+			lastDo:true,
+			filter:function(event,player){
+				if(event.parent._yingbian_doubleBlow==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
+				else if (event.parent._yingbian_Cunzhi==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
+				else if (event.parent._yingbian_luLi==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
+				return false;
+			},
+			content:function(){
+				'step 0'
+				if(trigger.parent._yingbian_doubleBlow==player){
+					trigger.getParent().effectCount++
+					game.log(trigger.card,'连打生效，额外执行一次');
+				}
+				'step 1'
+				if(trigger.parent._yingbian_Cunzhi==player){
+					trigger.getParent().effectCount--
+					game.log(trigger.card,'寸止生效，执行次数减一');
+				}
+				'step 2'
+				if(trigger.parent._yingbian_luLi==player){
+					for (var i of trigger.targets){
+						i.link(true)
+					}
+					game.log(trigger.card,'勠力生效，横置所有目标');
+				}
+			},
+			onremove:true,
+		}
+		
+	}
 }

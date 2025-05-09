@@ -16,22 +16,6 @@ game.import('card',function(lib, game, ui, get, ai, _status){
 		list:list,//牌堆添加
 		
 	}
-	lib.yingbian.effect.set('lianDa',()=>{
-		// trigger.yingbian_lianDa=true;
-		player.addTempSkill('_yingbian_doubleBlow','phaseUseAfter');
-		trigger._yingbian_doubleBlow=player;
-		game.log(card,'触发连打，额外执行一次');
-		// trigger.getParent().effectCount++;
-	})
-	lib.yingbian.prompt.set('lianDa','连打')
-	lib.yingbian.effect.set('cunZhi',()=>{
-		// trigger.yingbian_lianDa=true;
-		player.addTempSkill('_yingbian_doubleBlow','phaseUseAfter');
-		trigger._yingbian_Cunzhi=player;
-		game.log(card,'触发寸止，执行次数减一');
-		// trigger.getParent().effectCount++;
-	})
-	lib.yingbian.prompt.set('cunZhi','寸止')
 	for(var i in ybslc.card){
 		if(!ybslc.card[i].image&&!ybslc.card[i].modeimage) ybslc.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

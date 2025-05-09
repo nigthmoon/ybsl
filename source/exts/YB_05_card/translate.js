@@ -208,9 +208,9 @@ const translate = {
 	'rewrite_yitianjian':'七星龙渊剑',//3
 	'rewrite_yitianjian_bg':'渊',
 	'rewrite_yitianjian_info':'当你造成伤害后，你可以弃置一张手牌，然后回复一点体力',
-	'ybsl_feijingsanjian':'飞景三剑',//2
-	'ybsl_feijingsanjian_bg':'景',
-	'ybsl_feijingsanjian_info':'略',
+	// 'ybsl_feijingsanjian':'飞景三剑',//2
+	// 'ybsl_feijingsanjian_bg':'景',
+	// 'ybsl_feijingsanjian_info':'略',
 	'ybsl_bainiaochaofeng':'百鸟朝凤枪',//3
 	'ybsl_bainiaochaofeng_bg':'凤',//3
 	'ybsl_bainiaochaofeng_info':'当你使用牌指定其他角色为目标后时，你可令目标不能使用实体牌包含与此牌同颜色的牌直到此牌结算完成。',

@@ -1636,32 +1636,32 @@ const skill = {
 	// 		trigger._yingbian_doubleBlow=player;
 	// 	}
 	// },
-	_yingbian_doubleBlow:{
-		trigger:{player:'useCardToTargeted'},
-		forced:true,
-		charlotte:true,
-		ruleSkill:true,
-		popup:false,
-		lastDo:true,
-		filter:function(event,player){
-			if(event.parent._yingbian_doubleBlow==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
-			else if (event.parent._yingbian_Cunzhi==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
-			return false;
-		},
-		content:function(){
-			'step 0'
-			if(trigger.parent._yingbian_doubleBlow==player){
-				trigger.getParent().effectCount++
-				game.log(trigger.card,'连打生效，额外执行一次');
-			}
-			'step 1'
-			if(trigger.parent._yingbian_Cunzhi==player){
-				trigger.getParent().effectCount--
-				game.log(trigger.card,'寸止生效，执行次数减一');
-			}
-		},
-		onremove:true,
-	},
+	// _yingbian_doubleBlow:{
+	// 	trigger:{player:'useCardToTargeted'},
+	// 	forced:true,
+	// 	charlotte:true,
+	// 	ruleSkill:true,
+	// 	popup:false,
+	// 	lastDo:true,
+	// 	filter:function(event,player){
+	// 		if(event.parent._yingbian_doubleBlow==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
+	// 		else if (event.parent._yingbian_Cunzhi==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
+	// 		return false;
+	// 	},
+	// 	content:function(){
+	// 		'step 0'
+	// 		if(trigger.parent._yingbian_doubleBlow==player){
+	// 			trigger.getParent().effectCount++
+	// 			game.log(trigger.card,'连打生效，额外执行一次');
+	// 		}
+	// 		'step 1'
+	// 		if(trigger.parent._yingbian_Cunzhi==player){
+	// 			trigger.getParent().effectCount--
+	// 			game.log(trigger.card,'寸止生效，执行次数减一');
+	// 		}
+	// 	},
+	// 	onremove:true,
+	// },
 
 	/*
 	// _yingbian_doubleBlow:{

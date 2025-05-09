@@ -10334,11 +10334,11 @@ const skill = {
 					if(get.type(lib.inpile[i])=='basic'){
 						list.push(['基本','',lib.inpile[i],null]);
 						if(lib.inpile[i]=='sha'){
-							for(var k of lib.inpile_nature){
+							for(var k of get.YB_natureList()){
+								k=get.YB_nature(k);
 								list.push(['基本','',lib.inpile[i],k]);
 							}
 						}
-						
 					} 
 				}
 				return ui.create.dialog('雪舞',[list,'vcard']);
@@ -10493,7 +10493,10 @@ const skill = {
 					if(event.filterCard({name:name,isCard:true},player,event)){
 						list.push([type,'',name]);
 						if(name=='sha'){
-							for(var j of lib.inpile_nature) list.push([type,'',name,j]);
+							for(var j of get.YB_natureList()){
+								j=get.YB_nature(j);
+								list.push([type,'',name,j]);
+							} 
 						}
 					}
 				}
@@ -16035,7 +16038,11 @@ const skill = {
 					if (get.type(name) == type) {
 						list.push([type, "", name]);
 						if (name == "sha") {
-							for (var j of lib.inpile_nature) list.push(["基本", "", "sha", j]);
+							for (var j of get.YB_natureList()){
+								j=get.YB_nature(j);
+								list.push([type,'',name,j]);
+								// list.push(["基本", "", "sha", j]);
+							} 
 						}
 					}
 

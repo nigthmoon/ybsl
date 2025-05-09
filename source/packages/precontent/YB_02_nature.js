@@ -7,7 +7,42 @@ export { YBSL_nature }
  * 前缀收纳
  */
 const YBSL_nature = function(){
-    
+    {
+		/**
+		 * 判断卡牌的属性
+		 * @param {card|nature} card 
+		 * @returns 
+		 */
+		get.YB_nature=function(card){
+			if(typeof card == 'object'&&!Array.isArray(card))return get.YB_nature(card.nature);
+			var nature = card;
+			if (nature!=''&&nature!=null&&nature!=undefined&&!Array.isArray(nature)) {
+				if(typeof nature == 'string'){
+					if(nature.includes('|'))nature=nature.split('|').filter(item=>item!=='');
+				}
+			}
+			if(Array.isArray(nature)){
+				nature=nature.sort((a,b)=>lib.nature.get(b)-lib.nature.get(a)).join('|');
+			}
+			// if(nature=='')nature = null;
+			if(nature!=undefined)return nature;
+		}
+		/**
+		 * 
+		 * @returns 输出所有属性（按顺序排列
+		 */
+		get.YB_natureList = function(){
+			var listxx= [];
+			for (var kkk of lib.inpile_nature) {
+				kkk=get.YB_nature(kkk);
+				if(!listxx.includes(kkk)){
+					listxx.push(kkk);
+				}
+			}
+			return listxx;
+		}
+	}
+	
 	{//自建属性相关
 		game.addNature('YB_snow','雪',{
 			linked:true,
@@ -128,7 +163,7 @@ const YBSL_nature = function(){
 				"step 2";
 				if (event.targets.length) {
 					var target = event.targets.shift();
-					target.damage.apply(target, event._args.slice(0));
+					target.damage.apply(target, event._args.slice(0)).windLinked2=true;
 					event.redo();
 				}
 			},

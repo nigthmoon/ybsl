@@ -36,8 +36,8 @@ window.cardPile=[
 	['club',6,'sha'],
 	['club',7,'nanman',null,['yingbian_fujia','yingbian_remove']],//应变新增应变
 	['club',8,'sha'],
-	['club',9,'sha','thunder|YB_wind'],//应变替换杀--------☆
-	['club',10,'sha','thunder|YB_wind'],//应变替换杀--------☆
+	['club',9,'sha',['thunder','YB_wind']],//应变替换杀--------☆
+	['club',10,'sha',['thunder','YB_wind']],//应变替换杀--------☆
 	['club',11,'sha'],
 	['club',12,'wuxie'],
 	['club',13,'wuxie',null,['yingbian_canqu','yingbian_draw']],//应变新增应变
@@ -51,7 +51,7 @@ window.cardPile=[
 	['diamond',7,'sha'],
 	['diamond',8,'sha',null,['yingbian_canqu','yingbian_hit']],//应变新增应变
 	['diamond',9,'sha'],
-	['diamond',10,'sha','fire|YB_wind'],//应变替换杀--------☆
+	['diamond',10,'sha',['fire','YB_wind']],//应变替换杀--------☆
 	['diamond',11,'shan'],
 	['diamond',12,'tao'],
 	['diamond',13,'sha'],
@@ -678,4 +678,60 @@ window.cardPile=[
 	// ['heart','11','sadouchengbing'],
 	// ['heart','1','jiejia'],//达成
 	// ['club','9','caochuan',null,['gifts']],//达成
+	//-----------------------风包
+	['spade', 1, 'ybsl_feijingsanjian'],
+	['spade', 2, 'ybsl_zhongkai'],
+	['spade', 3, 'sha','YB_wind|thunder'],
+	['spade', 4, 'shunshou'],
+	['spade', 5, 'shuiyanqijunx'],
+	['spade', 6, 'sha','thunder|YB_wind'],
+	['spade', 7, 'sha','thunder|YB_wind'],
+	['spade', 8, 'sha','YB_wind|thunder',['yingbian_fujia','yingbian_add']],
+	['spade', 9, 'sha','YB_wind|thunder',['yingbian_fujia','yingbian_add']],
+	['spade', 10, 'tiesuo'],
+	['spade', 11, 'wuxie'],
+	['spade', 12, 'ybsl_frostnova','ice',['yingbian_fujia','yingbian_luLi']],
+	['spade', 13, 'ybsl_frostnova','ice',['yingbian_fujia','yingbian_luLi']],
+
+	['heart', 1, 'ybsl_windstorm','YB_wind',['yingbian_fujia','yingbian_luLi']],
+	['heart', 2, 'sha','YB_wind'],
+	['heart', 3, 'shan'],
+	['heart', 4, 'shan'],
+	['heart', 5, 'tao'],
+	['heart', 6, 'sha','YB_wind'],
+	['heart', 7, 'shan'],
+	['heart', 8, 'shan'],
+	['heart', 9, 'shan'],
+	['heart', 10, 'sha','YB_wind'],
+	['heart', 11, 'sha','YB_wind'],
+	['heart', 12, 'tao'],
+	['heart', 13, 'wuxie'],
+
+	['club', 1, 'ybsl_qingfengshan'],
+	['club', 2, 'ybsl_zhijizhibi'],
+	['club', 3, 'ybsl_zhijizhibi'],
+	['club', 4, 'jiu'],
+	['club', 5, 'sha','YB_wind|ice'],
+	['club', 6, 'tiesuo'],
+	['club', 7, 'tiesuo'],
+	['club', 8, 'sha','YB_wind|ice'],
+	['club', 9, 'sha','YB_wind|ice',['yingbian_zhuzhan','yingbian_add']],
+	['club', 10, 'jiu'],
+	['club', 11, 'tiesuo'],
+	['club', 12, 'tiesuo',null,['yingbian_fujia','yingbian_add']],
+	['club', 13, 'tiesuo',null,['yingbian_fujia','yingbian_add']],
+
+	['diamond', 1, 'ybsl_windstorm'],
+	['diamond', 2, 'shan'],
+	['diamond', 3, 'sha','YB_wind|fire',['yingbian_canqu','yingbian_add']],
+	['diamond', 4, 'sha','fire|YB_wind'],
+	['diamond', 5, 'ybsl_jinyinrukai'],
+	['diamond', 6, 'sha','YB_wind|fire'],
+	['diamond', 7, 'shan'],
+	['diamond', 8, 'shan'],
+	['diamond', 9, 'jiu'],
+	['diamond', 10, 'tao'],
+	['diamond', 11, 'shan'],
+	['diamond', 12, 'sha','YB_wind|fire'],
+	['diamond', 13, 'ybsl_jizhiguan'],
 ];

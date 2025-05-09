@@ -676,7 +676,7 @@ const skill = {
 					if (get.type(i) == 'basic' && event.filterCard({ name: i }, player, event)) {
 						list.push(['基本', '', i]);
 						if (i == 'sha') {
-							for (var j of lib.inpile_nature) list.push(['基本', '', 'sha', j]);
+							for (var j of get.YB_natureList()) list.push(['基本', '', 'sha', j]);
 						}
 					}
 				}
@@ -1155,15 +1155,21 @@ const skill = {
 				// if(lib.card[yb].type!='equip'){
 				if (yb == 'sha') {
 					list55.add([get.type2(yb), '', 'sha']);
-					for (var kkk of lib.inpile_nature) {
-						switch (kkk) {
-							case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;
-							case 'thunder': list55.add([get.type2(yb), '', 'sha', 'thunder']); break;
-							case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
-							case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
-							case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
-							default: list55.add([get.type2(yb), '', 'sha', kkk]); break;
-						}
+					var listxx= get.YB_natureList();
+					console.log(listxx)
+					for (var zzz of listxx){
+						game.log(zzz)
+						console.log(zzz)
+						list55.add([get.type2(yb), '', 'sha', zzz]);
+						// switch (zzz) {
+						// 	case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;
+						// 	case 'thunder': list55.add([get.type2(yb), '', 'sha', 'thunder']); break;
+						// 	case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
+						// 	case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
+						// 	case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
+						// 	default: 
+						// }
+
 					}
 				}
 				else {
@@ -1371,15 +1377,19 @@ const skill = {
 				// if(!lib.card[yb].type||['db_atk','db_def','pss','hstuteng'].includes(lib.card[yb].type)) continue;
 				// if(lib.card[yb].type!='equip'){
 				if (yb == 'sha') {
-					for (var kkk of lib.inpile_nature) {
-						switch (kkk) {
-							case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;
-							case 'thunder': list55.add([get.type2(yb), '', 'sha', 'thunder']); break;
-							case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
-							case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
-							case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
-							default: list55.add([get.type2(yb), '', 'sha', kkk]); break;
-						}
+					list55.add([get.type2(yb), '', 'sha']);
+					var listxx= get.YB_natureList();
+					for (var zzz of listxx){
+						list55.add([get.type2(yb), '', 'sha', zzz]);
+						// switch (zzz) {
+						// 	case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;
+						// 	case 'thunder': list55.add([get.type2(yb), '', 'sha', 'thunder']); break;
+						// 	case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
+						// 	case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
+						// 	case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
+						// 	default: 
+						// }
+
 					}
 				}
 				else {
@@ -5053,7 +5063,7 @@ const skill = {
 					if (get.type(lib.inpile[i]) == 'basic') {
 						list.push(['基本', '', lib.inpile[i], null]);
 						if (lib.inpile[i] == 'sha') {
-							for (var k of lib.inpile_nature) {
+							for (var k of get.YB_natureList()) {
 								list.push(['基本', '', lib.inpile[i], k]);
 							}
 							list.push(['基本', '', lib.inpile[i], 'kami']);
