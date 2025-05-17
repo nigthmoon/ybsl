@@ -36,6 +36,7 @@ const skill = {
 					// }
 					// natures = natures.join('_');
 				}
+				var target=event.targets[i];
 				var eff1=get.damageEffect(target,player,player,nature);
 				var eff2=get.damageEffect(target,player,player,(nature==null?'YB_wind':natures+'|YB_wind'));
 				eff+=eff2;

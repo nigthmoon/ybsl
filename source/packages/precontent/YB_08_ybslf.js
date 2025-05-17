@@ -117,6 +117,8 @@ const YBSL_ybslf = function () {
 		 * - 遍历输入的元素，根据类型自动识别并赋值给 `cards`、`boolyb`、`str` 和 `num`。
 		 * - 将 `cards` 中的 `num` 张牌分配给场上角色，分配时的提示信息为 `str`。
 		 * - `boolyb` 是一个布尔值，用于控制某些逻辑。
+		 * - `boolyb` 是一个布尔值，若为true，则仅从输入卡牌中分配，否则从全部手牌中分配
+		 * - fun 是一个函数，用于筛选被分配的目标
 		 *
 		 * @param {...*} args - 输入的元素（可以是卡牌组、布尔值、字符串、数字，顺序不固定）。
 		 * @returns {Object} - 返回创建的事件对象。
@@ -131,6 +133,7 @@ const YBSL_ybslf = function () {
 			let str = '粮营';
 			let num;
 			let boolyb=false;
+			let filterTarget = function(){return true};
 			// 遍历输入的元素，根据类型赋值
 			args.forEach(arg => {
 				if (typeof arg === 'object') {
@@ -139,18 +142,23 @@ const YBSL_ybslf = function () {
 					str = arg; // 如果是字符串，赋值给 str
 				} else if (typeof arg === 'number') {
 					num = arg; // 如果是数字，赋值给 num
+				} else if (Array.isArray(arg)) {
+					num = arg; // 如果是数字，赋值给 num
 				} else if (typeof arg === 'boolean') {
 					boolyb = arg; // 如果是数字，赋值给 num
+				} else if (typeof arg === 'function') {
+					filterTarget = arg; // 如果是数字，赋值给 num
 				}
 			});
 			// 如果 num 未提供，则默认为 cards.length
 			if (!num) {
-				num = cards.length;
+				num = [1,cards.length];
 			}
 			var next = game.createEvent('YB_liangying', false);
 			next.player = this;
 			next.cards = cards;
 			next.number = num;
+			next.filterTarget = filterTarget;
 			next.setContent('YB_liangying');
 			next.boolyb = boolyb;
 			next.str = str;
@@ -160,11 +168,20 @@ const YBSL_ybslf = function () {
 			// const draws = Array.from({ length: player.countMark("recangchu") }).map((_, i) => get.cnNumber(i + 1) + "张");
 			// const draws = Array.from(cards)
 			// player.logSkill("reliangying");
+			if(Array.isArray(event.number)){
+				var mine = event.number[0]
+				var maxe = event.number[1]
+			}
+			else{
+				var mine =event.number;
+				var maxe=event.number;
+			}
 			const max = Math.min(
-				event.number,
+				maxe,
 				event.boolyb == true ? event.cards.length : player.countCards("he"),
-				game.countPlayer(target => target != player)
+				// game.countPlayer(filterTarget)
 			);
+			const min = mine||max;
 			// await player.draw(num);
 			let list = [];
 			// let given_map = {};
@@ -175,7 +192,7 @@ const YBSL_ybslf = function () {
 					result: { bool, cards, targets },
 				} = await player
 					.chooseCardTarget({
-						prompt: event.str + "：将" + get.cnNumber(max - 1) + "至" + get.cnNumber(max) + "张牌分配给任意角色",
+						prompt: event.str + "：将" + get.cnNumber(min) + "至" + get.cnNumber(max) + "张牌分配给任意角色",
 						position: "he",
 						animate: false,
 						filterCard(card, player) {
@@ -185,9 +202,8 @@ const YBSL_ybslf = function () {
 							return !get.event("list").some(list => list[1] == card);
 						},
 						// selectCard(){return max - listx.length},
-						filterTarget(card, player, target) {
-							// return target != player && !get.event("list").some(list => list[0] == target);
-							return true;
+						filterTarget:function(card,player,target){
+							return event.filterTarget(card,player,target);
 						},
 						ai1(card) {
 							if (card.name == "shan") return 1;
@@ -198,7 +214,7 @@ const YBSL_ybslf = function () {
 						},
 					})
 					.set("list", list)
-					.set("forced", max - list.length > 1);
+					.set("forced", min > list.length);
 				if (bool) {
 					// let togive = cards.slice(0);
 					// var id = targets[0].playerid,
@@ -230,6 +246,7 @@ const YBSL_ybslf = function () {
 			}
 			// event.yb=event.cards.filter(z=>!listx.includes(z));
 			event.result = list;
+			event.resultx=listx;
 			// var list4=[];
 			// for(var z of event.cards){
 			// 	if(!listx.includes(z)&&(player.isIn()&&player.getCards('h').includes(z)||!player.isIn()))list4.push(z);
@@ -1360,6 +1377,25 @@ const YBSL_ybslf = function () {
 			else check = false;
 			return check;
 		}
+		get.YB_tuxi2value = function (player,numx) {
+			var player = player;
+			var numx=numx||2;
+			var check, i, num = 0, num2 = 0, players = game.filterPlayer();
+			for (i = 0; i < players.length; i++) {
+				if (player != players[i] && players[i].countCards('h')) {
+					var att = get.attitude(player, players[i]);
+					if (att <= 0) {
+						num++;
+					}
+					if (att < 0) {
+						num2++;
+					}
+				}
+			}
+			if (num >= numx && num2 > 0) check = true;
+			else check = false;
+			return check;
+		}
 		//---------------移牌价值
 		get.YB_movevalue = function (player) {
 			var player = player;
@@ -2406,6 +2442,30 @@ const YBSL_ybslf = function () {
 				}
 			});
 			return next;
+		}
+		/**
+		 * 用来给一个卡牌或伤害添加属性
+		 * @param {卡牌或伤害事件} trigger 需要被增加属性的对象
+		 * @param {属性的字符串} nature 需要加进去的属性
+		 */
+		game.YB_addNature=function(trigger,nature){
+			var natures = trigger.nature;
+			// if (natures!=null) {
+				if(natures==null||natures==''||natures==undefined){
+					natures=[];
+				}
+				if (!Array.isArray(natures)) {
+					if(typeof natures == 'string'){
+						if(natures.includes('|'))natures=natures.split('|').filter(item=>item!=='');
+						else natures=[natures];
+					}
+				}
+				if(!natures.includes(nature))natures.push(nature)
+				if(Array.isArray(natures)){
+					var naturex=natures.join('|');
+				}
+			// }
+			game.setNature(trigger, naturex);
 		}
 	}
 	{//----------自定义函数2

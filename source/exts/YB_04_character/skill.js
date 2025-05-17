@@ -1156,10 +1156,7 @@ const skill = {
 				if (yb == 'sha') {
 					list55.add([get.type2(yb), '', 'sha']);
 					var listxx= get.YB_natureList();
-					console.log(listxx)
 					for (var zzz of listxx){
-						game.log(zzz)
-						console.log(zzz)
 						list55.add([get.type2(yb), '', 'sha', zzz]);
 						// switch (zzz) {
 						// 	case 'fire': list55.add([get.type2(yb), '', 'sha', 'fire']); break;

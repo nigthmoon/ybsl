@@ -459,7 +459,7 @@ const YBSL_special = function () {
 	lib.translate.ybsl_magicbook = '刻印';
 	{//缘分机智
 		var packages = [
-			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz',
+			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz','yhky','sgstrxs','ybMagic','ybnew2'
 			// 'YB_one'
 		]
 		lib.arenaReady.push(function () {
@@ -640,6 +640,10 @@ const YBSL_special = function () {
 				['rerende',{ybmjz_shen_caopi:'rerende_shen_caopi'}],
 				['rezhiheng',{ybmjz_shen_caopi:'rezhiheng_shen_caopi'}],
 				['olluanji',{ybmjz_shen_caopi:'olluanji_shen_caopi'}],
+				//界戏志才
+				['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
+				//真马超
+				['retieji',{sgskjdbzjms_zhen_machao:'shouli'}],
 				// ['sbxingshang',{ybmjz_shen_caopi:'caopi_xinkui'}],
 			)
 			// if()lib.skill.new_rejianxiong.audioname2
@@ -668,6 +672,7 @@ const YBSL_special = function () {
 			return num;
 		}
 		lib.element.player.YB_yzdel_noneMana = function(){
+			const player = this;
 			return player.YB_yzdel_maxMana()-player.countMark('_yzdel_mana');
 		}
 		lib.element.player.YB_gainMana = function (num) {
@@ -688,6 +693,7 @@ const YBSL_special = function () {
 		 * 更新Mana条
 		 */
 		lib.element.player.YB_updateMana = function(){
+			const player = this;
 			game.broadcastAll(
 				function(player){
 					if (!player._yzdel_mana) {
@@ -768,4 +774,7 @@ const YBSL_special = function () {
 		}
 		
 	}
+	// game.YB_addAudio(
+	// 	['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
+	// )
 }

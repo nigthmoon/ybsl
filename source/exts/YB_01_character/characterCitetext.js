@@ -63,7 +63,7 @@ const characterCitetext = {
 	
 	'ybsl_018zhangqing':'她说她喜欢森林你的寂静与美好。',
 	'ybsl_019shengyan':'在她的梦里，化作泡影的人重现。',
-	// 'ybsl_020jiayutong':'引文待填写。',
+	'ybsl_020jiayutong':'引文待填写。',
 	'ybsl_021liuyufeng':'还望先生教我~',
 	// 'ybsl_022salt':'引文待填写。',
 	// 'ybsl_025shiqingyu':'回忆最为美好，它将你思念的对象不断美化。',

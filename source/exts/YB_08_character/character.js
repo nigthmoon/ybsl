@@ -32,17 +32,17 @@ const character = { //武将格式 :
 	ybmjz_lvbu:['male','qun',4,[],['linkTo:lvbu','YB_mjz:re_lvbu']], 
 	ybmjz_diaochan:['female','qun',3,[],['linkTo:diaochan','YB_mjz:re_diaochan']], 
 
-	ybmjz_zhangqiying:['female','qun',3,['xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua'],['rankAdd:legend','name:张|琪瑛','linkTo:zhangqiying','YB_mjz:zhangqiying']],//张琪瑛
+	ybmjz_zhangqiying:['female','qun',3,['xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua'],['rankAdd:legend','rankS:s','name:张|琪瑛','linkTo:zhangqiying','YB_mjz:zhangqiying']],//张琪瑛
 	ybmjz_majun:['male','wei',3,['xinfu_ybjingxie','qiaosi'],['rankAdd:epic','linkTo:majun','YB_mjz:majun']],//马钧
 
 	ybmjz_shen_zhugeliang:['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['rankAdd:eqic','name:诸葛|亮','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','shu']],//神诸葛亮
-	ybmjz_shen_guojia:['male','shen',3,['ybmjz_reshuishi','ybmjz_stianyi','resghuishi'],['rankAdd:legend','name:郭|嘉','linkTo:shen_guojia','YB_mjz:shen_guojia','wei']],//神郭嘉
-	ybmjz_shen_caopi:['male','shen',5,['chuyuan','ybmjz_dengji'],['rankAdd:legend','linkTo:shen_caopi','YB_mjz:shen_caopi','wei']],//神曹丕
-	ybmjz_shen_caopi_kui:['female','shen',3,['shenfu','qixian','dz014_yangkui','dz014_xianji'],['rankAdd:legend','linkTo:shen_zhenji','YB_mjz:shen_zhenji','wei','unseen']],//神曹丕的傀儡
+	ybmjz_shen_guojia:['male','shen',3,['ybmjz_reshuishi','ybmjz_stianyi','resghuishi'],['rankAdd:legend','rankS:s','name:郭|嘉','linkTo:shen_guojia','YB_mjz:shen_guojia','wei']],//神郭嘉
+	ybmjz_shen_caopi:['male','shen',5,['chuyuan','ybmjz_dengji'],['rankAdd:legend','rankS:s','linkTo:shen_caopi','YB_mjz:shen_caopi','wei']],//神曹丕
+	ybmjz_shen_caopi_kui:['female','shen',3,['shenfu','qixian','dz014_yangkui','dz014_xianji'],['rankAdd:legend','rankS:s','linkTo:shen_zhenji','YB_mjz:shen_zhenji','wei','unseen']],//神曹丕的傀儡
 	
-	ybmjz_hina:['female','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','rankAdd:legend','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina']],//佐藤雏
-	ybmjz_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['rankAdd:legend','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori']],//神户小鸟
-	ybmjz_kagari:["female","shen",3,["kagari_ybzongsi"],['rankAdd:legend','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari']],//篝
+	ybmjz_hina:['female','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','rankAdd:legend','rankS:s','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina']],//佐藤雏
+	ybmjz_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['rankAdd:legend','rankS:s','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori']],//神户小鸟
+	ybmjz_kagari:["female","shen",3,["kagari_ybzongsi"],['rankAdd:legend','rankS:s','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari']],//篝
 
-	ybmjz_youta:['male','key',4,['ybmjz_fengshen','ybmjz_yingshen','ybmjz_huanshen'],['rankAdd:legend','linkTo:key_youta','YB_mjz:key_youta','forbidai']],
+	ybmjz_youta:['male','key',4,['ybmjz_fengshen','ybmjz_yingshen','ybmjz_huanshen'],['rankAdd:legend','rankS:s','linkTo:key_youta','YB_mjz:key_youta','forbidai']],
 }

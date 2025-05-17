@@ -23,31 +23,31 @@ const YB_11_cardBrowser = function(){
 	{
 		
 		// game.addMode('YB_mode',{
-        //     name: 'YB_mode',
+		// 	name: 'YB_mode',
 		// 	start:function(){
 		// 		'step 0'
 		// 		game.loadMode("identity");
 		// 		'step 1'
 				
 		// 	},
-		// },{
+		// }, {
 		// 	translate: '夜白',
-        //     config: {
-        //         yb_yuanfen_mode: {
-        //             name: '游戏模式',
-        //             init: 'normal',
-        //             item: {
-        //                 normal: '经典',
-        //             },
-        //             restart: true,
-        //             frequent: true,
-        //             intro: '很可惜，只有我哟~'
-        //         },
+		// 	config: {
+		// 		yb_yuanfen_mode: {
+		// 			name: '游戏模式',
+		// 			init: 'normal',
+		// 			item: {
+		// 				normal: '经典',
+		// 			},
+		// 			restart: true,
+		// 			frequent: true,
+		// 			intro: '很可惜，只有我哟~'
+		// 		},
 		// 	},
-        //     onremove: function () {
-        //         game.clearModeConfig('YB_mode');
-        //     }
+		// 	onremove: function () {
+		// 		game.clearModeConfig('YB_mode');
+		// 	}
 		// })
-		// image:['extension/夜白神略/YB_mode.jpg']
+		// image: ['extension/夜白神略/YB_mode.jpg']
 	}
 }

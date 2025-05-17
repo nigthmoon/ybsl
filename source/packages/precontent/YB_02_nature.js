@@ -180,6 +180,12 @@ const YBSL_nature = function(){
 			color:'#e328b7',
 			// image: 'ext:夜白神略/image/card/group_YB_dream.png',
 		})
+		game.addGroup('YB_demon','魔','魔将',{
+			color: '#b14cda',
+		})
+		game.addGroup('YB_gui','鬼','鬼邪',{
+			color: '#e328b7',
+		})
 	}
 	{//此处收纳前缀
 		lib.namePrefix.set('废案',{
@@ -213,11 +219,6 @@ const YBSL_nature = function(){
 			nature:'thunder',
 		})
 
-		// lib.namePrefix.set('名将',{
-		// 	showName:'名',
-		// 	color:'#ff7b00',
-		// 	nature:'black',
-		// })
 		lib.namePrefix.set('名将',{
 			showName:'名',
 			color:'#28e3ce',
@@ -240,6 +241,61 @@ const YBSL_nature = function(){
 		})
 		lib.namePrefix.set('恒',{
 			showName:'恒',
+			color:'#ffff00',
+			nature:'black',
+		})
+		lib.namePrefix.set('界神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('界')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('缝神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('缝')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('魂神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('魂')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('魔',{
+			showName:'魔',
+			color:'#e328b7',
+			nature:'YB_dark',
+		})
+		lib.namePrefix.set('鬼',{
+			showName:'鬼',
+			color:'#e328b7',
+			nature:'YB_dark',
+		})
+		lib.namePrefix.set('白无常赐福',{
+			showName:'鬼',
+			color:'#ccc',
+			nature:'YB_dream',
+		})
+		lib.namePrefix.set('黑无常赐福',{
+			showName:'鬼',
+			color:'#444',
+			nature:'YB_dream',
+		})
+		lib.namePrefix.set('缝',{
+			showName:'缝',
+			color:'#ff7b00',
+			nature:'black',
+		})
+		lib.namePrefix.set('魂',{
+			showName:'魂',
+			color:'#28ffff',
+			nature:'black',
+		})
+		lib.namePrefix.set('真',{
+			showName:'真',
+			color:'#ffff00',
+			nature:'black',
+		})
+		lib.namePrefix.set('仙',{
+			showName:'仙',
 			color:'#ffff00',
 			nature:'black',
 		})
