@@ -6453,7 +6453,7 @@ const skill = {
 			// 	}).length;
 			// }
 			// player.loseHp(num).type = "du";
-			player.chooseToDiscard().type='ybsl_cu';
+			player.chooseToDiscard(true).type='ybsl_cu';
 		},
 
 	},
@@ -7884,8 +7884,8 @@ const skill = {
 		marktext:'金',
 		intro:{
 			name:'金剑元',
-			content:'expansion',
-			markcount:'expansion',
+			// content:'expansion',
+			// markcount:'expansion',
 			mark:function(dialog,storage,player){
 				if(player.getExpansions('yb_jianyuan_jin')){
 					var content=player.getExpansions('yb_jianyuan_jin');
@@ -7932,8 +7932,8 @@ const skill = {
 		marktext:'木',
 		intro:{
 			name:'木剑元',
-			content:'expansion',
-			markcount:'expansion',
+			// content:'expansion',
+			// markcount:'expansion',
 			mark:function(dialog,storage,player){
 				if(player.getExpansions('yb_jianyuan_jin')){
 					var content=player.getExpansions('yb_jianyuan_mu');
@@ -7979,8 +7979,8 @@ const skill = {
 		marktext:'土',
 		intro:{
 			name:'土剑元',
-			content:'expansion',
-			markcount:'expansion',
+			// content:'expansion',
+			// markcount:'expansion',
 			mark:function(dialog,storage,player){
 				if(player.getExpansions('yb_jianyuan_jin')){
 					var content=player.getExpansions('yb_jianyuan_tu');
@@ -8030,8 +8030,8 @@ const skill = {
 		marktext:'火',
 		intro:{
 			name:'火剑元',
-			content:'expansion',
-			markcount:'expansion',
+			// content:'expansion',
+			// markcount:'expansion',
 			mark:function(dialog,storage,player){
 				if(player.getExpansions('yb_jianyuan_jin')){
 					var content=player.getExpansions('yb_jianyuan_huo');
@@ -8076,8 +8076,8 @@ const skill = {
 		marktext:'水',
 		intro:{
 			name:'水剑元',
-			content:'expansion',
-			markcount:'expansion',
+			// content:'expansion',
+			// markcount:'expansion',
 			mark:function(dialog,storage,player){
 				if(player.getExpansions('yb_jianyuan_jin')){
 					var content=player.getExpansions('yb_jianyuan_shui');

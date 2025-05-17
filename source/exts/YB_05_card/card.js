@@ -26,6 +26,21 @@ const card = {
 			}
 		}
 	},
+	rewrite_goujiangdesidai: {
+		type: 'equip',
+		subtype: 'equip1',
+		distance: {
+			attackFrom: -6
+		},
+		skills: ['rewrite_goujiangdesidai_skill'],
+		modeimage: 'boss',
+		ai: {
+			basic: {
+				equipValue: 8.5,
+			},
+		},
+		fullskin: true,
+	},
 	//-----------------------飘雪神符
 	'ybsl_piaoxueruyi':{
 		fullskin:true,

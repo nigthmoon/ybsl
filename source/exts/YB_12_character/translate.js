@@ -69,7 +69,7 @@ const translate = {
 	sgskjdbzjms_zhen_guanyu:'真关羽',
 	sgskjdbzjms_zhen_guanyu_prefix:'真',
 	sgskjdbzjms_wusheng:'武圣',
-	sgskjdbzjms_wusheng_info:'你可以将红色牌当【杀】使用，你的红桃【杀】伤害+1，方块【杀】无距离限制。',
+	sgskjdbzjms_wusheng_info:'你可以将红色牌当【杀】使用或打出，你的红桃【杀】伤害+1，方块【杀】无距离限制。',
 	sgskjdbzjms_danji:'单骑',//原文没有最大牌数
 	sgskjdbzjms_danji_info:'每回合限一次，当你失去所有手牌时，你可以补充手牌至体力上限（至多摸二十）。',
 	sgskjdbzjms_danji_append:'二十的上限是我加的，原文没有',

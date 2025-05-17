@@ -2,7 +2,7 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { list }
 
 const list = [
-	['spade','5','guilongzhanyuedao',],
+	['spade','5','guilongzhanyuedao'],
 	['spade',2,'qimenbagua'],
 	['club',2,'qimenbagua'],
 	//['spade','5','juechenjinge_gai'],

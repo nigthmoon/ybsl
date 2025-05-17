@@ -9,6 +9,12 @@ const skill = {
 	// 		},
 	// 	},
 	// },
+	rewrite_goujiangdesidai_skill: {
+		inherit: 'kagari_ybzongsi',
+		filter: function(event, player) {
+			return !player.hasSkill('kagari_ybzongsi') || player.getStat('skill').kagari_ybzongsi;
+		},
+	},
 	//----------暗度陈仓
 	ybsl_anduchencang_skill:{
 		trigger:{global:'phaseBegin'},
