@@ -21,4 +21,35 @@ const character = { //武将格式 :
 	qmsgswkjsgj_gui_xuyou:['male','qun',4,['nzry_chenglve','nzry_shicai','nzry_cunmu','qmsgswkjsgj_baolian'],['rankAdd:legend','rankS:s','linkTo:xuyou','YB_mjz:xuyou']],
 	qmsgswkjsgj_gui_zhaoyun:['male','YB_gui',4,['longdan','qmsgswkjsgj_baolian'],['rankAdd:rare','rankS:b','linkTo:zhaoyun','linkTo:zhaoyun','YB_mjz:zhaoyun']],
 	qmsgswkjsgj_gui_sunquan:['male','YB_gui',4,['zhiheng','jiuyuan','qmsgswkjsgj_taiping'],['rankAdd:epic','rankS:a','linkTo:sunquan','YB_mjz:sunquan']],
+	qmsgswkjsgj_shen_guojia:['male','shen',3,["qmsgswkjsgj_reshuishi", "stianyi", "resghuishi",'tiandu','yiji'],['rankAdd:legend','rankS:s','linkTo:shen_guojia','YB_mjz:shen_guojia','wei']],
+
+	sgsxjxfzmnl_re_xusheng:['male','wu',4,['sgsxjxfzmnl_pojun'],['rankAdd:legend','rankS:ap','linkTo:re_xusheng','YB_mjz:re_xusheng']],
+	sgsxjxfzmnl_sb_huangzhong:['male','shu',4,['sgsxjxfzmnl_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong']],
+	sgsxjxfzmnl_shen_sunce:['male','shen','1/6',['sgsxjxfzmnl_yingba','sgsxjxfzmnl_scfuhai','pinghe'],['rankAdd:legend','rankS:s','linkTo:shen_sunce','YB_mjz:shen_sunce','wu']],
+	sgsxjxfzmnl_sb_xiahoushi:['female','shu',3,['sgsxjxfzmnl_sbyanyu','sgsxjxfzmnl_sbqiaoshi'],['rankAdd:legend','rankS:s','linkTo:sb_xiahoushi','YB_mjz:sb_xiahoushi']],
+	sgsxjxfzmnl_mo_diaochan:['female','qun',3,['sgsxjxfzmnl_meihuo','sgsxjxfzmnl_biyue'],['rankAdd:rare','rankS:am','linkTo:diaochan','YB_mjz:diaochan']],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

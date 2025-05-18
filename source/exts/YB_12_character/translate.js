@@ -151,6 +151,10 @@ const translate = {
 	qmsgswkjsgj_baolian_info: "锁定技，结束阶段，你摸两张牌。",
 	qmsgswkjsgj_baolian_append: "白无常赐福。",
 
+	qmsgswkjsgj_shen_guojia:'缝神郭嘉',
+	qmsgswkjsgj_shen_guojia_prefix:'缝神',
+	qmsgswkjsgj_reshuishi:'慧识',
+	qmsgswkjsgj_reshuishi_info: "出牌阶段限一次。若你的体力上限小于10，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同且你的体力上限小于10，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。",
 
 
 
@@ -158,14 +162,43 @@ const translate = {
 
 
 
+	sgsxjxfzmnl:'三国杀，仙界下凡怎么你了',
+	sgsxjxfzmnl_info:'三国杀，仙界下凡怎么你了<br>平台：番茄小说<br>作者：作家时霜<br>备注：因作者描述较为不规范，因此在这里我会先进行一番规范。',
 
+	sgsxjxfzmnl_re_xusheng:'仙界界徐盛',
+	sgsxjxfzmnl_re_xusheng_prefix:'仙界界',
+	sgsxjxfzmnl_pojun:'破军',
+	sgsxjxfzmnl_pojun2: "破军",
+	sgsxjxfzmnl_pojun3: "破军",
+	sgsxjxfzmnl_pojun_info:'当你使用杀或单目标伤害锦囊牌指定目标时，你可以令此牌伤害+1，然后将其的至多X张牌置于其武将牌上（X为其体力值），然后其于当前回合结束时获得这些牌。',
 
+	sgsxjxfzmnl_sb_huangzhong:'仙界谋黄忠',
+	sgsxjxfzmnl_sb_huangzhong_prefix:'仙界谋',
+	sgsxjxfzmnl_sbliegong: "烈弓",
+	sgsxjxfzmnl_sbliegong_info: "①若你的装备区内有武器牌，你攻击距离无限，且你的杀可以转化为任意属性。②当你使用牌时，或成为其他角色使用牌的目标后，你记录此牌的花色。③当你使用【杀】或伤害锦囊指定唯一目标后，若你〖烈弓②〗的记录不为空，则你可亮出牌堆顶的X张牌（X为你〖烈弓②〗记录过的花色数-1），令此牌的伤害值基数+Y（Y为亮出牌中被〖烈弓②〗记录过花色的牌的数量），且目标角色不能使用〖烈弓②〗记录过花色的牌响应此牌。此牌使用结算结束后，你清除〖烈弓②〗的记录。",
 
+	sgsxjxfzmnl_shen_sunce:'仙界神孙策',
+	sgsxjxfzmnl_shen_sunce_prefix:'仙界神',
+	sgsxjxfzmnl_yingba: "英霸",
+	sgsxjxfzmnl_yingba_info: "①出牌阶段每名角色限一次，你可令一名体力上限大于1的其他角色减少1点体力上限并获得“平定”标记，然后你减少1点体力上限。②你对拥有“平定”标记的角色使用牌没有距离限制和次数限制。",
+	sgsxjxfzmnl_scfuhai: "覆海",
+	sgsxjxfzmnl_scfuhai_info: "锁定技。①当你使用牌指定目标后，若目标角色有“平定”标记，则其不可响应此牌。若你本回合内以此法得到的牌数小于4，则你摸一张牌。②拥有“平定”标记的角色死亡时，你增加X点体力上限并摸X张牌。（X为其拥有的“平定”标记数）。",
+	// sgsxjxfzmnl_pinghe: "冯河",
+	// sgsxjxfzmnl_pinghe_info: "锁定技。①你的手牌上限基数等于你已损失的体力值。②当你受到其他角色造成的伤害时，若你有牌且你的体力上限大于1，则你防止此伤害，减1点体力上限并将一张手牌交给一名其他角色。然后若你拥有〖英霸〗，则伤害来源获得一个“平定”标记。",
+	
+	sgsxjxfzmnl_sb_xiahoushi: "仙界谋夏侯氏",
+	sgsxjxfzmnl_sb_xiahoushi_prefix: "仙界谋",
+	sgsxjxfzmnl_sbqiaoshi: "樵拾",
+	sgsxjxfzmnl_sbqiaoshi_info: "每回合限一次。当你受到其他角色造成的伤害后，你可以令你回复等同于此次伤害值的体力，然后你与其摸两张牌。",
+	sgsxjxfzmnl_sbyanyu: "燕语",
+	sgsxjxfzmnl_sbyanyu_info: "①出牌阶段限三次。你可以弃置一张【杀】，然后摸一张牌。②出牌阶段结束时，你可以令一名其他角色摸3X张牌（X为你于此阶段发动〖燕语①〗的次数）。",
 
-
-
-
-
+	sgsxjxfzmnl_mo_diaochan:'仙界魔貂蝉',
+	sgsxjxfzmnl_mo_diaochan_prefix:'仙界魔',
+	sgsxjxfzmnl_meihuo:'魅惑',
+	sgsxjxfzmnl_meihuo_info:'出牌阶段限两次，弃置一张牌，并选择两名其他角色，然后令两名角色互相使用一张【决斗】。',
+	sgsxjxfzmnl_biyue:'闭月',
+	sgsxjxfzmnl_biyue_info:'结束阶段，你可以摸两张牌。',
 
 
 

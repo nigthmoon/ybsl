@@ -299,6 +299,31 @@ const YBSL_nature = function(){
 			color:'#ffff00',
 			nature:'black',
 		})
+		lib.namePrefix.set('仙界',{
+			showName:'仙',
+			color:'#ffa600',
+			nature:'black',
+		})
+		lib.namePrefix.set('仙界界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('仙界')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('仙界谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('仙界')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('仙界神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('仙界')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('仙界魔',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('仙界')}${get.prefixSpan('魔')}`
+			},
+		})
 		
 	}
 	{//校花包元素
