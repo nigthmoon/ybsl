@@ -10,11 +10,14 @@ const translate = {
 	'ybart_014liutianyu':'六艺夜白',//本名
 	'ybart_016manchengqi':'六艺满城柒',//本名
 	'ybart_017xiaohong':'六艺涂山小红',//本名
+	ybart_020jiayutong:'六艺贾雨桐',
 	'ybart_041mmuqin':'六艺慕琴',//本名崔妍
+	
 	'ybart_013yinji_prefix':'六艺',//本名尹超跃
 	'ybart_014liutianyu_prefix':'六艺',//本名
 	'ybart_016manchengqi_prefix':'六艺',//本名
 	'ybart_017xiaohong_prefix':'六艺',//本名
+	ybart_020jiayutong_prefix:'六艺',
 	'ybart_041mmuqin_prefix':'六艺',//本名崔妍
 	
 	// 'ybart_013yinji_ab':'尹姬',//本名尹超跃

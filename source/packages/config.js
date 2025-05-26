@@ -231,6 +231,11 @@ export const config = {
 			"15":"十五"
 		}
 	},
+	"ybsl_shuxing":{
+		"name":"<b>雷火属性加特效</b>",
+		'init': false,
+		'intro': '<font color=\'#ADEAEA\'>开启后雷火属性加特效：<br>火属性传导不解铁索，<br>非传导雷属性对唯一横置角色伤害<span style="text-decoration: line-through;">+1</span>翻倍。',
+	}
 
 }
 

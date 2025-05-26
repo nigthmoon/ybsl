@@ -644,6 +644,8 @@ const YBSL_special = function () {
 				['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
 				//真马超
 				['retieji',{sgskjdbzjms_zhen_machao:'shouli'}],
+				//孙立新
+				['jiang',{ybsl_023sunlixin:'yb023_jiang'}],
 				// ['sbxingshang',{ybmjz_shen_caopi:'caopi_xinkui'}],
 			)
 			// if()lib.skill.new_rejianxiong.audioname2

@@ -1613,6 +1613,186 @@ const skill = {
 			},
 		},
 	},
+	//界杜预
+	qmsgswkjsgj_spwuku: {
+		audio: 'spwuku',
+		trigger: { global: "useCard" },
+		forced: true,
+		preHidden: true,
+		filter(event, player) {
+			if (get.type(event.card) != "equip") return false;
+			return true;
+		},
+		content() {
+			player.addMark("spwuku", 1);
+		},
+		contentAfter(){
+			trigger.trigger("spwukuAfter");
+		},
+		marktext: "库",
+		intro: {
+			content: "mark",
+		},
+		ai: {
+			combo: "spmiewu",
+			threaten: 3.6,
+		},
+	},
+	qmsgswkjsgj_spsanchen: {
+		audio: 'spsanchen',
+		trigger: { player: ["spwukuAfter"] },
+		forced: true,
+		juexingji: true,
+		skillAnimation: true,
+		animationColor: "gray",
+		filter(event, player) {
+			return player.countMark("spwuku") > 2;
+		},
+		content() {
+			player.awakenSkill(event.name);
+			player.gainMaxHp();
+			player.recover();
+			player.addSkills("spmiewu");
+		},
+		ai: {
+			combo: "spwuku",
+		},
+		derivation: "spmiewu",
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

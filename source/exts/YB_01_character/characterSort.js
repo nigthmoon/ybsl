@@ -8,7 +8,7 @@ const characterSort = {
 			'ybsl_006wanghanzhen','ybsl_007wugege','ybsl_008wuyuxin','ybsl_009liyushan','ybsl_010zhouyue',
 			'ybsl_011gaoyuhang','ybsl_012zhengjiayi','ybsl_014liutianyu','ybsl_015wanghairu',
 			'ybsl_016manchengqi','ybsl_017xiaohong','ybsl_018zhangqing','ybsl_019shengyan','ybsl_020jiayutong',
-			'ybsl_021liuyufeng','ybsl_022salt','ybsl_024yuetong','ybsl_025shiwang','ybsl_025shiqingyu',
+			'ybsl_021liuyufeng','ybsl_022salt','ybsl_023sunlixin','ybsl_024yuetong','ybsl_025shiwang','ybsl_025shiqingyu',
 			'ybsl_025wanghe','ybsl_032baiyichen','ybsl_033xiaohui',/*'ybsl_025shiqingyu',*/
 			'ybsl_042pingzi','ybsl_043fangjiayu','ybsl_044huruihang','ybsl_045gaocong',
 			'ybsl_046jiangxuewu','ybsl_047shan','ybsl_038bianqiuwen','ybsl_048wushuang','ybsl_049waner',

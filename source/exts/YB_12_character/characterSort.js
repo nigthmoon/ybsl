@@ -14,7 +14,7 @@ const characterSort = {
 			'qmsgswkjsgj_xizhicai','qmsgswkjsgj_liuxie',
 			'qmsgswkjsgj_shen_zhaoyun','qmsgswkjsgj_gui_xuyou',
 			'qmsgswkjsgj_gui_zhaoyun','qmsgswkjsgj_gui_sunquan',
-			'qmsgswkjsgj_shen_guojia',
+			'qmsgswkjsgj_shen_guojia','qmsgswkjsgj_sp_duyu',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',

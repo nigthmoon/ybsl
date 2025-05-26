@@ -7,7 +7,7 @@ export { YBSL_nature }
  * 前缀收纳
  */
 const YBSL_nature = function(){
-    {
+	{
 		/**
 		 * 判断卡牌的属性
 		 * @param {card|nature} card 
@@ -353,4 +353,5 @@ const YBSL_nature = function(){
 			nature:'black',
 		})
 	}
+	
 }

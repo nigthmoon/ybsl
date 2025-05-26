@@ -3721,6 +3721,7 @@ const skill = {
 		// inherit:'reqingguo',
 	},
 	ybsl_yedun:{
+		derivation:['olshilu'],
 		audio: 'ext:夜白神略/audio/character:2',
 		// forecd:true,
 		locked:true,
@@ -3788,6 +3789,7 @@ const skill = {
 	},
 	ybsl_yedunx:{
 		audio: 'ybsl_yedun',
+		derivation:['olshilu'],
 		// forecd:true,
 		locked:true,
 		init(player){

@@ -143,7 +143,7 @@ const translate = {
 
 	qmsgswkjsgj_gui_sunquan:'黑无常赐福孙权',
 	qmsgswkjsgj_gui_sunquan_prefix:'黑无常赐福',
-	//鬼邪赐福
+	//神鬼赐福
 	qmsgswkjsgj_taiping: "太平",
 	qmsgswkjsgj_taiping_info: "锁定技，摸牌阶段摸牌时，你的摸牌数量+2。",
 	qmsgswkjsgj_taiping_append: "黑无常赐福。",
@@ -156,6 +156,12 @@ const translate = {
 	qmsgswkjsgj_reshuishi:'慧识',
 	qmsgswkjsgj_reshuishi_info: "出牌阶段限一次。若你的体力上限小于10，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同且你的体力上限小于10，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。",
 
+	qmsgswkjsgj_sp_duyu:'界杜预',
+	qmsgswkjsgj_sp_duyu_prefix:'界',
+	qmsgswkjsgj_spwuku: "武库",
+	qmsgswkjsgj_spwuku_info: "锁定技，当有角色使用装备牌时，则你获得一个“武库”。",
+	qmsgswkjsgj_spsanchen: "三陈",
+	qmsgswkjsgj_spsanchen_info: "觉醒技，若你的“武库”数大于2，则你加1点体力上限并回复1点体力，然后获得〖灭吴〗。",
 
 
 

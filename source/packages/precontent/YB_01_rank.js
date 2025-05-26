@@ -4,7 +4,7 @@ export { YBSL_rank }
  * 掌管第五格武将评级和异构加入的数据
  */
 const YBSL_rank = function(){
-    
+	
 	var packages = [
 		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
 		// 'YB_one'
@@ -90,6 +90,36 @@ const YBSL_rank = function(){
 			}
 		})
 	}
+	{//神鬼赐福
+		var gxcfbool = lib.config.YB_guixiecifu;
+		var booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+		// 根据状态设置不同颜色
+		var btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色，关=红色
+
+		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者<br>点击下方按钮可以开启或关闭鬼神赐福系统（调整后需重置游戏方可生效）';
+
+		sgstrxsstr += `
+			<div style="position:relative;display:inline-block;width:200px;">
+				<button id="guixieBtn" 
+						onclick="
+							lib.config.YB_guixiecifu = !lib.config.YB_guixiecifu;
+							var isOn = lib.config.YB_guixiecifu;
+							this.textContent = isOn ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+							this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
+							game.saveConfig('YB_guixiecifu',lib.config.YB_guixiecifu);
+						" 
+						style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
+					${booltext}
+				</button>
+			</div>
+		`;
+
+		// 初始化按钮状态（如果需要）
+		if (typeof lib !== 'undefined' && lib.config) {
+			lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
+		}
+	}
+
 	lib.translate['ybslj'+'_info']='夜白神略主体武将包'
 	lib.translate['ybart'+'_info']='温馨提示：<br>开启本将包会一并开启“六艺”机制，详情请右键六艺篇查看，简单来说就是全场自带私人木牛流马。<br>因之前有群友反馈，说不喜欢这个机制，因此被我放在这里隔离，开启与否视个人喜好吧'
 	lib.translate['ybxh'+'_info']='校花的贴身高手，很多武将虚位以待，敬请投稿'
@@ -99,8 +129,14 @@ const YBSL_rank = function(){
 	lib.translate['ybMagic'+'_info']='理论上应该有武将的，但没设计好呢，再等等'
 	lib.translate['yhky'+'_info']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'
 	lib.translate['ybllyz'+'_info']='连招宇宙，以夜白自己设计的连招技框架构成'
-	lib.translate['sgstrxs'+'_info']='三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者'
+	lib.translate['sgstrxs'+'_info']=sgstrxsstr
 	lib.translate['ybslc'+'_info']='夜白神略主体卡牌包'
 	lib.translate['ybgod'+'_info']='boss模式卡牌搬运'
-	lib.translate['ybnew2'+'_info']='风花雪月'
+	lib.translate['ybnew2'+'_info']=`
+		风花雪月<br>
+		风属性机制：<br>
+		①，此属性可以和其他属性共存，也就是说你可以看到诸如风雷杀，风火属性伤害之类的牌或描述<br>
+		②，即将造成风属性伤害的时候，先从伤害的属性中移除风属性，此时标记除受伤角色以外的所有横置角色（代码原理）<br>
+		③，②的伤害结算结束后，晚于铁索的结算（避免先把铁索状态解除导致bug），然后对②中标记的角色造成伤害，伤害属性与触发此机制的伤害的属性一致（不过不包含风属性，因为已经通过机制移除了风属性）
+	`
 }

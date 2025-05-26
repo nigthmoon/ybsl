@@ -885,20 +885,20 @@ const YBSL_ybslf = function () {
 				list = [];
 				for (var i = 0; i < _status.characterlist.length; i++) {
 					var name = _status.characterlist[i];
-					if (event.sex.contains(lib.character[name][0])) {
+					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) { list.push(name); }
-						else if (event.groupa.contains(lib.character[name][1])) { list.push(name); }//groupa应用
+						else if (event.groupa.includes(lib.character[name][1])) { list.push(name); }//groupa应用
 					}
 				}
 			}
 			else if (_status.connectMode) {
 				list = get.charactersOL(function (i) {
-					return event.groupa.contains(lib.character[i][1]) && event.sex.contains(lib.character[i][0]);
+					return event.groupa.includes(lib.character[i][1]) && event.sex.includes(lib.character[i][0]);
 				});
 			}
 			else {
 				list = get.gainableCharacters(function (info) {
-					return event.groupa.contains(info[1]) && event.sex.contains(info[0]);
+					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
 			var players = game.players.concat(game.dead);
@@ -909,17 +909,17 @@ const YBSL_ybslf = function () {
 			}
 			if (event.zhu == 'zhu') {
 				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z)
 				}
 			}
 			else if (event.zhu == 'nozhu') {
 				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z)
 				}
 			}
 			if (event.band.length > 0) {
 				for (var j of event.band) {
-					if (list.contains(j)) list.remove(j);//应用数据band
+					if (list.includes(j)) list.remove(j);//应用数据band
 				}
 			}
 			list = list.randomGets(event.numa);//应用数据numa
@@ -1036,20 +1036,20 @@ const YBSL_ybslf = function () {
 				list = [];
 				for (var i = 0; i < _status.characterlist.length; i++) {
 					var name = _status.characterlist[i];
-					if (event.sex.contains(lib.character[name][0])) {
+					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) { list.push(name); }
-						else if (event.groupa.contains(lib.character[name][1])) { list.push(name); }//groupa应用
+						else if (event.groupa.includes(lib.character[name][1])) { list.push(name); }//groupa应用
 					}
 				}
 			}
 			else if (_status.connectMode) {
 				list = get.charactersOL(function (i) {
-					return event.groupa.contains(lib.character[i][1]) && event.sex.contains(lib.character[i][0]);
+					return event.groupa.includes(lib.character[i][1]) && event.sex.includes(lib.character[i][0]);
 				});
 			}
 			else {
 				list = get.gainableCharacters(function (info) {
-					return event.groupa.contains(info[1]) && event.sex.contains(info[0]);
+					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
 			var players = game.players.concat(game.dead);
@@ -1058,19 +1058,19 @@ const YBSL_ybslf = function () {
 				list.remove(players[i].name1);
 				list.remove(players[i].name2);
 			}
-			if (event.band.length > 0) {
-				for (var j of event.band) {
-					if (list.contains(j)) list.remove(j);//应用数据band
-				}
-			}
 			if (event.zhu == 'zhu') {
 				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z)
 				}
 			}
 			else if (event.zhu == 'nozhu') {
 				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z)
+				}
+			}
+			if (event.band.length > 0) {
+				for (var j of event.band) {
+					if (list.includes(j)) list.remove(j);//应用数据band
 				}
 			}
 			// var dialog=ui.create.dialog();
@@ -1093,20 +1093,20 @@ const YBSL_ybslf = function () {
 				list = [];
 				for (var i = 0; i < _status.characterlist.length; i++) {
 					var name = _status.characterlist[i];
-					if (event.sex.contains(lib.character[name][0])) {
+					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) { list.push(name); }
-						else if (event.groupa.contains(lib.character[name][1])) { list.push(name); }//groupa应用
+						else if (event.groupa.includes(lib.character[name][1])) { list.push(name); }//groupa应用
 					}
 				}
 			}
 			else if (_status.connectMode) {
 				list = get.charactersOL(function (i) {
-					return event.groupa.contains(lib.character[i][1]) && event.sex.contains(lib.character[i][0]);
+					return event.groupa.includes(lib.character[i][1]) && event.sex.includes(lib.character[i][0]);
 				});
 			}
 			else {
 				list = get.gainableCharacters(function (info) {
-					return event.groupa.contains(info[1]) && event.sex.contains(info[0]);
+					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
 			var players = game.players.concat(game.dead);
@@ -1115,19 +1115,19 @@ const YBSL_ybslf = function () {
 				list.remove(players[i].name1);
 				list.remove(players[i].name2);
 			}
-			if (event.band.length > 0) {
-				for (var j of event.band) {
-					if (list.contains(j)) list.remove(j);//应用数据band
-				}
-			}
 			if (event.zhu == 'zhu') {
 				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z)
 				}
 			}
 			else if (event.zhu == 'nozhu') {
 				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].contains('zhu')) event.band.add(z)
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z)
+				}
+			}
+			if (event.band.length > 0) {
+				for (var j of event.band) {
+					if (list.includes(j)) list.remove(j);//应用数据band
 				}
 			}
 			var ttt = get.translation(event.numb);

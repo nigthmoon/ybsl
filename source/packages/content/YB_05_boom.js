@@ -83,4 +83,37 @@ const YBSL_boom = function(){
 			},
 		}
 	}
+	if(lib.config.extension_夜白神略_ybsl_shuxing==true){
+		lib.skill._YB_fire={
+			trigger:{
+				player:'linkBefore',
+			},
+			equipSkill:false,
+			ruleSkill:true,
+			shaRelated:true,
+			filter:function (event,player){
+				var evt = event.getParent(5);
+				return evt&&evt.name == "damage"&&evt.hasNature('fire')&&player.isLinked();;
+			},
+			forced:true,
+			content:function (){
+				trigger.cancel();
+			},
+		}
+		lib.skill._YB_thunder={
+			trigger:{
+				player:'damageBegin4',
+			},
+			equipSkill:false,
+			ruleSkill:true,
+			shaRelated:true,
+			filter:function (event,player){
+				return event.hasNature('thunder')&&event.num>0&&event.player.isLinked()&&game.countPlayer(function(c){return c.isLinked()})==1&&event.lianhuanable == true;
+			},
+			forced:true,
+			content:function (){
+				trigger.num*=2;
+			},
+		}
+	}
 }

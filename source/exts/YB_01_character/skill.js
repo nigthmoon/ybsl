@@ -7104,6 +7104,14 @@ const skill = {
 	'yb022_duanxiangxin_info':'每回合限一次，当有角色受到伤害后，<br>①若伤害来源的手牌数不等于受伤角色的体力值，你可令伤害来源将手牌调整至受伤角色的体力值；<br>②若受伤角色的手牌数不等于伤害来源的体力值，你可令受伤角色将手牌调整至伤害来源的体力值。',
 	*/
 	//--------------023
+	yb023_jiang:{
+		audio:'ext:夜白神略/audio/character:2',
+
+	},
+	yb023_fenghou:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced:true,
+	},
 	//--------------024
 	ybsl_tang_used:{
 		trigger: {
@@ -9205,6 +9213,119 @@ const skill = {
 	'yb034_jiandao_info':'锁定技，若你已装备武器牌，你的手牌上限加一，且获得如下效果：出牌阶段限一次，你可以视为使用一张【杀】。',
 	*/
 	//---------------------玺
+	yb035_zhengzhao:{
+		audio:'ext:夜白神略/audio/character:2',
+		trigger:{
+			global:'phaseZhunbeiBegin',
+		},
+		filter(event,player){
+			return event.player!=player&&event.player.maxHp>=player.maxHp;
+		},
+		forced:true,
+		content:[
+			async function(event,trigger,player){
+				trigger.player.chooseToGive(player,1,'h','①交给'+get.translation(player)+'一张手牌，②减少一点体力上限。')
+				.set("ai", function(card) {
+					var trigger=_status.event.getTrigger();
+					if(get.attitude(trigger.player,player)>5)return 10-get.value(card);
+					// else if(trigger.player.maxHp>player.maxHp)return 10-get.value(card);
+					return false;
+				} )
+			},
+			async function(event,trigger,player){
+				let result = event._result;
+				if(!result.bool)trigger.player.loseMaxHp();
+			}
+		],
+	},
+	yb035_jitian:{
+		audio:'ext:夜白神略/audio/character:2',
+		trigger:{
+			player:'phaseZhunbeiBegin',
+		},
+		filter(event,player){
+			return true;
+		},
+		cost(){
+			'step 0'
+			player.chooseControl()
+				.set("prompt", "祭天：请选择一项")
+				.set("choiceList", ["减少一点体力上限并回复一点体力", "增加一点体力上限并失去一点体力",'取消'])
+				.set("ai", () => {
+					if(player.maxHp>=4&&player.maxHp-player.hp>=2)return 0;
+					else if(player.hp>=2)return 1;
+					else return 2;
+				})
+			'step 1'
+			if(result.index!=2){
+				event.result = {bool:true,cost_data:result.index};
+			}
+		},
+		content(){
+			'step 0'
+			if(event.cost_data==0){
+				player.loseMaxHp();
+				player.recover();
+			}
+			else {
+				player.gainMaxHp();
+				player.loseHp();
+			}
+			'step 1'
+			player.draw(2);
+		}
+
+	},
+	yb035_liuwang:{
+		audio:'ext:夜白神略/audio/character:2',
+		enable: "chooseToUse",
+		limited: true,
+		skillAnimation: true,
+		animationColor: "kami",
+		filter(event, player) {
+			if (event.type == "dying") {
+				if (player != event.dying) return false;
+				return true;
+			}
+			return false;
+		},
+		async content(event, trigger, player) {
+			player.awakenSkill(event.name);
+			player.storage.yb035_liuwang = true;
+			await player.recoverTo(1);
+			await player.YB_fuhan([,4,'流亡',,'all','zhu'],'tw');
+			await player.addSkill('yb035_weiyan');
+		},
+		ai: {
+			order: 0.5,
+			skillTagFilter(player, tag, target) {
+				if (player != target || player.storage.yb035_liuwang) return false;
+			},
+			save: true,
+			result: {
+				player(player) {
+					if (player.hp <= 0) return 10;
+					return 0;
+				},
+			},
+			threaten(player, target) {
+				if (!target.storage.yb035_liuwang) return 0.6;
+			},
+		},
+	},
+	yb035_weiyan:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			player:'useCardToTargeted',
+		},
+		filter(event,player){
+			return player!=event.target&&player.hp>event.target.hp&&event.target.hp>1;
+		},
+		content(){
+			trigger.target.loseHp();
+		}
+	},
 	//---------------------熙
 	'yb036_sanmeng':{
 		audio:'ext:夜白神略/audio/character:2',

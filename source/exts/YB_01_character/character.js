@@ -42,11 +42,10 @@ const character = { //武将格式 :
 	'ybsl_018zhangqing':['female','YB_memory',3,['yb018_huaimeng','yb018_minxing','yb018_fanling'],['rankAdd:legend','rankS:s','name:张|晴']],//张晴
 	'ybsl_018huanqing':['female','YB_dream',3,['yb018_lihun','yb018_wanyue','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:张|晴']],//梦——幻晴
 	'ybsl_019shengyan':['female','YB_memory',4,['yb019_cutan','yb019_misan','yb019_renxing','yb019_chicu'],['unseen','rankAdd:rare','rankS:b','name:盛|妍']],//盛妍
-	// 'ybsl_020jiayutong':['female','YB_memory',3,['yb020_shange','yb020_wanyue','yb020_yuyun'],['unseen','rankAdd:epic','rankS:a','name:贾|雨桐']],//贾雨桐
 	'ybsl_020jiayutong':['female','YB_memory',3,['yb043_zhishi','yb020_zhuangrong'],['rankAdd:epic','rankS:a','name:贾|雨桐']],//贾雨桐
 	'ybsl_021liuyufeng':['male','YB_memory',3,['yb021_shusuan','yb021_qiujiao'],['rankAdd:epic','rankS:a','name:刘|域楓']],//刘域楓
 	'ybsl_022salt':['female','YB_memory',3,['yb022_yiduan',/*'yb022_yaogong',*/'yb022_duanxiangxin'],['rankAdd:epic','rankS:a','name:null|盐']],//盐
-	//023
+	'ybsl_023sunlixin':['male','YB_memory',4,['oljiang','yb023_fenghou'],['unseen','rankAdd:legend','rankS:s','name:孙|立新']],//孙立新
 	'ybsl_024yuetong':['female','YB_memory',4,[/*'技能'*/],['unseen','rankAdd:legend','rankS:s','name:岳|瞳']],//岳瞳
 	'ybsl_025shiwang':['female','YB_memory',3,['yb025_choujiang','yb025_haodu','yb025_zanzhu'],['rankAdd:legend','rankS:s','name:史|庆宇-王|贺']],//史庆宇&王贺
 	'ybsl_025shiqingyu':['female','YB_memory',16,['yb025_shiyuan','yb025_tuiqiao','yb025_chengyinx'],['rankAdd:epic','rankS:a','name:史|庆宇']],//史庆宇
@@ -59,7 +58,7 @@ const character = { //武将格式 :
 	//'ybsl_032baiyichen':['female','YB_memory',3,['yb032_tonglv','yb032_zhuiji','yb032_duanchang'],['rankAdd:epic','rankS:a','name:白|衣尘']],//白衣尘
 	'ybsl_033xiaohui':['female','YB_memory',3,['yb033_huiyue'/*,'yb033_shuhui','yb033_yuqi','yb014_lvxin'*/],['rankAdd:legend','rankS:s','name:null|小慧']],//小慧
 	'ybsl_034zhoulianyuan':['male','YB_dream',3,['yb034_bifa','yb034_jiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','rankS:b','name:周|怜渊']],//梦——周怜渊
-	//'ybsl_035stamp':['male','shen','2/3',['yb035_zhengzhao','yb035_jitian','yb035_liuwang'/*,'yb035_weiyan'*/],['unseen','YB_memory','rankAdd:legend','rankS:s','name:null|玺']],//梦——玺
+	'ybsl_035stamp':['male','shen','2/3',['yb035_zhengzhao','yb035_jitian','yb035_liuwang'/*,'yb035_weiyan'*/],['YB_memory','rankAdd:legend','rankS:s','name:null|玺']],//梦——玺
 	'ybsl_036bright':['female','YB_dream',3,['yb036_qianjin','yb036_chongzheng','yb036_aoxiang','ybsl_sanmeng','ybsl_rumeng'],['unseen','YB_memory','rankAdd:epic','rankS:a','name:null|熙']],//梦——熙
 	'ybsl_037diamondqueen':['female','YB_dream',6,['yb037_yizhong','yb037_kexie','yb037_guiling','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','rankS:b','name:null|Q']],//梦——方块Q
 	'db_ybsl_038tengwu':['female','YB_dream','3/4',['yb038_quanlu','yb038_fushengxx','ybsl_sanmeng'],['doublegroup:YB_memory:YB_dream','rankAdd:legend','rankS:s','name:滕|叔颖-武|宁']],//梦——滕叔颖＆武宁
