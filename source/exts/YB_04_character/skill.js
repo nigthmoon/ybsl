@@ -2,6 +2,7 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 import { precontent } from '../../packages/precontent.js';
 export { skill }
 
+/** @type { importCharacterConfig['skill'] } */
 const skill = {
 	//--------------------一将成名
 	//--------神庞统
@@ -3864,6 +3865,8 @@ const skill = {
 
 		},
 	},
+
+	
 	// ybsl_xijian:'悉谏',
 	// ybsl_xijian_info:'限定技，当有角色脱离濒死状态时，你可令该角色失去全部体力。',
 	// ybsl_yedun:'夜遁',
@@ -3874,6 +3877,148 @@ const skill = {
 	// ybsl_shilu_info:'锁定技。当你受到伤害后，你摸X张牌（X为你的体力值且至多为5）。然后你展示攻击范围内一名角色的一张手牌并令此牌视为无属性【杀】。',
 	// ybsl_qingguo:'倾国',
 	// ybsl_qingguo_info:'你可以将一张黑色牌当做【闪】使用或打出。',
+	
+	
+	ybsl_fengci:{
+		audio: 'ext:夜白神略/audio/character:2',
+		marktext:'祭',
+		intro:{
+			name:'贡品',
+			content:'expansion',
+		},
+		subSkill:{
+			draw:{
+				audio: 'ybsl_fengci',
+				trigger:{
+					player:'phaseDrawBegin',
+				},
+				async cost(event,trigger,player){
+					event.result={bool:false}
+					var cards = player.getExpansions('ybsl_fengci');
+					if(cards&&cards.length>0){
+						event.result = await player.chooseCardButton(cards,[1,cards.length]).set('filterButton',function(button){
+							var cardsy=ui.selected.buttons;
+							var cardst=[];
+							if(cardsy){
+								for(var i of cardsy){
+									cardst.push(i.link);
+								}
+							}
+							if(cardst)return !get.YB_suit(cardst,'suit').includes(get.suit(button.link)); 
+							return true;
+						}).forResult();
+					}
+					event.result.cards = event.result.links;
+				},
+				content(){
+					player.discard(event.cards);
+					trigger.num+=event.cards.length;
+				}
+			}
+		},
+	},
+	ybsl_fengcix:{
+		audio: 'ybsl_fengci',
+		forced:true,
+		trigger:{
+			global:'loseAfter',
+		},
+		filter:function(event,player){
+			if(event.type!='discard'||event.getlx===false) return false;
+			var cards=event.cards.slice(0);
+			var evt=event.getl(player);
+			if (evt && evt.cards) cards.removeArray(evt.cards);
+			for (var i = 0; i < cards.length; i++) {
+				if (get.position(cards[i], true) == "d") {
+					return event.player== _status.currentPhase;;
+				}
+			}
+			return false;
+		},
+		*content(event,map){
+			let trigger=map.trigger,player=map.player;
+			var cards = [],
+				cards2 = trigger.cards.slice(0),
+				evt = trigger.getl(player);
+			if (evt && evt.cards) cards2.removeArray(evt.cards);
+			for (var i = 0; i < cards2.length; i++) {
+				if (get.position(cards2[i], true) == "d") {
+					cards.push(cards2[i]);
+				}
+			}
+			let result={bool:false};
+			if(cards.length) result = yield trigger.player.chooseBool('是：将本次弃置的牌置于'+get.translation(player)+'武将牌上称为“祭”<br>否：令你本回合下次摸的牌明置且视为【毒】').set('ai',function(){return true}).forResult();
+			if(result.bool==true||result==true){
+				yield player.addToExpansion(cards,player,'gain').gaintag.add("ybsl_fengci");
+			}
+			else{
+				yield trigger.player.addTempSkill('ybsl_fengcix_du');
+			}
+		},
+		group:'ybsl_fengci_draw',
+		subSkill:{
+			du:{
+				forced:true,
+				audio:'ybsl_fengcix',
+				trigger:{
+					// player:'drawEnd',
+					player:'drawBegin',
+				},
+				filter(event,player){
+					return event.num>0;
+				},
+				firstDo:true,
+				content(){
+					'step 0'
+					player.addTempSkill('ybsl_fengcix_dux');
+					// player.addShownCards(cards, "ybsl_fengcix_dux");
+					trigger.visible=true;
+					trigger.gaintag.add('ybsl_fengcix');
+					player.when('drawEnd').then(function(){
+						if(trigger.gaintag&&trigger.gaintag.includes('ybsl_fengcix')){
+
+							var cards=trigger.result;
+							for(var i of cards){
+								i.YB_cardname('du','ybsl_fengcix');
+							}
+						}
+					})
+					'step 1'
+					player.removeSkill('ybsl_fengcix_du');
+				}
+			},
+			dux:{
+				forced:true,
+				// mod:{
+				// 	cardname(card, player) {
+				// 		if (card.hasGaintag("ybsl_fengcix")) return 'du';
+				// 	},
+				// },
+				onremove(player){
+					player.removeGaintag("ybsl_fengcix");
+				}
+			}
+		}
+	},
+	ybsl_youxiang:{
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	ybsl_youxiangx:{
+		audio: 'ybsl_youxiang',
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 索靖
 	 */
@@ -3918,6 +4063,7 @@ const skill = {
 			return false;
 		},
 		//先不写了，类，懒，笔走龙蛇还没审稿呢
+		//军师中郎将画饼了，说抽空要给讲讲，先摆在这
 		ai:{
 			respondSha:true,
 			respondShan:true,
@@ -3930,6 +4076,11 @@ const skill = {
 			},
 		},
 	},
+
+
+
+
+
 	//宗族武将
 	ybsl_clanqianlei: {//谦累
 		clanSkill: true,

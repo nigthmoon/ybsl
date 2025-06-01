@@ -69,6 +69,18 @@ const characterCopyright = {
 	ybsl_hairi:'<font color=cyan>夜白杂设-编号暂无</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：网图<br>❀配音：暂无',
 	sp_key_umi:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：暂无',
 	ybsl_pujing:'<font color=cyan>夜白杂设-编号暂无</font><br>♣︎️技能设计：夜白<br>♣︎️代码撰写者：夜白<br>♣︎️插图：三国杀官方（若有）<br>♣︎️配音：三国杀官方（若有）',
+
+
+
+
+
+
+
+
+
+
+
+	
 	//别群比赛
 	ybsl_lvyi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //吕乂
 	ybsl_yinfan:'<font color=cyan>别群比赛-小白杯（重在参与）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //隐蕃
@@ -76,6 +88,7 @@ const characterCopyright = {
 	ybsl_sunshaoo:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //孙韶
 	ybsl_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
 	ybnb_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
+	ybsl_jiangziwen:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //蒋子文
 	ybsl_suojing:'<font color=cyan>别群比赛-鸿渐赛·笔走龙蛇（待评审）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：鸿渐赛笔走龙蛇（若有）<br>♦︎配音：鸿渐赛笔走龙蛇（若有）',//索靖
 	//宗族武将
 	//吴郡陆氏

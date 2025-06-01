@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { skill }
 
+/** @type { importCharacterConfig['skill'] } */
 const skill = {
 	yhky_lzyjuekang:{
 		audio: 'ext:夜白神略/audio/character:6',

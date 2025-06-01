@@ -718,6 +718,75 @@ const YBSL_special = function () {
 			)
 		}
 	}
+	// {//适配蒋歆封祠
+	// 	_status.ybsl_fengcix = {}
+	// 	lib.skill._ybsl_fengcix = {
+	// 		trigger: {
+	// 			global: ['equipAfter', 'addJudgeAfter', 'loseAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+	// 		},
+	// 		charlotte: true,
+	// 		ruleskill: true,
+	// 		direct: true,
+	// 		firstDo: true,
+	// 		content: function () {
+	// 			var list = _status.ybsl_fengcix;
+	// 			var evt = trigger.getl(player);
+	// 			if (list && evt && evt.hs && evt.hs.length) {
+	// 				for (var i of evt.hs) {
+	// 					for (var k in list) {
+	// 						if (i.cardid == k) {
+	// 							delete _status.ybsl_fengcix[i.cardid];
+	// 						};
+	// 					}
+	// 				}
+	// 			}
+	// 		},
+	// 		mod: {
+	// 			cardname: function (card, player) {
+	// 				var map = _status.ybsl_fengcix;
+	// 				if (map && map[card.cardid] && get.itemtype(card) == 'card') return map[card.cardid];
+	// 			},
+	// 		},
+	// 	}
+	// }
+	{//泛用的令某牌视为某牌函数
+		lib.element.card.YB_cardname=function(name,tag){
+			if(!_status.YB_cardname){
+				_status.YB_cardname={}
+			}
+			var card = this;
+			_status.YB_cardname[card.cardid]=name;
+			card.addGaintag(tag);
+		}
+		lib.skill._YB_cardname = {
+			trigger: {
+				global: ['equipAfter', 'addJudgeAfter', 'loseAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+			},
+			charlotte: true,
+			ruleskill: true,
+			direct: true,
+			firstDo: true,
+			content: function () {
+				var list = _status.YB_cardname;
+				var evt = trigger.getl(player);
+				if (list && evt && evt.hs && evt.hs.length) {
+					for (var i of evt.hs) {
+						for (var k in list) {
+							if (i.cardid == k) {
+								delete _status.YB_cardname[i.cardid];
+							};
+						}
+					}
+				}
+			},
+			mod: {
+				cardname: function (card, player) {
+					var map = _status.YB_cardname;
+					if (map && map[card.cardid] && get.itemtype(card) == 'card') return map[card.cardid];
+				},
+			},
+		}
+	}
 	{//应变
 		lib.yingbian.effect.set('lianDa',()=>{
 			// trigger.yingbian_lianDa=true;

@@ -10,5 +10,6 @@ const characterTitle = { //称号
 	ybsl_sunshaoo: '知而后动',
 	ybsl_wangbi: '倾厦之梁',
 	ybnb_wangbi: '倾厦之梁',
+	ybsl_jiangziwen:'骨清为神',
 	ybsl_suojing: '铜驼荆棘',
 }

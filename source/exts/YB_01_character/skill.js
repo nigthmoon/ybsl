@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { skill }
 
+/** @type { importCharacterConfig['skill'] } */
 const skill = {
 			
 	//---------------------------鬼神易的足迹
@@ -9279,6 +9280,7 @@ const skill = {
 	yb035_liuwang:{
 		audio:'ext:夜白神略/audio/character:2',
 		enable: "chooseToUse",
+		derivation:['yb035_weiyan'],
 		limited: true,
 		skillAnimation: true,
 		animationColor: "kami",
