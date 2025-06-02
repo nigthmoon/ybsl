@@ -13,6 +13,13 @@ export { YBSL_special }
  * 适配小狐
  * 刻印牌的翻译
  * 缘分机制
+ * 闫爽
+ * 名将神曹丕
+ * 一些本体技能的audioname2
+ * 符咒世界蓝条
+ * 蒋子文（划掉）
+ * 泛用的令某牌视为某牌
+ * 应变
  */
 const YBSL_special = function () {
 	_status.YB_jingxieList=[

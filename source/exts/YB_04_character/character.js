@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { character }
 
+/** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
 	//------------------------上古神话
 	// sgsh_huaxu:{

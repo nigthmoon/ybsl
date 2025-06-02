@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { character }
 
+/** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
 	//---------------------名将改写
 	// 'dzsl_luxun':['male','wu',3,['dzsl_shenhuo','dzsl_buxi','dzsl_shennu'],['forbidai','rankAdd:junk','rankS:d','name:陆|逊']],//陆逊

@@ -4,6 +4,7 @@ import { skill } from '../exts/YB_06_card/skill.js'
 import { translate } from '../exts/YB_06_card/translate.js'
 import { list } from '../exts/YB_06_card/list.js'
 game.import('card',function(lib, game, ui, get, ai, _status){
+	/** @type { importCardConfig } */
 	var ybgod={
 		name:'ybgod',//卡包命名
 		connect:true,//卡包是否可以联机

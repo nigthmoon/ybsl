@@ -4,6 +4,7 @@ import { skill } from '../exts/YB_07_card/skill.js'
 import { translate } from '../exts/YB_07_card/translate.js'
 import { list } from '../exts/YB_07_card/list.js'
 game.import('card', function(lib, game, ui, get, ai, _status) {
+	/** @type { importCardConfig } */
 	var ybnew2 = {
 		name: 'ybnew2', //武将包命名（必填） 
 		connect: true, //该武将包是否可以联机（必填） 

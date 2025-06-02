@@ -1,5 +1,6 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { card };
+/** @type { importCardConfig['card'] } */
 const card = {
 	niaobaidaowenha: {
 		type: 'equip',

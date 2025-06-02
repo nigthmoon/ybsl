@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { character }
 
+/** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
 	'ybart_013yinji':['female','YB_memory',3,['yb017_shanwu','dz013_qingling'],['rankAdd:epic','name:尹|姬','linkTo:ybsl_013yinji']],//尹姬
 	'ybart_014liutianyu':['male','YB_memory',4,['yb014_shifu','yb014_huanlei'],['rankAdd:legend','rankS:s','name:夜|白','linkTo:ybsl_014liutianyu']],//夜白

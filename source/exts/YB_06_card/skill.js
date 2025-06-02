@@ -1,7 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { skill }
 
-/** @type { importCharacterConfig['skill'] } */
+/** @type { importCardConfig['skill'] } */
 const skill = {
 	niaobaidaowenha_skill:{
 		trigger:{player:'loseMaxHpAfter'},

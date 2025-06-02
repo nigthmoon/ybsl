@@ -13,6 +13,7 @@ import { translate } from '../exts/YB_03_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_03_character/dynamicTranslate.js'
 import { YB_characterIntro } from '../packages/function.js';
 game.import('character',function(lib, game, ui, get, ai, _status){ 
+	/** @type { importCharacterConfig } */
 	var ybxh={ 
 		name:'ybxh',//武将包命名（必填） 
 		connect:true,//该武将包是否可以联机（必填） 
