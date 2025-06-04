@@ -199,8 +199,8 @@ const translate = {
 	sgsxjxfzmnl_sbyanyu: "燕语",
 	sgsxjxfzmnl_sbyanyu_info: "①出牌阶段限三次。你可以弃置一张【杀】，然后摸一张牌。②出牌阶段结束时，你可以令一名其他角色摸3X张牌（X为你于此阶段发动〖燕语①〗的次数）。",
 
-	sgsxjxfzmnl_mo_diaochan:'仙界魔貂蝉',
-	sgsxjxfzmnl_mo_diaochan_prefix:'仙界魔',
+	sgsxjxfzmnl_mo_diaochan:'魔貂蝉',
+	sgsxjxfzmnl_mo_diaochan_prefix:'魔',//这强度称不上仙界
 	sgsxjxfzmnl_meihuo:'魅惑',
 	sgsxjxfzmnl_meihuo_info:'出牌阶段限两次，弃置一张牌，并选择两名其他角色，然后令两名角色互相使用一张【决斗】。',
 	sgsxjxfzmnl_biyue:'闭月',

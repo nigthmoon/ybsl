@@ -1625,11 +1625,14 @@ const skill = {
 			return true;
 		},
 		content() {
+			'step 0'
 			player.addMark("spwuku", 1);
-		},
-		contentAfter(){
+			'step 1'
 			trigger.trigger("spwukuAfter");
 		},
+		// contentAfter(){
+		// 	trigger.trigger("spwukuAfter");
+		// },
 		marktext: "库",
 		intro: {
 			content: "mark",

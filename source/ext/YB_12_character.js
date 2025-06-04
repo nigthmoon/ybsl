@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_12_character/skill.js'
 import { card } from '../exts/YB_12_character/card.js'
 import { translate } from '../exts/YB_12_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_12_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	/** @type { importCharacterConfig } */
 	var sgstrxs={ 
@@ -57,76 +57,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 	// 	if(sgstrxs.character[i][4])sgstrxs.character[i][4].push(`ext:夜白神略/image/ybsl003/${i}.jpg`);
 	// 	else sgstrxs.character[i].img=`extension/夜白神略/image/ybsl003/${i}.jpg`;
 	// } 
-	for(var i in sgstrxs.character){
-		if(Array.isArray(sgstrxs.character[i])){
-			var infoy = sgstrxs.character[i][4];
-			for(var infox of infoy){
-				if(infox.startsWith('YB_mjz:')){
-					var char = infox.slice(7);
-					sgstrxs.character[i][4].push(`ext:../../image/character/${char}.jpg`);
-					sgstrxs.character[i][4].push(`die:../../audio/die/${char}.mp3`);
-				}
-				// else {
-				// 	sgstrxs.character[i][4].push(`ext:夜白神略/image/sgstrxs/${i}.jpg`);
-				// 	sgstrxs.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
-				// }
-			}
-		}
-		else {
-			if(sgstrxs.character[i].YB_mjz){
-				var infoy = sgstrxs.character[i].YB_mjz;
-				sgstrxs.character[i].img = `ext:../../image/character/${infoy}.jpg`;
-				sgstrxs.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
-			}
-			// else {
-			// 	sgstrxs.character[i].img = `ext:夜白神略/image/sgstrxs/${i}.jpg`;
-			// 	sgstrxs.character[i].die = `die:夜白神略/audio/die/${i}.mp3`;
-			// }
-		}
-	} 
-	/**
-	 * 检查数组中所有字符串是否均不以指定前缀开头
-	 * @param {Array} arr - 要检查的数组
-	 * @param {string} prefix - 需要判断的前缀
-	 * @returns {boolean} - 如果所有字符串都不以指定前缀开头则返回true，否则返回false
-	 */
-	function noneStartWithPrefix(arr, prefix) {
-		// 确保prefix是字符串
-		const checkPrefix = String(prefix);
-		
-		return arr.every(item => {
-			// 检查元素是否为字符串且不以指定前缀开头
-			return typeof item === 'string' && !item.startsWith(checkPrefix);
-		});
-	}
-	// // 示例用法
-	// const testArray1 = ['abc', 'def', 'ghi'];
-	// const testArray2 = ['ext:abc', 'def', 'ghi'];
-	// const testArray3 = ['ext:123', 'ext:456'];
-	
-	// console.log(noneStartWithExt(testArray1)); // true
-	// console.log(noneStartWithExt(testArray2)); // false
-	// console.log(noneStartWithExt(testArray3)); // false
-	for(var i in sgstrxs.character){
-		if(Array.isArray(sgstrxs.character[i])){
-			var infoy = sgstrxs.character[i][4];
-			if(noneStartWithPrefix(infoy,'ext:')){
-				sgstrxs.character[i][4].push(`ext:夜白神略/image/sgstrxs/${i}.jpg`);
-			}
-			if(noneStartWithPrefix(infoy,'die:')){
-				sgstrxs.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
-			}
-		}
-		else {
-			if(!sgstrxs.character[i].img){
-				sgstrxs.character[i].img=`extension/夜白神略/image/sgstrxs/${i}.jpg`;
-			}
-			if(!sgstrxs.character[i].die){
-				sgstrxs.character[i].die=`extension/夜白神略/audio/die/${i}.mp3`;
-			}
-		}
-		
-	} 
+	typeimage(sgstrxs,'ybsl012')
 	for(var i in sgstrxs.card){
 		if(!sgstrxs.card[i].image) sgstrxs.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

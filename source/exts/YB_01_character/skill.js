@@ -235,6 +235,20 @@ const skill = {
 			}
 			trigger.player.init('dzsl_014xinzhikui');
 			trigger.player.storage.dz014_xinkui=player;
+			if (!lib.translate['commoner']) lib.translate['commoner'] = '民';
+			trigger.player.identity = 'commoner';
+			trigger.player.setIdentity('commoner');
+			trigger.player.identityShown = trigger.player.storage.dz014_xinkui.identityShown;
+			trigger.player.ai.modAttitudeFrom = function (from, to, att) {
+				const source = game.findPlayer(target => target == from.side || target.side == from.side && target.identity != 'commoner');
+				if (to == from.side || to.side == from.side) return 20;
+				return get.attitude(source, to);
+			};
+			trigger.player.ai.modAttitudeTo = function (from, to, att) {
+				const source = game.findPlayer(target => target == to.side || target.side == to.side && target.identity != 'commoner');
+				if (from == to.side || from.side == to.side) return 20;
+				return get.attitude(from, source) * (to.identity == 'commoner' ? 0.8 : 1);
+			};
 			trigger.player.revive(1,false);
 			trigger.player.draw(2);
 		},
@@ -16617,41 +16631,7 @@ const skill = {
 	},
 	yb121_tiandu:{
 		audio:'ext:夜白神略/audio/character:2',
-		forced:true,
-		trigger:{
-			player:'phaseZhunbei',
-		},
-		filter(event,player){
-			return true;
-		},
-		async content(event,trigger,player){
-			let result = await player.judge('天妒',function(card){
-				if(get.tag(card,'damage')>0.5){
-					return player.hp-1.5;
-				}
-				return 0;//这里return 的数字别私自改
-			}).forResult();
-			if(result.card){
-				if(get.tag(result.card,'damage')>0.5){
-					await player.damage(result.card,'nosource');
-				}
-			}
-		},
-		group:['yb121_tiandu_tiandu'],
-		subSkill:{
-			tiandu:{
-				audio:'yb121_tiandu',
-				trigger: { player: "judgeEnd" },
-				forced: true,
-				filter(event, player) {
-					return get.position(event.result.card, true) == "o";
-				},
-				async content(event, trigger, player) {
-					player.gain(trigger.result.card, "gain2");
-				},
-
-			}
-		}
+		inherit:'ybmjz_tiandu',
 	},
 	//-------夜白示范的傲才
 	ybsl_aocai:{

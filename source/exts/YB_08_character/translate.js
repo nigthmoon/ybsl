@@ -20,7 +20,8 @@ const translate = {
 	'ybmjz_fankui':'反馈',
 	'ybmjz_fankui_info':'当你受到一点伤害后，你可以获得伤害来源一张牌，然后若来源手牌数大于你，你可再获得其一张牌。',
 	'ybmjz_guicai':'鬼才',
-	'ybmjz_guicai_info':'在任意角色的判定牌生效前，你可以打出一张牌代替之；每回合每种花色限一次，当你的手牌进入弃牌堆时，你可以摸一张牌。',//，然后此次判定结果不能再被修改
+	'ybmjz_guicai_info':'在任意角色的判定牌生效前，你可以打出一张牌代替之；每回合限X+1次（X为你已损体力值），当你不因使用而失去牌后，你摸一张牌。',//，然后此次判定结果不能再被修改
+	// 'ybmjz_guicai_info':'在任意角色的判定牌生效前，你可以打出一张牌代替之；每回合每种花色限一次，当你的手牌进入弃牌堆时，你可以摸一张牌。',//，然后此次判定结果不能再被修改
 	ybmjz_xiahoudun:'名将夏侯惇', 
 	ybmjz_xiahoudun_prefix:'名将', 
 	'ybmjz_ganglie':'刚烈',
@@ -34,13 +35,18 @@ const translate = {
 	ybmjz_zhangliao:'名将张辽', 
 	ybmjz_zhangliao_prefix:'名将', 
 	'ybmjz_tuxi':'突袭',
-	'ybmjz_tuxi_info':'出牌阶段开始时，你可以弃置一张牌，并选择等量有手牌的其他角色，展示并获得他们各一张牌，若你弃置的牌花色包含此牌花色，你对其造成一点伤害。',
+	'ybmjz_tuxi_info':'摸牌阶段即将摸牌时，你可以选择至多X名其他角色（X为本次摸牌数），同时弃置他们各一张牌，然后你可以获得其中任意张牌，然后本次摸牌数减少等量值。',
+	// 'ybmjz_tuxi_info':'出牌阶段开始时，你可以弃置一张牌，并选择等量有手牌的其他角色，展示并获得他们各一张牌，若你弃置的牌花色包含此牌花色，你对其造成一点伤害。',
 	ybmjz_xuzhu:'名将许褚', 
 	ybmjz_xuzhu_prefix:'名将',
 	'ybmjz_luoyi':'裸衣',
 	'ybmjz_luoyi_info':'出牌阶段开始时，你可以弃置一张牌，然后摸两张牌并展示之，若你弃置的牌或摸到的牌包含：装备牌，直到下回合开始，你使用【杀】或【决斗】造成的伤害+1；基本牌：本回合使用【杀】次数+1；锦囊牌，本回合使用【杀】无距离限制。',
 	ybmjz_guojia:'名将郭嘉', 
-	ybmjz_guojia_prefix:'名将', 
+	ybmjz_guojia_prefix:'名将',
+	ybmjz_tiandu:'天妒',
+	ybmjz_tiandu_info:'锁定技，准备阶段，你进行一次判定，若结果为伤害牌，你受到一点该牌造成的伤害；当你的判定牌生效后，你获得之。',
+	tiandu_re_guojia:'天妒',
+	tiandu_re_guojia_info:'此技能仅提供一条语音',
 	ybmjz_zhenji:'名将甄姬', 
 	ybmjz_zhenji_prefix:'名将', 
 
@@ -84,13 +90,17 @@ const translate = {
 	ybmjz_diaochan_prefix:'名将',
 	//----------------------装备及其他
 
-
-	ybmjz_lunwai:'其他杂设',
-	
+	ybmjz_sp:'名将sp',
 	ybmjz_zhangqiying:'名将张琪瑛',
 	ybmjz_zhangqiying_prefix:'名将',
 	ybmjz_majun:'名将马钧',
 	ybmjz_majun_prefix:'名将',
+	ybmjz_liuyan:'名将刘焉',
+	ybmjz_liuyan_prefix:'名将',
+	ybmjz_limu:'立牧',
+	ybmjz_limu_info:'出牌阶段，你可以将一张：黑桃牌当闪电，红桃牌当火山，梅花牌当洪水，方块牌当随波逐流 对自己使用。只要你的判定区内有牌，你对攻击范围内的其他角色使用牌便没有次数和距离限制。',
+
+	ybmjz_shen:'名将神',
 	ybmjz_shen_zhugeliang:'名将神诸葛亮',
 	ybmjz_shen_zhugeliang_prefix:'名将神',
 	ybmjz_shen_caopi:'名将神曹丕',
@@ -113,6 +123,9 @@ const translate = {
 	'ybmjz_stianyi_info':'觉醒技，准备阶段，若场上的所有存活角色均于本局游戏内受到过伤害，则你加2点体力上限并回复1点体力，然后令一名角色获得技能〖佐幸〗。',
 	'ybmjz_zuoxing':'佐幸',
 	'ybmjz_zuoxing_info':'每回合限一次，若令你获得〖佐幸〗的角色存活且体力上限大于1，则你可以令其减1点体力上限，并视为使用一张普通锦囊牌。',
+	
+	ybmjz_lunwai:'其他杂设',
+	
 	ybmjz_hina:'名将佐藤雏',
 	ybmjz_hina_prefix:'名将',
 	ybmjz_kotori:'名将神户小鸟',

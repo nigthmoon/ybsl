@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { character }
 
+/** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 	ybmjz_caocao:['male','wei',4,['ybmjz_jianxiong','ybmjz_zhishuo'],['rankAdd:epic','zhu','linkTo:caocao','YB_mjz:re_caocao']], 
@@ -8,7 +9,7 @@ const character = { //武将格式 :
 	ybmjz_xiahoudun:['male','wei',4,['ybmjz_gangliey','new_qingjian'],['rankAdd:epic','name:夏侯|惇','linkTo:xiahoudun','YB_mjz:re_xiahoudun']], 
 	ybmjz_zhangliao:['male','wei',4,['ybmjz_tuxi'],['rankAdd:epic','linkTo:zhangliao','YB_mjz:re_zhangliao']], 
 	ybmjz_xuzhu:['male','wei',4,['ybmjz_luoyi'],['rankAdd:epic','linkTo:xuzhu','YB_mjz:re_xuzhu']], 
-	ybmjz_guojia:['male','wei',3,[],['linkTo:guojia','YB_mjz:re_guojia']], 
+	ybmjz_guojia:['male','wei',3,['ybmjz_tiandu','new_reyiji'],['rankAdd:epic','linkTo:guojia','YB_mjz:re_guojia']], 
 	ybmjz_zhenji:['female','wei',3,[],['name:甄|宓','linkTo:zhenji','YB_mjz:re_zhenji']], 
 
 	ybmjz_liubei:['male','shu',4,[],['zhu','linkTo:liubei','YB_mjz:re_liubei']], 
@@ -32,6 +33,7 @@ const character = { //武将格式 :
 	ybmjz_lvbu:['male','qun',4,[],['linkTo:lvbu','YB_mjz:re_lvbu']], 
 	ybmjz_diaochan:['female','qun',3,[],['linkTo:diaochan','YB_mjz:re_diaochan']], 
 
+	ybmjz_liuyan:['male','qun',3,['xinfu_tushe','ybmjz_limu'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan']],//刘焉
 	ybmjz_zhangqiying:['female','qun',3,['xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua'],['rankAdd:legend','rankS:s','name:张|琪瑛','linkTo:zhangqiying','YB_mjz:zhangqiying']],//张琪瑛
 	ybmjz_majun:['male','wei',3,['xinfu_ybjingxie','qiaosi'],['rankAdd:epic','linkTo:majun','YB_mjz:majun']],//马钧
 

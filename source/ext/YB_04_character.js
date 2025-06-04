@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_04_character/skill.js'
 import { card } from '../exts/YB_04_character/card.js'
 import { translate } from '../exts/YB_04_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_04_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character', function(lib, game, ui, get, ai, _status) {
 	/** @type { importCharacterConfig } */
 	var ybnew1 = {
@@ -57,14 +57,7 @@ game.import('character', function(lib, game, ui, get, ai, _status) {
 	// 这是一个大饼，也是一个尝试
 	*/
 	
-	for(var i in ybnew1.character){
-		if(ybnew1.character[i][4])ybnew1.character[i][4].push(`ext:夜白神略/image/ybsl004/${i}.jpg`);
-		else ybnew1.character[i].img=`extension/夜白神略/image/ybsl004/${i}.jpg`;
-	} 
-	// }//由于以此法加入的武将包武将图片是用源文件的，所以要用此法改变路径 
-	for(var i in ybnew1.character){
-		if(ybnew1.character[i][4])ybnew1.character[i][4].push('die:夜白神略/audio/die/'+i+'.mp3');
-	}
+	typeimage(ybnew1,'ybsl004')
 	for(var i in ybnew1.card){
 		if(!ybnew1.card[i].image) ybnew1.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

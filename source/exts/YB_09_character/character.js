@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { character }
 
+/** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
 	North_yanghuiyu:['female','shen',3,['North_yhy_xuyin','North_yhy_cihua','North_yhy_minzeng'],['jin','boss','bossallowed','rankAdd:legend','rankS:s']],
 	North_duyu:['male','shen',4,['North_dy_qingyu','North_dy_zhengwu','North_dy_kuangzou'],['jin','boss','bossallowed','rankAdd:legend','rankS:s']],

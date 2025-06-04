@@ -53,6 +53,20 @@ const YBSL_special = function () {
 			}
 		});
 	}
+	game.YB_addAudioName= function(...objects){
+		// if(typeof objects=='')
+		objects.forEach((currentObj, index) => {
+			// if(!lib.skill[currentObj[0]])continue;
+			// if(!lib.skill[currentObj[0]].audioname)lib.skill[currentObj[0]].audioname=[]
+			// if(!lib.skill[currentObj[0]].audioname2)lib.skill[currentObj[0]].audioname2={}
+			// for(var i in currentObj[1]){
+			// 	lib.skill[currentObj[0]].audioname2[i]=lib.skill[currentObj[1]].audioname2[i];
+			// }
+			// lib.skill[currentObj[0]].audioname.push(lib.skill[currentObj[1]].audioname);
+			lib.skill[currentObj[0]].audioname=lib.skill[currentObj[1]].audioname;
+			lib.skill[currentObj[0]].audioname2=lib.skill[currentObj[1]].audioname2;
+		});
+	}
 
 	var clan_list = ['陆逊', '陆抗', '陆郁生', '陆绩', '陆凯', '陆机', '陆云', '陆延', '陆康'];
 	{//吴郡陆氏角色添加宗族
@@ -653,8 +667,13 @@ const YBSL_special = function () {
 				['retieji',{sgskjdbzjms_zhen_machao:'shouli'}],
 				//孙立新
 				['jiang',{ybsl_023sunlixin:'yb023_jiang'}],
+				//名郭嘉
+				['tiandu',{ybmjz_guojia:'tiandu_re_guojia'}],
 				// ['sbxingshang',{ybmjz_shen_caopi:'caopi_xinkui'}],
 			)
+			// game.YB_addAudioName(
+			// 	['ybmjz_tiandu','tiandu']
+			// )
 			// if()lib.skill.new_rejianxiong.audioname2
 		})
 	}

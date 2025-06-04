@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_08_character/skill.js'
 import { card } from '../exts/YB_08_character/card.js'
 import { translate } from '../exts/YB_08_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_08_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	/** @type { importCharacterConfig } */
 	var ybmjz={ 
@@ -57,38 +57,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 	// 	if(ybmjz.character[i][4])ybmjz.character[i][4].push(`ext:夜白神略/image/ybsl003/${i}.jpg`);
 	// 	else ybmjz.character[i].img=`extension/夜白神略/image/ybsl003/${i}.jpg`;
 	// } 
-	for(var i in ybmjz.character){
-		if(ybmjz.character[i][4]){
-			var infoy = ybmjz.character[i][4];
-			for(var infox of infoy){
-				if(infox.startsWith('YB_mjz:')){
-					var char = infox.slice(7);
-					ybmjz.character[i][4].push(`ext:../../image/character/${char}.jpg`);
-					ybmjz.character[i][4].push(`die:../../audio/die/${char}.mp3`);
-				}
-				// else {
-				// 	ybmjz.character[i][4].push(`ext:夜白神略/image/ybmjz/${i}.jpg`);
-				// 	ybmjz.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
-				// }
-			}
-		}
-		else {
-			if(ybmjz.character[i].YB_mjz){
-				var infoy = ybmjz.character[i].YB_mjz;
-				ybmjz.character[i].img = `ext:../../image/character/${infoy}.jpg`;
-				ybmjz.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
-			}
-			// else {
-			// 	ybmjz.character[i].img = `ext:夜白神略/image/ybmjz/${i}.jpg`;
-			// 	ybmjz.character[i].die = `die:夜白神略/audio/die/${i}.mp3`;
-			// }
-		}
-	} 
-	// for(var i in ybmjz.character){
-	// 	if(ybmjz.character[i][4])ybmjz.character[i][4].push(`ext:夜白神略/image/ybsl001/${i}.jpg`);
-	// 	else ybmjz.character[i].img=`extension/夜白神略/image/ybsl001/${i}.jpg`;
-		
-	// } 
+	typeimage(ybmjz,'ybsl008')
 	for(var i in ybmjz.card){
 		if(!ybmjz.card[i].image) ybmjz.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

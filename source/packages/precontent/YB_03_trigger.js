@@ -122,20 +122,6 @@ const YBSL_trigger = function(){
 				/**
 				 * 必须开启神鬼赐福才能初始化
 				 */
-				// _status.YB_shenguicifu.list1=[
-				// 	'boss_guimei','refankui','enyuan','boss_shiyou','boss_zhadao',
-				// 	'boss_wuliang','boss_zuijiu',
-				// 	'boss_didong','boss_luolei','boss_guihuo',
-				// ];
-				// _status.YB_shenguicifu.list2=[
-				// 	'boss_lianyu','boss_xiaoshou','boss_baolian','boss_taiping','boss_modao',
-				// 	'boss_yushou','boss_mojian',
-				// ];
-				// _status.YB_shenguicifu.list3=[
-				// 	'boss_shengfu','boss_xuechi','boss_juhun','boss_leizhou','boss_leifu',
-				// 	'boss_fudu','boss_zhifen','boss_suozu','boss_bufo','boss_wangsheng',
-					
-				// ];
 				var YB_shenguiCharacter = {
 					boss_hundun: {
 						sex: "male",
@@ -811,6 +797,90 @@ const YBSL_trigger = function(){
 				lib.translate.YB_xiegui_chouhen = '复仇'
 				lib.translate.YB_xiegui_chouhen_info = '锁定技，你对杀死你的角色造成的伤害+1；游戏结束时，若杀死你的凶手死亡，你获胜，否则你失败。'
 				
+			}
+		})
+	}
+	{//武魂觉醒
+		lib.arenaReady.push(function(){
+			if(lib.config.YB_wuhunjuexing){
+				function calculateSimilarity(str1, str2) {
+					// 如果其中一个字符串为空，返回0
+					if (str1.length === 0 || str2.length === 0) {
+						return 0;
+					}
+				
+					// 创建一个二维数组来存储中间结果
+					const len1 = str1.length;
+					const len2 = str2.length;
+					const distance = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
+				
+					// 初始化第一行和第一列
+					for (let i = 0; i <= len1; i++) {
+						distance[i][0] = i;
+					}
+					for (let j = 0; j <= len2; j++) {
+						distance[0][j] = j;
+					}
+				
+					// 填充距离矩阵
+					for (let i = 1; i <= len1; i++) {
+						for (let j = 1; j <= len2; j++) {
+							const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+							distance[i][j] = Math.min(
+								distance[i - 1][j] + 1,    // 删除操作
+								distance[i][j - 1] + 1,    // 插入操作
+								distance[i - 1][j - 1] + cost // 替换操作
+							);
+						}
+					}
+				
+					// 计算相似度得分
+					const maxLen = Math.max(len1, len2);
+					const similarityScore = (maxLen - distance[len1][len2]) / maxLen;
+				
+					return similarityScore;
+				}
+
+				// 示例用法
+				// const text1 = "hello world";
+				// const text2 = "hello world!";
+				// console.log(calculateSimilarity(text1, text2)); // 输出接近1的值，表示高度相似
+				
+				// const text3 = "hello world";
+				// const text4 = "goodbye moon";
+				// console.log(calculateSimilarity(text3, text4)); // 输出较低的值，表示不相似
+
+				// 算了，这方法不用了
+				
+				lib.element.player.YB_addHunli = function (num) {
+					const player = this;
+					player.addMark('_YB_wuhunlevel', num);
+				};
+				lib.element.player.YB_maxHunli = function(){
+					var num=20;
+					var player=this;
+					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
+					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
+					return num;
+				}
+				lib.element.player.YB_maxHunliTrue = function(){
+					var num=20;
+					var player=this;
+					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
+					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
+					return num;
+				}
+				lib.skill._YB_wuhunlevel = {
+					ruleSkill:true,
+					mark:true,
+					marktext:'魂',
+					intro:{
+						name:'经验',
+						content(storage, player, skill){
+							return player.countMark(skill) + '/' + player.YB_maxHunli();
+						},
+					}
+				}
 			}
 		})
 	}

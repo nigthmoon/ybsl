@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_02_character/skill.js'
 import { card } from '../exts/YB_02_character/card.js'
 import { translate } from '../exts/YB_02_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_02_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	/** @type { importCharacterConfig } */
 	var ybart={ 
@@ -31,13 +31,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		perfectPair:perfectPair,
 		characterTitle:characterTitle,
 	};
-	for(var i in ybart.character){
-		if(ybart.character[i][4])ybart.character[i][4].push(`ext:夜白神略/image/ybsl001/${i}.jpg`);
-		else ybart.character[i].img=`extension/夜白神略/image/ybsl001/${i}.jpg`;
-	} 
-	for(var i in ybart.character){
-		if(ybart.character[i][4])ybart.character[i][4].push('die:夜白神略/audio/die/'+i+'.mp3');
-	}
+	typeimage(ybart,'ybsl001')
 	for(var i in ybart.card){
 		if(!ybart.card[i].image) ybart.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

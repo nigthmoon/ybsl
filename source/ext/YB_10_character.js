@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_10_character/skill.js'
 import { card } from '../exts/YB_10_character/card.js'
 import { translate } from '../exts/YB_10_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_10_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	/** @type { importCharacterConfig } */
 	var ybMagic={ 
@@ -52,13 +52,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		translate:translate,//翻译（必填） 
 		dynamicTranslate:dynamicTranslate,
 	}; 
-	for(var i in ybMagic.character){
-		if(ybMagic.character[i][4])ybMagic.character[i][4].push(`ext:夜白神略/image/ybMagic/${i}.jpg`);
-		else ybMagic.character[i].img=`extension/夜白神略/image/ybMagic/${i}.jpg`;
-	} 
-	for(var i in ybMagic.character){
-		if(ybMagic.character[i][4])ybMagic.character[i][4].push('die:夜白神略/audio/die/'+i+'.mp3');
-	}
+	typeimage(ybMagic,'ybsl010')
 	for(var i in ybMagic.card){
 		if(!ybMagic.card[i].image) ybMagic.card[i].image='ext:夜白神略/image/ybMagic/'+i+'.png'
 	}

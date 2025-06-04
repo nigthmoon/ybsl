@@ -119,20 +119,56 @@ const YBSL_rank = function(){
 			lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
 		}
 	}
+	{//斗罗大陆
+		var whjxbool = lib.config.YB_wuhunjuexing;
+		var booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
+		// 根据状态设置不同颜色
+		var btnColor = whjxbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色，关=红色
+		//优先检索牌堆或牌库中的，和角色技能字段高度相近的，或角色技能中包含的牌名
+		//作废思路
+		var whjxstr = `
+			开局每名角色觉醒武魂（）
+			<br>随游戏进行，获得魂力，达到瓶颈之后，准备阶段可以发动猎魂，选择想要觉醒的方向：转化，过牌，辅助，卖血等，然后用南华天书般的系统摇几个技能供玩家选择，可以放弃选择，下次再选。魂力达到瓶颈后不会升级，但会积累，最高积累到下次升级的瓶颈。
+			<br>其他的有待设定
+			<br>点击下方按钮可以开启或关闭武魂觉醒系统（调整后需重置游戏方可生效）
+		`;
 
-	lib.translate['ybslj'+'_info']='夜白神略主体武将包'
-	lib.translate['ybart'+'_info']='温馨提示：<br>开启本将包会一并开启“六艺”机制，详情请右键六艺篇查看，简单来说就是全场自带私人木牛流马。<br>因之前有群友反馈，说不喜欢这个机制，因此被我放在这里隔离，开启与否视个人喜好吧'
-	lib.translate['ybxh'+'_info']='校花的贴身高手，很多武将虚位以待，敬请投稿'
-	lib.translate['ybdd'+'_info']='本人接单制作的武将'
-	lib.translate['ybnew1'+'_info']='杂设，部分为闲暇之余的设计，部分为参与其他投稿的落榜之作'
-	lib.translate['ybmjz'+'_info']='夜白自己的界限突破……'
-	lib.translate['ybMagic'+'_info']='理论上应该有武将的，但没设计好呢，再等等'
-	lib.translate['yhky'+'_info']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'
-	lib.translate['ybllyz'+'_info']='连招宇宙，以夜白自己设计的连招技框架构成'
-	lib.translate['sgstrxs'+'_info']=sgstrxsstr
-	lib.translate['ybslc'+'_info']='夜白神略主体卡牌包'
-	lib.translate['ybgod'+'_info']='boss模式卡牌搬运'
-	lib.translate['ybnew2'+'_info']=`
+		whjxstr += `
+			<div style="position:relative;display:inline-block;width:200px;">
+				<button id="wuhunBtn" 
+						onclick="
+							lib.config.YB_wuhunjuexing = !lib.config.YB_wuhunjuexing;
+							var isOn = lib.config.YB_wuhunjuexing;
+							this.textContent = isOn ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
+							this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
+							game.saveConfig('YB_wuhunjuexing',lib.config.YB_wuhunjuexing);
+						" 
+						style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
+					${booltext}
+				</button>
+			</div>
+		`;
+
+		// 初始化按钮状态（如果需要）
+		if (typeof lib !== 'undefined' && lib.config) {
+			lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
+		}
+	}
+
+	lib.translate['ybslj'+'_charactersInfo']='夜白神略主体武将包'
+	lib.translate['ybart'+'_charactersInfo']='温馨提示：<br>开启本将包会一并开启“六艺”机制，详情请右键六艺篇查看，简单来说就是全场自带私人木牛流马。<br>因之前有群友反馈，说不喜欢这个机制，因此被我放在这里隔离，开启与否视个人喜好吧'
+	lib.translate['ybxh'+'_charactersInfo']='校花的贴身高手，很多武将虚位以待，敬请投稿'
+	lib.translate['ybdd'+'_charactersInfo']='本人接单制作的武将'
+	lib.translate['ybnew1'+'_charactersInfo']='杂设，部分为闲暇之余的设计，部分为参与其他投稿的落榜之作'
+	lib.translate['ybmjz'+'_charactersInfo']='夜白自己的界限突破……'
+	lib.translate['ybMagic'+'_charactersInfo']='理论上应该有武将的，但没设计好呢，再等等'
+	lib.translate['yhky'+'_charactersInfo']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'
+	lib.translate['ybllyz'+'_charactersInfo']='连招宇宙，以夜白自己设计的连招技框架构成'
+	lib.translate['sgstrxs'+'_charactersInfo']=sgstrxsstr
+	lib.translate['ybwhjx'+'_charactersInfo']=whjxstr
+	lib.translate['ybslc'+'_cardsInfo']='夜白神略主体卡牌包'
+	lib.translate['ybgod'+'_cardsInfo']='boss模式卡牌搬运'
+	lib.translate['ybnew2'+'_cardsInfo']=`
 		风花雪月<br>
 		风属性机制：<br>
 		①，此属性可以和其他属性共存，也就是说你可以看到诸如风雷杀，风火属性伤害之类的牌或描述<br>

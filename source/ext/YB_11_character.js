@@ -11,7 +11,7 @@ import { skill } from '../exts/YB_11_character/skill.js'
 import { card } from '../exts/YB_11_character/card.js'
 import { translate } from '../exts/YB_11_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_11_character/dynamicTranslate.js'
-import { YB_characterIntro } from '../packages/function.js';
+import { typeimage } from '../packages/function.js'
 game.import('character',function(lib, game, ui, get, ai, _status){ 
 	/** @type { importCharacterConfig } */
 	var yhky={ 
@@ -56,14 +56,8 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				["yhky_shlizhaoyi_shadow", ["die:yhky_shlizhaoyi"]],
 			],
 		},
-	}; 
-	for(var i in yhky.character){
-		if(yhky.character[i][4])yhky.character[i][4].push(`ext:夜白神略/image/yhky/${i}.jpg`);
-		else yhky.character[i].img=`extension/夜白神略/image/yhky/${i}.jpg`;
-	} 
-	for(var i in yhky.character){
-		if(yhky.character[i][4])yhky.character[i][4].push('die:夜白神略/audio/die/'+i+'.mp3');
-	}
+	};
+	typeimage(yhky,'ybsl011')
 	for(var i in yhky.card){
 		if(!yhky.card[i].image) yhky.card[i].image='ext:夜白神略/image/yhky/'+i+'.png'
 	}
