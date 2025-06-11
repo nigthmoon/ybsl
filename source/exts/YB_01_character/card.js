@@ -355,7 +355,7 @@ const card = {
 		enable:true,
 		selectTarget:1,
 		postAi:function (targets){
-			return targets.length==1&&targets[0].countCards('j');
+			return targets.length==1&&(targets[0].countCards('j')||targets[0].isDamaged());
 		},
 		filterTarget:function(card,player,target){
 			// if(get.is.versus()){

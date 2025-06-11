@@ -324,6 +324,41 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('魔')}`
 			},
 		})
+		lib.namePrefix.set('氪',{
+			showName:'氪',
+			color:'#ff0',
+			nature:'black',
+		})
+		lib.namePrefix.set('氪界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('氪')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('氪神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('氪')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('妖',{
+			showName:'妖',
+			color:'#e32870',
+			nature:'YB_dark',
+		})
+		lib.namePrefix.set('氪妖',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('氪')}${get.prefixSpan('妖')}`
+			},
+		})
+		lib.namePrefix.set('异',{
+			showName:'异',
+			color:'#a4a4a4',
+			nature:'YB_dream',
+		})
+		lib.namePrefix.set('氪异',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('氪')}${get.prefixSpan('异')}`
+			},
+		})
 		
 	}
 	{//校花包元素

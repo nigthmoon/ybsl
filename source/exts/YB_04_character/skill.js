@@ -4005,6 +4005,48 @@ const skill = {
 	},
 	ybsl_youxiangx:{
 		audio: 'ybsl_youxiang',
+		forced:true,
+		global:'ybsl_youxiangx_bann',
+		getLastUsed(player, event) {
+			var history = player.getAllHistory("useCard");
+			var index;
+			if (event) {
+				index = history.indexOf(event) - 1;
+			} else {
+				index = history.length - 1;
+			}
+			if (index >= 0) {
+				return history[index];
+			}
+			return false;
+		},
+		subSkill:{
+			bann:{
+				audio: 'ybsl_youxiang',
+				charlotte:true,
+				mod:{
+					cardEnabled(card,player) {
+						var evt = lib.skill.ybsl_youxiangx.getLastUsed(player);
+						if (evt && evt.card&&get.type2(evt.card)&&get.type2(evt.card)==get.type2(card)){
+							if(!player.hasSkill('ybsl_youxiangx'))return false;
+						}
+					},
+				}
+			}
+		},
+		trigger:{
+			player:'useCard',
+		},
+		filter(event, player) {
+			var evt = lib.skill.ybsl_youxiangx.getLastUsed(player, event);
+			if (!evt || !evt.card) {
+				return false;
+			}
+			return (get.type2(evt.card)&&get.type2(evt.card) != get.type2(event.card));
+		},
+		content(){
+			player.draw();
+		}
 	},
 	
 	
@@ -4949,7 +4991,7 @@ const skill = {
 					card.clone.delete();
 				}
 			}, event.card);
-			player.gain(event.card, 'draw2');
+			player.gain(event.card, 'gain2');
 			if (get.suit(event.card) == 'spade') player.loseHp();
 		},
 		ai: {
@@ -7175,7 +7217,7 @@ const skill = {
 	//---------九天玄女
 	sgsk_taolue: {
 		audio: 'ext:夜白神略/audio/character:2',
-		trigger: { player: "phaseJieshuBegin" },
+		trigger: { player: ["phaseJieshuBegin",'damageAfter'], },
 		// direct: true,
 		// content() {
 		// 	"step 0";
@@ -7257,6 +7299,21 @@ const skill = {
 	//---------力牧
 	sgsk_qianjun: {
 		audio: 'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			player:'useCard',
+		},
+		filter(event,player){
+			return event.card.name=='sha'&&get.color(event.card);
+		},
+		async content(event,trigger,player){
+			if(get.color(trigger.card)=='red'){
+				trigger.baseDamage++
+			}
+			else if(get.color(trigger.card)=='black'){
+				trigger.card.directHit = true;
+			}
+		}
 	},
 	//---------常先
 	sgsk_zhangu: {
@@ -7275,9 +7332,130 @@ const skill = {
 	//---------释迦牟尼
 	sgsk_dianhua: {
 		audio: 'ext:夜白神略/audio/character:2',
+		enable: "phaseUse",
+		usable: 1,
+		filter(event, player) {
+			return player.countCards("h") > 0;
+		},
+		filterCard: true,
+		selectCard: -1,
+		filterTarget(card, player, target) {
+			return player != target;
+		},
+		discard: false,
+		lose: false,
+		delay: false,
+		ai: {
+			order: 1,
+			result: {
+				player: 0,
+				target(player, target) {
+					if (target.hasSkillTag("nogain")) {
+						return 0;
+					}
+					return 1;
+				},
+			},
+		},
+		content() {
+			"step 0";
+			event.target1 = targets[0];
+			player.give(cards, targets[0], false);
+			"step 1";
+			event.target1.chooseTarget('令一名角色回复一点体力或对一名角色造成一点伤害',true).set('ai',function(target){
+				var att = get.attitude(_status.event.player,target);
+				// if(att>0){
+				// 	if(!target.isDamaged())return -1;
+				// 	else  
+				// }
+				if(att<0) return get.damageEffect(target,event.target1,_status.event.player);
+				return target.getDamagedHp()
+			})
+			'step 2'
+			if(result.targets){
+				event.target2=result.targets[0];
+				var list = [];
+				list.push('伤害');
+				if(result.targets[0].isDamaged())list.push('回复');
+				if(list.length==1){
+					event._result = { bool: true, control: '伤害' }
+				}
+				else{
+					event.target1.chooseControl(list).set('prompt','令'+get.translation(result.targets[0])+'回复还是受到伤害').set('ai',function(target){
+						var player=_status.event.player;//定义变量player为选目标的发起者(不懂可以先不写)
+						var target=result.targets[0];
+						return get.attitude(player,target)>0?'回复':'伤害';
+					})
+				}
+			}
+			'step 3'
+			if(event.target1&&event.target2&&result.control){
+				if(result.control=='伤害'){
+					event.target2.damage(event.target1);
+				}
+				else {
+					event.target2.recover(event.target1);
+				}
+			}
+		},
 	},
 	sgsk_wuwo: {
 		audio: 'ext:夜白神略/audio/character:2',
+		mod: {
+			targetEnabled(card, player, target, now) {
+				if (target.countCards("h") == 0) {
+					if (get.type2(card)=='trick') {
+						return false;
+					}
+				}
+			},
+		},
+		group: "sgsk_wuwo_1",
+		ai: {
+			noh: true,
+			skillTagFilter(player, tag) {
+				if (tag == "noh") {
+					if (player.countCards("h") != 1) {
+						return false;
+					}
+				}
+			},
+		},
+		trigger: { global: "useCard1" },
+		forced: true,
+		firstDo: true,
+		filter(event, player) {
+			if (event.player == player) {
+				return false;
+			}
+			if (get.type(event.card) != "trick") {
+				return false;
+			}
+			var info = lib.card[event.card.name];
+			return info && info.selectTarget && info.selectTarget == -1 && !info.toself;
+		},
+		async content(event, trigger, player) {},
+		subSkill:{
+			1:{
+				audio: 'sgsk_wuwo',
+				trigger: { player: "loseEnd" },
+				forced: true,
+				firstDo: true,
+				sourceSkill: "sgsk_wuwo",
+				filter(event, player) {
+					if (player.countCards("h")) {
+						return false;
+					}
+					for (let i = 0; i < event.cards.length; i++) {
+						if (event.cards[i].original == "h") {
+							return true;
+						}
+					}
+					return false;
+				},
+				async content() {},
+			}
+		}
 	},
 	//-----------------------罗睺
 	'sgsk_yueshi': {

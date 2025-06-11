@@ -221,6 +221,52 @@ const translate = {
 
 
 
+	zzrsqlkjygzz:'蒸蒸日上，全力氪金，言贵者斩',
+	zzrsqlkjygzz_info:'蒸蒸日上，全力氪金，言贵者斩<br>平台：番茄小说<br>作者：浅埋',
+	
+	zzrsqlkjygzz_re_zuoci:'氪界左慈',
+	zzrsqlkjygzz_re_zuoci_prefix:'氪界',
+
+	zzrsqlkjygzz_shen_guanyu:'氪神关羽',
+	zzrsqlkjygzz_shen_guanyu_prefix:'氪神',
+
+	zzrsqlkjygzz_shen_zhangjiao:'氪神张角',
+	zzrsqlkjygzz_shen_zhangjiao_prefix:'氪神',
+
+	zzrsqlkjygzz_shen_sunce:'氪神孙策',
+	zzrsqlkjygzz_shen_sunce_prefix:'氪神',
+
+	zzrsqlkjygzz_yi_caocao:'异曹操',
+	zzrsqlkjygzz_yi_caocao_prefix:'异',
+
+	zzrsqlkjygzz_yi_guanyu:'异关羽',
+	zzrsqlkjygzz_yi_guanyu_prefix:'异',
+
+	zzrsqlkjygzz_yi_zhangjiao:'异张角',
+	zzrsqlkjygzz_yi_zhangjiao_prefix:'异',
+
+	zzrsqlkjygzz_yi2_zhangjiao:'异张角',
+	zzrsqlkjygzz_yi2_zhangjiao_prefix:'异',
+
+	zzrsqlkjygzz_yi3_zhangjiao:'异张角',
+	zzrsqlkjygzz_yi3_zhangjiao_prefix:'异',
+
+	zzrsqlkjygzz_yi_luxun:'异陆逊',
+	zzrsqlkjygzz_yi_luxun_prefix:'异',
+
+	zzrsqlkjygzz_yi_sunce:'异孙策',
+	zzrsqlkjygzz_yi_sunce_prefix:'异',
+
+	zzrsqlkjygzz_yao_zhoutai:'氪妖周泰',
+	zzrsqlkjygzz_yao_zhoutai_prefix:'氪妖',
+
+
+
+
+
+
+
+
 
 
 

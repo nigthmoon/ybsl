@@ -336,10 +336,10 @@ const translate = {
 	sgsh_jiutianxuannv:'没写完九天玄女',
 	sgsh_luozu:'没写完螺祖',
 	sgsh_cangjie:'没写完仓颉',
-	sgsh_limu:'没写完力牧',
+	sgsh_limu:'力牧',
 	sgsh_changxian:'没写完常先',
 	sgsh_guiyuqu:'没写完鬼臾区',
-	sgsh_shijiamouni:'没写完释迦牟尼',
+	sgsh_shijiamouni:'释迦牟尼',
 	'sgsh_luohou':'罗睺',
 	'sgsh_xingtian':'刑天',
 
@@ -357,10 +357,8 @@ const translate = {
 	sgsh_jiutianxuannv_prefix:"没写完",
 	sgsh_luozu_prefix:"没写完",
 	sgsh_cangjie_prefix:"没写完",
-	sgsh_limu_prefix:"没写完",
 	sgsh_changxian_prefix:"没写完",
 	sgsh_guiyuqu_prefix:"没写完",
-	sgsh_shijiamouni_prefix:"没写完",
 
 	// 'sgsh_tiandi','sgsh_shennong','sgsh_xuanyuan','sgsh_shaohao','sgsh_zhuanxu',
 	// 'sgsh_qinglong','sgsh_baihu','sgsh_zhuque','sgsh_xuanwu','sgsh_qilin',
@@ -575,7 +573,7 @@ const translate = {
 	'sgsk_shencex_info':'每当你造成或受到一次伤害后，你可以进行一次判定，若结果为锦囊牌，你可以获得或使用之（立即使用无距离限制）。',
 	//--------------------九天玄女
 	sgsk_taolue:'韬略',//，若为黑桃，其失去一点体力
-	'sgsk_taolue_info':'结束阶段开始时，你可以令一名角色摸一张牌并展示之，若为红桃，其回复一点体力。',
+	'sgsk_taolue_info':'结束阶段开始时或当你受到伤害后，你可以令一名角色摸一张牌并展示之，若为红桃，其回复一点体力。',
 	sgsk_xuanji:'玄机',
 	'sgsk_xuanji_info':'你出牌阶段使用一张牌后，可以将此牌置于牌堆顶或牌堆底。',
 	sgsk_xuanjix:'玄机',
@@ -586,7 +584,8 @@ const translate = {
 	'sgsk_xuanjiz_info':'转换技，重置技，刷新列表为：[牌堆顶,牌堆底]，阳：你使用一张牌后，可以将此牌置于[从本技能列表中选一项]；阴，当你需要使用牌时，你可以声明该牌名，然后展示[从本技能列表中选一项]一张牌，若为你声明的牌名，视为你使用之，否则你获得之，且此技能本回合不能再用。每个回合开始时，此技能初始化。',
 	//--------------------螺祖
 	sgsk_sangcan:'桑蚕',
-	'sgsk_sangcan_info':'每当你于弃牌阶段失去牌后，你摸一张牌。',
+	'sgsk_sangcan_info':'出牌阶段限一次，你可以摸X张牌，X为本回合进入弃牌堆的牌数，至多为5。',
+	// 'sgsk_sangcan_info':'每当你于弃牌阶段失去牌后，你摸一张牌。',
 	sgsk_bianjuan:'编绢',
 	'sgsk_bianjuan_info':'出牌阶段限一次，你可以弃置场上一张装备牌，原文不可考。',
 	sgsk_bianjuanx:'编绢',

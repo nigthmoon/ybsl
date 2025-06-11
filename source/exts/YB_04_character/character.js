@@ -32,7 +32,7 @@ const character = { //武将格式 :
 	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:rare','name:null|null']],//神农
 	sgsh_xuanyuan:['male','shen',4,['sgsk_xiudexy','sgsk_wending'],['rankAdd:legend','rankS:s','name:null|null']],//轩辕
 	sgsh_shaohao:['male','shen',4,['sgsk_qiongsangy'],['rankAdd:legend','rankS:s','name:null|null']],//少昊
-	// sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','rankS:s','name:null|null']],//颛顼
+	sgsh_zhuanxu:['male','shen',4,['sgsk_chuangzhi'],['rankAdd:legend','rankS:s','name:null|null']],//颛顼
 	sgsh_qinglong:['none','shen',4,['sgsk_longxiao'],['rankAdd:legend','rankS:s','name:null|null']],//青龙
 	sgsh_baihu:['none','shen',4,['sgsk_huwei'],['rankAdd:legend','rankS:s','name:null|null']],//白虎
 	sgsh_zhuque:['none','shen',4,['sgsk_zhiyany'],['rankAdd:legend','rankS:s','name:null|null']],//朱雀
@@ -62,17 +62,27 @@ const character = { //武将格式 :
 	sgsh_yeming:['male','shen',3,['sgsk_cunyin','sgsk_sanqiuy'],['rankAdd:legend','rankS:s','name:null|null']],//噎鸣
 	
 	'sgsh_yinglong':['male','shen',4,['sgsk_zongshui'],['rankAdd:epic','name:null|null']],//应龙√
-	'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
+	// 'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
+	sgsh_nvba:{
+		sex: "female",
+		group: "shen",
+		groupInGuozhan: "qun",
+		hp: 3,
+		skills: ['sgsk_buyu','sgsk_hanshenx'],
+		names: "null|null",
+		rankAdd:'epic',
+		linkTo:'hanba',
+	},
 	'sgsh_chiyou':['male','shen',5,['sgsk_zhanshen'],['rankAdd:legend','rankS:s','name:null|null']],//蚩尤
 	sgsh_fenghou:['female','shen',3,['sgsk_sinan','sgsk_shence'],['rankAdd:legend','rankS:s','name:null|null']],//风后
-	// sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','rankS:s','name:null|null']],//九天玄女
-	// sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','rankS:s','name:null|null']],//螺祖
-	// sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','rankS:s','name:null|null']],//仓颉
-	// 'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
-	// sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','rankS:s','name:null|null']],//常先
-	// sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','rankS:s','name:null|null']],//鬼臾区
+	sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','rankS:s','name:null|null']],//九天玄女
+	sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','rankS:s','name:null|null']],//螺祖
+	sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','rankS:s','name:null|null']],//仓颉
+	'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
+	sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','rankS:s','name:null|null']],//常先
+	sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','rankS:s','name:null|null']],//鬼臾区
 
-	// sgsh_shijiamouni:['male','shen',4,['sgsk_dianhua','sgsk_wuwo'],['rankAdd:legend','rankS:s','name:null|null']],//释迦牟尼
+	sgsh_shijiamouni:['male','shen',4,['sgsk_dianhua','sgsk_wuwo'],['rankAdd:legend','rankS:s','name:null|null']],//释迦牟尼
 	'sgsh_luohou':['male','shen',4,['sgsk_yueshi'],['rankAdd:epic','name:null|null']],//罗睺√
 	'sgsh_xingtian':['male','shen',4,['sgsk_fuchou'],['rankAdd:epic','name:null|null']],//刑天√
 
@@ -94,7 +104,7 @@ const character = { //武将格式 :
 	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxinx','ybsl_fuju'],['rankAdd:legend','rankS:s','name:李|昭仪']], //李昭仪
 	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['rankAdd:legend','rankS:s','name:孙|韶']], //孙韶
 	ybsl_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedun'],['rankAdd:legend','rankS:s','name:王|必']], //王必
-	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','rankS:s','name:王|必']], //王必]
+	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','rankS:s','name:王|必','linkTo:ybsl_wangbi']], //王必]
 	ybsl_jiangziwen:['male','wu',3,['ybsl_fengcix','ybsl_youxiangx'],['rankAdd:epic','name:蒋|歆']],//蒋歆
 	ybsl_suojing:['male','jin',3,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
 	//宗族武将
