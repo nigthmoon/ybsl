@@ -174,6 +174,9 @@ const skill = {
 			var num=player.maxHp-player.hp;
 			if(num>0) player.recover(num);
 		},
+		ai:{
+			combo:'dz014_fuhua',
+		}
 	},
 	'dz014_xinkui':{
 		preHidden:true,
@@ -283,6 +286,9 @@ const skill = {
 				if(event.bool) player.addMark('dz014_fuhua');
 				else player.removeMark('dz014_fuhua');
 			};
+		},
+		ai:{
+			combo:'dz014_fuhua',
 		},
 	},
 	//---------------------------王海茹（鬼神易）
@@ -2897,6 +2903,9 @@ const skill = {
 			player.storage.yb006_biaoshuaix=true;
 			game.log(player,'的【博学】和【表率】改变了。')
 		},
+		ai:{
+			combo:'yb006_boxue',
+		}
 	},
 	'yb006_biaoshuai':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -3727,6 +3736,9 @@ const skill = {
 		prompt2:function(event,player){
 			return get.translation(event.player)+'使用了一张'+get.translation(event.card)+'，是否收录为小抄？';
 		},
+		ai:{
+			combo:'yb012_bianqian'
+		}
 	},
 	yb012_suotu:{
 		audio:'ext:夜白神略/audio/character:2',

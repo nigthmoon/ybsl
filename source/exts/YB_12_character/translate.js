@@ -163,6 +163,39 @@ const translate = {
 	qmsgswkjsgj_spsanchen: "三陈",
 	qmsgswkjsgj_spsanchen_info: "觉醒技，若你的“武库”数大于2，则你加1点体力上限并回复1点体力，然后获得〖灭吴〗。",
 
+	qmsgswkjsgj_gui_liubei:'黑无常赐福刘备',
+	qmsgswkjsgj_gui_liubei_prefix:'黑无常赐福',
+
+	qmsgswkjsgj_gui_re_zhouyu:'白无常赐福界周瑜',
+	qmsgswkjsgj_gui_re_zhouyu_prefix:'白无常赐福',
+
+	qmsgswkjsgj_shen_zhugeliang:'缝神诸葛亮',
+	qmsgswkjsgj_shen_zhugeliang_prefix:'缝神',
+	qmsgswkjsgj_kuangfeng:'狂风',
+	qmsgswkjsgj_kuangfeng2:'狂风',
+	qmsgswkjsgj_kuangfeng2_bg:'风',
+	qmsgswkjsgj_kuangfeng3:'狂风',
+	qmsgswkjsgj_kuangfeng_info:'结束阶段，你可以弃置一张“星”并指定一名角色：直到你的下回合开始，该角色受到火焰伤害时，此伤害+1，且该角色收到的所有非属性伤害均视为火属性伤害。',
+	qmsgswkjsgj_guanxing:'观星',
+	qmsgswkjsgj_guanxing_info:'准备阶段，你可以观看牌堆顶的7张牌，然后将其中一张扣置于你的武将牌上称为“星”，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。',
+
+	qmsgswkjsgj_sb_huangzhong:'旧谋黄忠',
+	qmsgswkjsgj_sb_huangzhong_prefix:'旧谋',
+	qmsgswkjsgj_sbliegong: "烈弓",
+	qmsgswkjsgj_sbliegong_info:'①你使用【杀】可以选择你距离不大于此【杀】点数的角色为目标。②当你使用牌时，或成为其他角色使用牌的目标后，你记录此牌的花色。③当你使用【杀】或伤害锦囊指定唯一目标后，若你〖烈弓②〗的记录不为空，则你可亮出牌堆顶的X张牌（X为你〖烈弓②〗记录过的花色数-1），令此牌的伤害值基数+Y（Y为亮出牌中被〖烈弓②〗记录过花色的牌的数量），且目标角色不能使用〖烈弓②〗记录过花色的牌响应此牌。此牌使用结算结束后，你清除〖烈弓②〗的记录。',
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -206,10 +239,30 @@ const translate = {
 	sgsxjxfzmnl_biyue:'闭月',
 	sgsxjxfzmnl_biyue_info:'结束阶段，你可以摸两张牌。',
 
+	sgsxjxfzmnl_wangyuanji:'仙界王元姬',
+	sgsxjxfzmnl_wangyuanji_prefix:'仙界',
+	sgsxjxfzmnl_qianchong: "谦冲",
+	sgsxjxfzmnl_qianchong_info: "锁定技，若你的装备区内有牌且：均为红色，则你视为拥有技能〖明哲〗。均为黑色，则你视为拥有技能〖帷幕〗。若出牌阶段开始时，若你不满足上述条件，你本回合内使用牌没有次数和距离限制。",
+	sgsxjxfzmnl_shangjian: "尚俭",
+	sgsxjxfzmnl_shangjian_info: "锁定技。一名角色的结束阶段开始时，若你于此回合内失去过牌，则你摸等同失去数量的牌。",
+
+	sgsxjxfzmnl_shen_guojia:'仙界神郭嘉',
+	sgsxjxfzmnl_shen_guojia_prefix:'仙界神',
+	sgsxjxfzmnl_reshuishi:'慧识',
+	sgsxjxfzmnl_reshuishi_info:'出牌阶段限两次，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。',
 
 
 
 
+
+
+
+
+
+
+
+
+	
 
 
 

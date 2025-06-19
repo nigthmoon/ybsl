@@ -657,18 +657,18 @@ const YBSL_special = function () {
 				audio:2,
 			}
 			game.YB_addAudio(
-				['new_rejianxiong',{ybmjz_shen_caopi:'rejianxiong_shen_caopi'}],
-				['rerende',{ybmjz_shen_caopi:'rerende_shen_caopi'}],
-				['rezhiheng',{ybmjz_shen_caopi:'rezhiheng_shen_caopi'}],
-				['olluanji',{ybmjz_shen_caopi:'olluanji_shen_caopi'}],
-				//界戏志才
-				['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
+				// ['new_rejianxiong',{ybmjz_shen_caopi:'rejianxiong_shen_caopi'}],
+				// ['rerende',{ybmjz_shen_caopi:'rerende_shen_caopi'}],
+				// ['rezhiheng',{ybmjz_shen_caopi:'rezhiheng_shen_caopi'}],
+				// ['olluanji',{ybmjz_shen_caopi:'olluanji_shen_caopi'}],
+				// //界戏志才
+				// ['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
 				//真马超
 				['retieji',{sgskjdbzjms_zhen_machao:'shouli'}],
 				//孙立新
 				['jiang',{ybsl_023sunlixin:'yb023_jiang'}],
 				//名郭嘉
-				['tiandu',{ybmjz_guojia:'tiandu_re_guojia'}],
+				// ['tiandu',{ybmjz_guojia:'tiandu_re_guojia'}],
 				// ['sbxingshang',{ybmjz_shen_caopi:'caopi_xinkui'}],
 			)
 			// game.YB_addAudioName(

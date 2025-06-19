@@ -15,11 +15,14 @@ const characterSort = {
 			'qmsgswkjsgj_shen_zhaoyun','qmsgswkjsgj_gui_xuyou',
 			'qmsgswkjsgj_gui_zhaoyun','qmsgswkjsgj_gui_sunquan',
 			'qmsgswkjsgj_shen_guojia','qmsgswkjsgj_sp_duyu',
+			'qmsgswkjsgj_gui_liubei','qmsgswkjsgj_shen_zhugeliang',
+			'qmsgswkjsgj_gui_re_zhouyu','qmsgswkjsgj_sb_huangzhong',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',
 			'sgsxjxfzmnl_shen_sunce','sgsxjxfzmnl_sb_xiahoushi',
-			'sgsxjxfzmnl_mo_diaochan',
+			'sgsxjxfzmnl_mo_diaochan','sgsxjxfzmnl_wangyuanji',
+			'sgsxjxfzmnl_shen_guojia',
 		],
 		zzrsqlkjygzz:[
 			'zzrsqlkjygzz_shen_guanyu','zzrsqlkjygzz_shen_zhangjiao',

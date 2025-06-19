@@ -7,7 +7,7 @@ export { YBSL_nature }
  * 前缀收纳
  */
 const YBSL_nature = function(){
-	{
+	{//相关函数
 		/**
 		 * 判断卡牌的属性
 		 * @param {card|nature} card 
@@ -180,12 +180,14 @@ const YBSL_nature = function(){
 			color:'#e328b7',
 			// image: 'ext:夜白神略/image/card/group_YB_dream.png',
 		})
-		game.addGroup('YB_demon','魔','魔将',{
-			color: '#b14cda',
-		})
+		// game.addGroup('YB_demon','魔','魔将',{
+		// 	color: '#b14cda',
+		// })
+		// lib.selectGroup.add('YB_demon');
 		game.addGroup('YB_gui','鬼','鬼邪',{
 			color: '#e328b7',
 		})
+		lib.selectGroup.add('YB_gui');
 	}
 	{//此处收纳前缀
 		lib.namePrefix.set('废案',{
@@ -259,11 +261,11 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('魂')}${get.prefixSpan('神')}`
 			},
 		})
-		lib.namePrefix.set('魔',{
-			showName:'魔',
-			color:'#e328b7',
-			nature:'YB_dark',
-		})
+		// lib.namePrefix.set('魔',{
+		// 	showName:'魔',
+		// 	color:'#e328b7',
+		// 	nature:'YB_dark',
+		// })
 		lib.namePrefix.set('鬼',{
 			showName:'鬼',
 			color:'#e328b7',
@@ -274,10 +276,20 @@ const YBSL_nature = function(){
 			color:'#ccc',
 			nature:'YB_dream',
 		})
+		lib.namePrefix.set('白无常赐福界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('白无常赐福')}${get.prefixSpan('界')}`
+			},
+		})
 		lib.namePrefix.set('黑无常赐福',{
 			showName:'鬼',
 			color:'#444',
 			nature:'YB_dream',
+		})
+		lib.namePrefix.set('黑无常赐福界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('黑无常赐福')}${get.prefixSpan('界')}`
+			},
 		})
 		lib.namePrefix.set('缝',{
 			showName:'缝',
@@ -362,31 +374,35 @@ const YBSL_nature = function(){
 		
 	}
 	{//校花包元素
-		game.addGroup('XHSS_linyi','逸','世俗界林逸势力',{
-			// color: 'YB_snow',
-			color:'#ffa600',
-			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
-		})
-		game.addGroup('XHSS_wuxingmen','五','世俗界五行门',{
-			// color: 'YB_snow',
-			color:'#c2c269',
-			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
-		})
-		game.addGroup('XHSS_zhongxin','中','世俗界中心',{
-			// color: 'YB_snow',
-			color:'#e32870',
-			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
-		})
-		game.addGroup('XHSS_sanxiu','散','世俗界散修与凡人',{
-			// color: 'YB_snow',
-			color:'#95bec9',
-			// image: 'ext:夜白神略/image/card/group_YB_memory.png',
-		})
-		lib.namePrefix.set('世俗',{
-			showName:'俗',
-			color:'#28e3ce',
-			nature:'black',
-		})
+		{//校花包自建势力
+			game.addGroup('XHSS_linyi','逸','世俗界林逸势力',{
+				// color: 'YB_snow',
+				color:'#ffa600',
+				// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+			})
+			game.addGroup('XHSS_wuxingmen','五','世俗界五行门',{
+				// color: 'YB_snow',
+				color:'#c2c269',
+				// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+			})
+			game.addGroup('XHSS_zhongxin','中','世俗界中心',{
+				// color: 'YB_snow',
+				color:'#e32870',
+				// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+			})
+			game.addGroup('XHSS_sanxiu','散','世俗界散修与凡人',{
+				// color: 'YB_snow',
+				color:'#95bec9',
+				// image: 'ext:夜白神略/image/card/group_YB_memory.png',
+			})
+		}
+		{//校花包前缀
+			lib.namePrefix.set('世俗',{
+				showName:'俗',
+				color:'#28e3ce',
+				nature:'black',
+			})
+		}
 	}
 	
 }

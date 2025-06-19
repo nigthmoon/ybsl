@@ -1110,9 +1110,9 @@ const skill = {
 	},
 
 	//郭嘉
-	tiandu_re_guojia:{
-		audio: 2,
-	},
+	// tiandu_re_guojia:{
+	// 	audio: 2,
+	// },
 	ybmjz_tiandu:{
 		audio:'tiandu',
 		forced:true,
