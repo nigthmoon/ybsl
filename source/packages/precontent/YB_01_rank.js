@@ -96,28 +96,28 @@ const YBSL_rank = function(){
 		// 根据状态设置不同颜色
 		var btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色，关=红色
 
-		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者<br>点击下方按钮可以开启或关闭鬼神赐福系统（调整后需重置游戏方可生效）';
+		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者<br>点击下方按钮可以开启或关闭鬼神赐福系统（调整后需重置游戏方可生效）（暂时重做，按钮关闭）';
 
-		sgstrxsstr += `
-			<div style="position:relative;display:inline-block;width:200px;">
-				<button id="guixieBtn" 
-						onclick="
-							lib.config.YB_guixiecifu = !lib.config.YB_guixiecifu;
-							var isOn = lib.config.YB_guixiecifu;
-							this.textContent = isOn ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
-							this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
-							game.saveConfig('YB_guixiecifu',lib.config.YB_guixiecifu);
-						" 
-						style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
-					${booltext}
-				</button>
-			</div>
-		`;
+		// sgstrxsstr += `
+		// 	<div style="position:relative;display:inline-block;width:200px;">
+		// 		<button id="guixieBtn" 
+		// 				onclick="
+		// 					lib.config.YB_guixiecifu = !lib.config.YB_guixiecifu;
+		// 					var isOn = lib.config.YB_guixiecifu;
+		// 					this.textContent = isOn ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+		// 					this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
+		// 					game.saveConfig('YB_guixiecifu',lib.config.YB_guixiecifu);
+		// 				" 
+		// 				style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
+		// 			${booltext}
+		// 		</button>
+		// 	</div>
+		// `;
 
-		// 初始化按钮状态（如果需要）
-		if (typeof lib !== 'undefined' && lib.config) {
-			lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
-		}
+		// // 初始化按钮状态（如果需要）
+		// if (typeof lib !== 'undefined' && lib.config) {
+		// 	lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
+		// }
 	}
 	{//斗罗大陆
 		var whjxbool = lib.config.YB_wuhunjuexing;
@@ -165,7 +165,7 @@ const YBSL_rank = function(){
 	lib.translate['yhky'+'_charactersInfo']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'
 	lib.translate['ybllyz'+'_charactersInfo']='连招宇宙，以夜白自己设计的连招技框架构成'
 	lib.translate['sgstrxs'+'_charactersInfo']=sgstrxsstr
-	lib.translate['ybwhjx'+'_charactersInfo']=whjxstr
+	// lib.translate['ybwhjx'+'_charactersInfo']=whjxstr
 	lib.translate['ybslc'+'_cardsInfo']='夜白神略主体卡牌包'
 	lib.translate['ybgod'+'_cardsInfo']='boss模式卡牌搬运'
 	lib.translate['ybnew2'+'_cardsInfo']=`
