@@ -8,5 +8,7 @@ const characterCitetext = {
     qmsgswkjsgj_gui_liubei:'持有者骆阳，剧情中为被迫接受赐福的，后来被主角镇压，恢复了意志，后来协助主角的神诸葛亮做任务。',
     qmsgswkjsgj_gui_re_zhouyu:'持有者王海，剧情中与高远交战，高远得到了主角借给的鬼许攸，顺利击败鬼周瑜。',
 
+    sgsxjxfzmnl_mo_diaochan:'持有者柳如烟，剧情中，加入圣教（邪教）堕入魔道，“大”幅加强，但仍比不上主角的阴间程度。',
+
     zzrsqlkjygzz_yi_guanyu:'原著中，敌方登场的异关羽带有当先，只不过等他宣泄完，就光速掉级了，最后被主角收录。',
 }

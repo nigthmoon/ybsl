@@ -3,6 +3,7 @@ export { skill }
 
 /** @type { importCharacterConfig['skill'] } */
 const skill = {
+	//李昭仪
 	yhky_lzyjuekang:{
 		audio: 'ext:夜白神略/audio/character:6',
 		persevereSkill: true,
@@ -687,4 +688,1187 @@ const skill = {
 		},
 
 	},
+	//曹婴
+	yhky_cylingwei:{
+		audio: 'ext:夜白神略/audio/character:6',
+		persevereSkill: true,
+		trigger: {
+			player: ["yhky_cylingwei_beginAfter", "yhky_cylingwei_addAfter", "yhky_cylingweiAfter"],
+		},
+		filter(event, player) {
+			let skills = [];
+			let current = player.additionalSkills?.yhky_cylingwei?.length ?? 0;
+			let target = player.countMark("yhky_cylingwei") == lib.skill.yhky_cylingwei.maxMarkCount ? lib.skill.yhky_cylingwei.derivation.length : Math.floor(player.countMark("yhky_cylingwei") / 25);
+			return target > current;
+		},
+		forced: true,
+		popup: false,
+		locked: false,
+		beginMarkCount: 20,
+		maxMarkCount: 99,
+		derivation: ["yhky_cyluoyi", "yhky_cyjiuxian", "yhky_cyyinjun", "yhky_cyqinlong"],
+		addMark(player, num) {
+			num = Math.min(num, lib.skill.yhky_cylingwei.maxMarkCount - player.countMark("yhky_cylingwei"));
+			player.addMark("yhky_cylingwei", num);
+		},
+		group: ["yhky_cylingwei_begin", "yhky_cylingwei_add", "yhky_cylingwei_die"],
+		async content(event, trigger, player) {
+			const derivation = lib.skill.yhky_cylingwei.derivation,
+				skills = player.countMark("yhky_cylingwei") == lib.skill.yhky_cylingwei.maxMarkCount ? derivation : derivation.slice(0, Math.floor(player.countMark("yhky_cylingwei") / 25));
+			player.addAdditionalSkill("yhky_cylingwei", skills);
+		},
+		marktext: "凌",
+		intro: {
+			name: "凌人值(凌威)",
+			name2: "凌人",
+			content: "当前凌人值为#",
+		},
+		subSkill: {
+			begin: {
+				audio: "yhky_cylingwei",
+				persevereSkill: true,
+				trigger: {
+					global: "phaseBefore",
+					player: "enterGame",
+				},
+				filter(event, player) {
+					return event.name != "phase" || game.phaseNumber == 0;
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					const num = lib.skill.yhky_cylingwei.beginMarkCount;
+					lib.skill.yhky_cylingwei.addMark(player, num);
+				},
+			},
+			add: {
+				audio: "yhky_cylingwei",
+				persevereSkill: true,
+				trigger: {
+					// player: ["gainAfter", "damageEnd"],
+					// source: "damageSource",
+					// global: "loseAsyncAfter",
+					global:'yhky_cylingren_right',
+				},
+				filter(event, player) {
+					return event.num > 0&&event.caier == player;
+				},
+				forced: true,
+				locked: false,
+				firstDo:true,
+				async content(event, trigger, player) {
+					// let toAdd = 5 * (1 + (trigger.name === "damage") + (event.triggername === "damageSource"));
+					let toAdd = 5 * (trigger.num);
+					lib.skill.yhky_cylingwei.addMark(player, toAdd);
+				},
+			},
+			die: {
+				trigger: {
+					player: "dieBefore",
+				},
+				charlotte: true,
+				firstDo: true,
+				forced: true,
+				popup: false,
+				forceDie: true,
+				async content(event, trigger, player) {
+					//这里本该是阵亡换原画，但我没有素材
+					// player.changeSkin({ characterName: "yhky_shlizhaoyi" }, "yhky_shlizhaoyi_dead");
+				},
+			},
+		},
+	},
+	yhky_cyluoyi:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger:{
+			player:'phaseUseBegin',
+		},
+		filter:function(event,player){
+			return player.countCards('he')>0;
+		},
+		async cost(event, trigger, player){
+			event.result=await player.chooseToDiscard('he').set('prompt2',get.prompt2('ybmjz_luoyi')).set("chooseonly", true).forResult();
+		},
+		*content(event,map){
+			let player=map.player,trigger=map.trigger;
+			yield player.discard(event.cards);
+			var cardsx=[];
+			cardsx.push(event.cards[0]);
+			var relu = yield player.draw(2,"visible");
+			for(var k of relu){
+				cardsx.push(k);
+			}
+			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
+				yield player.addTempSkill("yhky_cyluoyi_damage", { player: "phaseBefore" });
+			}
+			if(cardsx.filter(card=>get.type2(card)=='trick').length>0){
+				yield player.addTempSkill("yhky_cyluoyi_use");
+			}
+			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
+				yield player.addTempSkill("yhky_cyluoyi_tag");
+			}
+		},
+		subSkill:{
+			max:{
+				mod:{
+					cardEnabled: function (card) {
+						if (card.name == "sha"||card.name=='juedou') return false;
+					},
+				},
+				mark:true,
+				intro:{
+					content:'本回合【杀】和【决斗】不计入手牌上限。'
+				}
+			},
+			use:{
+				mod: {
+					cardUsable: function (card, player, num) {
+						if (card.name == "sha") return num + 1;
+					},
+				},
+				mark:true,
+				intro:{
+					content:'本回合使用【杀】次数+1。'
+				}
+			},
+			tag:{
+				mod: {
+					targetInRange: function (card, player, target, now) {
+						if (card.name == "sha") return true;
+					},
+				},
+				mark:true,
+				intro:{
+					content:'本回合使用【杀】无距离限制。'
+				}
+			},
+			damage:{
+				audio:'yhky_cyluoyi',
+				trigger: { source: "damageBegin1" },
+				sourceSkill: "yhky_cyluoyi",
+				filter(event) {
+					return event.card && (event.card.name == "sha" || event.card.name == "juedou") && event.notLink();
+				},
+				forced: true,
+				charlotte: true,
+				content() {
+					trigger.num++;
+				},
+				ai: {
+					damageBonus: true,
+					skillTagFilter(player, tag, arg) {
+						if (tag === "damageBonus") {
+							return arg && arg.card && (arg.card.name === "sha" || arg.card.name === "juedou");
+						}
+					},
+				},
+				
+			},
+		}
+	},
+	yhky_cyjiuxian:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		usable: 1,
+		filterCard: lib.filter.cardRecastable,
+		selectCard() {
+			return Math.ceil(_status.event.player.countCards("he") / 2);
+		},
+		check(card) {
+			return 6.5 - get.value(card);
+		},
+		discard: false,
+		lose: false,
+		delay: false,
+		content() {
+			"step 0";
+			player.recast(cards);
+			// "step 1";
+			// player.chooseButtonTarget({
+			// 	createDialog: [
+			// 		`###${get.prompt(event.skill)}###<div class="text center">视为对一名角色使用【杀】或【决斗】</div>`,
+			// 		[
+			// 			[
+			// 				['基本','','sha'],
+			// 				["锦囊",'','juedou'],
+			// 			],
+			// 			"vcard",
+			// 		],
+			// 	],
+			// 	filterButton(button) {
+			// 		return player.hasUseTarget({name:button.link[2]});
+			// 	},
+			// 	filterTarget(card, player, target) {
+			// 		const link = ui.selected.buttons[0].link;
+			// 		// return lib.filter.cardEnabled({name:link[2]},_status.event.player, target);
+			// 		return player.canUse({name:link[2]},target);
+			// 	},
+			// 	selectTarget() {
+			// 		return 1
+			// 	},
+			// 	filterOk() {
+			// 		if (ui.selected.buttons.length&&ui.selected.targets.length) {
+			// 			return true;
+			// 		}
+			// 		return false;
+			// 	},
+			// 	ai1(button) {
+			// 		return player.getUseValue({name:button.link[2]},true,false);
+			// 	},
+			// 	ai2(target) {
+			// 		var player=get.player();
+			// 		return player.getUseValue({name:button.link[2]},true,false);
+			// 	},
+			// })
+			// 'step 2'
+			// if (result.bool) {
+			// 	player.useCard(
+			// 		{
+			// 			name:result.buttons[0].link[2],
+			// 			isCard: true,
+			// 			storage: { yhky_cyjiuxian: true },
+			// 		},
+			// 		result.targets[0],
+			// 	);
+			// }
+			'step 1'
+			player.addTempSkill("yhky_cyjiuxian_help");
+			player.chooseUseTarget(
+				{
+					name: "juedou",
+					isCard: true,
+					storage: { yhky_cyjiuxian: true },
+				},
+				true
+			);
+		},
+		// group:['yhky_cyjiuxian_help'],
+		ai: {
+			order() {
+				return 0.9 * get.order({ name: "juedou" });
+			},
+			tag: {
+				respond: 2,
+				respondSha: 2,
+				damage: 1,
+			},
+			result: {
+				player(player) {
+					let target = null,
+						maxval = 0;
+					for (let i of game.players) {
+						let jdeff = get.effect(
+							i,
+							{
+								name: "juedou",
+								isCard: true,
+								cards: ui.selected.cards,
+								storage: { yhky_cyjiuxian: true },
+							},
+							player,
+							player
+						);
+						if (
+							i === player ||
+							!player.canUse(
+								{
+									name: "juedou",
+									isCard: true,
+									cards: ui.selected.cards,
+									storage: { yhky_cyjiuxian: true },
+								},
+								i
+							) ||
+							jdeff < 0
+						) {
+							continue;
+						}
+						let receff = 0;
+						game.filterPlayer(function (current) {
+							if (player != current && i.inRange(current) && current.isDamaged()) {
+								receff = Math.max(receff, get.recoverEffect(current, i, i));
+							}
+						});
+						if (jdeff + receff / 5 > maxval) {
+							target = i;
+							maxval = jdeff + receff / 5;
+						}
+					}
+					if (target) {
+						return maxval / 80;
+					}
+					return 0;
+				},
+			},
+		},
+		subSkill: {
+			help: {
+				trigger: { global: "damageSource" },
+				filter(event, player) {
+					return (
+						event.card &&
+						event.card.storage &&
+						event.card.storage.yhky_cyjiuxian &&
+						event.player.isIn() &&
+						event.getParent(2).targets.includes(event.player) &&
+						game.hasPlayer(current => {
+							return current == player || player.inRange(current);
+						})
+					);
+				},
+				direct: true,
+				forced: true,
+				charlotte: true,
+				content() {
+					"step 0";
+					player
+						.chooseTarget("救陷：令你或攻击范围内一名角色回复1点体力并摸2张牌？", (card, player, target) => {
+							if (_status.event.player == target) {
+								return true;
+							}
+							return _status.event.player.inRange(target);
+						})
+						// .set("targetx", player)
+						.set("ai", target => get.recoverEffect(target, _status.event.player, _status.event.player));
+					"step 1";
+					if (result.bool) {
+						var target = result.targets[0];
+						player.logSkill("yhky_cyjiuxian_help", target);
+						target.recover(player);
+						target.draw(2,player);
+					}
+				},
+			},
+		},
+	},
+	yhky_cyyinjun:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger: { player: "useCardAfter" },
+		filter(event, player) {
+			if (get.name(event.card, false) != "sha" && get.type2(event.card) != "trick") {
+				return false;
+			}
+			if (event.targets.length != 1 || !event.targets[0].isIn()) {
+				return false;
+			}
+			if (!player.canUse(new lib.element.VCard({ name: "sha" }), event.targets[0], false)) {
+				return false;
+			}
+			return player.hasHistory("lose", evt => {
+				if (evt.getParent() != event) {
+					return false;
+				}
+				return event.cards.every(card => {
+					return evt.hs.includes(card);
+				});
+			});
+		},
+		prompt2(event, player) {
+			return `视为对${get.translation(event.targets)}使用一张无伤害来源的【杀】`;
+		},
+		check(event, player) {
+			const sha = new lib.element.VCard({ name: "sha" });
+			return Math.max(...[event.targets[0], player].map(source => get.effect(event.targets[0], sha, source, player))) > 0;
+		},
+		logTarget: "targets",
+		// *cost(event,map){
+		// 	const player = map.player,
+		// 		trigger = map.trigger,
+		// 		target = trigger.targets[0];
+		// 	var result = yield player.chooseButton(
+		// 		[
+		// 			`###${get.prompt(event.skill)}###<div class="text center">视为对${target}使用【杀】或【决斗】</div>`,
+		// 			[
+		// 				['基本', '', 'sha'],
+		// 				["锦囊", '', 'juedou'],
+		// 			],
+		// 			"vcard",
+		// 		],
+		// 	)
+		// 	.set('filterButton', (button) => {
+		// 		return _status.event.player.canUse({ name: button.link[2] }, target);
+		// 	})
+		// 	.set('ai', function (button) {
+		// 		var trigger = _status.event;
+		// 		return get.effect_use(trigger.targets[0], { name: button.link[2] }, trigger.player)
+		// 		// return _status.event.player.getUseValue({name:button.link[2]},true,false);
+		// 	}).forResult();
+		// 	if(result.bool){
+		// 		event._result = {
+		// 			bool:true,
+		// 			card:result.links[0]
+		// 		}
+		// 	}
+		// },
+		// *content(event, map) {
+		// 	const player = map.player,
+		// 		trigger = map.trigger,
+		// 		target = trigger.targets[0],
+		// 		card = event.card;
+		// 	yield (player.useCard(new lib.element.VCard({ name: card[2] }), target, false).oncard = () => {
+		// 		get.event().customArgs.default.customSource = {
+		// 			isDead: () => true,
+		// 		};
+		// 	});
+		// 	if (player.getHistory("useSkill", evt => evt.skill == "yhky_cyyinjun").length > player.getHp()) {
+		// 		player.tempBanSkill("yhky_cyyinjun");
+		// 	}
+		// },
+		*content(event, map) {
+			const player = map.player,
+				trigger = map.trigger,
+				target = trigger.targets[0];
+			yield (player.useCard(new lib.element.VCard({ name: "sha" }), target, false).oncard = () => {
+				get.event().customArgs.default.customSource = {
+					isDead: () => true,
+				};
+			});
+			if (player.getHistory("useSkill", evt => evt.skill == "dcyinjun").length > player.getHp()) {
+				player.tempBanSkill("dcyinjun");
+			}
+		},
+
+	},
+	yhky_cyqinlong:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		limited: true,
+		skillAnimation: true,
+		animationColor: "fire",
+		filterCard: () => false,
+		selectCard: [-1, -2],
+		filterTarget: true,
+		selectTarget: -1,
+		multiline: true,
+		async contentBefore(event, trigger, player) {
+			// 目前并无换肤素材
+			// player.changeSkin({ characterName: "yhky_caoying" }, "yhky_caoying_shadow");
+			player.awakenSkill("yhky_cyqinlong");
+		},
+		async content(event, trigger, player) {
+			const target = event.target;
+			const delt = target.getHp(true) - 1,
+				num = Math.abs(delt);
+			if (delt != 0) {
+				if (delt > 0) {
+					const next = target.changeHp(-delt);
+					next._triggered = null;
+					await next;
+				} else await target.recover(num);
+			}
+			if (num > 0) await target.changeHujia(num + (player == target ? 2 : 0), null, true);
+			else if (player == target) await target.changeHujia(2, null, true);
+
+			// await player.addSkill()
+		},
+		async contentAfter(event, trigger, player) {
+			game.addGlobalSkill("yhky_cyqinlong_tanchengxiangdai");
+			// player.$fullscreenpop("向死存汉！", "fire");
+			// const cards = ["cardPile", "discardPile"].map(pos => Array.from(ui[pos].childNodes)).flat();
+			// const filter = card => ["shan", "tao", "jiu"].includes(card.name);
+			// const cardx = cards.filter(filter);
+			// var cardChange=function(card){
+			// 	if(Array.isArray(card)){
+			// 		for(var i of card){
+			// 			cardChange(i);
+			// 		}
+			// 	}
+			// 	else {
+			// 		card.YB_init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
+			// 	}
+			// }
+			// if (cardx.length) {
+			// 	game.log(cardx, "变成了火【杀】");
+			// 	await cardChange(cardx);
+			// }
+			// for (const target of game.filterPlayer()) {
+			// 	const sishis = target.getCards("hej", filter);
+			// 	if (sishis.length) {
+			// 		target.$throw(sishis);
+			// 		game.log(sishis, "变成了火【杀】");
+			// 		await cardChange(sishis);
+			// 	}
+			// }
+		},
+		ai: {
+			order: 10,
+			result: {
+				player(player) {
+					return 1;
+				},
+			},
+		},
+		subSkill: {
+			xiangsicunhan: {
+				persevereSkill: true,
+				ai: {
+					viewHandcard: true,
+					skillTagFilter(player, tag, arg) {
+						if (player == arg) {
+							return false;
+						}
+					},
+				},
+				// trigger: {
+				// 	global: ["loseAfter", "equipAfter", "loseAsyncAfter", "cardsDiscardAfter"],
+				// },
+				forced: true,
+				silent: true,
+				// firstDo: true,
+				// filter(event, player) {
+				// 	const nameList = ["shan", "tao", "jiu"];
+				// 	return event.getd().some(card => {
+				// 		return nameList.includes(get.name(card, false)) && get.position(card, true) === "d";
+				// 	});
+				// },
+				// async content(event, trigger, player) {
+				// 	const nameList = ["shan", "tao", "jiu"];
+				// 	const cards = trigger.getd().filter(card => {
+				// 		return nameList.includes(get.name(card, false)) && get.position(card, true) === "d";
+				// 	});
+				// 	var cardChange=function(card){
+				// 		if(Array.isArray(card)){
+				// 			for(var i of card){
+				// 				cardChange(i);
+				// 			}
+				// 		}
+				// 		else {
+				// 			card.YB_init([card.suit, card.number, 'sha', 'fire', get.YB_tag(card)]);
+				// 		}
+				// 	}
+				// 	game.log(cards, "变成了火【杀】");
+				// 	await cardChange(cards);
+				// },
+			},
+		},
+	},
+	yhky_cylingren:{
+		audio: 'xinfu_lingren',
+		persevereSkill: true,
+		derivation: ["yhky_cyjianxiong", "yhky_cyxingshang",'yhky_cyhuituo'],
+		group: [/*"yhky_cylingren_use",'yhky_cylingren_tar',*/'yhky_cylingren_draw'],
+		trigger: {
+			player: "useCardToPlayered",
+			target: "useCardToTargeted",
+		},
+		filter(event, player,name) {
+			if(name=='useCardToTargeted'){
+				if(event.player==player)return false;
+				if(!event.player.isIn())return false;
+			}
+			else if (event.getParent().triggeredTargets3.length > 1) {
+				return false;
+			}
+			if (!["basic", "trick"].includes(get.type(event.card))) {
+				return false;
+			}
+			return get.tag(event.card, "damage");
+		},
+		usable: 2,
+		async cost(event, trigger, player) {
+			if(event.triggername=='useCardToTargeted'){
+				event.result = await player.chooseBool(get.prompt('yhky_cylingren'),'猜测'+get.translation(trigger.player)+'的手牌构成？')
+					.set("ai", target => {
+						return 2 - get.attitude(get.player(), target);
+					})
+					.forResult();
+				if(event.result.bool)event.result = {
+					bool: true,
+					target:trigger.player,
+					targets:[trigger.player],
+				};
+			}
+			else {
+				event.result = await player
+					.chooseTarget(get.prompt(event.name.slice(0, -5)), "选择一名目标角色并猜测其手牌构成", (card, player, target) => {
+						return _status.event.targets.includes(target);
+					})
+					.set("ai", target => {
+						return 2 - get.attitude(get.player(), target);
+					})
+					.set("targets", trigger.targets)
+					.forResult();
+			}
+		},
+		async content(event, trigger, player) {
+			const {
+				targets: [target],
+			} = event;
+			const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
+			const { result } = await player
+				.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
+				.set("ai", button => {
+					return get.event("choice").includes(button.link[2].slice(8));
+				})
+				.set(
+					"choice",
+					(() => {
+						if (!target.countCards("h")) {
+							return [];
+						}
+						let choice = [],
+							known = target.getKnownCards(player),
+							unknown = target.getCards("h", i => !known.includes(i));
+						for (let i of known) {
+							choice.add(get.type2(i, target));
+						}
+						if (!unknown.length || choice.length > 2) {
+							return choice;
+						}
+						let rand = 0.05;
+						if (!choice.includes("basic")) {
+							if (unknown.some(i => get.type(i, null, target) === "basic")) {
+								rand = 0.95;
+							}
+							if (Math.random() < rand) {
+								choice.push("basic");
+							}
+						}
+						if (!choice.includes("trick")) {
+							if (unknown.some(i => get.type(i, "trick", target) === "trick")) {
+								rand = 0.9;
+							} else {
+								rand = 0.1;
+							}
+							if (Math.random() < rand) {
+								choice.push("trick");
+							}
+						}
+						if (!choice.includes("equip")) {
+							if (unknown.some(i => get.type(i, null, target) === "equip")) {
+								rand = 0.75;
+							} else {
+								rand = 0.25;
+							}
+							if (Math.random() < rand) {
+								choice.push("equip");
+							}
+						}
+						return choice;
+					})()
+				);
+			if (!result?.bool) {
+				return;
+			}
+			const choices = result.links.map(i => i[2].slice(8));
+			if (!event.isMine() && !event.isOnline()) {
+				await game.delayx();
+			}
+			let num = 0;
+			["basic", "trick", "equip"].forEach(type => {
+				if (choices.includes(type) == target.hasCard(card => get.type2(card, target) === type, "h")) {
+					num++;
+				}
+			});
+			player.popup("猜对" + get.cnNumber(num) + "项");
+			game.log(player, "猜对了" + get.cnNumber(num) + "项");
+			if (num > 0) {
+				trigger.trigger('yhky_cylingren_right');
+				trigger.num = num;
+				trigger.caier = player;
+				if(event.triggername=='useCardToTargeted'){//成为目标的分支
+					
+				}
+				else {//指定目标的分支
+					const map = trigger.customArgs;
+					const id = target.playerid;
+					map[id] ??= {};
+					if (typeof map[id].extraDamage != "number") {
+						map[id].extraDamage = 0;
+					}
+					map[id].extraDamage++;
+				}
+			}
+			if (num > 1) {
+				if(event.triggername=='useCardToTargeted'){//成为目标的分支
+					const map = trigger.customArgs;
+					const id = player.playerid;
+					map[id] ??= {};
+					if (typeof map[id].extraDamage != "number") {
+						map[id].extraDamage = 0;
+					}
+					map[id].extraDamage--
+				}
+				else {//指定目标的分支
+					await trigger.getParent().directHit.add(target);
+				}
+			}
+			if (num > 2) {
+				if(event.triggername=='useCardToTargeted'){//成为目标的分支
+					await player.discardPlayerCard('he', target, true, '弃置其至多两张牌',[1,2]).set("target", target).set("complexSelect", false).set("ai", lib.card.guohe.ai.button);
+					// await player.gainMaxHp();
+					// await player.recover(2);
+				}
+				else {//指定目标的分支
+					let listx = get.info('yhky_cylingren').derivation;
+					for(var i of listx){
+						if(player.hasSkill(i))listx.remove(i);
+					}
+					const chooseSkill = await player.chooseControl(listx).set('prompt',"选择一项技能获得").forResult();
+					if (chooseSkill.control) {
+						await player.addSkill(chooseSkill.control);
+					}
+				}
+			}
+		},
+		subSkill:{
+			use:{
+				audio: 'yhky_cylingren',
+				trigger: { player: "useCardToPlayered" },
+				filter(event, player) {
+					if (event.getParent().triggeredTargets3.length > 1) {
+						return false;
+					}
+					if (!["basic", "trick"].includes(get.type(event.card))) {
+						return false;
+					}
+					return get.tag(event.card, "damage");
+				},
+				usable: 1,
+				async cost(event, trigger, player) {
+					event.result = await player
+						.chooseTarget(get.prompt(event.name.slice(0, -5)), "选择一名目标角色并猜测其手牌构成", (card, player, target) => {
+							return _status.event.targets.includes(target);
+						})
+						.set("ai", target => {
+							return 2 - get.attitude(get.player(), target);
+						})
+						.set("targets", trigger.targets)
+						.forResult();
+				},
+				async content(event, trigger, player) {
+					const {
+						targets: [target],
+					} = event;
+					const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
+					const { result } = await player
+						.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
+						.set("ai", button => {
+							return get.event("choice").includes(button.link[2].slice(8));
+						})
+						.set(
+							"choice",
+							(() => {
+								if (!target.countCards("h")) {
+									return [];
+								}
+								let choice = [],
+									known = target.getKnownCards(player),
+									unknown = target.getCards("h", i => !known.includes(i));
+								for (let i of known) {
+									choice.add(get.type2(i, target));
+								}
+								if (!unknown.length || choice.length > 2) {
+									return choice;
+								}
+								let rand = 0.05;
+								if (!choice.includes("basic")) {
+									if (unknown.some(i => get.type(i, null, target) === "basic")) {
+										rand = 0.95;
+									}
+									if (Math.random() < rand) {
+										choice.push("basic");
+									}
+								}
+								if (!choice.includes("trick")) {
+									if (unknown.some(i => get.type(i, "trick", target) === "trick")) {
+										rand = 0.9;
+									} else {
+										rand = 0.1;
+									}
+									if (Math.random() < rand) {
+										choice.push("trick");
+									}
+								}
+								if (!choice.includes("equip")) {
+									if (unknown.some(i => get.type(i, null, target) === "equip")) {
+										rand = 0.75;
+									} else {
+										rand = 0.25;
+									}
+									if (Math.random() < rand) {
+										choice.push("equip");
+									}
+								}
+								return choice;
+							})()
+						);
+					if (!result?.bool) {
+						return;
+					}
+					const choices = result.links.map(i => i[2].slice(8));
+					if (!event.isMine() && !event.isOnline()) {
+						await game.delayx();
+					}
+					let num = 0;
+					["basic", "trick", "equip"].forEach(type => {
+						if (choices.includes(type) == target.hasCard(card => get.type2(card, target) === type, "h")) {
+							num++;
+						}
+					});
+					player.popup("猜对" + get.cnNumber(num) + "项");
+					game.log(player, "猜对了" + get.cnNumber(num) + "项");
+					if (num > 0) {
+						trigger.trigger('yhky_cylingren_right');
+						trigger.num = num;
+						trigger.caier = player;
+						const map = trigger.customArgs;
+						const id = target.playerid;
+						map[id] ??= {};
+						if (typeof map[id].extraDamage != "number") {
+							map[id].extraDamage = 0;
+						}
+						map[id].extraDamage++;
+					}
+					if (num > 1) {
+						// await player.draw(2);
+						await trigger.getParent().directHit.add(target);
+					}
+					if (num > 2) {
+						let listx = get.info('yhky_cylingren').derivation;
+						for(var i of listx){
+							if(player.hasSkill(i))listx.remove(i);
+						}
+						const chooseSkill = await player.chooseControl(listx).set('prompt',"选择一项技能获得").forResult();
+						if (chooseSkill.control) {
+							await player.addSkill(chooseSkill.control);
+						}
+						// await player.addTempSkills(get.info(event.name).derivation, { player: "phaseBegin" });
+					}
+					// var right = trigger.trigger('yhky_cylingren_right');
+					// right.num = num;
+					// await right;
+				},
+			},
+			tar:{
+				audio: 'yhky_cylingren',
+				trigger: { target: "useCardToPlayered" },
+				filter(event, player) {
+					// if (!["basic", "trick"].includes(get.type(event.card))) {
+					// 	return false;
+					// }
+					return get.tag(event.card, "damage")&&player!=event.player;
+				},
+				usable: 1,
+				// async cost(event, trigger, player) {
+				// 	event.result = await player
+				// 		.chooseTarget(get.prompt(event.name.slice(0, -5)), "选择一名目标角色并猜测其手牌构成", (card, player, target) => {
+				// 			return _status.event.targets.includes(target);
+				// 		})
+				// 		.set("ai", target => {
+				// 			return 2 - get.attitude(get.player(), target);
+				// 		})
+				// 		.set("targets", trigger.targets)
+				// 		.forResult();
+				// },
+				async content(event, trigger, player) {
+					var target = trigger.player;
+					// const {
+					// 	targets: [target],
+					// } = event;
+					const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
+					const { result } = await player
+						.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
+						.set("ai", button => {
+							return get.event("choice").includes(button.link[2].slice(8));
+						})
+						.set(
+							"choice",
+							(() => {
+								if (!target.countCards("h")) {
+									return [];
+								}
+								let choice = [],
+									known = target.getKnownCards(player),
+									unknown = target.getCards("h", i => !known.includes(i));
+								for (let i of known) {
+									choice.add(get.type2(i, target));
+								}
+								if (!unknown.length || choice.length > 2) {
+									return choice;
+								}
+								let rand = 0.05;
+								if (!choice.includes("basic")) {
+									if (unknown.some(i => get.type(i, null, target) === "basic")) {
+										rand = 0.95;
+									}
+									if (Math.random() < rand) {
+										choice.push("basic");
+									}
+								}
+								if (!choice.includes("trick")) {
+									if (unknown.some(i => get.type(i, "trick", target) === "trick")) {
+										rand = 0.9;
+									} else {
+										rand = 0.1;
+									}
+									if (Math.random() < rand) {
+										choice.push("trick");
+									}
+								}
+								if (!choice.includes("equip")) {
+									if (unknown.some(i => get.type(i, null, target) === "equip")) {
+										rand = 0.75;
+									} else {
+										rand = 0.25;
+									}
+									if (Math.random() < rand) {
+										choice.push("equip");
+									}
+								}
+								return choice;
+							})()
+						);
+					if (!result?.bool) {
+						return;
+					}
+					const choices = result.links.map(i => i[2].slice(8));
+					if (!event.isMine() && !event.isOnline()) {
+						await game.delayx();
+					}
+					let num = 0;
+					["basic", "trick", "equip"].forEach(type => {
+						if (choices.includes(type) == target.hasCard(card => get.type2(card, target) === type, "h")) {
+							num++;
+						}
+					});
+					player.popup("猜对" + get.cnNumber(num) + "项");
+					game.log(player, "猜对了" + get.cnNumber(num) + "项");
+					if (num > 0) {
+						trigger.trigger('yhky_cylingren_right');
+						trigger.num = num;
+						trigger.caier = player;
+						const map = trigger.customArgs;
+						const id = player.playerid;
+						map[id] ??= {};
+						if (typeof map[id].extraDamage != "number") {
+							map[id].extraDamage = 0;
+						}
+						map[id].extraDamage--;
+					}
+					if (num > 1) {
+						await player.discardPlayerCard('he', target, true, '弃置其至多两张牌',[1,2]).set("target", target).set("complexSelect", false).set("ai", lib.card.guohe.ai.button);
+					}
+					if (num > 2) {
+						await player.gainMaxHp();
+						await player.recover(2);
+					}
+				},
+			},
+			draw:{
+				audio: "yhky_cylingwei",
+				persevereSkill: true,
+				trigger: {
+					// player: ["gainAfter", "damageEnd"],
+					// source: "damageSource",
+					// global: "loseAsyncAfter",
+					global:'yhky_cylingren_right',
+				},
+				filter(event, player) {
+					// if (player.countMark("yhky_cylingwei") >= lib.skill.yhky_cylingwei.maxMarkCount) return false;
+					// if (event.name === "damage") return event.num > 0;
+					// return event.getg(player).length > 0;
+					return event.num > 0&&event.caier == player;
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					await player.draw(trigger.num);
+				},
+
+			},
+		},
+	},
+	yhky_cyjianxiong:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger: { player: "damageEnd" },
+		content() {
+			"step 0";
+			if (get.itemtype(trigger.cards) == "cards" && get.position(trigger.cards[0], true) == "o") {
+				player.gain(trigger.cards, "gain2");
+			}
+			player.draw("nodelay");
+		},
+		ai: {
+			maixie: true,
+			maixie_hp: true,
+			effect: {
+				target(card, player, target) {
+					if (player.hasSkillTag("jueqing", false, target)) {
+						return [1, -1];
+					}
+					if (get.tag(card, "damage") && player != target) {
+						var cards = card.cards,
+							evt = _status.event;
+						if (evt.player == target && card.name == "damage" && evt.getParent().type == "card") {
+							cards = evt.getParent().cards.filterInD();
+						}
+						if (target.hp <= 1) {
+							return;
+						}
+						if (get.itemtype(cards) != "cards") {
+							return;
+						}
+						for (var i of cards) {
+							if (get.name(i, target) == "tao") {
+								return [1, 4.5];
+							}
+						}
+						if (get.value(cards, target) >= 7 + target.getDamagedHp()) {
+							return [1, 2.5];
+						}
+						return [1, 0.6];
+					}
+				},
+			},
+		},
+	},
+	yhky_cyxingshang:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger: { global: "die" },
+		filter(event, player) {
+			return player.isDamaged() || event.player.countCards("he") > 0;
+		},
+		direct: true,
+		content() {
+			"step 0";
+			var choice = [];
+			if (player.isDamaged()) {
+				choice.push("回复体力");
+			}
+			if (trigger.player.countCards("he")) {
+				choice.push("获得牌");
+			}
+			choice.push("cancel2");
+			player
+				.chooseControl(choice)
+				.set("prompt", get.prompt2("yhky_cyxingshang"))
+				.set("ai", function () {
+					if (choice.length == 2) {
+						return 0;
+					}
+					if (get.value(trigger.player.getCards("he")) > 8) {
+						return 1;
+					}
+					return 0;
+				});
+			"step 1";
+			if (result.control != "cancel2") {
+				player.logSkill(event.name, trigger.player);
+				if (result.control == "获得牌") {
+					event.togain = trigger.player.getCards("he");
+					player.gain(event.togain, trigger.player, "giveAuto", "bySelf");
+				} else {
+					player.recover();
+				}
+			}
+		},
+	},
+	yhky_cyhuituo:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger: { player: "damageEnd" },
+		direct: true,
+		content() {
+			"step 0";
+			var forced = event.forced === undefined ? false : event.forced;
+			var info = get.skillInfoTranslation("yhky_cyhuituo", player);
+			var str = `###${forced ? "恢拓：请选择一名角色" : get.prompt("yhky_cyhuituo")}###令一名角色判定。若结果为红色，其回复1点体力；若结果为黑色，其摸${get.cnNumber(trigger.num)}张牌`;
+			player.chooseTarget(str, event.forced).set("ai", function (target) {
+				var player = _status.event.player;
+				if (get.attitude(player, target) > 0) {
+					return get.recoverEffect(target, player, player) + 1;
+				}
+				return 0;
+			});
+			"step 1";
+			if (result.bool) {
+				player.logSkill("yhky_cyhuituo", result.targets);
+				var target = result.targets[0];
+				event.target = target;
+				target.judge(function (card) {
+					if (target.hp == target.maxHp) {
+						if (get.color(card) == "red") {
+							return -1;
+						}
+					}
+					if (get.color(card) == "red") {
+						return 1;
+					}
+					return 0;
+				});
+			} else {
+				event.finish();
+			}
+			"step 2";
+			switch (result.color) {
+				case "red":
+					if (event.target.hp < event.target.maxHp) {
+						event.target.recover();
+					}
+					break;
+
+				case "black":
+					event.target.draw(trigger.num);
+					break;
+
+				default:
+					break;
+			}
+		},
+		ai: {
+			maixie: true,
+			maixie_hp: true,
+		},
+	},
+	yhky_cyzhanlong:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		usable:1,
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

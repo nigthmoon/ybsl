@@ -1044,14 +1044,14 @@ const skill = {
 		async cost(event, trigger, player){
 			event.result=await player.chooseToDiscard('he').set('prompt2',get.prompt2('ybmjz_luoyi')).set("chooseonly", true).forResult();
 		},
-		init:function(){
-			if(!lib.skill.reluoyi2.mark){
-				lib.skill.reluoyi2.mark=true;
-				lib.skill.reluoyi2.intro={
-					content:'使用【杀】或【决斗】伤害+1，直到下回合开始。'
-				}
-			}
-		},
+		// init:function(){
+		// 	if(!lib.skill.reluoyi2.mark){
+		// 		lib.skill.reluoyi2.mark=true;
+		// 		lib.skill.reluoyi2.intro={
+		// 			content:'使用【杀】或【决斗】伤害+1，直到下回合开始。'
+		// 		}
+		// 	}
+		// },
 		*content(event,map){
 			let player=map.player,trigger=map.trigger;
 			yield player.discard(event.cards);
@@ -1062,7 +1062,7 @@ const skill = {
 				cardsx.push(k);
 			}
 			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
-				yield player.addTempSkill("reluoyi2", { player: "phaseBefore" });
+				yield player.addTempSkill("ybmjz_luoyi_damage", { player: "phaseBefore" });
 			}
 			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
 				yield player.addTempSkill("ybmjz_luoyi_use");
@@ -1105,7 +1105,29 @@ const skill = {
 				intro:{
 					content:'本回合使用【杀】无距离限制。'
 				}
-			}
+			},
+			damage:{
+				audio:'ybmjz_luoyi',
+				trigger: { source: "damageBegin1" },
+				sourceSkill: "ybmjz_luoyi",
+				filter(event) {
+					return event.card && (event.card.name == "sha" || event.card.name == "juedou") && event.notLink();
+				},
+				forced: true,
+				charlotte: true,
+				content() {
+					trigger.num++;
+				},
+				ai: {
+					damageBonus: true,
+					skillTagFilter(player, tag, arg) {
+						if (tag === "damageBonus") {
+							return arg && arg.card && (arg.card.name === "sha" || arg.card.name === "juedou");
+						}
+					},
+				},
+				
+			},
 		}
 	},
 

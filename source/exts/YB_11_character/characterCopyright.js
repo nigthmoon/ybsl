@@ -36,5 +36,6 @@ const characterCopyright = {
 	//空无  <br>◎技能设计：夜白<br>◎代码撰写者：夜白<br>◎插图：暂无<br>◎配音：暂无
 	//细雪  <br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：暂无<br>❅配音：暂无
 	*/
-	yhky_shlizhaoyi:'<font color=green>夜白自设-永恒刻印-001</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白、无名杀本体<br>◈插图：暂无<br>◈配音：暂无'
+	yhky_shlizhaoyi:'<font color=green>夜白自设-永恒刻印-001</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白、无名杀本体<br>◈插图：暂无<br>◈配音：暂无',
+	yhky_caoying:'<font color=green>夜白自设-永恒刻印-002</font><br>◈技能设计：玛微卡（喵曹金玉）<br>◈代码撰写者：夜白、无名杀本体<br>◈插图：暂无<br>◈配音：暂无',
 }
