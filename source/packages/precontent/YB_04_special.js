@@ -662,7 +662,7 @@ const YBSL_special = function () {
 				// ['rezhiheng',{ybmjz_shen_caopi:'rezhiheng_shen_caopi'}],
 				// ['olluanji',{ybmjz_shen_caopi:'olluanji_shen_caopi'}],
 				// //界戏志才
-				// ['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
+				// ['tiandu',{qmsgswkjsgj_re_xizhicai:'tiandu_xizhicai'}],
 				//真马超
 				['retieji',{sgskjdbzjms_zhen_machao:'shouli'}],
 				//孙立新
@@ -872,6 +872,6 @@ const YBSL_special = function () {
 		
 	}
 	// game.YB_addAudio(
-	// 	['tiandu',{qmsgswkjsgj_xizhicai:'tiandu_xizhicai'}],
+	// 	['tiandu',{qmsgswkjsgj_re_xizhicai:'tiandu_xizhicai'}],
 	// )
 }

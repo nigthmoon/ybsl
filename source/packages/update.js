@@ -55,7 +55,7 @@ window.ybslb_update={
 		players:[
 			'sgskjdbzjms_mo_zhoutai','sgskjdbzjms_shen_zhugeliang','sgskjdbzjms_leizhenzi','sgskjdbzjms_xian_zhugeguo',
 			'sgskjdbzjms_zhen_zhangfei','sgskjdbzjms_zhen_guanyu','sgskjdbzjms_shen_liubei','sgskjdbzjms_zhen_machao','sgskjdbzjms_zhen_liubei',
-			'qmsgswkjsgj_xizhicai','qmsgswkjsgj_liuxie',
+			'qmsgswkjsgj_re_xizhicai','qmsgswkjsgj_re_liuxie',
 			'qmsgswkjsgj_shen_zhaoyun','qmsgswkjsgj_gui_xuyou','qmsgswkjsgj_gui_zhaoyun','qmsgswkjsgj_gui_sunquan',
 			
 		],

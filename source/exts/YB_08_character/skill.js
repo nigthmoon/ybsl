@@ -1126,6 +1126,10 @@ const skill = {
 						}
 					},
 				},
+				mark:true,
+				intro:{
+					content:'以你为来源的【杀】和【决斗】伤害+1。'
+				},
 				
 			},
 		}

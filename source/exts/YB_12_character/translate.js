@@ -107,11 +107,25 @@ const translate = {
 	sgskjdbzjms_tuogu_info:'当你进入濒死状态时，你可以选择至多两名其他角色，令他们选择一项：①摸三张牌，②，回复一点体力。',
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	qmsgswkjsgj:'全民三国杀，我开局神郭嘉',
 	qmsgswkjsgj_info:'全民三国杀，我开局神郭嘉<br>平台：番茄小说<br>作者：天一笙水',
 
-	qmsgswkjsgj_xizhicai:'界戏志才',
-	qmsgswkjsgj_xizhicai_prefix:'界',
+	qmsgswkjsgj_re_xizhicai:'界戏志才',
+	qmsgswkjsgj_re_xizhicai_prefix:'界',
 	qmsgswkjsgj_xianfu:'先辅',
 	qmsgswkjsgj_xianfu_info:'锁定技，游戏开始时，你选择一名其他角色，当其受到伤害后，你受到等量的伤害，当其回复体力后，你回复等量的体力。当先辅角色阵亡时，或回合开始时，你可以改变先辅目标。',
 	// qmsgswkjsgj_xianfu_append:'随便换目标的戏志才是什么人渣？',
@@ -120,8 +134,8 @@ const translate = {
 	qmsgswkjsgj_chouce:'筹策',
 	qmsgswkjsgj_chouce_info:'当你受到1点伤害后，你可以判定，若结果为：黑色，你可以移动场上一张牌或获得一名其他角色的一张手牌；红色，你选择一名角色，其摸一张牌，若其是〖先辅〗选择的角色，改为其摸两张牌。若如此做，你可以将一张手牌交给任意角色。',
 
-	qmsgswkjsgj_liuxie:'界刘协',
-	qmsgswkjsgj_liuxie_prefix:'界',
+	qmsgswkjsgj_re_liuxie:'界刘协',
+	qmsgswkjsgj_re_liuxie_prefix:'界',
 	qmsgswkjsgj_tianming:'天命',
 	qmsgswkjsgj_tianming_info:'当你成为杀的目标后，你可以摸两张牌。',
 	qmsgswkjsgj_mizhao:'密诏',//【杀】或【火杀】或【雷杀】
@@ -156,8 +170,8 @@ const translate = {
 	qmsgswkjsgj_reshuishi:'慧识',
 	qmsgswkjsgj_reshuishi_info: "出牌阶段限一次。若你的体力上限小于10，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同且你的体力上限小于10，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。",
 
-	qmsgswkjsgj_sp_duyu:'界杜预',
-	qmsgswkjsgj_sp_duyu_prefix:'界',
+	qmsgswkjsgj_re_sp_duyu:'界杜预',
+	qmsgswkjsgj_re_sp_duyu_prefix:'界',
 	qmsgswkjsgj_spwuku: "武库",
 	qmsgswkjsgj_spwuku_info: "锁定技，当有角色使用装备牌时，则你获得一个“武库”。",
 	qmsgswkjsgj_spsanchen: "三陈",
@@ -184,10 +198,19 @@ const translate = {
 	qmsgswkjsgj_sbliegong: "烈弓",
 	qmsgswkjsgj_sbliegong_info:'①你使用【杀】可以选择你距离不大于此【杀】点数的角色为目标。②当你使用牌时，或成为其他角色使用牌的目标后，你记录此牌的花色。③当你使用【杀】或伤害锦囊指定唯一目标后，若你〖烈弓②〗的记录不为空，则你可亮出牌堆顶的X张牌（X为你〖烈弓②〗记录过的花色数-1），令此牌的伤害值基数+Y（Y为亮出牌中被〖烈弓②〗记录过花色的牌的数量），且目标角色不能使用〖烈弓②〗记录过花色的牌响应此牌。此牌使用结算结束后，你清除〖烈弓②〗的记录。',
 
-
-
-
-
+	qmsgswkjsgj_re_yangbiao:'界杨彪',
+	qmsgswkjsgj_re_yangbiao_prefix:'界',
+	qmsgswkjsgj_zhaohan:'昭汉',
+	qmsgswkjsgj_zhaohan_info:'锁定技，游戏开始后的前四个准备阶段，你加一点体力上限并回复一点体力。之后的三个准备阶段，你受到一点无来源伤害。',
+	qmsgswkjsgj_rangjie:'让节',
+	qmsgswkjsgj_rangjie_info:'当你受到一点伤害后，你可以选择一项并令一名角色摸一张牌：1.移动场上一张牌；2.从牌堆获得一张你指定类型的牌。',
+	qmsgswkjsgj_yizheng:'义争',
+	qmsgswkjsgj_yizheng_info:'出牌阶段限一次，你可以与一名角色拼点：若你赢，跳过其下个摸牌阶段；若你没赢，你受到其对你造成的一点伤害。',
+	
+	qmsgswkjsgj_re_luotong:'界骆统',
+	qmsgswkjsgj_re_luotong_prefix:'界',
+	qmsgswkjsgj_qinzheng:'勤政',
+	qmsgswkjsgj_qinzheng_info:'锁定技，你每使用或打出：两张牌时，你随机从牌堆或弃牌堆获得一张【杀】或【闪】或【桃】或【酒】；五张牌时，你随机从牌堆或弃牌堆获得一张【决斗】或【过河拆桥】；巴掌拍时，你随机从牌堆或弃牌堆获得一张【无中生有】或【顺手牵羊】。',
 
 
 
@@ -251,11 +274,32 @@ const translate = {
 	sgsxjxfzmnl_reshuishi:'慧识',
 	sgsxjxfzmnl_reshuishi_info:'出牌阶段限两次，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。',
 
+	sgsxjxfzmnl_wenyang:'仙界文鸯',
+	sgsxjxfzmnl_wenyang_prefix:'仙界',
+	sgsxjxfzmnl_quedi:'却敌',
+	sgsxjxfzmnl_quedi_info:'每回合限两次。当你使用【杀】或【决斗】指定唯一目标后，你可选择：①获得目标角色的一张手牌。②弃置一张基本牌，并令此牌的伤害值基数+1。③背水：减1点体力上限，然后依次执行上述所有选项。',
+	sgsxjxfzmnl_chuifeng:'椎锋',
+	sgsxjxfzmnl_chuifeng_info:'魏势力技。你可以失去1点体力并视为使用一张【决斗】（你死亡后仍然结算）。当你因此【决斗】而受到伤害时，你防止此伤害。',
+	sgsxjxfzmnl_chongjian:'冲坚',
+	sgsxjxfzmnl_chongjian_backup: "冲坚",
+	sgsxjxfzmnl_chongjian_info:'吴势力技。你可以将一张装备牌当做一种【杀】（无距离限制无次数限制且无视防具）或【酒】使用。当你以此法使用【杀】造成伤害后，你获得目标角色装备区内的X张牌（X为伤害值）。',
+	// sgsxjxfzmnl_choujue:'仇决',
+	// sgsxjxfzmnl_choujue_info:'锁定技。当你杀死其他角色后，你加1点体力上限并摸两张牌，然后你本回合发动〖却敌〗的次数上限+1。',
 
+	sgsxjxfzmnl_re_jushou:'仙界界沮授',
+	sgsxjxfzmnl_re_jushou_prefix:'仙界界',
+	sgsxjxfzmnl_rejianying:'渐营',
+	sgsxjxfzmnl_rejianying_info:'①当你于出牌阶段内使用与此阶段你使用的上一张牌点数或花色相同的牌时，你可以摸一张牌。②出牌阶段限两次，你可以将一张牌当做任意基本牌使用。若你于此阶段内使用的上一张牌有花色，则此牌的花色视为上一张牌的花色',
+	sgsxjxfzmnl_reshibei:'矢北',
+	sgsxjxfzmnl_reshibei_info:'锁定技，当你受到伤害后，若此是你本回合奇数次受到伤害，你回复一点体力。',
 
-
-
-
+	sgsxjxfzmnl_shen_ganning:'仙界神甘宁',
+	sgsxjxfzmnl_shen_ganning_prefix:'仙界神',
+	sgsxjxfzmnl_drltpoxi:'魄袭',
+	sgsxjxfzmnl_drltpoxi_info:'出牌阶段，你可以观看一名其他角色的手牌，然后你可以弃置你与其手牌中的四张花色不同的牌。若如此做，根据此次弃置你的牌的数量执行以下效果：零张，增加1点体力上限；一张，摸一张牌；三张，你回复1点体力；四张，摸四张牌。',
+	sgsxjxfzmnl_drltjieying:'劫营',
+	sgsxjxfzmnl_drltjieying_info:'回合开始时，若场上没有拥有“营”标记的角色，你获得1个“营”标记；结束阶段，你可以将你的一个“营”标记交给一名角色；有“营”标记的角色摸牌阶段多摸一张牌，出牌阶段使用【杀】的次数上限+1，手牌上限+1，此数值对你翻倍。有“营”的其他角色回合结束时，其移去“营”标记，然后你获得其所有手牌。',
+	
 
 
 

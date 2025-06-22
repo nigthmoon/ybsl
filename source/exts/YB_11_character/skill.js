@@ -863,6 +863,10 @@ const skill = {
 						}
 					},
 				},
+				mark:true,
+				intro:{
+					content:'以你为来源的【杀】和【决斗】伤害+1。'
+				},
 				
 			},
 		}
@@ -1371,7 +1375,7 @@ const skill = {
 				trigger.num = num;
 				trigger.caier = player;
 				if(event.triggername=='useCardToTargeted'){//成为目标的分支
-					
+
 				}
 				else {//指定目标的分支
 					const map = trigger.customArgs;
