@@ -191,6 +191,17 @@ const translate = {
 	hairi_zhongxia:'终夏',
 	hairi_zhongxia_info:'使命技，当你需要使用一张基本牌时，你可以弃置所有手牌（至少一张），若你以此法弃置的牌花色各不相同，你视为使用之，若你以此法弃置的牌数等于你已损体力值或体力上限，你加一点体力上限（若未成功使用目标牌，此技能本回合不能再用）<br>成功：准备阶段，若你的体力上限不小于5，你选择一项：①获得技能“炒饭”，并恢复所有已废除装备栏。②将体力上限调整为1，并重置[终夏]。<br>失败：当你死亡时，你令一名其他角色获得[终夏]。',
 
+	ybsl_kamome:'鸥',
+	'kamome_ybyangfan':'扬帆',
+	'kamome_ybyangfan_info':'锁定技，游戏开始时，你将一张【旅行箱】置入你的装备区。当你获得此技能时，你分配四张手牌分别标记为“鹰”，“燕”，“隼”，“雀”（离开手牌区则移去标记）。当你失去带有标记的牌时或装备区内的牌时，你依次执行：若包含“鹰”，你卜算2；若包含“燕”，你对一名其他角色造成一点伤害；若包含“隼”，你从弃牌堆获得一张锦囊牌；若包含“雀”你回复一点体力；包含装备区内的牌，你摸X张牌并分别标记（X为你手牌中缺少的标记数）（此效果不触发相关技能）。',
+	'kamome_ybyangfan_ying':'鹰',
+	'kamome_ybyangfan_yan':'燕',
+	'kamome_ybyangfan_sun':'隼',
+	'kamome_ybyangfan_que':'雀',
+	kamome_huanmeng_ybsl_kamome:'幻梦',
+	kamome_huanmeng_ybsl_kamome_info:'此技能仅提供一条语音。',
+	kamome_jieban_ybsl_kamome:'结伴',
+	kamome_jieban_ybsl_kamome_info:'此技能仅提供一条语音。',
 	ybsl_youta:'成神阳太',
 
 	ybsl_pujing:'普净',

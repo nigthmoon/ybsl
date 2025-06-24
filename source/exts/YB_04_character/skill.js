@@ -860,6 +860,192 @@ const skill = {
 			}
 		},
 	},
+	//久岛鸥
+	kamome_ybyangfan:{
+		// audio:'kamome_yangfan',
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: ["loseAfter", "enterGame"],
+			global: ["equipAfter", "addJudgeAfter", "phaseBefore", "gainAfter", "loseAsyncAfter", "addToExpansionAfter"],
+		},
+		forced: true,
+		filter(event, player) {
+			if (typeof event.getl != "function") {
+				return event.name != "phase" || game.phaseNumber == 0;
+			}
+			var evt = event.getl(player);
+			var list = ['kamome_ybyangfan_ying','kamome_ybyangfan_yan','kamome_ybyangfan_sun','kamome_ybyangfan_que'];
+			if(evt &&evt.hs&&evt.hs.length){
+				if (event.name == "lose") {
+					for (var i in event.gaintag_map) {
+						if (event.gaintag_map[i].includes("kamome_ybyangfan_ying")||event.gaintag_map[i].includes("kamome_ybyangfan_yan")||event.gaintag_map[i].includes("kamome_ybyangfan_sun")||event.gaintag_map[i].includes("kamome_ybyangfan_que")) {
+							return true;
+						}
+					}
+					return false;
+				}
+				if(player.hasHistory("lose", evt => {
+					if (event != evt.getParent()) {
+						return false;
+					}
+					for (var i in evt.gaintag_map) {
+						if (evt.gaintag_map[i].includes("dcshuangjia_tag")||evt.gaintag_map[i].includes("kamome_ybyangfan_ying")||evt.gaintag_map[i].includes("kamome_ybyangfan_yan")||evt.gaintag_map[i].includes("kamome_ybyangfan_sun")||evt.gaintag_map[i].includes("kamome_ybyangfan_que")) {
+							return true;
+						}
+					}
+					return false;
+				}))return true;
+			}
+			return evt && evt.player == player &&( (evt.es && evt.es.length));
+		},
+		async content(event,trigger,player) {
+			if(trigger.cards){
+				if(trigger.name=='lose'){
+					for(var i in trigger.gaintag_map){
+						if(trigger.gaintag_map[i].includes('kamome_ybyangfan_ying')){
+							await player.chooseToGuanxing(2);
+						}
+						else if(trigger.gaintag_map[i].includes('kamome_ybyangfan_yan')){
+							if(game.filterPlayer(current=>current!=player&&current.isIn()).length){
+								var result = await player.chooseTarget(true,1,'对一名其他角色造成一点伤害').set('filterTarget',function(card,player,target){
+									return target!=player&&target.isIn();
+								}).set('ai',function(){
+									return get.damageEffect(player,target,_status.event.player);
+								}).forResult();
+								if(result.bool){
+									await result.targets[0].damage(player);
+								}
+							}
+						}
+						else if(trigger.gaintag_map[i].includes('kamome_ybyangfan_sun')){
+							if(Array.from(ui.discardPile.childNodes).filter(c=>get.type2(c)=='trick')){
+								var cardsx = Array.from(ui.discardPile.childNodes).filter(c=>get.type2(c)=='trick');
+								var resultx = await player.chooseCardButton(cardsx, '选择一张牌获得之',1,true).set('ai',function(button){
+									return get.value(button.link);
+								}).forResult();
+								if(resultx.bool){
+									await player.gain(resultx.links[0]);
+								}
+							}
+						}
+						else if(trigger.gaintag_map[i].includes('kamome_ybyangfan_que')){
+							await player.recover();
+						}
+					}
+				}
+				else{
+					player.hasHistory('lose',async function(evt){
+						if(trigger!=evt.getParent()) return false;
+						for(var i in evt.gaintag_map){
+							if(evt.gaintag_map[i].includes('kamome_ybyangfan_ying')){
+								await player.chooseToGuanxing(2);
+							}
+							else if(evt.gaintag_map[i].includes('kamome_ybyangfan_yan')){
+								if(game.filterPlayer(current=>current!=player&&current.isIn()).length){
+									var result = await player.chooseTarget(true,1,'对一名其他角色造成一点伤害').set('filterTarget',function(card,player,target){
+										return target!=player&&target.isIn();
+									}).set('ai',function(){
+										return get.damageEffect(player,target,_status.event.player);
+									}).forResult();
+									if(result.bool){
+										await result.targets[0].damage(player);
+									}
+								}
+							}
+							else if(evt.gaintag_map[i].includes('kamome_ybyangfan_sun')){
+								if(Array.from(ui.discardPile.childNodes).filter(c=>get.type2(c)=='trick')){
+									var cardsx = Array.from(ui.discardPile.childNodes).filter(c=>get.type2(c)=='trick');
+									var resultx = await player.chooseCardButton(cardsx, '选择一张牌获得之',1,true).set('ai',function(button){
+										return get.value(button.link);
+									}).forResult();
+									if(resultx.bool){
+										await player.gain(resultx.links[0]);
+									}
+								}
+							}
+							else if(evt.gaintag_map[i].includes('kamome_ybyangfan_que')){
+								await player.recover();
+							}
+						}
+					});
+				}
+				if (trigger.getl&&trigger.getl(player).es&&trigger.getl(player).es.length) {
+					var num = player.getCards('h').filter(c=>get.kamome_ybyangfan(c)).length;
+					if(4-num>0){
+						await player.draw(4-num);
+						lib.skill.kamome_ybyangfan.init(player);
+					}
+				} 
+			}
+			else {
+				await player.equip(game.createCard2("kamome_suitcase", "spade", 1));
+				lib.skill.kamome_ybyangfan.init(player);
+			}
+		},
+		init:function(player){
+			// if(!get.kamome_ybyangfan){
+			// 	get.kamome_ybyangfan = function(card){
+			// 		if(card.hasGaintag('kamome_ybyangfan_ying')) return 'kamome_ybyangfan_ying';
+			// 		if(card.hasGaintag('kamome_ybyangfan_yan')) return 'kamome_ybyangfan_yan';
+			// 		if(card.hasGaintag('kamome_ybyangfan_sun')) return 'kamome_ybyangfan_sun';
+			// 		if(card.hasGaintag('kamome_ybyangfan_que')) return 'kamome_ybyangfan_que';
+			// 		return false;
+			// 	}
+			// }
+			var next = game.createEvent('kamome_ybyangfan', false);
+			next.player = player;
+			next.setContent(async function(event,trigger,player){
+				if(player.getCards('h',function(card){
+					return !get.kamome_ybyangfan(card);
+				}).length>0){
+					var list = ['kamome_ybyangfan_ying','kamome_ybyangfan_yan','kamome_ybyangfan_sun','kamome_ybyangfan_que'];
+					for(var i = 0;i<list.length;i++){
+						if(player.getCards('h',function(card){
+							return get.kamome_ybyangfan(card)==list[i];
+						}).length<=0){
+							var result = await player.chooseCardButton(player.getCards('h',function(card){
+								return !get.kamome_ybyangfan(card);
+							}), '选择一张手牌将之标记为'+get.translation(list[i]),1,true).set('ai',function(button){
+								return get.value(button.link);
+							}).forResult();
+							if(result.bool){
+								game.broadcastAll(
+									function(card,tag){
+										card.addGaintag(tag);
+									},
+									result.links[0],
+									list[i]
+								)
+							}
+						}
+						
+					}
+				}
+			});
+		},
+		ai: {
+			noe: true,
+			reverseEquip: true,
+			effect: {
+				target(card, player, target, current) {
+					if (get.type(card) == "equip" && !get.cardtag(card, "gifts")) {
+						return [1, 3];
+					}
+				},
+			},
+		},
+
+	},
+	kamome_ybyangfan_ying:{},
+	kamome_ybyangfan_yan:{},
+	kamome_ybyangfan_sun:{},
+	kamome_ybyangfan_que:{},
+	kamome_huanmeng_ybsl_kamome:{
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	kamome_jieban_ybsl_kamome:{
+		audio: 'ext:夜白神略/audio/character:2',
+	},
 	//--------------普净
 	ybsl_shidao: {
 		audio: 'ext:夜白神略/audio/character:2',
@@ -3878,7 +4064,7 @@ const skill = {
 	// ybsl_qingguo:'倾国',
 	// ybsl_qingguo_info:'你可以将一张黑色牌当做【闪】使用或打出。',
 	
-	
+	//蒋子文
 	ybsl_fengci:{
 		audio: 'ext:夜白神略/audio/character:2',
 		marktext:'祭',

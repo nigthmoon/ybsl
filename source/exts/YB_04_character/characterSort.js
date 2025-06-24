@@ -11,6 +11,7 @@ const characterSort = {
 		],
 		ybsl_ybzs: [
 			'ybsl_hairi','ybsl_youta','sp_key_umi','ybsl_pujing',
+			'ybsl_kamome',
 		],
 		ybsl_qygc: [
 			'ybsl_xuyou'

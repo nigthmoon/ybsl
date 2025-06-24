@@ -949,8 +949,8 @@ const skill = {
 						yield player.logSkill('ybmjz_gangliey_next');
 						// yield tar.discard(cards);
 						yield player.gain(cards);
-						var rcard=caeds.filter(i=>get.color(i)=='red'),
-							bcard=caeds.filter(i=>get.color(i)=='black');
+						var rcard=cards.filter(i=>get.color(i)=='red'),
+							bcard=cards.filter(i=>get.color(i)=='black');
 						if(rcard.length>0)yield player.recover(rcard.length);
 						if(bcard.length>0)yield player.draw(bcard.length);
 					}
@@ -1887,4 +1887,6 @@ const skill = {
 			trigger.player.draw(4);
 		},
 	},
+
+	
 }

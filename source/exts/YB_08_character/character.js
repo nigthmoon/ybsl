@@ -45,6 +45,7 @@ const character = { //武将格式 :
 	ybmjz_hina:['female','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','rankAdd:legend','rankS:s','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina','tempname:db_key_hina']],//佐藤雏
 	ybmjz_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['rankAdd:legend','rankS:s','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori','tempname:key_kotori']],//神户小鸟
 	ybmjz_kagari:["female","shen",3,["kagari_ybzongsi"],['rankAdd:legend','rankS:s','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari','tempname:key_kagari']],//篝
+	
 
 	ybmjz_youta:['male','key',4,['ybmjz_fengshen','ybmjz_yingshen','ybmjz_huanshen'],['rankAdd:legend','rankS:s','linkTo:key_youta','YB_mjz:key_youta','tempname:key_youta']],
 }

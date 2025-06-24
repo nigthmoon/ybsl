@@ -36,10 +36,12 @@ const characterCopyright = {
 	ybmjz_zhangqiying:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//张琪瑛
 	ybmjz_shen_zhugeliang:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//诸葛亮
 	ybmjz_majun:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//马钧
+	
 	ybmjz_hina:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//佐藤雏
 	ybmjz_youta:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//
 	ybmjz_kotori:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//神户小鸟
 	ybmjz_kagari:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//篝
+	
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
 	//---------------------------------//忆包武将

@@ -18,6 +18,7 @@ export { YBSL_special }
  * 一些本体技能的audioname2
  * 符咒世界蓝条
  * 蒋子文（划掉）
+ * 久岛鸥
  * 泛用的令某牌视为某牌
  * 应变
  */
@@ -743,6 +744,35 @@ const YBSL_special = function () {
 				player
 			)
 		}
+	}
+	//久岛鸥
+	{
+		//久岛鸥
+		get.kamome_ybyangfan = function(card){
+			if(card.hasGaintag('kamome_ybyangfan_ying')) return 'kamome_ybyangfan_ying';
+			if(card.hasGaintag('kamome_ybyangfan_yan')) return 'kamome_ybyangfan_yan';
+			if(card.hasGaintag('kamome_ybyangfan_sun')) return 'kamome_ybyangfan_sun';
+			if(card.hasGaintag('kamome_ybyangfan_que')) return 'kamome_ybyangfan_que';
+			return false;
+		}
+		get.kamome_ybyangfan_map = function(card){
+			if(card.hasGaintag('kamome_ybyangfan_ying')) return 'kamome_ybyangfan_ying';
+			if(card.hasGaintag('kamome_ybyangfan_yan')) return 'kamome_ybyangfan_yan';
+			if(card.hasGaintag('kamome_ybyangfan_sun')) return 'kamome_ybyangfan_sun';
+			if(card.hasGaintag('kamome_ybyangfan_que')) return 'kamome_ybyangfan_que';
+			return false;
+		}
+		lib.arenaReady.push(function(){
+			game.YB_addAudio(
+				// ['kamome_yangfan',{ybsl_kamome:'kamome_ybyangfan'}],
+				['kamome_huanmeng',{ybsl_kamome:'kamome_huanmeng_ybsl_kamome'}],
+				['kamome_jieban',{ybsl_kamome:'kamome_jieban_ybsl_kamome'}],
+			)
+		})
+		// game.YB_addAudioName(
+		// 	['ybmjz_tiandu','tiandu']
+		// )
+		// if()lib.skill.new_rejianxiong.audioname2
 	}
 	// {//适配蒋歆封祠
 	// 	_status.ybsl_fengcix = {}

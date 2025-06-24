@@ -66,8 +66,9 @@ const characterCopyright = {
 	//冷门民杀搬运
 	ybslshen_zhenji:'<font color=cyan>冷门民杀搬运-编号暂无</font><br>✿技能设计：冷门民杀搬运<br>✿代码撰写者：夜白<br>✿插图：冷门民杀搬运<br>✿配音：暂无',
 	//夜白杂设
-	ybsl_hairi:'<font color=cyan>夜白杂设-编号暂无</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：网图<br>❀配音：暂无',
-	sp_key_umi:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：暂无',
+	ybsl_kamome:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：Summer Pockets（若有）',//久岛鸥
+	ybsl_hairi:'<font color=cyan>夜白杂设-编号暂无</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：Summer Pockets<br>❀配音：Summer Pockets（若有）',
+	sp_key_umi:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：Summer Pockets（若有）',
 	ybsl_pujing:'<font color=cyan>夜白杂设-编号暂无</font><br>♣︎️技能设计：夜白<br>♣︎️代码撰写者：夜白<br>♣︎️插图：三国杀官方（若有）<br>♣︎️配音：三国杀官方（若有）',
 
 

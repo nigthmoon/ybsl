@@ -93,11 +93,12 @@ const character = { //武将格式 :
 	//群友共创
 	ybsl_xuyou:['male','qun',3,['ybsl_zigong','ybsl_zicai'],['rankAdd:legend','rankS:s','name:许|攸','linkTo:xuyou']], //许攸
 	//冷门民杀搬运
-	ybslshen_zhenji:['female','shen',3,['ybsl_zjzilian','ybsl_zjsqiyuan','ybsl_zjsshixiang'],['wei','rankAdd:legend','rankS:s','name:甄|姬','linkTo:shen_zhenji']],
+	ybslshen_zhenji:['female','shen',3,['ybsl_zjzilian','ybsl_zjsqiyuan','ybsl_zjsshixiang'],['wei','rankAdd:legend','rankS:s','name:甄|宓','linkTo:shen_zhenji']],
 	//夜白杂设
-	ybsl_hairi:['male','key',1,['hairi_shangshi','hairi_zheyi','hairi_zhongxia'],['rankAdd:epic','name:鹰原|羽依里']],
-	sp_key_umi:['female','key',3,['caiyi','guili'],['rankAdd:epic','name:加藤|うみ','linkTo:key_umi']],
-	ybsl_pujing:['male','qun',4,['ybsl_reshidao','ybsl_duhun'],['rankAdd:epic','linkTo:pujing']],
+	ybsl_kamome:["female","key",3,["kamome_ybyangfan",'kamome_huanmeng','kamome_jieban'],['rankAdd:legend','rankS:s','name:null|鸥','linkTo:key_kamome']],//鸥
+	ybsl_hairi:['male','key',1,['hairi_shangshi','hairi_zheyi','hairi_zhongxia'],['rankAdd:epic','rankS:a','name:鹰原|羽依里']],
+	sp_key_umi:['female','key',3,['caiyi','guili'],['rankAdd:epic','rankS:a','name:加藤|うみ','linkTo:key_umi']],
+	ybsl_pujing:['male','qun',4,['ybsl_reshidao','ybsl_duhun'],['rankAdd:epic','rankS:a','linkTo:pujing','name:null|null']],
 	//别群比赛
 	ybsl_lvyi:['male','shu',3,['ybsl_jianyue','ybsl_tuntian','ybsl_quanfan'],['rankAdd:legend','rankS:s','name:吕|乂']], //吕乂
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['rankAdd:epic',"border:wu",'name:隐|蕃']], //隐蕃
