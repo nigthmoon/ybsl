@@ -98,5 +98,52 @@ const card = {
 			value:6,
 		}
 	},
+	niya_wangmeizhike:{
+		audio: true,
+		fullskin: true,
+		type: "delay",
+		cardnature: "wood",
+		modTarget(card, player, target) {
+			return lib.filter.judge(card, player, target);
+		},
+		enable(card, player) {
+			return player.canAddJudge(card);
+		},
+		filterTarget(card, player, target) {
+			return lib.filter.judge(card, player, target) && player == target;
+		},
+		selectTarget: [-1, -1],
+		toself: true,
+		judge(card) {
+			if (get.suit(card) == "diamond") {
+				return 0;
+			}
+			return 2;
+		},
+		judge2(result) {
+			if (result.bool == true) {
+				return true;
+			}
+			return false;
+		},
+		effect() {
+			if (result.bool == true) {
+				player.chooseDrawRecover(2,true);
+			}
+		},
+		ai: {
+			basic: {
+				order: 4,
+				useful: 4,
+				value: 1,
+			},
+			result: {
+				target(player, target) {
+					return 1;
+				},
+			},
+		},
+	
 
+	},
 }

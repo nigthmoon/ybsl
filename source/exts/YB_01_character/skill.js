@@ -4883,7 +4883,7 @@ const skill = {
 	},
 	//--------------新涂山小红
 	'yb017_chuanxin':{
-		audio:'ext:夜白神略/audio/character:2',
+		audio:'ext:夜白神略/audio/character:1',
 		trigger:{
 			global:"phaseJieshuBegin",
 		},
@@ -4921,7 +4921,7 @@ const skill = {
 					list1.add(name3);
 				}
 			});
-			player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌',[list,'vcard']],function(button){
+			player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌<br>此操作不可逆，如果选择了卡牌但没有选择使用的话，不会回退到这一步，而是直接摸一张牌。',[list,'vcard']],function(button){
 				return _status.event.player.getUseValue({name:button.link[2],nature:button.link[3]});
 			},function(button){
 				return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
@@ -4951,12 +4951,22 @@ const skill = {
 			// 	return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
 			// });
 			'step 1'
-			if(!result.bool) player.draw();
-			else player.chooseUseTarget({name:result.links[0][2],isCard:true,nature:result.links[0][3]},false);
+			if(!result.bool) {
+				player.draw();
+				event.finish();
+			}
+			else {
+				event._result=player.chooseUseTarget({name:result.links[0][2],isCard:true,nature:result.links[0][3]},false);
+			}
+			'step 2'
+			if(!result.bool){
+				player.draw();
+				event.finish();
+			}
 		},
 	},
 	'yb017_zuigui':{
-		audio:'ext:夜白神略/audio/character:2',
+		audio:'ext:夜白神略/audio/character:1',
 		forced:true,
 		trigger:{
 			player:'phaseDiscardBegin',
@@ -4964,9 +4974,17 @@ const skill = {
 		content:function(){
 			player.chooseUseTarget({name:'jiu',isCard:true},true,false);
 		},
+		mod: {
+			cardUsable(card, player, num) {
+				if (card.name == "jiu") {
+					return Infinity;
+				}
+			},
+		},
 		group:['yb017_zuigui_jiu','yb017_zuigui_jiu2','yb017_zuigui_jiu3'],
 		subSkill:{
 			jiu:{
+				audio:'yb017_zuigui',
 				trigger:{player:'jiuBegin'},
 				forced:true,
 				filter:function(event,player){
@@ -4980,7 +4998,7 @@ const skill = {
 					// if(target.isDamaged()){
 						target.recover(event.baseDamage);
 						// if(_status.currentPhase==target){
-							target.getStat().card.jiu--;
+							// target.getStat().card.jiu--;
 						// }
 					// }
 					game.addVideo('jiuNode',target,true);
@@ -5007,6 +5025,7 @@ const skill = {
 				},
 			},
 			jiu3:{
+				audio:'yb017_zuigui',
 				trigger:{player:'useCard1'},
 				filter:function(event,player){
 					if(!player.hasSkill('jiu'))return false;
@@ -7002,7 +7021,7 @@ const skill = {
 				);
 			}
 			'step 1'
-			player.chooseButton(1,true)
+			player.chooseButton(1)
 			.set('dialog',event.videoId)
 			.set('ai',function(button){
 				var trigger = _status.event.getTrigger();

@@ -63,6 +63,20 @@ const characterCopyright = {
 
 	//
 	ybsl_xuyou:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方许攸', //许攸
+	niya_re_liuyan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方刘焉',
+	niya_caowei:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：p站<br>♦︎配音：暂无',
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//冷门民杀搬运
 	ybslshen_zhenji:'<font color=cyan>冷门民杀搬运-编号暂无</font><br>✿技能设计：冷门民杀搬运<br>✿代码撰写者：夜白<br>✿插图：冷门民杀搬运<br>✿配音：暂无',
 	//夜白杂设

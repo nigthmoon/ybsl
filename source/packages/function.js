@@ -187,6 +187,10 @@ const nodeintro = function(node, simple, evt){
 		if (lib.characterTitle[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterTitle[node.name]));
 		}
+		if (lib.characterAppend[node.name]) {
+			uiintro.addText(get.colorspan(lib.characterAppend[node.name]));
+		}
+
 		if (lib.characterCitetext[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterCitetext[node.name]));
 		}
@@ -921,6 +925,9 @@ const nodeintro = function(node, simple, evt){
 
 		if (lib.characterTitle[node.link]) {
 			uiintro.addText(get.colorspan(lib.characterTitle[node.link]));
+		}
+		if (lib.characterAppend[node.link]) {
+			uiintro.addText(get.colorspan(lib.characterAppend[node.link]));
 		}
 		if (lib.characterCitetext[node.link]) {
 			uiintro.addText(get.colorspan(lib.characterCitetext[node.link]));

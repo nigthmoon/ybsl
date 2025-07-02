@@ -154,8 +154,27 @@ const YBSL_rank = function(){
 			lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
 		}
 	}
+/**
+ * 开局根据初始列表设定重置列表
 
-	lib.translate['ybslj'+'_charactersInfo']='夜白神略主体武将包'
+然后根据重置列表设定现存列表
+
+现存列表每一项执行后移除，全部移除后根据重置列表刷新
+ */
+	lib.translate['ybslj'+'_charactersInfo']=`
+		夜白神略主体武将包<br>
+		<li>重置技机制：<br>
+		①，简单来说，每项各限一次，用完重置<br>
+		②，复杂来说，重置技拥有<span class=firetext>初始列表</span>，<br>
+		初始化根据<span class=firetext>初始列表</span>定义<span class=yellowtext>刷新列表</span><br>
+		然后再根据<span class=yellowtext>刷新列表</span>设置<span class=thundertext>现存列表</span><br>
+		<span class=thundertext>现存列表</span>每项限一次，全部执行后根据<span class=yellowtext>刷新列表</span>重置。
+		<li>势极技机制；<br>
+		势极技分为<span class=thundertext>势极技阴极</span>和<span class=firetext>势极技阳极</span><br>
+		势极技阴极或阳极，在使用之后，会禁用其他同极势极技，并解锁异极势极技<br>
+		每回合结束时，解除势极技的禁用。<br>
+		在没有异极势极技的情况下，可以近似当作每回合限一次的技能。<br>
+	`
 	lib.translate['ybart'+'_charactersInfo']='温馨提示：<br>开启本将包会一并开启“六艺”机制，详情请右键六艺篇查看，简单来说就是全场自带私人木牛流马。<br>因之前有群友反馈，说不喜欢这个机制，因此被我放在这里隔离，开启与否视个人喜好吧'
 	lib.translate['ybxh'+'_charactersInfo']='校花的贴身高手，很多武将虚位以待，敬请投稿'
 	lib.translate['ybdd'+'_charactersInfo']='本人接单制作的武将'

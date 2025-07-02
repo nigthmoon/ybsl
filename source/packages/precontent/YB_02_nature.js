@@ -371,6 +371,17 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('氪')}${get.prefixSpan('异')}`
 			},
 		})
+		lib.namePrefix.set('鈺',{
+			showName:'鈺',
+			color:'#e3b0b0',
+			nature:'YB_dream',
+		})
+		lib.namePrefix.set('鈺界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('鈺')}${get.prefixSpan('界')}`
+			},
+		})
+
 		
 	}
 	{//校花包元素

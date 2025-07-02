@@ -769,6 +769,39 @@ const YBSL_special = function () {
 				['kamome_jieban',{ybsl_kamome:'kamome_jieban_ybsl_kamome'}],
 			)
 		})
+		lib.element.player.kamome_ybyangfan = function(cards){
+			var next = game.createEvent('kamome_ybyangfan', false);
+			next.player = this;
+			next.cards = cards||this.getCards('h');
+			next.setContent(async function(event,trigger,player){
+				if(player.getCards('h',function(card){
+					return !get.kamome_ybyangfan(card)&&event.cards.includes(card);
+				}).length>0){
+					var list = ['kamome_ybyangfan_ying','kamome_ybyangfan_yan','kamome_ybyangfan_sun','kamome_ybyangfan_que'];
+					for(var i = 0;i<list.length;i++){
+						if(player.getCards('h',function(card){
+							return get.kamome_ybyangfan(card)==list[i];
+						}).length<=0){
+							var result = await player.chooseCardButton(player.getCards('h',function(card){
+								return !get.kamome_ybyangfan(card)&&event.cards.includes(card);
+							}), '选择一张手牌将之标记为'+get.translation(list[i]),1,true).set('ai',function(button){
+								return get.value(button.link);
+							}).forResult();
+							if(result.bool){
+								game.broadcastAll(
+									function(card,tag){
+										card.addGaintag(tag);
+									},
+									result.links[0],
+									list[i]
+								)
+							}
+						}
+						
+					}
+				}
+			});
+		}
 		// game.YB_addAudioName(
 		// 	['ybmjz_tiandu','tiandu']
 		// )

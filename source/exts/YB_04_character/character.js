@@ -75,8 +75,8 @@ const character = { //武将格式 :
 	},
 	'sgsh_chiyou':['male','shen',5,['sgsk_zhanshen'],['rankAdd:legend','rankS:s','name:null|null']],//蚩尤
 	sgsh_fenghou:['female','shen',3,['sgsk_sinan','sgsk_shence'],['rankAdd:legend','rankS:s','name:null|null']],//风后
-	sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanji'],['rankAdd:legend','rankS:s','name:null|null']],//九天玄女
-	sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuan'],['rankAdd:legend','rankS:s','name:null|null']],//螺祖
+	sgsh_jiutianxuannv:['female','shen',3,['sgsk_taolue','sgsk_xuanjiy'],['rankAdd:legend','rankS:s','name:null|null']],//九天玄女
+	sgsh_luozu:['female','shen',3,['sgsk_sangcan','sgsk_bianjuany'],['rankAdd:legend','rankS:s','name:null|null']],//螺祖
 	sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','rankS:s','name:null|null']],//仓颉
 	'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
 	sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','rankS:s','name:null|null']],//常先
@@ -92,6 +92,16 @@ const character = { //武将格式 :
 	// 'ybsl_107tushanshuili':['female','YB_dream',3,['yb107_xunhu','QQQ107_taye','QQQ107_yaoyi'],['rankAdd:epic','name:涂山|水璃']], //涂山水璃
 	//群友共创
 	ybsl_xuyou:['male','qun',3,['ybsl_zigong','ybsl_zicai'],['rankAdd:legend','rankS:s','name:许|攸','linkTo:xuyou']], //许攸
+	niya_re_liuyan:['male','qun',3,['niya_limu','niya_tushe'],['rankAdd:legend','rankS:s','linkTo:liuyan','tempname:liuyan','YB_mjz:liuyan']], //刘焉
+	niya_caowei:['female','qun','3/4',['niya_youbo','niya_anren','niya_xuantu'],['rankAdd:legend','rankS:s']], //曹微
+	
+	
+	
+	
+	
+	
+	
+	
 	//冷门民杀搬运
 	ybslshen_zhenji:['female','shen',3,['ybsl_zjzilian','ybsl_zjsqiyuan','ybsl_zjsshixiang'],['wei','rankAdd:legend','rankS:s','name:甄|宓','linkTo:shen_zhenji']],
 	//夜白杂设

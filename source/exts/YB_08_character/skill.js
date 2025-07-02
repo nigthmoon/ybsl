@@ -1061,13 +1061,13 @@ const skill = {
 			for(var k of relu){
 				cardsx.push(k);
 			}
-			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
+			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
 				yield player.addTempSkill("ybmjz_luoyi_damage", { player: "phaseBefore" });
 			}
-			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
+			if(cardsx.filter(card=>get.type2(card)=='trick').length>0){
 				yield player.addTempSkill("ybmjz_luoyi_use");
 			}
-			if(cardsx.filter(card=>get.type2(card)=='trick').length>0){
+			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
 				yield player.addTempSkill("ybmjz_luoyi_tag");
 			}
 			// else player.addTempSkill("ybmjz_luoyi_max");
@@ -1203,7 +1203,7 @@ const skill = {
 		discard: false,
 		filter(event, player) {
 			if (player.hasJudge("shandian")&&player.hasJudge("huoshan")&&player.hasJudge("hongshui")&&player.hasJudge('suibozhuliu')) return false;
-			return player.countCards("hes",function(card){return ['spade','heart','club','yanxiao_card'].includes(get.suit(card))}) > 0;
+			return player.countCards("hes",function(card){return ['spade','heart','club','diamond'].includes(get.suit(card))}) > 0;
 		},
 		// prompt: "将♦牌当做杀，♥牌当做桃，♣牌当做闪，♠牌当做无懈可击使用或打出",
 		//动态的viewAs
