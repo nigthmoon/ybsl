@@ -7933,12 +7933,121 @@ const skill = {
 	},
 	sgsk_xuanji: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'useCardAfter',
+		},
+		filter: (event, player) => player.isPhaseUsing() && event.cards.filterInD().length,
+		async content(event, trigger, player) {
+			const cards = trigger.cards.filterInD()
+			if (!cards.length) return //预判一手会有人从处理区捡牌
+			await player.chooseToMove()
+				.set('list', [['牌堆顶', cards], ['牌堆底']])
+				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
+				.set('processAI', list => {
+					let cards = list[0][1],
+						player = _status.event.player,
+						next = (_status.currentPhase || player).next, //都是谁在往别人回合插自己阶段啊
+						top = []
+					for (const card of cards)
+						if (player.hasCard(cardx => get.tag(cardx,'draw'))) {
+							if (get.value(card) > 6.5) top.add(card)
+						}
+						else {
+							if (get.attitude(player, next) > 0 && get.value(card) > 6.5) top.add(card)
+							if (get.attitude(player, next) < 0 && get.value(card) < 5.5) top.add(card)
+						}
+					if (_status.currentPhase == player && (!ui.cardPile.firstChild.isKnownBy(player) || get.suit(ui.cardPile.firstChild) != 'heart')) {
+						const heart = cards.filter(card => get.suit(card) == 'heart').sort((a, b) => get.value(b) - get.value(a))[0]
+						if (heart) {
+							top.remove(heart)
+							top.unshift(heart)
+						}
+					}
+					return [top, cards.removeArray(top)]
+				})
+		}
 	},
 	sgsk_xuanjix: {
 		audio: 'sgsk_xuanji',
+		trigger: {
+			player: 'useCardAfter',
+		},
+		filter: (event, player) => player.isPhaseUsing() && event.cards.filterInD().length && !player.storage.sgsk_xuanjix_1?.includes(event.vard.name),
+		async content(event, trigger, player) {
+			const cards = trigger.cards.filterInD()
+			if (!cards.length) return //预判一手会有人从处理区捡牌
+			await player.chooseToMove()
+				.set('list', [['牌堆顶', cards], ['牌堆底']])
+				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
+				.set('processAI', list => {
+					let cards = list[0][1],
+						player = _status.event.player,
+						next = (_status.currentPhase || player).next, //都是谁在往别人回合插自己阶段啊
+						top = []
+					for (const card of cards)
+						if (player.hasCard(cardx => get.tag(cardx,'draw'))) {
+							if (get.value(card) > 6.5) top.add(card)
+						}
+						else {
+							if (get.attitude(player, next) > 0 && get.value(card) > 6.5) top.add(card)
+							if (get.attitude(player, next) < 0 && get.value(card) < 5.5) top.add(card)
+						}
+					if (_status.currentPhase == player && (!ui.cardPile.firstChild.isKnownBy(player) || get.suit(ui.cardPile.firstChild) != 'heart')) {
+						const heart = cards.filter(card => get.suit(card) == 'heart').sort((a, b) => get.value(b) - get.value(a))[0]
+						if (heart) {
+							top.remove(heart)
+							top.unshift(heart)
+						}
+					}
+					return [top, cards.removeArray(top)]
+				})
+			player.storage.sgsk_xuanjix_1 ??= []
+			player.storage.sgsk_xuanjix_1.add(trigger.card.name)
+			player.addTempSkill('sgsk_xuanjix_1')
+		},
+		subSkill: {
+			1: {
+				onremove: true,
+				charlotte: true
+			}
+		}
 	},
 	sgsk_xuanjiy: {
 		audio: 'sgsk_xuanji',
+		trigger: {
+			player: 'useCardAfter',
+		},
+		usable: 1,
+		filter: (event, player) => event.cards.filterInD().length,
+		async content(event, trigger, player) {
+			const cards = trigger.cards.filterInD()
+			if (!cards.length) return //预判一手会有人从处理区捡牌
+			await player.chooseToMove()
+				.set('list', [['牌堆顶', cards], ['牌堆底']])
+				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
+				.set('processAI', list => {
+					let cards = list[0][1],
+						player = _status.event.player,
+						next = (_status.currentPhase || player).next, //都是谁在往别人回合插自己阶段啊
+						top = []
+					for (const card of cards)
+						if (player.hasCard(cardx => get.tag(cardx,'draw'))) {
+							if (get.value(card) > 6.5) top.add(card)
+						}
+						else {
+							if (get.attitude(player, next) > 0 && get.value(card) > 6.5) top.add(card)
+							if (get.attitude(player, next) < 0 && get.value(card) < 5.5) top.add(card)
+						}
+					if (_status.currentPhase == player && (!ui.cardPile.firstChild.isKnownBy(player) || get.suit(ui.cardPile.firstChild) != 'heart')) {
+						const heart = cards.filter(card => get.suit(card) == 'heart').sort((a, b) => get.value(b) - get.value(a))[0]
+						if (heart) {
+							top.remove(heart)
+							top.unshift(heart)
+						}
+					}
+					return [top, cards.removeArray(top)]
+				})
+		}
 	},
 	sgsk_xuanjiz: {
 		audio: 'sgsk_xuanji',
@@ -7946,16 +8055,72 @@ const skill = {
 	//---------螺祖
 	sgsk_sangcan: {
 		audio: 'ext:夜白神略/audio/character:2',
+		enable: 'phaseUse',
+		usable: 1,
+		filter: () => get.discarded().filterInD('d').length,
+		async content(event, trigger, player) {
+			player.draw(Math.min(get.discarded().filterInD('d').length, 5))
+		},
+		ai: {
+			order() {
+				if (get.discarded().filterInD('d').length >= 5) return 10
+				return 1
+			},
+			result: {
+				player: 1
+			}
+		}
 	},
 	sgsk_bianjuan: {
 		audio: 'ext:夜白神略/audio/character:2',
+		enable: 'phaseUse',
+		usable: 1,
+		filterTarget: (card, player, target) => target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), 'e'),
+		async content(event, trigger, player) {
+			await player.discardPlayerCard(event.targets[0], 'e', true)
+		},
+		ai: {
+			order: 7,
+			result: {
+				target: (player, target) => lib.card.guohe_copy.ai.result.target(player, target, { name: 'guohe_copy', position: 'e' })
+			}
+		}
 	},
 	sgsk_bianjuanx: {
 		audio: 'sgsk_bianjuan',
+		enable: 'phaseUse',
+		usable: 1,
+		filterTarget: (card, player, target) => target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), 'e'),
+		async content(event, trigger, player) {
+			const target = event.targets[0]
+			await player.discardPlayerCard(target, 'e', true)
+			await game.asyncDraw([player, target].sortBySeat())
+		},
+		ai: {
+			order: 7,
+			result: {
+				target: (player, target) => lib.card.guohe_copy.ai.result.target(player, target, { name: 'guohe_copy', position: 'e' }) + 1,
+				player: 1
+			}
+		}
 	},
 	sgsk_bianjuany:{
 		audio: 'sgsk_bianjuan',
-		
+		enable: 'phaseUse',
+		usable: 1,
+		filterTarget: (card, player, target) => target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), 'ej'),
+		async content(event, trigger, player) {
+			const target = event.targets[0]
+			await player.discardPlayerCard(target, 'ej', true)
+			await game.asyncDraw([player, target].sortBySeat())
+		},
+		ai: {
+			order: 7,
+			result: {
+				target: (player, target) => lib.card.guohe_copy.ai.result.target(player, target, { name: 'guohe_copy', position: 'ej' }) + 1,
+				player: 1
+			}
+		}
 	},
 	//---------仓颉
 	sgsk_zuoshu: {
@@ -8240,9 +8405,89 @@ const skill = {
 	//---------常先
 	sgsk_zhangu: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'phaseZhunbeiBegin'
+		},
+		async cost(event, trigger, player) {
+			const target = trigger.player
+			event.result = await player.chooseToDiscard({color:'red'}, 'he')
+				.set('prompt', `弃置一张红色牌，令${get.translation(target)}本回合出牌阶段使用的【杀】或【决斗】伤害+1`)
+				.set('ai', card => {
+					const player = get.player()
+						target = get.event().target
+					//没错，是ai透视
+					if (get.attitude(player, target) < 1.5) return 0
+					if (target.hasCard(cardx => get.name(cardx) == 'juedou')) return 7 - get.value(card)
+					if (target.hasCard(cardx => get.name(cardx) == 'sha')) return 5 - get.value(card)
+					return 3 - get.value(card)
+				})
+				.set('target', target)
+				.set('chooseOnly', true)
+				.forResult()
+			event.result.targets = [target]
+		},
+		async content(event, trigger, player) {
+			await player.discard(event.cards)
+			event.targets[0].addTempSkill('sgsk_zhangu_1')
+		},
+		subSkill: {
+			1: {
+				charlotte: true,
+				trigger: {
+					source: 'damageBegin1'
+				},
+				filter: event => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
+				forced: true,
+				async content(event, trigger, player) {
+					trigger.num++
+				},
+				ai: {
+					damageBonus: true,
+					skillTagFilter: (player, tag, arg) => (arg?.card?.name == 'sha' || arg?.card?.name == 'juedou') && player.isPhaseUsing()
+				}
+			}
+		}
 	},
 	sgsk_sanggu: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'phaseZhunbeiBegin'
+		},
+		async cost(event, trigger, player) {
+			const target = trigger.player
+			event.result = await player.chooseToDiscard({color:'red'}, 'he')
+				.set('prompt', `弃置一张黑色牌，令${get.translation(target)}本回合出牌阶段使用的【杀】或【决斗】伤害-1`)
+				.set('ai', card => {
+					const player = get.player()
+						target = get.event().target
+					//没错，是ai透视
+					if (get.attitude(player, target) > 0) return 0
+					if (target.hasCard(cardx => get.name(cardx) == 'juedou')) return 7 - get.value(card)
+					if (target.hasCard(cardx => get.name(cardx) == 'sha')) return 5 - get.value(card)
+					return 3 - get.value(card)
+				})
+				.set('target', target)
+				.set('chooseOnly', true)
+				.forResult()
+			event.result.targets = [target]
+		},
+		async content(event, trigger, player) {
+			await player.discard(event.cards)
+			event.targets[0].addTempSkill('sgsk_sanggu_1')
+		},
+		subSkill: {
+			1: {
+				charlotte: true,
+				trigger: {
+					source: 'damageBegin2'
+				},
+				filter: event => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
+				forced: true,
+				async content(event, trigger, player) {
+					trigger.num--
+				},
+			}
+		}
 	},
 	//---------鬼臾区
 	sgsk_zhanxing: {
@@ -8250,6 +8495,55 @@ const skill = {
 	},
 	sgsk_wuxing: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'useCardToPlayered',
+			target: 'useCardToTargeted'
+		},
+		async cost(event, trigger, player) {
+			event.result = await player.chooseToDiscard(2)
+				.set('prompt', get.prompt2('sgsk_wuxing'))
+				.set('filterCard', function(card)  {
+					if (!ui.selected.cards.length) return true
+					if (get.number(ui.selected.cards[0]) + get.number(card) == 5) return true
+					return Math.abs(get.number(ui.selected.cards[0]) - get.number(card)) == 5
+				}).forResult();
+		},
+		async content(event, trigger, player) {
+			if (event.triggername == 'useCardToPlayered') trigger.getParent().directHit.addArray(game.players)
+			else {
+				trigger.excluded.add(player)
+				trigger.getParent().targets.length = 0
+				trigger.getParent().all_excluded = true
+			}
+			trigger.getParent().sgsk_wuxing = true
+		},
+		group: 'sgsk_wuxing_1',
+		subSkill: {
+			1: {
+				trigger: {
+					player: 'useCardAfter',
+				},
+				charlotte: true,
+				forced: true,
+				silent: true,
+				popup: false,
+				filter: event => event.sgsk_wuxing,
+				async content(event, trigger, player) {
+					await player.draw(5)
+					var cards = Array.from(ui.ordering.childNodes)
+					while (cards.length) {
+						cards.shift().discard()
+					}
+					var evt = _status.event.getParent('phase')
+					if (evt) {
+						game.resetSkills()
+						_status.event = evt
+						_status.event.finish()
+						_status.event.untrigger(true)
+					}
+				}
+			}
+		}
 	},
 	//---------释迦牟尼
 	sgsk_dianhua: {
