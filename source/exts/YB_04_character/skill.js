@@ -7940,7 +7940,7 @@ const skill = {
 		async content(event, trigger, player) {
 			const cards = trigger.cards.filterInD()
 			if (!cards.length) return //预判一手会有人从处理区捡牌
-			await player.chooseToMove()
+			var result = await player.chooseToMove()
 				.set('list', [['牌堆顶', cards], ['牌堆底']])
 				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
 				.set('processAI', list => {
@@ -7965,6 +7965,26 @@ const skill = {
 					}
 					return [top, cards.removeArray(top)]
 				})
+			var top = result.moved[0];
+			var bottom = result.moved[1];
+			top.reverse();
+			for (var i = 0; i < top.length; i++) {
+				ui.cardPile.insertBefore(top[i], ui.cardPile.firstChild);
+			}
+			for (i = 0; i < bottom.length; i++) {
+				ui.cardPile.appendChild(bottom[i]);
+			}
+			event.result = {
+				bool: true,
+				moved: [top, bottom],
+			};
+			game.addCardKnower(top, player);
+			game.addCardKnower(bottom, player);
+			player.popup(get.cnNumber(top.length) + "上" + get.cnNumber(bottom.length) + "下");
+			game.log(player, "将" + get.cnNumber(top.length) + "张牌置于牌堆顶");
+			game.updateRoundNumber();
+			game.delayx();
+
 		}
 	},
 	sgsk_xuanjix: {
@@ -7976,7 +7996,7 @@ const skill = {
 		async content(event, trigger, player) {
 			const cards = trigger.cards.filterInD()
 			if (!cards.length) return //预判一手会有人从处理区捡牌
-			await player.chooseToMove()
+			var result = await player.chooseToMove()
 				.set('list', [['牌堆顶', cards], ['牌堆底']])
 				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
 				.set('processAI', list => {
@@ -8001,6 +8021,25 @@ const skill = {
 					}
 					return [top, cards.removeArray(top)]
 				})
+			var top = result.moved[0];
+			var bottom = result.moved[1];
+			top.reverse();
+			for (var i = 0; i < top.length; i++) {
+				ui.cardPile.insertBefore(top[i], ui.cardPile.firstChild);
+			}
+			for (i = 0; i < bottom.length; i++) {
+				ui.cardPile.appendChild(bottom[i]);
+			}
+			event.result = {
+				bool: true,
+				moved: [top, bottom],
+			};
+			game.addCardKnower(top, player);
+			game.addCardKnower(bottom, player);
+			player.popup(get.cnNumber(top.length) + "上" + get.cnNumber(bottom.length) + "下");
+			game.log(player, "将" + get.cnNumber(top.length) + "张牌置于牌堆顶");
+			game.updateRoundNumber();
+			game.delayx();
 			player.storage.sgsk_xuanjix_1 ??= []
 			player.storage.sgsk_xuanjix_1.add(trigger.card.name)
 			player.addTempSkill('sgsk_xuanjix_1')
@@ -8022,7 +8061,7 @@ const skill = {
 		async content(event, trigger, player) {
 			const cards = trigger.cards.filterInD()
 			if (!cards.length) return //预判一手会有人从处理区捡牌
-			await player.chooseToMove()
+			var result = await player.chooseToMove()
 				.set('list', [['牌堆顶', cards], ['牌堆底']])
 				.set('prompt', '点击或拖动将牌移动到牌堆顶或牌堆底')
 				.set('processAI', list => {
@@ -8047,6 +8086,25 @@ const skill = {
 					}
 					return [top, cards.removeArray(top)]
 				})
+			var top = result.moved[0];
+			var bottom = result.moved[1];
+			top.reverse();
+			for (var i = 0; i < top.length; i++) {
+				ui.cardPile.insertBefore(top[i], ui.cardPile.firstChild);
+			}
+			for (i = 0; i < bottom.length; i++) {
+				ui.cardPile.appendChild(bottom[i]);
+			}
+			event.result = {
+				bool: true,
+				moved: [top, bottom],
+			};
+			game.addCardKnower(top, player);
+			game.addCardKnower(bottom, player);
+			player.popup(get.cnNumber(top.length) + "上" + get.cnNumber(bottom.length) + "下");
+			game.log(player, "将" + get.cnNumber(top.length) + "张牌置于牌堆顶");
+			game.updateRoundNumber();
+			game.delayx();
 		}
 	},
 	sgsk_xuanjiz: {
@@ -8428,7 +8486,8 @@ const skill = {
 		},
 		async content(event, trigger, player) {
 			await player.discard(event.cards)
-			event.targets[0].addTempSkill('sgsk_zhangu_1')
+			await event.targets[0].addMark('sgsk_zhangu_1')
+			await event.targets[0].addTempSkill('sgsk_zhangu_1')
 		},
 		subSkill: {
 			1: {
@@ -8436,10 +8495,18 @@ const skill = {
 				trigger: {
 					source: 'damageBegin1'
 				},
-				filter: event => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
+				filter: (event,player) => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
 				forced: true,
+				mark: true,
+				marktext:'战',
+				onremove:true,
+				intro:{
+					name:'战鼓',
+					content: '本回合出牌阶段的杀或决斗造成的伤害+$'
+				},
 				async content(event, trigger, player) {
-					trigger.num++
+					var num = player.countMark('sgsk_zhangu_1')
+					trigger.num+=num;
 				},
 				ai: {
 					damageBonus: true,
@@ -8455,7 +8522,7 @@ const skill = {
 		},
 		async cost(event, trigger, player) {
 			const target = trigger.player
-			event.result = await player.chooseToDiscard({color:'red'}, 'he')
+			event.result = await player.chooseToDiscard({color:'black'}, 'he')
 				.set('prompt', `弃置一张黑色牌，令${get.translation(target)}本回合出牌阶段使用的【杀】或【决斗】伤害-1`)
 				.set('ai', card => {
 					const player = get.player()
@@ -8473,7 +8540,8 @@ const skill = {
 		},
 		async content(event, trigger, player) {
 			await player.discard(event.cards)
-			event.targets[0].addTempSkill('sgsk_sanggu_1')
+			await event.targets[0].addMark('sgsk_sanggu_1')
+			await event.targets[0].addTempSkill('sgsk_sanggu_1')
 		},
 		subSkill: {
 			1: {
@@ -8481,10 +8549,18 @@ const skill = {
 				trigger: {
 					source: 'damageBegin2'
 				},
-				filter: event => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
+				filter: (event,player) => (event.card?.name == 'sha' || event.card?.name == 'juedou') && player.isPhaseUsing(),
 				forced: true,
+				mark: true,
+				marktext:'丧',
+				onremove:true,
+				intro:{
+					name:'丧鼓',
+					content: '本回合出牌阶段的杀或决斗造成的伤害-$'
+				},
 				async content(event, trigger, player) {
-					trigger.num--
+					var num = player.countMark('sgsk_sanggu_1')
+					trigger.num-=num;
 				},
 			}
 		}
@@ -8500,46 +8576,57 @@ const skill = {
 			target: 'useCardToTargeted'
 		},
 		async cost(event, trigger, player) {
-			event.result = await player.chooseToDiscard(2)
+			event.result = await player.chooseToDiscard(2,'he')
 				.set('prompt', get.prompt2('sgsk_wuxing'))
 				.set('filterCard', function(card)  {
-					if (!ui.selected.cards.length) return true
-					if (get.number(ui.selected.cards[0]) + get.number(card) == 5) return true
-					return Math.abs(get.number(ui.selected.cards[0]) - get.number(card)) == 5
-				}).forResult();
+					if (!ui.selected.cards.length) return true;
+					// if (get.number(ui.selected.cards[0]) + get.number(card) == 5) return true
+					return Math.abs(get.number(ui.selected.cards[0]) - get.number(card)) == 5||(get.number(ui.selected.cards[0]) + get.number(card) == 5);
+				}).set("complexCard", true).set('chooseonly',true).forResult();
 		},
 		async content(event, trigger, player) {
+			await player.discard(event.cards);
 			if (event.triggername == 'useCardToPlayered') trigger.getParent().directHit.addArray(game.players)
 			else {
 				trigger.excluded.add(player)
 				trigger.getParent().targets.length = 0
 				trigger.getParent().all_excluded = true
 			}
-			trigger.getParent().sgsk_wuxing = true
+			trigger.getParent().sgsk_wuxing = []
+			trigger.getParent().sgsk_wuxing.add(player);
+			
 		},
 		group: 'sgsk_wuxing_1',
 		subSkill: {
 			1: {
 				trigger: {
-					player: 'useCardAfter',
+					global: 'useCardAfter',
 				},
 				charlotte: true,
 				forced: true,
 				silent: true,
 				popup: false,
-				filter: event => event.sgsk_wuxing,
+				filter: (event,player) => event.sgsk_wuxing&&event.sgsk_wuxing.includes(player),
 				async content(event, trigger, player) {
 					await player.draw(5)
 					var cards = Array.from(ui.ordering.childNodes)
 					while (cards.length) {
 						cards.shift().discard()
 					}
-					var evt = _status.event.getParent('phase')
+					var evt = _status.event.getParent('phase');
 					if (evt) {
 						game.resetSkills()
-						_status.event = evt
-						_status.event.finish()
-						_status.event.untrigger(true)
+						let evtx = _status.event;
+						while (evtx != evt) {
+							evtx.finish();
+							evtx.untrigger(true);
+							evtx = evtx.getParent();
+						}
+						evtx.finish();
+						evtx.untrigger(true);
+						// _status.event = evt
+						// _status.event.finish()
+						// _status.event.untrigger(true)
 					}
 				}
 			}
