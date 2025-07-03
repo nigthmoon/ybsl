@@ -80,7 +80,7 @@ const character = { //武将格式 :
 	sgsh_cangjie:['male','shen',3,['sgsk_zuoshu'],['rankAdd:legend','rankS:s','name:null|null']],//仓颉
 	'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
 	sgsh_changxian:['male','shen',4,['sgsk_zhangu','sgsk_sanggu'],['rankAdd:legend','rankS:s','name:null|null']],//常先
-	// sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','rankS:s','name:null|null']],//鬼臾区
+	sgsh_guiyuqu:['male','shen',3,['sgsk_zhanxing','sgsk_wuxing'],['rankAdd:legend','rankS:s','name:null|null']],//鬼臾区
 
 	sgsh_shijiamouni:['male','shen',4,['sgsk_dianhua','sgsk_wuwo'],['rankAdd:legend','rankS:s','name:null|null']],//释迦牟尼
 	'sgsh_luohou':['male','shen',4,['sgsk_yueshi'],['rankAdd:epic','name:null|null']],//罗睺√
