@@ -587,19 +587,25 @@ const skill = {
 				usable(player){
 					return player.getDamagedHp()+1;
 				},
-				filter: function (event, player, name) {
-					if (event.name.indexOf("lose") == 0) {
-						if (event.getlx === false || event.position != ui.discardPile) {
-							return false;
-						}
-					} else {
-						var evt = event.getParent();
-						if (evt.relatedEvent && evt.relatedEvent.name == "useCard") {
-							return false;
-						}
+				filter(event, player) {
+					if (event.name == "lose" && event.getParent().name == "useCard") {
+						return false;
 					}
 					return true;
 				},
+				// filter: function (event, player, name) {
+				// 	if (event.name.indexOf("lose") == 0) {
+				// 		if (event.getlx === false || event.position != ui.discardPile) {
+				// 			return false;
+				// 		}
+				// 	} else {
+				// 		var evt = event.getParent();
+				// 		if (evt.relatedEvent && evt.relatedEvent.name == "useCard") {
+				// 			return false;
+				// 		}
+				// 	}
+				// 	return true;
+				// },
 				content(){
 					player.draw();
 				},

@@ -234,3 +234,8 @@ span[data-nature="YB_snowmm"] {
 	z-index: 20;
 	background-color: #28e3ce;
 }
+
+/* 更新公告 */
+.ybsl_gengxingonggao {
+    text-align: left;
+}

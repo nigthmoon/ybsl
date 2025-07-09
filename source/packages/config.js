@@ -1,6 +1,25 @@
 import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
+import { ybslb_update } from './update.js'
+var num = ybslb_update.version
+var text = ybslb_update[num]['changeLog']
 
 export const config = {
+	"ybsl_gengxingonggao":{
+		name:'<span class="yellowtext">更新公告</span><span style="color:#ff00cc"><font size="4px">▶▶▶</font></span>',
+		clear:true,
+		onclick:function(){
+			if(this.ybsl_gengxingonggao==undefined){
+				var more=ui.create.div('.ybsl_gengxingonggao','<p font-size:12px; line-height:14px; text-shadow: 0 0 2px black; text-align: left;">' + '当前版本：' + num + '<br>' + text.join('<br>') + '</p>');
+				this.parentNode.insertBefore(more, this.nextSibling);
+				this.ybsl_gengxingonggao=more;
+				this.innerHTML='<span class="yellowtext">更新公告</span><span style="color:#ff00cc"><font size="4px">▼▼▼</font></span>';
+			}else{
+				this.parentNode.removeChild(this.ybsl_gengxingonggao);
+				delete this.ybsl_gengxingonggao;
+				this.innerHTML='<span class="yellowtext">更新公告</span><span style="color:#ff00cc"><font size="4px">▶▶▶</font></span>';
+			};
+		},
+	},
 	"ybslb_help":{
 		name:'<span class="yellowtext">查看介绍</span><span style="color:#ff00cc"><font size="4px">▶▶▶</font></span>',
 		clear:true,
