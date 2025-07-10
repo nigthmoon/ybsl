@@ -30,6 +30,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_sb_huangzhong:['male','shu',4,['qmsgswkjsgj_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong','tempname:sb_huangzhong']],
 	qmsgswkjsgj_re_yangbiao:['male','qun',3,["qmsgswkjsgj_zhaohan", "qmsgswkjsgj_rangjie", "qmsgswkjsgj_yizheng"],['rankAdd:legend','rankS:s','linkTo:yangbiao','YB_mjz:yangbiao','tempname:yangbiao']],
 	qmsgswkjsgj_re_luotong:['male','wu',4,['qmsgswkjsgj_qinzheng'],['rankAdd:legend','rankS:s','linkTo:luotong','YB_mjz:luotong','tempname:luotong']],
+	qmsgswkjsgj_re_liuyan:['male','qun',3,['qmsgswkjsgj_tushe','qmsgswkjsgj_limu','qmsgswkjsgj_pianan'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],
 
 	sgsxjxfzmnl_re_xusheng:['male','wu',4,['sgsxjxfzmnl_pojun'],['rankAdd:legend','rankS:ap','linkTo:re_xusheng','YB_mjz:re_xusheng','tempname:re_xusheng']],
 	sgsxjxfzmnl_sb_huangzhong:['male','shu',4,['sgsxjxfzmnl_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong','tempname:sb_huangzhong']],

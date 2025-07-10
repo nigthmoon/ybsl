@@ -2405,7 +2405,285 @@ const skill = {
 		},
 	},
 	//界刘焉
-
+	qmsgswkjsgj_tushe:{
+		audio:'xinfu_tushe',
+		mod: {
+			aiOrder(player, card, num) {
+				if (get.tag(card, "multitarget")) {
+					if (player.countCards("h", { type: "basic" })) {
+						return num / 10;
+					}
+					return num * 10;
+				}
+				if (get.type(card) === "basic") {
+					return num + 10;
+				}
+			},
+			aiValue(player, card, num) {
+				if (card.name === "zhangba") {
+					return 114514;
+				}
+				if (["shan", "tao", "jiu"].includes(card.name)) {
+					if (player.getEquip("zhangba") && player.countCards("hs") > 1) {
+						return 0.01;
+					}
+					return num / 2;
+				}
+				if (get.tag(card, "multitarget")) {
+					return num + game.players.length;
+				}
+			},
+			aiUseful(player, card, num) {
+				if (card.name === "zhangba") {
+					return 114514;
+				}
+				if (get.name(card, player) === "shan") {
+					if (
+						player.countCards("hs", i => {
+							if (card === i || (card.cards && card.cards.includes(i))) {
+								return false;
+							}
+							return get.name(i, player) === "shan";
+						})
+					) {
+						return -1;
+					}
+					return num / Math.pow(Math.max(1, player.hp), 2);
+				}
+			},
+		},
+		trigger: {
+			player: "useCardToPlayered",
+		},
+		locked: false,
+		frequent: true,
+		filter(event, player) {
+			// if (get.type(event.card) == "equip") {
+			// 	return false;
+			// }
+			if (event.getParent().triggeredTargets3.length > 1) {
+				return false;
+			}
+			return event.targets.length > 0 && !player.countCards("h", { type: "basic" });
+		},
+		content() {
+			player.draw(trigger.targets.length);
+		},
+		ai: {
+			presha: true,
+			pretao: true,
+			threaten: 1.8,
+			effect: {
+				player_use(card, player, target) {
+					if (
+						typeof card === "object" &&
+						card.name !== "shan" &&
+						get.type(card) !== "equip" &&
+						!player.countCards("h", i => {
+							if (card === i || (card.cards && card.cards.includes(i))) {
+								return false;
+							}
+							return get.type(i) === "basic";
+						})
+					) {
+						let targets = [],
+							evt = _status.event.getParent("useCard");
+						targets.addArray(ui.selected.targets);
+						if (evt && evt.card == card) {
+							targets.addArray(evt.targets);
+						}
+						if (targets.length) {
+							return [1, targets.length];
+						}
+						if (get.tag(card, "multitarget")) {
+							return [1, game.players.length - 1];
+						}
+						return [1, 1];
+					}
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_limu:{
+		mod: {
+			targetInRange(card, player, target) {
+				if (player.countCards("j") && player.inRange(target)) {
+					return true;
+				}
+			},
+			cardUsableTarget(card, player, target) {
+				if (player.countCards("j") && player.inRange(target)) {
+					return true;
+				}
+			},
+			aiOrder(player, card, num) {
+				if (get.type(card, null, player) == "trick" && player.canUse(card, player) && player.canAddJudge(card)) {
+					return 15;
+				}
+			},
+		},
+		locked: false,
+		audio: 'xinfu_limu',
+		enable: "phaseUse",
+		discard: false,
+		filter(event, player) {
+			if (player.hasJudge("lebu")) {
+				return false;
+			}
+			return player.countCards("hes", { color: "red" }) > 0;
+		},
+		viewAs: { name: "lebu" },
+		//prepare:"throw",
+		position: "hes",
+		filterCard(card, player, event) {
+			return get.color(card) == "red" && player.canAddJudge({ name: "lebu", cards: [card] });
+		},
+		selectTarget: -1,
+		filterTarget(card, player, target) {
+			return player == target;
+		},
+		check(card) {
+			var player = _status.event.player;
+			if (!player.getEquip("zhangba")) {
+				let damaged = player.maxHp - player.hp - 1;
+				if (
+					player.countCards("h", function (cardx) {
+						if (cardx == card) {
+							return false;
+						}
+						if (cardx.name == "tao") {
+							if (damaged < 1) {
+								return true;
+							}
+							damaged--;
+						}
+						return ["shan", "jiu"].includes(cardx.name);
+					}) > 0
+				) {
+					return 0;
+				}
+			}
+			if (card.name == "shan") {
+				return 15;
+			}
+			if (card.name == "tao" || card.name == "jiu") {
+				return 10;
+			}
+			return 9 - get.value(card);
+		},
+		onuse(links, player) {
+			var next = game.createEvent("limu_recover", false, _status.event.getParent());
+			next.player = player;
+			next.setContent(function () {
+				player.recover();
+			});
+		},
+		ai: {
+			result: {
+				target(player, target) {
+					if (player.countCards("hes", "zhangba")) {
+						return player.countCards("h", { type: "basic" });
+					}
+					let res = lib.card.lebu.ai.result.target(player, target);
+					if (player.countCards("hs", "sha") >= player.hp) {
+						res++;
+					}
+					if (target.isDamaged()) {
+						return res + 2 * Math.abs(get.recoverEffect(target, player, target));
+					}
+					return res;
+				},
+				ignoreStatus: true,
+			},
+			order(item, player) {
+				if (player.hp > 1 && player.countCards("j")) {
+					return 0;
+				}
+				return 12;
+			},
+			effect: {
+				target(card, player, target) {
+					if (target.isPhaseUsing() && typeof card === "object" && get.type(card, null, target) === "delay" && !target.countCards("j")) {
+						let shas =
+							target.getCards("hs", i => {
+								if (card === i || (card.cards && card.cards.includes(i))) {
+									return false;
+								}
+								return get.name(i, target) === "sha" && target.getUseValue(i) > 0;
+							}) - target.getCardUsable("sha");
+						if (shas > 0) {
+							return [1, 1.5 * shas];
+						}
+					}
+				},
+			},
+		},
+		group:['qmsgswkjsgj_limu_sha'],
+		subSkill:{
+			sha:{
+				name:'立牧杀',
+				audio:'qmsgswkjsgj_limu',
+				enable: "chooseToUse",
+				viewAs: {
+					name: "sha",
+				},
+				filterCard(card,player) {
+					if (ui.selected.cards.length) {
+						return get.suit(card) === get.suit(ui.selected.cards[0]);
+					}
+					return !player.storage.qmsgswkjsgj_limu_ban||!player.storage.qmsgswkjsgj_limu_ban.includes(get.suit(card));
+				},
+				prompt() {
+					return get.translation('qmsgswkjsgj_limu_sha');
+				},
+				selectCard() {
+					if (ui.selected.cards.length) {
+						return -1;
+					}
+					return 1;
+				},
+				precontent(){
+					var suit=event.result.cards[0].suit;
+					if(!player.hasSkill('qmsgswkjsgj_limu_ban')){
+						player.addTempSkill('qmsgswkjsgj_limu_ban');
+					}
+					if(!player.storage.qmsgswkjsgj_limu_ban){
+						player.storage.qmsgswkjsgj_limu_ban=[];
+					}
+					player.storage.qmsgswkjsgj_limu_ban.push(suit);
+				},
+				ai: {
+					respondSha: true,
+					skillTagFilter(player, tag, arg) {
+						return arg !== "respond" && player.countCards("hs");
+					},
+				},
+			},
+			ban:{
+				onremove:true,
+				mark:true,
+				marktext:'牧',
+				intro:{
+					name:'立牧',
+					content:'本回合已使用$转化成杀。'
+				}
+			}
+		}
+	},
+	qmsgswkjsgj_pianan:{
+		audio: 'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			player:'damageBegin3',
+		},
+		filter(event, player) {
+			return player.countCards("j")>0;
+		},
+		content(){
+			player.discardPlayerCard(player, "j", true);
+			trigger.cancel();
+		},
+	},
 
 
 
