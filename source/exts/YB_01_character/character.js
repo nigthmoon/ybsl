@@ -46,7 +46,7 @@ const character = { //武将格式 :
 	'ybsl_020jiayutong':['female','YB_memory',3,['yb043_zhishi','yb020_zhuangrong'],['rankAdd:epic','rankS:a','name:贾|雨桐']],//贾雨桐
 	'ybsl_021liuyufeng':['male','YB_memory',3,['yb021_shusuan','yb021_qiujiao'],['rankAdd:epic','rankS:a','name:刘|域楓']],//刘域楓
 	'ybsl_022salt':['female','YB_memory',3,['yb022_yiduan',/*'yb022_yaogong',*/'yb022_duanxiangxin'],['rankAdd:epic','rankS:a','name:null|盐']],//盐
-	'ybsl_023sunlixin':['male','YB_memory',4,['oljiang','yb023_fenghou'],['unseen','rankAdd:legend','rankS:s','name:孙|立新']],//孙立新
+	'ybsl_023sunlixin':['male','YB_memory',4,['oljiang','yb023_fenghou'],['rankAdd:legend','rankS:s','name:孙|立新']],//孙立新
 	'ybsl_024yuetong':['female','YB_memory',4,[/*'技能'*/],['unseen','rankAdd:legend','rankS:s','name:岳|瞳']],//岳瞳
 	'ybsl_025shiwang':['female','YB_memory',3,['yb025_choujiang','yb025_haodu','yb025_zanzhu'],['rankAdd:legend','rankS:s','name:史|庆宇-王|贺']],//史庆宇&王贺
 	'ybsl_025shiqingyu':['female','YB_memory',16,['yb025_shiyuan','yb025_tuiqiao','yb025_chengyinx'],['rankAdd:epic','rankS:a','name:史|庆宇']],//史庆宇

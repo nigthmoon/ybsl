@@ -7157,6 +7157,52 @@ const skill = {
 	yb023_fenghou:{
 		audio:'ext:夜白神略/audio/character:2',
 		forced:true,
+		trigger:{
+			player:'damageEnd',
+			source:'damageSource',
+		},
+		filter(event,player){
+			return event.player.countCards('h')>0;
+		},
+		async content(event,trigger,player){
+			var target = trigger.player;
+			var result = await player.choosePlayerCard(
+				'展示'+get.translation(target)+'的一张手牌，若为红色，这张牌视为血杀，否则弃置之，你摸两张牌。',target, true, "h"
+			).set('ai',function(button){
+				var trigger = _status.event.getTrigger();
+				var att = get.attitude(_status.event.player,trigger.player);
+				if(att>0)return -get.value(button.link);
+				return get.value(button.link)&&!button.link.hasGaintag(yb023_fenghou);
+			}).forResult();
+			if(result.bool){
+				await target.showCards(result.cards);
+				if(get.color(result.cards[0])=='red'){
+					target.addSkill("yb023_fenghou_viewas");
+					target.addGaintag(result.cards, "yb023_fenghou");
+				}
+				else {
+					await target.modedDiscard(result.cards).set("discarder", player);
+					await player.draw(2);
+				}
+			}
+		},
+		subSkill: {
+			viewas: {
+				mod: {
+					cardname(card) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("yb023_fenghou")) {
+							return "sha";
+						}
+					},
+					cardnature(card) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("yb023_fenghou")) {
+							return 'YB_blood';
+						}
+					},
+				},
+				charlotte: true,
+			},
+		},
 	},
 	//--------------024
 	ybsl_tang_used:{
