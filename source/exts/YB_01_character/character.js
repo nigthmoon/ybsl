@@ -81,7 +81,7 @@ const character = { //武将格式 :
 	'ybsl_052trees':['male','YB_memory',5,['yb052_chongji'],['rankAdd:epic','rankS:a']],//姜森
 	'ybsl_053qiuer':['female','YB_memory',3,['yb053_lvxin','yb053_yinren'],['rankAdd:legend','rankS:s','name:null|秋儿']],//秋儿
 	'ybsl_054yueer':['female','YB_memory',3,['yb054_caijin','yb054_tongxin','yb054_zhishang'],['rankAdd:epic','rankS:a','name:null|悦儿']],//悦儿
-	//'ybsl_055zhengyan':['female','YB_memory',3,[/*'技能'*/],[]],//郑琰
+	'ybsl_055zhengyan':['female','YB_memory',3,['yb055_zhuandu','yb055_zangxin'],['rankAdd:epic','rankS:a']],//郑琰
 	//'ybsl_056dongjianchao':['male','YB_memory',3,[/*'技能'*/],[]],//董建超
 	//'ybsl_057sunmeiqi':['female','YB_memory',3,[/*'技能'*/],[]],//孙美琪
 	//'ybsl_058sunshibo':['male','YB_memory',3,[/*'技能'*/],[]],//孙世博
