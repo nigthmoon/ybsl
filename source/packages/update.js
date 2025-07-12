@@ -3,8 +3,68 @@ export { ybslb_update }
 window.ybslb_update={
 	//这是从金庸里抄来的更新公告格式，不过我仿佛不会用……
 	//感谢狂神对于这种写法的帮助，
-	version:'5.7.0-1.10',
+	version:'5.7.0-1.11',
 	
+	'5.7.0-1.11':{
+		changeLog:[
+			//----------------5.7.0-1.8--------------//
+			'理论上可联机',
+			'当前版本：5.7.0-1.11',
+			'更新日期：2025-07-11',
+			'本条公告可在扩展介绍页面查看',
+			'------------更新详情------------',
+			'- 新武将：孙立新，玺。',
+			'- 新武将：蒋歆，鸥，仓颉，九天玄女，螺祖，常先，鬼臾区。',
+			'- 新武将：名张辽，名郭嘉。名许褚改技能。',
+			'- 接受投稿：恒曹婴，曹微，刘焉。',
+			'- 新武将：三国杀同人小说一堆武将。',
+			'- 全民三国杀，我开局神郭嘉：鬼刘备，鬼周瑜，缝神诸葛，旧谋黄忠，界骆统，界杨彪，界刘焉',
+			'- 三国杀仙界下凡怎么你了：仙界王元姬，仙界神郭嘉，仙界神甘宁，仙界界沮授，仙界文鸯',
+			'------------修复相关------------',
+			'- 修复名曹操，忘记修啥了，',
+			'- 修复名司马懿，鬼才后半段（没测，有bug还请反馈），',
+			'- 优化醋，选目标限制优化',
+			'- 优化小红，修复盐',
+			'------------注意事项------------',
+			'- 本扩展需本体版本为1.10.17.3以上，建议最新版！。',
+			'- 修复若干bug，可能添加若干bug。',
+			'- 晶的水剑元交换位置部分仍旧有点bug，无法发动，还望体谅',
+			'------------鸣谢清单------------',
+			'- 狂神is NB！',
+			'- 经过我和B站up主鸣濑白羽酱的沟通，现本扩展包部分武将插图采用他的ai制图，具体被应用的武将在该角色的简介里备注。',
+			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
+			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
+			'- 制作仓促，有bug烦请加群反馈。',
+			'- 进群答案合理即可。',
+			'- 交流QQ群：369015096。',
+			'- 感谢一直以来各位游玩者的关注与支持。',
+			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
+			'- 感谢火佬对本扩展的无私奉献',
+			'- 感谢子虚对本扩展的无私奉献',
+			'- 铝宝就是天使！。',
+			'- <span class=yellowtext>感谢Angle为本扩展的想去远方撰写ai，以及优化张晴。</span>',
+			'- <span class=yellowtext>感谢周子鱼为本扩展制作的十周年美化卡牌。</span>',
+			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
+			//为什么用黄色？因为这些是我花钱搞的=w=
+			'- 铝宝就是天使！。',
+		],
+		players:[
+			'ybsl_023sunlixin','ybsl_035stamp','ybsl_jiangziwen','ybsl_kamome',
+			'sgsh_cangjie','sgsh_jiutianxuannv','sgsh_luozu','sgsh_changxian','sgsh_guiyuqu',
+			'ybmjz_guojia','ybmjz_zhangliao','ybmjz_xuzhu',
+			'qmsgswkjsgj_gui_liubei','qmsgswkjsgj_gui_re_zhouyu','qmsgswkjsgj_shen_zhugeliang',
+			'qmsgswkjsgj_sb_huangzhong','qmsgswkjsgj_re_yangbiao','qmsgswkjsgj_re_luotong','qmsgswkjsgj_re_liuyan',
+			'sgsxjxfzmnl_wangyuanji','sgsxjxfzmnl_shen_guojia','sgsxjxfzmnl_wenyang',
+			'sgsxjxfzmnl_re_jushou','sgsxjxfzmnl_shen_ganning'
+			
+		],
+		cards:[
+
+		],
+		files:[
+			
+		],
+	},
 	'5.7.0-1.10':{
 		changeLog:[
 			//----------------5.7.0-1.8--------------//

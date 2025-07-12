@@ -234,3 +234,23 @@ span[data-nature="YB_snowmm"] {
 	z-index: 20;
 	background-color: #28e3ce;
 }
+
+/* 更新公告 */
+.ybsl_gengxingonggao {
+    text-align: left;
+}
+/* 覆盖样式 */
+/* 菜单框大小 */
+.menu.main {
+	width: 600px;
+	height: 450px;
+}
+/* 调整开始，选项等顶部边栏的方块大小 */
+.menu.main > .menu-tab > div {
+	width: 84px;
+}
+/* “启”字的位置 */
+.menu.main > .menu-content > div > .menubutton.round {
+    left: 500px;
+    top: 327px;
+}

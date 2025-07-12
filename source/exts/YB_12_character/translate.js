@@ -212,7 +212,17 @@ const translate = {
 	qmsgswkjsgj_qinzheng:'勤政',
 	qmsgswkjsgj_qinzheng_info:'锁定技，你每使用或打出：两张牌时，你随机从牌堆或弃牌堆获得一张【杀】或【闪】或【桃】或【酒】；五张牌时，你随机从牌堆或弃牌堆获得一张【决斗】或【过河拆桥】；巴掌拍时，你随机从牌堆或弃牌堆获得一张【无中生有】或【顺手牵羊】。',
 
-
+	qmsgswkjsgj_re_liuyan:'界刘焉',
+	qmsgswkjsgj_re_liuyan_prefix:'界',
+	qmsgswkjsgj_tushe:'图射',
+	qmsgswkjsgj_tushe_info:'当你使用牌指定目标后，若你没有基本牌，则你可以摸X张牌。（X为此牌指定的目标数）',
+	qmsgswkjsgj_limu:'立牧',
+	qmsgswkjsgj_limu_info:'出牌阶段，你可以将一张红牌当做【乐不思蜀】对自己使用，然后回复1点体力。若你的判定区内有牌，你对攻击范围内的其他角色使用牌便没有次数和距离限制，且可以将一种花色的所有手牌当普通杀使用，每种花色限一次。',
+	qmsgswkjsgj_limu_append:'暂定每回合每种花色限一次。看后面作者怎么解释吧。',
+	qmsgswkjsgj_limu_sha:'立牧',
+	qmsgswkjsgj_limu_sha_info:'将一种花色的所有手牌当普通杀使用，每种花色限一次。',
+	qmsgswkjsgj_pianan:'偏安',
+	qmsgswkjsgj_pianan_info:'锁定技，当你受到伤害时，若你的判定区有牌，你弃置其中一张，防止此伤害。',
 
 
 

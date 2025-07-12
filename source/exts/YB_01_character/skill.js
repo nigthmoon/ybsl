@@ -7157,6 +7157,52 @@ const skill = {
 	yb023_fenghou:{
 		audio:'ext:夜白神略/audio/character:2',
 		forced:true,
+		trigger:{
+			player:'damageEnd',
+			source:'damageSource',
+		},
+		filter(event,player){
+			return event.player.countCards('h')>0;
+		},
+		async content(event,trigger,player){
+			var target = trigger.player;
+			var result = await player.choosePlayerCard(
+				'展示'+get.translation(target)+'的一张手牌，若为红色，这张牌视为血杀，否则弃置之，你摸两张牌。',target, true, "h"
+			).set('ai',function(button){
+				var trigger = _status.event.getTrigger();
+				var att = get.attitude(_status.event.player,trigger.player);
+				if(att>0)return -get.value(button.link);
+				return get.value(button.link)&&!button.link.hasGaintag(yb023_fenghou);
+			}).forResult();
+			if(result.bool){
+				await target.showCards(result.cards);
+				if(get.color(result.cards[0])=='red'){
+					target.addSkill("yb023_fenghou_viewas");
+					target.addGaintag(result.cards, "yb023_fenghou");
+				}
+				else {
+					await target.modedDiscard(result.cards).set("discarder", player);
+					await player.draw(2);
+				}
+			}
+		},
+		subSkill: {
+			viewas: {
+				mod: {
+					cardname(card) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("yb023_fenghou")) {
+							return "sha";
+						}
+					},
+					cardnature(card) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("yb023_fenghou")) {
+							return 'YB_blood';
+						}
+					},
+				},
+				charlotte: true,
+			},
+		},
 	},
 	//--------------024
 	ybsl_tang_used:{
@@ -11589,6 +11635,92 @@ const skill = {
 	你可令此伤害-1，然后受到1点无来源伤害。',
 	*/
 	//--------------------郑琰055
+	yb055_zhuandu:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced: true,
+		trigger:{
+			player:'useCard',
+		},
+		filter(event,player){
+			var history = player.getHistory('useCard');
+			if(!history)return true;
+			else {
+				var suits = [get.suit(event.card)];
+				for(var i =0;i< history.length;i++){
+					suits.add(get.suit(history[i].card));
+				}
+				if(suits.length>1)return false;
+				return true;
+			}
+		},
+		content(){
+			var num = player.getHistory('useCard').length;
+			if(num>player.maxHp)num=player.maxHp;
+			player.draw(num);
+		},
+		mark:true,
+		marktext:'笃',
+		intro:{
+			markcount: (storage,player) => {
+				var history = player.getHistory('useCard');
+				if(!history)return false;
+				else {
+					var suits = [];
+					for(var i =0;i< history.length;i++){
+						suits.add(get.suit(history[i].card));
+					}
+					if(suits.length>1)return false;
+					return get.translation(suits[0]);
+				}
+			},
+		},
+		mod:{
+			aiOrder(player, card, num) {
+				var history = player.getHistory('useCard');
+				if(history) {
+					var suits = [];
+					for(var i =0;i< history.length;i++){
+						suits.add(get.suit(history[i].card));
+					}
+					if(suits.length==1){
+						if(get.suit(card)==suits[0])return num+100;
+					}
+				}
+			},
+			aiValue(player, card, num){
+				var history = player.getHistory('useCard');
+				if(history) {
+					var suits = [];
+					for(var i =0;i< history.length;i++){
+						suits.add(get.suit(history[i].card));
+					}
+					if(suits.length==1){
+						if(get.suit(card)==suits[0])return num+100;
+					}
+				}
+			}
+		},
+		
+	},
+	yb055_zangxin:{
+		audio:'ext:夜白神略/audio/character:2',
+		mod: {
+			cardname(card, player, name) {
+				if (get.suit(card) == "heart") {
+					return "tao";
+				}
+			},
+		},
+		trigger: { player: "useCard" },
+		forced: true,
+		filter(event, player) {
+			return event.card.name == "tao" && get.suit(event.card) == "heart";
+		},
+		content() {
+			
+		},
+
+	},
 	//--------------------董建超056
 	//--------------------孙美琪057
 	//--------------------孙世博058

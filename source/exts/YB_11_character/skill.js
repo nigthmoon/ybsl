@@ -1171,7 +1171,7 @@ const skill = {
 		},
 		async contentAfter(event, trigger, player) {
 			game.addGlobalSkill("yhky_cyqinlong_tanchengxiangdai");
-			// player.$fullscreenpop("向死存汉！", "fire");
+			player.$fullscreenpop("坦诚相待！", "ice");
 			// const cards = ["cardPile", "discardPile"].map(pos => Array.from(ui[pos].childNodes)).flat();
 			// const filter = card => ["shan", "tao", "jiu"].includes(card.name);
 			// const cardx = cards.filter(filter);
@@ -1207,7 +1207,7 @@ const skill = {
 			},
 		},
 		subSkill: {
-			xiangsicunhan: {
+			tanchengxiangdai: {
 				persevereSkill: true,
 				ai: {
 					viewHandcard: true,

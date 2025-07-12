@@ -46,7 +46,7 @@ const character = { //武将格式 :
 	'ybsl_020jiayutong':['female','YB_memory',3,['yb043_zhishi','yb020_zhuangrong'],['rankAdd:epic','rankS:a','name:贾|雨桐']],//贾雨桐
 	'ybsl_021liuyufeng':['male','YB_memory',3,['yb021_shusuan','yb021_qiujiao'],['rankAdd:epic','rankS:a','name:刘|域楓']],//刘域楓
 	'ybsl_022salt':['female','YB_memory',3,['yb022_yiduan',/*'yb022_yaogong',*/'yb022_duanxiangxin'],['rankAdd:epic','rankS:a','name:null|盐']],//盐
-	'ybsl_023sunlixin':['male','YB_memory',4,['oljiang','yb023_fenghou'],['unseen','rankAdd:legend','rankS:s','name:孙|立新']],//孙立新
+	'ybsl_023sunlixin':['male','YB_memory',4,['oljiang','yb023_fenghou'],['rankAdd:legend','rankS:s','name:孙|立新']],//孙立新
 	'ybsl_024yuetong':['female','YB_memory',4,[/*'技能'*/],['unseen','rankAdd:legend','rankS:s','name:岳|瞳']],//岳瞳
 	'ybsl_025shiwang':['female','YB_memory',3,['yb025_choujiang','yb025_haodu','yb025_zanzhu'],['rankAdd:legend','rankS:s','name:史|庆宇-王|贺']],//史庆宇&王贺
 	'ybsl_025shiqingyu':['female','YB_memory',16,['yb025_shiyuan','yb025_tuiqiao','yb025_chengyinx'],['rankAdd:epic','rankS:a','name:史|庆宇']],//史庆宇
@@ -60,7 +60,7 @@ const character = { //武将格式 :
 	'ybsl_033xiaohui':['female','YB_memory',3,['yb033_huiyue'/*,'yb033_shuhui','yb033_yuqi','yb014_lvxin'*/],['rankAdd:legend','rankS:s','name:null|小慧']],//小慧
 	'ybsl_034zhoulianyuan':['male','YB_dream',3,['yb034_bifa','yb034_jiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','rankS:b','name:周|怜渊']],//梦——周怜渊
 	'ybsl_035stamp':['male','shen','2/3',['yb035_zhengzhao','yb035_jitian','yb035_liuwang'/*,'yb035_weiyan'*/],['YB_memory','rankAdd:legend','rankS:s','name:null|玺']],//梦——玺
-	'ybsl_036bright':['female','YB_dream',3,['yb036_qianjin','yb036_chongzheng','yb036_aoxiang','ybsl_sanmeng','ybsl_rumeng'],['unseen','YB_memory','rankAdd:epic','rankS:a','name:null|熙']],//梦——熙
+	'ybsl_036bright':['female','YB_dream',3,[/*'yb036_qianjin','yb036_chongzheng','yb036_aoxiang','ybsl_sanmeng','ybsl_rumeng'*/],['unseen','YB_memory','rankAdd:epic','rankS:a','name:null|熙']],//梦——熙
 	'ybsl_037diamondqueen':['female','YB_dream',6,['yb037_yizhong','yb037_kexie','yb037_guiling','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:rare','rankS:b','name:null|Q']],//梦——方块Q
 	'db_ybsl_038tengwu':['female','YB_dream','3/4',['yb038_quanlu','yb038_fushengxx','ybsl_sanmeng'],['doublegroup:YB_memory:YB_dream','rankAdd:legend','rankS:s','name:滕|叔颖-武|宁']],//梦——滕叔颖＆武宁
 	'ybsl_038bianqiuwen':['female','YB_memory',3,['yb047_youhun','yb038_chameng'],['rankAdd:epic','rankS:a','name:卞|秋雯']],//卞秋雯
@@ -81,7 +81,7 @@ const character = { //武将格式 :
 	'ybsl_052trees':['male','YB_memory',5,['yb052_chongji'],['rankAdd:epic','rankS:a']],//姜森
 	'ybsl_053qiuer':['female','YB_memory',3,['yb053_lvxin','yb053_yinren'],['rankAdd:legend','rankS:s','name:null|秋儿']],//秋儿
 	'ybsl_054yueer':['female','YB_memory',3,['yb054_caijin','yb054_tongxin','yb054_zhishang'],['rankAdd:epic','rankS:a','name:null|悦儿']],//悦儿
-	//'ybsl_055zhengyan':['female','YB_memory',3,[/*'技能'*/],[]],//郑琰
+	'ybsl_055zhengyan':['female','YB_memory',3,['yb055_zhuandu','yb055_zangxin'],['rankAdd:epic','rankS:a']],//郑琰
 	//'ybsl_056dongjianchao':['male','YB_memory',3,[/*'技能'*/],[]],//董建超
 	//'ybsl_057sunmeiqi':['female','YB_memory',3,[/*'技能'*/],[]],//孙美琪
 	//'ybsl_058sunshibo':['male','YB_memory',3,[/*'技能'*/],[]],//孙世博
@@ -141,6 +141,7 @@ const character = { //武将格式 :
 	// 'ybsl_106cat':['female','YB_memory',3,[],['rankAdd:epic','rankS:a']],//
 	'ybsl_107tushanshuili':['female','YB_dream',3,['yb107_xunhu','QQQ107_taye','QQQ107_yaoyi','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:涂山|水璃']], //涂山水璃
 	ybsl_121tujing:['female','YB_dream',3,['yb121_yuanjie','yb121_tiandu'],['YB_memory','rankAdd:epic','rankS:a','name:涂|静']],//涂静
+	ybsl_122wangbingyu:['female','YB_dream',3,[],['YB_memory','rankAdd:epic','rankS:a','unseen']],//王冰雨
 	
 	//----------------------夜白界限突破（能更新出这个系列离不开大家不离不弃的支持）
 	'ybnb_034zhoulianyuan':['male','YB_dream',3,['yb034_rebifa','yb034_rejiandao','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:周|怜渊','linkTo:ybsl_034zhoulianyuan']],//梦——界周怜渊
