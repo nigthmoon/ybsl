@@ -1147,7 +1147,7 @@ const skill = {
 		locked: true,
 		filter(event, player,name) {
 			event.xianfu_bool=false;
-			if(name=='die')return player.storage.xianfu2&&player.storage.xianfu2.includes(event.player)&&game.hasPlayer(current => current != player&&current!=event.player);
+			if(name=='die')return player.storage.qmsgswkjsgj_xianfu2&&player.storage.qmsgswkjsgj_xianfu2.includes(event.player)&&game.hasPlayer(current => current != player&&current!=event.player);
 			if(name=='phaseBefore'&&event.player==player)return game.hasPlayer(current => current != player);
 			event.xianfu_bool=true;
 			return game.hasPlayer(current => current != player) && (event.name != "phase" || game.phaseNumber == 0);
@@ -1155,8 +1155,8 @@ const skill = {
 		async cost(event, trigger, player) {
 			var bool=trigger.xianfu_bool;
 			const result = await player
-				.chooseTarget("请"+(player.storage.xianfu2?'重新':'')+"选择【先辅】的目标", lib.translate.xianfu_info, bool, function (card, player, target) {
-					return target != player /*&& (!player.storage.xianfu2 || !player.storage.xianfu2.includes(target))*/;
+				.chooseTarget("请"+(player.storage.qmsgswkjsgj_xianfu2?'重新':'')+"选择【先辅】的目标", lib.translate.xianfu_info, bool, function (card, player, target) {
+					return target != player /*&& (!player.storage.qmsgswkjsgj_xianfu2 || !player.storage.qmsgswkjsgj_xianfu2.includes(target))*/;
 				})
 				.set("ai", function (target) {
 					let att = get.attitude(_status.event.player, target);
@@ -1175,28 +1175,28 @@ const skill = {
 		async content(event, trigger, player) {
 			let target = event.cost_data;
 			let targetold=[];
-			if(player.storage.xianfu2&&player.storage.xianfu2.length){
-				targetold=player.storage.xianfu2;
+			if(player.storage.qmsgswkjsgj_xianfu2&&player.storage.qmsgswkjsgj_xianfu2.length){
+				targetold=player.storage.qmsgswkjsgj_xianfu2;
 			}
-			if (!player.storage.xianfu2||player.storage.xianfu2.length) player.storage.xianfu2 = [];
-			player.storage.xianfu2.push(target);
-			player.addSkill("xianfu2");
+			if (!player.storage.qmsgswkjsgj_xianfu2||player.storage.qmsgswkjsgj_xianfu2.length) player.storage.qmsgswkjsgj_xianfu2 = [];
+			player.storage.qmsgswkjsgj_xianfu2.push(target);
+			player.addSkill("qmsgswkjsgj_xianfu2");
 
 			const func = (player, target,targetold) => {
 				if(targetold?.length)for(var i of targetold){
-					if(i.storage.xianfu_mark&&i.storage.xianfu_mark.includes(player)){
-						i.storage.xianfu_mark.remove(player);
-						if(i.storage.xianfu_mark.length==0){
-							delete i.storage.xianfu_mark;
-							i.unmarkSkill('xianfu_mark')
-							i.removeSkill('xianfu_mark')
+					if(i.storage.qmsgswkjsgj_xianfu_mark&&i.storage.qmsgswkjsgj_xianfu_mark.includes(player)){
+						i.storage.qmsgswkjsgj_xianfu_mark.remove(player);
+						if(i.storage.qmsgswkjsgj_xianfu_mark.length==0){
+							delete i.storage.qmsgswkjsgj_xianfu_mark;
+							i.unmarkSkill('qmsgswkjsgj_xianfu_mark')
+							i.removeSkill('qmsgswkjsgj_xianfu_mark')
 						}
 					}
 				}
-				if (!target.storage.xianfu_mark) target.storage.xianfu_mark = [];
-				target.storage.xianfu_mark.add(player);
-				target.storage.xianfu_mark.sortBySeat();
-				target.markSkill("xianfu_mark", null, null, true);
+				if (!target.storage.qmsgswkjsgj_xianfu_mark) target.storage.qmsgswkjsgj_xianfu_mark = [];
+				target.storage.qmsgswkjsgj_xianfu_mark.add(player);
+				target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
+				target.markSkill("qmsgswkjsgj_xianfu_mark", null, null, true);
 			};
 			if (event.isMine()) func(player, target,targetold);
 			else if (player.isOnline2()) player.send(func, player, target,targetold);
@@ -1215,6 +1215,78 @@ const skill = {
 		// 		}
 		// 	}
 		// }
+	},
+	
+	qmsgswkjsgj_xianfu2:{
+		audio: "xianfu",
+		charlotte: true,
+		trigger: { global: ["damageEnd", "recoverEnd"] },
+		forced: true,
+		sourceSkill: "qmsgswkjsgj_xianfu",
+		filter(event, player) {
+			if (event.player.isDead() || !player.storage.qmsgswkjsgj_xianfu2 || !player.storage.qmsgswkjsgj_xianfu2.includes(event.player) || event.num <= 0) {
+				return false;
+			}
+			if (event.name == "damage") {
+				return true;
+			}
+			return player.isDamaged();
+		},
+		logAudio(event, player) {
+			if (event.name == "damage") {
+				return ["xianfu5.mp3", "xianfu6.mp3"];
+			}
+			return ["xianfu3.mp3", "xianfu4.mp3"];
+		},
+		logTarget: "player",
+		content() {
+			"step 0";
+			var target = trigger.player;
+			if (!target.storage.qmsgswkjsgj_xianfu_mark) {
+				target.storage.qmsgswkjsgj_xianfu_mark = [];
+			}
+			target.storage.qmsgswkjsgj_xianfu_mark.add(player);
+			target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
+			target.markSkill("qmsgswkjsgj_xianfu_mark");
+			game.delayx();
+			"step 1";
+			var card = trigger.card?trigger.card:null;
+			var source = trigger.source ? trigger.source : "nosource";
+			var nature = trigger.nature ? trigger.nature : null;
+			player[trigger.name](trigger.num,card,source,nature);
+		},
+		onremove(player) {
+			if (!player.storage.qmsgswkjsgj_xianfu2) {
+				return;
+			}
+			game.countPlayer(function (current) {
+				if (player.storage.qmsgswkjsgj_xianfu2.includes(current) && current.storage.qmsgswkjsgj_xianfu_mark) {
+					current.storage.qmsgswkjsgj_xianfu_mark.remove(player);
+					if (!current.storage.qmsgswkjsgj_xianfu_mark.length) {
+						current.unmarkSkill("qmsgswkjsgj_xianfu_mark");
+					} else {
+						current.markSkill("qmsgswkjsgj_xianfu_mark");
+					}
+				}
+			});
+			delete player.storage.qmsgswkjsgj_xianfu2;
+		},
+		group: "qmsgswkjsgj_xianfu3",
+	},
+	qmsgswkjsgj_xianfu3: {
+		trigger: { global: "dieBegin" },
+		silent: true,
+		sourceSkill: "xianfu",
+		filter(event, player) {
+			return event.player == player || (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(player));
+		},
+		content() {
+			if (player == trigger.player) {
+				lib.skill.qmsgswkjsgj_xianfu2.onremove(player);
+			} else {
+				player.storage.qmsgswkjsgj_xianfu2.remove(event.player);
+			}
+		},
 	},
 	tiandu_xizhicai:{
 		audio:2,
@@ -1245,14 +1317,14 @@ const skill = {
 			}
 			else {
 				var next = player.chooseTarget('令一名角色摸一张牌');
-				if (player.storage.xianfu2 && player.storage.xianfu2.length) {
-					next.set('prompt2', '（若目标为' + get.translation(player.storage.xianfu2) + '则改为摸两张牌）');
+				if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.length) {
+					next.set('prompt2', '（若目标为' + get.translation(player.storage.qmsgswkjsgj_xianfu2) + '则改为摸两张牌）');
 				}
 				next.set('ai', function (target) {
 					var player = _status.event.player;
 					var att = get.attitude(player, target) / Math.sqrt(1 + target.countCards('h'));
 					if (target.hasSkillTag('nogain')) att /= 10;
-					if (player.storage.xianfu2 && player.storage.xianfu2.includes(target)) return att * 2;
+					if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(target)) return att * 2;
 					return att;
 				})
 			}
@@ -1284,11 +1356,11 @@ const skill = {
 				player.line(target, 'green');
 				if (event.color == 'black') player.gainPlayerCard(target, 'h', true);
 				else {
-					if (player.storage.xianfu2 && player.storage.xianfu2.includes(target)) {
-						if (!target.storage.xianfu_mark) target.storage.xianfu_mark = [];
-						target.storage.xianfu_mark.add(player);
-						target.storage.xianfu_mark.sortBySeat();
-						target.markSkill('xianfu_mark');
+					if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(target)) {
+						if (!target.storage.qmsgswkjsgj_xianfu_mark) target.storage.qmsgswkjsgj_xianfu_mark = [];
+						target.storage.qmsgswkjsgj_xianfu_mark.add(player);
+						target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
+						target.markSkill('qmsgswkjsgj_xianfu_mark');
 						target.draw(2);
 					}
 					else target.draw();
@@ -2623,7 +2695,7 @@ const skill = {
 			sha:{
 				name:'立牧杀',
 				audio:'qmsgswkjsgj_limu',
-				enable: "chooseToUse",
+				enable: "phaseUse",
 				viewAs: {
 					name: "sha",
 				},
@@ -2645,7 +2717,7 @@ const skill = {
 				precontent(){
 					var suit=event.result.cards[0].suit;
 					if(!player.hasSkill('qmsgswkjsgj_limu_ban')){
-						player.addTempSkill('qmsgswkjsgj_limu_ban');
+						player.addTempSkill('qmsgswkjsgj_limu_ban','phaseUseAfter');
 					}
 					if(!player.storage.qmsgswkjsgj_limu_ban){
 						player.storage.qmsgswkjsgj_limu_ban=[];
