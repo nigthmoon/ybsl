@@ -177,6 +177,15 @@ export const config = {
 		},
 	},
 	
+	"夜白神略的蓄力点改蓝条":{
+		"name":"<b>蓄力点改蓝条</b>",
+		'init': false,
+		'intro': '<font color=\'#ADEAEA\'>将蓄力点改蓝条(开关后重启生效)',
+		// onclick:function(item){
+		// 	game.saveConfig('extension_夜白神略_夜白神略的蓄力点改蓝条',item);
+		// 	//
+		// }
+	},
 	"夜白神略的自动更新素材开关":{
 		"name":"<b>自动导入素材</b>",
 		'init': true,
