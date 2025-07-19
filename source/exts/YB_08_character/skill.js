@@ -1189,6 +1189,92 @@ const skill = {
 		// 	}
 		// }
 	},
+
+
+
+
+
+
+
+	ybmjz_jizhi:{
+		audio:'rejizhi',locked: false,
+		trigger: { player: "useCard" },
+		frequent: true,
+		filter(event) {
+			return get.type(event.card, "trick") == "trick" && event.card.isCard;
+		},
+		init(player) {
+			player.storage.rejizhi = 0;
+		},
+		content() {
+			"step 0";
+			player.draw();
+			"step 1";
+			var list = ['本回合手牌上限+1','本回合出杀次数+1'];
+			player.chooseControl().set('choiceList', list).set('prompt', '集智：清选择一项')
+			"step 2";
+			if(result.index == 0) {
+				player.addTempSkill("ybmjz_jizhi_max");
+				// player.storage.ybmjz_jizhi_max++;
+				player.addMark("ybmjz_jizhi_max",false);
+				player.markSkill("ybmjz_jizhi_max");
+			}
+			else{
+				player.addTempSkill("ybmjz_jizhi_sha");
+				// player.storage.ybmjz_jizhi_sha++;
+				player.addMark("ybmjz_jizhi_sha",false);
+				player.markSkill("ybmjz_jizhi_sha");
+			}
+		},
+		ai: {
+			threaten: 1.4,
+			noautowuxie: true,
+		},
+		mod: {
+			maxHandcard(player, num) {
+				return num + player.storage.ybmjz_jizhi_max;
+			},
+			cardUsable(card,player,num){
+				if (card.name == "sha") {
+					return num + player.storage.ybmjz_jizhi_sha;
+				}
+			},
+		},
+		subSkill: {
+			max:{
+				name:'囊',
+				intro: {
+					content: "本回合手牌上限+#",
+				},
+				onremove: true,
+			},
+			sha:{
+				name:'杀',
+				intro: {
+					content: "本回合出杀次数+#",
+				},
+				onremove: true,
+			},
+		},
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//名刘焉
 	ybmjz_limu:{
 		mod: {
 			targetInRange(card, player, target) {
@@ -1358,6 +1444,9 @@ const skill = {
 		},
 	},
 	ybmjz_yingshen:{
+		ai:{
+			canZhuzhan:true,
+		},
 		group:['ybmjz_yingshen_zhuzhan','ybmjz_yingshen_discard','ybmjz_yingshen_exchange'],
 		subSkill:{
 			zhuzhan: {
@@ -1428,7 +1517,7 @@ const skill = {
 			};
 			"step 1";
 			var type = get.type2(card);
-			event.list = game.filterPlayer(current => current.countCards("h") && (_status.connectMode || current.hasCard(cardx => get.type2(cardx) == type, "h"))).sortBySeat(_status.currentPhase || player);
+			event.list = game.filterPlayer(current => current.countCards("h") && (_status.connectMode || current.hasCard(cardx => get.type2(cardx) == type, "h")) || current.hasSkillTag('canZhuzhan', true)).sortBySeat(_status.currentPhase || player);
 			event.id = get.id();
 			"step 2";
 			if (!event.list.length) event.finish();
@@ -1531,6 +1620,7 @@ const skill = {
 		trigger: { global: "dying" },
 		mark:true,
 		filter:function(event,player){
+			if(player.group!='shen') return false;
 			if(player.storage.ybmjz_huanshen) return false;
 			if(_status.currentPhase==event.player)return false;
 			return true;

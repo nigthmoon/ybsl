@@ -64,6 +64,8 @@ const translate = {
 	ybmjz_machao_prefix:'名将',
 	ybmjz_huangyueying:'名将黄月英',
 	ybmjz_huangyueying_prefix:'名将',
+	"ybmjz_jizhi":"集智",
+	"ybmjz_jizhi_info":'当你使用锦囊牌时，你可以摸一张牌。然后选择一项：本回合手牌上限+1，本回合出杀次数+1。',
 
 	ybmjz_sunquan:'名将孙权',
 	ybmjz_sunquan_prefix:'名将',

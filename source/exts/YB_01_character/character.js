@@ -39,7 +39,7 @@ const character = { //武将格式 :
 	
 	'ybsl_015wanghairu':['female','YB_memory',3,['yb015_liangquan','yb015_bixin'],['rankAdd:epic','rankS:a','name:王|海茹']],//王海茹
 	'ybsl_016manchengqi':['female','YB_memory',4,['yb016_juli','yb016_shenzou'],['rankAdd:epic','rankS:a','name:满城|柒']],//满城柒（新版
-	'ybsl_017xiaohong':['female','YB_memory',3,['yb017_chuanxin','yb017_zuigui'],['rankAdd:legend','rankS:s','name:涂山|小红']],//涂山小红（新版
+	'ybsl_017xiaohong':['female','YB_memory',3,['yb017_chuanxinx','yb017_zuigui'],['rankAdd:legend','rankS:s','name:涂山|小红']],//涂山小红（新版
 	'ybsl_018zhangqing':['female','YB_memory',3,['yb018_huaimeng','yb018_minxing','yb018_fanling'],['rankAdd:legend','rankS:s','name:张|晴']],//张晴
 	'ybsl_018huanqing':['female','YB_dream',3,['yb018_lihun','yb018_wanyue','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:张|晴']],//梦——幻晴
 	'ybsl_019shengyan':['female','YB_memory',4,['yb019_cutan','yb019_misan','yb019_renxing','yb019_chicu'],['unseen','rankAdd:rare','rankS:b','name:盛|妍']],//盛妍

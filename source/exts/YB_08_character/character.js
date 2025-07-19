@@ -18,7 +18,7 @@ const character = { //武将格式 :
 	ybmjz_zhugeliang:['male','shu',3,[],['name:诸葛|亮','linkTo:zhugeliang','YB_mjz:re_zhugeliang','tempname:re_zhugeliang']], 
 	ybmjz_zhaoyun:['male','shu',4,[],['linkTo:zhaoyun','YB_mjz:re_zhaoyun','tempname:re_zhaoyun']], 
 	ybmjz_machao:['male','shu',4,[],['linkTo:machao','YB_mjz:re_machao','tempname:re_machao']], 
-	ybmjz_huangyueying:['female','shu',3,[],['linkTo:huangyueying','YB_mjz:re_huangyueying','tempname:re_huangyueying']], 
+	ybmjz_huangyueying:['female','shu',3,['ybmjz_jizhi','reqicai'],['rankAdd:legend','linkTo:huangyueying','YB_mjz:re_huangyueying','tempname:re_huangyueying']], 
 
 	ybmjz_sunquan:['male','wu',4,[],['zhu','linkTo:sunquan','YB_mjz:re_sunquan','tempname:re_sunquan']], 
 	ybmjz_ganning:['male','wu',4,[],['linkTo:ganning','YB_mjz:re_ganning','tempname:re_ganning']], 

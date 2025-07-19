@@ -2440,6 +2440,7 @@ const YBSL_ybslf = function () {
 					player.node.avatar.setBackground(player.name2, "character");
 					player.node.name.innerHTML = get.slimName(player.name2);
 				}
+				player.update();
 			});
 			return next;
 		}

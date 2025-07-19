@@ -4965,6 +4965,206 @@ const skill = {
 			}
 		},
 	},
+	'yb017_chuanxinx':{
+		audio:'yb017_chuanxin',
+		trigger:{
+			global:"phaseJieshuBegin",
+		},
+		forced:true,
+		filter:function(event,player){
+			return event.player.getHistory('useCard',function(card){
+				// return get.type(card.card)!='equip'&&get.type(card.card)!='delay';
+				return get.color(card.card)!='none';
+			}).length>0;
+		},
+		content:function(){
+			'step 0'
+			event.color = [];
+			trigger.player.getHistory('useCard',function(card){
+				// return get.type(card.card)!='equip'&&get.type(card.card)!='delay';
+				// return get.color(card.card)!='none';
+				if(get.color(card.card)!='none'){
+					event.color.add(get.color(card.card));
+				}
+			})
+			event.count = 0;
+			'step 1'
+			event.count++;
+			var list=[];
+			var list1=[];
+			trigger.player.getHistory('useCard',function(evt){
+				if(get.type(evt.card)=='equip'||get.type(evt.card)=='delay') return;
+				var name=evt.card.name;
+				var nature=evt.card.nature;
+				var name2;
+				if(name=='sha'){
+					if(nature){
+						switch(nature){
+							case 'fire':name2='huosha';break;
+							case 'thunder':name2='leisha';break;
+							case 'kami':name2='kamisha';break;
+							case 'ice':name2='icesha';break;
+							case 'stab':name2='cisha';break;
+							default :name2=(nature+'sha');break;
+						}
+					}
+				}
+				var name3=(name2||name);
+				if(!list1.includes(name3)){
+					list.add(['传信','',name,nature]);
+					list1.add(name3);
+				}
+			});
+			player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌'+event.count+'/'+event.color.length+'<br>此操作不可逆，如果选择了卡牌但没有选择使用的话，不会回退到这一步，而是直接摸一张牌。',[list,'vcard']],function(button){
+				return _status.event.player.getUseValue({name:button.link[2],nature:button.link[3]});
+			},function(button){
+				return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
+			});
+			// trigger.player.getHistory('useCard',function(evt){
+			// 	if(get.type(evt.card)=='equip'||get.type(evt.card)=='delay') return;
+			// 	var name=evt.card.name;
+			// 	if(name=='sha'){
+			// 		var nature=evt.card.nature;
+			// 		switch(nature){
+			// 			case 'fire':name='huosha';break;
+			// 			case 'thunder':name='leisha';break;
+			// 			case 'kami':name='kamisha';break;
+			// 			case 'ice':name='icesha';break;
+			// 			case 'stab':name='cisha';break;
+			// 			case 'YB_snow':name='YB_snowsha';break;
+			// 			case 'YB_blood':name='YB_bloodsha';break;
+			// 		}
+			// 	}
+			// 	list.add(name);
+			// });
+			// player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌',[list.map(function(name){
+			// 	return ['传信','',name];
+			// }),'vcard']],function(button){
+			// 	return _status.event.player.getUseValue({name:button.link[2],nature:button.link[3]});
+			// },function(button){
+			// 	return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
+			// });
+			'step 2'
+			if(!result.bool) {
+				player.draw();
+				// event.finish();
+				event.goto(4);
+			}
+			else {
+				event._result=player.chooseUseTarget({name:result.links[0][2],isCard:true,nature:result.links[0][3]},false);
+			}
+			'step 3'
+			if(!result.bool){
+				player.draw();
+				// event.finish();
+			}
+			'step 4'
+			if(event.count<event.color.length){
+				player.logSkill('yb017_chuanxinx');
+				event.goto(1);
+			}
+		},
+	},
+	'yb017_chuanxiny':{
+		audio:'yb017_chuanxin',
+		trigger:{
+			global:"phaseJieshuBegin",
+		},
+		forced:true,
+		filter:function(event,player){
+			return event.player.getHistory('useCard',function(card){
+				// return get.type(card.card)!='equip'&&get.type(card.card)!='delay';
+				return true;
+			}).length>0;
+		},
+		content:function(){
+			'step 0'
+			event.color = [];
+			trigger.player.getHistory('useCard',function(card){
+				// return get.type(card.card)!='equip'&&get.type(card.card)!='delay';
+				// return get.color(card.card)!='none';
+				// if(get.color(card.card)!='none'){
+					event.color.add(get.color(card.card));
+				// }
+			})
+			event.count = 0;
+			'step 1'
+			event.count++;
+			var list=[];
+			var list1=[];
+			trigger.player.getHistory('useCard',function(evt){
+				if(get.type(evt.card)=='equip'||get.type(evt.card)=='delay') return;
+				var name=evt.card.name;
+				var nature=evt.card.nature;
+				var name2;
+				if(name=='sha'){
+					if(nature){
+						switch(nature){
+							case 'fire':name2='huosha';break;
+							case 'thunder':name2='leisha';break;
+							case 'kami':name2='kamisha';break;
+							case 'ice':name2='icesha';break;
+							case 'stab':name2='cisha';break;
+							default :name2=(nature+'sha');break;
+						}
+					}
+				}
+				var name3=(name2||name);
+				if(!list1.includes(name3)){
+					list.add(['传信','',name,nature]);
+					list1.add(name3);
+				}
+			});
+			player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌'+event.count+'/'+event.color.length+'<br>此操作不可逆，如果选择了卡牌但没有选择使用的话，不会回退到这一步，而是直接摸一张牌。',[list,'vcard']],function(button){
+				return _status.event.player.getUseValue({name:button.link[2],nature:button.link[3]});
+			},function(button){
+				return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
+			});
+			// trigger.player.getHistory('useCard',function(evt){
+			// 	if(get.type(evt.card)=='equip'||get.type(evt.card)=='delay') return;
+			// 	var name=evt.card.name;
+			// 	if(name=='sha'){
+			// 		var nature=evt.card.nature;
+			// 		switch(nature){
+			// 			case 'fire':name='huosha';break;
+			// 			case 'thunder':name='leisha';break;
+			// 			case 'kami':name='kamisha';break;
+			// 			case 'ice':name='icesha';break;
+			// 			case 'stab':name='cisha';break;
+			// 			case 'YB_snow':name='YB_snowsha';break;
+			// 			case 'YB_blood':name='YB_bloodsha';break;
+			// 		}
+			// 	}
+			// 	list.add(name);
+			// });
+			// player.chooseButton(['传信：选择要使用的牌，或点取消摸一张牌',[list.map(function(name){
+			// 	return ['传信','',name];
+			// }),'vcard']],function(button){
+			// 	return _status.event.player.getUseValue({name:button.link[2],nature:button.link[3]});
+			// },function(button){
+			// 	return _status.event.player.hasUseTarget({name:button.link[2],nature:button.link[3]});
+			// });
+			'step 2'
+			if(!result.bool) {
+				player.draw();
+				// event.finish();
+				event.goto(4);
+			}
+			else {
+				event._result=player.chooseUseTarget({name:result.links[0][2],isCard:true,nature:result.links[0][3]},false);
+			}
+			'step 3'
+			if(!result.bool){
+				player.draw();
+				// event.finish();
+			}
+			'step 4'
+			if(event.count<event.color.length){
+				player.logSkill('yb017_chuanxiny');
+				event.goto(1);
+			}
+		},
+	},
 	'yb017_zuigui':{
 		audio:'ext:夜白神略/audio/character:1',
 		forced:true,
