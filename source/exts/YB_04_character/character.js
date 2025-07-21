@@ -94,7 +94,7 @@ const character = { //武将格式 :
 	ybsl_xuyou:['male','qun',3,['ybsl_zigong','ybsl_zicai'],['rankAdd:legend','rankS:s','name:许|攸','linkTo:xuyou']], //许攸
 	niya_re_liuyan:['male','qun',3,['niya_limu','niya_tushe'],['rankAdd:legend','rankS:s','linkTo:liuyan','tempname:liuyan','YB_mjz:liuyan']], //刘焉
 	niya_caowei:['female','qun','3/4',['niya_youbo','niya_anren','niya_xuantu'],['rankAdd:legend','rankS:s']], //曹微
-	
+	Fe2O3_duqiong:['male','shu',3,['Fe2O3_huishi','Fe2O3_xingchen'],['rankAdd:epic','rankS:a']],//杜琼
 	
 	
 	

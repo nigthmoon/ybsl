@@ -33,6 +33,28 @@ const characterCopyright = {
 	qmsgswkjsgj_re_yangbiao:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
 	qmsgswkjsgj_re_luotong:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
 	qmsgswkjsgj_re_liuyan:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_lusu:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_caorui:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_caiwenji:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	sgsxjxfzmnl_re_xusheng:'<font color=cyan>三国杀，仙界下凡怎么你了（番茄小说）</font><br>❃技能设计：作家时霜<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',

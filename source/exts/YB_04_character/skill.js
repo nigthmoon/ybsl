@@ -3316,7 +3316,75 @@ const skill = {
 			player.recover(event.numb);
 		},
 	},
-
+	//杜琼
+	Fe2O3_huishi:{
+		audio: 'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			global: "phaseEnd",
+		},
+		filter(event, player) {
+			return player.countCards("h") > 0;
+		},
+		content: async function (event, trigger, player) {
+			var cards = player.getCards("h");
+			if (cards.length > 1) {
+				const { result } = await player
+					.chooseToMove("会失：将牌按顺序置于牌堆顶", true)
+					.set("list", [["牌堆顶", cards]])
+					.set("reverse", _status.currentPhase?.next && get.attitude(player, _status.currentPhase.next) > 0)
+					.set("processAI", function (list) {
+						const cards = list[0][1].slice(0);
+						cards.sort(function (a, b) {
+							return (_status.event.reverse ? 1 : -1) * (get.value(b) - get.value(a));
+						});
+						return [cards];
+					});
+				if (!result.bool) {
+					return;
+				}
+				cards = result.moved[0];
+			}
+			cards.reverse();
+			await game.cardsGotoPile(cards, "insert");
+			game.log(player, "将", cards, "置于了牌堆顶");
+		}
+	},
+	Fe2O3_xingchen:{
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger:{
+			target: "useCardToTargeted",
+		},
+		check(event, player) {
+			var num = player.countMark('Fe2O3_xingchen_discard')+1;
+			if(num>=3)return player.countCards('h')+3>num*2;
+			return true;
+		},
+		content:function () {
+			'step 0'
+			player.draw(3,'bottom');
+			player.addTempSkill('Fe2O3_xingchen_discard');
+			player.addMark('Fe2O3_xingchen_discard');
+			player.markSkill('Fe2O3_xingchen_discard');
+			'step 1'
+			var num = player.countMark('Fe2O3_xingchen_discard');
+			player.chooseToDiscard('星谶：请弃置'+num+'张牌','he',num,true);
+		},
+		mark:true,
+		intro:{
+			markcount: (storage,player) => {
+				var num = player.countMark('Fe2O3_xingchen_discard');
+				return num;
+			},
+		},
+		subSkill:{
+			discard :{
+				// mark:true,
+				onremove:true,
+				// marktext: "谶",
+			}
+		},
+	},
 
 
 

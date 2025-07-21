@@ -12,4 +12,6 @@ const characterTitle = { //称号
 	ybnb_wangbi: '倾厦之梁',
 	ybsl_jiangziwen:'骨清为神',
 	ybsl_suojing: '铜驼荆棘',
+
+	Fe2O3_duqiong:'蜀之球琳',
 }

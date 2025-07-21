@@ -66,6 +66,43 @@ const translate = {
 	niya_xuantu_info:'当你受到伤害后或出牌阶段限一次，你可弃置y张牌，然后回复至多lnb点体力。b为玄途弃置y张牌的点数和。',
 	// niya_xuantu_info:'当你受到伤害时或出牌阶段限一次，你可弃置y张牌，然后回复至多lnb点体力，然后你可调整游波中对数里底数±1。b为弃置牌点数之和。b为玄途弃置y张牌的点数和。',
 
+	Fe2O3_duqiong:'杜琼',
+	Fe2O3_huishi:'会失',
+	Fe2O3_huishi_info:'锁定技，每回合结束时，你将所有手牌以任意顺序置于牌堆顶。',
+	Fe2O3_xingchen:'星谶',
+	Fe2O3_xingchen_info:'当你成为牌的目标后，你可以从牌堆底摸三张牌，然后弃置X张牌（X为本回合此技能发动次数）。',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	ybsl_clanwjls: '<span class=greentext>吴郡陆氏</span>',
 	ybsl_clanwjls_info: '夜白自设的宗族角色，目前只有吴郡陆氏',
 

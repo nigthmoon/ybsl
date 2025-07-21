@@ -66,7 +66,7 @@ const characterCopyright = {
 	ybsl_xuyou:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方许攸', //许攸
 	niya_re_liuyan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方刘焉',
 	niya_caowei:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：p站<br>♦︎配音：暂无',
-	
+	Fe2O3_duqiong:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：从雨<br>♦︎代码撰写者：夜白<br>♦︎插图：图先欠着<br>♦︎配音：暂无',
 	
 	
 	
@@ -85,7 +85,7 @@ const characterCopyright = {
 	ybsl_hairi:'<font color=cyan>夜白杂设-编号暂无</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：Summer Pockets<br>❀配音：Summer Pockets（若有）',
 	sp_key_umi:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：Summer Pockets（若有）',
 	ybsl_pujing:'<font color=cyan>夜白杂设-编号暂无</font><br>♣︎️技能设计：夜白<br>♣︎️代码撰写者：夜白<br>♣︎️插图：三国杀官方（若有）<br>♣︎️配音：三国杀官方（若有）',
-
+	
 
 
 

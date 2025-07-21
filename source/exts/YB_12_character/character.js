@@ -7,7 +7,7 @@ const character = { //武将格式 :
 
 	sgskjdbzjms_mo_zhoutai:['male','devil',4,['sgskjdbzjms_tiequ','sgskjdbzjms_xieren','sgskjdbzjms_cuiti'],['rankAdd:rare','rankS:b','linkTo:zhoutai','YB_mjz:zhoutai','tempname:zhoutai','wu']],
 	sgskjdbzjms_shen_zhugeliang:['male','shen',4,['sgskjdbzjms_zhongwu','qixing','sgskjdbzjms_kuangfeng','dawu','sgskjdbzjms_tianshi'],['rankAdd:legend','rankS:s','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','tempname:shen_zhugeliang','shu']],
-	sgskjdbzjms_leizhenzi:['male','shen',3,['sgskjdbzjms_leishen','sgskjdbzjms_jiangxing','sgskjdbzjms_leifa','sgskjdbzjms_fenglei'],['rankAdd:legend','rankS:s','qun']],
+	sgskjdbzjms_leizhenzi:['male','shen',3,['sgskjdbzjms_leishen','sgskjdbzjms_jiangxing','sgskjdbzjms_leifa','sgskjdbzjms_fenglei'],['rankAdd:legend','rankS:s','qun','name:null|null']],
 	sgskjdbzjms_xian_zhugeguo:['female','shen',3,['sgskjdbzjms_qirang','sgskjdbzjms_cifu','sgskjdbzjms_yuhua'],['rankAdd:legend','rankS:s','linkTo:zhugeguo','YB_mjz:zhugeguo','shu']],
 	sgskjdbzjms_zhen_zhangfei:['male','shu','4/6',['sgskjdbzjms_paoxiao','sgskjdbzjms_kuangbao','sgskjdbzjms_yinhen'],['rankAdd:junk','rankS:d','linkTo:re_zhangfei','YB_mjz:re_zhangfei']],
 	sgskjdbzjms_zhen_guanyu:['male','shu',4,['sgskjdbzjms_wusheng','sgskjdbzjms_danji','sgskjdbzjms_fujun'],['rankAdd:legend','rankS:s','linkTo:re_guanyu','YB_mjz:wu_guanyu']],
@@ -26,11 +26,29 @@ const character = { //武将格式 :
 	qmsgswkjsgj_re_sp_duyu:['male','qun',4,['qmsgswkjsgj_spwuku','qmsgswkjsgj_spsanchen'],['rankAdd:legend','rankS:ap','linkTo:sp_duyu','YB_mjz:sp_duyu','tempname:sp_duyu']],
 	qmsgswkjsgj_gui_liubei:['male','YB_gui',4,['rende','jijiang','qmsgswkjsgj_taiping'],['rankAdd:rare','rankS:a','linkTo:liubei','YB_mjz:liubei','tempname:liubei']],
 	qmsgswkjsgj_gui_re_zhouyu:['male','YB_gui',3,['reyingzi','refanjian','qmsgswkjsgj_baolian'],['rankAdd:rare','rankS:a','linkTo:re_zhouyu','YB_mjz:re_zhouyu','tempname:re_zhouyu']],
-	qmsgswkjsgj_shen_zhugeliang:['male','shen',3,["qixing", "qmsgswkjsgj_kuangfeng", "dawu",'qmsgswkjsgj_guanxing'],['rankAdd:eqic','rankS:a','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','tempname:shen_zhugeliang','shu']],
+	qmsgswkjsgj_shen_zhugeliang:['male','shen',3,["qixing", "qmsgswkjsgj_kuangfeng", "dawu",'qmsgswkjsgj_guanxing'],['rankAdd:eqic','rankS:a','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','tempname:shen_zhugeliang','shu','name:诸葛|亮']],
 	qmsgswkjsgj_sb_huangzhong:['male','shu',4,['qmsgswkjsgj_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong','tempname:sb_huangzhong']],
 	qmsgswkjsgj_re_yangbiao:['male','qun',3,["qmsgswkjsgj_zhaohan", "qmsgswkjsgj_rangjie", "qmsgswkjsgj_yizheng"],['rankAdd:legend','rankS:s','linkTo:yangbiao','YB_mjz:yangbiao','tempname:yangbiao']],
 	qmsgswkjsgj_re_luotong:['male','wu',4,['qmsgswkjsgj_qinzheng'],['rankAdd:legend','rankS:s','linkTo:luotong','YB_mjz:luotong','tempname:luotong']],
 	qmsgswkjsgj_re_liuyan:['male','qun',3,['qmsgswkjsgj_tushe','qmsgswkjsgj_limu','qmsgswkjsgj_pianan'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],
+	qmsgswkjsgj_re_lusu:['male','wu',3,['qmsgswkjsgj_haoshi','dimeng'],['rankAdd:legend','rankS:s','linkTo:re_lusu','YB_mjz:re_lusu','tempname:re_lusu']],
+	// qmsgswkjsgj_re_caorui:['male','wei',3,['huituo','mingjian','xingshuai'],['rankAdd:legend','rankS:s','linkTo:caorui','YB_mjz:caorui','tempname:caorui','zhu']],
+	qmsgswkjsgj_re_caiwenji:['female','qun',3,['qmsgswkjsgj_beige','duanchang'],['rankAdd:legend','rankS:s','linkTo:re_caiwenji','YB_mjz:re_caiwenji','tempname:re_caiwenji','name:蔡|琰']],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	sgsxjxfzmnl_re_xusheng:['male','wu',4,['sgsxjxfzmnl_pojun'],['rankAdd:legend','rankS:ap','linkTo:re_xusheng','YB_mjz:re_xusheng','tempname:re_xusheng']],
 	sgsxjxfzmnl_sb_huangzhong:['male','shu',4,['sgsxjxfzmnl_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong','tempname:sb_huangzhong']],

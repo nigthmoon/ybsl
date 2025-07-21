@@ -226,6 +226,22 @@ const translate = {
 	qmsgswkjsgj_pianan:'偏安',
 	qmsgswkjsgj_pianan_info:'锁定技，当你受到伤害时，若你的判定区有牌，你弃置其中一张，防止此伤害。',
 
+	qmsgswkjsgj_re_lusu:'界鲁肃',
+	qmsgswkjsgj_re_lusu_prefix:'界',
+	qmsgswkjsgj_haoshi:'好施',
+	qmsgswkjsgj_haoshi_info:'摸牌阶段，你可以多摸两张牌，然后若你的手牌数大于5，则你可以将一半的手牌（向下取整）交给一名其他角色，然后直到你的回合开始，当你成为【杀】或普通锦囊牌的目标后，其可将一张手牌交给你。',
+
+	qmsgswkjsgj_re_caiwenji:'界蔡文姬',
+	qmsgswkjsgj_re_caiwenji_prefix:'界',
+	qmsgswkjsgj_beige:'悲歌',
+	qmsgswkjsgj_beige_info:'当有角色受到【杀】造成的伤害后，你可以弃一张牌，若此牌花色为：♥该角色回复X点体力(X为伤害点数)；♦︎该角色摸三张牌；♣伤害来源弃三张牌；♠伤害来源将其武将牌翻面。',
+
+	qmsgswkjsgj_re_caorui:'界曹叡',
+	qmsgswkjsgj_re_caorui_prefix:'界',
+
+
+
+
 
 
 

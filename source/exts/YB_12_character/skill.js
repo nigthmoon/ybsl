@@ -2756,8 +2756,239 @@ const skill = {
 			trigger.cancel();
 		},
 	},
+	//界鲁肃
+	qmsgswkjsgj_haoshi:{
+		audio: 'haoshi',
+		trigger: { player: "phaseDrawBegin2" },
+		filter(event, player) {
+			return !event.numFixed;
+		},
+		check(event, player) {
+			// return (
+			// 	player.countCards("h") + 2 + event.num <= 5 ||
+			// 	game.hasPlayer(function (target) {
+			// 		return (
+			// 			player !== target &&
+			// 			!game.hasPlayer(function (current) {
+			// 				return current !== player && current !== target && current.countCards("h") < target.countCards("h");
+			// 			}) &&
+			// 			get.attitude(player, target) > 0
+			// 		);
+			// 	})
+			// );
+			return true;
+		},
+		content() {
+			trigger.num += 2;
+			player.addTempSkill("qmsgswkjsgj_haoshi_give", "phaseDrawAfter");
+		},
+		subSkill: {
+			give: {
+				trigger: { player: "phaseDrawEnd" },
+				forced: true,
+				charlotte: true,
+				popup: false,
+				filter(event, player) {
+					return player.countCards("h") > 5;
+				},
+				content() {
+					"step 0";
+					var targets = game.filterPlayer(function (target) {
+							return (
+								target != player 
+							);
+						}),
+						num = Math.floor(player.countCards("h") / 2);
+					player.chooseCardTarget({
+						position: "h",
+						filterCard: true,
+						filterTarget(card, player, target) {
+							return _status.event.targets.includes(target);
+						},
+						targets: targets,
+						selectTarget: targets.length == 1 ? -1 : 1,
+						selectCard: num,
+						prompt: "将" + get.cnNumber(num) + "张手牌交给一名手牌数最少的其他角色",
+						// forced: true,
+						ai1(card) {
+							var goon = false,
+								player = _status.event.player;
+							for (var i of _status.event.targets) {
+								if (get.attitude(i, player) > 0 && get.attitude(player, i) > 0) {
+									goon = true;
+								}
+								break;
+							}
+							if (goon) {
+								if (
+									!player.hasValueTarget(card) ||
+									(card.name == "sha" &&
+										player.countCards("h", function (cardx) {
+											return cardx.name == "sha" && !ui.selected.cards.includes(cardx);
+										}) > player.getCardUsable("sha"))
+								) {
+									return 2;
+								}
+								return Math.max(2, get.value(card) / 4);
+							}
+							return 1 / Math.max(1, get.value(card));
+						},
+						ai2(target) {
+							return get.attitude(_status.event.player, target);
+						},
+					});
+					"step 1";
+					if (result.bool) {
+						var target = result.targets[0];
+						player.line(target, "green");
+						player.give(result.cards, target);
+						player.markAuto("qmsgswkjsgj_haoshi_help", [target]);
+						player.addTempSkill("qmsgswkjsgj_haoshi_help", { player: "phaseBeginStart" });
+					}
+				},
+			},
+			help: {
+				trigger: { target: "useCardToTargeted" },
+				direct: true,
+				charlotte: true,
+				onremove: true,
+				filter(event, player) {
+					if (!player.storage.qmsgswkjsgj_haoshi_help || !player.storage.qmsgswkjsgj_haoshi_help.length) {
+						return false;
+					}
+					if (event.card.name != "sha" && get.type(event.card) != "trick") {
+						return false;
+					}
+					for (var i of player.storage.qmsgswkjsgj_haoshi_help) {
+						if (i.countCards("h") > 0) {
+							return true;
+						}
+					}
+					return false;
+				},
+				content() {
+					"step 0";
+					if (!event.targets) {
+						event.targets = player.storage.qmsgswkjsgj_haoshi_help.slice(0).sortBySeat();
+					}
+					event.target = event.targets.shift();
+					event.target
+						.chooseCard("h", "好施：是否将一张手牌交给" + get.translation(player) + "？")
+						.set("ai", function (card) {
+							var player = _status.event.player,
+								target = _status.event.getTrigger().player;
+							if (!_status.event.goon) {
+								if (get.value(card, player) < 0 || get.value(card, target) < 0) {
+									return 1;
+								}
+								return 0;
+							}
+							var cardx = _status.event.getTrigger().card;
+							if (card.name == "shan" && get.tag(cardx, "respondShan") && target.countCards("h", "shan") < player.countCards("h", "shan")) {
+								return 2;
+							}
+							if (card.name == "sha" && (cardx.name == "juedou" || (get.tag(card, "respondSha") && target.countCards("h", "sha") < player.countCards("h", "sha")))) {
+								return 2;
+							}
+							if (get.value(card, target) > get.value(card, player) || target.getUseValue(card) > player.getUseValue(card)) {
+								return 1;
+							}
+							if (player.hasSkillTag("noh")) {
+								return 0.5 / Math.max(1, get.value(card, player));
+							}
+							return 0;
+						})
+						.set("goon", get.attitude(event.target, player) > 0);
+					"step 1";
+					if (result.bool) {
+						target.logSkill("qmsgswkjsgj_haoshi_help", player);
+						target.give(result.cards, player);
+					}
+					if (targets.length) {
+						event.goto(0);
+					}
+				},
+			},
+		},
 
+	},
+	//界曹叡
+	//界蔡文姬
+	qmsgswkjsgj_beige:{
+		audio: "beige",
+		audioname: ["re_caiwenji"],
+		trigger: { global: "damageEnd" },
+		filter(event, player) {
+			return event.card && event.card.name == "sha" && event.source && event.player.classList.contains("dead") == false && player.countCards("he");
+		},
+		// direct: true,
+		checkx(event, player) {
+			var att1 = get.attitude(player, event.player);
+			var att2 = get.attitude(player, event.source);
+			return [att1,att2];
+		},
+		cost(){
+			var next = player.chooseToDiscard("he", get.prompt2("qmsgswkjsgj_beige", trigger.player));
+			var check = lib.skill.qmsgswkjsgj_beige.checkx(trigger, player);
+			next.set("ai", function (card) {
+				var num = Math.max(8-get.value(card),1);
+				if (_status.event.goon) {
+					var list = _status.event.goon;
+					if(get.suit(card) == "spade"){
+						num*=-list[1];
+						if(trigger.source && trigger.source.isTurnedOver()){
+							num*=-1;
+						}
+					}
+					if(get.suit(card) == "heart"){
+						num*=list[0];
+						num*=trigger.num;
+					}
+					if(get.suit(card) == "club"){
+						num*=-list[1];
+						if(trigger.source && trigger.source.countCards("he")==0){
+							num*=0;
+						}
+					}
+					if(get.suit(card) == "diamond"){
+						num*=list[0];
+					}
+					return num;
+				}
+				return 0;
+			});
+			// next.set("logSkill", "qmsgswkjsgj_beige");
+			next.set("goon", check);
+			next.set('chooseonly',true);
+			event.result = next.forResult();
+		},
+		content() {
+			'step 0'
+			player.discard(event.cards);
+			//get.suit(event.card)
+			'step 1'
+			if(event.cards[0].suit){
+				switch (event.cards[0].suit) {
+					case "heart":
+						trigger.player.recover(trigger.num);
+						break;
+					case "diamond":
+						trigger.player.draw(3);
+						break;
+					case "club":
+						trigger.source.chooseToDiscard("he", 3, true);
+						break;
+					case "spade":
+						trigger.source.turnOver();
+						break;
+				}
 
+			}
+		},
+		ai: {
+			expose: 0.3,
+		},
+	},
 
 
 

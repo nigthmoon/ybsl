@@ -265,27 +265,24 @@ const skill = {
 			if(get.color(event.card)=='none') return false;
 			return player.hasZhuSkill('dz014_zaomeng')&&event.player!=player&&(get.color(event.card)=='black'||player.hasMark('dz014_fuhua'))&&event.player.group=='YB_memory';
 		},
-		direct:true,
+		// direct:true,
 		zhuSkill:true,
-		content:function (){
-			'step 0'
+		cost(){
 			var bool=get.color(trigger.card)=='black';
 			var str='令'+get.translation(player);
 			str+=bool?'获得':'移除';
 			str+='一枚“腐”标记？'
 			event.bool=bool;
-			trigger.player.chooseBool(get.prompt('dz014_zaomeng',player),str).set('ai',function(){
+			event.result = trigger.player.chooseBool(get.prompt('dz014_zaomeng',player),str).set('ai',function(){
 				var att=get.attitude(_status.event.player,_status.event.getParent().player);
 				var bool=_status.event.bool;
 				if(att>0) return bool;
 				else return !bool;
-			}).set('bool',bool);
-			'step 1'
-			if(result.bool){
-				trigger.player.logSkill('dz014_zaomeng',player);
-				if(event.bool) player.addMark('dz014_fuhua');
-				else player.removeMark('dz014_fuhua');
-			};
+			}).set('bool',bool).forResult();
+		},
+		content:function (){
+			if(event.bool) player.addMark('dz014_fuhua');
+			else player.removeMark('dz014_fuhua');
 		},
 		ai:{
 			combo:'dz014_fuhua',
@@ -360,7 +357,7 @@ const skill = {
 				trigger:{
 					player:'phaseUseBegin',
 				},
-				direct:true,
+				direct:true,//不用改
 				filter:function (event,player){
 					return player.storage.dz015_tianshu&&player.hasUseTarget(player.storage.dz015_tianshu);
 				},
@@ -518,7 +515,7 @@ const skill = {
 				},
 				charlotte:true,
 				mark:true,
-				direct:true,
+				direct:true,//不用改
 				onremove:true,
 				filter:function (event,player){
 					return player.storage.dz016_zanxu_buff&&typeof player.storage.dz016_zanxu_buff[event.player.playerid]=='number'&&_status.currentPhase==event.player;
@@ -571,7 +568,7 @@ const skill = {
 		trigger:{
 			player:'phaseEnd',
 		},
-		direct:true,
+		direct:true,//牢鬼作品
 		content:function (){
 			'step 0'
 			player.chooseTarget(get.prompt2('dz017_zhushi'),function(card,player,target){
@@ -825,7 +822,7 @@ const skill = {
 				charlotte:true,
 				forced:true,
 				onremove:true,
-				direct:true,
+				direct:true,//牢鬼作品
 				filter:function (event,player,name){
 					if(!player.storage.dzsl_shennu_buff) return false;
 					if(event.player!=player.storage.dzsl_shennu_buff[1]) return false;
@@ -1062,7 +1059,7 @@ const skill = {
 			}
 			return false;
 		},
-		direct:true,
+		direct:true,//屏蔽
 		content:function(){
 			'step 0'
 			if(player.storage.ybsl_xianyin==true){
@@ -1123,7 +1120,7 @@ const skill = {
 					},
 				},
 				trigger:{player:'phaseDrawBegin',},
-				direct:true,
+				direct:true,//不用改
 				content:function(){
 					if(!player.storage.ybsl_xianyin_draw||player.storage.ybsl_xianyin_draw==0){event.finish();}
 					else{
@@ -1225,7 +1222,7 @@ const skill = {
 		subSkill:{
 			use:{
 				trigger:{player:'useCard',},
-				direct:true,
+				direct:true,//不用改
 				charlotte:true,
 				filter:function(event,player){
 					// game.log('event.skill:',event.skill)
@@ -7030,7 +7027,7 @@ const skill = {
 		trigger:{player:'damageEnd'},
 		cost:function(){
 			var list=game.filterPlayer(function(current){
-				return current!=player&&target.countCards('he')>0;
+				return current!=player&&current.countCards('he')>0;
 			});
 			event.result = player.chooseTarget(1,function(card,player,target){
 				return list.includes(target)

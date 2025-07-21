@@ -34,7 +34,7 @@ const card = {
 				equipValue: 2,
 			},
 		},
-		skills: ["ybsl_jinyinrukai"],
+		skills: ["ybsl_jinyinrukai_1",'ybsl_jinyinrukai_2'],
 	},
 	ybsl_jizhiguan:{
 		fullskin: true,

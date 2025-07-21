@@ -18,7 +18,8 @@ const characterSort = {
 			'qmsgswkjsgj_gui_liubei','qmsgswkjsgj_shen_zhugeliang',
 			'qmsgswkjsgj_gui_re_zhouyu','qmsgswkjsgj_sb_huangzhong',
 			'qmsgswkjsgj_re_yangbiao','qmsgswkjsgj_re_luotong',
-			'qmsgswkjsgj_re_liuyan',
+			'qmsgswkjsgj_re_liuyan','qmsgswkjsgj_re_lusu',
+			'qmsgswkjsgj_re_caorui','qmsgswkjsgj_re_caiwenji',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',

@@ -919,127 +919,136 @@ export async function precontent() {
 		}
 	})
 	//嗨梨相关的整理完后挪到对应将包
-	if(lib.config.extension_夜白神略_夜白神略的蓄力点改蓝条==true){
-		/**
-		 * 获得蓄力点
-		 * @param { number } [num = 1] 获得蓄力点数
-		 * @param { boolean } [log] false: 不进行广播
-		 */
-		lib.element.player.addCharge = function(num, log) {
-			if (typeof num != "number" || !num) {
-				num = 1;
-			}
-			let maxCharge = this.getMaxCharge();
-			if (maxCharge == Infinity) {
-				this.addMark("charge", num, log);
-			} else {
-				num = Math.min(num, maxCharge - this.countMark("charge"));
-				if (num > 0) {
+	lib.arenaReady.push(function () {
+		if(lib.config.extension_夜白神略_夜白神略的蓄力点改蓝条==true){
+			/**
+			 * 获得蓄力点
+			 * @param { number } [num = 1] 获得蓄力点数
+			 * @param { boolean } [log] false: 不进行广播
+			 */
+			lib.element.player.addCharge = function(num, log) {
+				if (typeof num != "number" || !num) {
+					num = 1;
+				}
+				let maxCharge = this.getMaxCharge();
+				if (maxCharge == Infinity) {
 					this.addMark("charge", num, log);
-				}
-			}
-			this.YB_updateCharge();
-		}
-		/**
-		 * 移去蓄力点
-		 * @param { number } [num = 1] 移去蓄力点数
-		 * @param { boolean } [log] false: 不进行广播
-		 */
-		lib.element.player.removeCharge= function(num, log) {
-			if (typeof num != "number" || !num) {
-				num = 1;
-			}
-			num = Math.min(num, this.countMark("charge"));
-			if (num > 0) {
-				this.removeMark("charge", num, log);
-			}
-			this.YB_updateCharge();
-		}
-		/**
-		 * 返回玩家的蓄力点数
-		 * @param { boolean } [max] true: 返回当前蓄力点与上限之差
-		 * @returns { number }
-		 */
-		lib.element.player.countCharge= function(max) {
-			if (max) {
-				if (this.getMaxCharge() == Infinity) {
-					return Infinity;
-				}
-				return this.getMaxCharge() - this.countMark("charge");
-			}
-			return this.countMark("charge");
-		}
-		/**
-		 * 获取蓄力点上限
-		 */
-		lib.element.player.getMaxCharge= function() {
-			let skills = game.expandSkills(this.getSkills().concat(lib.skill.global));
-			let max = 0;
-			for (let skill of skills) {
-				let info = get.info(skill);
-				if (!info || !info.chargeSkill || typeof info.chargeSkill != "number") {
-					continue;
-				}
-				if (info.chargeSkill == Infinity) {
-					return Infinity;
-				}
-				max += info.chargeSkill;
-			}
-			max = game.checkMod(this, max, "maxCharge", this);
-			return max;
-		}
-		// lib.skill._YB_updateCharge = {
-		// 	ruleSkill:true,
-		// 	direct:true,
-		// 	trigger:{
-		// 		player:['addChargeAfter','removeChargeAfter'],
-		// 	},
-		// 	content(){
-		// 		player.YB_updateCharge();
-		// 	}
-		// }
-		/**
-		 * 更新蓄力条
-		 */
-		lib.element.player.YB_updateCharge = function(){
-			const player = this;
-			game.broadcastAll(
-				function(player){
-					if (!player.charge) {
-						player.charge = ui.create.div('.mana_nengliangtiao', player);
-						ui.create.div('.mana_jindutiao', player.charge);
+				} else {
+					num = Math.min(num, maxCharge - this.countMark("charge"));
+					if (num > 0) {
+						this.addMark("charge", num, log);
 					}
-					const mana_jindutiao = player.charge.firstChild;
-					const v = player.countMark('charge') / player.getMaxCharge();
-					if (player.dataset.position == 0) {
-						mana_jindutiao.style.width = `${100 * v}%`;
-						mana_jindutiao.style.height = `100%`;
-						mana_jindutiao.innerHTML = '<span style="font-size:19px;color: black;text-shadow:0px 0px 5px #ff0;">'+player.countMark('charge')+'/'+player.getMaxCharge()+'</span>';
+				}
+				this.YB_updateCharge();
+			}
+			/**
+			 * 移去蓄力点
+			 * @param { number } [num = 1] 移去蓄力点数
+			 * @param { boolean } [log] false: 不进行广播
+			 */
+			lib.element.player.removeCharge= function(num, log) {
+				if (typeof num != "number" || !num) {
+					num = 1;
+				}
+				num = Math.min(num, this.countMark("charge"));
+				if (num > 0) {
+					this.removeMark("charge", num, log);
+				}
+				this.YB_updateCharge();
+			}
+			/**
+			 * 返回玩家的蓄力点数
+			 * @param { boolean } [max] true: 返回当前蓄力点与上限之差
+			 * @returns { number }
+			 */
+			lib.element.player.countCharge= function(max) {
+				if (max) {
+					if (this.getMaxCharge() == Infinity) {
+						return Infinity;
 					}
-					else {
-						mana_jindutiao.style.width = `100%`;
-						mana_jindutiao.style.height = `${100 * v}%`;
-						mana_jindutiao.innerHTML = '<span style="font-size:19px;color: black;text-shadow:0px 0px 5px #ff0;">'+player.getMaxCharge()+'<br>/<br>'+player.countMark('charge')+'</span>';
+					return this.getMaxCharge() - this.countMark("charge");
+				}
+				return this.countMark("charge");
+			}
+			/**
+			 * 获取蓄力点上限
+			 */
+			lib.element.player.getMaxCharge= function() {
+				let skills = game.expandSkills(this.getSkills().concat(lib.skill.global));
+				let max = 0;
+				for (let skill of skills) {
+					let info = get.info(skill);
+					if (!info || !info.chargeSkill || typeof info.chargeSkill != "number") {
+						continue;
 					}
-					
+					if (info.chargeSkill == Infinity) {
+						return Infinity;
+					}
+					max += info.chargeSkill;
+				}
+				max = game.checkMod(this, max, "maxCharge", this);
+				return max;
+			}
+			// lib.skill._YB_updateCharge = {
+			// 	ruleSkill:true,
+			// 	direct:true,
+			// 	trigger:{
+			// 		player:['addChargeAfter','removeChargeAfter'],
+			// 	},
+			// 	content(){
+			// 		player.YB_updateCharge();
+			// 	}
+			// }
+			/**
+			 * 更新蓄力条
+			 */
+			lib.element.player.YB_updateCharge = function(){
+				const player = this;
+				game.broadcastAll(
+					function(player){
+						if (!player.charge) {
+							player.charge = ui.create.div('.mana_nengliangtiao', player);
+							ui.create.div('.mana_jindutiao', player.charge);
+						}
+						const mana_jindutiao = player.charge.firstChild;
+						const v = player.countMark('charge') / player.getMaxCharge();
+						if (player.dataset.position == 0) {
+							mana_jindutiao.style.width = `${100 * v}%`;
+							mana_jindutiao.style.height = `100%`;
+							mana_jindutiao.innerHTML = '<span style="font-size:19px;color: black;text-shadow:0px 0px 5px #ff0;">'+player.countMark('charge')+'/'+player.getMaxCharge()+'</span>';
+						}
+						else {
+							mana_jindutiao.style.width = `100%`;
+							mana_jindutiao.style.height = `${100 * v}%`;
+							mana_jindutiao.innerHTML = '<span style="font-size:19px;color: black;text-shadow:0px 0px 5px #ff0;">'+player.getMaxCharge()+'<br>/<br>'+player.countMark('charge')+'</span>';
+						}
+						
+					},
+					player
+				)
+			}
+			/**修改蓄力（没用上） */
+			lib.skill.charge= {
+				markimage: "image/card/charge.png",
+				intro: {
+					content(storage, player) {
+						let max = player.getMaxCharge();
+						if (max == Infinity) {
+							max = "∞";
+						}
+						return `当前蓄力点数：${storage}/${max}`;
+					},
 				},
-				player
-			)
+			}
+			
 		}
-		/**修改蓄力（没用上） */
-		lib.skill.charge= {
-			markimage: "image/card/charge.png",
-			intro: {
-				content(storage, player) {
-					let max = player.getMaxCharge();
-					if (max == Infinity) {
-						max = "∞";
-					}
-					return `当前蓄力点数：${storage}/${max}`;
-				},
-			},
-		}
-		
-	}
+	})
 
+
+	lib.arenaReady.push(function () {
+		if (lib.config.extension_云中守望_enable==true) {
+			lib.character['dzsl_014liutianyu'].isUnseen=true
+			lib.character['ybmjz_shen_caopi'].isUnseen=true
+		}
+	})
 }
