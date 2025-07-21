@@ -1051,4 +1051,13 @@ export async function precontent() {
 			lib.character['ybmjz_shen_caopi'].isUnseen=true
 		}
 	})
+	// lib.arenaReady.push(function () {
+	// 	if(lib.brawl){
+	// 		lib.brawl.YB_lieguizhizhan = {
+	// 			name:'猎鬼之战',
+	// 			mode:'versus',
+
+	// 		}
+	// 	}	
+	// })
 }
