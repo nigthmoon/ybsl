@@ -281,7 +281,8 @@ const skill = {
 			}).set('bool',bool).forResult();
 		},
 		content:function (){
-			if(event.bool) player.addMark('dz014_fuhua');
+			var bool=get.color(trigger.card)=='black';
+			if(bool) player.addMark('dz014_fuhua');
 			else player.removeMark('dz014_fuhua');
 		},
 		ai:{
@@ -2390,7 +2391,7 @@ const skill = {
 		subSkill:{
 			block:{
 				forced:true,
-				direct:true,
+				direct:true,//标记不用管
 				charlotte:true,
 				sub:true,
 			},
@@ -2428,34 +2429,24 @@ const skill = {
 		trigger:{
 			player:'damageEnd',
 		},
-		direct:true,
+		// direct:true,
+		cost(){
+			event.result = player.chooseTarget('请选择一个目标').set('ai',function(target){//ai选目标的限制条件
+				return target.getDamagedHp();//选已损体力最大的
+			}).forResult();
+		},
 		content:function (){
 			'step 0'
-			player.chooseTarget('请选择一个目标').set('ai',function(target){//ai选目标的限制条件
-				return target.getDamagedHp();//选已损体力最大的
-			});
+			event.tar=event.targets[0];
+			event.num=event.tar.maxHp-event.tar.hp;
+			if(event.num>5)event.num=5;
+			if(event.num<1)event.num=1;
+			player.chooseControl('摸牌','弃牌').set('prompt','令'+get.translation(event.tar)+'摸或弃'+event.num+'张牌?').set('ai',function(target){
+				var player=get.player();//定义变量player为选目标的发起者(不懂可以先不写)
+				var target=event.tar;
+				return get.attitude(player,target)>0?'摸牌':'弃牌';
+			})
 			'step 1'
-			if(result.targets){
-				event.tar=result.targets[0];
-				event.num=event.tar.maxHp-event.tar.hp;
-				if(event.num>5)event.num=5;
-				if(event.num<1)event.num=1;
-			}
-			else {
-				event.finish();
-			}
-			'step 2'
-			if(result.bool){
-				player.chooseControl('摸牌','弃牌').set('prompt','令'+get.translation(result.targets[0])+'摸或弃'+event.num+'张牌?').set('ai',function(target){
-					var player=get.player();//定义变量player为选目标的发起者(不懂可以先不写)
-					var target=result.targets[0];
-					return get.attitude(player,target)>0?'摸牌':'弃牌';
-				})
-			}
-			else{
-				event.goto(5);
-			}
-			'step 3'
 			if(result.control=='摸牌'){
 				event.tar.draw(event.num);
 				event.xuan='摸';
@@ -2464,12 +2455,8 @@ const skill = {
 				event.tar.chooseToDiscard(event.num,'he',true);
 				event.xuan='弃';
 			}
-			'step 4'
-			player.logSkill('yb002_shangyuan');
 			game.log(player,'令',event.tar,event.xuan,'了',get.cnNumber(event.num),'张牌');
 			player.addMark('yb002_shangyuan',event.num);
-			'step 5'
-			event.finish();
 		},
 		mark:true,
 		marktext:'殇',
@@ -2630,7 +2617,7 @@ const skill = {
 		levelUp:function(player){
 			player.storage.yb004_shangyuan=true;
 		},
-		direct:true,
+		// direct:true,
 		filter:function(event,player,name){
 			if(name=='damageAfter'){
 				if(event.player==player) return false;
@@ -2638,19 +2625,21 @@ const skill = {
 			if(!player.storage.yb004_shangyuan) return event.name=='damage'&&event.num>0;
 			return name!='damageAfter';
 		},
-		content:function(){
-			'step 0'
+		cost(){
 			var str='';
 			if(event.triggername=='phaseZhunbeiBegin')str+='<span style=\'color:#e1ff00\'>准备阶段</span>或结束阶段或当你受到伤害后';
 			if(event.triggername=='phaseJieshuBegin')str+='准备阶段或<span style=\'color:#e1ff00\'>结束阶段</span>或当你受到伤害后';
 			if(event.triggername=='damageEnd')str+='准备阶段或结束阶段或<span style=\'color:#e1ff00\'>当你受到伤害后</span>';
 			str+='，你可以进行一次判定，若结果为红色，则你回复一点体力或摸两张牌。';
 			if(player.storage.yb004_shangyuan){
-				player.chooseBool(get.prompt('yb004_tianqi',trigger.player),str);
+				event.result = player.chooseBool(get.prompt('yb004_tianqi',trigger.player),str).forResult();
 			}
-			else event._result={bool:true};
-			'step 1'
-			if(result.bool){
+			else event.result={bool:true};
+		},
+		content:function(){
+			'step 0'
+			
+			if(event.bool){
 				player.judge('天祈',function(card){
 					if(player.storage.yb004_shangyuan){
 						if(get.color(card)=='red')return 2;
@@ -2674,7 +2663,7 @@ const skill = {
 					}
 				});
 			}
-			'step 2'
+			'step 1'
 			switch(result.judge){
 				case 3:player.draw(trigger.num+1);break;
 				case 2.5:player.recover(Math.max(trigger.num-1,0));break;
@@ -2946,7 +2935,7 @@ const skill = {
 			player:'useCard',
 		},
 		usable:1,
-		direct:true,
+		direct:true,//也许不用管吧
 		filter:(event,player)=>{
 			if(_status.currentPhase!=player) return false;
 			return true;
@@ -3003,57 +2992,38 @@ const skill = {
 					var name=event.card.name;
 					return player.hasZhuSkill('yb006_biaoshuai')&&event.player!=player&&name==player.storage.yb006_biaoshuai;
 				},
-				direct:true,
-				content:function(){
-					'step 0'
+				// direct:true,
+				cost(){
 					if(player.storage.yb006_biaoshuaix){
-						event.goto(3);
+						var str='表率：是否摸一张牌，然后你可以令'+get.translation(trigger.player)+'摸一张牌。';
+						player.chooseBool(str).set('ai',function() {
+							return true;
+						});
 					}
 					else{
-						event.goto(1);
+						var str='表率：是否令';
+						str+=get.translation(player);
+						str+='摸一张牌，然后你摸一张牌。'
+						trigger.player.chooseBool(str).set('ai',function() {
+							var att=get.attitude(_status.event.player,player);
+							if(att>0) return true;
+							else return false;
+						});
 					}
-					'step 1'
-					var list=['是','cancel2'],str='是否令';
-					str+=get.translation(player);
-					str+='摸一张牌，然后你摸一张牌。'
-					trigger.player.chooseControl(list).set('prompt','表率').set('prompt2',str).set('ai',function(control) {
-						var att=get.attitude(_status.event.player,player);
-						if(att>0) return '是';
-						else return 'cancel2';
-					});
-					'step 2'
-					if(result.control=='是'){
-						trigger.player.addTempSkill('yb006_biaoshuai_4','roundStart');
-						player.draw();
-						trigger.player.draw();
+				},
+				async content(event,trigger,player){
+					await trigger.player.addTempSkill('yb006_biaoshuai_4','roundStart');
+					await player.draw();
+					var result = { bool : true };
+					if(player.storage.yb006_biaoshuaix){
+						var result = await player.chooseBool('表率：是否令'+get.translation(trigger.player)+'摸一张牌。').set('ai',function() {
+							var att=get.attitude(_status.event.player,trigger.player);
+							if(att>0) return true;
+							else return false;
+						}).forResult();
 					}
-					event.finish();
-					'step 3'
-					var list=['是','cancel2'],str='是否摸一张牌';
-					player.chooseControl(list).set('prompt','表率').set('prompt2',str).set('ai',function(control) {
-						return '是';
-					});
-					'step 4'
-					if(result.control=='是'){
-						trigger.player.addTempSkill('yb006_biaoshuai_4','roundStart');
-						player.draw();
-						// trigger.player.draw();
-					}
-					else{
-						event.finish();
-					}
-					'step 5'
-					var list=['是','cancel2'],str='是否令';
-					str+=get.translation(trigger.player);
-					str+='摸一张牌。'
-					player.chooseControl(list).set('prompt','表率').set('prompt2',str).set('ai',function(control) {
-						var att=get.attitude(_status.event.player,trigger.player);
-						if(att>0) return '是';
-						else return 'cancel2';
-					});
-					'step 6'
-					if(result.control=='是'){
-						trigger.player.draw();
+					if(result.bool){
+						await trigger.player.draw();
 					}
 				},
 			},
@@ -3158,9 +3128,10 @@ const skill = {
 				filter:function(event,player){
 					return event.skill&&event.skill=='yb007_chenwang';
 				},
-				direct:true,
+				// direct:true,
+				forced:true,
 				content:function(){
-					player.logSkill('yb007_chenwang')
+					// player.logSkill('yb007_chenwang')
 					player.draw();
 				},
 			},
@@ -12064,8 +12035,8 @@ const skill = {
 				// 	var info=lib.skill[i];
 				// 	if(!info) continue;
 				// 	if(!info.audioname2) info.audioname2={};
-				// 	info.audioname2.key_shiki='shiki_omusubi';
-				// }
+				// 	info.audioname2.key_shiki='shiki_';
+				// }omusubi
 			},list);
 			// player.recover(player.maxHp-player.hp);
 		},
