@@ -1377,8 +1377,7 @@ const skill = {
 			return att1>0&&att2<=0;
 		},
 		preHidden:true,
-		content:function (){
-			'step 0'
+		cost(){
 			var next=player.chooseToDiscard('he',get.prompt2('ybsl_beige',trigger.player));
 			var check=lib.skill.ybsl_beige.checkx(trigger,player);
 			next.set('ai',function(card){
@@ -1387,15 +1386,12 @@ const skill = {
 			});
 			next.set('logSkill','ybsl_beige');
 			next.set('goon',check);
-			next.setHiddenSkill('ybsl_beige');
+			event.result = next.forResult();
+		},
+		content:function (){
+			'step 0'
+			trigger.player.judge();
 			'step 1'
-			if(result.bool){
-				trigger.player.judge();
-			}
-			else{
-				event.finish();
-			}
-			'step 2'
 			switch(result.suit){
 				case 'heart':trigger.player.recover();break;
 				case 'diamond':trigger.player.draw(2);break;
@@ -1963,9 +1959,9 @@ const skill = {
 		audio:'ext:夜白神略/audio/character:2',
 		enable:'phaseUse',
 		usable:1,
-		filter:function(event,player){
-			return player.storage.yb002_ziren!=true;
-		},
+		// filter:function(event,player){
+		// 	return player.storage.yb002_ziren!=true;
+		// },
 		ai:{
 			order:11,//主动技使用的先后，杀是3，酒是3.2。这个技能排在最前面
 			result:{//主动技的收益
@@ -1974,29 +1970,67 @@ const skill = {
 				},
 			},
 		},
-		direct:true,
-		content:function(){
-			'step 0'
-			player.chooseControl('无','火','雷','cancel2');
-			'step 1'
-			if(result.control=='cancel2'){
-				player.storage.counttrigger.yb002_ziren--;
-				event.finish;
-			}
-			else{
-				if(result.control=='无'){
-					player.damage('nocard',player);
-				}
-				if(result.control=='火'){
-					player.damage('fire','nocard',player);
-				}
-				if(result.control=='雷'){
-					player.damage('thunder','nocard',player);
-				}
-				game.log('yb002_ziren');
-				// player.storage.yb002_ziren=true;
-			}
+		chooseButton: {
+			dialog(event, player) {
+				return ui.create.dialog("###自刃###" + lib.translate.yb002_ziren_info);
+			},
+			chooseControl(event, player) {
+				var list2 = ['无','火','雷','cancel2'];
+				return list2;
+			},
+			check() {
+				if(get.damageEffect(player, player,player,'fire')>0)return '火';
+				else if(get.damageEffect(player, player,player,'thunder')>0)return '雷';
+				else if(player.hp>1)return '无';//血量大于1时，默认选项为无
+				// return '无';//默认选项
+				return "cancel2";
+			},
+			backup(result, player) {
+				return {
+					markname: result.control,
+					filterCard() {
+						return false;
+					},
+					selectCard: -1,
+					// log: false,
+					content() {
+						var name = lib.skill.yb002_ziren_backup.markname;
+						if(name=='无'){
+							player.damage('nocard',player);
+						}
+						if(name=='火'){
+							player.damage('fire','nocard',player);
+						}
+						if(name=='雷'){
+							player.damage('thunder','nocard',player);
+						}
+					},
+				};
+			},
 		},
+		// direct:true,
+		// content:function(){
+		// 	'step 0'
+		// 	player.chooseControl('无','火','雷','cancel2');
+		// 	'step 1'
+		// 	if(result.control=='cancel2'){
+		// 		player.storage.counttrigger.yb002_ziren--;
+		// 		event.finish;
+		// 	}
+		// 	else{
+		// 		if(result.control=='无'){
+		// 			player.damage('nocard',player);
+		// 		}
+		// 		if(result.control=='火'){
+		// 			player.damage('fire','nocard',player);
+		// 		}
+		// 		if(result.control=='雷'){
+		// 			player.damage('thunder','nocard',player);
+		// 		}
+		// 		game.log('yb002_ziren');
+		// 		// player.storage.yb002_ziren=true;
+		// 	}
+		// },
 	},
 	//------------------------SP陈爱琳（旧版）
 	'yb002_touxin':{
@@ -11871,18 +11905,42 @@ const skill = {
 				}
 			},
 		},
+		ai : {
+			effect : {
+				player_use(card, player, target) {
+					const suits = [], suit = get.suit(card)
+					player.getHistory('useCard', evt => suits.add(get.suit(evt.card)))
+					if (suits.length > 1) return
+					if (suits.length == 1 && get.suit(card) == suits[0]) return [1, 2]
+					if (!player.isPhaseUsing()) return [1, player.countCards('hs', {suit}) / 5]
+					let cards = player.getCards('hs', card => get.suit(card) == suit),
+						names = cards.reduce((a, b) => a.add(get.name(b)), []),
+						len = cards.length
+					for (const name of names) {
+						let usable = player.getCardUsable(name, true) - player.countUsed(name),
+							count = cards.filter(i => get.name(i) == name).length
+						if (name == 'tao') usable = Math.min(usable, player.getDamagedHp())
+						len -= Math.max(count - usable, 0)
+					}
+					return [1, len / 2]
+				}
+			}
+		},
 		mod:{
 			aiOrder(player, card, num) {
-				var history = player.getHistory('useCard');
-				if(history) {
-					var suits = [];
-					for(var i =0;i< history.length;i++){
-						suits.add(get.suit(history[i].card));
-					}
-					if(suits.length==1){
-						if(get.suit(card)==suits[0])return num+100;
-					}
+				const suits = [], suit = get.suit(card), event = get.event()
+				player.getHistory('useCard', evt => suits.add(get.suit(evt.card)))
+				if (suits.length == 1 && suit == suits[0]) return num + 100
+				let cards = player.getCards('hs', card => get.suit(card) == suit),
+					names = cards.reduce((a, b) => a.add(get.name(b)), []),
+					len = cards.length
+				for (const name of names) {
+					let usable = player.getCardUsable(name, true) - player.countUsed(name),
+						count = cards.filter(i => get.name(i) == name).length
+					if (name == 'tao') usable = Math.min(usable, player.getDamagedHp())
+					len -= Math.max(count - usable, 0)
 				}
+				return num + len * 10
 			},
 			aiValue(player, card, num){
 				var history = player.getHistory('useCard');

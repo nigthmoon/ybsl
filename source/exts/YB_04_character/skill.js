@@ -3318,13 +3318,45 @@ const skill = {
 	},
 	//杜琼
 	Fe2O3_huishi:{
+		mod : {
+			aiValue(player, card, num) {
+				//降低手牌价值
+				if (get.position(card) == 'h') {
+					//自己的出牌阶段不降低可用牌的价值
+					if (player.isPhaseUsing() && player.getUseValue(card)) {
+						const name = get.name(card)
+						let usable = player.getCardUsable(name, true) - player.countUsed(name)
+						if (name == 'tao') usable = Math.min(usable, player.getDamagedHp())
+						const cards = player.getCards('h', cardx => cardx.name == name)
+						cards.sort((a, b) => player.getUseValue(b) - player.getUseValue(a))
+						if (cards.indexOf(card) < usable) return num
+					}
+					//根据下回合角色判定区内的牌保留手牌
+					let next = player.getNext()
+					if (game.hasPlayer(current => !current.isTurnedOver())) while (next.isTurnedOver()) next = next.getNext()
+					let att = get.sgn(get.attitude(player, next)),
+						js = next.getCards("j")
+					let top = []
+					for (const j of js) top.push(player.getCards('h', i => get.judge(j)(i) * att > 0 && !top.includes(i))[0])
+					if (top.includes(card)) return num * 1.2
+					//如果下回合角色是敌方角色，保留低价值牌
+					if (att < 0) return - num / 4
+					return num / 4
+				}
+				//增加非手牌价值
+				return num * 2
+			},
+			get aiUseful() {
+				return lib.skill.Fe2O3_huishi.mod.aiValue
+			}
+		},
 		audio: 'ext:夜白神略/audio/character:2',
 		forced:true,
 		trigger:{
 			global: "phaseEnd",
 		},
 		filter(event, player) {
-			return player.countCards("h") > 0;
+			return player.countCards("h")
 		},
 		content: async function (event, trigger, player) {
 			var cards = player.getCards("h");
@@ -3334,11 +3366,79 @@ const skill = {
 					.set("list", [["牌堆顶", cards]])
 					.set("reverse", _status.currentPhase?.next && get.attitude(player, _status.currentPhase.next) > 0)
 					.set("processAI", function (list) {
-						const cards = list[0][1].slice(0);
-						cards.sort(function (a, b) {
-							return (_status.event.reverse ? 1 : -1) * (get.value(b) - get.value(a));
+						let cards = list[0][1],
+							player = _status.event.player,
+							target = (_status.currentPhase || player).next,
+							countWuxie = current => {
+								let num = current.getKnownCards(player, card => {
+									return get.name(card, current) === "wuxie";
+								});
+								if (num && current !== player) {
+									return num;
+								}
+								let skills = current.getSkills("invisible").concat(lib.skill.global);
+								game.expandSkills(skills);
+								for (let i = 0; i < skills.length; i++) {
+									let ifo = get.info(skills[i]);
+									if (!ifo) {
+										continue;
+									}
+									if (ifo.viewAs && typeof ifo.viewAs != "function" && ifo.viewAs.name == "wuxie") {
+										if (!ifo.viewAsFilter || ifo.viewAsFilter(current)) {
+											num++;
+											break;
+										}
+									} else {
+										let hiddenCard = ifo.hiddenCard;
+										if (typeof hiddenCard == "function" && hiddenCard(current, "wuxie")) {
+											num++;
+											break;
+										}
+									}
+								}
+								return num;
+							},
+							top = [];
+						if (game.hasPlayer(current => !current.isTurnedOver())) while (target.isTurnedOver()) target = target.getNext()
+						let att = get.sgn(get.attitude(player, target)),
+							judges = target.getCards("j"),
+							needs = 0,
+							wuxie = countWuxie(target);
+						for (let i = Math.min(cards.length, judges.length) - 1; i >= 0; i--) {
+							let j = judges[i],
+								cardj = j.viewAs ? { name: j.viewAs, cards: j.cards || [j] } : j;
+							if (wuxie > 0 && get.effect(target, j, target, target) < 0) {
+								wuxie--;
+								continue;
+							}
+							let judge = get.judge(j);
+							cards.sort((a, b) => {
+								return (judge(b) - judge(a)) * att;
+							});
+							if (judge(cards[0]) * att < 0) {
+								needs++;
+								continue;
+							} else {
+								top.unshift(cards.shift());
+							}
+						}
+						if (needs > 0 && needs >= judges.length) {
+							return [top.concat(cards)];
+						}
+						cards.sort((a, b) => {
+							return (get.value(b, target) - get.value(a, target)) * att;
 						});
-						return [cards];
+						while (needs--) {
+							top.unshift(cards.shift());
+						}
+						while (cards.length) {
+							if (get.value(cards[0], target) > 6 == att > 0) {
+								top.push(cards.shift());
+							} else {
+								break;
+							}
+						}
+						return [top.concat(cards)]
 					});
 				if (!result.bool) {
 					return;
@@ -3347,7 +3447,13 @@ const skill = {
 			}
 			cards.reverse();
 			await game.cardsGotoPile(cards, "insert");
-			game.log(player, "将", cards, "置于了牌堆顶");
+			if (player == game.me) ui.updatehl()
+			game.addCardKnower(cards, player);
+			game.log(player, "将" + get.cnNumber(cards.length) + "张牌置于牌堆顶");
+		},
+		ai : {
+			neg : true,
+			nogain : true,
 		}
 	},
 	Fe2O3_xingchen:{
@@ -3360,28 +3466,61 @@ const skill = {
 			if(num>=3)return player.countCards('h')+3>num*2;
 			return true;
 		},
-		content:function () {
-			'step 0'
-			player.draw(3,'bottom');
-			player.addTempSkill('Fe2O3_xingchen_discard');
-			player.addMark('Fe2O3_xingchen_discard');
-			player.markSkill('Fe2O3_xingchen_discard');
-			'step 1'
-			var num = player.countMark('Fe2O3_xingchen_discard');
-			player.chooseToDiscard('星谶：请弃置'+num+'张牌','he',num,true);
+		async cost(event, trigger, player) {
+			event.result = await player.chooseBool(get.prompt2('Fe2O3_xingchen')).set('choice', lib.skill.Fe2O3_xingchen.check(event(), player)).forResult()
+			if (!event.result.bool) return
+			player.addTempSkill('Fe2O3_xingchen_used');
+			player.addMark('Fe2O3_xingchen_used');
+			player.markSkill('Fe2O3_xingchen_used');
+		},
+		async content(event, trigger, player) {
+			await player.draw(3,'bottom');
+			var num = player.countMark('Fe2O3_xingchen_used');
+			const next = player.chooseToDiscard('星谶：请弃置'+num+'张牌','he',num,true);
+			next.set('cardx', trigger.card)
+			next.set('Fe2O3_xingchen', true)
+			next.set('sourcex', trigger.player)
+			next.set('complexCard', true)
+			next.set('ai', card => {
+				let num = - get.value(card),
+					cardx = get.event('cardx'),
+					type = get.subtype(card)
+				//保留一张可响应触发此技能牌的牌
+				let sourcex = get.event('source'),
+					eff = get.effect(player, cardx, sourcex),
+					useEvent = get.event().getParent('useCard')
+				if (eff < 0 && card == player.getCards('h', i => player.canRespond(useEvent, i, true))[0]) return num - 5
+				//成为装备牌的目标后优先弃置装备区内同副类别牌
+				if (get.type(card) != 'equip') return num
+				if (get.type(cardx) != 'equip') return num
+				if (get.position(card) != 'e') return num
+				if (type != get.subtype(cardx)) return num
+				if (player.countEmptySlot(type)) return num
+				if (ui.selected.cards.some(i => get.subtype(i) == type && get.position(i) == 'e')) return num
+				return 12 + num
+			})
 		},
 		mark:true,
 		intro:{
 			markcount: (storage,player) => {
-				var num = player.countMark('Fe2O3_xingchen_discard');
+				var num = player.countMark('Fe2O3_xingchen_used');
 				return num;
 			},
 		},
 		subSkill:{
-			discard :{
+			used :{
 				// mark:true,
 				onremove:true,
 				// marktext: "谶",
+			}
+		},
+		ai : {
+			effect : {
+				target(card, player, target) {
+					const num = player.countMark('Fe2O3_xingchen')
+					if (num > 3 || !target.hasFriend() || get.event('Fe2O3_xingchen')) return
+					return [1, 0.33 * (3 - num)]
+				}
 			}
 		},
 	},

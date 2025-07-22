@@ -500,6 +500,7 @@ const skill = {
 				.set("att", get.attitude(player, target));
 			if(result.cards){
 				yield player.gain(result.cards, target);
+				game.log(player,'获得了',target,'的一张牌');
 				if(trigger.source&&trigger.source!=target||!trigger.source){
 					player.chooseToDiscard('he');
 				}
@@ -584,14 +585,15 @@ const skill = {
 					player:'loseAfter',
 					global:['equipAfter','addJudgeAfter','gainAfter','loseAsyncAfter','addToExpansionAfter'],
 				},
-				usable(player){
+				usable(skill, player){
 					return player.getDamagedHp()+1;
 				},
 				filter(event, player) {
 					if (event.name == "lose" && event.getParent().name == "useCard") {
 						return false;
 					}
-					return true;
+					const evt = event.getl(player)
+					return evt && evt.player == player && evt.hs && evt.hs.length > 0
 				},
 				// filter: function (event, player, name) {
 				// 	if (event.name.indexOf("lose") == 0) {
