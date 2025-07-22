@@ -1370,7 +1370,7 @@ const skill = {
 			return (event.card&&event.card.name=='sha'&&event.source&&
 					event.player.classList.contains('dead')==false&&player.countCards('he'));
 		},
-		direct:true,
+		// direct:true,
 		checkx:function (event,player){
 			var att1=get.attitude(player,event.player);
 			var att2=get.attitude(player,event.source);
