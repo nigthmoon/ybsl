@@ -113,7 +113,7 @@ const character = { //武将格式 :
 	ybsl_lvyi:['male','shu',3,['ybsl_jianyue','ybsl_tuntian','ybsl_quanfan'],['rankAdd:legend','rankS:s','name:吕|乂']], //吕乂
 	ybsl_yinfan:['male','wei',3,['ybsl_quanbianx','zhaxiang'],['rankAdd:epic',"border:wu",'name:隐|蕃']], //隐蕃
 	ybsl_shlizhaoyi:['female','shu',3,['ybsl_ranxinx','ybsl_fuju'],['rankAdd:legend','rankS:s','name:李|昭仪']], //李昭仪
-	ybsl_sunshaoo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['rankAdd:legend','rankS:s','name:孙|韶']], //孙韶
+	ybsl_sunsháo:['male','wu',3,['ybsl_rongjie','ybsl_xiangcha'],['rankAdd:legend','rankS:s','name:孙|韶','YB_mjz:sunsháo','linkTo:sunsháo']], //孙韶
 	ybsl_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedun'],['rankAdd:legend','rankS:s','name:王|必']], //王必
 	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','rankS:s','name:王|必','linkTo:ybsl_wangbi']], //王必]
 	ybsl_jiangziwen:['male','wu',3,['ybsl_fengcix','ybsl_youxiangx'],['rankAdd:epic','name:蒋|歆']],//蒋歆

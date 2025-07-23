@@ -238,11 +238,19 @@ const translate = {
 
 	qmsgswkjsgj_re_caorui:'界曹叡',
 	qmsgswkjsgj_re_caorui_prefix:'界',
+	qmsgswkjsgj_mingjian:'明鉴',
+	qmsgswkjsgj_mingjian_info:'出牌阶段开始时，你可以将所有手牌交给一名其他角色，然后你结束此阶段，其执行一个额外的出牌阶段，本出牌阶段其可以多使用一张【杀】。若如此做，直到该角色下个回合结束，其手牌上限+1。',
+	//作者描述原文一塌糊涂，正好现在的剧情，这个曹叡登场了，我看看剧情里是什么结算，然后好根据作者口胡调整描述
 
+	qmsgswkjsgj_re_zhangxiu:'界张绣',
+	qmsgswkjsgj_re_zhangxiu_prefix:'界',
+	qmsgswkjsgj_xiongluan:'雄乱',
+	qmsgswkjsgj_xiongluan_info:'限定技，出牌阶段，你可以废除你的判定区和装备区，然后指定一名其他角色。直到回合结束，你对其使用牌无距离和次数限制，其不能使用和打出手牌。你每废除一个装备栏，可以摸一张牌。',
 
-
-
-
+	qmsgswkjsgj_re_fuhuanghou:'界伏皇后',
+	qmsgswkjsgj_re_fuhuanghou_prefix:'界',
+	qmsgswkjsgj_zhuikong:'惴恐',
+	qmsgswkjsgj_zhuikong_info:'其他角色的回合开始时，若你已受伤，你可以与该角色拼点。若你赢，该角色跳过本回合的出牌阶段。若你没赢，你获得其的拼点牌，然后其视为对你使用一张【杀】。',
 
 
 

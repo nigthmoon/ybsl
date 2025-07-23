@@ -2989,7 +2989,173 @@ const skill = {
 			expose: 0.3,
 		},
 	},
-
+	//界张绣
+	qmsgswkjsgj_xiongluan:{
+		audio: "drlt_xiongluan",
+		mod: {
+			aiOrder(player, card, num) {
+				if (num <= 0 || !player.isPhaseUsing() || player.needsToDiscard() || !get.tag(card, "damage")) {
+					return;
+				}
+				return 0;
+			},
+			aiUseful(player, card, num) {
+				if (num <= 0 || !get.tag(card, "damage")) {
+					return;
+				}
+				return num * player.getHp();
+			},
+		},
+		locked: false,
+		enable: "phaseUse",
+		skillAnimation: true,
+		animationColor: "gray",
+		limited: true,
+		filter(event, player) {
+			return !player.isDisabledJudge() || player.hasEnabledSlot();
+		},
+		filterTarget(card, player, target) {
+			return target != player;
+		},
+		async content(event, trigger, player) {
+			player.awakenSkill(event.name);
+			const disables = [];
+			for (let i = 1; i <= 5; i++) {
+				for (let j = 0; j < player.countEnabledSlot(i); j++) {
+					disables.push(i);
+				}
+			}
+			if (disables.length > 0) {
+				await player.disableEquip(disables);
+				await player.draw(disables.length);
+			}
+			await player.disableJudge();
+			const { target } = event;
+			player.addTempSkill(event.name + "_effect");
+			player.markAuto(event.name + "_effect", [target]);
+			target.addTempSkill(event.name + "_ban");
+		},
+		ai: {
+			order: 13,
+			result: {
+				target: (player, target) => {
+					let hs = player.countCards("h", card => {
+							if (!get.tag(card, "damage") || get.effect(target, card, player, player) <= 0) {
+								return 0;
+							}
+							if (get.name(card, player) === "sha") {
+								if (target.getEquip("bagua")) {
+									return 0.5;
+								}
+								if (target.getEquip("rewrite_bagua")) {
+									return 0.25;
+								}
+							}
+							return 1;
+						}),
+						ts =
+							target.hp +
+							target.hujia +
+							game.countPlayer(current => {
+								if (get.attitude(current, target) > 0) {
+									return current.countCards("hs") / 8;
+								}
+								return 0;
+							});
+					if (hs >= ts) {
+						return -hs;
+					}
+					return 0;
+				},
+			},
+		},
+		subSkill: {
+			effect: {
+				charlotte: true,
+				onremove: true,
+				mod: {
+					targetInRange(card, player, target) {
+						if (player.getStorage("qmsgswkjsgj_xiongluan_effect").includes(target)) {
+							return true;
+						}
+					},
+					cardUsableTarget(card, player, target) {
+						if (player.getStorage("qmsgswkjsgj_xiongluan_effect").includes(target)) {
+							return true;
+						}
+					},
+				},
+				intro: { content: "本回合对$使用牌无距离和次数限制且其不能使用和打出手牌" },
+			},
+			ban: {
+				charlotte: true,
+				mark: true,
+				mod: {
+					cardEnabled2(card, player) {
+						if (get.position(card) == "h") {
+							return false;
+						}
+					},
+				},
+				intro: { content: "本回合不能使用或打出手牌" },
+				ai: {
+					effect: {
+						target(card, player, target) {
+							if (!target._qmsgswkjsgj_xiongluan2_effect && get.tag(card, "damage")) {
+								target._qmsgswkjsgj_xiongluan2_effect = true;
+								const eff = get.effect(target, card, player, target);
+								delete target._qmsgswkjsgj_xiongluan2_effect;
+								if (eff > 0) {
+									return [1, -999999];
+								}
+								if (eff < 0) {
+									return 114514;
+								}
+							}
+						},
+					},
+				},
+			},
+		},
+	},
+	//界伏皇后
+	qmsgswkjsgj_zhuikong:{
+		audio:'zhuikong',
+		trigger: { global: "phaseBegin" },
+		check(event, player) {
+			if (get.attitude(player, event.player) < -2) {
+				var cards = player.getCards("h");
+				if (cards.length > player.hp) {
+					return true;
+				}
+				for (var i = 0; i < cards.length; i++) {
+					var useful = get.useful(cards[i]);
+					if (useful < 5) {
+						return true;
+					}
+					if (get.number(cards[i]) > 9 && useful < 7) {
+						return true;
+					}
+				}
+			}
+			return false;
+		},
+		logTarget: "player",
+		filter(event, player) {
+			return player.hp < player.maxHp && player.canCompare(event.player);
+		},
+		content() {
+			"step 0";
+			player.chooseToCompare(trigger.player);
+			"step 1";
+			if (result.bool) {
+				trigger.player.skip("phaseUse");
+			} else {
+				player.gain(result.target, "gain2", "log")
+				trigger.player.useCard({name:'sha'},player,false);
+			}
+		},
+	},
 
 
 

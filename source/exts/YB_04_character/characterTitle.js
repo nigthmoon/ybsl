@@ -7,7 +7,7 @@ const characterTitle = { //称号
 	ybsl_lvyi: '汉尚书令',
 	ybsl_yinfan: '啼血的谍客',
 	ybsl_shlizhaoyi: '抗拒火环',
-	ybsl_sunshaoo: '知而后动',
+	ybsl_sunsháo: '知而后动',
 	ybsl_wangbi: '倾厦之梁',
 	ybnb_wangbi: '倾厦之梁',
 	ybsl_jiangziwen:'骨清为神',

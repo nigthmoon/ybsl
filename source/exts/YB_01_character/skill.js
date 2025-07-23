@@ -2639,7 +2639,7 @@ const skill = {
 		content:function(){
 			'step 0'
 			
-			if(event.bool){
+			// if(event.bool){
 				player.judge('天祈',function(card){
 					if(player.storage.yb004_shangyuan){
 						if(get.color(card)=='red')return 2;
@@ -2662,7 +2662,7 @@ const skill = {
 						}
 					}
 				});
-			}
+			// }
 			'step 1'
 			switch(result.judge){
 				case 3:player.draw(trigger.num+1);break;

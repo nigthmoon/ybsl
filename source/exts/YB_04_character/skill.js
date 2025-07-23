@@ -4308,7 +4308,7 @@ const skill = {
 	
 
 	ybsl_rongjie: {
-		audio: 'ext:夜白神略/audio/character:2',
+		audio: 'mbganjue',
 		usable: 1,
 		trigger: {
 			player: 'useCardToTargeted',
@@ -4392,7 +4392,13 @@ const skill = {
 		}
 	},
 	ybsl_xiangcha: {
-		audio: 'ext:夜白神略/audio/character:2',
+		audio: 'mbzhuji',
+		logAudio(event,player){
+			if (player.storage['ybsl_xiangcha'] == true) {
+				return ['mbzhuji2.mp3'];
+			}
+			return ['mbzhuji1.mp3'];
+		},
 		usable: 1,
 		enable: 'phaseUse',
 		zhuanhuanji: true,
@@ -4444,6 +4450,13 @@ const skill = {
 				audio: 'ybsl_xiangcha',
 				trigger: {
 					player: ['chooseToGuanxingAfter', 'chooseControlAfter'],
+				},
+				logAudio(event,player,name){
+					// if (name == 'chooseToGuanxingAfter') {
+					// 	return 2;
+					// }
+					// return ['mbzhuji3.mp3', 'mbzhuji4.mp3'];
+					return ['mbzhuji3.mp3']
 				},
 				filter(event, player, name) {
 					// if(event.card)game.log('eevent.card:',event.card)
@@ -4537,6 +4550,13 @@ const skill = {
 			},
 			damage: {
 				audio: 'ybsl_xiangcha',
+				logAudio(event,player,name){
+					// if (name == 'chooseToGuanxingAfter') {
+					// 	return 2;
+					// }
+					// return ['mbzhuji3.mp3', 'mbzhuji4.mp3'];
+					return ['mbzhuji4.mp3']
+				},
 				onremove: true,
 				charlotte: true,
 				forced: true,

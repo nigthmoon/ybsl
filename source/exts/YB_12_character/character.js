@@ -32,10 +32,10 @@ const character = { //武将格式 :
 	qmsgswkjsgj_re_luotong:['male','wu',4,['qmsgswkjsgj_qinzheng'],['rankAdd:legend','rankS:s','linkTo:luotong','YB_mjz:luotong','tempname:luotong']],
 	qmsgswkjsgj_re_liuyan:['male','qun',3,['qmsgswkjsgj_tushe','qmsgswkjsgj_limu','qmsgswkjsgj_pianan'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],
 	qmsgswkjsgj_re_lusu:['male','wu',3,['qmsgswkjsgj_haoshi','dimeng'],['rankAdd:legend','rankS:s','linkTo:re_lusu','YB_mjz:re_lusu','tempname:re_lusu']],
-	// qmsgswkjsgj_re_caorui:['male','wei',3,['huituo','mingjian','xingshuai'],['rankAdd:legend','rankS:s','linkTo:caorui','YB_mjz:caorui','tempname:caorui','zhu']],
+	// qmsgswkjsgj_re_caorui:['male','wei',3,['huituo','qmsgswkjsgj_mingjian','xingshuai'],['rankAdd:legend','rankS:s','linkTo:caorui','YB_mjz:caorui','tempname:caorui','zhu']],
 	qmsgswkjsgj_re_caiwenji:['female','qun',3,['qmsgswkjsgj_beige','duanchang'],['rankAdd:legend','rankS:s','linkTo:re_caiwenji','YB_mjz:re_caiwenji','tempname:re_caiwenji','name:蔡|琰']],
-
-
+	qmsgswkjsgj_re_zhangxiu:['male','qun',4,['qmsgswkjsgj_xiongluan','drlt_congjian'],['rankAdd:epic','rankS:b','linkTo:zhangxiu','YB_mjz:zhangxiu','tempname:zhangxiu']],
+	qmsgswkjsgj_re_fuhuanghou:['female','qun',3,['qmsgswkjsgj_zhuikong','oldqiuyuan'],['rankAdd:legend','rankS:s','linkTo:fuhuanghou','YB_mjz:fuhuanghou','tempname:fuhuanghou']],
 
 
 
