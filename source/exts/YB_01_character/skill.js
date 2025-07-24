@@ -1712,6 +1712,38 @@ const skill = {
 			player:'phaseJieshuBegin',
 		},
 		frequent:true,
+		mod : {
+			aiValue(player, card, num) {
+				if (_status.yb001_wanyue) return
+				const evt = get.event()
+				if (evt.yb001_wanyue) return num + 3 * evt.yb001_wanyue.includes(card)
+				_status.yb001_wanyue = true
+				if (evt.name != 'chooseToDiscard' || evt.getParent().name != 'phaseDiscard') return
+				const phase = evt.getParent(2)
+				if (phase.name != 'phase' || phase.phaseList[phase.num + 1] != 'phaseJieshu') return
+				const knum = player.countCards() - evt.selectCard[0]
+				const hs = {}, keep = []
+				player.getCards('h', cardx => (hs[get.suit(cardx)] ??= []).push(cardx))
+				for (const i of Object.values(hs)) i.sort((a, b) => get.value(b) - get.value(a))
+				while (keep.length < knum) {
+					let suit, value = - Infinity
+					for (const i in hs) {
+						if (!hs[i][0]) continue
+						let val = get.value(hs[i][0])
+						if (keep.some(j => get.suit(j) == i)) val += 3
+						if (val > value) [suit, value] = [i, val]
+					}
+					keep.push(hs[suit].shift())
+				}
+				evt.yb001_wanyue = keep
+				delete _status.yb001_wanyue
+				if (keep.includes(card)) return num + 3
+			},
+			get aiUseful() {
+				return lib.skill.yb001_wanyue.mod.aiValue
+			}
+		},
+		locked : false,
 		audio:'ext:夜白神略/audio/character:2',
 		content:function (){
 			'step 0'
@@ -3137,15 +3169,15 @@ const skill = {
 			},
 		},
 		ai:{
-			order:function(item,player){
-				if(!player)var player=_status.event.player;
-				var history=player.getAllHistory('useCard');
-				if(history.length<1) return false;
-				var evt=history[history.length-1];
-				if(evt&&evt.card&&get.type(evt.card)!='equip'){
-					var card=evt.card;
-					var num=player.getUseValue({name:evt.card.name,nature:evt.card.nature})
-					return num*2;
+			order(item,player) {
+				var history = player.getAllHistory('useCard')
+				if (!history.length) return false
+				var evt = history.lastItem
+				if(player.isPhaseUsing()) {
+					var card = evt.card
+					var num = player.getUseValue({ name : card.name, nature : card.nature })
+					if (player.countCard('hs', cardx => player.getUseValue(cardx) > num)) return 1
+					return 11
 				}
 				return 1;
 			},//主动技使用的先后，杀是3，酒是3.2。这个技能排在最前面
@@ -15546,31 +15578,62 @@ const skill = {
 			return !player.isTurnedOver();
 		},
 		forced:true,
-		content:function*(event,map){
-			let player=map.player,trigger=map.trigger;
-			let targets = game.filterPlayer(function (current) {
-				return current != player && current.inRange(player);
-			}).sortBySeat();
-			for(var target of targets){
-				player.line(target,'YB_snow');
-				if (target.countDiscardableCards(target, "he")) {
-					var result1 = yield target.discardPlayerCard("he",target, true);
+		logTarget : (event, player) => game.filterPlayer(current => current != player && current.inRange(player)).sortBySeat(),
+		async content(event, trigger, player){
+			for (var target of event.targets) {
+				player.line(target, 'YB_snow')
+				const card1 = (await target.chooseToDiscard('he', true, 'chooseonly').forResultCards())[0]
+				const pos1 = get.position(card1)
+				await target.discard(card1)
+				const card2 = (await target.chooseToDiscard('he', true, 'chooseonly')
+					.set('ai', card => {
+						const pos = get.event('pos')
+						if (get.position(card) != pos) return - get.value(card)
+						return player.getCards(pos).reduce((a, b) => a - get.value(b), 0)
+					})
+					.set('pos', pos1).forResultCards())[0]
+				const pos2 = get.position(card2)
+				await target.discard(card2)
+				if (pos1 == pos2) {
+					player.line(target,'YB_snow')
+					await target.discard(target.getCards(pos1))
 				}
-				else var result1=null;
-				if (target.countDiscardableCards(target, "he")) {
-					var result2 = yield target.discardPlayerCard("he",target, true);
-				}
-				else var result2=null;
-				if (result1&&result2&&result1.cards[0].original==result2.cards[0].original){
-					var con=result1.cards[0].original;
-					player.line(target,'YB_snow');
-					yield target.discard(target.getCards(con));
-				}
-
 			}
 		},
 	},
 	yb092_chenyu:{
+		mod : {
+			aiValue(player, card, num) {
+				if (_status.yb092_chenyu) return
+				const evt = get.event()
+				if (evt.yb092_chenyu) return num - 2 * evt.yb092_chenyu.includes(card)
+				if (evt.name != 'chooseToDiscard') return
+				const dnum = evt.selectCard[0],
+					snum = get.YB_suit(Array.from(ui.discardPile.childNodes)).length
+				if (snum > dnum) return
+				_status.yb092_chenyu = true
+				const hs = {}, discard = []
+				player.getCards('h', cardx => (hs[get.suit(cardx)] ??= []).push(cardx))
+				for (const i of Object.values(hs)) i.sort((a, b) => get.value(a) - get.value(b))
+				while (discard.length < dnum) {
+					let suit, value = Infinity
+					for (const i in hs) {
+						if (!hs[i][0]) continue
+						let val = get.value(hs[i][0])
+						if (get.YB_suit(discard).length < snum == discard.every(j => get.suit(j) != i)) val -= 2
+						if (val < value) [suit, value] = [i, val]
+					}
+					discard.push(hs[suit].shift())
+				}
+				if (get.YB_suit(discard).length != snum) discard = []
+				evt.yb092_chenyu = discard
+				delete _status.yb092_chenyu
+				if (discard.includes(card)) return num - 2
+			},
+			get aiUseful() {
+				return lib.skill.yb001_wanyue.mod.aiValue
+			}
+		},
 		audio:'ext:夜白神略/audio/character:2',
 		forced:true,
 		trigger:{
@@ -15579,7 +15642,7 @@ const skill = {
 		filter:function(event,player){
 			if (event.type != "discard") return false;
 			var cards = event.cards;
-			var cards2 = Array.from(ui.discardPile.childNodes).concat(cards);
+			var cards2 = Array.from(ui.discardPile.childNodes).remove(cards);
 			return get.YB_suit(cards).length&&get.YB_suit(cards2).length&&get.YB_suit(cards).length==get.YB_suit(cards2).length;
 		},
 		content:function(){

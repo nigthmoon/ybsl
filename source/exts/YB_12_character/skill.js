@@ -2913,6 +2913,130 @@ const skill = {
 
 	},
 	//界曹叡
+	qmsgswkjsgj_mingjian:{
+		audio: 'mingjian',
+		trigger: { player: "phaseUseBegin" },
+		async cost(event, trigger, player) {
+			event.result = await player
+				.chooseTarget(get.prompt(event.skill), "跳过出牌阶段并将所有手牌交给一名其他角色，你结束此回合，然后其于此回合后获得一个额外的出牌阶段，本出牌阶段其可以多使用一张【杀】。若如此做，直到该角色下个回合结束，其手牌上限+1。", lib.filter.notMe)
+				.set("ai", target => {
+					var player = _status.event.player,
+						att = get.attitude(player, target);
+					if (target.hasSkillTag("nogain")) {
+						return 0.01 * att;
+					}
+					if (player.countCards("h") == player.countCards("h", "du")) {
+						return -att;
+					}
+					if (target.hasJudge("lebu")) {
+						att *= 1.25;
+					}
+					if (get.attitude(player, target) > 3) {
+						var basis = get.threaten(target) * att;
+						if (
+							player == get.zhu(player) &&
+							player.hp <= 2 &&
+							player.countCards("h", "shan") &&
+							!game.hasPlayer(function (current) {
+								return get.attitude(current, player) > 3 && current.countCards("h", "tao") > 0;
+							})
+						) {
+							return 0;
+						}
+						if (target.countCards("h") + player.countCards("h") > target.hp + 2) {
+							return basis * 0.8;
+						}
+						return basis;
+					}
+					return 0;
+				})
+				.forResult();
+		},
+		async content(event, trigger, player) {
+			const target = event.targets[0];
+			await player.give(player.getCards("h"), target);
+			trigger.cancel();
+			const evt = trigger.getParent("phase", true);
+			if (evt) {
+				game.log(player, "结束了回合");
+				evt.num = evt.phaseList.length;
+				evt.goto(11);
+			}
+			// const next = target.insertPhase();
+			// next._noTurnOver = true;
+			// next.phaseList = ["phaseUse"];
+			target.addTempSkill("qmsgswkjsgj_mingjian_sha", { player: ['phaseUseAfter'] });
+			if (!target.storage.qmsgswkjsgj_mingjian_sha) {
+				target.storage.qmsgswkjsgj_mingjian_sha = [];
+			}
+			target.storage.qmsgswkjsgj_mingjian_sha.push(player);
+			target.markSkill("qmsgswkjsgj_mingjian_sha");
+			target.addTempSkill("qmsgswkjsgj_mingjian_max", { player: ["phaseAfter"] });
+			if (!target.storage.qmsgswkjsgj_mingjian_max) {
+				target.storage.qmsgswkjsgj_mingjian_max = [];
+			}
+			target.storage.qmsgswkjsgj_mingjian_max.push(player);
+			target.markSkill("qmsgswkjsgj_mingjian_max");
+			var next = game.createEvent('qmsgswkjsgj_mingjian');
+			next.player = target;
+			next.setContent(lib.skill.qmsgswkjsgj_mingjian.phase);
+			
+		},
+		phase() {
+			"step 0";
+			player.phaseUse();
+			"step 1";
+			game.broadcastAll(function () {
+				if (ui.tempnowuxie) {
+					ui.tempnowuxie.close();
+					delete ui.tempnowuxie;
+				}
+			});
+		},
+		subSkill:{
+			sha: {
+				charlotte: true,
+				onremove: true,
+				mark: true,
+				marktext: "鉴",
+				intro: {
+					markcount(){return '杀'},
+					content: (storage, player) => {
+						const num = storage.length;
+						return `<li>被${get.translaiotn(storage.toUniqued())}鉴识<li>出杀次数+${num}`;
+					},
+				},
+				mod: {
+					cardUsable(card, player, num) {
+						if (card.name == "sha") {
+							return num + player.getStorage("qmsgswkjsgj_mingjian_sha").length;
+						}
+					},
+				},
+
+			},
+			max:{
+				charlotte: true,
+				onremove: true,
+				mark: true,
+				marktext: "鉴",
+				intro: {
+					markcount(){return '限'},
+					content: (storage, player) => {
+						const num = storage.length;
+						return `<li>被${get.translaiotn(storage.toUniqued())}鉴识<li>手牌上限+${num}`;
+					},
+				},
+				mod: {
+					maxHandcard(player, num) {
+						return num + player.getStorage("qmsgswkjsgj_mingjian_max").length;
+					},
+				},
+
+			}
+		}
+
+	},
 	//界蔡文姬
 	qmsgswkjsgj_beige:{
 		audio: "beige",
