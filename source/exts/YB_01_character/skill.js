@@ -15631,7 +15631,7 @@ const skill = {
 				if (discard.includes(card)) return num - 2
 			},
 			get aiUseful() {
-				return lib.skill.yb001_wanyue.mod.aiValue
+				return lib.skill.yb092_chenyu.mod.aiValue
 			}
 		},
 		audio:'ext:夜白神略/audio/character:2',
