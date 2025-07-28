@@ -1668,6 +1668,18 @@ const skill = {
 				return list[num-1][1].selectTarget;
 			}
 		},
+		filterOk() {
+			const event = get.event()
+			if (!event.isMine()) return true
+			if (!event.ybmjz_mumu == undefined) event.ybmjz_mumu != ui.selected.cards.length
+			if (event.ybmjz_mumu != ui.selected.cards.length) {
+				game.uncheck('target')
+				game.check()
+				event.ybmjz_mumu = ui.selected.cards.length
+				return false
+			}
+			return true
+		},
 		content(){
 			var num = event.cards.length;
 			if(num==0)return;
@@ -1860,6 +1872,18 @@ const skill = {
 				var list = get.player().storage.ybmjz_mumuxx_list;
 				return list[num-1][1].selectTarget;
 			}
+		},
+		filterOk() {
+			const event = get.event()
+			if (!event.isMine()) return true
+			if (!event.ybmjz_mumuxx == undefined) event.ybmjz_mumuxx != ui.selected.cards.length
+			if (event.ybmjz_mumuxx != ui.selected.cards.length) {
+				game.uncheck('target')
+				game.check()
+				event.ybmjz_mumuxx = ui.selected.cards.length
+				return false
+			}
+			return true
 		},
 		content(){
 			var num = event.cards.length;
