@@ -252,8 +252,12 @@ const translate = {
 	qmsgswkjsgj_zhuikong:'惴恐',
 	qmsgswkjsgj_zhuikong_info:'其他角色的回合开始时，若你已受伤，你可以与该角色拼点。若你赢，该角色跳过本回合的出牌阶段。若你没赢，你获得其的拼点牌，然后其视为对你使用一张【杀】。',
 
-
-
+	qmsgswkjsgj_shen_ganning:'缝神甘宁',
+	qmsgswkjsgj_shen_ganning_prefix:'缝神',
+	qmsgswkjsgj_poxi:'魄袭',
+	qmsgswkjsgj_poxi_info:'出牌阶段限一次，你可以观看一名其他角色的手牌，然后你可以弃置你与其手里共计四张牌。若如此做，根据此次弃置你的牌数量执行以下效果：零张，体力上限减1；一张，你本回合手牌上限-1；三张，你回复1点体力；四张，你摸五张牌。',
+	qmsgswkjsgj_jieying:'劫营',
+	qmsgswkjsgj_jieying_info:'回合开始时，若全场没有“营”，你获得一个“营”标记。结束阶段，你可以将“营”置于一名其他角色的武将牌旁；有“营”的角色摸牌阶段多摸一张牌、出牌阶段可多使用一张【杀】、手牌上限+1。有“营”的其他角色回合结束后，移去“营”，然后你获得其所有牌。',
 
 
 

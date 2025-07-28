@@ -7487,7 +7487,8 @@ const skill = {
 	sgsk_tianhai: {
 		audio: 'ext:夜白神略/audio/character:2',
 		usable(skill,player){
-			return player.countCards('e',c=>get.type(c)!='equip');
+			// return player.countCards('e',c=>get.type(c)!='equip');
+			return player.countCards('e');
 		},
 		enable:'chooseToUse',
 		filter: function (event, player) {
@@ -7534,13 +7535,18 @@ const skill = {
 						name: links[0][2],
 						nature: links[0][3],
 					},
+					position:'hs',
+					selectCard: 1,
+					filterCard: function (card, player) {
+						return true;
+					},
 					precontent: function () {
 						player.logSkill("sgsk_tianhai");
 					},
 				};
 			},
 			prompt: function (links, player) {
-				return "填海：视为使用一张【" + links[0][3] ? get.translation(links[0][3]) : '' + get.translation(links[0][2]) + "】？";
+				return "填海：将一张手牌当作【" + (links[0][3] ? get.translation(links[0][3]) : '') + get.translation(links[0][2]) + "】使用？";
 			},
 		},
 		// enable:'phaseUse',

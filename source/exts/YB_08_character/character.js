@@ -36,8 +36,9 @@ const character = { //武将格式 :
 	ybmjz_liuyan:['male','qun',3,['xinfu_tushe','ybmjz_limu'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],//刘焉
 	ybmjz_zhangqiying:['female','qun',3,['xinfu_ybfalu','xinfu_ybzhenyi','xinfu_ybdianhua'],['rankAdd:legend','rankS:s','name:张|琪瑛','linkTo:zhangqiying','YB_mjz:zhangqiying','tempname:zhangqiying']],//张琪瑛
 	ybmjz_majun:['male','wei',3,['xinfu_ybjingxie','qiaosi'],['rankAdd:epic','linkTo:majun','YB_mjz:majun','tempname:majun']],//马钧
+	ybmjz_sunluyu:['female','wu',3,['ybmjz_meibu','ybmjz_mumuxx'],['rankAdd:legend','rankS:s','linkTo:sunluyu','YB_mjz:sunluyu','tempname:sunluyu']],
 
-	ybmjz_shen_zhugeliang:['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['rankAdd:eqic','name:诸葛|亮','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','shu','tempname:shen_zhugeliang']],//神诸葛亮
+	ybmjz_shen_zhugeliang:['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['rankAdd:epic','name:诸葛|亮','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','shu','tempname:shen_zhugeliang']],//神诸葛亮
 	ybmjz_shen_guojia:['male','shen',3,['ybmjz_reshuishi','ybmjz_stianyi','resghuishi'],['rankAdd:legend','rankS:s','name:郭|嘉','linkTo:shen_guojia','YB_mjz:shen_guojia','wei','tempname:shen_guojia']],//神郭嘉
 	ybmjz_shen_caopi:['male','shen',5,['chuyuan','ybmjz_dengji'],['rankAdd:legend','rankS:s','linkTo:shen_caopi','YB_mjz:shen_caopi','wei','tempname:shen_caopi']],//神曹丕
 	ybmjz_shen_caopi_kui:['female','shen',3,['shenfu','qixian','dz014_yangkui','dz014_xianji'],['rankAdd:legend','rankS:s','linkTo:shen_zhenji','YB_mjz:shen_zhenji','wei','unseen','tempname:shen_zhenji']],//神曹丕的傀儡

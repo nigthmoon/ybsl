@@ -1197,7 +1197,7 @@ const skill = {
 
 
 
-
+	//黄月英
 	ybmjz_jizhi:{
 		audio:'rejizhi',locked: false,
 		trigger: { player: "useCard" },
@@ -1401,6 +1401,520 @@ const skill = {
 			},
 		},
 
+	},
+	//名孙鲁育
+	ybmjz_meibu:{
+		audio: "meibu",
+		trigger: {
+			global: "phaseUseBegin",
+			player: 'damageAfter',
+		},
+		filter(event, player,name) {
+			if(name=='damageAfter')return event.source&&event.source.isIn()&&event.source!=player;
+			return event.player != player && event.player.isIn()&& event.player.inRange(player);
+		},
+		// direct: true,
+		derivation: ["ybmjz_zhixi"],
+		check(event, player,name) {
+			var target;
+			if(name=="phaseUseBegin")target=event.player;
+			else target=event.source;
+			if (get.attitude(player, target) >= 0) {
+				return false;
+			}
+			return true;
+		},
+		init(player){
+			if(player.storage.ybmjz_meibu_num)player.storage.ybmjz_meibu_num=1;
+		},
+		content() {
+			"step 0";
+			if(!player.storage.ybmjz_meibu_num)player.storage.ybmjz_meibu_num=1;
+			var num = player.storage.ybmjz_meibu_num||1;
+			player.draw(num);
+			"step 1";
+			var target;
+			if(event.triggername=="phaseUseBegin")target=trigger.player;
+			else target=trigger.source;
+			player.line(target, "green");
+			target.addTempSkills("ybmjz_zhixi", "phaseUseAfter");
+			target.markSkillCharacter("ybmjz_meibu", player, "魅步", "锁定技。出牌阶段，若你于此阶段使用过的牌数不小于X，你不能使用牌（X为你的体力值）；当你使用锦囊牌时，你结束此阶段。");
+			'step 2'
+			if(game.filterPlayer(function (current){
+				return current.hasSkill('ybmjz_zhixi');
+			}).length>0){
+				player.storage.ybmjz_meibu_num++;
+				player.addTempSkill('ybmjz_meibu_num')
+			}
+		},
+		ai: {
+			expose: 0.2,
+			maixie:true,
+			maixie_hp:true,
+			maixie_defend: true,
+		},
+		mark:true,
+		intro:{
+			markcount:function(storage,player){
+				return player.storage.ybmjz_meibu_num||1;
+			},
+		},
+		subSkill:{
+			num:{
+				onremove:function(player){
+					player.storage.ybmjz_meibu_num=1;
+				}
+			}
+		}
+	},
+	ybmjz_zhixi: {
+		mod: {
+			cardEnabled(card, player) {
+				if (player.countMark("ybmjz_zhixi") >= player.hp) {
+					return false;
+				}
+			},
+			cardUsable(card, player) {
+				if (player.countMark("ybmjz_zhixi") >= player.hp) {
+					return false;
+				}
+			},
+			cardSavable(card, player) {
+				if (player.countMark("ybmjz_zhixi") >= player.hp) {
+					return false;
+				}
+			},
+		},
+		trigger: {
+			player: "useCard1",
+		},
+		forced: true,
+		popup: false,
+		firstDo: true,
+		init(player, skill) {
+			player.storage[skill] = 0;
+			var evt = _status.event.getParent("phaseUse");
+			if (evt && evt.player == player) {
+				player.getHistory("useCard", function (evtx) {
+					if (evtx.getParent("phaseUse") == evt) {
+						player.storage[skill]++;
+					}
+				});
+			}
+		},
+		onremove(player) {
+			player.unmarkSkill("ybmjz_meibu");
+			delete player.storage.ybmjz_zhixi;
+		},
+		content() {
+			player.addMark("ybmjz_zhixi", 1, false);
+			if (get.type2(trigger.card) == "trick") {
+				var evt = trigger.getParent("phaseUse");
+				if (evt && evt.player == player) {
+					evt.skipped = true;
+					game.log(player, "结束了出牌阶段");
+				}
+			}
+		},
+		ai: {
+			presha: true,
+			pretao: true,
+			neg: true,
+			nokeep: true,
+		},
+	},
+	ybmjz_mumu:{
+		audio: "mumu",
+		enable:'phaseUse',
+		list:[
+			['回复一名角色1点体力。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.hp<current.maxHp;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.hp<target.maxHp;
+				},
+				selectTarget:1,
+				prompt:function(event,player){
+					return '令一名角色回复1点体力';
+				},
+				content:function(){
+					// var target = event.target;
+					// var player = event.player||this;
+					target.recover(player);
+				},
+			}],
+			['弃置一名角色一张装备牌，然后你摸一张牌。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.countCards('e',function(card){
+							return lib.filter.canBeDiscarded(card, player, current);
+						})>0;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.countCards('e',function(card){
+						return lib.filter.canBeDiscarded(card, player, target);
+					})>0;
+				},
+				selectTarget:1,
+				prompt:function(event,player){
+					return '弃置一名角色一张装备牌，然后你摸一张牌';
+				},
+				content:function(){
+					// var target = event.target;
+					// var player = event.player||this;
+					'step 0'
+					player.discardPlayerCard(target, 'e', true);
+					// player.line(target, 'green');
+					'step 1'
+					player.draw();
+				},
+			}],
+			['令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.countCards('h')>0;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.countCards('h')>0;
+				},
+				selectTarget:1,
+				prompt:function(event,player){
+					return '令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌';
+				},
+				content:function(){
+					// var target = event.target;
+					// var player = event.player||this;
+					'step 0'
+					// player.line(target, 'green');
+					var cards = target.getCards('h');
+					if(cards.length>1){
+						target.chooseCardButton(cards, true).set('prompt', '请选择一张牌').set('complexCard', true);
+					}
+					else {
+						player.gain(cards, target, "give");
+						event.finish();
+					}
+					'step 1'
+					if(result.bool && result.links && result.links.length){
+						var card = result.links[0];
+						event.card = card;
+						var cards = target.getCards('h').filter(function(c){return c!=card;});
+						if(cards.length>0){
+							target.showCards(cards);
+							event.cardsx = cards;
+						}
+						else {
+							player.gain(card, target, "give");
+							event.finish();
+						}
+					}
+					else event.finish();
+					'step 2'
+					delete result.links;
+					'step 3'
+					if(event.cardsx && event.cardsx.length){
+						player.chooseCardButton(event.cardsx,1).set('prompt', '请选择一张牌获得，或者取消，然后获得其藏起来的牌').set('complexCard', true);
+					}
+					'step 4'
+					if(result.bool && result.links && result.links.length){
+						player.gain(result.links[0], target, "give");
+					}
+					else {
+						player.gain(card, target, "give");
+					}
+				}
+			}],
+		],
+		init(player){
+			if(!player.storage.ybmjz_mumu_list){
+				player.storage.ybmjz_mumu_list = lib.skill.ybmjz_mumu.list.slice();
+			}
+		},
+		selectCard:() =>[1,get.player().storage.ybmjz_mumu_list.length||1],
+		filterCard:true,
+		position: "he",
+		filter(event,player){
+			var list = player.storage.ybmjz_mumu_list;
+			for(var i of list){
+				if(i[1].filter(event, player)) return true;
+			}
+		},
+		prompt(event,player){
+			var num = ui.selected.cards.length;
+			if(num==0)return get.translation("ybmjz_mumu_info");
+			else {
+				var list = player.storage.ybmjz_mumu_list;
+				return list[num-1][1].prompt(event, player);
+			}
+		},
+		filterTarget(card,player,target){
+			var num = ui.selected.cards.length;
+			if(num==0)return false;
+			else {
+				var list = player.storage.ybmjz_mumu_list;
+				return list[num-1][1].filterTarget(card, player, target);
+			}
+		},
+		selectTarget(card,player,target){
+			var num = ui.selected.cards.length;
+			if(num==0)return 1;
+			else {
+				var list = get.player().storage.ybmjz_mumu_list;
+				return list[num-1][1].selectTarget;
+			}
+		},
+		content(){
+			var num = event.cards.length;
+			if(num==0)return;
+			else {
+				let list = player.storage.ybmjz_mumu_list;
+				let contentx = list[num-1][1].content;
+				let next = game.createEvent('ybmjz_mumu_next', false);
+				next.player = player;
+				next.target = event.target;
+				next.numx = num;
+				next.setContent(contentx);
+				next;
+			}
+		},
+		contentAfter(){
+			var num = event.cards.length;
+			if(num==0)return;
+			else{
+				player.storage.ybmjz_mumu_list.remove(player.storage.ybmjz_mumu_list[num-1]);
+				player.update();
+			}
+		},
+		group:['ybmjz_mumu_cl'],
+		subSkill:{
+			cl:{
+				direct:true,
+				trigger: {
+					player: ['phaseBefore',"phaseAfter"],
+				},
+				filter(event, player) {
+					return true;
+				},
+				content(){
+					player.storage.ybmjz_mumu_list = lib.skill.ybmjz_mumu.list.slice();
+					player.update();
+				},
+			}
+		},
+		mark:true,
+		intro:{
+			markcount:function(storage,player){
+				return player.storage.ybmjz_mumu_list.length;
+			},
+			content:function(storage,player){
+				let playerStorageList = player.storage.ybmjz_mumu_list.map((i, index) => {
+					return (index + 1) + '. ' + i[0];
+				}).join('<br>');
+				
+				return '当前拥有选项：<br>' + playerStorageList;
+				// return '当前拥有技能：<br>'+player.storage.ybmjz_mumu_list.map(function(i){
+				// 	return i[0];
+				// }).join('<br>');
+			}
+		}
+	},
+	ybmjz_mumuxx:{
+		audio: "mumu",
+		enable:'phaseUse',
+		list:[
+			['回复一名角色1点体力。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.hp<current.maxHp;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.hp<target.maxHp;
+				},
+				selectTarget:1,
+				prompt:function(event,player){
+					return '令一名角色回复1点体力';
+				},
+				content:function(){
+					target.recover(player);
+				},
+			}],
+			['令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.countCards('h')>0;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.countCards('h')>0;
+				},
+				selectTarget:1,
+				prompt:function(event,player){
+					return '令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌';
+				},
+				content:function(){
+					'step 0'
+					// player.line(target, 'green');
+					var cards = target.getCards('h');
+					if(cards.length>1){
+						target.chooseCardButton(cards, true).set('prompt', '请选择一张牌').set('complexCard', true);
+					}
+					else {
+						player.gain(cards, target, "give");
+						event.finish();
+					}
+					'step 1'
+					if(result.bool && result.links && result.links.length){
+						var card = result.links[0];
+						event.card = card;
+						var cards = target.getCards('h').filter(function(c){return c!=card;});
+						if(cards.length>0){
+							target.showCards(cards);
+							event.cardsx = cards;
+						}
+						else {
+							player.gain(card, target, "give");
+							event.finish();
+						}
+					}
+					else event.finish();
+					'step 2'
+					delete result.links;
+					'step 3'
+					if(event.cardsx && event.cardsx.length){
+						player.chooseCardButton(event.cardsx,1).set('prompt', '请选择一张牌获得，或者取消，然后获得其藏起来的牌').set('complexCard', true);
+					}
+					'step 4'
+					if(result.bool && result.links && result.links.length){
+						player.gain(result.links[0], target, "give");
+					}
+					else {
+						player.gain(card, target, "give");
+					}
+				}
+			}],
+			['弃置至多x名角色的两张牌，然后你摸一张牌。',{
+				filter:function(event,player){
+					return game.filterPlayer(function (current){
+						return current.countCards('he',function(card){
+							return lib.filter.canBeDiscarded(card, player, current);
+						}) > 0;
+					}).length>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.countCards('he',function(card){
+						return lib.filter.canBeDiscarded(card, player, target);
+					})>0;
+				},
+				selectTarget:() =>[1, get.player().storage.ybmjz_mumuxx_list.length||1],
+				prompt:function(event,player){
+					return '弃置至多x名角色的两张牌，然后你摸一张牌。';
+				},
+				content:function(){
+					'step 0'
+					player.discardPlayerCard(target, 'he',2, true);
+					'step 1'
+					player.draw();
+				},
+			}],
+		],
+		init(player){
+			if(!player.storage.ybmjz_mumuxx_list){
+				player.storage.ybmjz_mumuxx_list = lib.skill.ybmjz_mumuxx.list.slice();
+			}
+		},
+		selectCard:() =>[1,get.player().storage.ybmjz_mumuxx_list.length||1],
+		filterCard:true,
+		position: "he",
+		filter(event,player){
+			var list = player.storage.ybmjz_mumuxx_list;
+			for(var i of list){
+				if(i[1].filter(event, player)) return true;
+			}
+		},
+		prompt(event,player){
+			var num = ui.selected.cards.length;
+			if(num==0)return get.translation("ybmjz_mumuxx_info");
+			else {
+				var list = get.player().storage.ybmjz_mumuxx_list;
+				return list[num-1][1].prompt(event, player);
+			}
+		},
+		filterTarget(card,player,target){
+			var num = ui.selected.cards.length;
+			if(num==0)return false;
+			else {
+				var list = player.storage.ybmjz_mumuxx_list;
+				return list[num-1][1].filterTarget(card, player, target);
+			}
+		},
+		selectTarget(card,player,target){
+			var num = ui.selected.cards.length;
+			if(num==0)return 1;
+			else {
+				var list = get.player().storage.ybmjz_mumuxx_list;
+				return list[num-1][1].selectTarget;
+			}
+		},
+		content(){
+			var num = event.cards.length;
+			if(num==0)return;
+			else {
+				let list = player.storage.ybmjz_mumuxx_list;
+				let contentx = list[num-1][1].content;
+				let next = game.createEvent('ybmjz_mumuxx_next', false);
+				next.player = player;
+				next.target = event.target;
+				// next.numx = num;
+				next.setContent(contentx);
+				next;
+			}
+		},
+		contentAfter(){
+			var num = event.cards.length;
+			if(num==0)return;
+			else{
+				player.storage.ybmjz_mumuxx_list.remove(player.storage.ybmjz_mumuxx_list[num-1]);
+				player.update();
+			}
+		},
+		group:['ybmjz_mumuxx_cl'],
+		subSkill:{
+			cl:{
+				direct:true,
+				trigger: {
+					player: ['phaseBefore',"phaseAfter"],
+				},
+				filter(event, player) {
+					return true;
+				},
+				content(){
+					player.storage.ybmjz_mumuxx_list = lib.skill.ybmjz_mumuxx.list.slice();
+					player.update();
+				},
+			}
+		},
+		mark:true,
+		intro:{
+			markcount:function(storage,player){
+				return player.storage.ybmjz_mumuxx_list.length;
+			},
+			content:function(storage,player){
+				let playerStorageList = player.storage.ybmjz_mumuxx_list.map((i, index) => {
+					return (index + 1) + '. ' + i[0];
+				}).join('<br>');
+				
+				return '当前拥有选项：<br>' + playerStorageList;
+				// return '当前拥有技能：<br>'+player.storage.ybmjz_mumuxx_list.map(function(i){
+				// 	return i[0];
+				// }).join('<br>');
+			}
+		}
 	},
 
 

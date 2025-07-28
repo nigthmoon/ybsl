@@ -185,6 +185,7 @@ const character = { //武将格式 :
 		'ybsl_kegu',
 		'ybsl_yiji','ybsl_liangying',
 		'ybsl_clanqianlei',
+		'ybmjz_mumu',
 	],['clan:吴郡陆氏','name:null|null','forbidai']],
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 

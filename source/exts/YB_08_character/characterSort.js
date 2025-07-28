@@ -13,7 +13,7 @@ const characterSort = {
 			'ybmjz_huatuo','ybmjz_lvbu','ybmjz_diaochan',
 		],
 		ybmjz_sp:[
-			'ybmjz_zhangqiying','ybmjz_majun','ybmjz_liuyan',
+			'ybmjz_zhangqiying','ybmjz_majun','ybmjz_liuyan','ybmjz_sunluyu',
 		],
 		ybmjz_shen:[
 			'ybmjz_shen_zhugeliang','ybmjz_shen_guojia','ybmjz_shen_caopi',
