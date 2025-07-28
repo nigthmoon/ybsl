@@ -1756,18 +1756,18 @@ const skill = {
 					target.recover(player);
 				},
 			}],
-			['令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌。',{
+			['令一名其他角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌。',{
 				filter:function(event,player){
 					return game.filterPlayer(function (current){
-						return current.countCards('h')>0;
+						return current.countCards('h')>0&&current!=player;
 					}).length>0;
 				},
 				filterTarget:function(card,player,target){
-					return target.countCards('h')>0;
+					return target.countCards('h')>0&&target!=player;
 				},
 				selectTarget:1,
 				prompt:function(event,player){
-					return '令一名角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌';
+					return '令一名其他角色选择一张牌，然后展示剩余手牌，你从两者中获得一张牌';
 				},
 				content:function(){
 					'step 0'
