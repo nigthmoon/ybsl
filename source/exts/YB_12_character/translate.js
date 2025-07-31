@@ -191,7 +191,12 @@ const translate = {
 	qmsgswkjsgj_kuangfeng2:'狂风',
 	qmsgswkjsgj_kuangfeng2_bg:'风',
 	qmsgswkjsgj_kuangfeng3:'狂风',
-	qmsgswkjsgj_kuangfeng_info:'结束阶段，你可以弃置一张“星”并指定一名角色：直到你的下回合开始，该角色受到火焰伤害时，此伤害+1，且该角色收到的所有非属性伤害均视为火属性伤害。',
+	qmsgswkjsgj_kuangfeng_info:'结束阶段，你可以弃置一张“星”并指定一名角色：直到你的下结束阶段开始时，该角色受到火焰伤害时，此伤害+1，且该角色收到的所有非属性伤害均视为火属性伤害。',
+	qmsgswkjsgj_dawu:'大雾',
+	qmsgswkjsgj_dawu2_bg: "雾",
+	qmsgswkjsgj_dawu2: "大雾",
+	qmsgswkjsgj_dawu3: "大雾",
+	qmsgswkjsgj_dawu_info: "结束阶段，你可以弃置X张“星”并指定等量的角色：直到你的下结束阶段开始时，当这些角色受到非雷电伤害时，防止此伤害。",
 	qmsgswkjsgj_guanxing:'观星',
 	qmsgswkjsgj_guanxing_info:'准备阶段，你可以观看牌堆顶的7张牌，然后将其中一张扣置于你的武将牌上称为“星”，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。',
 

@@ -52,6 +52,10 @@ const translate = {
 
 	ybmjz_liubei:'名将刘备', 
 	ybmjz_liubei_prefix:'名将', 
+	'ybmjz_rende':'仁德',
+	'ybmjz_rende_info':'出牌阶段限一次，你可以将任意张手牌或仁库中的牌交给一名其他角色，然后声明一个基本或非延时锦囊牌，其可以展示一张手牌令此牌视为之。若如此做，你可以回复一点体力或视为使用你声明的牌。',
+	'ybmjz_xiemin':'携民',
+	'ybmjz_xiemin_info':'主公技，每回合每名角色限一次，其他角色使用有实体牌的视为或转化牌或杀后，其可以将位于弃牌堆的此牌置入仁库，然后若其不为蜀势力，你可令其改为蜀势力，否则你可以发动〖仁德〗。',
 	ybmjz_guanyu:'名将关羽',
 	ybmjz_guanyu_prefix:'名将',
 	ybmjz_zhangfei:'名将张飞',

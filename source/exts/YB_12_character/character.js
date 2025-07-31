@@ -26,7 +26,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_re_sp_duyu:['male','qun',4,['qmsgswkjsgj_spwuku','qmsgswkjsgj_spsanchen'],['rankAdd:legend','rankS:ap','linkTo:sp_duyu','YB_mjz:sp_duyu','tempname:sp_duyu']],
 	qmsgswkjsgj_gui_liubei:['male','YB_gui',4,['rende','jijiang','qmsgswkjsgj_taiping'],['rankAdd:rare','rankS:a','linkTo:liubei','YB_mjz:liubei','tempname:liubei']],
 	qmsgswkjsgj_gui_re_zhouyu:['male','YB_gui',3,['reyingzi','refanjian','qmsgswkjsgj_baolian'],['rankAdd:rare','rankS:a','linkTo:re_zhouyu','YB_mjz:re_zhouyu','tempname:re_zhouyu']],
-	qmsgswkjsgj_shen_zhugeliang:['male','shen',3,["qixing", "qmsgswkjsgj_kuangfeng", "dawu",'qmsgswkjsgj_guanxing'],['rankAdd:eqic','rankS:a','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','tempname:shen_zhugeliang','shu','name:诸葛|亮']],
+	qmsgswkjsgj_shen_zhugeliang:['male','shen',3,["qixing", "qmsgswkjsgj_kuangfeng", "qmsgswkjsgj_dawu",'qmsgswkjsgj_guanxing'],['rankAdd:eqic','rankS:a','linkTo:shen_zhugeliang','YB_mjz:shen_zhugeliang','tempname:shen_zhugeliang','shu','name:诸葛|亮']],
 	qmsgswkjsgj_sb_huangzhong:['male','shu',4,['qmsgswkjsgj_sbliegong'],['rankAdd:legend','rankS:s','linkTo:sb_huangzhong','YB_mjz:sb_huangzhong','tempname:sb_huangzhong']],
 	qmsgswkjsgj_re_yangbiao:['male','qun',3,["qmsgswkjsgj_zhaohan", "qmsgswkjsgj_rangjie", "qmsgswkjsgj_yizheng"],['rankAdd:legend','rankS:s','linkTo:yangbiao','YB_mjz:yangbiao','tempname:yangbiao']],
 	qmsgswkjsgj_re_luotong:['male','wu',4,['qmsgswkjsgj_qinzheng'],['rankAdd:legend','rankS:s','linkTo:luotong','YB_mjz:luotong','tempname:luotong']],

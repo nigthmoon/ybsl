@@ -1779,8 +1779,8 @@ const skill = {
 				target.addAdditionalSkill(`qmsgswkjsgj_kuangfeng_${player.playerid}`, "qmsgswkjsgj_kuangfeng2");
 				target.markAuto("qmsgswkjsgj_kuangfeng2", [player]);
 			});
-			player.addTempSkill("qmsgswkjsgj_kuangfeng3", { player: "phaseBeginStart" });
-			player.addTempSkill("qmsgswkjsgj_kuangfeng4", { player: "phaseBeginStart" });
+			player.addTempSkill("qmsgswkjsgj_kuangfeng3", { player: "phaseJieshuBefore" });
+			player.addTempSkill("qmsgswkjsgj_kuangfeng4", { player: "phaseJieshuBefore" });
 			await player.loseToDiscardpile(cards);
 		},
 		ai: {
@@ -1844,6 +1844,130 @@ const skill = {
 				if (current.getStorage("qmsgswkjsgj_kuangfeng2").includes(player)) {
 					current.unmarkAuto("qmsgswkjsgj_kuangfeng2", player);
 					current.removeAdditionalSkill(`qmsgswkjsgj_kuangfeng_${player.playerid}`);
+				}
+			}, true);
+		},
+	},
+	qmsgswkjsgj_dawu: {
+		trigger: { player: "phaseJieshuBegin" },
+		filter(event, player) {
+			return player.getExpansions("qixing").length;
+		},
+		audio: 'dawu',
+		async cost(event, trigger, player) {
+			const {
+				result: { bool, targets, links: cost_data },
+			} = await player
+				.chooseButtonTarget({
+					createDialog: [get.prompt2(event.skill), player.getExpansions("qixing")],
+					selectButton: [1, game.countPlayer()],
+					filterTarget: true,
+					selectTarget() {
+						return ui.selected.buttons.length;
+					},
+					complexSelect: true,
+					ai1(button) {
+						const { player, allUse } = get.event();
+						const targets = game.filterPlayer(target => {
+							if (target.isMin() || target.hasSkill("biantian2") || target.hasSkill("qmsgswkjsgj_dawu2")) {
+								return false;
+							}
+							let att = get.attitude(player, target);
+							if (att >= 4) {
+								if (target.hp > 2 && (target.isHealthy() || target.hasSkillTag("maixie"))) {
+									return false;
+								}
+								if (allUse || target.hp == 1) {
+									return true;
+								}
+								if (target.hp == 2 && target.countCards("he") <= 2) {
+									return true;
+								}
+							}
+							return false;
+						});
+						if (ui.selected.buttons.length < targets.length) {
+							return 1;
+						}
+						return 0;
+					},
+					ai2(target) {
+						const { player, allUse } = get.event();
+						if (target.isMin() || target.hasSkill("biantian2") || target.hasSkill("qmsgswkjsgj_dawu2")) {
+							return 0;
+						}
+						let att = get.attitude(player, target);
+						if (att >= 4) {
+							if (target.hp > 2 && (target.isHealthy() || target.hasSkillTag("maixie"))) {
+								return 0;
+							}
+							if (allUse || target.hp == 1) {
+								return att;
+							}
+							if (target.hp == 2 && target.countCards("he") <= 2) {
+								return att * 0.7;
+							}
+							return 0;
+						}
+						return -1;
+					},
+				})
+				.set("allUse", player.getExpansions("qixing").length >= game.countPlayer(current => get.attitude(player, current) > 4) * 2);
+			event.result = {
+				bool: bool,
+				targets: targets?.sortBySeat(),
+				cost_data: cost_data,
+			};
+		},
+		async content(event, trigger, player) {
+			const { targets, cost_data: cards } = event;
+			targets.forEach(target => {
+				target.addAdditionalSkill(`qmsgswkjsgj_dawu_${player.playerid}`, "qmsgswkjsgj_dawu2");
+				target.markAuto("qmsgswkjsgj_dawu2", [player]);
+			});
+			player.addTempSkill("qmsgswkjsgj_dawu3", { player: "phaseJieshuBefore" });
+			await player.loseToDiscardpile(cards);
+		},
+		ai: {
+			combo: "qixing",
+		},
+	},
+	qmsgswkjsgj_dawu2: {
+		charlotte: true,
+		ai: {
+			nofire: true,
+			nodamage: true,
+			effect: {
+				target(card, player, target, current) {
+					if (get.tag(card, "damage") && !get.tag(card, "thunderDamage")) {
+						return "zeroplayertarget";
+					}
+				},
+			},
+		},
+		intro: {
+			content(storage) {
+				return `共有${storage.length}枚标记`;
+			},
+		},
+	},
+	qmsgswkjsgj_dawu3: {
+		trigger: { global: "damageBegin4" },
+		sourceSkill: "qmsgswkjsgj_dawu",
+		filter(event, player) {
+			return !event.hasNature("thunder") && event.player.getStorage("qmsgswkjsgj_dawu2").includes(player);
+		},
+		forced: true,
+		charlotte: true,
+		logTarget: "player",
+		content() {
+			trigger.cancel();
+		},
+		onremove(player) {
+			game.countPlayer2(current => {
+				if (current.getStorage("qmsgswkjsgj_dawu2").includes(player)) {
+					current.unmarkAuto("qmsgswkjsgj_dawu2", [player]);
+					current.removeAdditionalSkill(`qmsgswkjsgj_dawu_${player.playerid}`);
 				}
 			}, true);
 		},

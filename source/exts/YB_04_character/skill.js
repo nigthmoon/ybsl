@@ -3467,7 +3467,7 @@ const skill = {
 			return true;
 		},
 		async cost(event, trigger, player) {
-			event.result = await player.chooseBool(get.prompt2('Fe2O3_xingchen')).set('choice', lib.skill.Fe2O3_xingchen.check(event(), player)).forResult()
+			event.result = await player.chooseBool(get.prompt2('Fe2O3_xingchen')).set('choice', lib.skill.Fe2O3_xingchen.check(trigger, player)).forResult()
 			if (!event.result.bool) return
 			player.addTempSkill('Fe2O3_xingchen_used');
 			player.addMark('Fe2O3_xingchen_used');
