@@ -1644,14 +1644,14 @@ const skill = {
 				if(i[1].filter(event, player)) return true;
 			}
 		},
-		prompt(event,player){
-			var num = ui.selected.cards.length;
-			if(num==0)return get.translation("ybmjz_mumu_info");
-			else {
-				var list = player.storage.ybmjz_mumu_list;
-				return list[num-1][1].prompt(event, player);
-			}
-		},
+		// prompt(event,player){
+		// 	var num = ui.selected.cards.length;
+		// 	if(num==0)return get.translation("ybmjz_mumu_info");
+		// 	else {
+		// 		var list = player.storage.ybmjz_mumu_list;
+		// 		return list[num-1][1].prompt(event, player);
+		// 	}
+		// },
 		filterTarget(card,player,target){
 			var num = ui.selected.cards.length;
 			if(num==0)return false;
@@ -1849,14 +1849,14 @@ const skill = {
 				if(i[1].filter(event, player)) return true;
 			}
 		},
-		prompt(event,player){
-			var num = ui.selected.cards.length;
-			if(num==0)return get.translation("ybmjz_mumuxx_info");
-			else {
-				var list = get.player().storage.ybmjz_mumuxx_list;
-				return list[num-1][1].prompt(event, player);
-			}
-		},
+		// prompt(event,player){
+		// 	var num = ui.selected.cards.length;
+		// 	if(num==0)return get.translation("ybmjz_mumuxx_info");
+		// 	else {
+		// 		var list = get.player().storage.ybmjz_mumuxx_list;
+		// 		return list[num-1][1].prompt(event, player);
+		// 	}
+		// },
 		filterTarget(card,player,target){
 			var num = ui.selected.cards.length;
 			if(num==0)return false;

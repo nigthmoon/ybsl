@@ -3162,9 +3162,18 @@ const skill = {
 				if(get.number(i))event.numx+=get.number(i);
 			} 
 			game.log(player, "本次观看牌的点数和为", event.numx, "。")
+			if(!player.storage.niya_youbo)player.storage.niya_youbo=0;
+			player.storage.niya_youbo+=event.numx;
+			player.update();
 			'step 1'
-			var numb = Math.log2(event.numx);
-			event.numb=Math.floor(numb);player
+			var numb = Math.log2(player.storage.niya_youbo);
+			event.numb=Math.floor(numb);
+			player.chooseBool("是否进行摸牌？（当前摸牌数为"+event.numb+"）").set('ai',function () {
+				var att=get.attitude(_status.event.player,_status.currentPhase);
+				if(att>0)return event.numb!=_status.currentPhase.maxHp;
+				// else return event.numb==_status.currentPhase.maxHp;
+				else return true;
+			})
 			// player.chooseNumbers(get.prompt2("niya_youbo"), [{ prompt: "请选择你摸牌数，若选择"+_status.currentPhase.maxHp+"，则"+get.translation(_status.currentPhase)+"失去一点体力上限。", min: 1, max: numb }]).set("processAI", () => {
 			// 	var att=get.attitude(_status.event.player,_status.currentPhase);
 			// 	if(att>0&&get.event().maxNum==_status.currentPhase.maxHp){
@@ -3177,15 +3186,21 @@ const skill = {
 			// 	return [get.event().maxNum];
 			// })
 			'step 2'
-			// if (result.bool) {
+			if (result.bool) {
 				// var number = result.numbers[0];
+				player.storage.niya_youbo = 0;
+				player.update();
 				var number = event.numb;
 				player.draw(number);
 				if(_status.currentPhase&&_status.currentPhase.isIn()&&number==_status.currentPhase.maxHp){
 					_status.currentPhase.loseMaxHp();
 				}
-			// }
+			}
 		},
+		mark:true,
+		intro:{
+			markcount:(storage,player)=>{return player.storage.niya_youbo|| 0;},
+		}
 	},
 	niya_anren:{
 		audio:'ext:夜白神略/audio/character:2',
