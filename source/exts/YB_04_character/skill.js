@@ -2981,7 +2981,7 @@ const skill = {
 							return players.includes(target);
 						}).forResult();
 						if(result.bool){
-							await player.discardPlayerCard(result.targets[0],2,true)
+							await player.discardPlayerCard(result.targets[0],[1,2],true)
 						}
 					}
 				}
