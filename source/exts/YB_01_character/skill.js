@@ -779,7 +779,7 @@ const skill = {
 			player.awakenSkill('dzsl_shennu');
 			player.storage.dzsl_shennu_buff=[event,target];
 			player.addTempSkill('dzsl_shennu_buff');
-			var hs=player.getCards('h');
+			var hs=player.getDiscardableCards('h');
 			if(hs.length){
 				event.discard=hs.length;
 				player.discard(hs);
@@ -981,8 +981,8 @@ const skill = {
 			content:function(storage,player){
 				var str0='（括号内的阴阳为鸾鸣的形态）<br/>';
 		var str1='阴（阴）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
-		var str2='阴（阳）：当你因弃置而失去一张梅花牌时，你可令一名角色回复一点体力；';
-		var str3='阳（阴）：当你因弃置而失去一张红桃牌时，你可令一名角色失去一点体力；';
+		var str2='阴（阳）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；';
+		var str3='阳（阴）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；';
 		var str4='阳（阳）：当你因弃置而失去一张方块牌时，你可令一名角色下个摸牌阶段少摸一张牌。';
 		var str5='<span class="bluetext">';//蓝色字符
 		var str6='<span class=yellowtext>';//黄色字符
@@ -1073,10 +1073,10 @@ const skill = {
 			}
 			'step 1'
 			switch(event.tt){
-				case -2:var str='失去一点体力';break;
+				case -2:var str='失去1点体力';break;
 				case -1:var str='下个摸牌阶段少摸一张牌';break;
 				case 1:var str='下个摸牌阶段额外摸一张牌';break;
-				case 2:var str='回复一点体力';break;
+				case 2:var str='回复1点体力';break;
 			}
 			player.chooseTarget().set('prompt2','请选择一名角色，令其'+str).set('ai',function(target){
 				if(event.tt>0){return get.attitude(player,target)>0;}
@@ -1845,11 +1845,11 @@ const skill = {
 	},
 	/*
 	yb001_yongyue:'咏月',
-	yb001_yongyue_info:'锁定技，判定阶段开始时/当你受到伤害时，若你存在已损体力值，你跳过之，改为失去空血条，然后摸等量牌；当你失去牌后，若你的已损体力值不大于3，你增加一点体力上限。',
+	yb001_yongyue_info:'锁定技，判定阶段开始时/当你受到伤害时，若你存在已损体力值，你跳过之，改为失去空血条，然后摸等量牌；当你失去牌后，若你的已损体力值不大于3，你增加1点体力上限。',
 	'yb001_minglun_info':'锁定技，回合开始时，根据你已损体力值：<br/>不小于1：你可选择一个牌的类型，本回合使用此类型的牌时，摸一张牌；<br/>不小于2：你可获得一张随机装备；<br/>不小于3：你可摸3张牌。<br/>结束阶段，你回复X点体力或摸2X张牌（记X为回合开始时你可选的选项，但你没选，且当前阶段不满足的选项数）',
 	锁定技，回合开始时，你展示牌堆顶一张牌并放在武将牌上，至多放四张。根据“命轮”的花色，你视为拥有技能：
 	<br>黑桃：栖月；红桃，旅心；<br>梅花，折叶；方块：忆水。
-	结束阶段，若“命轮”包含相同花色或四种花色，则你需弃置所有“命轮”或失去一点体力。
+	结束阶段，若“命轮”包含相同花色或四种花色，则你需弃置所有“命轮”或失去1点体力。
 	*/
 	yb001_haowan:{
 		audio:'ext:夜白神略/audio/character:2',//垆边人似月，皓腕凝霜雪
@@ -1903,7 +1903,7 @@ const skill = {
 		content:function(){
 			'step 0'
 			if(event.triggername=='phaseAfter'){
-				player.chooseControl(['掉血','弃掉']).set('prompt','请选择一项：弃掉所有“命轮”牌，或失去一点体力').set('ai',function(control){
+				player.chooseControl(['掉血','弃掉']).set('prompt','请选择一项：弃掉所有“命轮”牌，或失去1点体力').set('ai',function(control){
 					var cards=player.getExpansions('yb001_minglun');
 					var list=[];
 					for(var i of cards){
@@ -2662,7 +2662,7 @@ const skill = {
 			if(event.triggername=='phaseZhunbeiBegin')str+='<span style=\'color:#e1ff00\'>准备阶段</span>或结束阶段或当你受到伤害后';
 			if(event.triggername=='phaseJieshuBegin')str+='准备阶段或<span style=\'color:#e1ff00\'>结束阶段</span>或当你受到伤害后';
 			if(event.triggername=='damageEnd')str+='准备阶段或结束阶段或<span style=\'color:#e1ff00\'>当你受到伤害后</span>';
-			str+='，你可以进行一次判定，若结果为红色，则你回复一点体力或摸两张牌。';
+			str+='，你可以进行一次判定，若结果为红色，则你回复1点体力或摸两张牌。';
 			if(player.storage.yb004_shangyuan){
 				event.result = player.chooseBool(get.prompt('yb004_tianqi',trigger.player),str).forResult();
 			}
@@ -3368,7 +3368,7 @@ const skill = {
 			if(event.name=='phaseDraw')str+='<span style=\'color:#e1ff00\'>摸牌</span>';
 			if(event.name=='phaseUse')str+='<span style=\'color:#e1ff00\'>出牌</span>';
 			if(event.name=='phaseDiscard')str+='<span style=\'color:#e1ff00\'>弃牌</span>';
-			str+='阶段开始时，是否失去一点体力并摸两张牌？';
+			str+='阶段开始时，是否失去1点体力并摸两张牌？';
 			return str;
 		},
 		init:function (player){
@@ -3837,7 +3837,7 @@ const skill = {
 	// 'yb012_xibei':'习备',
 	// 'yb012_xibei_info':'场上其他角色使用非转化即时牌后，若此牌存在于弃牌堆中，你可以将之充入“小抄”。',
 	// 'yb012_suotu':'索图',
-	// 'yb012_suotu_info':'出牌阶段限一次，你可以选择一名有手牌的其他角色，你展示其一张手牌，令其选择：①令你获得此牌，②受到你造成的一点伤害。',
+	// 'yb012_suotu_info':'出牌阶段限一次，你可以选择一名有手牌的其他角色，你展示其一张手牌，令其选择：①令你获得此牌，②受到你造成的1点伤害。',
 	//---------------尹姬
 	yb013_shanwu:{
 		audio:'ext:夜白神略/audio/character:1',
@@ -4105,8 +4105,8 @@ const skill = {
 					var list=player.storage.yb014_shizhui_list;
 					var num=8;
 					var str='<span class=yellowtext>出牌阶段，你可以删除一个以此法获得的技能，然后摸三张牌，并</span>'
-					if(player.storage.yb014_shizhui_delete==true){str+='<span class=yellowtext>回复一点体力。</span>';}
-					else{str+='<span class=yellowtext>增加一点体力上限。</span>';}
+					if(player.storage.yb014_shizhui_delete==true){str+='<span class=yellowtext>回复1点体力。</span>';}
+					else{str+='<span class=yellowtext>增加1点体力上限。</span>';}
 					player.YB_control(list,num,str);
 					'step 1'
 					if(result.control=='cancel2'){
@@ -4162,10 +4162,10 @@ const skill = {
 				// var str='已学习了';
 				// str+=get.translation(player.storage.yb014_shizhui_list);
 				// if(player.storage.yb014_shizhui_delete==true){
-					// str+='<br>本次删除技能回复一点体力';
+					// str+='<br>本次删除技能回复1点体力';
 				// }
 				// else{
-					// str+='<br>本次删除技能增加一点体力上限';
+					// str+='<br>本次删除技能增加1点体力上限';
 				// }
 				// return str;
 			// },
@@ -4178,10 +4178,10 @@ const skill = {
 				var str='已学习了';
 				str+=get.translation(player.storage.yb014_shizhui_list);
 				if(player.storage.yb014_shizhui_delete==true){
-					str+='<br>本次删除技能回复一点体力';
+					str+='<br>本次删除技能回复1点体力';
 				}
 				else{
-					str+='<br>本次删除技能增加一点体力上限';
+					str+='<br>本次删除技能增加1点体力上限';
 				}
 				dialog.addText(str);
 			}
@@ -4708,9 +4708,9 @@ const skill = {
 		intro:{
 			content:function(storage,player,skill){
 				if (player.storage.yb016_shanbiao==true){
-					return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的一点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
+					return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的1点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
 				}
-				return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的一点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
+				return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的1点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
 			},
 		},
 		group:['yb016_shanbiao_damage'],
@@ -4784,7 +4784,7 @@ const skill = {
 				player.draw(2)
 			};
 			if(event.suit=='spade'){
-				player.chooseTarget(get.prompt('yb016_xianyue'),'令一名角色流失一点体力').set('ai',function(target){
+				player.chooseTarget(get.prompt('yb016_xianyue'),'令一名角色失去1点体力').set('ai',function(target){
 					var player=_status.event.player;
 					var att=get.attitude(player,target);
 					if(att<0){
@@ -5782,7 +5782,7 @@ const skill = {
 			}
 			player.chooseControl(listb).set('choiceList',[
 				'<span class=yellowtext>摸两张牌</span>',
-				'<span class=yellowtext>回复一点体力</span>',
+				'<span class=yellowtext>回复1点体力</span>',
 				'背水！消耗<span class=yellowtext>两</span>枚梦',
 				'<span class=yellowtext>摸一张牌</span>',
 				'<span class=yellowtext>获得仅有一张的花色的牌</span>',
@@ -6839,7 +6839,7 @@ const skill = {
 						const { index } = await player
 							.chooseControl()
 							.set("prompt", "妆容：请选择一项")
-							.set("choiceList", ["黑：摸两张牌"+list2[0]+'/'+list2[1], "红：回复一点体力"+list2[2]+'/'+list2[3]])
+							.set("choiceList", ["黑：摸两张牌"+list2[0]+'/'+list2[1], "红：回复1点体力"+list2[2]+'/'+list2[3]])
 							.set("ai", function () {
 								return 1;
 							})
@@ -7562,7 +7562,7 @@ const skill = {
 		// 	});
 		// 	event.result = await player.chooseTarget(1,function(card,player,target){
 		// 		return list.includes(target)
-		// 	}).set('prompt','请选择一名其他角色，令其获得一点护甲').set('ai',function(target){
+		// 	}).set('prompt','请选择一名其他角色，令其获得1点护甲').set('ai',function(target){
 		// 		return get.attitude(player,target);
 		// 	}).forResult();
 		// },
@@ -8567,7 +8567,7 @@ const skill = {
 		forced:true,
 		content:function(){
 			'step 0'
-			player.chooseTarget(true).set('prompt','请选择一名角色，令其摸两张牌并回复一点体力').set('ai',function(target){
+			player.chooseTarget(true).set('prompt','请选择一名角色，令其摸两张牌并回复1点体力').set('ai',function(target){
 				var player=_status.event.player;
 				var att=get.attitude(player,target)/Math.sqrt(1+target.countCards('h'));
 				return att;
@@ -8600,7 +8600,7 @@ const skill = {
 	},
 	/*
 	'yb028_sheshen_info':
-	'（初稿待定）锁定技，当你装备栏被废除时，你令一名角色摸两张牌并回复一点体力，然后你减一点体力上限；
+	'（初稿待定）锁定技，当你装备栏被废除时，你令一名角色摸两张牌并回复1点体力，然后你减1点体力上限；
 	你的手牌上限额外增加被废除装备栏的数量；
 	当你体力上限不大于1时，你无法扣减体力上限。',
 	
@@ -8665,7 +8665,7 @@ const skill = {
 				enable:['chooseToUse'],
 				filterCard:1,
 				viewAs:{name:'juedou'},
-				prompt:'将一张手牌当作决斗使用',
+				prompt:'将一张手牌当作【决斗】使用',
 				check:function(event,player,card){
 					if(event.card=='sha')return 0.5;
 					return 1.5;
@@ -9007,7 +9007,7 @@ const skill = {
 			player.YB_yuqi(['隅泣',event.list[1],event.list[2],event.list[3]],trigger.player);
 			// 'step 1'
 			// if(trigger.player.hasMark('yb033_shuhui_mark')){
-			// 	player.chooseControl(['ok2','cancel2']).set('prompt','是否移除其“诉”标记？').set('prompt2','然后其回复一点体力。').set('ai',function(control){
+			// 	player.chooseControl(['ok2','cancel2']).set('prompt','是否移除其“诉”标记？').set('prompt2','然后其回复1点体力。').set('ai',function(control){
 			// 		var att=get.attitude(_status.event.player,trigger.player);
 			// 		if(att>0)return 'ok2';
 			// 		return 'cancel2';
@@ -9067,7 +9067,7 @@ const skill = {
 		},
 		content(){
 			'step 0'
-			var choiceList = ["失去一点体力", "受到一点伤害","弃置一张牌"];
+			var choiceList = ["失去1点体力", "受到1点伤害","弃置一张牌"];
 			if(!player.countDiscardableCards(player, 'h'))choiceList.remove("弃置一张牌");
 			player.chooseControl()
 			.set("choiceList", choiceList)
@@ -9097,7 +9097,7 @@ const skill = {
 		// content:[
 		// 	async function(event,trigger,player){
 		// 		event.result = player.chooseControl()
-		// 			.set("choiceList", ["失去一点体力", "受到一点伤害","弃置一张牌"])
+		// 			.set("choiceList", ["失去1点体力", "受到1点伤害","弃置一张牌"])
 		// 			.set('ai',function(){
 		// 				return 2;
 		// 			})
@@ -9109,7 +9109,7 @@ const skill = {
 		init(player){
 			if(!player.storage.yb033_qijue_lh)player.storage.yb033_qijue_lh=[
 				['①你下次失去体力后','loseHpEnd'],
-				['②恢复此数值*2点体力',function(){
+				['②回复此数值*2点体力',function(){
 					player.recover(trigger.num*2);
 				}],
 				['③弃置一张手牌',function(){
@@ -9122,7 +9122,7 @@ const skill = {
 				['②摸此数值*3张牌',function(){
 					player.draw(trigger.num*3);
 				}],
-				['③失去一点体力',function(){
+				['③失去1点体力',function(){
 					// player.chooseToDiscard('h',true);
 					player.loseHp(1);
 					// delete player.storage.yb033_qijue_damage;
@@ -9130,7 +9130,7 @@ const skill = {
 			];
 			if(!player.storage.yb033_qijue_dc)player.storage.yb033_qijue_dc=[
 				['①你下次弃置牌后','discardEnd'],
-				['②对场上角色各造成一点伤害',function(){
+				['②对场上角色各造成1点伤害',function(){
 					var targets = game.filterPlayer().sortBySeat(player);
 					for(var i of targets){
 						if(i.isIn())i.damage(player);
@@ -9550,7 +9550,7 @@ const skill = {
 		forced:true,
 		content:[
 			async function(event,trigger,player){
-				trigger.player.chooseToGive(player,1,'h','①交给'+get.translation(player)+'一张手牌，②减少一点体力上限。')
+				trigger.player.chooseToGive(player,1,'h','①交给'+get.translation(player)+'一张手牌，②减少1点体力上限。')
 				.set("ai", function(card) {
 					var trigger=_status.event.getTrigger();
 					if(get.attitude(trigger.player,player)>5)return 10-get.value(card);
@@ -9576,7 +9576,7 @@ const skill = {
 			'step 0'
 			player.chooseControl()
 				.set("prompt", "祭天：请选择一项")
-				.set("choiceList", ["减少一点体力上限并回复一点体力", "增加一点体力上限并失去一点体力",'取消'])
+				.set("choiceList", ["减少1点体力上限并回复1点体力", "增加1点体力上限并失去1点体力",'取消'])
 				.set("ai", () => {
 					if(player.maxHp>=4&&player.maxHp-player.hp>=2)return 0;
 					else if(player.hp>=2)return 1;
@@ -9828,7 +9828,7 @@ const skill = {
 			content:function(storage,player,skill){
 				var str='本技能累积次数<li>';
 				str+=player.storage.yb038_quanlu;
-				str+='<br/>因此技能流失体力<li>';
+				str+='<br/>因此技能失去体力<li>';
 				str+=get.translation(player.storage.ybsl_quan);
 				str+='<br/>因此技能失去上限<li>';
 				str+=get.translation(player.storage.ybsl_lu);
@@ -9851,7 +9851,7 @@ const skill = {
 					list.remove('掉上限');
 				}
 				player.chooseControl(list).set(
-					'prompt2','请选择失去一点体力<span class=yellowtext>或</span>体力上限'
+					'prompt2','请选择失去1点体力<span class=yellowtext>或</span>体力上限'
 				).set('ai',function(player){
 					if(player.hp>2||player.hp==player.maxHp)return '掉血';
 					return '掉上限';
@@ -9922,7 +9922,7 @@ const skill = {
 					list.remove('掉上限回血');
 				}
 				player.chooseControl(list).set(
-					'prompt2','请选择失去一点体力并增加一点体力上限<span class=yellowtext>或</span>失去一点体力上限并恢复一点体力'
+					'prompt2','请选择失去1点体力并增加1点体力上限<span class=yellowtext>或</span>失去1点体力上限并回复1点体力'
 				).set('ai',function(player){
 					if(player.hp>2||player.hp==player.maxHp)return '掉血加上限';
 					return '掉上限回血';
@@ -11588,7 +11588,7 @@ const skill = {
 			}
 			list.push('加上限');
 			list.push('cancel2');
-			player.chooseControl(list).set('prompt','是否弃置本次旅心摸的牌，然后回复一点体力或本回合手牌上限+1？');
+			player.chooseControl(list).set('prompt','是否弃置本次旅心摸的牌，然后回复1点体力或本回合手牌上限+1？');
 			'step 1'
 			if(result.control=='回血'){
 				player.discard(trigger.cards[0]);
@@ -11667,7 +11667,7 @@ const skill = {
 						event._result={control:list[0]}
 					}
 					else{
-						player.chooseControl(list,true).set('prompt','请选择回复两点体力或摸'+get.cnNumber(event.num)+'张牌。');
+						player.chooseControl(list,true).set('prompt','请选择回复2点体力或摸'+get.cnNumber(event.num)+'张牌。');
 					}
 					'step 1'
 					if(result.control=='回血'){
@@ -11744,7 +11744,7 @@ const skill = {
 		},
 	},
 	//失去牌的效果被我放主文件里了，防止出现特殊情况，引用了主技能而没开本将包导致无法触发效果
-	//其他角色使用点数大于1的装备牌时，你可以令此牌点数-1，然后你获得一张点数为1的同名牌并可立即使用。当复制牌进入弃牌堆时，自动销毁，并令此牌的原型点数+1，若此牌的原型仍在场上，则区域内有该牌的角色回复一点体力。
+	//其他角色使用点数大于1的装备牌时，你可以令此牌点数-1，然后你获得一张点数为1的同名牌并可立即使用。当复制牌进入弃牌堆时，自动销毁，并令此牌的原型点数+1，若此牌的原型仍在场上，则区域内有该牌的角色回复1点体力。
 	'yb054_xiezhi':{
 		audio:'ext:夜白神略/audio/character:2',
 	},
@@ -11808,7 +11808,7 @@ const skill = {
 			list.push('是');
 			list.push('cancel2');
 			event.tar=trigger.player;
-			player.chooseControl(list).set('prompt',get.translation(trigger.player)+'即将受到'+get.cnNumber(trigger.num)+'点'+get.translation(trigger.nature)+'伤害，是否令此伤害-1，然后自己受到一点无来源伤害？').set('ai',function(){
+			player.chooseControl(list).set('prompt',get.translation(trigger.player)+'即将受到'+get.cnNumber(trigger.num)+'点'+get.translation(trigger.nature)+'伤害，是否令此伤害-1，然后自己受到1点无来源伤害？').set('ai',function(){
 				var attitude=get.attitude(player,trigger.player);
 				if(attitude>=0) return 0;
 				if(attitude<0){
@@ -11863,7 +11863,7 @@ const skill = {
 	yb054_zhishang:'炙伤',
 	yb054_zhishang_info:'锁定技，每当你受到一次伤害后，你摸三张牌，
 	然后若此伤害为属性伤害且你受伤时未处于横置（叠置）状态，
-	你减一点体力上限。',
+	你减1点体力上限。',
 	yb054_tongxin:'同心',
 	yb054_tongxin_info:'当其他角色受到大于1点且来源不为自己的伤害时，
 	你可令此伤害-1，然后受到1点无来源伤害。',
@@ -11984,7 +11984,7 @@ const skill = {
 	//--------------------孙世博058
 	//--------------------星落四公主059
 	// yb059_huiguang:'晖光',
-	// yb059_huiguang_info:'锁定技，游戏开始时，你选择一名星落四公主之一，将武将牌替换为其。当你即将阵亡时，若你仍有存活公主，则取消之，改为减少一点体力上限（至多减至1）并将武将牌替换为一名未阵亡的公主，并将你武将牌上的技能添加至新公主武将牌上，然后回复体力至上限。',
+	// yb059_huiguang_info:'锁定技，游戏开始时，你选择一名星落四公主之一，将武将牌替换为其。当你即将阵亡时，若你仍有存活公主，则取消之，改为减少1点体力上限（至多减至1）并将武将牌替换为一名未阵亡的公主，并将你武将牌上的技能添加至新公主武将牌上，然后回复体力至上限。',
 	// yb059_xingshi:'星逝',
 	// yb059_xingshi_info:'锁定技，每回合限一次，当你使用牌指定其他角色为唯一目标后，或成为其他角色使用牌的唯一目标后，你依次弃置你和对方的所有手牌，此牌结算完成后，你和对方各自摸等同自身当前体力值的牌数。',
 	// yb059_guanhong:'贯虹',
@@ -12739,8 +12739,8 @@ const skill = {
 			var str='目标角色将';
 			switch(event.numb){
 				case 1:str+='摸一张牌';break;
-				case 2:str+='回复一点体力';break;
-				case 3:str+='增加一点体力上限';break;
+				case 2:str+='回复1点体力';break;
+				case 3:str+='增加1点体力上限';break;
 				case 4:str+='摸三张牌';break;
 			}
 			event.str=str;
@@ -12891,7 +12891,7 @@ const skill = {
 				}
 			},
 			prompt:function (links,player){
-				var str=player.hp>1?'失去一点体力并':'';
+				var str=player.hp>1?'失去1点体力并':'';
 				return str+'视为使用一张'+get.translation(links[0][2]);
 			},
 		},
@@ -13021,7 +13021,7 @@ const skill = {
 		marktext:'☯',
 		intro:{
 			content:function(storage,player,skill){
-				if(player.storage.yb069_wenhuan==true) return '当场上角色回复体力时，你可以令其翻面，并令此次恢复效果+1。';
+				if(player.storage.yb069_wenhuan==true) return '当场上角色回复体力时，你可以令其翻面，并令此次回复效果+1。';
 				return '当场上角色受到伤害后，你可令其武将牌复位，然后摸一张牌。';
 			},
 		},
@@ -13034,7 +13034,7 @@ const skill = {
 				},
 				prompt2:function(event,player){
 					var str='';
-					str+=(player.storage.yb069_wenhuan==true)?'是否令其翻面，并令此次恢复效果+1':'是否令其武将牌复位，然后其摸一张牌';
+					str+=(player.storage.yb069_wenhuan==true)?'是否令其翻面，并令此次回复效果+1':'是否令其武将牌复位，然后其摸一张牌';
 					return str;
 				},
 				check:function (event,player){
@@ -14508,7 +14508,7 @@ const skill = {
 					return true;
 				},
 				prompt:'是否获得其一张"§"标记？',
-				prompt2:'然后你加一点体力上限并摸一张牌。',
+				prompt2:'然后你加1点体力上限并摸一张牌。',
 				content:function(){
 					'step 0'
 					event.cards=trigger.player.getExpansions('ybsl_duanzui_mark');
@@ -15220,13 +15220,13 @@ const skill = {
 				var tar=player;
 				var str='对';
 				str+=get.translation(trigger.player);
-				str+='造成一点伤害还是获得这些牌';
+				str+='造成1点伤害还是获得这些牌';
 			}
 			else{
 				var tar=trigger.player;
 				var str='受到';
 				str+=get.translation(player);
-				str+='造成的一点伤害还是改为其获得这些牌';
+				str+='造成的1点伤害还是改为其获得这些牌';
 			}
 			tar.chooseControl('伤害','交牌').set('prompt',str).set('ai',function(control){
 				// var trigger = _status.event.getTrigger();
@@ -15322,7 +15322,7 @@ const skill = {
 		},
 		usable:1,
 		async cost(event,trigger,player){
-			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成1点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 				var trigger = _status.event.getTrigger();
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
@@ -15337,7 +15337,7 @@ const skill = {
 		},
 		// content:function(){
 		// 	'step 0'
-		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成1点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 		// 		if(get.attitude(_status.event.player,trigger.player)>0) return false;
 		// 		return 6 - get.value(card);
 		// 	});
@@ -15412,7 +15412,7 @@ const skill = {
 			return event.player.isAlive();
 		},
 		async cost(event,trigger,player){
-			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+			event.result = await player.chooseCardButton('选择一张令其收回，视为其对自己造成1点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 				var trigger = _status.event.getTrigger();
 				if(get.attitude(_status.event.player,trigger.player)>0) return false;
 				return 6 - get.value(card);
@@ -15427,7 +15427,7 @@ const skill = {
 		},
 		// content:function(){
 		// 	'step 0'
-		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成一点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
+		// 	player.chooseCardButton('选择一张令其收回，视为其对自己造成1点由此牌造成的伤害',trigger.cards.filter(i=>get.position(i,true)=='d')).set('ai',function(card){
 		// 		if(get.attitude(_status.event.player,trigger.player)>0) return false;
 		// 		return 6 - get.value(card);
 		// 	});
@@ -15690,16 +15690,16 @@ const skill = {
 	// yb092_xiuhua:'羞花',
 	// yb092_xiuhua_info:'锁定技，当你武将牌翻至正面时，攻击范围包含你的角色需各自依次弃置两张牌，若均为同一区域的牌，则需弃置该区域其余的牌。',
 	// yb092_chenyu:'沉鱼',
-	// yb092_chenyu_info:'锁定技，当你弃置牌时，若此次弃置的花色数与弃牌堆除这些牌外的牌的花色数相等，你回复一点体力。',
+	// yb092_chenyu_info:'锁定技，当你弃置牌时，若此次弃置的花色数与弃牌堆除这些牌外的牌的花色数相等，你回复1点体力。',
 	// yb092_luoyan:'落雁',
-	// yb092_luoyan_info:'锁定技，出牌阶段结束时，你对从你开始的至下X家各造成一点伤害，X为你本阶段使用的牌数。若X大于场上角色数，则将伤害属性改为雪属性。',
+	// yb092_luoyan_info:'锁定技，出牌阶段结束时，你对从你开始的至下X家各造成1点伤害，X为你本阶段使用的牌数。若X大于场上角色数，则将伤害属性改为雪属性。',
 
 	//------------------珂赛特
 	yb100_lieshi:{
 		audio:'ext:夜白神略/audio/character:2',
 		chongzhiji:true,
 		chongzhiList:[
-			['·受到你造成的一点火焰伤害，然后废除一个随机装备栏',{
+			['·受到你造成的1点火焰伤害，然后废除一个随机装备栏',{
 				content:function(player,target){
 					'step 0'
 					target.damage(1,'fire',player);
@@ -15717,7 +15717,7 @@ const skill = {
 					return [eff2,-1,eff1,0];
 				},
 			}],
-			['·受到你造成的两点火焰伤害',{
+			['·受到你造成的2点火焰伤害',{
 				content:function(player,target){
 					'step 0'
 					target.damage(2,'fire',player);
@@ -15728,7 +15728,7 @@ const skill = {
 					return [eff2*2,0,eff1*2,0];
 				},
 			}],
-			['·受到你造成的三点火焰伤害，然后摸三张牌',{
+			['·受到你造成的3点火焰伤害，然后摸三张牌',{
 				content:function(player,target){
 					'step 0'
 					target.damage(3,'fire',player);
@@ -15874,7 +15874,7 @@ const skill = {
 		},
 	},
 	// yb100_lieshi:'烈誓',
-	// yb100_lieshi_info:'重置技，刷新列表为：["受到你造成的一点火焰伤害，然后废除一个随机装备栏","受到你造成的两点火焰伤害","受到你造成的三点火焰伤害，然后摸三张牌"]。
+	// yb100_lieshi_info:'重置技，刷新列表为：["受到你造成的1点火焰伤害，然后废除一个随机装备栏","受到你造成的2点火焰伤害","受到你造成的3点火焰伤害，然后摸三张牌"]。
 	// 出牌阶段限一次，你可以选择一名其他角色，你令你们之一先选择列表其中一项执行，然后另一方执行列表中仍存的一项。',
 
 	/*快捷复制：

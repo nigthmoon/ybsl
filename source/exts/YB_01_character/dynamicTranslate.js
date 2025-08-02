@@ -5,8 +5,8 @@ const dynamicTranslate = {//动态翻译
 	ybsl_xianyin:function(player){//弦音
 		var str0='转换技，（括号内的阴阳为鸾鸣的形态）<br/>';
 		var str1='阴（阴）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
-		var str2='阴（阳）：当你因弃置而失去一张梅花牌时，你可令一名角色回复一点体力；';
-		var str3='阳（阴）：当你因弃置而失去一张红桃牌时，你可令一名角色失去一点体力；';
+		var str2='阴（阳）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；';
+		var str3='阳（阴）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；';
 		var str4='阳（阳）：当你因弃置而失去一张方块牌时，你可令一名角色下个摸牌阶段少摸一张牌。';
 		var str5='<span class="bluetext">';//蓝色字符
 		var str6='<span class=yellowtext>';//黄色字符
@@ -53,12 +53,12 @@ const dynamicTranslate = {//动态翻译
 		return str;
 	},
 	ybsl_luanming:function(player){//鸾鸣
-		if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阴：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阳：视为使用其中的红色牌并额外执行一次。</span><br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用桃选择其为目标！</span>';
-		return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阴：视为使用其中的黑色牌并额外执行一次；</span>阳：视为使用其中的红色牌并额外执行一次。<br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用桃选择其为目标！</span>';
+		if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阴：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阳：视为使用其中的红色牌并额外执行一次。</span><br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用【桃】选择其为目标！</span>';
+		return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阴：视为使用其中的黑色牌并额外执行一次；</span>阳：视为使用其中的红色牌并额外执行一次。<br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用【桃】选择其为目标！</span>';
 	},
 	yb001_minglun:function(player){
 		var str='锁定技，回合开始时，你展示牌堆顶一张牌并放在武将牌上，至多放四张。根据“命轮”的花色，你视为拥有技能：<br>';
-		var list={'spade':'黑桃：栖月','heart':'红桃：旅心','club':'<br>梅花：折叶','diamond':'方块：忆水'};
+		var list={'spade':'黑桃：〖栖月〗','heart':'红桃：〖旅心〗','club':'<br>梅花：〖折叶〗','diamond':'方块：〖忆水〗'};
 		for(var i in list){
 			var cards=player.getExpansions('yb001_minglun');
 			for(var k of cards){
@@ -67,17 +67,17 @@ const dynamicTranslate = {//动态翻译
 			str+=list[i];
 			str+='；';
 		}
-		str+='<br>结束阶段，若“命轮”包含相同花色或四种花色，则你需弃置所有“命轮”或失去一点体力。';
+		str+='<br>结束阶段，若“命轮”包含相同花色或四种花色，则你需弃置所有“命轮”或失去1点体力。';
 		return str;
 	},
 	yb004_tianqi:function(player){//天祈
 		if(!player.storage.yb004_shangyuan){
-			var str='锁定技，当你对其他角色造成伤害后，你进行判定：若伤害不大于1，且结果为红色，你回复一点体力或摸一张牌；若伤害大于1，且结果为黑色，你失去一点体力并摸一张牌。当你受到伤害后，你进行判定，若结果为黑色，你摸x+1张牌，否则你恢复x-1点体力（x为此次伤害值）';
+			var str='锁定技，当你对其他角色造成伤害后，你进行判定：若伤害不大于1，且结果为红色，你回复1点体力或摸一张牌；若伤害大于1，且结果为黑色，你失去1点体力并摸一张牌。当你受到伤害后，你进行判定，若结果为黑色，你摸x+1张牌，否则你恢复x-1点体力（x为此次伤害值）';
 			if(lib.skill.xinleiji_misa.disableReason.includes('天祈'))str+='（此技能不可触发界雷击）';
 			return str;
 		}
 		else {
-			return '准备阶段或结束阶段或当你受到伤害后，你可以进行一次判定，若结果为红色，则你回复一点体力或摸两张牌。';
+			return '准备阶段或结束阶段或当你受到伤害后，你可以进行一次判定，若结果为红色，则你回复1点体力或摸两张牌。';
 		}
 	},
 	yb006_boxue:function(player){//博学
@@ -107,15 +107,15 @@ const dynamicTranslate = {//动态翻译
 	},
 	yb016_shanbiao:function(player){
 		var storage=player.storage.yb016_shanbiao;
-		if(!storage) return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的一点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
-		return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的一点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
+		if(!storage) return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的1点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';
+		return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的1点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
 	},
 	yb033_shuhui:function(player){//淑慧
 		if(player.storage.yb033_shuhui==true){
-			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去一点体力。<span class=yellowtext>然后你展示牌堆顶一张牌，将隅泣任意一个数字改为该数字，至多为当前最低的数字+2。</span>';
+			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。<span class=yellowtext>然后你展示牌堆顶一张牌，将〖隅泣〗任意一个数字改为该数字，至多为当前最低的数字+2。</span>';
 		}
 		else {
-			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去一点体力。（追加描述：然后你展示牌堆顶一张牌，将隅泣任意一个数字改为该数字，至多为当前最低的数字+2）'
+			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。（追加描述：然后你展示牌堆顶一张牌，将隅泣任意一个数字改为该数字，至多为当前最低的数字+2）'
 		}
 	},
 	yb033_yuqi:function(player){
@@ -127,29 +127,29 @@ const dynamicTranslate = {//动态翻译
 		var storage2=player.storage.yb033_qijue_da;
 		var storage3=player.storage.yb033_qijue_dc;
 		if(storage1&&storage2&&storage3){
-			return '锁定技，出牌阶段开始时，你选择一项：失去一点体力，受到一点伤害，弃置一张牌。'+'锁定技，<span class=firetext>当你失去体力后，'+storage1[0][0]+'，'+storage1[1][0]+'，然后'+storage1[2][0]+'</span>；<span class=yellowtext>当你受到伤害后，'+storage2[0][0]+'，'+storage2[1][0]+'，然后'+storage2[2][0]+'</span>；<span class=thundertext>当你弃置牌后，'+storage3[0][0]+'，'+storage3[1][0]+'，然后'+storage3[2][0]+'</span>。';
+			return '锁定技，出牌阶段开始时，你选择一项：失去1点体力，受到1点伤害，弃置一张牌。'+'锁定技，<span class=firetext>当你失去体力后，'+storage1[0][0]+'，'+storage1[1][0]+'，然后'+storage1[2][0]+'</span>；<span class=yellowtext>当你受到伤害后，'+storage2[0][0]+'，'+storage2[1][0]+'，然后'+storage2[2][0]+'</span>；<span class=thundertext>当你弃置牌后，'+storage3[0][0]+'，'+storage3[1][0]+'，然后'+storage3[2][0]+'</span>。';
 		}
-		else return '锁定技，出牌阶段开始时，你选择一项：失去一点体力，受到一点伤害，弃置一张牌。锁定技，当你失去体力后，①你下次失去体力后，②恢复此数值*2点体力，然后③弃置一张手牌；当你受到伤害后，①你下次受到伤害后，②摸此数值*3张牌，然后③失去一点体力；当你弃置牌后，①你下次弃置牌后，②对场上角色各造成一点伤害，然后③令一个数字之后的效果向前错位。。';
+		else return '锁定技，出牌阶段开始时，你选择一项：失去1点体力，受到1点伤害，弃置一张牌。锁定技，当你失去体力后，①你下次失去体力后，②恢复此数值*2点体力，然后③弃置一张手牌；当你受到伤害后，①你下次受到伤害后，②摸此数值*3张牌，然后③失去1点体力；当你弃置牌后，①你下次弃置牌后，②对场上角色各造成1点伤害，然后③令一个数字之后的效果向前错位。。';
 	},
 	yb037_kexie:function(player){//咳血
 		var str='锁定技，每当你弃置一张';
 		if(player.storage.yb037_kexie==0) str+='<span class=firetext>牌</span>';
 		if(player.storage.yb037_kexie==1) str+='<span class=firetext>红色牌</span>';
 		if(player.storage.yb037_kexie>=2) str+='<span class=firetext>红桃牌</span>';
-		str+='时，你失去一点体力。';
+		str+='时，你失去1点体力。';
 		return str;
 	},
 	yb047_youhun:function(player){
-		if(player.storage.yb047_youhun==true) return '转换技，阴：你可以将X+Y张牌当作任意一张锦囊牌使用；<span class="bluetext">阳：你可以将X+Y张牌当作任意一张基本牌使用。</span>当此牌造成伤害后，你增加一点体力上限，然后Y计数+1。（X为本轮此技能使用次数且至少为0，Y初始为0，最低为0）；每当你废除一个装备栏时，你令Y计数-1；';//；③你持有的此技能改名为【迸射】
-		return '转换技，<span class="bluetext">阴：你可以将X+Y张牌当作任意一张锦囊牌使用；</span>阳：你可以将X+Y张牌当作任意一张基本牌使用。当此牌造成伤害后，你增加一点体力上限，然后Y计数+1。（X为本轮此技能使用次数且至少为0，Y初始为0，最低为0）；每当你废除一个装备栏时，你令Y计数-1；';//，然后将技能改名为【迸射】
+		if(player.storage.yb047_youhun==true) return '转换技，阴：你可以将X+Y张牌当作任意一张锦囊牌使用；<span class="bluetext">阳：你可以将X+Y张牌当作任意一张基本牌使用。</span>当此牌造成伤害后，你增加1点体力上限，然后Y计数+1。（X为本轮此技能使用次数且至少为0，Y初始为0，最低为0）；每当你废除一个装备栏时，你令Y计数-1；';//；③你持有的此技能改名为【迸射】
+		return '转换技，<span class="bluetext">阴：你可以将X+Y张牌当作任意一张锦囊牌使用；</span>阳：你可以将X+Y张牌当作任意一张基本牌使用。当此牌造成伤害后，你增加1点体力上限，然后Y计数+1。（X为本轮此技能使用次数且至少为0，Y初始为0，最低为0）；每当你废除一个装备栏时，你令Y计数-1；';//，然后将技能改名为【迸射】
 	},
 	yb053_yinren:function(player){
 		// lib.translate.yb053_yinren=lib.skill.yb053_yinren.getname(player);
 		// lib.translate.yb053_yinren_damage=lib.skill.yb053_yinren.getname(player);
 		// lib.translate.yb053_yinren_after=lib.skill.yb053_yinren.getname(player);
 		// lib.translate.yb053_yinren_die=lib.skill.yb053_yinren.getname(player);
-		if(player.storage.yb053_yinren==true) return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；②每个回合结束时，你选择回复两点体力或摸X+1张牌（X为你已损体力值且至多为3）。';//；③你持有的此技能改名为【迸射】
-		return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；然后获得如下效果直至当前回合结束：②每个回合结束时，你选择回复两点体力或摸X+1张牌（X为你已损体力值且至多为3）；③当你脱离濒死状态时，你令②效果变为常驻效果。';//，然后将技能改名为【迸射】
+		if(player.storage.yb053_yinren==true) return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；②每个回合结束时，你选择回复2点体力或摸X+1张牌（X为你已损体力值且至多为3）。';//；③你持有的此技能改名为【迸射】
+		return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；然后获得如下效果直至当前回合结束：②每个回合结束时，你选择回复2点体力或摸X+1张牌（X为你已损体力值且至多为3）；③当你脱离濒死状态时，你令②效果变为常驻效果。';//，然后将技能改名为【迸射】
 	},
 	yb069_wenhuan:function(player){//温幻
 		if(player.storage.yb069_wenhuan==true) return '转换技，阴，当有角色受到伤害后，你可以令其武将牌复位并令其摸一张牌。<span class="bluetext">阳，当有角色回复体力时，你可令其翻面，并令此次恢复效果+1。</span>';

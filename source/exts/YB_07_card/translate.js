@@ -8,9 +8,9 @@ const translate = {
 	//应变触发时，横置所有目标
 	
 	ybsl_qingfengshan:'清风扇',
-	ybsl_qingfengshan_info:'当你使用杀时，你可以令此杀附着风属性。',
+	ybsl_qingfengshan_info:'当你使用杀时，你可以令此【杀】附着风属性。',
 	ybsl_zhongkai:'重铠',
-	ybsl_zhongkai_info:'锁定技，风属性伤害和普通杀对你无效。',
+	ybsl_zhongkai_info:'锁定技，风属性伤害和普通【杀】对你无效。',
 	ybsl_zhongkai_1:'重铠',
 	ybsl_zhongkai_2:'重铠',
 	ybsl_frostnova:'冰霜新星',

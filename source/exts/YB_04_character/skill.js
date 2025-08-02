@@ -766,7 +766,7 @@ const skill = {
 			prompt: function (links, player) {
 				var name = links[0][2];
 				var nature = links[0][3];
-				return '弃置所有手牌，若以此法弃置的牌花色各不相同，则视为使用' + (get.translation(nature) || '') + get.translation(name) + '，若以此法弃置的牌数等于你体力上限，你加一点体力上限。';
+				return '弃置所有手牌，若以此法弃置的牌花色各不相同，则视为使用' + (get.translation(nature) || '') + get.translation(name) + '，若以此法弃置的牌数等于你体力上限，你加1点体力上限。';
 			},
 		},
 		ai: {
@@ -936,7 +936,7 @@ const skill = {
 							var next = game.createEvent('kamome_ybyangfan_yan', false);
 							next.player = player;
 							next.setContent(async function (event, trigger, player) {
-								var result = await player.chooseTarget(true, 1, '燕：对一名其他角色造成一点伤害').set('filterTarget', function (card, player, target) {
+								var result = await player.chooseTarget(true, 1, '燕：对一名其他角色造成1点伤害').set('filterTarget', function (card, player, target) {
 									return target != player && target.isIn();
 								}).set('ai', function (target) {
 									return get.damageEffect(player, target, _status.event.player);
@@ -985,7 +985,7 @@ const skill = {
 						var next = game.createEvent('kamome_ybyangfan_yan', false);
 						next.player = player;
 						next.setContent(async function (event, trigger, player) {
-							var result = await player.chooseTarget(true, 1, '燕：对一名其他角色造成一点伤害').set('filterTarget', function (card, player, target) {
+							var result = await player.chooseTarget(true, 1, '燕：对一名其他角色造成1点伤害').set('filterTarget', function (card, player, target) {
 								return target != player && target.isIn();
 							}).set('ai', function (target) {
 								return get.damageEffect(player, target, _status.event.player);
@@ -1104,7 +1104,7 @@ const skill = {
 			let trigger = map.trigger, player = map.player, cards = event.cards;
 			yield player.showCards(cards);
 			var relu = yield player.chooseControl()
-				.set('choiceList', ['其本阶段使用此颜色牌无次数限制', '其本阶段可以将此颜色牌当杀使用且不可被闪避。'])
+				.set('choiceList', ['其本阶段使用此颜色牌无次数限制', '其本阶段可以将此颜色牌当【杀】使用且不可被闪避。'])
 				.set('prompt', '示刀：清选择一项').set('ai', function () {
 					return 0;
 					// if(get.color(event.cards[0])=='red'){
@@ -2977,7 +2977,7 @@ const skill = {
 				else if(event.name =='bingliang'){
 					var players = game.filterPlayer(p=>p.countDiscardableCards(player,'he'))
 					if(players){
-						var result = await player.chooseTarget("请选择一名角色，弃置其两张牌",true).set('filterTarget',function(card,player,target){
+						var result = await player.chooseTarget("请选择一名角色，弃置其至多两张牌",true).set('filterTarget',function(card,player,target){
 							return players.includes(target);
 						}).forResult();
 						if(result.bool){
@@ -2991,7 +2991,7 @@ const skill = {
 				else if(event.name == 'shandian'){
 					var players = game.filterPlayer(p=>p.isIn());
 					if(players){
-						var result = await player.chooseTarget("请选择一名角色，对其造成一点雷电伤害",true).set('filterTarget',function(card,player,target){
+						var result = await player.chooseTarget("请选择一名角色，对其造成1点雷电伤害",true).set('filterTarget',function(card,player,target){
 							return players.includes(target);
 						}).forResult();
 						if(result.bool){
@@ -3174,7 +3174,7 @@ const skill = {
 				// else return event.numb==_status.currentPhase.maxHp;
 				else return true;
 			})
-			// player.chooseNumbers(get.prompt2("niya_youbo"), [{ prompt: "请选择你摸牌数，若选择"+_status.currentPhase.maxHp+"，则"+get.translation(_status.currentPhase)+"失去一点体力上限。", min: 1, max: numb }]).set("processAI", () => {
+			// player.chooseNumbers(get.prompt2("niya_youbo"), [{ prompt: "请选择你摸牌数，若选择"+_status.currentPhase.maxHp+"，则"+get.translation(_status.currentPhase)+"失去1点体力上限。", min: 1, max: numb }]).set("processAI", () => {
 			// 	var att=get.attitude(_status.event.player,_status.currentPhase);
 			// 	if(att>0&&get.event().maxNum==_status.currentPhase.maxHp){
 			// 		if(get.event().maxNum>1)return [get.event().maxNum-1];
@@ -3482,7 +3482,7 @@ const skill = {
 			return true;
 		},
 		async cost(event, trigger, player) {
-			event.result = await player.chooseBool(get.prompt2('Fe2O3_xingchen')).set('choice', lib.skill.Fe2O3_xingchen.check(trigger, player)).forResult()
+			event.result = await player.chooseBool(get.prompt2('Fe2O3_xingchen')).set('choice', lib.skill.Fe2O3_xingchen.check('丈八二桃把营连', player)).forResult()
 			if (!event.result.bool) return
 			player.addTempSkill('Fe2O3_xingchen_used');
 			player.addMark('Fe2O3_xingchen_used');
@@ -3830,9 +3830,9 @@ const skill = {
 		},
 	},
 	// ybsl_quanbian:'权辩',
-	// ybsl_quanbian_info:'出牌阶段，当你使用牌后，若此花色为你本阶段首次使用，你可以摸一张牌。否则你需失去一点体力，且攻击范围+1。',
+	// ybsl_quanbian_info:'出牌阶段，当你使用牌后，若此花色为你本阶段首次使用，你可以摸一张牌。否则你需失去1点体力，且攻击范围+1。',
 	// ybsl_quanbianx:'权辩',
-	// ybsl_quanbianx_info:'出牌阶段，当你使用牌后，你可以摸一张牌，每种花色每阶段限一次。若如此做，本阶段你再次使用该花色牌后，你需失去一点体力，且攻击范围+1。',
+	// ybsl_quanbianx_info:'出牌阶段，当你使用牌后，你可以摸一张牌，每种花色每阶段限一次。若如此做，本阶段你再次使用该花色牌后，你需失去1点体力，且攻击范围+1。',
 	ybsl_quanbian: {
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: {
@@ -3979,13 +3979,13 @@ const skill = {
 		audio: 'ext:夜白神略/audio/character:2',
 	},
 	// // ybsl_quanbian:'权辩',
-	// // ybsl_quanbian_info:'出牌阶段，当你使用牌时，若此花色为你本阶段首次使用，你可以摸一张牌。否则此牌结算完成后，你需失去一点体力，且攻击范围+1。',
+	// // ybsl_quanbian_info:'出牌阶段，当你使用牌时，若此花色为你本阶段首次使用，你可以摸一张牌。否则此牌结算完成后，你需失去1点体力，且攻击范围+1。',
 	// // ybsl_quanbianx:'权辩',
-	// // ybsl_quanbianx_info:'出牌阶段，当你使用牌时，你可以摸一张牌。若此花色不为你本阶段首次触发，此牌结算完成后，你需失去一点体力，且攻击范围+1。',
+	// // ybsl_quanbianx_info:'出牌阶段，当你使用牌时，你可以摸一张牌。若此花色不为你本阶段首次触发，此牌结算完成后，你需失去1点体力，且攻击范围+1。',
 	// // ybsl_quanbian:'权辩',
-	// // ybsl_quanbian_info:'出牌阶段，当你使用牌时，若此花色为你本阶段首次使用，你可以摸一张牌。否则你需失去一点体力，且攻击范围+1。',
+	// // ybsl_quanbian_info:'出牌阶段，当你使用牌时，若此花色为你本阶段首次使用，你可以摸一张牌。否则你需失去1点体力，且攻击范围+1。',
 	// // ybsl_quanbianx:'权辩',
-	// // ybsl_quanbianx_info:'出牌阶段，当你使用牌时，你可以摸一张牌。若此花色不为你本阶段首次触发，你需失去一点体力，且攻击范围+1。',
+	// // ybsl_quanbianx_info:'出牌阶段，当你使用牌时，你可以摸一张牌。若此花色不为你本阶段首次触发，你需失去1点体力，且攻击范围+1。',
 	// ybsl_zhaxiang:'诈降',
 	// ybsl_zhaxiang_info:'此技能仅提供一条语音。',
 	ybsl_ranxin: {
@@ -4009,7 +4009,7 @@ const skill = {
 		// const { index } = await player
 		// .chooseControl()
 		// .set("prompt", "燃心：请选择一项，然后视为对其使用一张伤害+1的火【杀】")
-		// .set("choiceList", ["令"+ get.translation(trigger.player) +"回复一点体力", "令" + get.translation(trigger.player) + "摸两张牌","cancel2"])
+		// .set("choiceList", ["令"+ get.translation(trigger.player) +"回复1点体力", "令" + get.translation(trigger.player) + "摸两张牌","cancel2"])
 		// .set("ai", function () {
 		// if (get.effect(_status.event.getTrigger().player, { name: "sha" }, _status.event.player) > 0) {
 
@@ -4027,7 +4027,7 @@ const skill = {
 			var result = yield player
 				.chooseControl()
 				.set("prompt", "燃心：请选择一项，然后视为对其使用一张伤害+1的火【杀】")
-				.set("choiceList", ["令" + get.translation(trigger.player) + "回复一点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
+				.set("choiceList", ["令" + get.translation(trigger.player) + "回复1点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
 				.set("ai", function () {
 					var target = trigger.player;
 					if (get.effect(_status.event.getTrigger().player, {
@@ -4137,7 +4137,7 @@ const skill = {
 			var result = yield player
 				.chooseControl()
 				.set("prompt", "燃心：请选择一项，然后视为对其使用一张伤害+1的火【杀】")
-				.set("choiceList", ["令" + get.translation(trigger.player) + "回复一点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
+				.set("choiceList", ["令" + get.translation(trigger.player) + "回复1点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
 				.set("ai", function () {
 					var target = trigger.player;
 					if (get.effect(_status.event.getTrigger().player, {
@@ -4215,9 +4215,9 @@ const skill = {
 					.chooseControl()
 					.set("prompt", "燃心：请选择一项，然后视为对其使用一张伤害+1的火【杀】")
 					.set("choiceList", [
-						"令" + get.translation(trigger.player) + "回复一点体力",
+						"令" + get.translation(trigger.player) + "回复1点体力",
 						"令" + get.translation(trigger.player) + "摸两张牌",
-						"令" + get.translation(trigger.player) + "回复一点体力，然后令" + get.translation(trigger.player) + "摸两张牌",
+						"令" + get.translation(trigger.player) + "回复1点体力，然后令" + get.translation(trigger.player) + "摸两张牌",
 						"取消"
 					])
 					.set("ai", function () {
@@ -4262,7 +4262,7 @@ const skill = {
 				var result = yield player
 					.chooseControl()
 					.set("prompt", "燃心：请选择一项，然后视为对其使用一张伤害+1的火【杀】")
-					.set("choiceList", ["令" + get.translation(trigger.player) + "回复一点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
+					.set("choiceList", ["令" + get.translation(trigger.player) + "回复1点体力", "令" + get.translation(trigger.player) + "摸两张牌", "取消"])
 					.set("ai", function () {
 						var target = trigger.player;
 						if (get.effect(_status.event.getTrigger().player, {
@@ -5359,7 +5359,7 @@ const skill = {
 				marktext: '<span style="text-decoration: line-through;">伤</span>',
 				intro: {
 					content: function (storage, player) {
-						// if(storage)return '锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成一点伤害';
+						// if(storage)return '锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成1点伤害';
 						return '已封印夭厄。';
 					}
 				},
@@ -5433,13 +5433,13 @@ const skill = {
 	ybslclan_luyan:'族陆延',
 	ybslclan_luyan_prefix:'族',
 	ybsl_lyyaoe:'夭厄',
-	ybsl_lyyaoe_info:'锁定技，每种类型牌你每回合限用一次；锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成一点伤害。',
-	锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成一点伤害；锁定技，每种类型牌你每回合限用一次。'
+	ybsl_lyyaoe_info:'锁定技，每种类型牌你每回合限用一次；锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成1点伤害。',
+	锁定技，当你于回合内使用牌时，若此牌目标包含其他角色，你对自己造成1点伤害；锁定技，每种类型牌你每回合限用一次。'
 	//ybsl_lyyaoe_info:'锁定技，每种类型牌你每回合限用一次；锁定技，当你每回合首次使用某个类型的牌指定目标后，若目标为其他角色，你对自己和目标各造成x点伤害（x为你本回合使用的类型数，从1开始算，至多为3）。',
 	ybsl_lytiandu:'天妒',
 	ybsl_lytiandu_info:'你猜天妒啥效果。不出意外的话，这条技能仅提供一条语音。',
 	ybsl_lykangming:'抗命',
-	ybsl_lykangming_info:'出牌阶段限一次，你可以进行一次判定。然后你可以弃置一张花色或点数与判定结果相同的牌。若弃置牌与判定结果：花色相同，本回合夭厄一效果失效；点数相同，本回合夭厄二效果失效；花色和点数均相同，本回合夭厄两效果均失效，然后你减一点体力上限。',
+	ybsl_lykangming_info:'出牌阶段限一次，你可以进行一次判定。然后你可以弃置一张花色或点数与判定结果相同的牌。若弃置牌与判定结果：花色相同，本回合夭厄一效果失效；点数相同，本回合夭厄二效果失效；花色和点数均相同，本回合夭厄两效果均失效，然后你减1点体力上限。',
 	*/
 
 	ybsl_ljfumin: {
@@ -5563,7 +5563,7 @@ const skill = {
 	// ybsl_ljfumin:'福民',
 	// ybsl_ljfumin_info:'出牌阶段限一次，你可将一张手牌交给其他角色，然后若你与对方手牌数相同，此技能视为未发动过，否则手牌数较少的一方摸两张牌。',
 	// ybsl_ljguihang:'归航',
-	// ybsl_ljguihang_info:'使命技，锁定技，当你失去手牌后，若你手牌数小于体力上限，你获得【影】补充至体力上限；成功：准备阶段，若你手牌中均为【影】，你弃置所有手牌，并摸等量手牌（至多5张），然后增加一点体力上限并回复一点体力。
+	// ybsl_ljguihang_info:'使命技，锁定技，当你失去手牌后，若你手牌数小于体力上限，你获得【影】补充至体力上限；成功：准备阶段，若你手牌中均为【影】，你弃置所有手牌，并摸等量手牌（至多5张），然后增加1点体力上限并回复1点体力。
 
 
 	ybsl_kegu: {//刻骨
@@ -6101,7 +6101,7 @@ const skill = {
 		content() {
 			player.when('phaseJieshuBegin').then(function () {
 				player.chooseBool().set('ai', function () { return true })
-					.set('prompt', '是否摸三张牌并回复一点体力？');
+					.set('prompt', '是否摸三张牌并回复1点体力？');
 			}).then(function () {
 				if (result.bool) {
 					player.draw(3);
@@ -6495,14 +6495,14 @@ const skill = {
 			}).length == 0;
 		},
 		async cost(event, trigger, player) {
-			event.result = await player.chooseTarget('请选择一名角色令其增加一点体力上限，然后你回复一点体力').set('ai', function (target) {
+			event.result = await player.chooseTarget('请选择一名角色令其增加1点体力上限，然后你回复1点体力').set('ai', function (target) {
 				// return get.attitude(player,target);
 				return target == player;
 			}).forResult();
 		},
 		content: function () {
 			// 'step 0'
-			// player.chooseTarget('请选择一名角色令其增加一点体力上限，然后你回复一点体力',true);
+			// player.chooseTarget('请选择一名角色令其增加1点体力上限，然后你回复1点体力',true);
 			// 'step 1'
 			// var target=result.targets[0];
 			var target = event.targets[0];
@@ -6659,7 +6659,7 @@ const skill = {
 					.set('ai', function (target) { 
 						return get.attitude(_status.event.player,target)-5+get.getDamagedHp(true); 
 					})
-					.set('prompt2', '是否令一名男性角色回复一点体力？')
+					.set('prompt2', '是否令一名男性角色回复1点体力？')
 					.set('filterTarget',function(card,player,target){
 						return target.hasSex("male")&&target.isDamaged()
 					}).forResult();
@@ -6678,7 +6678,7 @@ const skill = {
 				},
 				cost(){
 					event.result = trigger.player.chooseBool().set('ai', function () { return get.attitude(_status.event.player,player)>5 })
-					.set('prompt', '是否令'+get.translation(player)+'回复一点体力？').forResult();
+					.set('prompt', '是否令'+get.translation(player)+'回复1点体力？').forResult();
 				},
 				content(){
 					player.recover();
@@ -6876,7 +6876,7 @@ const skill = {
 				if(list2.length==0||!list2.includes(get.color(k)))yield list2.add(get.color(k));
 			}
 			if(list2.length==1&&list2[0]=='red'){
-				var relu = yield player.chooseTarget('选择至多'+cards.length+'名角色，对其各造成一点火焰伤害').set('ai',function(target){
+				var relu = yield player.chooseTarget('选择至多'+cards.length+'名角色，对其各造成1点火焰伤害').set('ai',function(target){
 					return -get.attitude(_status.event.player,target);
 				})
 				if(relu.bool){
@@ -8013,7 +8013,7 @@ const skill = {
 		// },
 		content(){
 			'step 0'
-			player.chooseTarget(true,'请选择对一名角色造成一点伤害').set('ai',function(target){
+			player.chooseTarget(true,'请选择对一名角色造成1点伤害').set('ai',function(target){
 				return get.damageEffect(target, player, player);
 			})
 			'step 1'
@@ -8045,7 +8045,7 @@ const skill = {
 		// 	return true;
 		// },
 		// cost(){
-		// 	event.result = player.chooseTarget(true,'请选择对一名角色造成一点伤害').set('ai',function(target){
+		// 	event.result = player.chooseTarget(true,'请选择对一名角色造成1点伤害').set('ai',function(target){
 		// 		return get.damageEffect(target, player, player);
 		// 	})
 		// },
@@ -8133,7 +8133,7 @@ const skill = {
 		// direct: true,
 		// content() {
 		// 	"step 0";
-		// 	player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复一点体力").set("ai", function (target) {
+		// 	player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复1点体力").set("ai", function (target) {
 		// 		return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
 		// 	});
 		// 	"step 1";
@@ -8161,7 +8161,7 @@ const skill = {
 		// 	if (event.bool) target.recover();
 		// },
 		cost(){
-			event.result = player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复一点体力").set("ai", function (target) {
+			event.result = player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之。若为红桃，其回复1点体力").set("ai", function (target) {
 				return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
 			}).forResult();
 		},
@@ -8913,7 +8913,7 @@ const skill = {
 			event.target1 = targets[0];
 			player.give(cards, targets[0], false);
 			"step 1";
-			event.target1.chooseTarget('令一名角色回复一点体力或对一名角色造成一点伤害',true).set('ai',function(target){
+			event.target1.chooseTarget('令一名角色回复1点体力或对一名角色造成1点伤害',true).set('ai',function(target){
 				var att = get.attitude(_status.event.player,target);
 				// if(att>0){
 				// 	if(!target.isDamaged())return -1;

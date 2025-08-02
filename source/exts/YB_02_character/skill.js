@@ -590,7 +590,7 @@ const skill = {
 				}
 			},
 			prompt:function (links,player){
-				return '将一张六艺牌当作'+get.translation(links[0][2])+'使用';
+				return '将一张六艺牌当作【'+get.translation(links[0][2])+'】使用';
 			},
 		},
 		ai:{
@@ -618,7 +618,7 @@ const skill = {
 	yb014_shifu5:{
 		audio:'yb014_shifu',
 		enable:'chooseToUse',
-		prompt:'将一张六艺牌当做无懈可击使用',
+		prompt:'将一张六艺牌当做【无懈可击】使用',
 		viewAsFilter:function(player){
 			return !player.getStorage('yb014_shifu_block').includes('wuxie')&&player.countCards('s',function(card){
 				return card.hasGaintag('_ybsl_sixart')
@@ -709,91 +709,91 @@ const skill = {
 				var list6=player.storage.yb014_shifu99;
 				var list={
 					'moon':{
-						0:'①决堰（陆抗）',
-						1:'<br>②伪伤（key宫泽谦吾）',
-						2:'<br>③游凤（key凤千早）',
-						3:'<br>④止啼（手杀神张辽）',
-						4:'<br>⑤浮萍（夏侯令女）',
-						5:'<br>⑥均步（key凤咲夜）/烈武（key凤千早）',
-						6:'<br>⑦弥笃（胡昭）',
-						7:'<br>⑧贤望（胡昭）/奋锐（霍峻）',
+						0:'①〖决堰〗（陆抗）',
+						1:'<br>②〖伪伤〗（key宫泽谦吾）',
+						2:'<br>③〖游凤〗（key凤千早）',
+						3:'<br>④〖止啼〗（手杀神张辽）',
+						4:'<br>⑤〖浮萍〗（夏侯令女）',
+						5:'<br>⑥〖均步〗（key凤咲夜）/〖烈武〗（key凤千早）',
+						6:'<br>⑦〖弥笃〗（胡昭）',
+						7:'<br>⑧〖贤望〗（胡昭）/〖奋锐〗（霍峻）',
 					},
 					'clam':{
-						0:'①武圣（界关羽）+倾国（界甄姬）',
-						1:'<br>②龙胆（界赵云）',
-						2:'<br>③善断+义烈（ol周处）',
-						3:'<br>④急救（华佗）+连环（界庞统）',
-						4:'<br>⑤火计+看破（手杀卧龙）',
-						5:'<br>⑥矫诏+殚心（界郭皇后）',
-						6:'<br>⑦龙魂（神赵云）',
-						7:'<br>⑧双掣（key三枝二木）',
+						0:'①〖武圣〗（界关羽）+〖倾国〗（界甄姬）',
+						1:'<br>②〖龙胆〗（界赵云）',
+						2:'<br>③〖善断〗+〖义烈〗（ol周处）',
+						3:'<br>④〖急救〗（华佗）+〖连环〗（界庞统）',
+						4:'<br>⑤〖火计〗+〖看破〗（手杀卧龙）',
+						5:'<br>⑥〖矫诏〗+〖殚心〗（界郭皇后）',
+						6:'<br>⑦〖龙魂〗（神赵云）',
+						7:'<br>⑧〖双掣〗（key三枝二木）',
 					},
 					'lightning':{
-						0:'①符咒（DIY张宁）',
-						1:'<br>②鬼道（DIY张宁）',
-						2:'<br>③太平（DIY张宁）',
-						3:'<br>④筹策（戏志才）',
-						4:'<br>⑤屯田（ol界邓艾）',
-						5:'<br>⑥暴球（key枣铃）',
-						6:'<br>⑦八阵（卧龙）',
-						7:'<br>⑧吉境（王荣）',
+						0:'①〖符咒〗（DIY张宁）',
+						1:'<br>②〖鬼道〗（DIY张宁）',
+						2:'<br>③〖太平〗（DIY张宁）',
+						3:'<br>④〖筹策〗（戏志才）',
+						4:'<br>⑤〖屯田〗（ol界邓艾）',
+						5:'<br>⑥〖暴球〗（key枣铃）',
+						6:'<br>⑦〖八阵〗（卧龙）',
+						7:'<br>⑧〖吉境〗（王荣）',
 					},
 					'wind':{
-						0:'①制衡（界孙权）',
-						1:'<br>②法箓+真仪（张琪瑛）',
-						2:'<br>③会输（全不会解）',
-						3:'<br>④易输（全不会解）',
-						4:'<br>⑤点化（张琪瑛）',
-						5:'<br>⑥淑武（key七濑留美）',
-						6:'<br>⑦苦肉（黄盖）/募兵（SP张辽已觉醒）',
-						7:'<br>⑧敏思（王荣）/巧思（马均）',
+						0:'①〖制衡〗（界孙权）',
+						1:'<br>②〖法箓〗+〖真仪〗（张琪瑛）',
+						2:'<br>③〖会输〗（全不会解）',
+						3:'<br>④〖易输〗（全不会解）',
+						4:'<br>⑤〖点化〗（张琪瑛）',
+						5:'<br>⑥〖淑武〗（key七濑留美）',
+						6:'<br>⑦〖苦肉〗（黄盖）/〖募兵〗（SP张辽已觉醒）',
+						7:'<br>⑧〖敏思〗（王荣）/〖巧思〗（马均）',
 					},
 					'flame':{
-						0:'①锋略（荀谌）',
-						1:'<br>②天义（太史慈）+探虎（星SP吕蒙）',
-						2:'<br>③烈刃（手杀祝融）',
-						3:'<br>④专对（秦宓）',
-						4:'<br>⑤明伐（手杀羊祜）+大喝（星SP张飞）',
-						5:'<br>⑥酣战（界太史慈）/天辩（秦宓）',
-						6:'<br>⑦咆哮（界张飞）/陷阵（界高顺）',
-						7:'<br>⑧除害（周处）',
+						0:'①〖锋略〗（荀谌）',
+						1:'<br>②〖天义〗（太史慈）+〖探虎〗（星SP吕蒙）',
+						2:'<br>③〖烈刃〗（手杀祝融）',
+						3:'<br>④〖专对〗（秦宓）',
+						4:'<br>⑤〖明伐〗（手杀羊祜）+〖大喝〗（星SP张飞）',
+						5:'<br>⑥〖酣战〗（界太史慈）/〖天辩〗（秦宓）',
+						6:'<br>⑦〖咆哮〗（界张飞）/〖陷阵〗（界高顺）',
+						7:'<br>⑧〖除害〗（周处）',
 					},
 				}
 				if(player.storage.yb014_shifu99[0]=='sakuya_junbu'){
-					list.moon[5]='<br>⑥均步（key凤咲夜）/<span style="text-decoration: line-through;">烈武（key凤千早）</span>'
+					list.moon[5]='<br>⑥〖均步〗（key凤咲夜）/<span style="text-decoration: line-through;">〖烈武〗（key凤千早）</span>'
 				}
 				else if(player.storage.yb014_shifu99[0]=='chihaya_liewu'){
-					list.moon[5]='<br>⑥<span style="text-decoration: line-through;">均步（key凤咲夜）</span>/烈武（key凤千早）'
+					list.moon[5]='<br>⑥<span style="text-decoration: line-through;">〖均步〗（key凤咲夜）</span>/〖烈武〗（key凤千早）'
 				}
 				if(player.storage.yb014_shifu99[1]=='xianwang'){
-					list.moon[7]='<br>⑧贤望（胡昭）/<span style="text-decoration: line-through;">奋锐（霍峻）</span>'
+					list.moon[7]='<br>⑧〖贤望〗（胡昭）/<span style="text-decoration: line-through;">〖奋锐〗（霍峻）</span>'
 				}
 				else if(player.storage.yb014_shifu99[1]=='fenrui'){
-					list.moon[7]='<br>⑧<span style="text-decoration: line-through;">贤望（胡昭）</span>/奋锐（霍峻）'
+					list.moon[7]='<br>⑧<span style="text-decoration: line-through;">〖贤望〗（胡昭）</span>/〖奋锐〗（霍峻）'
 				}
 				if(player.storage.yb014_shifu99[2]=='kurou'){
-					list.wind[6]='<br>⑦苦肉（黄盖）/<span style="text-decoration: line-through;">募兵（SP张辽已觉醒）</span>'
+					list.wind[6]='<br>⑦〖苦肉〗（黄盖）/<span style="text-decoration: line-through;">〖募兵〗（SP张辽已觉醒）</span>'
 				}
 				else if(player.storage.yb014_shifu99[2]=='mubing'){
-					list.wind[6]='<br>⑦<span style="text-decoration: line-through;">苦肉（黄盖）</span>/募兵（SP张辽已觉醒）'
+					list.wind[6]='<br>⑦<span style="text-decoration: line-through;">〖苦肉〗（黄盖）</span>/〖募兵〗（SP张辽已觉醒）'
 				}
 				if(player.storage.yb014_shifu99[3]=='minsi'){
-					list.wind[7]='<br>⑧敏思（王荣）/<span style="text-decoration: line-through;">巧思（马均）</span>'
+					list.wind[7]='<br>⑧〖敏思〗（王荣）/<span style="text-decoration: line-through;">〖巧思〗（马均）</span>'
 				}
 				else if(player.storage.yb014_shifu99[3]=='qiaosi'){
-					list.wind[7]='<br>⑧<span style="text-decoration: line-through;">敏思（王荣）</span>/巧思（马均）'
+					list.wind[7]='<br>⑧<span style="text-decoration: line-through;">〖敏思〗（王荣）</span>/〖巧思〗（马均）'
 				}
 				if(player.storage.yb014_shifu99[4]=='hanzhan'){
-					list.flame[5]='<br>⑥酣战（界太史慈）/<span style="text-decoration: line-through;">天辩（秦宓）</span>'
+					list.flame[5]='<br>⑥〖酣战〗（界太史慈）/<span style="text-decoration: line-through;">〖天辩〗（秦宓）</span>'
 				}
 				else if(player.storage.yb014_shifu99[4]=='tianbian'){
-					list.flame[5]='<br>⑥<span style="text-decoration: line-through;">酣战（界太史慈）</span>/天辩（秦宓）'
+					list.flame[5]='<br>⑥<span style="text-decoration: line-through;">〖酣战〗（界太史慈）</span>/〖天辩〗（秦宓）'
 				}
 				if(player.storage.yb014_shifu99[5]=='olpaoxiao'){
-					list.flame[6]='<br>⑦咆哮（界张飞）/<span style="text-decoration: line-through;">陷阵（界高顺）</span>'
+					list.flame[6]='<br>⑦〖咆哮〗（界张飞）/<span style="text-decoration: line-through;">〖陷阵〗（界高顺）</span>'
 				}
 				else if(player.storage.yb014_shifu99[5]=='decadexianzhen'){
-					list.flame[6]='<br>⑦<span style="text-decoration: line-through;">咆哮（界张飞）</span>/陷阵（界高顺）'
+					list.flame[6]='<br>⑦<span style="text-decoration: line-through;">〖咆哮〗（界张飞）</span>/〖陷阵〗（界高顺）'
 				}
 				for(var i in list){
 					var j='ybsl_'+i;

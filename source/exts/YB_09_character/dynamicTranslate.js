@@ -4,7 +4,7 @@ export { dynamicTranslate }
 const dynamicTranslate = {
     North_smk_shangying:function(player){
         var str='锁定技。1.回合开始/结束时，若场上有武器牌，你选择1个获得之。2.当你于一回合内使用或打出第X张牌时，你摸X张牌。3.若X不小于1/2/3/4/5，你拥有';
-        var list=['【OL涯角】','【OL 界挑衅】','【OL 界咆哮】','【OL 界铁骑】','【OL界武圣】'];
+        var list=['〖涯角〗（OL）','〖挑衅〗（OL界）','〖咆哮〗（OL界）','〖铁骑〗（OL界）','〖武圣〗（OL界）'];
         // if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
         // if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
         // if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';
@@ -19,12 +19,12 @@ const dynamicTranslate = {
         return str;
     },
     North_bmh_huanchao:function(player){
-        if(player.storage.North_bmh_huanchao_ben==true)return '限定技。转换技。出牌阶段，你可弃置3张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次流失X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。'
-        return '限定技。转换技。出牌阶段，你可弃置3张不同类型的牌，并执行，阳：令拥有“献”的角色依次回复X点体力；<span class=thundertext>阴：令拥有“率”的角色依次流失X点体力</span>。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
+        if(player.storage.North_bmh_huanchao_ben==true)return '限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次失去X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。'
+        return '限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，阳：令拥有“献”的角色依次回复X点体力；<span class=thundertext>阴：令拥有“率”的角色依次失去X点体力</span>。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
     },
     North_zx_ningao:function(player){
-        var str='锁定技。当你的体力值变化时，你摸1张牌；当你已损失体力值不小于0/1/2/3/4时，你';
-        var list=['可以将1张方块牌当作【火杀】使用或打出','使用牌不能被响应','回合外失去牌后可以使用1张【杀】','可以将1张红桃牌当作【桃】使用','手牌数恒为8。'];
+        var str='锁定技。当你的体力值变化时，你摸一张牌；当你已损失体力值不小于0/1/2/3/4时，你';
+        var list=['可以将一张方块牌当作火【杀】使用或打出','使用牌不能被响应','回合外失去牌后可以使用一张【杀】','可以将1张红桃牌当作【桃】使用','手牌数恒为8。'];
         // if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
         // if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
         // if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';

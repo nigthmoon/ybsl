@@ -1671,7 +1671,7 @@ const skill = {
 		filterOk() {
 			const event = get.event()
 			if (!event.isMine()) return true
-			if (!event.ybmjz_mumu == undefined) event.ybmjz_mumu != ui.selected.cards.length
+			if (event.ybmjz_mumu === undefined) event.ybmjz_mumu = ui.selected.cards.length
 			if (event.ybmjz_mumu != ui.selected.cards.length) {
 				game.uncheck('target')
 				game.check()
@@ -1876,7 +1876,7 @@ const skill = {
 		filterOk() {
 			const event = get.event()
 			if (!event.isMine()) return true
-			if (!event.ybmjz_mumuxx == undefined) event.ybmjz_mumuxx != ui.selected.cards.length
+			if (event.ybmjz_mumuxx === undefined) event.ybmjz_mumuxx = ui.selected.cards.length
 			if (event.ybmjz_mumuxx != ui.selected.cards.length) {
 				game.uncheck('target')
 				game.check()

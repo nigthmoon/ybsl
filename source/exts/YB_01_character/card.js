@@ -139,7 +139,7 @@ const card = {
 			'step 1'
 			if(!event.ybsl_luming_name&&result&&result.control) event.ybsl_luming_name=result.control;
 			if(event.directHit) event._result={bool:false};
-			else target.chooseToRespond('请打出一张杀或闪响应鹿鸣千转',function(card,player){
+			else target.chooseToRespond('请打出一张【杀】或【闪】响应【鹿鸣千转】',function(card,player){
 				var name=get.name(card);
 				return name=='sha'||name=='shan';
 			}).set('ai',function(card){
@@ -328,7 +328,7 @@ const card = {
 			}
 			event.suit=result.suit;
 			if(result.bool==false){
-				if(player.countDiscardableCards(player,'h'))player.chooseToDiscard('h',jud).set('prompt','请弃置一张手牌，若此牌花色为'+get.translation(result.suit)+'你回复一点体力，否则失去一点体力。').set('ai',function(card){
+				if(player.countDiscardableCards(player,'h'))player.chooseToDiscard('h',jud).set('prompt','请弃置一张手牌，若此牌花色为'+get.translation(result.suit)+'你回复1点体力，否则失去1点体力。').set('ai',function(card){
 					if(get.suit(card)==result.suit)return 16-get.value(card);
 					return 6-get.value(card);
 				});
@@ -345,7 +345,7 @@ const card = {
 			player.loseHp();
 		},
 	},
-	// ybsl_lingyu_info:'出牌阶段，对一名场上角色使用。判定后，该角色需弃置一张手牌，若弃置了牌且此牌与判定结果花色相同，该角色回复一点体力，否则该角色失去一点体力。',
+	// ybsl_lingyu_info:'出牌阶段，对一名场上角色使用。判定后，该角色需弃置一张手牌，若弃置了牌且此牌与判定结果花色相同，该角色回复1点体力，否则该角色失去1点体力。',
 	//-----------------------醋
 	'ybsl_cu':{//直接复制的过河
 		audio:true,
@@ -894,7 +894,7 @@ const card = {
 			'step 0'
 			if(cards.length&&get.position(cards[0],true)=='o'){
 				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
-				player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备');
+				player.chooseControl(event.list1).set('prompt', '请选择将【小狐】当做哪种装备');
 				
 			}
 			else event,finish();
