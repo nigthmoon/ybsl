@@ -3209,7 +3209,7 @@ const skill = {
 			global:'useCardToPlayered',
 		},
 		filter(event, player) {
-			if(event.player==player){
+			if(event.player!=player){
 				return event.target.maxHp>=player.maxHp;
 			}
 			else {
@@ -6657,7 +6657,7 @@ const skill = {
 				cost(){
 					event.result = player.chooseTarget()
 					.set('ai', function (target) { 
-						return get.attitude(_status.event.player,target)-5+get.getDamagedHp(true); 
+						return (get.attitude(_status.event.player,target)-5)*target.getDamagedHp(true); 
 					})
 					.set('prompt2', '是否令一名男性角色回复1点体力？')
 					.set('filterTarget',function(card,player,target){
@@ -8091,12 +8091,12 @@ const skill = {
 			return true;
 		},
 		async content(event,trigger,player){
-			event.result = await player.judge(function(card){
+			var result = await player.judge(function(card){
 				if(get.type2(card)=='trick') return 2;
 				return -1;
 			}).forResult();
-			if(result.judge==2){
-				event.result2 = await player.chooseTarget(1,true,'令一名角色翻面并摸两张牌。').set("ai", target => {
+			if(result&&get.type2(result.card)=='trick'){
+				var result2 = await player.chooseTarget(1,true,'令一名角色翻面并摸两张牌。').set("ai", target => {
 					if (target.hasSkillTag("noturn")) return 0;
 					const player = _status.event.player;
 					const current = _status.currentPhase;

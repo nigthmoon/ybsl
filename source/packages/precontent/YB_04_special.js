@@ -197,7 +197,7 @@ const YBSL_special = function () {
 			ruleSkill: true,
 			content: function () {
 				player.addTempSkill('YB_excludedCancel2');
-				player.addMark('YB_excludedCancel2');
+				player.addMark('YB_excludedCancel2',1,false);
 			},
 		}
 		lib.skill.YB_excludedCancel2 = {

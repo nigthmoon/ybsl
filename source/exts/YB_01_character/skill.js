@@ -7460,7 +7460,7 @@ const skill = {
 			player.chooseCard('h',true).set('prompt2','请选择一张手牌加入此牌实体牌');
 			'step 1'
 			if(result.cards){
-				game.log(player,'将'+get.translation(result.cards[0])+'加入了'+get.translation(trigger.card)+'的实体牌中')
+				game.log(player,'将',"#y"+get.translation(result.cards[0]),'加入了',"#y"+get.translation(trigger.card),'的实体牌中')
 				player.lose(result.cards[0],"visible");
 				trigger.cards.push(result.cards[0]);
 			}
