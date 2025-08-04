@@ -631,6 +631,8 @@ const translate = {
 	'yb016_juli_info':'当一名角色成为除其外的角色使用【杀】的目标时，若你至该角色的距离不大于1，你可以重铸至多1张牌，然后令此牌的使用者弃置一张牌，（该牌的类型须为你重铸的牌中包含的类型）否则此牌对你无效。',
 	'yb016_shenzou':'神奏',
 	'yb016_shenzou_info':'出牌阶段限一次，你可以随机演奏一首音乐，并根据完成度来获得相应的分数（至多五分）。然后你可令〖拒礼〗中的一个阿拉伯数字+1（消耗分数为该选项当前数字）或将【杀】改为伤害性牌（消耗5分），并使用剩余的分数进行摸牌（每张2分）。',
+	yb016_shenzou_faq: "目前的曲库",
+	yb016_shenzou_faq_info: "　<br>《鸟之诗》- 折户伸治<br>《竹取飛翔　～ Lunatic Princess》- ZUN<br>《ignotus》- ak+q<br>《Super Mario 3D World Theme》- 横田真人<br>《只因你太美》- SWIN-S<br>《Croatian Rhapsody》- Maksim<br>《罗刹海市》- 刀郎<br>《Pigstep (Stereo Mix)》- Lena Raine",
 	// 'yb016_shenzou_append':'目前的削弱手段为，禁止其加点第二个数字，后续调整有待斟酌',
 	//-----------------------SP满城柒
 	'yb016_shanbiao':'善表',

@@ -495,13 +495,13 @@ const YB_xnqbd=function(){
 					['弃置五张牌，获得花中四君子各一张',function(){
 						game.zhu.chooseToDiscard(5,true,'he');
 						var list=[];
-						var card=game.createCard('ybsl_meihua','club',null,null);
+						var card=game.YB_createCard('ybsl_meihua','club',null,null);
 						if(card) list.push(card);
-						var card=game.createCard('ybsl_lanhua','diamond',null,null);
+						var card=game.YB_createCard('ybsl_lanhua','diamond',null,null);
 						if(card) list.push(card);
-						var card=game.createCard('ybsl_zhuzi','spade',null,null);
+						var card=game.YB_createCard('ybsl_zhuzi','spade',null,null);
 						if(card) list.push(card);
-						var card=game.createCard('ybsl_juhua','heart',null,null);
+						var card=game.YB_createCard('ybsl_juhua','heart',null,null);
 						if(card) list.push(card);
 						game.zhu.gain(list,'gain2','log');
 					}],

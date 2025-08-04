@@ -3683,8 +3683,227 @@ const skill = {
 			},
 		},
 	},
+	//界孙寒华
+	qmsgswkjsgj_chongxu:{
+		audio: 'chongxu',
+		enable: "phaseUse",
+		usable: 1,
+		
+		async content(event, trigger, player) {
+			let relu = await player.chooseToPlayBeatmap(lib.skill.yb016_shenzou.beatmaps.randomGet()).forResult();
+			var score=Math.floor(Math.min(5,relu.accuracy/17));
+			game.log(player,'的演奏评级为','#y'+relu.rank[0],'，获得积分点数','#y'+score,'分');
+			if(score&&score>0){
+				const func = () => {
+					const event = get.event();
+					const controls = [
+						link => {
+							const evt = get.event();
+							if (evt.dialog && evt.dialog.buttons) {
+								for (let i = 0; i < evt.dialog.buttons.length; i++) {
+									const button = evt.dialog.buttons[i];
+									button.classList.remove('selectable');
+									button.classList.remove('selected');
+									const counterNode = button.querySelector('.caption');
+									if (counterNode) counterNode.childNodes[0].innerHTML = ``;
+								}
+								ui.selected.buttons.length = 0;
+								game.check();
+							}
+							return;
+						},
+					];
+					event.controls = [ui.create.control(controls.concat(['清除选择', 'stayleft']))];
+				};
+				if (event.isMine()) func();
+				else if (event.isOnline()) event.player.send(func);
+				const { result } = await player.chooseButton([
+					'###' + get.translation(event.name) + '###<div class="text center">可用'+score+'分，请选择你要执行的项目</div>',
+					[
+						[
+							['qmsgswkjsgj_miaojian', '使用2积分升级【' + get.translation('qmsgswkjsgj_miaojian') + '】'],
+							['qmsgswkjsgj_lianhua', '使用2积分升级【' + get.translation('qmsgswkjsgj_lianhua') + '】'],
+							['draw', '使用1积分摸一张牌'],
+						],
+						'textbutton',
+					],
+				], [1, Infinity]).set('filterButton', button => {
+					const player = get.player(), choice = ui.selected.buttons.map(i => i.link);
+					if (button.link !== 'draw' && (!player.hasSkill(button.link, null, null, false) || choice.filter(i => i === button.link).length + player.countMark(button.link) > 1)) return false;
+					return [...choice, button.link].reduce((sum, i) => sum + (i === 'draw' ? 1 : 2), 0) <= score;
+				}).set('custom', {
+					add: {
+						confirm(bool) {
+							if (bool !== true) return;
+							const event = get.event().parent;
+							if (Array.isArray(event.controls)) event.controls.forEach(i => i.close());
+							if (ui.confirm) ui.confirm.close();
+							game.uncheck();
+						},
+						button() {
+							if (ui.selected.buttons.length) return;
+							const event = get.event();
+							if (event.dialog && event.dialog.buttons) {
+								for (let i = 0; i < event.dialog.buttons.length; i++) {
+									const button = event.dialog.buttons[i];
+									const counterNode = button.querySelector('.caption');
+									if (counterNode) counterNode.childNodes[0].innerHTML = ``;
+								}
+							}
+							if (!ui.selected.buttons.length) event.parent?.controls?.[0]?.classList.add('disabled');
+						},
+					},
+					replace: {
+						button(button) {
+							const event = get.event();
+							if (!event.isMine() || !event.filterButton(button) || button.classList.contains('selectable') == false) return;
+							button.classList.add('selected');
+							ui.selected.buttons.push(button);
+							let counterNode = button.querySelector('.caption');
+							const count = ui.selected.buttons.filter(i => i == button).length;
+							counterNode ? (((counterNode) => {
+								counterNode = counterNode.childNodes[0];
+								counterNode.innerHTML = `×${count}`;
+							})(counterNode)) : counterNode = ui.create.caption(`<span style="font-family:xinwei; text-shadow:#FFF 0 0 4px, #FFF 0 0 4px, rgba(74,29,1,1) 0 0 3px;">×${count}</span>`, button);
+							event.parent?.controls?.[0]?.classList.add('disabled');
+							game.check();
+						},
+					},
+				});
+				if (result?.bool && result.links?.length) {
+					const qmsgswkjsgj_miaojian = result.links.filter(i => i === 'qmsgswkjsgj_miaojian').length;
+					if (qmsgswkjsgj_miaojian > 0) {
+						player.addMark('qmsgswkjsgj_miaojian', qmsgswkjsgj_miaojian, false);
+						player.popup('qmsgswkjsgj_miaojian');
+						game.log(player, '升级了技能', '#g【' + get.translation('qmsgswkjsgj_miaojian') + '】');
+					}
+					const qmsgswkjsgj_lianhua = result.links.filter(i => i === 'qmsgswkjsgj_lianhua').length;
+					if (qmsgswkjsgj_lianhua > 0) {
+						player.addMark('qmsgswkjsgj_lianhua', qmsgswkjsgj_lianhua, false);
+						player.popup('qmsgswkjsgj_lianhua');
+						game.log(player, '升级了技能', '#g【' + get.translation('qmsgswkjsgj_lianhua') + '】');
+					}
+					const draw = result.links.filter(i => i === 'draw').length;
+					if (draw > 0) await player.draw(draw);
+				}
 
-
+			}
+		},
+		ai: {
+			order: 10,
+			result: {
+				player: 1,
+			},
+		},
+		derivation: "yb016_shenzou_faq",
+	},
+	qmsgswkjsgj_miaojian:{
+		audio: 'miaojian',
+		enable: "phaseUse",
+		usable: 1,
+		mod:{
+			cardUsable:function(card,player){
+				if (_status.event.skill == "qmsgswkjsgj_miaojian") {
+					return Infinity;
+				}
+				// if(card.name=='sha'&&card.storage&&card.storage.qmsgswkjsgj_miaojian) return Infinity;
+			},
+			targetInRange(card,player,target) {
+				var level = player.countMark("qmsgswkjsgj_miaojian");
+				if(level==2){
+					if (_status.event.skill == "qmsgswkjsgj_miaojian") {
+						return true;
+					}
+				}
+			},
+		},
+		viewAs:function(card,player){
+			var next = {name:'sha',nature: "stab",storage:{qmsgswkjsgj_miaojian:true,}}
+			var level = player.countMark("qmsgswkjsgj_miaojian");
+			if(level!=0) next.isCard=true;
+			return next;
+		},
+		filterCard:function(card,player){
+			var level = player.countMark("qmsgswkjsgj_miaojian");
+			if(level==0)return get.type2(card) == "basic";
+			return false;
+		},
+		selectCard:()=>{
+			var player= get.player();
+			var level = player.countMark("qmsgswkjsgj_miaojian");
+			if(level==0)return 1;
+			return -1;
+		},
+		precontent() {
+			event.getParent().addCount = false;
+		},
+		check(card) {
+			if (card) {
+				return 6.5 - get.value(card);
+			}
+			return 1;
+		},
+		position: "hes",
+		derivation: ["qmsgswkjsgj_miaojian1", "qmsgswkjsgj_miaojian2"],
+		subSkill: { backup: { audio: "qmsgswkjsgj_miaojian" } },
+		ai: {
+			order: 7,
+			result: { player: 1 },
+		},
+	},
+	qmsgswkjsgj_lianhua:{
+		audio: 'shhlianhua',
+		derivation: ["qmsgswkjsgj_lianhua1", "qmsgswkjsgj_lianhua2"],
+		trigger: { target: "useCardToTargeted" },
+		forced: true,
+		locked: false,
+		filter: event => event.card.name == "sha",
+		content() {
+			"step 0";
+			player.draw();
+			var level = player.countMark("qmsgswkjsgj_lianhua");
+			event.level = level;
+			if(level==0){
+				event.goto(3);
+			}
+			"step 1";
+			var eff = get.effect(player, trigger.card, trigger.player, trigger.player);
+			trigger.player
+				.chooseToDiscard("he", "弃置一张牌，或令" + get.translation(trigger.card) + "对" + get.translation(player) + "无效")
+				.set("ai", function (card) {
+					if (_status.event.eff > 0) {
+						return 10 - get.value(card);
+					}
+					return 0;
+				})
+				.set("eff", eff);
+			"step 2";
+			if (result.bool == false) {
+				trigger.getParent().excluded.add(player);
+				event.finish();
+			}
+			"step 3";
+			player
+				.judge(function (result) {
+					if(event.level==2)return get.color(result) == "black" ? 1 : -1;
+					return get.suit(result) == "spade" ? 1 : -1;
+				})
+				.set("judge2", result => result.bool);
+			'step 4';
+			if (result.bool) {
+				trigger.excluded.add(player);
+			}
+		},
+		ai: {
+			effect: {
+				target_use(card, player, target, current) {
+					if (card.name == "sha" && current < 0) {
+						return 0.7;
+					}
+				},
+			},
+		},
+	},
 
 
 

@@ -539,3 +539,7 @@ ybsl_beige，yb002_ziren，
 修复瑶姬
 修复风后
 优化糖
+
+2025.08.04
+界孙寒华
+批量将createCard换成YB_createCard

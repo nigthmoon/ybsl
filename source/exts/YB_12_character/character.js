@@ -37,7 +37,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_re_zhangxiu:['male','qun',4,['qmsgswkjsgj_xiongluan','drlt_congjian'],['rankAdd:epic','rankS:b','linkTo:zhangxiu','YB_mjz:zhangxiu','tempname:zhangxiu']],
 	qmsgswkjsgj_re_fuhuanghou:['female','qun',3,['qmsgswkjsgj_zhuikong','oldqiuyuan'],['rankAdd:legend','rankS:s','linkTo:fuhuanghou','YB_mjz:fuhuanghou','tempname:fuhuanghou']],
 	qmsgswkjsgj_shen_ganning:['male','shen','3/6',["qmsgswkjsgj_poxi", "qmsgswkjsgj_jieying", "qixi"],['rankAdd:legend','rankS:s','linkTo:shen_ganning','YB_mjz:shen_ganning','tempname:shen_ganning','wu']],
-
+	qmsgswkjsgj_re_sunhanhua:['female','wu',3,['qmsgswkjsgj_chongxu','qmsgswkjsgj_miaojian','qmsgswkjsgj_lianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
 
 
 

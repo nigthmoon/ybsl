@@ -409,7 +409,7 @@ const skill = {
 			if(trigger.targets.length<2){
 				var tar=[];
 				for (var i=0;i<trigger.targets.length;i++){
-					//trigger.targets[i].gain(game.createCard('du',null,null,null,['gifts']),'gain2');
+					//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
 					tar.push(trigger.targets[i]);
 				}
 				var cards=trigger.cards;
@@ -420,7 +420,7 @@ const skill = {
 			if(trigger.targets.length>=2){
 				var tar=[];
 				for (var i=0;i<trigger.targets.length;i++){
-					//trigger.targets[i].gain(game.createCard('du',null,null,null,['gifts']),'gain2');
+					//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
 					tar.push(trigger.targets[i]);
 				}
 				var cards=trigger.cards;

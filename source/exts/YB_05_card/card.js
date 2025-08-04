@@ -904,7 +904,7 @@ const card = {
 				card.YB_init([card.suit,card.number,'rewrite_'+card.name,card.nature/*,tag*/]);
 				//
 				if (bool && card.card && player.vcardsMap?.equips) {
-					const cardx = game.createCard("rewrite_" + card.card.name, card.card.suit, card.card.number);
+					const cardx = game.YB_createCard("rewrite_" + card.card.name, card.card.suit, card.card.number);
 					player.vcardsMap.equips[player.vcardsMap.equips.indexOf(card.card)] = cardx;
 					card.card = cardx;
 				}

@@ -5,56 +5,58 @@ export { YBSL_destiny }
  */
 const YBSL_destiny = function(){
 	{//校花梦工厂缘分搭配
-		lib.translate.xh_shisu='世俗界'
-		lib.translate.xh_linyi='林逸'
-		lib.translate.xh_chumengyao='楚梦瑶'
-		lib.translate.xh_tangyun='唐韵'
-		lib.translate.xh_yangming='杨明'
-		lib.translate.xh_luanxiaoru='栾小茹'
-		lib.translate.xh_turanran='土冉冉'
-		lib.translate.xh_fengxiaoxiao='冯笑笑'
-		lib.translate.xh_yuning='雨凝'
-		lib.translate.xh_guanxin='关馨'
-		lib.translate.xh_yingziyu='应子鱼'
-		lib.translate.xh_jiaoyazi='焦牙子'
-		lib.translate.xh_yangqiqi='杨七七'
-		lib.translate.xh_chenyushu='陈雨舒'
-		lib.translate.xh_songlingshan='宋凌珊'
-		lib.translate.xh_xushihan='许诗涵'
-		lib.translate.xh_yuxiaoke='郁小可'
-		lib.translate.xh_sunjingyi='孙静怡'
-		lib.translate.xh_zhongpinliang='钟品亮'
-		lib.translate.xh_zhangnaipao='张乃炮'
-		lib.translate.xh_xueli='雪梨'
-		lib.translate.xh_ergoudan='二狗蛋'
-		lib.translate.xh_anjianwen='安建文'
-		lib.translate.xh_bingtang='冰糖'
-	
-	
-		lib.translate.xh_tianjie='天阶岛'
-		lib.translate.xh_zhangliju='章力钜'
-		lib.translate.xh_shangguanlaner='上官岚儿'
-		lib.translate.xh_wangxinyan='王心妍'
-		lib.translate.xh_duanmuyu='端木玉'
-		lib.translate.xh_lengleng='冷冷'
-		lib.translate.xh_hanjingjing='韩静静'
-		lib.translate.xh_ningxuefei='宁雪菲'
-		lib.translate.xh_tianchan='天婵'
-		lib.translate.xh_donghaishenni='东海神尼'
-		lib.translate.xh_huangxiaotao='黄小桃'
-		lib.translate.xh_ningshangling='宁尚菱'
-		lib.translate.xh_gongyangjie='公羊杰'
-		lib.translate.xh_shangguantianhua='上官天华'
-		lib.translate.xh_guidongxi='鬼东西'
-		lib.translate.xh_huoyudie='霍雨蝶'
-		lib.translate.xh_nicaiyue='倪彩月'
-		lib.translate.xh_chenxi='陈曦'
-		lib.translate.xh_xishanlaozong='西山老宗'
-		lib.translate.xh_kangzhaoming='康照明'
-		lib.translate.xh_chengyiyi='程依依'
-		lib.translate.xh_xulingchong='徐灵冲'
-		lib.translate.xh_xinrenqinglong='新任青龙'
-		lib.translate.xh_liuziyu='柳子玉'
+		{
+			lib.translate.xh_shisu='世俗界'
+			lib.translate.xh_linyi='林逸'
+			lib.translate.xh_chumengyao='楚梦瑶'
+			lib.translate.xh_tangyun='唐韵'
+			lib.translate.xh_yangming='杨明'
+			lib.translate.xh_luanxiaoru='栾小茹'
+			lib.translate.xh_turanran='土冉冉'
+			lib.translate.xh_fengxiaoxiao='冯笑笑'
+			lib.translate.xh_yuning='雨凝'
+			lib.translate.xh_guanxin='关馨'
+			lib.translate.xh_yingziyu='应子鱼'
+			lib.translate.xh_jiaoyazi='焦牙子'
+			lib.translate.xh_yangqiqi='杨七七'
+			lib.translate.xh_chenyushu='陈雨舒'
+			lib.translate.xh_songlingshan='宋凌珊'
+			lib.translate.xh_xushihan='许诗涵'
+			lib.translate.xh_yuxiaoke='郁小可'
+			lib.translate.xh_sunjingyi='孙静怡'
+			lib.translate.xh_zhongpinliang='钟品亮'
+			lib.translate.xh_zhangnaipao='张乃炮'
+			lib.translate.xh_xueli='雪梨'
+			lib.translate.xh_ergoudan='二狗蛋'
+			lib.translate.xh_anjianwen='安建文'
+			lib.translate.xh_bingtang='冰糖'
+		
+		
+			lib.translate.xh_tianjie='天阶岛'
+			lib.translate.xh_zhangliju='章力钜'
+			lib.translate.xh_shangguanlaner='上官岚儿'
+			lib.translate.xh_wangxinyan='王心妍'
+			lib.translate.xh_duanmuyu='端木玉'
+			lib.translate.xh_lengleng='冷冷'
+			lib.translate.xh_hanjingjing='韩静静'
+			lib.translate.xh_ningxuefei='宁雪菲'
+			lib.translate.xh_tianchan='天婵'
+			lib.translate.xh_donghaishenni='东海神尼'
+			lib.translate.xh_huangxiaotao='黄小桃'
+			lib.translate.xh_ningshangling='宁尚菱'
+			lib.translate.xh_gongyangjie='公羊杰'
+			lib.translate.xh_shangguantianhua='上官天华'
+			lib.translate.xh_guidongxi='鬼东西'
+			lib.translate.xh_huoyudie='霍雨蝶'
+			lib.translate.xh_nicaiyue='倪彩月'
+			lib.translate.xh_chenxi='陈曦'
+			lib.translate.xh_xishanlaozong='西山老宗'
+			lib.translate.xh_kangzhaoming='康照明'
+			lib.translate.xh_chengyiyi='程依依'
+			lib.translate.xh_xulingchong='徐灵冲'
+			lib.translate.xh_xinrenqinglong='新任青龙'
+			lib.translate.xh_liuziyu='柳子玉'
+		}
 		_status.xhmgcCharacter={
 			xh_linyi:['male','qun',4,[],['unseen']],
 			xh_chumengyao:['female','qun',4,[],['unseen']],
@@ -922,7 +924,7 @@ const YBSL_destiny = function(){
 				geweiqizhu:{
 					name:'各为其主',
 					order:21,
-					list:['xulingchong','xh_liuziyu'],
+					list:['xh_xulingchong','xh_liuziyu'],
 				},
 			},
 			xh_liuziyu:{
@@ -939,7 +941,7 @@ const YBSL_destiny = function(){
 				geweiqizhu:{
 					name:'各为其主',
 					order:21,
-					list:['xulingchong','xh_xinrenqinglong'],
+					list:['xh_xulingchong','xh_xinrenqinglong'],
 				},
 			},
 		}

@@ -264,6 +264,42 @@ const translate = {
 	qmsgswkjsgj_jieying:'劫营',
 	qmsgswkjsgj_jieying_info:'回合开始时，若全场没有“营”，你获得一个“营”标记。结束阶段，你可以将“营”置于一名其他角色的武将牌旁；有“营”的角色摸牌阶段多摸一张牌、出牌阶段可多使用一张【杀】、手牌上限+1。有“营”的其他角色回合结束后，移去“营”，然后你获得其所有牌。',
 
+	qmsgswkjsgj_re_sunhanhua:'界孙寒华',
+	qmsgswkjsgj_re_sunhanhua_prefix:'界',
+	qmsgswkjsgj_chongxu:'冲虚',
+	qmsgswkjsgj_chongxu_info:'出牌阶段限一次，你可以随机演奏一首音乐，并根据完成度来获得相应的分数（至多五分）。然后你可修改〖妙剑〗或〖莲华〗（消耗2分），并使用剩余的分数进行摸牌（每张1分）。',
+	qmsgswkjsgj_miaojian:'妙剑',
+	qmsgswkjsgj_miaojian_info:'出牌阶段限一次，你可以将一张基本牌当作刺【杀】使用，该刺【杀】不计入次数限制。',
+	qmsgswkjsgj_miaojian1:'妙剑·改',
+	qmsgswkjsgj_miaojian1_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制。',
+	qmsgswkjsgj_miaojian2:'妙剑·极',
+	qmsgswkjsgj_miaojian2_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。',
+	qmsgswkjsgj_lianhua:'莲华',
+	qmsgswkjsgj_lianhua_info:'你成为其他角色【杀】的目标后，你摸一张牌，然后进行一次判定，若结果为黑桃，则取消之。',
+	qmsgswkjsgj_lianhua1:'莲华·改',
+	qmsgswkjsgj_lianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。',
+	qmsgswkjsgj_lianhua2:'莲华·极',
+	qmsgswkjsgj_lianhua2_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

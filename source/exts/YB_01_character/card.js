@@ -358,16 +358,17 @@ const card = {
 			return targets.length==1&&(targets[0].countCards('j')||targets[0].isDamaged());
 		},
 		filterTarget:function(card,player,target){
-			// if(get.is.versus()){
-			// 	return player.side==target.side&&target.hp!=target.maxHp;
-			// }
-			// else{
-			// 	return target.hp!=target.maxHp;
-			// }
+			if(get.is.versus()){
+				return player.side==target.side&&target.hp!=target.maxHp;
+			}
+			else{
+				return target.hp!=target.maxHp||target.countDiscardableCards(player,get.is.single()?'he':'hej');
+			}
 			return target.countDiscardableCards(player,get.is.single()?'he':'hej');
 		},
 		selectTarget:1,
 		global:'ybsl_cu_discard',
+		savable:true,
 		// filterTarget:function (card,player,target){
 			// if(player==target) return false;
 			// return target.countDiscardableCards(player,get.is.single()?'he':'hej');
@@ -395,7 +396,11 @@ const card = {
 				useful:5,
 				value:5,
 			},
-			save:true,
+			// tag:{
+			// 	recover:1,
+			// 	save:1,
+			// },
+			// save:true,
 			yingbian:function (card,player,targets,viewer){
 				if(get.attitude(viewer,player)<=0) return 0;
 				if(game.hasPlayer(function(current){

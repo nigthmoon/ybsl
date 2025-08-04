@@ -4619,7 +4619,7 @@ const skill = {
 				judgebar_color:'linear-gradient(#633, #300)',
 			},
 		],
-		derivation:"chongxu_faq",
+		derivation:"yb016_shenzou_faq",
 	},
 	'yb016_juli':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -6651,7 +6651,7 @@ const skill = {
 		},
 		frequent:true,
 		content:function (){//触发的效果，具体填在下面
-			player.gain(game.createCard('ybsl_cu'),'gain2');
+			player.gain(game.YB_createCard('ybsl_cu',null,null,null),'gain2');
 		},
 		derivation:['ybsl_cu'],
 		init:function(player,skill){
@@ -10289,7 +10289,7 @@ const skill = {
 			'step 3'
 			lib.translate[event.cardx]=result.text;
 			'step 4'
-			var cardxx=game.createCard(event.cardx,null,null,null);
+			var cardxx=game.YB_createCard(event.cardx,null,null,null);
 			player.showCards(cardxx);
 			player.gain(cardxx,'gain2');
 		},
@@ -13090,7 +13090,7 @@ const skill = {
 	yb070_queshi:{
 		audio:'ext:夜白神略/audio/character:2',
 		init:function(player){
-			player.equip(game.createCard('ybsl_zhezhiqiang',null,null));
+			player.equip(game.YB_createCard('ybsl_zhezhiqiang',null,null));
 		},
 		trigger:{
 			player:'loseAfter',
@@ -13109,7 +13109,7 @@ const skill = {
 			if(num>=49&&num<=52)var suit='none';
 			if(num>=53&&num<=76)var suit='club';
 			if(num>=77&&num<=100)var suit='diamond';
-			player.equip(game.createCard('ybsl_zhezhiqiang',suit,null));
+			player.equip(game.YB_createCard('ybsl_zhezhiqiang',suit,null));
 		}
 	},
 	yb070_meiying:{
@@ -14964,7 +14964,7 @@ const skill = {
 		content:function(){
 			'step 0'
 			// var card=get.cardPile('ybsl_fengqiuhuang','field');
-			event.card=(get.cardPile('ybsl_fengqiuhuang','field')||game.createCard('ybsl_fengqiuhuang',null,null,null))
+			event.card=(get.cardPile('ybsl_fengqiuhuang','field')||game.YB_createCard('ybsl_fengqiuhuang',null,null,null))
 			player.chooseTarget(get.prompt2('yb080_huayu'),lib.filter.notMe).set('ai',function(target){
 				return get.attitude(_status.event.player,target);
 			});
@@ -15017,7 +15017,7 @@ const skill = {
 					return (event.name!='phase'||game.phaseNumber==0);
 				},
 				content:function(){
-					event.card=game.createCard('ybsl_fengqiuhuang',null,null,null);
+					event.card=game.YB_createCard('ybsl_fengqiuhuang',null,null,null);
 					player.equip(event.card);
 				},
 			},
@@ -16372,7 +16372,7 @@ const skill = {
 		// player.storage.yb107_xunhu
 		// },
 		content: function() {
-			var card = game.createCard2('ybsl_107xiaohu0', null, null);
+			var card = game.YB_createCard('ybsl_107xiaohu0', null, null);
 			player.storage.yb107_xunhu = card;
 			ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
 			game.broadcastAll(function() {
