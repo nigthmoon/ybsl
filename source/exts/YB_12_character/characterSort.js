@@ -4,6 +4,11 @@ export { characterSort }
 const characterSort = {
 	sgstrxs:{
 		sgskjdbzjms:[
+			'sgskjdbzjms_zrshenmoyi','sgskjdbzjms_zrzhenghao',
+
+
+
+
 			'sgskjdbzjms_mo_zhoutai','sgskjdbzjms_shen_zhugeliang',
 			'sgskjdbzjms_leizhenzi','sgskjdbzjms_xian_zhugeguo',
 			'sgskjdbzjms_zhen_zhangfei','sgskjdbzjms_zhen_guanyu',

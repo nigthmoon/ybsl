@@ -543,3 +543,13 @@ ybsl_beige，yb002_ziren，
 2025.08.04
 界孙寒华
 批量将createCard换成YB_createCard
+
+2025.08.06
+青龙白虎朱雀玄武加图
+开辟lib.accessoryPacket
+同人小说先鸽着
+
+2025.08.10-11
+修了一些bug，沉鱼，释元，自刃
+
+对于新版本拆分了本体分包作为扩展，我稍后考虑搬运

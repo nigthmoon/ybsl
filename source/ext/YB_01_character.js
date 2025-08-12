@@ -7,7 +7,7 @@ import { perfectPair } from '../exts/YB_01_character/perfectPair.js'
 import { characterTitle } from '../exts/YB_01_character/characterTitle.js'
 import { characterCopyright } from '../exts/YB_01_character/characterCopyright.js';
 import { characterCitetext } from '../exts/YB_01_character/characterCitetext.js'
-import { characterUndertext } from '../exts/YB_01_character/characterUndertext.js'
+import { characterUndertext ,accessoryPacket} from '../exts/YB_01_character/characterUndertext.js'
 import { characterLightext } from '../exts/YB_01_character/characterLightext.js';
 import { characterLightextParent } from '../exts/YB_01_character/characterLightext.js';
 import { skill } from '../exts/YB_01_character/skill.js'
@@ -30,7 +30,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		characterCopyright:characterCopyright,
 		characterCitetext:characterCitetext,
 		characterUndertext:characterUndertext,
-
+		accessoryPacket:accessoryPacket,//附属将包
 		characterLightextParent:characterLightextParent,
 		characterLightext:characterLightext,
 		/*快捷复制：

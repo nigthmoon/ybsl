@@ -1,5 +1,5 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterUndertext }
+export { characterUndertext ,accessoryPacket}
 
 const characterUndertext = {
 		
@@ -197,4 +197,9 @@ const characterUndertext = {
 	'ybsb_068qingyue':'这是一个旧版的废案。',
 	'ybsb_048wushuang':'这是一个旧版的废案，因为太离谱而改掉。',
 	
+}
+const accessoryPacket = {
+	ybsl_059starsFall:{
+		character:['ybsl_059starsFall1','ybsl_059starsFall2','ybsl_059starsFall3','ybsl_059starsFall4']
+	},
 }

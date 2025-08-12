@@ -6,6 +6,44 @@ const translate = {
 	sgskjdbzjms:'三国杀，开局大宝直接秒杀',
 	sgskjdbzjms_info:'三国杀，开局大宝直接秒杀<br>平台：番茄小说<br>作者：糊涂小笨蛋',
 
+	sgskjdbzjms_zrshenmoyi:'沈墨以',//界徐盛，神赵云，神诸葛亮，神郭嘉
+	//界公孙瓒 公孙瓒 潘璋马忠
+	sgskjdbzjms_smyhengcai:'横财',
+	sgskjdbzjms_smyhengcai_info:'锁定技，游戏开始时，你可以随机招募四名史诗或传说武将充入自己将池（或令剧情四名初始神将加入将池）（第一个必定是界徐盛）（若招募到的是神将，则需要后续使用弥仙神术激活），然后你选择将池的一名武将替换自己的另一名武将；每轮开始时，你获得一枚随机宝珠（普通5权，精品3权，传说2权）。',
+	sgskjdbzjms_smyjihun:'集魂',
+	sgskjdbzjms_smyjihun_info:'回合开始时，你可以消耗宝珠进行招募，然后选择将池一名武将替换另一武将。',
+	//沈妈 柳月梅
+	//沈爸 
+	sgskjdbzjms_zrzhenghao:'郑豪',//手杀界邓艾  界马超，界满宠  李傕
+	sgskjdbzjms_zrzhaoyoubo:'赵有博',//
+
+	sgskjdbzjms_zrmurongyan:'慕容岩',//魔周泰
+
+	//哈哈哈，我是将军，我是大将军
+	//我封你为骠骑将军，你是车骑将军。随我征战！
+	sgskjdbzjms_zrsimapo:'司马珀',//司马昭 许褚
+	sgskjdbzjms_zranmuxi:'安慕希',//代抽出手杀界钟会
+
+	sgskjdbzjms_zrganmeng:'甘檬',//神甘宁
+	sgskjdbzjms_zryangxiong:'杨雄',//杨仪
+	//刘左将军 手杀界华雄
+	//林欣（张角）&许意（界刘备）
+	//诸葛羽秋（界黄月英，仙诸葛果）&李若依
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	sgskjdbzjms_mo_zhoutai:'魔周泰',
 	sgskjdbzjms_mo_zhoutai_prefix:'魔',
 	sgskjdbzjms_tiequ:'铁躯',
@@ -105,6 +143,19 @@ const translate = {
 	sgskjdbzjms_jieying_info:'锁定技，你始终处于横置状态；回合结束阶段，你可以横置一名其他角色。',
 	sgskjdbzjms_tuogu:'托孤',
 	sgskjdbzjms_tuogu_info:'当你进入濒死状态时，你可以选择至多两名其他角色，令他们选择一项：①摸三张牌，②，回复1点体力。',
+
+
+
+
+
+
+
+	qmsgswkjsgj_zrlinan:'林安',
+
+
+
+
+
 
 
 

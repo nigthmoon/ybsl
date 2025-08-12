@@ -2012,6 +2012,7 @@ const skill = {
 				return list2;
 			},
 			check() {
+				var player = get.player();
 				if(get.damageEffect(player, player,player,'fire')>0)return '火';
 				else if(get.damageEffect(player, player,player,'thunder')>0)return '雷';
 				else if(player.hp>1)return '无';//血量大于1时，默认选项为无
@@ -7512,8 +7513,8 @@ const skill = {
 			yield player.draw(num);
 			if(player.hp>=num){
 				var result=yield player.chooseBool().set('ai',function(){
-					if(player.hp-num>1) return bool;
-					else return !bool;
+					if(player.hp-num>1) return true;
+					else return false;
 				}).set('prompt','是否失去'+num+'点体力，然后再摸'+num+'张牌');
 				if(result.control=='是'){
 					yield player.loseHp(num);
@@ -15625,7 +15626,7 @@ const skill = {
 					}
 					discard.push(hs[suit].shift())
 				}
-				if (get.YB_suit(discard).length != snum) discard = []
+				if (get.YB_suit(discard).length != snum) discard.length = 0
 				evt.yb092_chenyu = discard
 				delete _status.yb092_chenyu
 				if (discard.includes(card)) return num - 2

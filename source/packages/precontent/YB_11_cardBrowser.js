@@ -8,9 +8,9 @@ export { YB_11_cardBrowser }
  * 现计划用于rpg设计
  * 原用于卡包浏览
  */
-const YB_11_cardBrowser = function(){
+const YB_11_cardBrowser = function () {
 	{
-		
+
 		// game.addMode('YB_rpg',{
 		// 	start:function(){
 		// 		'step 0'
@@ -22,15 +22,42 @@ const YB_11_cardBrowser = function(){
 		// 	translate: 'RPG游戏',
 		// })
 	}
+	if (lib?.config?.extension_夜白神略_6attack == true) {
+		game.addMode('YB_6attack', {
+			start: function () {
+				'step 0'
+				var dialog = ui.create.div('.yb6attack');
+				// this.parentNode.insertBefore(dialog, this.nextSibling);
+				// this.innerHTML='12312';
+				// dialog;
+				ui.create.dialog(dialog)
+				'step 1'
+			},
+			init: function () {
+			},
+		}, {
+			translate: 'rpg模拟器'
+		})
+		// lib.brawl.YB_rpg = {
+		// 	name: "rpg模拟器",
+		// 	mode: "identity",
+		// 	intro:['无介绍'],
+		// 	init(){},
+		// 	content:{
+		// 		submode: "normal",
+
+		// 	},
+		// }
+	}
 	{
-		
+
 		// game.addMode('YB_mode',{
 		// 	name: 'YB_mode',
 		// 	start:function(){
 		// 		'step 0'
 		// 		game.loadMode("identity");
 		// 		'step 1'
-				
+
 		// 	},
 		// }, {
 		// 	translate: '夜白',
@@ -52,34 +79,34 @@ const YB_11_cardBrowser = function(){
 		// })
 		// image: ['extension/夜白神略/YB_mode.jpg']
 	}
-	if(false){
+	if (false) {
 		var packages = [
-			"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
+			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic'
 		]
-		for(var pack of packages){
-			for(var name in lib.characterPack[pack]){
-				YB_tujian[name]={
-					version:YBSL_characterIntro(name),
-					players:[name],
-					info:function(){
+		for (var pack of packages) {
+			for (var name in lib.characterPack[pack]) {
+				YB_tujian[name] = {
+					version: YBSL_characterIntro(name),
+					players: [name],
+					info: function () {
 						var info = '';
-						for(var j in lib.characterPack[pack][name][3]){
-							info += '<span class="bluetext">'+lib.translate[lib.characterPack[pack][name][3][j]]+'</span>：'+lib.translate[lib.characterPack[pack][name][3][j]+'_info'] + '<br>';
-							if(lib.skill[j].derivation){
-								for(var k in lib.skill[j].derivation){
-									info += '<span class="bluetext">'+lib.translate[lib.skill[j].derivation[k]]+'</span>：'+lib.translate[lib.skill[j].derivation[k]+'_info'] + '<br>';
+						for (var j in lib.characterPack[pack][name][3]) {
+							info += '<span class="bluetext">' + lib.translate[lib.characterPack[pack][name][3][j]] + '</span>：' + lib.translate[lib.characterPack[pack][name][3][j] + '_info'] + '<br>';
+							if (lib.skill[j].derivation) {
+								for (var k in lib.skill[j].derivation) {
+									info += '<span class="bluetext">' + lib.translate[lib.skill[j].derivation[k]] + '</span>：' + lib.translate[lib.skill[j].derivation[k] + '_info'] + '<br>';
 								}
 							}
 						}
 						return info
 					},
-					cards:[],
+					cards: [],
 					// name:lib.translate[name],
 				}
 			}
 		}
-		if(lib.config.YB_look==1){
-			if(!lib.config.extension_文武英杰_enable)game.wwyj_showNewtujian = function () {
+		if (lib.config.YB_look == 1) {
+			if (!lib.config.extension_文武英杰_enable) game.wwyj_showNewtujian = function () {
 				var dialog = ui.create.dialog('hidden');
 				dialog.style.height = 'calc(70%)';
 				dialog.style.width = 'calc(70%)';
@@ -164,12 +191,12 @@ const YB_11_cardBrowser = function(){
 					},
 				}
 			}
-	
+
 		}
 	}
-	if(false){
-		if(lib.brawl)lib.brawl.YB_wuhunjuexing = {
-			
+	if (false) {
+		if (lib.brawl) lib.brawl.YB_wuhunjuexing = {
+
 			name: "武魂觉醒",
 			mode: "identity",
 			intro: ["杀死所有其他角色，成为最后的存活者", "所有角色改为四血白板，依靠对局行为获得魂力。魂力达到阈值可以增加属性以及获得魂技"],
@@ -221,38 +248,38 @@ const YB_11_cardBrowser = function(){
 			},
 			init: function () {
 				lib.element.player.YB_hunliLevel;
-				lib.element.player.addHunli = function(num){
-					var player=this;
+				lib.element.player.addHunli = function (num) {
+					var player = this;
 					var numb = player.YB_hunliLevel;
-					if(player.countMark('_YB_hunli')>=player.YB_maxHunli(numb)){
-						var str = numb>=9?'魂力达到了世间巅峰':'魂力达到了上限，请吸收魂环';
-						game.log(player,str);
+					if (player.countMark('_YB_hunli') >= player.YB_maxHunli(numb)) {
+						var str = numb >= 9 ? '魂力达到了世间巅峰' : '魂力达到了上限，请吸收魂环';
+						game.log(player, str);
 					}
 					else {
-						if(player.YB_maxHunli(numb)-player.countMark('_YB_hunli')<num){
-							num = player.YB_maxHunli(numb)-player.countMark('_YB_hunli');
+						if (player.YB_maxHunli(numb) - player.countMark('_YB_hunli') < num) {
+							num = player.YB_maxHunli(numb) - player.countMark('_YB_hunli');
 						}
 						player.addMark(num);
 					}
 				}
-				lib.element.player.YB_maxHunli = function(numb){
-					var player=this;
-					var num = numb||player.YB_hunliLevel||0;
-					var list = [10,30,60,100,150,210,280,360,450,550,];
+				lib.element.player.YB_maxHunli = function (numb) {
+					var player = this;
+					var num = numb || player.YB_hunliLevel || 0;
+					var list = [10, 30, 60, 100, 150, 210, 280, 360, 450, 550,];
 					return list[num];
 				}
-				lib.element.player.YB_hunliLevelUp = function(){
-					if(!player.YB_hunliLevel)player.YB_hunliLevel=0;
+				lib.element.player.YB_hunliLevelUp = function () {
+					if (!player.YB_hunliLevel) player.YB_hunliLevel = 0;
 					player.YB_hunliLevel++;
 				}
-				lib.skill._YB_hunli={
-					mark:true,
-					marktext:'魂',
-					intro:{
-						name:'魂力',
+				lib.skill._YB_hunli = {
+					mark: true,
+					marktext: '魂',
+					intro: {
+						name: '魂力',
 						content(storage, player, skill) {
 							var numb = player.YB_hunliLevel;
-							return '<li>当前魂力<li>'+player.countMark('_YB_hunli') + '/' + player.YB_maxHunli(numb);
+							return '<li>当前魂力<li>' + player.countMark('_YB_hunli') + '/' + player.YB_maxHunli(numb);
 						},
 					},
 				}
@@ -922,7 +949,7 @@ const YB_11_cardBrowser = function(){
 									game.over(game.me.isAlive());
 								}
 							},
-							$dieAfter: function () {},
+							$dieAfter: function () { },
 							hasUnknown: function () {
 								return false;
 							},
@@ -955,7 +982,7 @@ const YB_11_cardBrowser = function(){
 									});
 								}
 							},
-							logAi: function () {},
+							logAi: function () { },
 							changeLingli: function (num) {
 								if (typeof num != "number") {
 									num = 1;
@@ -1190,7 +1217,7 @@ const YB_11_cardBrowser = function(){
 					func(pack);
 				},
 			},
-		
+
 		}
 	}
 }

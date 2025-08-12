@@ -3802,12 +3802,12 @@ const skill = {
 		enable: "phaseUse",
 		usable: 1,
 		mod:{
-			cardUsable:function(card,player){
-				if (_status.event.skill == "qmsgswkjsgj_miaojian") {
-					return Infinity;
-				}
-				// if(card.name=='sha'&&card.storage&&card.storage.qmsgswkjsgj_miaojian) return Infinity;
-			},
+			// cardUsable:function(card,player){
+			// 	if (_status.event.skill == "qmsgswkjsgj_miaojian") {
+			// 		return Infinity;
+			// 	}
+			// 	// if(card.name=='sha'&&card.storage&&card.storage.qmsgswkjsgj_miaojian) return Infinity;
+			// },
 			targetInRange(card,player,target) {
 				var level = player.countMark("qmsgswkjsgj_miaojian");
 				if(level==2){

@@ -6,7 +6,8 @@ import { perfectPair } from '../exts/YB_12_character/perfectPair.js'
 import { characterTitle } from '../exts/YB_12_character/characterTitle.js'
 import { characterCopyright } from '../exts/YB_12_character/characterCopyright.js';
 import { characterCitetext } from '../exts/YB_12_character/characterCitetext.js'
-import { characterUndertext } from '../exts/YB_12_character/characterUndertext.js'
+import { characterUndertext ,accessoryPacket} from '../exts/YB_12_character/characterUndertext.js'
+// import { accessoryPacket } from '../exts/YB_12_character/accessoryPacket.js'
 import { skill } from '../exts/YB_12_character/skill.js'
 import { card } from '../exts/YB_12_character/card.js'
 import { translate } from '../exts/YB_12_character/translate.js'
@@ -25,6 +26,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		characterCopyright:characterCopyright,
 		characterCitetext:characterCitetext,
 		characterUndertext:characterUndertext,
+		accessoryPacket:accessoryPacket,//附属将包
 		/*快捷复制：
 		<span class=yellowtext>文字</span>暗亮双色
 		<span class=thundertext>文字</span>

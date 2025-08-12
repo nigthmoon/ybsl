@@ -239,6 +239,15 @@ span[data-nature="YB_snowmm"] {
 .ybsl_gengxingonggao {
     text-align: left;
 }
+
+
+
+
+.yb6attack {
+	width: 600px;
+	height: 450px;
+	background-color: rgba(253, 253, 51, 0.438); /* 设置背景颜色为红色 */
+}
 /* 覆盖样式 */
 /* 菜单框大小 */
 .menu.main {
@@ -254,3 +263,4 @@ span[data-nature="YB_snowmm"] {
     left: 500px;
     top: 327px;
 }
+
