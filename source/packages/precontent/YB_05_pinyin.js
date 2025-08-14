@@ -31,5 +31,6 @@ const YBSL_pinyin = function(){
 		lib.pinyins.皓腕=['hào','wǎn']
 		lib.pinyins.鹰原羽依里=['Takahara','Hairi']
 		lib.pinyins.折翼=['zhé','yì']
+		lib.pinyins.折折 = ['tí', 'tí']
 	}
 }

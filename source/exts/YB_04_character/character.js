@@ -95,6 +95,32 @@ const character = { //武将格式 :
 	niya_re_liuyan:['male','qun',3,['niya_limu','niya_tushe'],['rankAdd:legend','rankS:s','linkTo:liuyan','tempname:liuyan','YB_mjz:liuyan']], //刘焉
 	niya_caowei:['female','qun','3/4',['niya_youbo','niya_anren','niya_xuantu'],['rankAdd:legend','rankS:s']], //曹微
 	Fe2O3_duqiong:['male','shu',3,['Fe2O3_huishi','Fe2O3_xingchen'],['rankAdd:epic','rankS:a']],//杜琼
+	zxunnamed_zhenji : {
+		sex : 'female',
+		group : 'wei',
+		hp : 3,
+		skills : ['zxunnamed_qinglan', 'zxunnamed_lingbo'],
+	},//甄宓
+	Fe2O3_zixu : {
+		group : 'qun',
+		sex : 'male',
+		hp : 3,
+		skills : ['Fe2O3_shuding', 'Fe2O3_titi'],
+		names : 'null|null'
+	},//紫虚
+	Fe3O4_guanyu : {
+		group : 'wei',
+		sex : 'male',
+		hp : 4,
+		skills : ['Fe3O4_jinxiao', 'Fe3O4_danji']
+	},//关羽
+	Fe2O3_zhugeliang : {
+		group : 'shu',
+		sex : 'male',
+		hp : 3,
+		skills : ['Fe2O3_guanji', 'Fe2O3_weixuan'],
+		names : '诸葛|亮'
+	},//诸葛亮
 	
 	
 	
