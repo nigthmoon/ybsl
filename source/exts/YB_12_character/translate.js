@@ -23,6 +23,12 @@ const translate = {
 	//我封你为骠骑将军，你是车骑将军。随我征战！
 	sgskjdbzjms_zrsimapo:'司马珀',//司马昭 许褚
 	sgskjdbzjms_zranmuxi:'安慕希',//代抽出手杀界钟会
+	sgskjdbzjms_amxdaichou:'代抽',
+	sgskjdbzjms_amxdaichou_info:'其他角色摸牌时，其可以改为令你摸等量张牌并交给其。',
+	sgskjdbzjms_amxhaoyun:'好运',
+	// sgskjdbzjms_amxhaoyun_info:'持恒技，当你摸牌时，你可以声明一个牌名（不能是以此法声明过的牌名），令本次摸的牌其中随机一张的牌名改为之。此牌进入弃牌堆则恢复原牌名。',
+	sgskjdbzjms_amxhaoyun_info:'持恒技，当你摸牌时，你可以声明一个牌名，令本次摸的牌必然包含其（除非牌堆没有）。',
+
 
 	sgskjdbzjms_zrganmeng:'甘檬',//神甘宁
 	sgskjdbzjms_zryangxiong:'杨雄',//杨仪

@@ -28,7 +28,8 @@ const YB_11_cardBrowser = function () {
 				'step 0'
 				var dialog = ui.create.div('.yb6attack');
 				// this.parentNode.insertBefore(dialog, this.nextSibling);
-				// this.innerHTML='12312';
+				// dialog.innerHTML='12312';
+				dialog.innerHTML = '<br><div class="yb6attack_title">夜白神略</div>';
 				// dialog;
 				ui.create.dialog(dialog)
 				'step 1'
