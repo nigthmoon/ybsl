@@ -144,6 +144,7 @@ const character = { //武将格式 :
 	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','rankS:s','name:王|必','linkTo:ybsl_wangbi']], //王必]
 	ybsl_jiangziwen:['male','wu',3,['ybsl_fengcix','ybsl_youxiangx'],['rankAdd:epic','name:蒋|歆']],//蒋歆
 	ybsl_suojing:['male','jin',3,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
+	ybsl_wangpou:['male','jin',3,['ybsl_zhelei','ybsl_xunxiao','ybsl_wanbie'],['rankAdd:rare']],//王裒
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji:['male','wu',3,['ybsl_ljfumin','ybsl_ljguihang','ybsl_clanxingzu'],['rankAdd:epic','clan:吴郡陆氏','name:陆|绩','linkTo:luji']], //族陆绩

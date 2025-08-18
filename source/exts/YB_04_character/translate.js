@@ -261,6 +261,25 @@ const translate = {
 	// ybsl_benzhan_info:'转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。',
 	ybsl_benzhan_append:'奔战没写呢。我不管你是怎么调出来的这个将，别用！！',
 
+	ybsl_wangpou:'王裒',
+	ybsl_zhelei:'遮雷',
+	ybsl_zhelei_info:'当场上角色受到伤害时，或场上角色判定阶段开始时，若你与其均未横置，你可以与其横置，若如此做，跳过此阶段或防止此伤害。',
+	// ybsl_zhelei_info:'锁定技，每当你失去一张牌，你防止与其同花色的下一个【雷杀】对你造成伤害。',
+	ybsl_xunxiao:'殉孝',
+	ybsl_xunxiao_info:'锁定技，若你处于横置状态，场上有来源的伤害均改为火属性。',
+	ybsl_wanbie:'挽别',
+	ybsl_wanbie_info:'出牌阶段限一次，你可以弃置一张牌或解除横置，然后令一名其他角色也如此选择，然后你与其各摸一张牌。',
+	ybsl_oldwanbie:'挽别',
+	ybsl_oldwanbie_info:'摸牌阶段，你可以多摸X张牌（X为场上横置角色数），若如此做，你交给场上横置角色各一张牌。',
+
+
+
+
+
+
+
+
+
 	ybsl_ybzs:'<font color=cyan>夜白杂设</font>',
 
 	ybsl_hairi:'鹰原羽依里',

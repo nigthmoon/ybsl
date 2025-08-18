@@ -14,12 +14,13 @@ const characterSort = {
 			'ybsl_kamome',
 		],
 		ybsl_qygc: [
-			'ybsl_xuyou','niya_re_liuyan','niya_caowei','Fe2O3_duqiong'
+			'ybsl_xuyou','niya_re_liuyan','niya_caowei','Fe2O3_duqiong',
+			'zxunnamed_zhenji','Fe2O3_zixu','Fe3O4_guanyu','Fe2O3_zhugeliang',
 		],
 		ybsl_bqbs: [
 			'ybsl_lvyi', 'ybsl_yinfan', 'ybsl_shlizhaoyi','ybsl_sunsháo',
 			'ybsl_wangbi','ybnb_wangbi','ybsl_jiangziwen',
-			'ybsl_suojing',
+			'ybsl_suojing','ybsl_wangpou',
 		],
 		ybsl_clanwjls: [
 			'ybslclan_luxun', 'ybslclan_luyan', 'ybslclan_luji', 'ybslclan_lukang', 'ybslclan_lukai',

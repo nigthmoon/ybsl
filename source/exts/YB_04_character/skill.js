@@ -5334,6 +5334,128 @@ const skill = {
 			},
 		},
 	},
+	/**
+	 * 王裒
+	 */
+	ybsl_zhelei:{
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger:{
+			global:['phaseJudgeBefore','damageBefore'],
+		},
+		filter(event,player){
+			if(player.isLinked()||event.player.isLinked())return false;
+			return true;
+		},
+		async content(event,trigger,player){
+			await player.link(true);
+			if(player!=trigger.player)await trigger.player.link(true);
+			trigger.cancel();
+		},
+		check(event, player,name){
+			var att=get.attitude(player,event.player);
+			if(att>5){
+				if(name=='phaseJudgeBefore')return event.player.countCards('j')>0;
+				return true;
+			}
+			return false;
+		}
+	},
+	ybsl_xunxiao:{
+		audio: 'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			global:'damageBegin1',
+		},
+		filter(event,player){
+			return player.isLinked()&&event.source?.isIn();
+		},
+		async content(event,trigger,player){
+			trigger.nature='fire';
+			// game.YB_addNature(trigger, "fire");
+		},
+	},
+	ybsl_wanbie:{
+		audio: 'ext:夜白神略/audio/character:2',
+		enable:'phaseUse',
+		usable:1,
+		selectCard(){
+			var player=_status.event.player;
+			if(player.isLinked())return [0,1];
+			else return 1;
+		},
+		filterCard:true,
+		position:'he',
+		selectTarget:1,
+		filterTarget(card,player,target){
+			return player!=target&&(target.isLinked()||target.countDiscardableCards(target,'he'));
+		},
+		async content(event,trigger,player){
+			const target = event.target;
+			if(event.cards.length<=0)player.link(false);
+			var bool = target.isLinked()?false:true;
+			var str = '请弃置一张牌'+(target.isLinked()?'，或点取消解除横置':'')+'，然后'+get.translation(player)+'与你各摸一张牌。';
+			var result = await target.chooseToDiscard('he',1,bool,str).forResult();
+			if(!result.bool){
+				await target.link(false);
+			}
+			await game.asyncDraw([player,target].sortBySeat(player));
+		},
+		ai:{
+			result:{
+				player:2,
+				target:1,
+			}
+		}
+		// filterCard:
+	},
+	ybsl_oldwanbie:{
+		audio: 'ybsl_wanbie',
+		trigger:{
+			player:'phaseDrawBegin2',
+		},
+		filter(event,player){
+			return game.countPlayer(c=>c.isLinked())>0;
+		},
+		async content(event,trigger,player){
+			var num = game.countPlayer(c=>c.isLinked());
+			trigger.num+=num;
+			player.addSkill("ybsl_oldwanbie_2");
+
+		},
+		subSkill:{
+			2:{
+				forced: true,
+				popup: false,
+				audio: false,
+				sourceSkill: "ybsl_oldwanbie",
+				trigger: { player: "phaseDrawEnd" },
+				async content(event, trigger, player) {
+					player.removeSkill("ybsl_oldwanbie_2");
+					if (player.countCards("he") <= 0) {
+						return;
+					}
+					//这个函数没写好，以后重写
+					await player.YB_liangying(true,player.getCards('he'),game.countPlayer(c=>c.isLinked()))
+					// const { result } = await player.chooseCardTarget({
+					// 	selectCard: Math.floor(player.countCards("h") / 2),
+					// 	filterTarget(card, player, target) {
+					// 		return target.isMinHandcard();
+					// 	},
+					// 	prompt: "将一半的手牌交给场上手牌数最少的一名角色",
+					// 	forced: true,
+					// 	ai2(target) {
+					// 		return get.attitude(_status.event.player, target);
+					// 	},
+					// });
+					// if (result.targets && result.targets[0]) {
+					// 	await player.give(result.cards, result.targets[0]);
+					// }
+				},
+			}
+		}
+	},
+
+
 
 
 
