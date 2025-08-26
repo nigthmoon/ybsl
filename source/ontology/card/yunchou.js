@@ -1106,7 +1106,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
 		],
 	};
 	for(var i in yunchou.card){
-		if(!yunchou.card[i].image) yunchou.card[i].image='extension/夜白神略/image/ontology/card/'+i+'.png'
+		if(!yunchou.card[i].image) yunchou.card[i].image='ext:夜白神略/image/ontology/card/'+i+'.png'
 	}
 
 	return yunchou;

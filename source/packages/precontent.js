@@ -30,19 +30,19 @@ export async function precontent() {
 			console.error(error.message);
 		});
 	})
-	game.getFileList('extension/夜白神略/source/ontology/character', (folders,files) => {
-		let scriptPaths = files;
-		Promise.all(
-			scriptPaths.map(path => {
-				lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/character',path.slice(0,-3));
-			})
-		).then(modules => {
+	// game.getFileList('extension/夜白神略/source/ontology/character', (folders,files) => {
+	// 	let scriptPaths = files;
+	// 	Promise.all(
+	// 		scriptPaths.map(path => {
+	// 			lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/character',path.slice(0,-3));
+	// 		})
+	// 	).then(modules => {
 			
-		}).catch(error => {
-			alert('error '+error+'导入失败 !')
-			console.error(error.message);
-		});
-	})
+	// 	}).catch(error => {
+	// 		alert('error '+error+'导入失败 !')
+	// 		console.error(error.message);
+	// 	});
+	// })
 	
 	game.getFileList('extension/夜白神略/source/ontology/card', (folders,files) => {
 		let scriptPaths = files;
@@ -59,23 +59,23 @@ export async function precontent() {
 	})
 	//window.list24
 	{
-		lib.translate['gujian_character_config']='古剑奇谭'
-		lib.translate['hearth_character_config']='炉石传说'
-		lib.translate['mtg_character_config']='万智牌'
-		lib.translate['ow_character_config']='守望先锋'
-		lib.translate['swd_character_config']='轩辕剑'
-		lib.translate['xianjian_character_config']='仙剑奇侠传'
-		lib.translate['yxs_character_config']='英雄杀'
+		// lib.translate['gujian_character_config']='古剑奇谭'
+		// lib.translate['hearth_character_config']='炉石传说'
+		// lib.translate['mtg_character_config']='万智牌'
+		// lib.translate['ow_character_config']='守望先锋'
+		// lib.translate['swd_character_config']='轩辕剑'
+		// lib.translate['xianjian_character_config']='仙剑奇侠传'
+		// lib.translate['yxs_character_config']='英雄杀'
 
-		lib.translate['gujian_card_config']='古剑奇谭'
-		lib.translate['gwent_card_config']='昆特牌'
-		lib.translate['hearth_card_config']='炉石传说'
-		lib.translate['huanlekapai_card_config']='欢乐卡牌'
-		lib.translate['mtg_card_config']='万智牌'
-		lib.translate['swd_card_config']='轩辕剑'
+		// lib.translate['gujian_card_config']='古剑奇谭'
+		// lib.translate['gwent_card_config']='昆特牌'
+		// lib.translate['hearth_card_config']='炉石传说'
+		// lib.translate['huanlekapai_card_config']='欢乐卡牌'
+		// lib.translate['mtg_card_config']='万智牌'
+		// lib.translate['swd_card_config']='轩辕剑'
 		lib.translate['yunchou_card_config']='运筹帷幄'
-		lib.translate['yxs_card_config']='英雄杀'
-		lib.translate['zhenfa_card_config']='阵法牌'
+		// lib.translate['yxs_card_config']='英雄杀'
+		// lib.translate['zhenfa_card_config']='阵法牌'
 
 	}
 	{//css
