@@ -236,7 +236,7 @@ const card = {
 	'ybsl_nohua':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		type:'ybsl_flower',
+		type:'basic',
 		enable:true,
 		savable:true,
 		defaultYingbianEffect:"all",
@@ -252,22 +252,69 @@ const card = {
 		content:function(){
 			'step 0'
 			if(!event.card.yingbian_all){
-				event.goto(2);
+				var list=[];
+				var cards = ['ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua'];
+				for(var i of cards){
+					list.add(['花朵','',i]);
+				}
+				var dialog=ui.create.dialog('请选择一种花朵的效果结算');
+				dialog.add([list,'vcard']);
+				// console.log(list);
+				// console.log(dialog);
+				target.chooseButton(dialog,true).set('filterButton',function(button){
+					var target = _status.event.player;
+					var player = player;
+					return lib.card[button.link[2]].filterTarget('丈八二桃把营连',player,target)
+				})
 			}
 			'step 1'
-			target.draw(event.baseDamage||1);
-			target.gainMaxHp(event.baseDamage||1);
-			target.changeHujia(event.baseDamage||1);
-			target.recover(event.baseDamage||1);
-			event.finish();
-			'step 2'
-			var i=target.hp!=target.maxHp?0.75:1;
-			switch(Math.floor(Math.random()*4*i)){
-				case 0:return target.draw(event.baseDamage||1);break;
-				case 1:return target.gainMaxHp(event.baseDamage||1);break;
-				case 2:return target.changeHujia(event.baseDamage||1);break;
-				case 3:return target.recover(event.baseDamage||1);break;
+			if(result.bool){
+				var list = [result.links[0]];
 			}
+			else {
+				var list=[];
+				var cards = ['ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua'];
+				for(var i of cards){
+					list.add(['花朵','',i]);
+				}
+			}
+			event.list = list;
+			'step 2'
+			if(event.list.length){
+				for(var k of event.list){
+					if(lib.card[k[2]].filterTarget(card,player,target)){
+						var next=game.createEvent('YB_flower',false);
+						next.player=player;
+						next.target=target;
+						next.setContent(
+							lib.card[k[2]].content
+						);
+					}
+				}
+			}
+			// else {
+			// }
+			// player.chooseCardB
+			// 'step 1'
+			// // target.draw(event.baseDamage||1);
+			// target.turnOver(false);
+			// 'step 2'
+			// target.link(false);
+			// 'step 3'
+			// target.gainMaxHp(event.baseDamage||1);
+			// 'step 4'
+			// target.changeHujia(event.baseDamage||1);
+			// 'step 5'
+			// target.recover(event.baseDamage||1);
+			// event.finish();
+			// 'step 2'
+			// var i=target.hp!=target.maxHp?0.75:1;
+			// switch(Math.floor(Math.random()*4*i)){
+			// 	case 0:return target.draw(event.baseDamage||1);break;
+			// 	case 1:return target.gainMaxHp(event.baseDamage||1);break;
+			// 	case 2:return target.changeHujia(event.baseDamage||1);break;
+			// 	case 3:return target.recover(event.baseDamage||1);break;
+			// }
 		},
 		ai:{
 			basic:{

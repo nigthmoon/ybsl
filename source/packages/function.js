@@ -1261,16 +1261,19 @@ const typeimage = function(pagename,filename){
 			var infoy = pagename.character[i][4];
 			for(var infox of infoy){
 				if(infox.startsWith('YB_mjz:')){
+					// return ;
+					
 					var char = infox.slice(7);
-					pagename.character[i][4].push(`ext:../../image/character/${char}.jpg`);
+					pagename.character[i][4].push(`img:image/character/${char}.jpg`);
 					pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
 				}
 			}
 		}
 		else {
 			if(pagename.character[i].YB_mjz){
+				// return ;
 				var infoy = pagename.character[i].YB_mjz;
-				pagename.character[i].img = `ext:../../image/character/${infoy}.jpg`;
+				pagename.character[i].img = `img:image/character/${infoy}.jpg`;
 				pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
 			}
 		}
@@ -1301,19 +1304,23 @@ const typeimage = function(pagename,filename){
 	for(var i in pagename.character){
 		if(Array.isArray(pagename.character[i])){
 			var infoy = pagename.character[i][4];
-			if(noneStartWithPrefix(infoy,'ext:')){
-				pagename.character[i][4].push(`ext:夜白神略/image/${filename}/${i}.jpg`);
-			}
-			if(noneStartWithPrefix(infoy,'die:')){
-				pagename.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
+			if(noneStartWithPrefix(infoy,'YB_mjz:')){
+				if(noneStartWithPrefix(infoy,'ext:')){
+					pagename.character[i][4].push(`ext:夜白神略/image/${filename}/${i}.jpg`);
+				}
+				if(noneStartWithPrefix(infoy,'die:')){
+					pagename.character[i][4].push(`die:夜白神略/audio/die/${i}.mp3`);
+				}
 			}
 		}
 		else {
-			if(!pagename.character[i].img){
-				pagename.character[i].img=`extension/夜白神略/image/${filename}/${i}.jpg`;
-			}
-			if(!pagename.character[i].die){
-				pagename.character[i].die=`extension/夜白神略/audio/die/${i}.mp3`;
+			if(!pagename.character[i].YB_mjz){
+				if(!pagename.character[i].img){
+					pagename.character[i].img=`extension/夜白神略/image/${filename}/${i}.jpg`;
+				}
+				if(!pagename.character[i].die){
+					pagename.character[i].die=`extension/夜白神略/audio/die/${i}.mp3`;
+				}
 			}
 		}
 		

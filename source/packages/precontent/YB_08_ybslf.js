@@ -2470,6 +2470,33 @@ const YBSL_ybslf = function () {
 		}
 	}
 	{//----------自定义函数2
-		
+		get.YB_characterImage = function(character){
+			// console.log(character,lib.character[character].img)
+			if(lib.character[character].img!==undefined){
+				// console.log(character,lib.character[character].img)
+				return lib.character[character].img;
+			}
+			else if(lib.character[character][4]){
+				var infoy=lib.character[character][4];
+				// console.log(infoy)
+				for(var infox of infoy){
+					// console.log(infox)
+					if(infox.startsWith('ext:')){
+						var sta = infox.slice(4);
+						// console.log('ext',sta)
+						return sta;
+						// pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
+					}
+					else if(infox.startsWith('img:')){
+						var sta = infox.slice(4);
+						// console.log('img',sta)	
+						return sta;
+						// return infox.slice(4);
+					}
+					else return `image/character/${character}.jpg`;
+				}
+			}
+			else return `image/character/${character}.jpg`;
+		}
 	}
 }

@@ -61,10 +61,10 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		perfectPair:perfectPair,//珠联璧合武将（选填）
 		characterFilter:{//禁用
 			dzsl_014liutianyu:function(mode){
-				return mode!='guozhan';
+				return mode!='guozhan'&&!lib.config.extension_云中守望_enable;
 			},
 			dzsl_014xinzhikui:function(mode){
-				return mode!='guozhan';
+				return mode!='guozhan'&&!lib.config.extension_云中守望_enable;
 			},
 			//傀夜白和傀儡在国战禁用
 		},//武将使用条件

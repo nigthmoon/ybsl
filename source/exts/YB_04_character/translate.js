@@ -271,7 +271,27 @@ const translate = {
 	ybsl_wanbie_info:'出牌阶段限一次，你可以弃置一张牌或解除横置，然后令一名其他角色也如此选择，然后你与其各摸一张牌。',
 	ybsl_oldwanbie:'挽别',
 	ybsl_oldwanbie_info:'摸牌阶段，你可以多摸X张牌（X为场上横置角色数），若如此做，你交给场上横置角色各一张牌。',
+	'#ext:夜白神略/audio/character/ybsl_zhelei1':'母亲莫怕，王裒在此。',
+	'#ext:夜白神略/audio/character/ybsl_zhelei2':'哀哀父母，生我劬劳。',
+	'#ext:夜白神略/audio/character/ybsl_xunxiao1':'父母灵柩在此，岂能弃之而去。',
+	'#ext:夜白神略/audio/character/ybsl_xunxiao2':'纵使战火绵延，我亦不弃。',
+	'#ext:夜白神略/audio/character/ybsl_wanbie1':'卿学不足以庇身，吾德薄不足以廕卿，属之何益！',
+	'#ext:夜白神略/audio/character/ybsl_wanbie2':'门生为县所役，故来送别。',
+	// 遮雷：
+	// 母亲莫怕，王裒在此。
+	// 哀哀父母，生我劬劳。
+	// 殉孝：
+	// 父母灵柩在此，岂能弃之而去。
+	// 纵使战火绵延，我亦不弃。
+	// 挽别：
+	// 卿学不足以庇身，吾德薄不足以廕卿，属之何益！
+	// 门生为县所役，故来送别。
 
+	ybsl_yangxu:'羊续',
+	ybsl_kanxiao:'堪笑',
+	ybsl_kanxiao_info:'蓄力技（1/3）。每回合限一次，①当你失去手牌后，你可以消耗1点蓄力值恢复一点体力；②当你受到伤害后或失去体力后，你可以消耗1点蓄力值摸两张牌。',
+	ybsl_shipin:'示贫',
+	ybsl_shipin_info:'锁定技，每回合限一次，当你成为牌的目标时，或当你使用牌时若目标不包含你，若你手牌数不大于1，你展示手牌并获得1点蓄力值，若此牌不为锦囊牌，你弃置之并选择将【堪笑】或【示贫】改为每回合限两次。',
 
 
 

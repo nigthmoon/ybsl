@@ -13,6 +13,7 @@ const characterTitle = { //称号
 	ybsl_jiangziwen:'骨清为神',
 	ybsl_suojing: '铜驼荆棘',
 	ybsl_wangpou:'闻雷泣墓',
+	ybsl_yangxu:'悬鱼太守',
 
 	Fe2O3_duqiong:'蜀之球琳',
 }

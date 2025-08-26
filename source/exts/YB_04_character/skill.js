@@ -3460,9 +3460,11 @@ const skill = {
 				}
 				cards = result.moved[0];
 			}
-			cards.reverse();
-			await game.cardsGotoPile(cards, "insert");
-			if (player == game.me) ui.updatehl()
+			// cards.reverse();
+			// await game.cardsGotoPile(cards, "insert");
+			// player.update();
+			// if (player == game.me) ui.updatehl()
+			await player.lose(cards,ui.cardPile,'insert');
 			game.addCardKnower(cards, player);
 			game.log(player, "将" + get.cnNumber(cards.length) + "张牌置于牌堆顶");
 		},
@@ -5453,9 +5455,122 @@ const skill = {
 				},
 			}
 		}
+	},//这个技能没写好
+
+	/**
+	 * 羊续
+	 */
+	ybsl_kanxiao:{
+		audio: 'ext:夜白神略/audio/character:2',
+		chargeSkill: 3,
+		trigger:{
+			player:['damageAfter','loseHpAfter','loseEnd'],
+		},
+		filter(event, player,name) {
+			if(name=='loseEnd')return player.countCharge()>0&&player.isDamaged();
+			else return player.countCharge() > 0;
+		},
+		init(player){
+			if(!player.storage.ybsl_kanxiao)player.storage.ybsl_kanxiao=0;
+		},
+		usable(skill,player){
+			var num = player.getStorage("ybsl_kanxiao");
+			return player.storage.ybsl_kanxiao+1;
+		},
+		content(){
+			'step 0'
+			player.removeCharge();
+			if(event.triggername=='loseEnd'){
+				player.recover();
+			}
+			else {
+				player.draw(2);
+			}
+		},
+		group: [/*"ybsl_kanxiao_damage",*/ "ybsl_kanxiao_init"],
+		subSkill: {
+			// damage: {
+			// 	trigger: { player: "damageEnd" },
+			// 	direct: true,
+			// 	content() {
+			// 		"step 0";
+			// 		if (player.countCharge(true)) {
+			// 			player.logSkill("sbyaoming_damage");
+			// 			player.addCharge(trigger.num);
+			// 			game.delayx();
+			// 		}
+			// 		"step 1";
+			// 		player.chooseTarget(get.prompt("sbyaoming"), lib.skill.sbyaoming.prompt()).set("ai", function (target) {
+			// 			var player = _status.event.player;
+			// 			return get.effect(target, "sbyaoming", player, player);
+			// 		});
+			// 		"step 2";
+			// 		if (result.bool) {
+			// 			player.useSkill("sbyaoming", result.targets);
+			// 		}
+			// 	},
+			// },
+			init: {
+				audio: "ybsl_kanxiao",
+				trigger: {
+					global: "phaseBefore",
+					player: "enterGame",
+				},
+				forced: true,
+				locked: false,
+				filter(event, player) {
+					return (event.name != "phase" || game.phaseNumber == 0) && player.countCharge(true);
+				},
+				content() {
+					player.addCharge(1);
+				},
+			},
+		},
 	},
-
-
+	ybsl_shipin:{
+		audio: 'ext:夜白神略/audio/character:2',
+		forced:true,
+		trigger:{
+			target:'useCardToTargeted',
+			player:'useCard',
+		},
+		usable(skill,player){
+			var num = player.getStorage("ybsl_shipin");
+			return player.storage.ybsl_shipin+1;
+		},
+		init(player){
+			if(!player.storage.ybsl_shipin)player.storage.ybsl_shipin=0;
+		},
+		filter(event, player,name){
+			if(name=='useCard'){
+				return (!event.targets.length||!event.targets.includes(player))&&player.countCards('h')<=1;
+			}
+			else return player.countCards('h')<=1;
+		},
+		content(){
+			'step 0'
+			event.cards = player.getCards('h');
+			if(event.cards.length)player.showCards(event.cards);
+			player.addCharge(1);
+			'step 1'
+			if(event.cards.length==1){
+				if(get.type2(event.cards[0])!='trick'){
+					player.discard(event.cards[0]);
+					var list = [];
+					if(player.getStorage("ybsl_kanxiao")==0)list.push("ybsl_kanxiao");
+					if(player.getStorage('ybsl_shipin')==0)list.push('ybsl_shipin');
+					if(list.length)player.chooseControl(list);
+				}
+				else event.finish();
+			}
+			else event.finish();
+			'step 2'
+			if(result.control){
+				player.storage[result.control]++;
+				game.log(player,'修改了'+result.control+'的技能效果');
+			}
+		}
+	},
 
 
 

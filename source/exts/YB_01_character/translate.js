@@ -267,7 +267,7 @@ const translate = {
 	ybsl_zhezhiqiang_append:'随手采折一根树枝就能当武器。',
 	// ybsl_zhezhiqiang_append:'落红不是无情物，化作春泥更护花。',
 	ybsl_nohua:'无花',
-	ybsl_nohua_info:'出牌阶段，对至多两名角色使用。随机执行一种花朵牌的效果，但不触发追加效果。',
+	ybsl_nohua_info:'出牌阶段，对至多两名角色使用。目标选择一种花朵牌的效果执行。',
 	ybsl_nohua_append:'这都被你发现了。',
 	ybsl_lingyu:'灵雨',
 	ybsl_lingyu_info:'出牌阶段，对一名角色使用。进行一次判定，然后目标弃置一张手牌，若花色与判定结果相同，其回复1点体力，否则失去1点体力。',

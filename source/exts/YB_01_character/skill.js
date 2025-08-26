@@ -7145,7 +7145,7 @@ const skill = {
 			var chooseButton=player.chooseButton([1,Infinity],true);
 			chooseButton.set('dialog',event.videoId);
 			chooseButton.set('ai',function(button){
-				if(button.link=='ybsl_flower')return true;
+				if(button.link=='trick')return true;
 				return false;
 			});
 			chooseButton.set('filterButton',function(button){

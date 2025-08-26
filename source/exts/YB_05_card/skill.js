@@ -393,42 +393,42 @@ const skill = {
 		}
 	},
 	//-----------------君子之花
-	'_ybsl_junzizhihua':{
-		trigger:{
-			player:'useCardAfter',
-		},
-		equipSkill:false,
-		direct:true,
-		forced:true,
-		ruleSkill:true,
-		filter:function (event,player){
-			return event.card&&['ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua'].includes(event.card.name)&&
-				event.targets.length>0;
-		},
-		content:function(){
-			if(trigger.targets.length<2){
-				var tar=[];
-				for (var i=0;i<trigger.targets.length;i++){
-					//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
-					tar.push(trigger.targets[i]);
-				}
-				var cards=trigger.cards;
-				// game.cardsGotoSpecial(cards);
-				tar[0].draw();
-				game.log(cards,'被',tar,'独自享用');
-			}
-			if(trigger.targets.length>=2){
-				var tar=[];
-				for (var i=0;i<trigger.targets.length;i++){
-					//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
-					tar.push(trigger.targets[i]);
-				}
-				var cards=trigger.cards;
-				game.cardsGotoSpecial(cards);
-				game.log(cards,'被',tar,'分而食之');
-			}
-		},
-	},
+	// '_ybsl_junzizhihua':{
+	// 	trigger:{
+	// 		player:'useCardAfter',
+	// 	},
+	// 	equipSkill:false,
+	// 	direct:true,
+	// 	forced:true,
+	// 	ruleSkill:true,
+	// 	filter:function (event,player){
+	// 		return event.card&&['ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua'].includes(event.card.name)&&
+	// 			event.targets.length>0;
+	// 	},
+	// 	content:function(){
+	// 		if(trigger.targets.length<2){
+	// 			var tar=[];
+	// 			for (var i=0;i<trigger.targets.length;i++){
+	// 				//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
+	// 				tar.push(trigger.targets[i]);
+	// 			}
+	// 			var cards=trigger.cards;
+	// 			// game.cardsGotoSpecial(cards);
+	// 			tar[0].draw();
+	// 			game.log(cards,'被',tar,'独自享用');
+	// 		}
+	// 		if(trigger.targets.length>=2){
+	// 			var tar=[];
+	// 			for (var i=0;i<trigger.targets.length;i++){
+	// 				//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
+	// 				tar.push(trigger.targets[i]);
+	// 			}
+	// 			var cards=trigger.cards;
+	// 			game.cardsGotoSpecial(cards);
+	// 			game.log(cards,'被',tar,'分而食之');
+	// 		}
+	// 	},
+	// },
 	//---------------天火煅
 	'ybsl_tianhuoduan_skill':{
 		equipSkill:false,

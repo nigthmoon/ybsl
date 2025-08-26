@@ -2161,20 +2161,23 @@ const card = {
 	'ybsl_meihua':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		type:'ybsl_flower',
+		type:'basic',
 		enable:true,
 		defaultYingbianEffect:'add',
 		filterTarget:function(card,player,target){
 			if(get.is.versus()){
-				return player.side==target.side;
+				return player.side==target.side&&(target.isTurnedOver()||target.isLinked());
 			}
 			else{
-				return true;
+				return (target.isTurnedOver()||target.isLinked());
 			}
 		},
 		selectTarget:[1,2],
 		content:function(){
-			target.draw(event.baseDamage||1);
+			'step 0'
+			target.turnOver(false);
+			'step 1'
+			target.link(false);
 		},
 		ai:{
 			wuxie:function(){
@@ -2198,7 +2201,7 @@ const card = {
 	'ybsl_lanhua':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		type:'ybsl_flower',
+		type:'basic',
 		enable:true,
 		defaultYingbianEffect:'add',
 		filterTarget:function(card,player,target){
@@ -2233,7 +2236,7 @@ const card = {
 	'ybsl_zhuzi':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		type:'ybsl_flower',
+		type:'basic',
 		enable:true,
 		defaultYingbianEffect:'add',
 		filterTarget:function(card,player,target){
@@ -2271,7 +2274,7 @@ const card = {
 	'ybsl_juhua':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		type:'ybsl_flower',
+		type:'basic',
 		enable:true,
 		savable:true,
 		defaultYingbianEffect:'add',

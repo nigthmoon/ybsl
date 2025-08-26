@@ -12,6 +12,7 @@ import { YBSL_update }from './precontent/YB_09_update.js'
 // import { YBSL_destiny } from './precontent/YB_10_destiny.js'
 import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
+import { typeimage } from './function.js'
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// const scriptPaths=[
@@ -29,7 +30,54 @@ export async function precontent() {
 			console.error(error.message);
 		});
 	})
+	game.getFileList('extension/夜白神略/source/ontology/character', (folders,files) => {
+		let scriptPaths = files;
+		Promise.all(
+			scriptPaths.map(path => {
+				lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/character',path.slice(0,-3));
+			})
+		).then(modules => {
+			
+		}).catch(error => {
+			alert('error '+error+'导入失败 !')
+			console.error(error.message);
+		});
+	})
+	
+	game.getFileList('extension/夜白神略/source/ontology/card', (folders,files) => {
+		let scriptPaths = files;
+		Promise.all(
+			scriptPaths.map(path => {
+				lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/card',path.slice(0,-3))
+			})
+		).then(modules => {
+			
+		}).catch(error => {
+			alert('error '+error+'导入失败 !')
+			console.error(error.message);
+		});
+	})
 	//window.list24
+	{
+		lib.translate['gujian_character_config']='古剑奇谭'
+		lib.translate['hearth_character_config']='炉石传说'
+		lib.translate['mtg_character_config']='万智牌'
+		lib.translate['ow_character_config']='守望先锋'
+		lib.translate['swd_character_config']='轩辕剑'
+		lib.translate['xianjian_character_config']='仙剑奇侠传'
+		lib.translate['yxs_character_config']='英雄杀'
+
+		lib.translate['gujian_card_config']='古剑奇谭'
+		lib.translate['gwent_card_config']='昆特牌'
+		lib.translate['hearth_card_config']='炉石传说'
+		lib.translate['huanlekapai_card_config']='欢乐卡牌'
+		lib.translate['mtg_card_config']='万智牌'
+		lib.translate['swd_card_config']='轩辕剑'
+		lib.translate['yunchou_card_config']='运筹帷幄'
+		lib.translate['yxs_card_config']='英雄杀'
+		lib.translate['zhenfa_card_config']='阵法牌'
+
+	}
 	{//css
 		var nor=lib.assetURL+'extension/夜白神略/source/css';
 		lib.init.css(nor,'ybcss')
@@ -1113,6 +1161,47 @@ export async function precontent() {
 			lib.character['ybmjz_shen_caopi'].isUnseen=true
 		}
 	})
+	get.typeimage=typeimage;
+	// HTMLDivElement.prototype.ybsl_setBackground = HTMLDivElement.prototype.setBackground;
+    // HTMLDivElement.prototype.setBackground = function (name, type, ext, subfolder) {
+    //   if(type == 'character'){
+	// 	if(this.classList.contains('character') && this.classList.contains('button')){
+	// 	  // @ts-ignore
+	// 	  return this.ybsl_setBackground.apply(this, arguments);
+	// 	}
+    //   }
+    // };
+	// lib.arenaReady.push(function(){
+	// 	var packages = [
+	// 		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
+	// 		// 'YB_one'
+	// 	]
+	// 	for(var k of packages){
+	// 		var pagename = lib.characterPack[k];
+	// 		for(var i in pagename){
+	// 			if(Array.isArray(pagename[i])){
+	// 				var infoy = pagename[i][4];
+	// 				for(var infox of infoy){
+	// 					if(infox.startsWith('YB_mjz:')){
+	// 						var char = infox.slice(7);
+	// 						var name = get.YB_characterImage(char);
+	// 						pagename[i].img = `img:${name}`;
+	// 						// pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
+	// 					}
+	// 				}
+	// 			}
+	// 			else {
+	// 				if(pagename[i].YB_mjz){
+	// 					var infoy = pagename[i].YB_mjz;
+	// 					var name = get.YB_characterImage(infoy);
+	// 					pagename[i].img = `img:${name}`;
+	// 					// pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
+	// 				}
+	// 			}
+	// 		} 
+			
+	// 	}
+	// })
 	// lib.arenaReady.push(function () {
 	// 	if(lib.brawl){
 	// 		lib.brawl.YB_lieguizhizhan = {

@@ -218,4 +218,35 @@ const YBSL_rank = function(){
 		<li>新应变：勠力<br>
 		触发后，此牌所有目标进入横置状态。<br>
 	`
+	lib.translate['gujian'+'_charactersInfo']='古剑奇谭，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['hearth'+'_charactersInfo']='炉石传说，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['mtg'+'_'+'charactersInfo']='万智牌，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['ow'+'_charactersInfo']='守望先锋，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['swd'+'_charactersInfo']='轩辕剑，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['xianjian'+'_charactersInfo']='仙剑奇侠传，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['yxs'+'_charactersInfo']='英雄杀，原本体卡包，作者水乎，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+
+	lib.translate['gujian'+'_cardsInfo']='古剑奇谭，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['gwent'+'_cardsInfo']='昆特牌，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略<br>图片貌似不能正确引用，以后再修'
+	lib.translate['hearth'+'_cardsInfo']='炉石传说，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['huanlekapai'+'_cardsInfo']='欢乐卡牌，原本体卡包，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['mtg'+'_cardsInfo']='万智牌，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略<br>图片貌似不能正确引用，以后再修'
+	lib.translate['swd'+'_cardsInfo']='轩辕剑，水乎扩展，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['yunchou'+'_cardsInfo']='运筹帷幄，原本体卡包，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['yxs'+'_cardsInfo']='英雄杀，原本体卡包，作者水乎，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+	lib.translate['zhenfa'+'_cardsInfo']='阵法牌，原本体卡包，被本体拆了。为确保引用相关内容的稳定性，夜白这些包放进了夜白神略'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
