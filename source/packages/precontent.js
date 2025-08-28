@@ -115,6 +115,69 @@ export async function precontent() {
 		YB_11_cardBrowser();
 		{//characterIntro重做
 			//characterIntro重做
+			get.copyright = function(name,macg){
+				if (lib.characterCopyright[name]) {//版权信息
+					//判断是否为对象、字符串、数组
+					var strx = lib.characterCopyright[name];
+					if(macg)strx=macg;
+					if (typeof strx == 'object'&&!Array.isArray(strx)) {
+						var str = '';
+						var list = {
+							pack:'武将包',
+							num:'武将编号',
+							skill:'技能设计',
+							code:'代码编写',
+							image:'插图',
+							voice:'配音',
+							icon:'◈',
+						}
+						if(strx['pack'])str+=strx['pack'];
+						if(strx['pack']&&strx['num'])str+='-';
+						if(strx['num'])str+=strx['num'];
+						if(strx['num']&&lib.characterTitle[name])str+='-';
+						if(lib.characterTitle[name])str+=lib.characterTitle[name];
+						str+='<br>';
+						if(!strx['icon'])strx['icon']='◈';
+						if(strx['skill']){
+							str+=strx['icon']+list['skill']+'：'+strx['skill'];
+							str+='<br>';
+						}
+						if(strx['code']){
+							str+=strx['icon']+list['code']+'：'+strx['code'];
+							str+='<br>';
+						}
+						if(strx['image']){
+							str+=strx['icon']+list['image']+'：'+strx['image'];
+							str+='<br>';
+						}
+						if(strx['voice']){
+							str+=strx['icon']+list['voice']+'：'+strx['voice'];
+							str+='<br>';
+						}
+						return str;
+					}
+					else if (typeof strx == 'string') {
+						var str = '';
+						strx = strx.replace(/\n/g, '<br>');
+						str += strx;
+						str += '<br>';
+						return str;
+					}
+					else {
+						var kkk = {
+							pack:strx[0],
+							num:strx[1],
+							skill:strx[2],
+							code:strx[3],
+							image:strx[4],
+							voice:strx[5],
+							icon:strx[6],
+						}
+						return get.copyright(name,kkk);
+					}
+					// str += lib.characterCopyright[name];
+				}
+			}
 			var YB_characterIntro = get.characterIntro;
 			get.characterIntro=function(name){
 				
@@ -132,7 +195,9 @@ export async function precontent() {
 				// else{
 					var str = '';
 					if (lib.characterCopyright[name]) {//版权信息
-						str += lib.characterCopyright[name];
+						// str += lib.characterCopyright[name];
+						var cpright = get.copyright(name);
+						str += cpright;
 						str += '<br>';
 					}
 					if (lib.characterCitetext[name]) {//上引文

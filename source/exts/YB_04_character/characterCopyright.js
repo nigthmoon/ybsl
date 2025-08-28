@@ -106,9 +106,10 @@ const characterCopyright = {
 	ybsl_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
 	ybnb_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
 	ybsl_jiangziwen:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //蒋子文
-	ybsl_suojing:'<font color=cyan>别群比赛-鸿渐赛·笔走龙蛇（待评审）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：鸿渐赛笔走龙蛇（若有）<br>♦︎配音：鸿渐赛笔走龙蛇（若有）',//索靖
+	ybsl_suojing:'<font color=cyan>别群比赛-鸿渐赛·笔走龙蛇-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白（bug修复：同）<br>♦︎插图：鸿渐赛笔走龙蛇（若有）<br>♦︎配音：鸿渐赛笔走龙蛇（若有）',//索靖
 	ybsl_wangpou:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
 	ybsl_yangxu:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
+	ybsl_shichong:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
 	
 	
 	

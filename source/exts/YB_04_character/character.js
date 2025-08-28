@@ -100,7 +100,6 @@ const character = { //武将格式 :
 		group : 'wei',
 		hp : 3,
 		skills : ['zxunnamed_qinglan', 'zxunnamed_lingbo'],
-		linkTo : 'zhenji'
 	},//甄宓
 	Fe2O3_zixu : {
 		group : 'qun',
@@ -113,16 +112,14 @@ const character = { //武将格式 :
 		group : 'wei',
 		sex : 'male',
 		hp : 4,
-		skills : ['Fe3O4_jinxiao', 'Fe3O4_danji'],
-		linkTo:'guanyu',
+		skills : ['Fe3O4_jinxiao', 'Fe3O4_danji']
 	},//关羽
 	Fe2O3_zhugeliang : {
 		group : 'shu',
 		sex : 'male',
 		hp : 3,
 		skills : ['Fe2O3_guanji', 'Fe2O3_weixuan'],
-		names : '诸葛|亮',
-		linkTo:'zhugeliang',
+		names : '诸葛|亮'
 	},//诸葛亮
 	
 	
@@ -146,9 +143,10 @@ const character = { //武将格式 :
 	ybsl_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedun'],['rankAdd:legend','rankS:s','name:王|必']], //王必
 	ybnb_wangbi:['male','wei',4,['ybsl_xijian','ybsl_yedunx'],['rankAdd:legend','rankS:s','name:王|必','linkTo:ybsl_wangbi']], //王必]
 	ybsl_jiangziwen:['male','wu',3,['ybsl_fengcix','ybsl_youxiangx'],['rankAdd:epic','name:蒋|歆']],//蒋歆
-	ybsl_suojing:['male','jin',3,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
+	ybsl_suojing:['male','jin',4,['ybsl_feimo','ybsl_benzhan'],['rankAdd:epic','name:索|靖','unseen']],//索靖
 	ybsl_wangpou:['male','wei',3,['ybsl_zhelei','ybsl_xunxiao','ybsl_wanbie'],['rankAdd:rare',"border:jin"]],//王裒
-	ybsl_yangxu:['male','qun',3,['ybsl_kanxiao','ybsl_shipin'],['rankAdd:epic']],
+	ybsl_yangxu:['male','qun',3,['ybsl_kanxiao','ybsl_shipin'],['rankAdd:epic']],//羊续
+	ybsl_shichong:['male','jin',3,['ybsl_shehao','jugu','ybsl_daixin'],['rankAdd:legend']],//石崇
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji:['male','wu',3,['ybsl_ljfumin','ybsl_ljguihang','ybsl_clanxingzu'],['rankAdd:epic','clan:吴郡陆氏','name:陆|绩','linkTo:luji']], //族陆绩

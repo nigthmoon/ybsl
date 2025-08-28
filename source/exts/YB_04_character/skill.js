@@ -5299,28 +5299,92 @@ const skill = {
 		zhuanhuanji:true,
 		mark:true,
 		marktext:'☯',
+		init(player, skill) {
+			player.storage[skill]=true
+		},
 		intro:{
+			// content:function(storage,player,skill){
+			// 	if (player.storage.ybsl_benzhan==true){
+			// 		return '转换技，<span class="bluetext">阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；</span>阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
+			// 	}
+			// 	return '转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；<span class="bluetext">阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。</span>每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
+			// },
+			markcount: (storage,player) => {
+				var num = player.storage.ybsl_benzhan_used||0;
+				var numb = player.getDamagedHp();
+				if(num>=numb) return '<span class=\'firetext\'>'+num+'/'+numb+'</span>';
+				return num+'/'+numb;
+			},
 			content:function(storage,player,skill){
 				if (player.storage.ybsl_benzhan==true){
-					return '转换技，<span class="bluetext">阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；</span>阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
+					return '转换技，<span class="bluetext">阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；</span>阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
 				}
-				return '转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张【闪】当非伤害锦囊牌使用；<span class="bluetext">阴：你可以将一张伤害锦囊牌当【杀】使用，或将一张非伤害锦囊牌当【闪】使用。</span>每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
+				return '转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；<span class="bluetext">阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。</span>每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
 			},
 		},
-		
+		audio:'ext:夜白神略/audio/character:2',
+		enable:'chooseToUse',
 		hiddenCard:function(player,name){
-			var type=get.type(name);
-			if(player.storage.ybsl_benzhan) return type=='trick';
-			return name=='sha'||name=='shan';
+			var type=get.type2(name);
+			if(player.storage.ybsl_benzhan) return (type=='trick'&&get.tag(name,'damage')>0.5)||name=='sha';
+			return (type=='trick'&&(!get.tag({name},'damage') || get.tag({name},'damage')<0.5))||name=='shan';
 		},
 		filter:function(event,player){
+			var evt=lib.filter.filterCard;
+			if(event.filterCard) evt=event.filterCard;
+
 			for(var name of lib.inpile){
+				console.log(name);
 				if(player.storage.ybsl_benzhan){
-					return (get.type(name)=='trick'&&event.filterCard({name:name,isCard:true},player,event));
+					if(((get.type2(name)=='trick'&&get.tag({name},'damage')>0.5)||name=='sha')&&evt(get.autoViewAs({ name }, 'unsure'),player,event)) return true;
 				}
-				else return (name=='sha'||name=='shan')&&event.filterCard({name:name,isCard:true},player,event);
+				else if (((get.type2(name)=='trick'&&(!get.tag({name},'damage') || get.tag({name},'damage')<0.5))||name=='shan')&&evt(get.autoViewAs({ name }, 'unsure'),player,event)) return true;
 			}
 			return false;
+		},
+		chooseButton:{
+			dialog:function(event,player){
+				var list=[];
+				for(var name of lib.inpile){
+					if(player.storage.ybsl_benzhan){
+						if((get.type2(name)=='trick'&&get.tag({name},'damage')>0.5)||name=='sha') list.push([get.type(name),'',name]);
+					}
+					else if((get.type2(name)=='trick'&&(!get.tag({name},'damage') || get.tag({name},'damage')<0.5))||name=='shan') list.push([get.type(name),'',name]);
+				}
+				return ui.create.dialog('奔战',[list, 'vcard']);
+			},
+			check:function(button){
+				return 1;
+			},
+			filter:function (button,player){
+				return _status.event.getParent().filterCard(get.autoViewAs({ name:button.link[2] }, 'unsure'),player,_status.event.getParent());
+			},
+			backup:function(links,player){
+				return {
+					audio: 'ybsl_benzhan',
+					filterCard:function(card){
+						if(player.storage.ybsl_benzhan){
+							if(links[0][2]=='sha') return get.type2(card)=='trick'&&get.tag(card,'damage');
+							return get.name(card)=='sha';
+						}
+						else {
+							if(links[0][2]=='shan') return get.type2(card)=='trick'&&!get.tag(card,'damage');
+							return get.name(card)=='shan';
+						}
+						
+					},
+					selectCard:1,
+					viewAs:{name:links[0][2]},
+					position:'hes',
+					precontent() {
+						player.addTempSkill('ybsl_benzhan_used','phaseAfter');
+						if(!player.storage.ybsl_benzhan_used) player.storage.ybsl_benzhan_used=0;
+						if(player.storage.ybsl_benzhan_used<player.getDamagedHp()) player.storage.ybsl_benzhan_used++;
+						else player.changeZhuanhuanji('ybsl_benzhan');
+					},
+					prompt:'选择一张牌当【'+get.translation(links[0][2])+'】使用',
+				};
+			},
 		},
 		//先不写了，类，懒，笔走龙蛇还没审稿呢
 		//军师中郎将画饼了，说抽空要给讲讲，先摆在这
@@ -5335,6 +5399,16 @@ const skill = {
 				player:1,
 			},
 		},
+		subSkill:{
+			//这里改名是为了中流
+			used:{
+				init(player) {
+					player.storage.ybsl_benzhan_num=0;
+				},
+				onremove : true,
+				charlotte:true,
+			},
+		}
 	},
 	/**
 	 * 王裒
@@ -5568,6 +5642,210 @@ const skill = {
 			if(result.control){
 				player.storage[result.control]++;
 				game.log(player,'修改了'+result.control+'的技能效果');
+			}
+		}
+	},
+	//----------石崇
+	ybsl_shehao:{
+		audio: 'ext:夜白神略/audio/character:2',
+		zhuanhuanji:true,
+		mark:true,
+		marktext:'☯',
+		intro:{
+			content:function(storage,player){
+				if (player.storage.ybsl_shehao==true){
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：弃置装备区一张同类型的牌，然后摸X张牌或视为使用一张该牌名的虚拟牌（X为其中的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。</span><br>此技能选是不转，选否才转。'
+				}
+				else {
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：弃置装备区一张同类型的牌，然后摸X张牌或视为使用一张该牌名的虚拟牌（X为其中的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。<br>此技能选是不转，选否才转。'
+				}
+			}
+		},
+		forced:true,
+		locked:false,
+		trigger:{
+			player:'useCardAfter',
+		},
+		filter(event,player){
+			if(event.card&&event.card.isCard&&event.cards&&event.cards[0]&&get.type2(event.card)!='equip'){
+				// if(!player.storage.ybsl_shehao){
+				// 	for (var i = 1; i < 6; i++) {
+				// 		if (player.hasEmptySlot(i)) {
+				// 			return true;
+				// 		}
+				// 	}
+				// 	return false;
+				// }
+				// else {
+				// 	return player.getCards('e',function(card){
+				// 		return get.type2(card)!='equip';
+				// 	})
+				// }
+				return true;
+			}
+			return false;
+			
+		},
+		*content(event,map){
+			let trigger=map.trigger,player=map.player;
+			if(!player.storage.ybsl_shehao){
+				var list = [];
+				const sub = ['武器', '防具', '防马', '攻马', '宝物'];
+				for (var i = 1; i < 6; i++) {
+					if (player.hasEmptySlot(i)) {
+						list.push(sub[i - 1]);
+					}
+				}
+				var dialog = ui.create.dialog('奢豪');
+				dialog.addText('请选择置入一个装备栏');
+				dialog.add([sub,'tdnodes'])
+				var result = yield player.chooseButton(dialog,1).set('filterButton',function(button){
+					return list.includes(button.link);
+				}).set('filterOk',function(buttons){
+					var player = _status.event.player;
+					var trigger = _status.event.getTrigger();
+					return ui.selected.buttons[0]&&trigger.cards&&get.position(trigger.cards[0], true) == "o"
+				});
+				if(result.bool){
+					var type = null;
+					var links=result.links;
+					type = sub.includes(links[0])?'equip'.concat(sub.indexOf(links[0])+1):null;
+					if(type != null){
+						const card = get.autoViewAs(trigger.cards[0]);
+						card.subtypes = [type];
+						yield player.equip(card);
+					}
+					event.finish();
+				}
+				else {
+					yield player.changeZhuanhuanji('ybsl_shehao');
+					event.finish();
+				}
+			}
+			else {
+				var cards = player.getCards('e');
+				var listx = ['摸牌','转化'];
+				var dialog = ui.create.dialog('奢豪');
+				dialog.addText('请选择一个卡牌和效果');
+				if(cards.length){
+					dialog.add(cards);
+					dialog.add([listx,'tdnodes']);
+				}
+				var result = yield player.chooseButtonTarget({
+					createDialog:dialog,
+					filterButton(button){
+						var type=typeof button.link;
+						if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
+						var trigger = _status.event.getTrigger();
+						if(type!='string')return get.type2(trigger.card)==get.type2(button.link);
+						else return type == 'string';
+					},
+					selectButton:2,
+					filterTarget:function(card,player,target){
+						const buttons = ui.selected.buttons;
+						var aaa = [];
+						buttons.forEach(button=>{
+							if(typeof button==='object'){
+								aaa.unshift(button);
+							}
+							else if(typeof button==='string'){
+								aaa.push(button);
+							};
+						})
+						if(aaa[1]=='摸牌'){
+							return false;
+						}
+						else {
+							var trigger = _status.event.getTrigger();
+							var card = get.autoViewAs({ name: get.name(trigger.card) }, aaa[0]);
+							return lib.filter.filterTarget(card, player, target)
+							// return lib.card[get.name(aaa[0])].filterTarget(card,player,target);
+						}
+						// return target!=player;
+					},
+					// filterOk() {
+					// 	if (ui.selected.buttons.length) {
+					// 		const link = ui.selected.buttons[0].link;
+					// 		if (link == "discard") {
+					// 			return ui.selected.targets.length == 1;
+					// 		}
+					// 		return true;
+					// 	}
+					// 	return false;
+					// },
+				})
+				if(result.bool&&result.links?.length){
+					var aaa = [];
+					result.links.forEach(button=>{
+						if(typeof button==='object'){
+							aaa.unshift(button);
+						}
+						else if(typeof button==='string'){
+							aaa.push(button);
+						};
+					})
+					if(aaa[1]=='摸牌'){
+						var num = 0;
+						if(get.suit(aaa[0])==get.suit(trigger.card))num++;
+						if(get.number(aaa[0])==get.number(trigger.card))num++;
+						if(get.cardNameLength(aaa[0])==get.cardNameLength(trigger.card))num++;
+						yield player.discard(aaa[0]);
+						yield player.draw(num);
+					}
+					else {
+						var card = get.autoViewAs(trigger.card, aaa[0]);
+						if(!card) return;
+						if(targets)var targets = result.targets;
+						yield player.useCard(card, targets);
+					}
+					event.finish();
+				}
+				else {
+					yield player.changeZhuanhuanji('ybsl_shehao');
+					event.finish();
+				}
+			}
+		}
+	},
+	ybsl_jugu:{
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	ybsl_daixin:{
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger:{
+			player:'useCard',
+		},
+		filter(event,player){
+			if(event.card&&event.card.isCard&&event.cards&&event.cards[0]&&get.type2(event.card)!='equip'){
+				return true;
+			}
+			return false;
+		},
+		async cost(event,trigger,player){
+			event.result = await player.chooseCard('是否发动代薪？','he').set('filterCard',function(card){
+				return get.type2(card)=='equip';
+			}).forResult();
+			// event.result.cards = event.result.links;
+		},
+		async content(event,trigger,player){
+			var card = [];
+			var subtype = null;
+			card.push(event.cards[0]);
+			if(player.getCards('e')&&player.getCards('e').includes(event.cards[0])){
+				subtype = get.subtype(event.cards[0]);
+			}
+			var cardx = [];
+			cardx.push(trigger.cards[0]);
+			await player.lose(card,"visible",ui.ordering);
+			trigger.cards=card;
+			trigger.card.isCard=false;
+			if(subtype!=null){
+				const cardz = get.autoViewAs(cardx[0]);
+				cardz.subtypes = [subtype];
+				await player.equip(cardz);
+			}
+			else {
+				await player.gain(cardx,'gain2');
 			}
 		}
 	},

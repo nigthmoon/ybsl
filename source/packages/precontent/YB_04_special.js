@@ -937,4 +937,13 @@ const YBSL_special = function () {
 	// game.YB_addAudio(
 	// 	['tiandu',{qmsgswkjsgj_re_xizhicai:'tiandu_xizhicai'}],
 	// )
+	{//石崇
+		lib.arenaReady.push(function(){
+			game.YB_addAudio(
+				['jugu',{ybsl_shichong:'ybsl_jugu'}],
+			)
+
+		})
+		
+	}
 }
