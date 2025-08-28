@@ -5654,10 +5654,10 @@ const skill = {
 		intro:{
 			content:function(storage,player){
 				if (player.storage.ybsl_shehao==true){
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：弃置装备区一张同类型的牌，然后摸X张牌或视为使用一张该牌名的虚拟牌（X为其中的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。</span><br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。</span><br>此技能选是不转，选否才转。'
 				}
 				else {
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：弃置装备区一张同类型的牌，然后摸X张牌或视为使用一张该牌名的虚拟牌（X为其中的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。<br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。。<br>此技能选是不转，选否才转。'
 				}
 			}
 		},
@@ -5736,11 +5736,31 @@ const skill = {
 					filterButton(button){
 						var type=typeof button.link;
 						if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
-						var trigger = _status.event.getTrigger();
-						if(type!='string')return get.type2(trigger.card)==get.type2(button.link);
-						else return type == 'string';
+						var trigger = _status.event.getParent().getTrigger();
+						if(type!='string') {
+							if (ui.selected.buttons[0]?.link == '转化' && !lib.filter.filterCard(get.autoViewAs({name : trigger.card.name}, button.link), player, get.event())) return false
+							return get.type2(trigger.card)==get.type2(button.link)
+						}
+						if (ui.selected.buttons.length&&button.link == '转化') return lib.filter.filterCard(get.autoViewAs({name : trigger.card.name}, ui.selected.buttons[0].link), player, get.event())
+						return true
 					},
 					selectButton:2,
+					selectTarget() {
+						var trigger = _status.event.getParent().getTrigger();
+						if (ui.selected.buttons.some(i => i.link == '摸牌')) return 0
+						const buttons = ui.selected.buttons;
+						var aaa = [];
+						buttons.forEach(button=>{
+							if(typeof button==='object'){
+								aaa.unshift(button);
+							}
+							else if(typeof button==='string'){
+								aaa.push(button);
+							};
+						})
+						// game.log(lib.filter.selectTarget(get.autoViewAs({name : trigger.card.name}), get.player()))
+						return lib.filter.selectTarget(get.autoViewAs({name : trigger.card.name,nature:get.nature(trigger.card)},aaa[0]), get.player())
+					},
 					filterTarget:function(card,player,target){
 						const buttons = ui.selected.buttons;
 						var aaa = [];
@@ -5756,8 +5776,8 @@ const skill = {
 							return false;
 						}
 						else {
-							var trigger = _status.event.getTrigger();
-							var card = get.autoViewAs({ name: get.name(trigger.card) }, aaa[0]);
+							var trigger = _status.event.getParent().getTrigger();
+							var card = get.autoViewAs({ name: get.name(trigger.card), nature:get.nature(trigger.card)}, aaa[0]);
 							return lib.filter.filterTarget(card, player, target)
 							// return lib.card[get.name(aaa[0])].filterTarget(card,player,target);
 						}
@@ -5793,9 +5813,23 @@ const skill = {
 						yield player.draw(num);
 					}
 					else {
-						var card = get.autoViewAs(trigger.card, aaa[0]);
+						// var card = get.autoViewAs(trigger.card, aaa[0]);
+						// var card = {
+						// 	name:get.name(trigger.card),
+						// 	nature:get.nature(trigger.card),
+						// 	cards:aaa[0],
+						// }
+						var card = get.autoViewAs(
+							{
+								name : get.name(trigger.card),
+								nature:get.nature(trigger.card),
+								cards:aaa[0],
+							},
+							aaa[0]
+						);
+						// card.cards = aaa[0];
 						if(!card) return;
-						if(targets)var targets = result.targets;
+						var targets = result.targets;
 						yield player.useCard(card, targets);
 					}
 					event.finish();
