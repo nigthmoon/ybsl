@@ -5738,16 +5738,14 @@ const skill = {
 						if(ui.selected.buttons.length&&type==typeof ui.selected.buttons[0].link) return false;
 						var trigger = _status.event.getParent().getTrigger();
 						if(type!='string') {
-							if (ui.selected.buttons[0]?.link == '转化' && !lib.filter.filterCard(get.autoViewAs({name : trigger.card.name}, button.link), player, get.event())) return false
+							if (ui.selected.buttons[0]?.link == '转化' && !lib.filter.filterCard(get.autoViewAs(trigger.card, button.link), player, get.event())) return false
 							return get.type2(trigger.card)==get.type2(button.link)
 						}
-						if (ui.selected.buttons.length&&button.link == '转化') return lib.filter.filterCard(get.autoViewAs({name : trigger.card.name}, ui.selected.buttons[0].link), player, get.event())
+						if (ui.selected.buttons.length&&button.link == '转化') return lib.filter.filterCard(get.autoViewAs(trigger.card, ui.selected.buttons[0].link), player, get.event())
 						return true
 					},
 					selectButton:2,
 					selectTarget() {
-						var trigger = _status.event.getParent().getTrigger();
-						if (ui.selected.buttons.some(i => i.link == '摸牌')) return 0
 						const buttons = ui.selected.buttons;
 						var aaa = [];
 						buttons.forEach(button=>{
@@ -5758,8 +5756,9 @@ const skill = {
 								aaa.push(button);
 							};
 						})
-						// game.log(lib.filter.selectTarget(get.autoViewAs({name : trigger.card.name}), get.player()))
-						return lib.filter.selectTarget(get.autoViewAs({name : trigger.card.name,nature:get.nature(trigger.card)},aaa[0]), get.player())
+						var trigger = _status.event.getParent().getTrigger();
+						if (aaa[0] == '摸牌') return 0
+						return lib.filter.selectTarget(get.autoViewAs(trigger.card, aaa[0]), get.player())
 					},
 					filterTarget:function(card,player,target){
 						const buttons = ui.selected.buttons;
@@ -5777,7 +5776,7 @@ const skill = {
 						}
 						else {
 							var trigger = _status.event.getParent().getTrigger();
-							var card = get.autoViewAs({ name: get.name(trigger.card), nature:get.nature(trigger.card)}, aaa[0]);
+							var card = get.autoViewAs(trigger.card, aaa[0]);
 							return lib.filter.filterTarget(card, player, target)
 							// return lib.card[get.name(aaa[0])].filterTarget(card,player,target);
 						}
@@ -5813,24 +5812,11 @@ const skill = {
 						yield player.draw(num);
 					}
 					else {
-						// var card = get.autoViewAs(trigger.card, aaa[0]);
-						// var card = {
-						// 	name:get.name(trigger.card),
-						// 	nature:get.nature(trigger.card),
-						// 	cards:aaa[0],
-						// }
-						var card = get.autoViewAs(
-							{
-								name : get.name(trigger.card),
-								nature:get.nature(trigger.card),
-								cards:aaa[0],
-							},
-							aaa[0]
-						);
-						// card.cards = aaa[0];
+						var card = get.autoViewAs(trigger.card);
 						if(!card) return;
+						card.isCard = false
 						var targets = result.targets;
-						yield player.useCard(card, targets);
+						yield player.useCard(card, targets, [aaa[0]]);
 					}
 					event.finish();
 				}
@@ -5855,6 +5841,11 @@ const skill = {
 			}
 			return false;
 		},
+		getIndex(event,player){
+			if(!player.storage.ybsl_daixin_used||player.storage.ybsl_daixin_used&&!player.storage.ybsl_daixin_used.includes(event.card.name)){
+				return 1
+			}
+		},
 		async cost(event,trigger,player){
 			event.result = await player.chooseCard('是否发动代薪？','he').set('filterCard',function(card){
 				return get.type2(card)=='equip';
@@ -5862,6 +5853,9 @@ const skill = {
 			// event.result.cards = event.result.links;
 		},
 		async content(event,trigger,player){
+			player.addTempSkill('ybsl_daixin_used'),
+			player.storage.ybsl_daixin_used = player.storage.ybsl_daixin_used||[];
+			player.storage.ybsl_daixin_used.push(trigger.card.name);
 			var card = [];
 			var subtype = null;
 			card.push(event.cards[0]);
@@ -5880,6 +5874,20 @@ const skill = {
 			}
 			else {
 				await player.gain(cardx,'gain2');
+			}
+		},
+		subSkill:{
+			used:{
+				onremove:true,
+				mark:true,
+				marktext:'薪',
+				intro:{
+					content:function(storage,player){
+						var list =player.storage.ybsl_daixin_used||[];
+						list = get.YB_suit(list,'translation');
+						return '本回合已回收卡牌：'+list;
+					}
+				}
 			}
 		}
 	},
