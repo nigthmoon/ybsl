@@ -991,7 +991,7 @@ export async function precontent() {
 				else {
 					YB_intro = YB_nodeIntro.apply(this,arguments)
 				}
-	
+				YB_intro.style.width = '358px'
 				return YB_intro;
 			};
 			// lib.arenaReady.push(function(){

@@ -5654,10 +5654,10 @@ const skill = {
 		intro:{
 			content:function(storage,player){
 				if (player.storage.ybsl_shehao==true){
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。</span><br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。</span><br>此技能选是不转，选否才转。'
 				}
 				else {
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数）。。<br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。'
 				}
 			}
 		},
@@ -5816,7 +5816,7 @@ const skill = {
 						if(!card) return;
 						card.isCard = false
 						var targets = result.targets;
-						yield player.useCard(card, targets, [aaa[0]]);
+						yield player.useCard(card, targets, [aaa[0]],false);
 					}
 					event.finish();
 				}

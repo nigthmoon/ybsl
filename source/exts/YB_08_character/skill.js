@@ -1195,6 +1195,117 @@ const skill = {
 
 
 
+	//刘备
+	ybmjz_rende:{
+		audio:'rerende',
+		enable:'phaseUse',
+		usable:1,
+		filter:function(event,player){
+			return player.countCards('h')>0;
+		},
+		filterCard:function(card,player){
+			return true;
+		},
+		selectCard:[1,Infinity],
+		position:'h',
+		complexCard:true,
+		selectTarget:function(){
+			var num = ui.selected.cards.length;
+			return [0,num];
+		},
+		filterTarget:function(card,player,target){
+			return player!=target;
+		},
+		multiline:true,
+		multitarget:true,
+		async content(event,trigger,player){
+			var cards = event.cards;
+			var targets = event.targets;
+			if (cards.length) {
+				player.$gain2(cards, false);
+				game.cardsGotoSpecial(cards, "toRenku");
+				game.log(player, "将", cards, "置入了仁库");
+				game.delayx();
+			}
+			if(targets.length){
+				for(var i=0;i<targets.length;i++){
+					if(targets[i].isIn())await targets[i].draw(2);
+				}
+			}
+		},
+		check(card) {
+			// if (ui.selected.cards.length && ui.selected.cards[0].name == "du") {
+			// 	return 0;
+			// }
+			// if (!ui.selected.cards.length && card.name == "du") {
+			// 	return 20;
+			// }
+			// var player = get.owner(card);
+			// if (ui.selected.cards.length >= Math.max(2, player.countCards("h") - player.hp)) {
+			// 	return 0;
+			// }
+			// if (player.hp == player.maxHp || player.countMark("rerende") < 0 || player.countCards("h") <= 1) {
+			// 	var players = game.filterPlayer();
+			// 	for (var i = 0; i < players.length; i++) {
+			// 		if (players[i].hasSkill("haoshi") && !players[i].isTurnedOver() && !players[i].hasJudge("lebu") && get.attitude(player, players[i]) >= 3 && get.attitude(players[i], player) >= 3) {
+			// 			return 11 - get.value(card);
+			// 		}
+			// 	}
+			// 	if (player.countCards("h") > player.hp) {
+			// 		return 10 - get.value(card);
+			// 	}
+			// 	if (player.countCards("h") > 2) {
+			// 		return 6 - get.value(card);
+			// 	}
+			// 	return -1;
+			// }
+			return 6 - get.value(card);
+		},
+		ai:{
+			order:1,
+			result:{
+				player:function(player){
+					return 1;
+				},
+				target:function(player,target){
+					return 2;
+				}
+			},
+			threaten:1.5,
+		},
+		group:['ybmjz_rende_renwang','ybmjz_rende_fenpei','ybmjz_rende_juexing'],
+		subSkill:{
+			renwang:{
+				audio:'ybmjz_rende',
+			},
+			fenpei:{
+				audio:'ybmjz_rende',
+			},
+			juexing:{
+				audio:'ybmjz_rende',
+			},
+		},
+	},
+	ybmjz_xiemin:{
+		audio:'rejijiang',
+	},
+	// 'ybmjz_rende':'仁德',
+	// 'ybmjz_rende_info':'
+	// 出牌阶段限一次，你可以将任意张手牌置入仁库，同时指定至多等量其他角色，
+	// 你令他们各摸两张牌；
+	// 每回合限一次，你可以将一张仁库牌当一张基本牌使用；
+	// 当仁库牌溢出时，你可将溢出牌分配给其他角色，然后获得牌的角色可以“拥戴”你
+	// （已拥戴改为可以令你恢复一点体力）；
+	// 每局限一次，准备阶段，若存活的“拥戴”你的角色大于存活角色数一半，
+	// 你加一点体力上限，回复一点体力，获得你未拥有的主公技。',
+	// 'ybmjz_xiemin':'携民',
+	// 'ybmjz_xiemin_info':'
+	// 主公技，每回合每名角色限一次，
+	// 其他角色使用有实体牌的【视为或转化牌】或【杀】后，
+	// 其可以将位于弃牌堆的此牌置入仁库，然后若其不为蜀势力，
+	// 你可令其改为蜀势力，否则你可以发动〖技一〗的第一句。',
+
+
 
 
 	//黄月英
