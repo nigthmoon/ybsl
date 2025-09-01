@@ -23,6 +23,7 @@ const YBSL_ybslf = function () {
 			let cards = [];
 			let str = '遗计';
 			let num;
+			let fun=function(card, player, target){return true};
 			// 遍历输入的元素，根据类型赋值
 			args.forEach(arg => {
 				if (typeof arg === 'object') {
@@ -31,6 +32,8 @@ const YBSL_ybslf = function () {
 					str = arg; // 如果是字符串，赋值给 str
 				} else if (typeof arg === 'number') {
 					num = arg; // 如果是数字，赋值给 num
+				} else if (typeof arg ==='function') {
+					fun = arg; 
 				}
 			});
 			// 如果 num 未提供，则默认为 cards.length
@@ -42,6 +45,7 @@ const YBSL_ybslf = function () {
 			next.player = this;
 			next.cards = cards;
 			next.number = num;
+			next.fun = fun;
 			next.setContent('YB_yiji');
 			next.str = str;
 			return next;
@@ -51,6 +55,7 @@ const YBSL_ybslf = function () {
 			let num = event.number;
 			let num2 = cards.length - num;
 			let str = event.str;
+			const fun = event.fun||function(card, player, target){return true};
 			if (_status.connectMode)
 				game.broadcastAll(function () {
 					_status.noclearcountdown = true;
@@ -75,6 +80,10 @@ const YBSL_ybslf = function () {
 					result: { targets },
 				} = await player
 					.chooseTarget("选择一名角色获得" + get.translation(links), true)
+					.set("filterTarget", (card, player, target) => {
+						if(fun)return fun(card, player, target);
+						return true;
+					})
 					.set("ai", target => {
 						const att = get.attitude(_status.event.player, target);
 						if (_status.event.enemy) {
@@ -111,6 +120,8 @@ const YBSL_ybslf = function () {
 				giver: player,
 				animate: "draw",
 			}).setContent("gaincardMultiple");
+			event.result = list;
+			
 		}
 		/**
 		 * 创建一个分配卡牌的事件。

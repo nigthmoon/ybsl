@@ -290,6 +290,7 @@ const card = {
 							lib.card[k[2]].content
 						);
 					}
+					target.update();
 				}
 			}
 			// else {

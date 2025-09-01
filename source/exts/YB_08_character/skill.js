@@ -1198,96 +1198,433 @@ const skill = {
 	//刘备
 	ybmjz_rende:{
 		audio:'rerende',
-		enable:'phaseUse',
-		usable:1,
-		filter:function(event,player){
-			return player.countCards('h')>0;
+		init(player) {
+			player.storage.renku = true;
 		},
-		filterCard:function(card,player){
-			return true;
-		},
-		selectCard:[1,Infinity],
-		position:'h',
-		complexCard:true,
-		selectTarget:function(){
-			var num = ui.selected.cards.length;
-			return [0,num];
-		},
-		filterTarget:function(card,player,target){
-			return player!=target;
-		},
-		multiline:true,
-		multitarget:true,
-		async content(event,trigger,player){
-			var cards = event.cards;
-			var targets = event.targets;
-			if (cards.length) {
-				player.$gain2(cards, false);
-				game.cardsGotoSpecial(cards, "toRenku");
-				game.log(player, "将", cards, "置入了仁库");
-				game.delayx();
-			}
-			if(targets.length){
-				for(var i=0;i<targets.length;i++){
-					if(targets[i].isIn())await targets[i].draw(2);
-				}
-			}
-		},
-		check(card) {
-			// if (ui.selected.cards.length && ui.selected.cards[0].name == "du") {
-			// 	return 0;
-			// }
-			// if (!ui.selected.cards.length && card.name == "du") {
-			// 	return 20;
-			// }
-			// var player = get.owner(card);
-			// if (ui.selected.cards.length >= Math.max(2, player.countCards("h") - player.hp)) {
-			// 	return 0;
-			// }
-			// if (player.hp == player.maxHp || player.countMark("rerende") < 0 || player.countCards("h") <= 1) {
-			// 	var players = game.filterPlayer();
-			// 	for (var i = 0; i < players.length; i++) {
-			// 		if (players[i].hasSkill("haoshi") && !players[i].isTurnedOver() && !players[i].hasJudge("lebu") && get.attitude(player, players[i]) >= 3 && get.attitude(players[i], player) >= 3) {
-			// 			return 11 - get.value(card);
-			// 		}
-			// 	}
-			// 	if (player.countCards("h") > player.hp) {
-			// 		return 10 - get.value(card);
-			// 	}
-			// 	if (player.countCards("h") > 2) {
-			// 		return 6 - get.value(card);
-			// 	}
-			// 	return -1;
-			// }
-			return 6 - get.value(card);
-		},
-		ai:{
-			order:1,
-			result:{
-				player:function(player){
-					return 1;
-				},
-				target:function(player,target){
-					return 2;
-				}
-			},
-			threaten:1.5,
-		},
-		group:['ybmjz_rende_renwang','ybmjz_rende_fenpei','ybmjz_rende_juexing'],
+		group:['ybmjz_rende_renwang','ybmjz_rende_fenpei','ybmjz_rende_juexing','ybmjz_rende_rende'],
 		subSkill:{
+			rende:{
+				enable:'phaseUse',
+				usable:1,
+				filter:function(event,player){
+					return player.countCards('h')>0;
+				},
+				filterCard:function(card,player){
+					return true;
+				},
+				selectCard:[1,Infinity],
+				position:'h',
+				complexCard:true,
+				selectTarget:function(){
+					var num = ui.selected.cards.length;
+					return [0,num];
+				},
+				filterTarget:function(card,player,target){
+					return player!=target;
+				},
+				lose:true,
+				discard:false,
+				multiline:true,
+				multitarget:true,
+				async content(event,trigger,player){
+					var cards = event.cards;
+					var targets = event.targets;
+					if (cards.length) {
+						player.$gain2(cards, false);
+						game.cardsGotoSpecial(cards, "toRenku");
+						game.log(player, "将", cards, "置入了仁库");
+						game.delayx();
+					}
+					if(targets.length){
+						for(var i=0;i<targets.length;i++){
+							if(targets[i].isIn())await targets[i].draw(2);
+						}
+					}
+				},
+				check(card) {
+					// if (ui.selected.cards.length && ui.selected.cards[0].name == "du") {
+					// 	return 0;
+					// }
+					// if (!ui.selected.cards.length && card.name == "du") {
+					// 	return 20;
+					// }
+					// var player = get.owner(card);
+					// if (ui.selected.cards.length >= Math.max(2, player.countCards("h") - player.hp)) {
+					// 	return 0;
+					// }
+					// if (player.hp == player.maxHp || player.countMark("rerende") < 0 || player.countCards("h") <= 1) {
+					// 	var players = game.filterPlayer();
+					// 	for (var i = 0; i < players.length; i++) {
+					// 		if (players[i].hasSkill("haoshi") && !players[i].isTurnedOver() && !players[i].hasJudge("lebu") && get.attitude(player, players[i]) >= 3 && get.attitude(players[i], player) >= 3) {
+					// 			return 11 - get.value(card);
+					// 		}
+					// 	}
+					// 	if (player.countCards("h") > player.hp) {
+					// 		return 10 - get.value(card);
+					// 	}
+					// 	if (player.countCards("h") > 2) {
+					// 		return 6 - get.value(card);
+					// 	}
+					// 	return -1;
+					// }
+					return 6 - get.value(card);
+				},
+				ai:{
+					order:1,
+					result:{
+						player:function(player){
+							return 1;
+						},
+						target:function(player,target){
+							return 2;
+						}
+					},
+					threaten:1.5,
+				},
+
+			},
 			renwang:{
+				name:'仁望',
 				audio:'ybmjz_rende',
+				usable:1,
+				enable:'chooseToUse',
+				hiddenCard(player, name) {
+					if (get.type(name) != "basic") {
+						return false;
+					}
+					return true;
+				},
+				filter(event, player) {
+					if (event.responded) {
+						return false;
+					}
+					if ( _status.renku.length<=0)return false;
+					const names = lib.inpile.filter(name => get.type(name) == "basic");
+					return (
+						names.some(name => {
+							return event.filterCard({ name, isCard: true }, player, event);
+						})
+					);
+				},
+				// onChooseToUse(event) {
+				// 	// if (game.online) {
+				// 	// 	return;
+				// 	// }
+				// 	// if (!event.clanshengmo_cards) {
+				// 	// 	let cards = [];
+				// 	// 	game.checkGlobalHistory("cardMove", evt => {
+				// 	// 		if (evt.name != "cardsDiscard" && (evt.name != "lose" || evt.position != ui.discardPile)) {
+				// 	// 			return;
+				// 	// 		}
+				// 	// 		cards.addArray(evt.cards.filter(card => get.position(card, true) == "d"));
+				// 	// 	});
+				// 	// 	const numbers = cards.map(card => get.number(card, false)).unique();
+				// 	// 	const [min, max] = [Math.min(...numbers), Math.max(...numbers)];
+				// 	// 	event.set(
+				// 	// 		"clanshengmo_cards",
+				// 	// 		cards.filter(card => {
+				// 	// 			const num = get.number(card, false);
+				// 	// 			return num > min && num < max;
+				// 	// 		})
+				// 	// 	);
+				// 	// }
+				// },
+				async content(event, trigger, player) {
+					const evt = event.getParent(2);
+					const names = lib.inpile.filter(name => get.type(name) == "basic");
+					// 	cards = evt.clanshengmo_cards;
+					// const links = await player
+					// 	.chooseButton(["剩墨：获得其中一张牌", cards], true)
+					// 	.set("ai", button => {
+					// 		return get.value(button.link);
+					// 	})
+					// 	.forResultLinks();
+					// if (!links || !links.length) {
+					// 	return;
+					// }
+					const links = await player.chooseButton(["选择一张牌进行转化", _status.renku],true).set('ai', button => {
+						return -get.value(button.link, player);
+					}).forResultLinks();
+					if (!links || !links.length) {
+						return;
+					}
+					// target.chooseButton(true, ["选择获得一张牌", _status.renku]).set("ai", function (button) {
+					// 	return get.value(button.link, _status.event.player);
+					// });
+					const list = [];
+					for (const name of names) {
+						const card = { name, isCard: true };
+						if (evt.filterCard(card, player, evt)) {
+							list.push(["基本", "", name]);
+						}
+						if (name == "sha") {
+							for (const nature of lib.inpile_nature) {
+								card.nature = nature;
+								if (evt.filterCard(card, player, evt)) {
+									list.push(["基本", "", name, nature]);
+								}
+							}
+						}
+					}
+					if (!list.length) {
+						return;
+					}
+					const links2 = await player
+						.chooseButton(["视为使用一张基本牌", [list, "vcard"]], true)
+						.set("ai", button => {
+							return get.player().getUseValue(button.link) + 1;
+						})
+						.forResultLinks();
+					const name = links2[0][2],
+						nature = links2[0][3];
+					game.broadcastAll(
+						(name, nature, toGain) => {
+							lib.skill.ybmjz_rende_renwang_backup.viewAs = {
+								name,
+								nature,
+								isCard: true,
+								cards: toGain,
+							};
+							lib.skill.ybmjz_rende_renwang_backup.prompt = `选择${get.translation(nature)}【${get.translation(name)}】的目标`;
+							lib.skill.ybmjz_rende_renwang_backup.cardToGain = toGain;
+						},
+						name,
+						nature,
+						links[0]
+					);
+					evt.set("_backupevent", "ybmjz_rende_renwang_backup");
+					evt.backup("ybmjz_rende_renwang_backup");
+					evt.set("openskilldialog", `选择${get.translation(nature)}【${get.translation(name)}】的目标`);
+					evt.set("norestore", true);
+					evt.set("custom", {
+						add: {},
+						replace: { window() {} },
+					});
+					evt.goto(0);
+				},
+				
+				
+			},
+			renwang_backup:{
+				audio:'ybmjz_rende',
+				precontent(){
+					if(lib.skill.ybmjz_rende_renwang_backup.cardToGain){
+						_status.renku.remove(lib.skill.ybmjz_rende_renwang_backup.cardToGain);
+						game.updateRenku()
+						game.cardsGotoOrdering(lib.skill.ybmjz_rende_renwang_backup.cardToGain)/*.fromRenku=true;*/
+						event.result.cards.push(lib.skill.ybmjz_rende_renwang_backup.cardToGain);
+					}
+				},
+				filterCard: () => false,
+				selectCard: -1,
+				log: false,
+
 			},
 			fenpei:{
 				audio:'ybmjz_rende',
+				trigger: {
+					global: ["cardsDiscardAfter"],
+				},
+				// forced: true,
+				filter(event, player) {
+					return event.fromRenku == true && event.outRange;
+				},
+				prompt:function(event,player){
+					return '是否将'+get.translation(event.cards)+'分配给其他角色？';
+				},
+				*content(event,map) {
+					let trigger = map.trigger,
+						player = map.player;
+					var cards = game.cardsGotoOrdering(trigger.cards);
+					var relu = yield player.YB_yiji(cards,trigger.cards.length,function(card, player, target){
+						return target!=player;
+					});
+					if(relu){
+						console.log(relu)
+						for(var k of relu){
+							// var target = game.findPlayer(function(current){
+							if(k[0].isAlive()){
+								var i = k[0];
+								if(!player.storage.ybmjz_rende_yongdai||!player.storage.ybmjz_rende_yongdai.includes(i)){
+									var relu2 =yield i.chooseBool('是否“拥戴”'+get.translation(player)+'？').set('ai',function(){
+										var i = _status.event.player;
+										var att = get.attitude(i,player);
+										return att>0;
+									});
+									if(relu2&&relu2.bool){
+										if(!player.hasSkill('ybmjz_rende_yongdai'))player.addSkill('ybmjz_rende_yongdai');
+										if(!player.storage.ybmjz_rende_yongdai)player.storage.ybmjz_rende_yongdai = [];
+										yield player.storage.ybmjz_rende_yongdai.push(i);
+									}	
+								}
+								else {
+									var relu3 = yield i.chooseBool('是否令你回复一点体力'+get.translation(player)+'？').set('ai',function(){
+										var i = _status.event.player;
+										var att = get.attitude(i,player);
+										return att>0&&get.recoverEffect(player,i)>0;
+									});
+									if(relu3&&relu3.bool){
+										yield player.recover();
+									}
+								}
+							}
+						}
+					}
+				},
 			},
 			juexing:{
 				audio:'ybmjz_rende',
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				skillAnimation:true,
+				animationColor:'fire',
+				filter:function(event,player){
+					var num = game.countPlayer()/3;
+					return player.storage.ybmjz_rende_yongdai&&player.storage.ybmjz_rende_yongdai.length>num;
+				},
+				content:function(){
+					'step 0'
+					player.awakenSkill('ybmjz_rende_juexing');
+					'step 1'
+					player.gainMaxHp();
+					'step 2'
+					player.recover();
+					'step 3'
+					let skills = player.getStockSkills(true, true).filter(skill => {
+						if (player.hasSkill(skill)) return false;
+						let info = get.info(skill);
+						return info && info.zhuSkill;
+					});
+					if (skills.length) player.addSkills(skills);
+				},
+			},
+			yongdai:{
+				audio:'ybmjz_rende',
+				mark:true,
+				marktext:'拥',
+				intro:{
+					markcount(storage,player){
+						var list = [];
+						if(player.storage.ybmjz_rende_yongdai){
+							for(var i of player.storage.ybmjz_rende_yongdai){
+								if(i.isAlive()){
+									list.push(i);
+								}
+							}
+						}
+						return list.length;
+					},
+					content:function(storage,player){
+						var list = [];
+						if(player.storage.ybmjz_rende_yongdai){
+							for(var i of player.storage.ybmjz_rende_yongdai){
+								if(i.isAlive()){
+									list.push(i);
+								}
+							}
+						}
+						return get.translation(list)+'<br>拥戴了你';
+					},
+				},
 			},
 		},
 	},
 	ybmjz_xiemin:{
 		audio:'rejijiang',
+		unique: true,
+		zhuSkill: true,
+		global: "ybmjz_xiemin_global",
+		subSkill:{
+			global:{
+				trigger:{player:'useCardAfter'},
+				usable:1,
+				renku:true,
+				filter(event,player){
+					var players = game.filterPlayer(function(current){
+						return current!=player&&current.hasSkill('ybmjz_xiemin')&&current.isAlive();
+					});
+					return players.length>0
+						&&event.card
+						&&event.card.cards
+						&&event.card.cards.length>0
+						&&get.position(event.cards[0], true) == "o"
+						&&(event.card.name == 'sha'||!event.card.isCard);
+				},
+				init(player) {
+					player.storage.renku = true;
+				},
+				check:function(event,player){
+					var players = game.filterPlayer(function(current){
+						return current!=player&&current.hasSkill('ybmjz_xiemin')&&current.isAlive();
+					});
+					if(players.length==0){
+						return false;
+					}
+					else {
+						for(var i of players){
+							var att = get.attitude(player,i);
+							if(att>0){
+								return true;
+							}
+						}
+					}
+				},
+				content:function*(event,map){
+					let trigger = map.trigger,
+						player = map.player,
+						cards = trigger.card.cards;
+					player.$gain2(cards, false);
+					game.cardsGotoSpecial(cards, "toRenku");
+					game.log(player, "将", cards, "置入了仁库");
+					game.delayx();
+					
+					var players = game.filterPlayer(function(current){
+						return current!=player&&current.hasSkill('ybmjz_xiemin')&&current.isAlive();
+					});
+					for(var i of players){
+						if(player.group!='shu'){
+							var relu = yield i.chooseBool('是否令'+get.translation(player)+'改为蜀势力？').set('ai',function(){
+								// var i = _status.event.player;
+								// var att = get.attitude(i,player);
+								// return att>5;
+								return true;
+							});
+							if(relu&&relu.bool){
+								yield player.changeGroup('shu');
+							}
+						}
+						else {
+							var ybnext = game.createEvent('ybmjz_xiemin');
+							ybnext.tar = i;
+							ybnext.skillname = 'ybmjz_rende_rende';
+							ybnext.setContent(function () {
+								'step 0'
+								var next = event.tar.chooseToUse();
+								next.set("openskilldialog", get.prompt(event.skillname));
+								next.set("norestore", true);
+								next.set("_backupevent", event.skillname);
+								next.set("custom", {
+									add: {},
+									replace: {
+										window: function () { }
+									},
+								});
+								// next.set('addCount',false);
+								next._triggered = null;
+								next.backup(event.skillname);
+								'step 1'
+								if (!result.bool) {
+									event.tar.getStat('skill')[event.skillname]++;
+								}
+			
+							});
+							yield ybnext;
+							
+						}
+					}
+				}
+			}
+		},
 	},
 	// 'ybmjz_rende':'仁德',
 	// 'ybmjz_rende_info':'

@@ -12,7 +12,7 @@ const character = { //武将格式 :
 	ybmjz_guojia:['male','wei',3,['ybmjz_tiandu','new_reyiji'],['rankAdd:epic','linkTo:guojia','YB_mjz:re_guojia','tempname:re_guojia']], 
 	ybmjz_zhenji:['female','wei',3,[],['name:甄|宓','linkTo:zhenji','YB_mjz:re_zhenji','tempname:re_zhenji']], 
 
-	ybmjz_liubei:['male','shu',4,[/*'ybmjz_rende','ybmjz_xiemin'*/],['zhu','linkTo:liubei','YB_mjz:re_liubei','tempname:re_liubei']], 
+	ybmjz_liubei:['male','shu',4,['ybmjz_rende','ybmjz_xiemin'],['zhu','linkTo:liubei','YB_mjz:re_liubei','tempname:re_liubei']], 
 	ybmjz_guanyu:['male','shu',4,[],['linkTo:guanyu','YB_mjz:re_guanyu','tempname:re_guanyu']], 
 	ybmjz_zhangfei:['male','shu',4,[],['linkTo:zhangfei','YB_mjz:re_zhangfei','tempname:re_zhangfei']], 
 	ybmjz_zhugeliang:['male','shu',3,[],['name:诸葛|亮','linkTo:zhugeliang','YB_mjz:re_zhugeliang','tempname:re_zhugeliang']], 
