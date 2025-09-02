@@ -33,9 +33,9 @@ const characterUndertext = {
 
 	// ybmjz_zhangqiying:'',//张琪瑛
 	// ybmjz_shen_zhugeliang:'',//诸葛亮
-	// ybmjz_hina:'',//佐藤雏
-	// ybmjz_kotori:'',//神户小鸟
-	// ybmjz_kagari:'',//篝
+	// yb_key_hina:'',//佐藤雏
+	// yb_key_kotori:'',//神户小鸟
+	// yb_key_kagari:'',//篝
 	// ybmjz_majun:'',//马钧
 	
 }

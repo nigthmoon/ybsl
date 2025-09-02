@@ -299,6 +299,8 @@ const translate = {
 	ybsl_shehao_info:'转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。',
 	ybsl_jugu:'巨贾',
 	ybsl_jugu_info:'此技能仅提供一条语音。',
+	ybsl_jiegu:'劫贾',
+	ybsl_jiegu_info:'锁定技，其他角色初始手牌-1，你的初始手牌增加其他角色数。',
 	ybsl_daixin:'代薪',
 	ybsl_daixin_info:'当你使用非虚拟或转化的非装备牌时，你可以用一张装备牌替换之作为实体牌，每种牌名每回合限一次。',
 
@@ -308,7 +310,7 @@ const translate = {
 
 
 
-	ybsl_ybzs:'<font color=cyan>夜白杂设</font>',
+	ybsl_key:'<img = src = "extension/夜白神略/image/card/group_key.png" />',
 
 	ybsl_hairi:'鹰原羽依里',
 	hairi_shangshi:'伤逝',
@@ -331,7 +333,57 @@ const translate = {
 	kamome_huanmeng_ybsl_kamome_info:'此技能仅提供一条语音。',
 	kamome_jieban_ybsl_kamome:'结伴',
 	kamome_jieban_ybsl_kamome_info:'此技能仅提供一条语音。',
-	ybsl_youta:'成神阳太',
+	// ybsl_youta:'成神阳太',
+
+	
+	yb_key_hina:'名将佐藤雏',
+	yb_key_hina_prefix:'名将',
+	yb_key_kotori:'名将神户小鸟',
+	yb_key_kotori_prefix:'名将',
+	yb_key_kagari:'名将篝',
+	yb_key_kagari_prefix:'名将',
+	ybsl_youta:'名将成神阳太',
+	ybsl_youta_prefix:'名将',
+	'youta_fengshen':'逢神',
+	'youta_fengshen_info':'锁定技，游戏开始时，若你没有副将，且佐藤雏不在场上，你失去1点体力上限并将佐藤雏作为自己的副将。',
+	'youta_yingshen':'应神',
+	'youta_yingshen_info':'你可以助战自己；当有角色询问助战应变时，你可以交换主副将，视为响应之。（若已发动唤神，则不交换主副将）',
+	'youta_huanshen':'唤神',
+	'youta_huanshen_info':'神势力技，限定技，当有角色于回合外进入濒死状态时，你可以交换主副将，令其回复体力至1。',
+	// 'youta_yingshen':'应神',
+	// 'youta_yingshen_info':'当有角色询问助战应变时，你可以将势力改为神，视为响应之。（若已发动唤神，则不更改势力）',
+	// 'youta_huanshen':'唤神',
+	// 'youta_huanshen_info':'神势力技，限定技，当有角色于回合外进入濒死状态时，你可以交换主副将（若没有副将，则武将牌改为成神阳太），令其回复体力至1。',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	ybsl_ybzs:'<font color=cyan>夜白杂设</font>',
 
 	ybsl_pujing:'普净',
 
@@ -435,6 +487,41 @@ const translate = {
 	ybsl_kegu_info:'每回合限一次，当你需要使用一张牌时，你可以仅展示之，视为使用此牌。',
 
 	//----------------------装备及其他】
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	ybsl_lmms:'<span style=\'color:#e7ff00\'>冷门民杀搬运</span>',
 	'ybsl_sgsh':'<span class=yellowtext>上古神将</span>',

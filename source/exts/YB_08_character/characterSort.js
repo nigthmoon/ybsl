@@ -18,9 +18,5 @@ const characterSort = {
 		ybmjz_shen:[
 			'ybmjz_shen_zhugeliang','ybmjz_shen_guojia','ybmjz_shen_caopi',
 		],
-		ybmjz_lunwai:[
-			'ybmjz_hina','ybmjz_kotori','ybmjz_kagari',
-			'ybmjz_youta',
-		],
 	},
 }

@@ -185,7 +185,7 @@ window.ybslb_update={
 			'sgsh_fuxi','sgsh_xiangliu','sgsh_houyi','sgsh_kuafu',
 			'sgsh_tubo','sgsh_jingwei','sgsh_qibo','sgsh_yeming',
 			'sgsh_chiyou','sgsh_fenghou',
-			'ybmjz_caocao','ybmjz_simayi','ybmjz_xiahoudun','ybmjz_xuzhu','ybmjz_youta',
+			'ybmjz_caocao','ybmjz_simayi','ybmjz_xiahoudun','ybmjz_xuzhu','ybsl_youta',
 			'ybsl_sunsháo','ybsl_020jiayutong','ybsl_052trees','ybsp_016manchengqi','ybsl_121tujing',
 			'ybsl_015wanghairu','ybsp_033xiaohui','ybsp_006wanghanzhen',
 			

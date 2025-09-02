@@ -10,8 +10,7 @@ const characterSort = {
 			'ybslshen_pangtong'
 		],
 		ybsl_ybzs: [
-			'ybsl_hairi','ybsl_youta','sp_key_umi','ybsl_pujing',
-			'ybsl_kamome',
+			'ybsl_pujing',
 		],
 		ybsl_qygc: [
 			'ybsl_xuyou','niya_re_liuyan','niya_caowei','Fe2O3_duqiong',
@@ -39,6 +38,11 @@ const characterSort = {
 			'sgsh_yinglong','sgsh_nvba','sgsh_chiyou','sgsh_fenghou','sgsh_jiutianxuannv',
 			'sgsh_luozu','sgsh_cangjie','sgsh_limu','sgsh_changxian','sgsh_guiyuqu',
 			'sgsh_shijiamouni','sgsh_luohou','sgsh_xingtian',
+		],
+		ybsl_key:[
+			'yb_key_hina','yb_key_kotori','yb_key_kagari',
+			'ybsl_youta','ybsl_hairi','ybsl_youta','ybsl_kamome',
+			'sp_key_umi',
 		],
 	},
 }
