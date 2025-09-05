@@ -296,6 +296,16 @@ const YBSL_nature = function(){
 			color:'#ff7b00',
 			nature:'black',
 		})
+		lib.namePrefix.set('旧应天神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('旧')}${get.prefixSpan('应天')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('界缝神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('界')}${get.prefixSpan('缝')}${get.prefixSpan('神')}`
+			},
+		})
 		lib.namePrefix.set('魂',{
 			showName:'魂',
 			color:'#28ffff',

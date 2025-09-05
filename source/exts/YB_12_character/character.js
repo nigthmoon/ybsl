@@ -75,7 +75,17 @@ const character = { //武将格式 :
 	qmsgswkjsgj_re_fuhuanghou:['female','qun',3,['qmsgswkjsgj_zhuikong','oldqiuyuan'],['rankAdd:legend','rankS:s','linkTo:fuhuanghou','YB_mjz:fuhuanghou','tempname:fuhuanghou']],
 	qmsgswkjsgj_shen_ganning:['male','shen','3/6',["qmsgswkjsgj_poxi", "qmsgswkjsgj_jieying", "qixi"],['rankAdd:legend','rankS:s','linkTo:shen_ganning','YB_mjz:shen_ganning','tempname:shen_ganning','wu']],
 	qmsgswkjsgj_re_sunhanhua:['female','wu',3,['qmsgswkjsgj_chongxu','qmsgswkjsgj_miaojian','qmsgswkjsgj_lianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
-
+	qmsgswkjsgj_yingtian_simayi:{
+		sex: "male",
+		group: "shen",
+		hp: 4,
+		skills: ["qmsgswkjsgj_jilin", "yingyou", "yingtian"],
+		groupInGuozhan: "wei",
+		names: "司马|懿",
+		linkTo:'new_simayi',
+		YB_mjz:'new_simayi',
+	},
+	qmsgswkjsgj_re_shen_zhaoyun:['male','shen',2,['qmsgswkjsgj_rejuejing','relonghun','longdan','new_yajiao'],['rankAdd:legend','rankS:s','linkTo:shen_zhaoyun','YB_mjz:shen_zhaoyun','tempname:shen_zhaoyun','shu']],
 
 
 

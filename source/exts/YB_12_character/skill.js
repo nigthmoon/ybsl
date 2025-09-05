@@ -3904,7 +3904,215 @@ const skill = {
 			},
 		},
 	},
-
+	//神司马懿
+	qmsgswkjsgj_jilin: {
+		audio: 'jilin',
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		filter(event, player) {
+			return event.name != "phase" || game.phaseNumber == 0;
+		},
+		forced: true,
+		locked: false,
+		logAudio: () => 1,
+		async content(event, trigger, player) {
+			const cards = get.cards(3);
+			const next = player.addToExpansion(cards, "draw");
+			next.gaintag.add('qmsgswkjsgj_jilin');
+			await next;
+		},
+		marktext: "志",
+		intro: {
+			markcount: "expansion",
+			mark(dialog, content, player) {
+				const cards = player.getExpansions("jilin"),
+					mingzhi = cards.filter(card => card.storage.jilin),
+					hidden = cards.removeArray(mingzhi);
+				if (mingzhi.length) {
+					dialog.addText("已明之志");
+					dialog.addSmall(mingzhi);
+				}
+				if (hidden.length) {
+					if (player == game.me || player.isUnderControl()) {
+						dialog.addText("未明之志");
+						dialog.addSmall(hidden);
+					} else {
+						return "共有" + get.cnNumber(hidden.length) + "张暗“志”";
+					}
+				}
+			},
+			content(content, player) {
+				const cards = player.getExpansions("jilin"),
+					mingzhi = cards.filter(card => card.storage.jilin),
+					hidden = cards.removeArray(mingzhi);
+				if (mingzhi.length) {
+					dialog.addText("已明之志");
+					dialog.addSmall(mingzhi);
+				}
+				if (hidden.length) {
+					if (player == game.me || player.isUnderControl()) {
+						dialog.addText("未明之志");
+						dialog.addSmall(hidden);
+					} else {
+						return "共有" + get.cnNumber(hidden.length) + "张暗“志”";
+					}
+				}
+			},
+		},
+		group: ["jilin_kanpo", "jilin_change"],
+		subSkill: {
+			// kanpo: {
+			// 	audio: ["jilin2.mp3", "jilin3.mp3"],
+			// 	trigger: {
+			// 		target: "useCardToTarget",
+			// 	},
+			// 	filter(event, player) {
+			// 		return event.player != player && player.getExpansions("jilin").some(card => !card.storage.jilin);
+			// 	},
+			// 	async cost(event, trigger, player) {
+			// 		const hidden = player.getExpansions("jilin").filter(card => !card.storage.jilin);
+			// 		const goon = get.effect(player, trigger.card, trigger.player, player) < 0;
+			// 		const suits = player
+			// 			.getExpansions("jilin")
+			// 			.filter(card => card.storage.jilin)
+			// 			.map(card => get.suit(card))
+			// 			.toUniqued();
+			// 		if (hidden.length == 1) {
+			// 			const bool = await player
+			// 				.chooseBool("戢鳞：明置一张“志”", `令${get.translation(trigger.card)}对你无效`)
+			// 				.set("choice", goon)
+			// 				.forResultBool();
+			// 			event.result = {
+			// 				bool: bool,
+			// 				cost_data: hidden,
+			// 			};
+			// 		} else {
+			// 			const {
+			// 				result: { bool, links },
+			// 			} = await player
+			// 				.chooseButton(["戢鳞：明置一张“志”", hidden])
+			// 				.set("ai", button => {
+			// 					const player = get.player(),
+			// 						card = button.link,
+			// 						suits = get.event("suits");
+			// 					if (!get.event("goon")) {
+			// 						return 0;
+			// 					}
+			// 					if (!suits.includes(get.suit(card))) {
+			// 						return 10;
+			// 					}
+			// 					return 6 - get.value(card);
+			// 				})
+			// 				.set("suits", suits)
+			// 				.set("goon", goon);
+			// 			event.result = {
+			// 				bool: bool,
+			// 				cost_data: links,
+			// 			};
+			// 		}
+			// 	},
+			// 	async content(event, trigger, player) {
+			// 		await player.showCards(event.cost_data, get.translation(player) + "发动了【戢鳞】");
+			// 		event.cost_data[0].storage.jilin = true;
+			// 		trigger.getParent().excluded.add(player);
+			// 	},
+			// },
+			// change: {
+			// 	audio: ["jilin4.mp3", "jilin5.mp3"],
+			// 	trigger: {
+			// 		player: "phaseBegin",
+			// 	},
+			// 	filter(event, player) {
+			// 		return player.countCards("h") && player.getExpansions("jilin").some(card => !card.storage.jilin);
+			// 	},
+			// 	async cost(event, trigger, player) {
+			// 		const hidden = player.getExpansions("jilin").filter(card => !card.storage.jilin);
+			// 		const next = player.chooseToMove("戢鳞：是否交换“志”和手牌？");
+			// 		next.set("list", [
+			// 			[get.translation(player) + "（你）的未明之“志”", hidden],
+			// 			["手牌区", player.getCards("h")],
+			// 		]);
+			// 		next.set("filterMove", (from, to) => {
+			// 			return typeof to != "number";
+			// 		});
+			// 		next.set("processAI", list => {
+			// 			let player = get.player(),
+			// 				cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
+			// 					return get.useful(a) - get.useful(b);
+			// 				}),
+			// 				cards2 = cards.splice(0, player.getExpansions("jilin").length);
+			// 			return [cards2, cards];
+			// 		});
+			// 		const {
+			// 			result: { bool, moved },
+			// 		} = await next;
+			// 		event.result = {
+			// 			bool: bool,
+			// 			cost_data: moved,
+			// 		};
+			// 	},
+			// 	async content(event, trigger, player) {
+			// 		const moved = event.cost_data;
+			// 		const pushs = moved[0],
+			// 			gains = moved[1];
+			// 		pushs.removeArray(player.getExpansions("jilin"));
+			// 		gains.removeArray(player.getCards("h"));
+			// 		if (!pushs.length || pushs.length != gains.length) {
+			// 			return;
+			// 		}
+			// 		const next = player.addToExpansion(pushs);
+			// 		next.gaintag.add("jilin");
+			// 		await next;
+			// 		await player.gain(gains, "draw");
+			// 	},
+			// },
+		},
+	},
+	//界缝神赵云
+	qmsgswkjsgj_rejuejing:{
+		audio:'xinjuejing',
+		mod: {
+			maxHandcard(player, num) {
+				return 2 + num;
+			},
+			aiOrder(player, card, num) {
+				if (num <= 0 || !player.isPhaseUsing() || !get.tag(card, "recover")) return num;
+				if (player.needsToDiscard() > 1) return num;
+				return 0;
+			},
+		},
+		trigger: { player: ["dying", "dyingAfter"] },
+		forced: true,
+		content() {
+			player.draw(2);
+		},
+		group:'qmsgswkjsgj_rejuejing_draw',
+		subSkill:{
+			draw:{
+				audio:'qmsgswkjsgj_rejuejing',
+				trigger: { player: "phaseDrawBegin2" },
+				//priority:-5,
+				filter(event, player) {
+					return !event.numFixed && player.hp < player.maxHp;
+				},
+				forced: true,
+				content() {
+					trigger.num += player.getDamagedHp();
+				},
+				
+			}
+		},
+		ai: {
+			effect: {
+				target(card, player, target) {
+					if (target.getHp() > 1) return;
+					if (get.tag(card, "damage") || get.tag(card, "losehp")) return [1, 1];
+				},
+			},
+		},
+	},
 
 
 

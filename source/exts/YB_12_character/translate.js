@@ -338,12 +338,15 @@ const translate = {
 	qmsgswkjsgj_lianhua2:'莲华·极',
 	qmsgswkjsgj_lianhua2_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
 
+	qmsgswkjsgj_yingtian_simayi:'旧应天神司马懿',
+	qmsgswkjsgj_yingtian_simayi_prefix:'旧应天神',
+	qmsgswkjsgj_jilin:'戢鳞',
+	qmsgswkjsgj_jilin_info:'①游戏开始时，你将牌堆顶三张牌暗置于你的武将牌上，称为“志”。②当你成为其他角色使用牌的目标时，你可以明置一张暗置的“志”令此牌对你无效。③回合开始时，你可用任意张手牌替换等量暗置的“志”。',
 
-
-
-
-
-
+	qmsgswkjsgj_re_shen_zhaoyun:'界缝神赵云',
+	qmsgswkjsgj_re_shen_zhaoyun_prefix:'界缝神',
+	qmsgswkjsgj_rejuejing:'绝境',
+	qmsgswkjsgj_rejuejing_info:'锁定技，你的手牌上限+2。你进入或脱离濒死状态时，你摸两张牌。摸牌阶段，你令额定摸牌数+X（X为你已损失的体力值）。',
 
 
 

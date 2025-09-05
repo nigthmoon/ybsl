@@ -115,6 +115,50 @@ export async function precontent() {
 		YB_11_cardBrowser();
 		{//characterIntro重做
 			//characterIntro重做
+			/**
+			 * 从字符串中提取第一个 HTML/XML 标签及其内容
+			 * @param {string} str - 待处理的字符串，可能包含 HTML/XML 标签
+			 * @returns {Object} 返回包含以下属性的对象：
+			 *   - startTag: {string} 匹配到的开始标签（如 `<div class="test">`），未找到时返回空字符串
+			 *   - endTag: {string} 匹配到的结束标签（如 `</div>`），未找到时返回空字符串
+			 *   - content: {string} 去除开始标签和结束标签后的纯文本内容
+			 * @example
+			 * // 返回 { startTag: '<div>', endTag: '</div>', content: 'Hello' }
+			 * get.extractFirstTag('<div>Hello</div>');
+			 * @example
+			 * // 返回 { startTag: '', endTag: '', content: 'No tags' }
+			 * get.extractFirstTag('No tags');
+			 */
+			get.extractFirstTag = function(str) {
+				// 匹配第一个开始标签（如 <div> 或 <span class="test">）
+				const startTagRegex = /<[^>]+>/;
+				const startTagMatch = str.match(startTagRegex);
+
+				// 如果没有开始标签，直接返回原始字符串
+				if (!startTagMatch) {
+					return { startTag: "", endTag: "", content: str };
+				}
+
+				const startTag = startTagMatch[0];
+				// 计算开始标签结束后的位置（用于查找结束标签）
+				const endTagStart = str.indexOf(startTag) + startTag.length;
+
+				// 在剩余字符串中匹配第一个结束标签（如 </div>）
+				const endTagRegex = /<\/[^>]+>/;
+				const endTagMatch = str.slice(endTagStart).match(endTagRegex);
+
+				// 如果没有结束标签，返回开始标签和去除标签后的内容
+				if (!endTagMatch) {
+					return { startTag: startTag, endTag: "", content: str.replace(startTag, "") };
+				}
+
+				const endTag = endTagMatch[0];
+				// 去除开始标签和结束标签，得到纯文本内容
+				const content = str.replace(startTag, "").replace(endTag, "");
+
+				return { startTag, endTag, content };
+			}
+
 			get.copyright = function(name,macg){
 				if (lib.characterCopyright[name]) {//版权信息
 					//判断是否为对象、字符串、数组
@@ -131,11 +175,17 @@ export async function precontent() {
 							voice:'配音',
 							icon:'◈',
 						}
+						if(lib.characterTitle[name]){
+							var { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
+						}
+						if(startTag)str+=startTag;
 						if(strx['pack'])str+=strx['pack'];
 						if(strx['pack']&&strx['num'])str+='-';
 						if(strx['num'])str+=strx['num'];
 						if(strx['num']&&lib.characterTitle[name])str+='-';
-						if(lib.characterTitle[name])str+=lib.characterTitle[name];
+						if(content)str+=content;
+						// if(lib.characterTitle[name])str+=lib.characterTitle[name];
+						if(endTag)str+=endTag;
 						str+='<br>';
 						if(!strx['icon'])strx['icon']='◈';
 						if(strx['skill']){

@@ -1,6 +1,7 @@
 "use strict";
 // import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 game.import("card", function (lib, game, ui, get, ai, _status) {
+	/** @type { importCardConfig } */
 	var yunchou = {
 		name: "yunchou",
 		card: {
@@ -1107,6 +1108,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
 	};
 	for(var i in yunchou.card){
 		if(!yunchou.card[i].image) yunchou.card[i].image='ext:夜白神略/image/ontology/card/'+i+'.png'
+		if(!yunchou.card[i].audio) yunchou.card[i].audio='ext:夜白神略/audio/ontology/card/'+i+'.mp3'
 	}
 
 	return yunchou;
