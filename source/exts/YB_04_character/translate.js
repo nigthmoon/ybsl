@@ -97,6 +97,11 @@ const translate = {
 	Fe2O3_guanji_info : '每回合限一次，当你的手牌数或体力值变化至相等后，你可以摸两张牌。',
 	Fe2O3_weixuan : '危悬',
 	Fe2O3_weixuan_info : '你可以将一张红/黑色装备牌当做【桃】/【增兵减灶】对一名体力值/手牌数不大于1的角色使用。',
+	
+	Fe2O3_zhaoyun : '赵云',
+	Fe2O3_bayun : '拔云',
+	Fe2O3_bayun_info : `你可以摸一张牌或获得对方一张牌以发动${get.poptip('ollongdan')}或令此技能本回合失效。`,
+	
 
 
 

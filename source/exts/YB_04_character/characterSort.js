@@ -15,6 +15,7 @@ const characterSort = {
 		ybsl_qygc: [
 			'ybsl_xuyou','niya_re_liuyan','niya_caowei','Fe2O3_duqiong',
 			'zxunnamed_zhenji','Fe2O3_zixu','Fe3O4_guanyu','Fe2O3_zhugeliang',
+			'Fe2O3_zhaoyun',
 		],
 		ybsl_bqbs: [
 			'ybsl_lvyi', 'ybsl_yinfan', 'ybsl_shlizhaoyi','ybsl_sunsháo',

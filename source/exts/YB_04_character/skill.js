@@ -4086,6 +4086,114 @@ const skill = {
 			order : 12
 		}
 	},
+	//赵云
+	Fe2O3_bayun : {
+		get mod() {
+			return lib.skill.ollongdan.mod
+		},
+		hiddenCard : (player, name) => name == 'tao' || name == 'jiu',
+		ai: {
+			respondSha: true,
+			respondShan: true,
+			order(item, player) {
+				if (player && _status.event.type == 'phase') {
+					var max = 0
+					var list = ['sha', 'tao', 'jiu']
+					var map = { sha: 'shan', tao: 'jiu', jiu: 'tao' }
+					for (var i = 0; i < list.length; i++) {
+						var name = list[i]
+						if (player.countCards('hs', map[name]) > (name == 'jiu' ? 1 : 0) && player.getUseValue({ name: name }) > 0) {
+							var temp = get.order({ name: name })
+							if (temp > max) {
+								max = temp
+							}
+						}
+					}
+					if (max > 0) {
+						max += 0.3
+					}
+					return max
+				}
+				return 4
+			},
+			result : {
+				player : 1,
+				target : (player, target) => lib.card.shunshou_copy2.ai.result.target(player, target)
+			}
+		},
+		enable : ['chooseToUse', 'chooseToRespond'],
+		filter(event, player) {
+			const filter = event.filterCard
+			if (player.hasSkill('Fe2O3_bayun_1')) return false
+			if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event)) return true
+			if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, event)) return true
+			if (filter(get.autoViewAs({ name: 'tao' }, 'unsure'), player, event)) return true
+			if (filter(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, event)) return true
+			return false
+		},
+		async precontent(event, trigger, player) {
+			const evt = event.getParent()
+			if (evt.name == 'chooseToRespond' && evt.source || evt.type == 'dying') {
+				const target = evt.name == 'chooseToRespond' && evt.source || evt.dying
+				if (player == target || !target.countGainableCards(player, 'he')) return
+				const bool = await player.chooseBool(`获得${get.translation(target)}一张牌或取消摸一张牌`)
+					.set('target', target)
+					.set('ai', (event, player) => lib.card.shunshou_copy2.ai.result.target(player, event.target) > 0)
+					.forResultBool()
+				if (bool) event.result.targets = [target]
+				return
+			}
+			if (evt.name == 'chooseToRespond') return
+			const targets = game.filterPlayer(target => {
+				const filter = evt._backup.filterCard
+				const filterT = evt._backup.filterTarget
+				if (player == target || !target.countGainableCards(player, 'he')) return false
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, evt) && filterT(get.autoViewAs({ name: 'sha' }, 'unsure'), player, target)) return true
+				if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, evt) && evt.respondTo) return target == evt.respondTo[0]
+				return false
+			})
+			if (!targets.length) return
+			const result = await player.chooseTarget('获得对方一张牌或取消摸一张牌')
+				.set('ai', target => lib.card.shunshou_copy2.ai.result.target(get.player(), target))
+				.set('targets', targets)
+				.set('filterTarget', (card, player, target) => get.event().targets.includes(target))
+				.forResult()
+			if (result.bool) event.result.targets = result.targets
+		},
+		async content(event, trigger, player) {
+			const target = (event.targets || [])[0]
+			if (target) await player.gainPlayerCard(target, true)
+			else await player.draw()
+			event.getParent(2).goto(0)
+			event.getParent(2).Fe2O3_bayun_longdan = target
+			player.addTempSkill('Fe2O3_bayun_1')
+			event.getParent(2).backup('Fe2O3_bayun_longdan')
+			event.getParent(2).openskilldialog = get.prompt2('ollongdan')
+		},
+		subSkill : {
+			1 : {
+				charlotte : true
+			},
+			longdan : {
+				inherit : 'ollongdan',
+				log : false,
+				filterOk() {
+					const event = get.event()
+					const player = get.player()
+					const target = event.Fe2O3_bayun_longdan
+					if (target) {
+						if (event.name == 'chooseToRespond' && event.source || event.type == 'dying') return true
+						if (get.card().name == 'shan' && event.respondTo) return target == event.respondTo[0]
+						return ui.selected.targets.includes(target)
+					}
+					return true
+				},
+				async precontent(event, trigger, player) {
+					player.removeSkill('Fe2O3_bayun_1')
+				}
+			}
+		}
+	},
 
 
 
@@ -9839,7 +9947,7 @@ const skill = {
 			event.result = await player.chooseToDiscard({color:'red'}, 'he')
 				.set('prompt', `弃置一张红色牌，令${get.translation(target)}本回合出牌阶段使用的【杀】或【决斗】伤害+1`)
 				.set('ai', card => {
-					const player = get.player()
+					const player = get.player(),
 						target = get.event().target
 					//没错，是ai透视
 					if (get.attitude(player, target) < 1.5) return 0
@@ -9893,7 +10001,7 @@ const skill = {
 			event.result = await player.chooseToDiscard({color:'black'}, 'he')
 				.set('prompt', `弃置一张黑色牌，令${get.translation(target)}本回合出牌阶段使用的【杀】或【决斗】伤害-1`)
 				.set('ai', card => {
-					const player = get.player()
+					const player = get.player(),
 						target = get.event().target
 					//没错，是ai透视
 					if (get.attitude(player, target) > 0) return 0

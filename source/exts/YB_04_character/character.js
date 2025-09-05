@@ -121,6 +121,12 @@ const character = { //武将格式 :
 		skills : ['Fe2O3_guanji', 'Fe2O3_weixuan'],
 		names : '诸葛|亮'
 	},//诸葛亮
+	Fe2O3_zhaoyun : {
+		group : 'shu',
+		sex : 'male',
+		hp : 4,
+		skills : ['Fe2O3_bayun']
+	},
 	
 	
 	
