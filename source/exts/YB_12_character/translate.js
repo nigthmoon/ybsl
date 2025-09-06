@@ -57,7 +57,7 @@ const translate = {
 	sgskjdbzjms_xieren:'卸刃',
 	sgskjdbzjms_xieren_info:'当你对其他角色造成伤害，或当你受到其他角色造成的伤害时，你可以弃置其一张牌。',
 	sgskjdbzjms_cuiti:'淬体',
-	sgskjdbzjms_cuiti_info:'觉醒技，回合开始阶段，若你至少拥有三个“淬炼”标记，你增加1点体力上限，并回复1点体力，获得技能〖不屈〗。',
+	sgskjdbzjms_cuiti_info:`觉醒技，回合开始阶段，若你至少拥有三个“淬炼”标记，你增加1点体力上限，并回复1点体力，获得技能${get.poptip('gzbuqu')}。`,
 
 	sgskjdbzjms_shen_zhugeliang:'魂神诸葛亮',
 	sgskjdbzjms_shen_zhugeliang_prefix:'魂神',
@@ -66,7 +66,7 @@ const translate = {
 	sgskjdbzjms_kuangfeng:'狂风',
 	sgskjdbzjms_kuangfeng_info:'结束阶段，你可以弃置任意张“星”并指定等量名角色：直到你的下回合开始，这些角色受到火焰伤害时，此伤害+1。',
 	sgskjdbzjms_tianshi:'天时',
-	sgskjdbzjms_tianshi_info:'觉醒技，准备阶段，若你的“星”全部使用完，或者你主动舍弃所有的“星”，然后你减少1点体力上限，获得技能〖薄幸〗。',
+	sgskjdbzjms_tianshi_info:`觉醒技，准备阶段，若你的“星”全部使用完，或者你主动舍弃所有的“星”，然后你减少1点体力上限，获得技能${get.poptip('sgskjdbzjms_boxing')}。`,
 	sgskjdbzjms_boxing:'薄幸',
 	sgskjdbzjms_boxing_info:'你可以将一张牌当作任意一张基本牌，锦囊牌使用或打出，同一回合内，每多使用一次，你减少1点体力或体力上限。',
 
@@ -129,11 +129,11 @@ const translate = {
 	sgskjdbzjms_rende:'仁德',//
 	sgskjdbzjms_rende_info:'出牌阶段限一次，你可以将任意手牌交给任意其他角色，然后你可以摸X张牌（X为交出手牌数一半+1，向下取整）',
 	sgskjdbzjms_taoyuan:'桃园',
-	sgskjdbzjms_taoyuan_info:'觉醒技，准备阶段，若你的体力值为3，你可以选择至多三名角色，使其回复1点体力，然后补充手牌至体力上限，然后你增加3点体力上限，回复3点体力，摸三张牌。然后你获得技能〖举国〗和〖倾覆〗。',
+	sgskjdbzjms_taoyuan_info:`觉醒技，准备阶段，若你的体力值为3，你可以选择至多三名角色，使其回复1点体力，然后补充手牌至体力上限，然后你增加3点体力上限，回复3点体力，摸三张牌。然后你获得技能${get.poptip('sgskjdbzjms_juguo')}和${get.poptip('sgskjdbzjms_qingfu')}。`,
 	sgskjdbzjms_juguo:'举国',
 	sgskjdbzjms_juguo_info:'出牌阶段限一次，你可以弃置三张手牌，然后令所有其他角色失去1点体力并弃置一张手牌。',
 	sgskjdbzjms_qingfu:'倾覆',
-	sgskjdbzjms_qingfu_info:'锁定技，你每使用一次〖举国〗，你选择一项：①失去1点体力，②失去1点体力上限。',
+	sgskjdbzjms_qingfu_info:`锁定技，你每使用一次${get.poptip('sgskjdbzjms_juguo')}，你选择一项：①失去1点体力，②减少1点体力上限。`,
 
 	sgskjdbzjms_zhen_machao:'真马超',
 	sgskjdbzjms_zhen_machao_prefix:'真',
@@ -191,7 +191,7 @@ const translate = {
 	tiandu_xizhicai:'天妒',
 	tiandu_xizhicai_info:'此技能仅提供一条语音。',
 	qmsgswkjsgj_chouce:'筹策',
-	qmsgswkjsgj_chouce_info:'当你受到1点伤害后，你可以判定，若结果为：黑色，你可以移动场上一张牌或获得一名其他角色的一张手牌；红色，你选择一名角色，其摸一张牌，若其是〖先辅〗选择的角色，改为其摸两张牌。若如此做，你可以将一张手牌交给任意角色。',
+	qmsgswkjsgj_chouce_info:`当你受到1点伤害后，你可以判定，若结果为：黑色，你可以移动场上一张牌或获得一名其他角色的一张手牌；红色，你选择一名角色，其摸一张牌，若其是${get.poptip('qmsgswkjsgj_xianfu')}选择的角色，改为其摸两张牌。若如此做，你可以将一张手牌交给任意角色。`,
 
 	qmsgswkjsgj_re_liuxie:'界刘协',
 	qmsgswkjsgj_re_liuxie_prefix:'界',
@@ -234,7 +234,7 @@ const translate = {
 	qmsgswkjsgj_spwuku: "武库",
 	qmsgswkjsgj_spwuku_info: "锁定技，当有角色使用装备牌时，则你获得一个“武库”。",
 	qmsgswkjsgj_spsanchen: "三陈",
-	qmsgswkjsgj_spsanchen_info: "觉醒技，若你的“武库”数大于2，则你加1点体力上限并回复1点体力，然后获得〖灭吴〗。",
+	qmsgswkjsgj_spsanchen_info: `觉醒技，若你的“武库”数大于2，则你加1点体力上限并回复1点体力，然后获得${get.poptip('spmiewu')}。`,
 
 	qmsgswkjsgj_gui_liubei:'黑无常赐福刘备',
 	qmsgswkjsgj_gui_liubei_prefix:'黑无常赐福',
@@ -406,7 +406,7 @@ const translate = {
 	sgsxjxfzmnl_wangyuanji:'仙界王元姬',
 	sgsxjxfzmnl_wangyuanji_prefix:'仙界',
 	sgsxjxfzmnl_qianchong: "谦冲",
-	sgsxjxfzmnl_qianchong_info: "锁定技，若你的装备区内有牌且：均为红色，则你视为拥有技能〖明哲〗。均为黑色，则你视为拥有技能〖帷幕〗。若出牌阶段开始时，若你不满足上述条件，你本回合内使用牌没有次数和距离限制。",
+	sgsxjxfzmnl_qianchong_info: `锁定技，若你的装备区内有牌且：均为红色，则你视为拥有技能${get.poptip('mingzhe')}。均为黑色，则你视为拥有技能${get.poptip('weimu')}。若出牌阶段开始时，若你不满足上述条件，你本回合内使用牌没有次数和距离限制。`,
 	sgsxjxfzmnl_shangjian: "尚俭",
 	sgsxjxfzmnl_shangjian_info: "锁定技。一名角色的结束阶段开始时，若你于此回合内失去过牌，则你摸等同失去数量的牌。",
 

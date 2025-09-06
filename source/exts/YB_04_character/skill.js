@@ -3783,16 +3783,20 @@ const skill = {
 			player : 'useCardToPlayered'
 		},
 		filter(event, player) {
-			if (player.storage.zxunnamed_qinglan_chosen?.includes(2)) return false
-			return event.targets[0] != player && event.targets.length == 1
+			const chosen = player.storage.zxunnamed_qinglan_chosen || []
+			const target = event.targets[0]
+			if (target == player || event.targets.length != 1) return false
+			if (!chosen.includes(2)) return true
+			if (!chosen.includes(0) && target.countDiscardableCards(target, 'he')) return true
+			if (!chosen.includes(1) && ui.cardPile.firstChild && target.canEquip(get.autoViewAs({ name : 'zheji' }, [ui.cardPile.firstChild]), true)) return true
+			return false
 		},
 		choiceAfter : [
 			`await target.discard(result.cards)
 			await target.chooseUseTarget({ name : 'jiu' }, true)`,
 			`await target.useCard({ name : 'zheji' }, target, get.cards())
 			await target.recover()`,
-			`game.log(player, '的技能', '#g【轻澜】', '失效了')
-			await player.draw(2)`
+			`await game.asyncDraw([player, target].sortBySeat(_status.currentPhase || player))`
 		],
 		processAI : [
 			function() {
@@ -3802,6 +3806,10 @@ const skill = {
 				const card = target.getCards('he', card => lib.filter.cardDiscardable(card, target) && get.useful(card) < 7).sort((a, b) => get.useful(a) - get.useful(b))[0]
 				if (eval(this[1])) return { links : [0], cards : [card] }
 				if (eval(this[2])) return { links : [1] }
+				if (chosen.includes(2)) {
+					if (!chosen.includes(0)) return { links : [0], cards : [card] }
+					return {links : [1]}
+				}
 				return { links : [2] }
 			},
 			`(function() {
@@ -3832,7 +3840,7 @@ const skill = {
 			player.addTempSkill('zxunnamed_qinglan_chosen')
 			const target = trigger.targets[0]
 			const skill = lib.skill[event.name]
-			const options = ['弃置一张牌并视为使用一张【酒】', '将牌堆顶的牌当做【折戟】对自己使用并回复1点体力', `令${get.translation(player)}摸两张牌且本回合〖${get.translation(event.name)}〗失效`]
+			const options = ['弃置一张牌并视为使用一张【酒】', '将牌堆顶的牌当做【折戟】对自己使用并回复1点体力', `与${get.translation(player)}各摸一张牌`]
 			const chosen = player.storage.zxunnamed_qinglan_chosen
 			const { result } = await target.chooseButton(options.map((i, j) => [[[j, i]], 'tdnodes']), true)
 				.set('processAI', skill.processAI[0])
@@ -3846,7 +3854,6 @@ const skill = {
 			game.log(target, '选择了', '#g【轻澜】','的', `#y选项${ get.cnNumber(result.links[0] + 1, true) }`)
 			chosen.add(result.links[0])
 			player.syncStorage('zxunnamed_qinglan_chosen')
-			player.addTip('event.name', chosen.includes(2) ? '轻澜  已失效' : chosen.reduce((str, i) => str + [' 酒', ' 乐'][i], '轻澜'), true)
 			await eval(`(async function () {${skill.choiceAfter[result.links[0]]}})()`)
 		},
 		subSkill : {
@@ -4117,8 +4124,7 @@ const skill = {
 				return 4
 			},
 			result : {
-				player : 1,
-				target : (player, target) => lib.card.shunshou_copy2.ai.result.target(player, target)
+				player : 1
 			}
 		},
 		enable : ['chooseToUse', 'chooseToRespond'],
@@ -4138,7 +4144,7 @@ const skill = {
 				if (player == target || !target.countGainableCards(player, 'he')) return
 				const bool = await player.chooseBool(`获得${get.translation(target)}一张牌或取消摸一张牌`)
 					.set('target', target)
-					.set('ai', (event, player) => lib.card.shunshou_copy2.ai.result.target(player, event.target) > 0)
+					.set('ai', (event, player) => lib.card.shunshou_copy2.ai.result.target(player, get.event().target) > 0)
 					.forResultBool()
 				if (bool) event.result.targets = [target]
 				return

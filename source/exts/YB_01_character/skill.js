@@ -7200,7 +7200,7 @@ const skill = {
 			'step 0'
 			var num=trigger.num;
 			if(trigger.player.countCards('he')>=num*2){
-				trigger.player.discardPlayerCard('he',trigger.player,num*2).set('prompt','断想').set('prompt2','请选择'+get.cnNumber(num*2)+'张牌弃置，然后回复'+get.cnNumber(num)+'点体力，<br>否则失去'+get.cnNumber(num)+'点体力上限并摸等量牌。').set('ai',function(button){
+				trigger.player.discardPlayerCard('he',trigger.player,num*2).set('prompt','断想').set('prompt2','请选择'+get.cnNumber(num*2)+'张牌弃置，然后回复'+get.cnNumber(num)+'点体力，<br>否则减少'+get.cnNumber(num)+'点体力上限并摸等量牌。').set('ai',function(button){
 					return 100-get.value(button.link);
 				});
 			}

@@ -3,7 +3,7 @@ export { dynamicTranslate }
 
 const dynamicTranslate = {//动态翻译
 	ybsl_xianyin:function(player){//弦音
-		var str0='转换技，（括号内的阴阳为鸾鸣的形态）<br/>';
+		var str0=`转换技，（括号内的阴阳为${get.poptip('ybsl_luanming')}的形态）<br/>`;
 		var str1='阴（阴）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
 		var str2='阴（阳）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；';
 		var str3='阳（阴）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；';
@@ -58,7 +58,7 @@ const dynamicTranslate = {//动态翻译
 	},
 	yb001_minglun:function(player){
 		var str='锁定技，回合开始时，你展示牌堆顶一张牌并放在武将牌上，至多放四张。根据“命轮”的花色，你视为拥有技能：<br>';
-		var list={'spade':'黑桃：〖栖月〗','heart':'红桃：〖旅心〗','club':'<br>梅花：〖折叶〗','diamond':'方块：〖忆水〗'};
+		var list={'spade':`黑桃：${get.poptip('yb001_minglun_spade')}`,'heart':`红桃：${get.poptip('yb001_minglun_heart')}`,'club':`<br>梅花：${get.poptip('yb001_minglun_club')}`,'diamond':`方块：${get.poptip('yb001_minglun_diamond')}`};
 		for(var i in list){
 			var cards=player.getExpansions('yb001_minglun');
 			for(var k of cards){
@@ -73,7 +73,7 @@ const dynamicTranslate = {//动态翻译
 	yb004_tianqi:function(player){//天祈
 		if(!player.storage.yb004_shangyuan){
 			var str='锁定技，当你对其他角色造成伤害后，你进行判定：若伤害不大于1，且结果为红色，你回复1点体力或摸一张牌；若伤害大于1，且结果为黑色，你失去1点体力并摸一张牌。当你受到伤害后，你进行判定，若结果为黑色，你摸x+1张牌，否则你恢复x-1点体力（x为此次伤害值）';
-			if(lib.skill.xinleiji_misa.disableReason.includes('天祈'))str+='（此技能不可触发界雷击）';
+			if(lib.skill.xinleiji_misa.disableReason.includes('天祈'))str+=`（此技能不可触发${get.poptip('releiji')}）`;
 			return str;
 		}
 		else {
@@ -112,10 +112,10 @@ const dynamicTranslate = {//动态翻译
 	},
 	yb033_shuhui:function(player){//淑慧
 		if(player.storage.yb033_shuhui==true){
-			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。<span class=yellowtext>然后你展示牌堆顶一张牌，将〖隅泣〗任意一个数字改为该数字，至多为当前最低的数字+2。</span>';
+			return `回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。<span class=yellowtext>然后你展示牌堆顶一张牌，将${get.poptip('yb033_yuqi')}任意一个数字改为该数字，至多为当前最低的数字+2。</span>`;
 		}
 		else {
-			return '回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。（追加描述：然后你展示牌堆顶一张牌，将隅泣任意一个数字改为该数字，至多为当前最低的数字+2）'
+			return `回合开始时，你可以弃置一张手牌，并令一名角色回复或失去1点体力。（追加描述：然后你展示牌堆顶一张牌，将${get.poptip('yb033_yuqi')}任意一个数字改为该数字，至多为当前最低的数字+2）`
 		}
 	},
 	yb033_yuqi:function(player){

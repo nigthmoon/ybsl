@@ -4,7 +4,7 @@ export { dynamicTranslate }
 const dynamicTranslate = {
     North_smk_shangying:function(player){
         var str='锁定技。1.回合开始/结束时，若场上有武器牌，你选择1个获得之。2.当你于一回合内使用或打出第X张牌时，你摸X张牌。3.若X不小于1/2/3/4/5，你拥有';
-        var list=['〖涯角〗（OL）','〖挑衅〗（OL界）','〖咆哮〗（OL界）','〖铁骑〗（OL界）','〖武圣〗（OL界）'];
+        var list=[`${get.poptip('olyajiao')}`, `${get.poptip('oltiaoxin')}`, `${get.poptip('olpaoxiao')}`, `${get.poptip('retieji')}`, `${get.poptip('new_rewusheng')}`];
         // if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
         // if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
         // if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';
