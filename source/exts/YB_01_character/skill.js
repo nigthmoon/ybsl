@@ -1160,8 +1160,8 @@ const skill = {
 		mark:true,
 		intro:{
 			content:function(storage,player){//<br><span class="yellowtext">注意：此技能不能用于响应其他牌，更不能在别人濒死时用桃选择其为目标！</span>
-				if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阴：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阳：视为使用其中的红色牌并额外执行一次。</span>';
-				return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阴：视为使用其中的黑色牌并额外执行一次；</span>阳：视为使用其中的红色牌并额外执行一次。';
+				if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次。</span>';
+				return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
 			},
 		},
 		init:function(player){
@@ -4701,14 +4701,14 @@ const skill = {
 	yb016_shanbiao:{
 		audio:'ext:夜白神略/audio/character:2',
 		init:function(player,skill){
-			player.storage.yb016_shanbiao=true;
+			player.storage.yb016_shanbiao=false;
 		},
 		zhuanhuanji:true,
 		mark:true,
 		marktext:'☯',
 		intro:{
 			content:function(storage,player,skill){
-				if (player.storage.yb016_shanbiao==true){
+				if (!player.storage.yb016_shanbiao){
 					return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：<span class="bluetext">你摸两张牌</span>；阴，你受到当前回合角色造成的1点伤害。<br><span class="bluetext">你阳状态下，受到的伤害-1</span>；<br>你阴状态下，造成的伤害-1。';
 				}
 				return '锁定技，转换技，回合结束时或当你武将牌翻面时，阳：你摸两张牌；阴，<span class="bluetext">你受到当前回合角色造成的1点伤害</span>。<br>你阳状态下，受到的伤害-1；<br><span class="bluetext">你阴状态下，造成的伤害-1</span>。';

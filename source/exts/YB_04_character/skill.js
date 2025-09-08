@@ -4139,8 +4139,20 @@ const skill = {
 		},
 		async precontent(event, trigger, player) {
 			const evt = event.getParent()
-			if (evt.name == 'chooseToRespond' && evt.source || evt.type == 'dying') {
-				const target = evt.name == 'chooseToRespond' && evt.source || evt.dying
+			const filter = evt._backup.filterCard
+			const filterT = evt._backup.filterTarget
+			_status.event = evt
+			const useShan = (function() {
+				if (evt.name != 'chooseToUse') return false
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, evt)) return false
+				if (filter(get.autoViewAs({ name: 'tao' }, 'unsure'), player, evt)) return false
+				if (filter(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, evt)) return false
+				if (!filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, evt)) return false
+				return evt.respondTo && evt.respondTo[0]
+			})()
+			_status.event = event
+			if (evt.name == 'chooseToRespond' && evt.source || evt.type == 'dying' && evt.dying || useShan) {
+				const target = evt.name == 'chooseToRespond' && evt.source || evt.dying || useShan
 				if (player == target || !target.countGainableCards(player, 'he')) return
 				const bool = await player.chooseBool(`获得${get.translation(target)}一张牌或取消摸一张牌`)
 					.set('target', target)
@@ -4150,14 +4162,14 @@ const skill = {
 				return
 			}
 			if (evt.name == 'chooseToRespond') return
+			_status.event = evt
 			const targets = game.filterPlayer(target => {
-				const filter = evt._backup.filterCard
-				const filterT = evt._backup.filterTarget
 				if (player == target || !target.countGainableCards(player, 'he')) return false
 				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, evt) && filterT(get.autoViewAs({ name: 'sha' }, 'unsure'), player, target)) return true
 				if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, evt) && evt.respondTo) return target == evt.respondTo[0]
 				return false
 			})
+			_status.event = event
 			if (!targets.length) return
 			const result = await player.chooseTarget('获得对方一张牌或取消摸一张牌')
 				.set('ai', target => lib.card.shunshou_copy2.ai.result.target(get.player(), target))
@@ -6003,10 +6015,10 @@ const skill = {
 		intro:{
 			content:function(storage,player){
 				if (player.storage.ybsl_shehao==true){
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阴：将此牌置入装备区一个空栏；<span class="bluetext">阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。</span><br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：阳：将此牌置入装备区一个空栏；<span class="bluetext">阴：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。</span><br>此技能选是不转，选否才转。'
 				}
 				else {
-					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阴：将此牌置入装备区一个空栏；</span>阳：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。'
+					return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阳：将此牌置入装备区一个空栏；</span>阴：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。'
 				}
 			}
 		},
