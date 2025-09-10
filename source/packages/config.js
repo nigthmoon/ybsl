@@ -262,8 +262,14 @@ export const config = {
 	"ybsl_shuxing":{
 		"name":"<b>雷火属性加特效</b>",
 		'init': false,
-		'intro': '<font color=\'#ADEAEA\'>开启后雷火属性加特效：<br>火属性传导不解铁索，<br>非传导雷属性对唯一横置角色伤害<span style="text-decoration: line-through;">+1</span>翻倍。',
-	}
+		'intro': '<font color=\'#ADEAEA\'>开启后雷火属性加特效：<br>火属性传导不解铁索，<br>非传导雷属性对唯一横置角色伤害<span style="text-decoration: line-through;">+1</span>翻倍。</font>',
+	},
+	"ybsl_du":{
+		"name":"<b>毒改（开关重启生效）</b>",
+		init:false,
+		intro:'<font color=\'#ADEAEA\'>开启后，毒将分为两种用间和ol，ol的毒相较于用间：<br>出牌阶段具有时点（无使用效果）；<br>摸牌获得时不能赠出。</font>'
+
+	},
 
 }
 

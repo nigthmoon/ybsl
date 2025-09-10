@@ -4128,6 +4128,31 @@ const skill = {
 			}
 		},
 		enable : ['chooseToUse', 'chooseToRespond'],
+		onChooseToUse(event) {
+			const filter = (event._backup || event).filterCard
+			const filterTarget = (event._backup || event).filterTarget
+			const player = event.player
+			const useShan = (function() {
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event)) return false
+				if (filter(get.autoViewAs({ name: 'tao' }, 'unsure'), player, event)) return false
+				if (filter(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, event)) return false
+				if (!filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, event)) return false
+				return (event.respondTo || [])[0]
+			})()//防一手“使用一张【闪】或【杀】”这种神秘的技能
+			if (useShan) return void (event.Fe2O3_bayun_target = useShan)
+			if (event.type == 'dying' && event.dying) return void (event.Fe2O3_bayun_target = event.dying)
+			event.Fe2O3_bayun_target = game.filterPlayer(target => {
+				if (player == target || !target.countGainableCards(player, 'he')) return false
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event) && filterTarget(get.autoViewAs({ name: 'sha' }, 'unsure'), player, target)) return true
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event) && filterTarget(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, target)) return true
+				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event) && filterTarget(get.autoViewAs({ name: 'tao' }, 'unsure'), player, target)) return true
+				if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, event)) return target == (event.respondTo || [])[0]
+				return false
+			})//预判一手有人会把【酒】【桃】改成对一名角色使用，多判断一下，【闪】。。。就不判断了吧
+		},
+		onChooseToRespond(event) {
+			event.Fe2O3_bayun_target = event.source || (event.respondTo || [])[0]
+		},
 		filter(event, player) {
 			const filter = event.filterCard
 			if (player.hasSkill('Fe2O3_bayun_1')) return false
@@ -4137,22 +4162,15 @@ const skill = {
 			if (filter(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, event)) return true
 			return false
 		},
+		prompt(event) {
+			const target = event.Fe2O3_bayun_target
+			if (get.itemtype(target) == 'player') return `摸一张牌或获得${get.translation(target)}一张牌并发动${get.poptip('ollongdan')}或令此技能本回合失效`
+			if (get.itemtype(target) == 'players') return `摸一张牌或获得一名角色一张牌以发动${get.poptip('ollongdan')}（对其）使用一张牌或令此技能本回合失效`
+			return `摸一张牌以发动${get.poptip('ollongdan')}或令此技能本回合失效`
+		},
 		async precontent(event, trigger, player) {
-			const evt = event.getParent()
-			const filter = evt._backup.filterCard
-			const filterT = evt._backup.filterTarget
-			_status.event = evt
-			const useShan = (function() {
-				if (evt.name != 'chooseToUse') return false
-				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, evt)) return false
-				if (filter(get.autoViewAs({ name: 'tao' }, 'unsure'), player, evt)) return false
-				if (filter(get.autoViewAs({ name: 'jiu' }, 'unsure'), player, evt)) return false
-				if (!filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, evt)) return false
-				return evt.respondTo && evt.respondTo[0]
-			})()
-			_status.event = event
-			if (evt.name == 'chooseToRespond' && evt.source || evt.type == 'dying' && evt.dying || useShan) {
-				const target = evt.name == 'chooseToRespond' && evt.source || evt.dying || useShan
+			const target = event.getParent().Fe2O3_bayun_target
+			if (get.itemtype(target) == 'player') {
 				if (player == target || !target.countGainableCards(player, 'he')) return
 				const bool = await player.chooseBool(`获得${get.translation(target)}一张牌或取消摸一张牌`)
 					.set('target', target)
@@ -4161,22 +4179,14 @@ const skill = {
 				if (bool) event.result.targets = [target]
 				return
 			}
-			if (evt.name == 'chooseToRespond') return
-			_status.event = evt
-			const targets = game.filterPlayer(target => {
-				if (player == target || !target.countGainableCards(player, 'he')) return false
-				if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, evt) && filterT(get.autoViewAs({ name: 'sha' }, 'unsure'), player, target)) return true
-				if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, evt) && evt.respondTo) return target == evt.respondTo[0]
-				return false
-			})
-			_status.event = event
-			if (!targets.length) return
-			const result = await player.chooseTarget('获得对方一张牌或取消摸一张牌')
-				.set('ai', target => lib.card.shunshou_copy2.ai.result.target(get.player(), target))
-				.set('targets', targets)
-				.set('filterTarget', (card, player, target) => get.event().targets.includes(target))
-				.forResult()
-			if (result.bool) event.result.targets = result.targets
+			if (get.itemtype(target) == 'players') {
+				const result = await player.chooseTarget('获得一名角色一张牌或取消摸一张牌')
+					.set('ai', target => lib.card.shunshou_copy2.ai.result.target(get.player(), target))
+					.set('targets', target)
+					.set('filterTarget', (card, player, target) => get.event().targets.includes(target))
+					.forResult()
+				if (result.bool) event.result.targets = result.targets
+			}
 		},
 		async content(event, trigger, player) {
 			const target = (event.targets || [])[0]
