@@ -88,13 +88,13 @@ const YBSL_special = function () {
 			lib.skill.olshilu.audioname2.ybsl_wangbi = 'ybsl_shilu';
 			lib.skill.olshilu.audioname2.ybnb_wangbi = 'ybsl_shilu';
 			// var listx=clan_list;
-			for (var i in lib.character) {
-				// if(lib.character[i]['names'])
-				if (get.characterSurname(i).randomGet()[0] == '陆') {
-					// if(!lib.character[i].clans)lib.character[i][4].push('clan:吴郡陆氏')
-					lib.character[i][4].push('clan:吴郡陆氏')
-				}
-			}
+			// for (var i in lib.character) {
+			// 	// if(lib.character[i]['names'])
+			// 	if (get.characterSurname(i).randomGet()[0] == '陆') {
+			// 		// if(!lib.character[i].clans)lib.character[i][4].push('clan:吴郡陆氏')
+			// 		lib.character[i][4].push('clan:吴郡陆氏')
+			// 	}
+			// }
 		})
 		// lib.skill._ybsl_tiandu_audio={
 		// 	direct:true,

@@ -13,6 +13,7 @@ import { YBSL_update }from './precontent/YB_09_update.js'
 import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 import { typeimage } from './function.js'
+// import { sgstrxs } from '../sgstrxs.js';
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// const scriptPaths=[
@@ -78,6 +79,10 @@ export async function precontent() {
 		// lib.translate['zhenfa_card_config']='阵法牌'
 
 	}
+	// lib.translate['sgstrxs_mode_config'] = '同人'
+	// {
+	// 	lib.init.js(lib.assetURL+'extension/夜白神略/source/sgstrxs',sgstrxs)
+	// }
 	{//css
 		var nor=lib.assetURL+'extension/夜白神略/source/css';
 		lib.init.css(nor,'ybcss')
@@ -1270,6 +1275,7 @@ export async function precontent() {
 	})
 
 
+
 	lib.arenaReady.push(function () {
 		if (lib.config.extension_云中守望_enable==true) {
 			lib.character['dzsl_014liutianyu'].isUnseen=true
@@ -1326,4 +1332,5 @@ export async function precontent() {
 	// 		}
 	// 	}	
 	// })
+
 }
