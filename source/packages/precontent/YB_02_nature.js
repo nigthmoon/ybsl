@@ -371,6 +371,11 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('魔')}`
 			},
 		})
+		lib.namePrefix.set('阴间乐',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('乐')}`
+			},
+		})
 
 
 

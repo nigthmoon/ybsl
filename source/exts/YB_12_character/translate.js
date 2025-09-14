@@ -500,6 +500,27 @@ const translate = {
 	sgsxjxfzmnl_scsmiaoyu: "妙语",
 	sgsxjxfzmnl_scsmiaoyu_info: "你可以将一张♥牌当【桃】、♦牌当火【杀】、♣牌当【闪】、♠牌当【无懈可击】使用（没写打出，但根据后文以及剧情，应该是有的）。当你以此法使用或打出牌时，你获得一名任意角色牌（没说可，就当可吧）",
 
+	sgsxjxfzmnl_yue_caiwenji: "阴间乐蔡琰",
+	sgsxjxfzmnl_yue_caiwenji_prefix: "阴间乐",
+	sgsxjxfzmnl_dcshuangjia: "霜笳",
+	// sgsxjxfzmnl_dcshuangjia_tag: "胡笳",//不必要
+	sgsxjxfzmnl_dcshuangjia_info: '锁定技。①游戏开始，你将初始手牌标记为“胡笳”。②你的“胡笳”牌不计入手牌上限。③其他角色至你的距离+X（X为你的“胡笳”数且<span style="text-decoration: line-through;">至多为5</span>无上限）④结束阶段，你可以将所有手牌标记为“胡笳”。',
+	sgsxjxfzmnl_dcbeifen: "悲愤",
+	sgsxjxfzmnl_dcbeifen_info: "锁定技。①当你失去牌后，若这些牌中有“胡笳”牌，你获得本次失去牌中“胡笳”牌花色均不同的每种花色的牌各一张。②若你手牌中有“胡笳”牌，你使用牌无距离和次数限制。",
+
+	sgsxjxfzmnl_liuyan:'阴间刘焉',
+	sgsxjxfzmnl_liuyan_prefix:'阴间',
+	sgsxjxfzmnl_tushe:'图射',
+	sgsxjxfzmnl_tushe_info:'当你使用牌指定目标后，若你没有基本牌，则你可以摸X张牌（X为此牌指定的目标数）',
+	sgsxjxfzmnl_limu:'立牧',
+	sgsxjxfzmnl_limu_info:'出牌阶段，你可以将一张牌当【乐不思蜀】对任意角色使用，然后恢复一点体力；你判定区有牌时，你对其他角色使用牌没有次数和距离限制。',
+
+
+
+
+
+
+
 
 
 

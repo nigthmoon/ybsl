@@ -34,7 +34,8 @@ const characterSort = {
 			'sgsxjxfzmnl_mo_diaochan','sgsxjxfzmnl_wangyuanji',
 			'sgsxjxfzmnl_shen_guojia','sgsxjxfzmnl_wenyang',
 			'sgsxjxfzmnl_re_jushou','sgsxjxfzmnl_shen_ganning',
-			'sgsxjxfzmnl_shichangshi'
+			'sgsxjxfzmnl_shichangshi','sgsxjxfzmnl_yue_caiwenji',
+			'sgsxjxfzmnl_liuyan',
 		],
 		zzrsqlkjygzz:[
 			'zzrsqlkjygzz_shen_guanyu','zzrsqlkjygzz_shen_zhangjiao',

@@ -133,9 +133,10 @@ const character = { //武将格式 :
 		group: "qun",
 		hp: 1,
 		skills: ["sgsxjxfzmnl_mbdanggu", "sgsxjxfzmnl_mbmowang"],
-		trashBin: ["sex:male_castrated",'unseen'],
+		trashBin: ["sex:male_castrated"],
 		names: "张|让-赵|忠-孙|璋-毕|岚-夏|恽-韩|悝-栗|嵩-段|珪-郭|胜-高|望",
 		linkTo:'shichangshi',
+		isUnseen:true,
 	},
 	sgsxjxfzmnl_scs_zhangrang_dead:['male','qun',0,['sgsxjxfzmnl_scstaoluan'],['unseen','sex:male_castrated','tempname:scs_zhangrang','linkTo:scs_zhangrang','name:张|让']],
 	sgsxjxfzmnl_scs_zhaozhong_dead:['male','qun',0,['sgsxjxfzmnl_scschiyan'],['unseen','sex:male_castrated','tempname:scs_zhaozhong','linkTo:scs_zhaozhong','name:赵|忠']],
@@ -148,8 +149,8 @@ const character = { //武将格式 :
 	sgsxjxfzmnl_scs_guosheng_dead:['male','qun',0,['sgsxjxfzmnl_scsniqu'],['unseen','sex:male_castrated','tempname:scs_guosheng','linkTo:scs_guosheng','name:郭|胜']],
 	sgsxjxfzmnl_scs_gaowang_dead:['male','qun',0,['sgsxjxfzmnl_scsmiaoyu'],['unseen','sex:male_castrated','tempname:scs_gaowang','linkTo:scs_gaowang','name:高|望']],
 
-
-
+	sgsxjxfzmnl_yue_caiwenji:['female','qun',3,["sgsxjxfzmnl_dcshuangjia", "sgsxjxfzmnl_dcbeifen"],['rankAdd:legend','rankS:s','linkTo:yue_caiwenji','YB_mjz:yue_caiwenji','tempname:yue_caiwenji','name:蔡|琰']],
+	sgsxjxfzmnl_liuyan:['male','qun',3,['sgsxjxfzmnl_tushe','sgsxjxfzmnl_limu'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],
 
 
 
