@@ -346,6 +346,36 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('魔')}`
 			},
 		})
+		lib.namePrefix.set('阴间',{
+			showName:'阴',
+			color:'#E6E6FA   ',
+			nature:'black',
+		})
+		lib.namePrefix.set('阴间界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('阴间谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('阴间神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('阴间魔',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('魔')}`
+			},
+		})
+
+
+
+
+		
 		lib.namePrefix.set('氪',{
 			showName:'氪',
 			color:'#ff0',

@@ -54,12 +54,30 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		translate:translate,//翻译（必填） 
 		dynamicTranslate:dynamicTranslate,
 		
+		characterSubstitute: {
+			sgsxjxfzmnl_shichangshi: [["sgsxjxfzmnl_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_zhangrang: [["sgsxjxfzmnl_scs_zhangrang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_zhaozhong: [["sgsxjxfzmnl_scs_zhaozhong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_sunzhang: [["sgsxjxfzmnl_scs_sunzhang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_bilan: [["sgsxjxfzmnl_scs_bilan_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_bilan_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_xiayun: [["sgsxjxfzmnl_scs_xiayun_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_xiayun_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_hankui: [["sgsxjxfzmnl_scs_hankui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_hankui_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_lisong: [["sgsxjxfzmnl_scs_lisong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_lisong_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_duangui: [["sgsxjxfzmnl_scs_duangui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_guosheng: [["sgsxjxfzmnl_scs_guosheng_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_gaowang: [["sgsxjxfzmnl_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
+		},
 	}; 
 	// for(var i in sgstrxs.character){
 	// 	if(sgstrxs.character[i][4])sgstrxs.character[i][4].push(`ext:夜白神略/image/ybsl003/${i}.jpg`);
 	// 	else sgstrxs.character[i].img=`extension/夜白神略/image/ybsl003/${i}.jpg`;
 	// } 
 	typeimage(sgstrxs,'ybsl012')
+	// for(var k in sgstrxs.characterSubstitute){
+	// 	for(var i in sgstrxs.characterSubstitute[k]){
+	// 		sgstrxs.characterSubstitute[k][i][1].push(`ext:夜白神略/image/ybsl012/${sgstrxs.characterSubstitute[k][i][0]}.jpg`);
+	// 	}
+	// }
 	for(var i in sgstrxs.card){
 		if(!sgstrxs.card[i].image) sgstrxs.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}

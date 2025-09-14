@@ -107,6 +107,31 @@ const character = { //武将格式 :
 	sgsxjxfzmnl_wenyang:['male','wei',4,['sgsxjxfzmnl_quedi','sgsxjxfzmnl_chuifeng','sgsxjxfzmnl_chongjian','dbchoujue'],['rankAdd:legend','rankS:s','linkTo:db_wenyang','YB_mjz:db_wenyang','tempname:db_wenyang','doublegroup:wei:wu']],
 	sgsxjxfzmnl_re_jushou:['male','qun','2/3/3',['sgsxjxfzmnl_rejianying','sgsxjxfzmnl_reshibei'],['rankAdd:legend','rankS:s','linkTo:xin_jushou','YB_mjz:xin_jushou','tempname:xin_jushou']],
 	sgsxjxfzmnl_shen_ganning:['male','shen','3/6',['sgsxjxfzmnl_drltpoxi','sgsxjxfzmnl_drltjieying'],['rankAdd:legend','rankS:s','linkTo:shen_ganning','YB_mjz:shen_ganning','tempname:shen_ganning','wu']],
+	sgsxjxfzmnl_shichangshi:{
+		sex: "male",
+		group: "qun",
+		hp: 1,
+		skills: ["sgsxjxfzmnl_mbdanggu", "sgsxjxfzmnl_mbmowang"],
+		trashBin: ["sex:male_castrated"],
+		names: "张|让-赵|忠-孙|璋-毕|岚-夏|恽-韩|悝-栗|嵩-段|珪-郭|胜-高|望",
+		linkTo:'shichangshi',
+		// YB_mjz:'shichangshi',
+	},
+	sgsxjxfzmnl_scs_zhangrang:['male','qun',0,['sgsxjxfzmnl_scstaoluan'],['unseen','sex:male_castrated','tempname:scs_zhangrang','linkTo:scs_zhangrang','name:张|让']],
+	sgsxjxfzmnl_scs_zhaozhong:['male','qun',0,['sgsxjxfzmnl_scschiyan'],['unseen','sex:male_castrated','tempname:scs_zhaozhong','linkTo:scs_zhaozhong','name:赵|忠']],
+	sgsxjxfzmnl_scs_sunzhang:['male','qun',0,['sgsxjxfzmnl_scszimou'],['unseen','sex:male_castrated','tempname:scs_sunzhang','linkTo:scs_sunzhang','name:孙|璋']],
+	sgsxjxfzmnl_scs_bilan:['male','qun',0,['sgsxjxfzmnl_scspicai'],['unseen','sex:male_castrated','tempname:scs_bilan','linkTo:scs_bilan','name:毕|岚']],
+	sgsxjxfzmnl_scs_xiayun:['male','qun',0,['sgsxjxfzmnl_scsyaozhuo'],['unseen','sex:male_castrated','tempname:scs_xiayun','linkTo:scs_xiayun','name:夏|恽']],
+	sgsxjxfzmnl_scs_hankui:['male','qun',0,['sgsxjxfzmnl_scsxiaolu'],['unseen','sex:male_castrated','tempname:scs_hankui','linkTo:scs_hankui','name:韩|悝']],
+	sgsxjxfzmnl_scs_lisong:['male','qun',0,['sgsxjxfzmnl_scskuiji'],['unseen','sex:male_castrated','tempname:scs_lisong','linkTo:scs_lisong','name:栗|嵩']],
+	sgsxjxfzmnl_scs_duangui:['male','qun',0,['sgsxjxfzmnl_scschihe'],['unseen','sex:male_castrated','tempname:scs_duangui','linkTo:scs_duangui','name:段|珪']],
+	sgsxjxfzmnl_scs_guosheng:['male','qun',0,['sgsxjxfzmnl_scsniqu'],['unseen','sex:male_castrated','tempname:scs_guosheng','linkTo:scs_guosheng','name:郭|胜']],
+	sgsxjxfzmnl_scs_gaowang:['male','qun',0,['sgsxjxfzmnl_scsmiaoyu'],['unseen','sex:male_castrated','tempname:scs_gaowang','linkTo:scs_gaowang','name:高|望']],
+	
+
+
+
+
 
 
 

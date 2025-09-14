@@ -100,6 +100,7 @@ const character = { //武将格式 :
 		group : 'wei',
 		hp : 3,
 		skills : ['zxunnamed_qinglan', 'zxunnamed_lingbo'],
+		linkTo:'zhenji',
 	},//甄宓
 	Fe2O3_zixu : {
 		group : 'qun',
@@ -112,20 +113,23 @@ const character = { //武将格式 :
 		group : 'wei',
 		sex : 'male',
 		hp : 4,
-		skills : ['Fe3O4_jinxiao', 'Fe3O4_danji']
+		skills : ['Fe3O4_jinxiao', 'Fe3O4_danji'],
+		linkTo:'guanyu'
 	},//关羽
 	Fe2O3_zhugeliang : {
 		group : 'shu',
 		sex : 'male',
 		hp : 3,
 		skills : ['Fe2O3_guanji', 'Fe2O3_weixuan'],
-		names : '诸葛|亮'
+		names : '诸葛|亮',
+		linkTo:'zhugeliang'
 	},//诸葛亮
 	Fe2O3_zhaoyun : {
 		group : 'shu',
 		sex : 'male',
 		hp : 4,
-		skills : ['Fe2O3_bayun']
+		skills : ['Fe2O3_bayun'],
+		linkTo:'zhaoyun',
 	},
 	
 	
