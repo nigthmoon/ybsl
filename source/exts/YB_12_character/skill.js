@@ -5997,8 +5997,8 @@ const skill = {
 			["sgsxjxfzmnl_scs_gaowang", "sgsxjxfzmnl_scsmiaoyu"],
 		],
 		conflictMap(player) {
-			if (!_status.changshiMap) {
-				_status.changshiMap = {
+			if (!_status.sgsxjxfzmnl_changshiMap) {
+				_status.sgsxjxfzmnl_changshiMap = {
 					sgsxjxfzmnl_scs_zhangrang: [],
 					sgsxjxfzmnl_scs_zhaozhong: [],
 					sgsxjxfzmnl_scs_sunzhang: [],
@@ -6018,7 +6018,7 @@ const skill = {
 				// 	}
 				// }
 			}
-			return _status.changshiMap;
+			return _status.sgsxjxfzmnl_changshiMap;
 		},
 		async content(event, trigger, player) {
 			const list = lib.skill.sgsxjxfzmnl_mbdanggu.changshi.map(i => i[0]);
