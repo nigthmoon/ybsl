@@ -15909,7 +15909,7 @@ const skill = {
 					return [1,1,1,0];
 				},
 			}],
-			['·调整手牌至4张',{
+			['·调整手牌至四张',{
 				content:function(player,target){
 					target.YB_changeHandCard(4);
 				},

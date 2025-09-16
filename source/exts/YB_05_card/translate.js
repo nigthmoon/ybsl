@@ -133,7 +133,7 @@ const translate = {
 	'ybsl_tututu_info':'出牌阶段，对一名其他角色使用，你展示牌堆顶X张牌，依次对其使用其中所有的【杀】，然后将剩余的牌置入弃牌堆。（X为存活角色数且至少为4，至多为10）。',
 	'ybsl_qiuxianruoke':'求贤若渴',
 	'ybsl_qiuxianruoke_bg':'募',
-	'ybsl_qiuxianruoke_info':'出牌阶段，对自己使用，你声明一个花色及类别，然后亮出牌堆顶3张牌，你获得与你声明相符的牌。若有两项皆满足的牌，你回复1点体力。',
+	'ybsl_qiuxianruoke_info':'出牌阶段，对自己使用，你声明一个花色及类别，然后亮出牌堆顶三张牌，你获得与你声明相符的牌。若有两项皆满足的牌，你回复1点体力。',
 	'ybsl_qiuxianruoke_append':'山不厌高，海不厌深，周公吐哺，天下归心。<br>——曹操《短歌行》，',
 	'ybsl_mixianshenshu':'弥仙神术',//达成
 	'ybsl_mixianshenshu_info':'出牌阶段，对一名任意角色使用，改变目标的势力。可重铸。',

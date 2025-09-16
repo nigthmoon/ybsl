@@ -1028,7 +1028,7 @@ const skill = {
 				content() {
 					"step 0";
 					player
-						.chooseTarget("救陷：令你或攻击范围内一名角色回复1点体力并摸2张牌？", (card, player, target) => {
+						.chooseTarget("救陷：令你或攻击范围内一名角色回复1点体力并摸两张牌？", (card, player, target) => {
 							if (_status.event.player == target) {
 								return true;
 							}

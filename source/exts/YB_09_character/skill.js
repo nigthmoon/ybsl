@@ -495,7 +495,7 @@ const skill = {
 			return player.countMark('North_yhy_minzeng_min')>0||player.countMark('North_yhy_minzeng_zeng')>0;
 		},
 		nobracket:true,
-		'prompt2':'拥有「悯」的角色，回合开始前回复1点体力，摸1张牌，回合结束后摸2张牌，回合手牌上限＋2。拥有「憎」的角色，回合开始前流失1点体力，手牌上限-2。',
+		'prompt2':'拥有「悯」的角色，回合开始前回复1点体力，摸一张牌，回合结束后摸二张牌，回合手牌上限＋2。拥有「憎」的角色，回合开始前流失1点体力，手牌上限-2。',
 		content:function(){
 			if(event.triggername=='phaseBegin'){
 				if(player.countMark('North_yhy_minzeng_min')>0){
@@ -802,7 +802,7 @@ const skill = {
 			else{event.count=1;}
 			'step 1'
 			event.count--;
-			player.chooseTarget([1,3],get.prompt2('每当你回合开始前或回合外受到一点伤害后，你可令至多3名角色依次摸3张牌并弃1张牌，再令至多3名角色进入横置状态'),function(card,player,target){
+			player.chooseTarget([1,3],get.prompt2('每当你回合开始前或回合外受到一点伤害后，你可令至多3名角色依次摸三张牌并弃一张牌，再令至多3名角色进入横置状态'),function(card,player,target){
 				return true;//target.countCards('h')<Math.min(target.maxHp,5);
 			}).set('ai',function(target){
 				var att=get.attitude(_status.event.player,target);
@@ -822,7 +822,7 @@ const skill = {
 			'step 3'
 			delete result.targets;
 			'step 4'
-			player.chooseTarget([1,3],get.prompt2('每当你回合开始前或回合外受到一点伤害后，你可令至多3名角色依次摸3张牌并弃1张牌，再令至多3名角色进入横置状态'),function(card,player,target){
+			player.chooseTarget([1,3],get.prompt2('每当你回合开始前或回合外受到一点伤害后，你可令至多3名角色依次摸三张牌并弃一张牌，再令至多3名角色进入横置状态'),function(card,player,target){
 				return true;//target.countCards('h')<Math.min(target.maxHp,5);
 			}).set('ai',function(target){
 				var att=get.attitude(_status.event.player,target);
@@ -2575,8 +2575,8 @@ const skill = {
 		intro:{
 			content:function(storage,player,skill){
 				var str='';
-				if(player.storage.North_bmh_huanchao_ben==true) str+='限定技。转换技。出牌阶段，你可弃置3张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次流失X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
-				else str+='限定技。转换技。出牌阶段，你可弃置3张不同类型的牌，并执行，阳：令拥有“献”的角色依次回复X点体力；<span class=thundertext>阴：令拥有“率”的角色依次流失X点体力</span>。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
+				if(player.storage.North_bmh_huanchao_ben==true) str+='限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次流失X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
+				else str+='限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，阳：令拥有“献”的角色依次回复X点体力；<span class=thundertext>阴：令拥有“率”的角色依次流失X点体力</span>。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
 				str+='<br>当前已使用';
 				str+=player.countMark('North_bmh_huanchao_mark');
 				str+='次';
@@ -2852,7 +2852,7 @@ const skill = {
 			player.chooseTarget().set('ai',function(target){
 				var att=get.attitude(player,target);
 				return att>0;
-			}).set('prompt2',str+'你可以指定1名角色回复1点体力和摸3张牌并选择令其①出牌阶段后额外获得1个摸牌阶段②弃牌阶段结束后额外获得1个出牌阶段③废除判定区。');
+			}).set('prompt2',str+'你可以指定1名角色回复1点体力和摸三张牌并选择令其①出牌阶段后额外获得1个摸牌阶段②弃牌阶段结束后额外获得1个出牌阶段③废除判定区。');
 			'step 1'
 			if(result.targets){
 				result.targets[0].recover();
@@ -3958,7 +3958,7 @@ const skill = {
 				};
 			},
 			prompt:function (links,player){
-				return '你可将“玉娉”全部置入“婷袅”，视为使用1张非延时锦囊牌；你可弃置所有的“婷袅”，视为使用1张基本牌。';
+				return '你可将“玉娉”全部置入“婷袅”，视为使用一张非延时锦囊牌；你可弃置所有的“婷袅”，视为使用一张基本牌。';
 			},
 		},
 		ai:{
@@ -3979,8 +3979,8 @@ const skill = {
 		intro:{
 			content:function(storage,player,skill){
 				var str='';
-				if(player.storage.North_shh_yuniao==true) str+='转换技。回合结束时，<span class=thundertext>阳：你可获得1名角色1张牌，然后对该角色造成1点火属性伤害</span>；阴：你可交给1名角色1张牌，然后对该角色造成1点伤害。';
-				else str+='转换技。回合结束时，阳：你可获得1名角色1张牌，然后对该角色造成1点火属性伤害；<span class=thundertext>阴：你可交给1名角色1张牌，然后对该角色造成1点伤害</span>。';
+				if(player.storage.North_shh_yuniao==true) str+='转换技。回合结束时，<span class=thundertext>阳：你可获得1名角色一张牌，然后对该角色造成1点火属性伤害</span>；阴：你可交给1名角色一张牌，然后对该角色造成1点伤害。';
+				else str+='转换技。回合结束时，阳：你可获得1名角色一张牌，然后对该角色造成1点火属性伤害；<span class=thundertext>阴：你可交给1名角色一张牌，然后对该角色造成1点伤害</span>。';
 				return str;
 			},
 		},
@@ -3990,12 +3990,12 @@ const skill = {
 			'step 0'
 			if(player.storage.North_shh_yuniao==true){
 				var fil=function(card,player,target){return target.countCards('he')>0;}
-				var str='你可获得1名角色1张牌，然后对该角色造成1点火属性伤害';
+				var str='你可获得1名角色一张牌，然后对该角色造成1点火属性伤害';
 				var nat='fire'
 			}
 			else {
 				var fil=function(card,player,target){return player.countCards('he')>0;}
-				var str='你可交给1名角色1张牌，然后对该角色造成1点伤害';
+				var str='你可交给1名角色一张牌，然后对该角色造成1点伤害';
 				var nat=null
 			}
 			player.chooseTarget(1,fil).set('prompt',str).set('ai',function(target){

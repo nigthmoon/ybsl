@@ -12,11 +12,12 @@ const skill = {
 		content: function () {
 			"step 0";
 			if (get.itemtype(trigger.cards) == "cards" && get.position(trigger.cards[0], true) == "o") {
-				player.gain(trigger.cards, "gain2");
+				player.gain(trigger.cards);
 			}
+			"step 1"
 			var num=player.storage.ybmjz_jianxiong_gai?player.getDamagedHp():trigger.num;
-			if(num<1)num=1;
-			player.draw("nodelay",num);
+			if(num<1) num=1;
+			player.draw(num);
 		},
 		ai: {
 			maixie: true,
@@ -47,6 +48,7 @@ const skill = {
 			},
 			gaix:{
 				name:'奸雄',
+				locked : true,
 				mark:true,
 				intro:{
 					content:function(storage,player,skill){
@@ -210,18 +212,26 @@ const skill = {
 					var str = '是否将'+get.translation(cards)+'置于'+get.translation(list);
 					if (list.length > 1) str += "其中一人";
 					str+='的武将牌上';
-					event.result = await player.chooseTarget(function(card,player,target){
-						return target.hasSkill("ybmjz_hujia_zhishuo");
-					})
-						.set('prompt',str)
-						.set('ai',function(target){
-							return get.attitude(player,target)>5;
-						})
-						.forResult();
+					if (list.length == 1) {
+						event.result = await player.chooseBool(str)
+							.set('ai', () => get.attitude2(get.event('target')) > 3)
+							.set('target', list[0])
+							.forResult()
+						event.result.targets = list
+					}
+					else {
+						event.result = await player.chooseTarget()
+							.set('filterTarget', (card, player, target) => target.hasSkill("ybmjz_hujia_zhishuo"))
+							.set('prompt',str)
+							.set('ai', target => get.attitude(player,target) > 5)
+							.forResult()
+					}
 				},
+				popup : false,
 				content(){
-					player.logSkill("ybmjz_hujia_zhishuo",event.targets[0]);
-					event.targets[0].addToExpansion(trigger.cards, "giveAuto", event.targets[0]).gaintag.add("ybmjz_hujia_zhishuo");
+					const target = event.targets[0]
+					player.logSkill(target.hasSkill('ybmjz_hujia') ? "ybmjz_hujia" : 'ybmjz_zhishuo', target);
+					event.targets[0].addToExpansion(trigger.cards, "giveAuto", target).gaintag.add("ybmjz_hujia_zhishuo");
 				}
 			},
 			txgx:{
@@ -305,7 +315,7 @@ const skill = {
 				audio:'ybmjz_hujia',
 				direct:true,
 				// popup:true,
-				character:true,
+				charlotte:true,
 				trigger:{
 					player:'useCard',
 					global:'damageEnd',
@@ -472,15 +482,17 @@ const skill = {
 			return game.filterPlayer(k=>k!=player&&k.countGainableCards(player,"he"));
 		},
 		async cost(event, trigger, player) {
+			if (trigger.source!=player&&trigger.source?.countGainableCards(player,"he")) trigger.source.prompt('伤害来源')
 			event.result = await player.chooseTarget(function(card,player,target){
 				return target!=player&&target.countGainableCards(player,"he")
 			})
-			// .set("att", get.attitude(player, trigger.source))
+			.set("source", trigger.source)
 			.set('ai',function(target){
-				var att=get.attitude(_status.event.player,target);
-				if(trigger.source&&trigger.source==target&&att<0)att-=3; 
+				var att=get.attitude2(target);
+				if(get.event().source&&get.event().source==target&&att<0)att-=3; 
 				return -att;
 			})
+			.set('prompt', get.prompt2('ybmjz_fankuix'))
 			.forResult();
 		},
 		// logTarget: "source",
@@ -2288,7 +2300,7 @@ const skill = {
 				player.storage.ybmjz_mumuxx_list = lib.skill.ybmjz_mumuxx.list.slice();
 			}
 		},
-		selectCard:() =>[1,get.player().storage.ybmjz_mumuxx_list.length||1],
+		selectCard:() =>[0,get.player().storage.ybmjz_mumuxx_list.length||1],
 		filterCard:true,
 		position: "he",
 		filter(event,player){
@@ -2307,7 +2319,7 @@ const skill = {
 		// },
 		filterTarget(card,player,target){
 			var num = ui.selected.cards.length;
-			if(num==0)return false;
+			if(num==0)return 0;
 			else {
 				var list = player.storage.ybmjz_mumuxx_list;
 				return list[num-1][1].filterTarget(card, player, target);
@@ -2315,23 +2327,37 @@ const skill = {
 		},
 		selectTarget(card,player,target){
 			var num = ui.selected.cards.length;
-			if(num==0)return 1;
+			if(num==0)return 0;
 			else {
 				var list = get.player().storage.ybmjz_mumuxx_list;
-				return list[num-1][1].selectTarget;
+				var select = get.select(list[num-1][1].selectTarget)
+				if (select[0] > 0) select[0] = 0
+				return select
 			}
 		},
 		filterOk() {
 			const event = get.event()
-			if (!event.isMine()) return true
+			const player = get.player()
+			const ok = ui.selected.cards.length && ui.selected.targets.length >= get.select(player.storage.ybmjz_mumuxx_list[ui.selected.cards.length - 1][1].selectTarget)[0]
+			if (!event.isMine()) return ok
 			if (event.ybmjz_mumuxx === undefined) event.ybmjz_mumuxx = ui.selected.cards.length
 			if (event.ybmjz_mumuxx != ui.selected.cards.length) {
+				event.ybmjz_mumuxx = ui.selected.cards.length
 				game.uncheck('target')
 				game.check()
-				event.ybmjz_mumuxx = ui.selected.cards.length
+				var str = '<div><div style="width:100%">出牌阶段，你可弃置x张牌并发动对应项，然后删去此项直到回合结束。<br>';
+				if(player.storage.ybmjz_mumuxx_list){
+					let playerStorageList = player.storage.ybmjz_mumuxx_list.map((i, index) => {
+						return (event.ybmjz_mumuxx == index + 1 ? '<span class="bluetext">' : '<span>') + (index + 1) + '. ' + i[0];
+					}).join('</span><br>');
+					str+=playerStorageList;
+				}
+				str+='</span><br>x为此对应的第几项。';
+				if (ui.dialog && player == game.me) ui.dialog.content.childNodes[1].innerHTML = str
+				ui.update()
 				return false
 			}
-			return true
+			return ok
 		},
 		content(){
 			var num = event.cards.length;
@@ -2359,6 +2385,8 @@ const skill = {
 		subSkill:{
 			cl:{
 				direct:true,
+				charlotte : true,
+				silent : true,
 				trigger: {
 					player: ['phaseBefore',"phaseAfter"],
 				},

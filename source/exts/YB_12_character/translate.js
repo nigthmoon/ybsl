@@ -255,7 +255,7 @@ const translate = {
 	qmsgswkjsgj_dawu3: "大雾",
 	qmsgswkjsgj_dawu_info: "结束阶段，你可以弃置X张“星”并指定等量的角色：直到你的下结束阶段开始时，当这些角色受到非雷电伤害时，防止此伤害。",
 	qmsgswkjsgj_guanxing:'观星',
-	qmsgswkjsgj_guanxing_info:'准备阶段，你可以观看牌堆顶的7张牌，然后将其中一张扣置于你的武将牌上称为“星”，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。',
+	qmsgswkjsgj_guanxing_info:'准备阶段，你可以观看牌堆顶的七张牌，然后将其中一张扣置于你的武将牌上称为“星”，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。',
 
 	qmsgswkjsgj_sb_huangzhong:'旧谋黄忠',
 	qmsgswkjsgj_sb_huangzhong_prefix:'旧谋',

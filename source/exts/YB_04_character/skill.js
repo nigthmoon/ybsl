@@ -2263,7 +2263,7 @@ const skill = {
 				trigger: {
 					player: 'phaseDrawAfter'
 				},
-				prompt: '收回所有星，并将至多7张手牌充入星',
+				prompt: '收回所有星，并将至多七张手牌充入星',
 				content: function () {
 					'step 0'
 					player.gain(player.getExpansions('qixing'), 'gain2');
@@ -5334,7 +5334,7 @@ const skill = {
 			var target=event.targets[0];
 			if(!player.storage.ybsl_yedun)player.storage.ybsl_yedun=[];
 			await player.storage.ybsl_yedun.push(target);
-			var list = ['令你摸3张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得【失路】'];
+			var list = ['令你摸三张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得〖失路〗'];
 			event.result2 = await target.chooseControl().set('choiceList',list).set('ai',function(){
 				var att = get.attitude(_status.event.player,player);
 				if(att>0&&player.hp<3)return 0;
@@ -5401,7 +5401,7 @@ const skill = {
 			var target=event.targets[0];
 			if(!player.storage.ybsl_yedunx)player.storage.ybsl_yedunx=[];
 			await player.storage.ybsl_yedunx.push(target);
-			var list = ['令你摸3张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得【失路】（可以获得多个）'];
+			var list = ['令你摸三张牌，然后你本回合不能成为黑色牌目标','令你失去1点体力，然后你本局游戏获得〖失路〗（可以获得多个）'];
 			event.result2 = await target.chooseControl().set('choiceList',list).set('ai',function(){
 				var att = get.attitude(_status.event.player,player);
 				if(att>0&&player.hp<3)return 0;
@@ -6363,7 +6363,7 @@ const skill = {
 			}
 			event.result = await player.chooseTarget(1, function (card, player, target) {
 				return list.includes(target)
-			}).set('prompt', '请选择一名同族角色，令其发动一个出牌阶段限一次的技能').set('ai', function (target) {
+			}).set('prompt', '请选择一名同族角色，令其发动一个“出牌阶段限一次”的技能').set('ai', function (target) {
 				if (list.includes(player)) return target == player;
 				else {
 					return get.attitude(player, target);
@@ -6437,6 +6437,16 @@ const skill = {
 		usable: 1,
 		filterTarget: function (card, player, target) {
 			return player != target && !target.isMinHandcard(); //此函数加true为全场唯一
+		},
+		selectTarget : [0, 1],
+		filterOk() {
+			game.filterPlayer(current => current.unprompt())
+			const target = ui.selected.targets[0]
+			if (!target) return false
+			game.filterPlayer(current => {
+				if (current.countCards() < target.countCards()) current.prompt('使用杀')
+			})
+			return true
 		},
 		content: function* (event, map) {
 			let trigger = map.trigger,

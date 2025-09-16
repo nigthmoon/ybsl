@@ -16,7 +16,7 @@ const dynamicTranslate = {
     },
     ybsl_shipin(player){
         var num = player.getStorage("ybsl_shipin")-0+1;
-        return '锁定技，每回合限'+get.cnNumber(num)+'次，当你成为牌的目标时，或当你使用牌时若目标不包含你，若你手牌数与装备区牌数和不大于1，你展示手牌并获得1点蓄力值，若此牌不为锦囊牌，你弃置之并选择将【堪笑】或【示贫】改为每回合限两次。'
+        return '锁定技，每回合限'+get.cnNumber(num)+'次，当你成为牌的目标时，或当你使用牌时若目标不包含你，若你手牌数与装备区牌数和不大于1，你展示手牌并获得1点蓄力值，若此牌不为锦囊牌，你弃置之并选择将〖堪笑〗或〖示贫〗改为每回合限两次。'
     },
     ybsl_shehao(player){
         if (player.storage.ybsl_shehao==true){
