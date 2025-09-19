@@ -9,6 +9,7 @@ const dynamicTranslate = {
         return '转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；<span class="bluetext">阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。</span>每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
 	},
 	zxunnamed_lingbo : (player, skill) => `转换技，出牌阶段，<span class=${player.storage[skill] ? '' : 'bluetext'}>阳：你可以将一名角色装备区内的牌当做【无中生有】对其使用</span><span class=${player.storage[skill] ? 'bluetext' : ''}>阴：你可以令一名角色将你装备区内的牌当做【杀】使用'</span>。`,
+	ddddssssbbbb_chouxuan : (player, skill) => player.storage[skill].translate || lib.translate[skill + '_info'],
 
     ybsl_kanxiao(player){
         var num = player.getStorage("ybsl_kanxiao")-0+1;
@@ -26,4 +27,13 @@ const dynamicTranslate = {
             return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阳：将此牌置入装备区一个空栏；</span>阴：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。'
         }
     },
+    zxunnamed_huaiyi(player, skill) {
+		const storage = player.storage[skill]
+		const items = player.storage.zxunnamed_huaiyi_items
+		let str = `转换技，出牌阶段限一次，你可以<span class=${storage ? '' : 'bluetext'}>1.弃置两张牌并获得或重置${get.poptip('zxunnamed_shixian')}</span>`
+		let list = [...get.skillInfoTranslation('zxunnamed_shixian', player).matchAll(/(?<=\d\.).*?(?=，\d\.|；)/g)]
+		for (const i in items)
+			str += `，<span class=${storage == Number(i) + 1 ? 'bluetext' : ''}>${Number(i) + 2}.${list[items[i]]}</span>`
+		return str + '。'
+	},
 }

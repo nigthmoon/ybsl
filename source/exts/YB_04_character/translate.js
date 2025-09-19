@@ -102,6 +102,24 @@ const translate = {
 	Fe2O3_bayun : '拔云',
 	Fe2O3_bayun_info : `你可以摸一张牌或获得对方一张牌以发动${get.poptip('ollongdan')}或令此技能本回合失效。`,
 	
+	ddddssssbbbb_dengai : '邓艾',
+	ddddssssbbbb_chouxuan : '筹旋',
+	ddddssssbbbb_chouxuan_info : '锁定技，当你使用一张牌时，若此牌与你上上家使用的上上张牌牌名相同，你选择两项：1.弃置一张牌并选择两项，2.弃置一张牌并令此牌额外结算一次，3.删除“删除一个重复字符串”，摸X张牌，4.删除一个重复字符串，摸X张牌，摸X张牌。（X为已删除的字数/10 + 1）', 
+	
+	zxunnamed_gongsunyuan : '公孙渊',
+	zxunnamed_huaiyi : '怀异',
+	zxunnamed_huaiyi_info : `转换技，出牌阶段限一次，你可以1.弃置两张牌并获得或重置${get.poptip('zxunnamed_shixian')}。`,
+	zxunnamed_shixian : '恃险',
+	zxunnamed_shixian_info : '锁定技，每个时机限一次，结束阶段或当你造成或受到伤害后，你选择一项：1.摸两张牌，2.弃置当前回合角色一张牌，3.失去此技能并执行所有项；然后将此项移动到〖怀异〗末尾。',
+	
+	FeO3_zhugeliang : '诸葛亮',
+	FeO3_dafei : '大飞',
+	FeO3_dafei_info : '当你连续使用牌指定唯一目标后，你可以同时弃置其之间角色一张牌。',
+	FeO3_zhengjie : '争劫',
+	FeO3_zhengjie_info : '你失去牌后，可以视为使用一张【调虎离山】。',
+	FeO3_jinqi : '紧气',
+	FeO3_jinqi_info : '一名角色死亡后，你可以获得本回合弃牌堆不同花色的牌各一张，然后结束当前阶段与当前回合。',
+	
 
 
 

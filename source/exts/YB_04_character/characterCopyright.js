@@ -72,6 +72,9 @@ const characterCopyright = {
 	Fe3O4_guanyu:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	Fe2O3_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	Fe2O3_zhaoyun:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：合<br>♦︎代码撰写者：合<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	ddddssssbbbb_dengai:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：露<br>♦︎代码撰写者：露<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	zxunnamed_gongsunyuan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：霜<br>♦︎代码撰写者：霜<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	FeO3_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：横云<br>♦︎代码撰写者：横云<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	
 	
 	

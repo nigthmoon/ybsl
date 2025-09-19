@@ -130,7 +130,26 @@ const character = { //武将格式 :
 		hp : 4,
 		skills : ['Fe2O3_bayun'],
 		linkTo:'zhaoyun',
-	},
+	},//赵云
+	ddddssssbbbb_dengai : {
+		group : 'wei',
+		sex : 'male',
+		hp : 4,
+		skills : ['ddddssssbbbb_chouxuan']
+	},//邓艾
+	zxunnamed_gongsunyuan : {
+		sex : 'male',
+		group : 'qun',
+		hp : 4,
+		skills : ['zxunnamed_huaiyi'],
+		names : '公孙|渊'
+	},//公孙渊
+	FeO3_zhugeliang : {
+		group : 'shen',
+		hp : 3,
+		skills : ['FeO3_dafei', 'FeO3_zhengjie', 'FeO3_jinqi'],
+		names : '诸葛|亮'
+	},//诸葛亮
 	
 	
 	
