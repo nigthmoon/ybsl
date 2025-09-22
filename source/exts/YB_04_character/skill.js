@@ -6369,7 +6369,7 @@ const skill = {
 			if (hs.length) await player.showCards(hs)
 			player.addCharge()
 			if (hs.length == 1 && get.type2(hs[0]) != 'trick') {
-				player.discard(hs)
+				await player.discard(hs)
 				var list = []
 				if (player.getStorage("ybsl_kanxiao") == 0) list.push("ybsl_kanxiao")
 				if (player.getStorage('ybsl_shipin') == 0) list.push('ybsl_shipin')
