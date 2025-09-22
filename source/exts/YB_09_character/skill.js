@@ -1266,7 +1266,13 @@ const skill = {
 					// return get.type(card)=='equip';
 				// },
 				position:'he',
+				filterCard(card, player) {
+					if (get.type(card) == 'equip') return true
+					return lib.filter.canBeDiscarded(card, player, player)
+				},
 				filterTarget:function(card,player,target){
+					const cardx = ui.selected.cards[0]
+					if (get.type(cardx) == 'equip' && !target.canEquip(cardx, true)) return false
 					return target!=player;
 				},
 				ai1:function(card){
@@ -2953,7 +2959,7 @@ const skill = {
 			'step 0'
 			var numaa=player.storage.North_cjy_lvzhi;
 			if(player.countCards('e')>0){
-				player.choosePlayerCard(player,[1,player.countCards('e')],'e').set('prompt','请选择要弃置的牌').set('prompt2','已因虑至弃置了'+numaa+'装备牌');
+				player.discardPlayerCard(player,[1,player.countCards('e')],'e').set('prompt','请选择要弃置的牌').set('prompt2','已因虑至弃置了'+numaa+'装备牌').set('chooseonly', true);
 			}
 			'step 1'
 			if(result.bool){
@@ -3167,10 +3173,10 @@ const skill = {
 		direct:true,
 		content:function(){
 			'step 0'
-			player.choosePlayerCard(player,'he').set('filterButton',function(button){
+			player.discardPlayerCard(player,'he').set('filterButton',function(button){
 				var type=get.type(button.link);
 				return type=='equip';
-			});
+			}).set('chooseonly', true);
 			'step 1'
 			if(result.bool){
 				player.logSkill('North_cjy_lvzhi');
@@ -4039,7 +4045,7 @@ const skill = {
 				filterTarget:function(card,player,target){
 					// var trigger=_status.event;
 					if(player.inRange(target)){
-						if(lib.filter.targetEnabled({name:'sha',nature:'thunder'},player,target)) return true;
+						if(lib.filter.targetEnabled({name:'sha',nature:'thunder', isCard : true},player,target)) return true;
 					}
 					return false;
 				},
@@ -4053,7 +4059,7 @@ const skill = {
 					return -1;
 				},
 				prompt:get.prompt('North_shh_qingsi'),
-				prompt2:'弃置一张牌，视为对一名其他角色使用一张【雷杀】',
+				prompt2:'弃置一张牌，视为对一名其他角色使用一张雷【杀】',
 			});
 			'step 1'
 			if(result.bool){
@@ -5648,7 +5654,7 @@ const skill = {
 			var target=trigger.player;
 			'step 0'
 			var num=target.getHistory('useCard').length;
-			player.chooseCard(num,'he','是否弃置'+num+'张牌，然后弃置'+get.translation(target)+'等量的牌？<br>若因此弃置了不少于两张牌，你对'+get.translation(target)+'造成一点伤害').set('ai',function(card){
+			player.chooseToDisard(num,'he','是否弃置'+num+'张牌，然后弃置'+get.translation(target)+'等量的牌？<br>若因此弃置了不少于两张牌，你对'+get.translation(target)+'造成一点伤害').set('ai',function(card){
 				var att=get.attitude(_status.event.player,target);
 				if(att<0){
 					if(target.countCards('he')>0){
@@ -5656,7 +5662,7 @@ const skill = {
 					}
 				}
 				return false;
-			});
+			}).set('chooseonly', true);
 			'step 1'
 			if(result.bool){
 				player.logSkill('YB_nobody_longying');

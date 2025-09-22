@@ -6367,7 +6367,7 @@ const skill = {
 		async content(event, trigger, player){
 			hs = player.getCards()
 			if (hs.length) await player.showCards(hs)
-			player.addCharge()
+			await player.addCharge()
 			if (hs.length == 1 && get.type2(hs[0]) != 'trick') {
 				await player.discard(hs)
 				var list = []

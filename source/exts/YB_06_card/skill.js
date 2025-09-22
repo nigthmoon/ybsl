@@ -807,7 +807,7 @@ const skill = {
 			game.countPlayer(function (current) {
 				if (current != player && current.countCards("e")) {
 					player.line(current);
-					current.discard(current.getCards("e"));
+					current.modedDiscard(current.getCards("e"));
 				}
 			});
 		},
@@ -1041,7 +1041,7 @@ const skill = {
 			var list = [];
 			game.countPlayer(function (current) {
 				if (current == player) return;
-				var es = current.getCards("e", { subtype: ["equip3", "equip4", "equip6"] });
+				var es = current.getDiscardableCards(current, "e", { subtype: ["equip3", "equip4", "equip6"] });
 				if (es.length) list.push([current, es]);
 			});
 			if (list.length) {
@@ -1058,7 +1058,7 @@ const skill = {
 		derivation: "boss_zhiwang_planetarian",
 		trigger: { global: "gainEnd" },
 		filter: function (event, player) {
-			return event.player != player && !(event.getParent().name == "draw" && event.getParent(2).name == "phaseDraw") && event.player.countCards("h");
+			return event.player != player && !(event.getParent().name == "draw" && event.getParent(2).name == "phaseDraw") && event.player.countDiscardableCards(event.player, "h");
 		},
 		forced: true,
 		logTarget: "player",
@@ -1068,7 +1068,7 @@ const skill = {
 				trigger.player.uninit();
 				trigger.player.init("sunce");
 			}
-			var hs = trigger.player.getCards("h");
+			var hs = trigger.player.getDiscardableCards(trigger.player, "h");
 			if (hs.length) {
 				trigger.player.discard(hs.randomGet());
 			}
@@ -1080,10 +1080,10 @@ const skill = {
 		trigger: { player: "phaseZhunbeiBegin" },
 		forced: true,
 		filter: function (event, player) {
-			return player.countCards("j") > 0;
+			return player.countDiscardableCards(player, "j") > 0;
 		},
 		content: function () {
-			player.discard(player.getCards("j").randomGet());
+			player.discard(player.getDiscardableCards(player, "j").randomGet());
 		},
 	},
 	boss_xuechi: {
@@ -2523,7 +2523,7 @@ const skill = {
 		trigger: { player: "phaseZhunbeiBegin" },
 		forced: true,
 		logTarget: function (event, player) {
-			return player.getEnemies();
+			return player.getEnemies().length;
 		},
 		content: function () {
 			"step 0";
@@ -2534,7 +2534,7 @@ const skill = {
 				if (target.countCards("he")) {
 					var es = target.getCards("e");
 					if (es.length) {
-						target.discard(es);
+						target.modedDiscard(es);
 					} else {
 						player.discardPlayerCard(target, "h", true);
 					}
@@ -2745,7 +2745,7 @@ const skill = {
 			"step 1";
 			if (event.list.length) {
 				var target = event.list.shift();
-				var cards = target.getCards("e", function (card) {
+				var cards = target.getDiscardableCards(target, "e", function (card) {
 					var subtype = get.subtype(card);
 					return subtype == "equip3" || subtype == "equip4";
 				});
@@ -5521,7 +5521,7 @@ const skill = {
 				for (var i = 0; i < result.cards.length; i++) {
 					he.remove(result.cards[i]);
 				}
-				trigger.player.discard(he);
+				trigger.player.modedDiscard(he);
 			}
 		},
 	},
@@ -6084,10 +6084,10 @@ const skill = {
 		trigger: { player: "phaseJudgeBegin" },
 		forced: true,
 		content: function () {
-			player.discard(player.getCards("j").randomGet());
+			player.discard(player.getDiscardableCards(player, "j").randomGet());
 		},
 		filter: function (event, player) {
-			return player.countCards("j") > 0;
+			return player.countDiscardableCards(player, "j") > 0;
 		},
 		ai: {
 			effect: {
@@ -6163,7 +6163,7 @@ const skill = {
 			return event.source != undefined;
 		},
 		content: function () {
-			trigger.source.discard(trigger.source.getCards("h"));
+			trigger.source.modedDiscard(trigger.source.getCards("h"));
 		},
 		ai: {
 			threaten: 0.7,
@@ -6192,7 +6192,7 @@ const skill = {
 			return player.countCards("e") > 0 && event.player.hasSkill("boss_shanbeng") && event.player.isDead();
 		},
 		content: function () {
-			player.discard(player.getCards("e"));
+			player.modedDiscard(player.getCards("e"));
 		},
 	},
 	boss_didong: {
@@ -7147,7 +7147,7 @@ const skill = {
 			ui.clear();
 			if (player.isLinked()) player.link();
 			if (player.isTurnedOver()) player.turnOver();
-			player.discard(player.getCards("j"));
+			player.modedDiscard(player.getCards("j"));
 			"step 3";
 			while (_status.event.name != "phaseLoop") {
 				_status.event = _status.event.parent;

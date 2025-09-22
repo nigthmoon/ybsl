@@ -468,6 +468,7 @@ const skill = {
 											return goon ? get.value(card) : 0;
 										})
 										.set("goon", (get.damageEffect(target, player, target) < 0 && target.getHp() <= 2 * num) || (num >= 2 && !target.countCards("hs", card => target.canSaveCard(card, target)) >= num))
+										.set('filterButton', button => lib.filter.canBeDiscarded(button.link, get.player(), get.owner(button.link)))
 										.forResult();
 						if (result?.bool) {
 							await target.discard(result.links);

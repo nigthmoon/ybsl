@@ -57,14 +57,7 @@ const skill = {
 		},
 		cost(){
 			var target=trigger.player==player?trigger.source:trigger.player;
-			event.result = player.choosePlayerCard(target,'he')
-			.set("ai", button => {
-				let val = get.buttonValue(button);
-				if (get.event("att") > 0) return - val;
-				return val;
-			})
-			.set("att", get.attitude(player, target))
-			.forResult();
+			event.result = player.discardPlayerCard(target,'he').set('chooseonly', true).forResult()
 		},
 		content() {
 			var target=trigger.player==player?trigger.source:trigger.player;
@@ -3450,14 +3443,7 @@ const skill = {
 				}
 				return 7 - val;
 			});
-			chooseButton.set("filterButton", function (button) {
-				// for (var i = 0; i < ui.selected.buttons.length; i++) {
-				// 	if (get.suit(button.link) == get.suit(ui.selected.buttons[i].link)) {
-				// 		return false;
-				// 	}
-				// }
-				return true;
-			});
+			chooseButton.set("filterButton", button => lib.filter.canBeDiscarded(button.link, get.player(), get.owner(button.link)))
 			"step 1";
 			if (result.bool) {
 				var list = result.links;
@@ -5724,6 +5710,7 @@ const skill = {
 				return 7 - val;
 			});
 			chooseButton.set("filterButton", function (button) {
+				if (!lib.filter.canBeDiscarded(button.link, get.player(), get.owner(button.link))) return false
 				for (var i = 0; i < ui.selected.buttons.length; i++) {
 					if (get.suit(button.link) == get.suit(ui.selected.buttons[i].link)) {
 						return false;
@@ -6801,6 +6788,7 @@ const skill = {
 				return 7 - val;
 			});
 			chooseButton.set("filterButton", function (button) {
+				if (!lib.filter.canBeDiscarded(button.link, get.player(), get.owner(button.link))) return false
 				for (var i = 0; i < ui.selected.buttons.length; i++) {
 					if (get.suit(button.link) == get.suit(ui.selected.buttons[i].link)) {
 						return false;
