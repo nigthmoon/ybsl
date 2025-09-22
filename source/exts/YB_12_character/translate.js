@@ -515,7 +515,14 @@ const translate = {
 	sgsxjxfzmnl_limu:'立牧',
 	sgsxjxfzmnl_limu_info:'出牌阶段，你可以将一张牌当【乐不思蜀】对任意角色使用，然后恢复一点体力；你判定区有牌时，你对其他角色使用牌没有次数和距离限制。',
 
-
+	sgsxjxfzmnl_shen_xunyu: "阴间神荀彧",
+	sgsxjxfzmnl_shen_xunyu_prefix: "阴间神",
+	sgsxjxfzmnl_tianzuo: "天佐",//前述是描述原文，这是我的解释：在牌堆，弃牌堆，场上玩家手中的一张因此加入游戏的【奇正相生】
+	sgsxjxfzmnl_tianzuo_info: "锁定技。①游戏开始时，你将八张【奇正相生】加入牌堆；摸牌阶段开始时，你获得一张【奇正相生】（如武继般）。②【奇正相生】对你无效。",
+	sgsxjxfzmnl_lingce: "灵策",
+	sgsxjxfzmnl_lingce_info: "锁定技。当有【奇正相生】或智囊或〖定汉①〗记录过的锦囊牌被使用时，<span style=\"text-decoration: line-through;\">若此牌不为转化牌且对应实体牌数量为1，则</span>你摸一张牌。",
+	sgsxjxfzmnl_dinghan: "定汉",
+	sgsxjxfzmnl_dinghan_info: "①当你成为未记录过的普通锦囊牌的目标时，或有未记录过的延时锦囊牌进入你的判定区时，你<span style=\"text-decoration: line-through;\">记录此牌名并</span>取消之。②准备阶段，你可在〖定汉①〗的记录中添加或减少<span style=\"text-decoration: line-through;\">一种</span>锦囊牌的牌名。",
 
 
 

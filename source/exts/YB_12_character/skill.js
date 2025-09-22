@@ -7579,6 +7579,379 @@ const skill = {
 	
 	},
 
+	sgsxjxfzmnl_tianzuo: {
+		audio: 'tianzuo',
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		forced: true,
+		filter(event, player) {
+			return (event.name != "phase" || game.phaseNumber == 0) && !lib.inpile.includes("qizhengxiangsheng");
+		},
+		content() {
+			game.addGlobalSkill("tianzuo_global");
+			var cards = [];
+			for (var i = 2; i < 10; i++) {
+				cards.push(game.createCard2("qizhengxiangsheng", i % 2 ? "club" : "spade", i));
+			}
+			game.broadcastAll(function () {
+				lib.inpile.add("qizhengxiangsheng");
+			});
+			game.cardsGotoPile(cards, () => {
+				return ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length - 1)];
+			});
+		},
+		group: ["sgsxjxfzmnl_tianzuo_remove",'sgsxjxfzmnl_tianzuo_gain'],
+		subSkill: {
+			remove: {
+				audio: "tianzuo",
+				trigger: { target: "useCardToBefore" },
+				forced: true,
+				priority: 15,
+				filter(event, player) {
+					return event.card && event.card.name == "qizhengxiangsheng";
+				},
+				content() {
+					trigger.cancel();
+				},
+				ai: {
+					effect: {
+						target(card, player, target) {
+							if (card && card.name == "qizhengxiangsheng") {
+								return "zeroplayertarget";
+							}
+						},
+					},
+				},
+			},
+			global: {
+				trigger: { player: "useCardToPlayered" },
+				forced: true,
+				popup: false,
+				filter(event, player) {
+					return event.card.name == "qizhengxiangsheng";
+				},
+				content() {
+					"step 0";
+					var target = trigger.target;
+					event.target = target;
+					player
+						.chooseControl("奇兵", "正兵")
+						.set("prompt", "请选择" + get.translation(target) + "的标记")
+						.set(
+							"choice",
+							(function () {
+								var e1 = 1.5 * get.sgn(get.damageEffect(target, player, target));
+								var e2 = 0;
+								if (target.countGainableCards(player, "h") > 0 && !target.hasSkillTag("noh")) {
+									e2 = -1;
+								}
+								var es = target.getGainableCards(player, "e");
+								if (es.length) {
+									e2 = Math.min(
+										e2,
+										(function () {
+											var max = 0;
+											for (var i of es) {
+												max = Math.max(max, get.value(i, target));
+											}
+											return -max / 4;
+										})()
+									);
+								}
+								if (Math.abs(e1 - e2) <= 0.3) {
+									return Math.random() < 0.5 ? "奇兵" : "正兵";
+								}
+								if (e1 < e2) {
+									return "奇兵";
+								}
+								return "正兵";
+							})()
+						)
+						.set("ai", function () {
+							return _status.event.choice;
+						});
+					"step 1";
+					var map = trigger.getParent().customArgs,
+						id = target.playerid;
+					if (!map[id]) {
+						map[id] = {};
+					}
+					map[id].qizheng_name = result.control;
+				},
+			},
+			rewrite: {
+				audio: "tianzuo",
+				trigger: { global: "useCardToTargeted" },
+				filter(event, player) {
+					return event.card.name == "qizhengxiangsheng";
+				},
+				logTarget: "target",
+				prompt2: "观看其手牌并修改“奇正相生”标记",
+				content() {
+					"step 0";
+					var target = trigger.target;
+					event.target = target;
+					if (player != target && target.countCards("h") > 0) {
+						player.viewHandcards(target);
+					}
+					player
+						.chooseControl("奇兵", "正兵")
+						.set("prompt", "请选择" + get.translation(target) + "的标记")
+						.set(
+							"choice",
+							(function () {
+								var shas = target.getCards("h", "sha"),
+									shans = target.getCards("h", "shan");
+								var e1 = 1.5 * get.sgn(get.damageEffect(target, player, target));
+								var e2 = 0;
+								if (target.countGainableCards(player, "h") > 0 && !target.hasSkillTag("noh")) {
+									e2 = -1;
+								}
+								var es = target.getGainableCards(player, "e");
+								if (es.length) {
+									e2 = Math.min(
+										e2,
+										(function () {
+											var max = 0;
+											for (var i of es) {
+												max = Math.max(max, get.value(i, target));
+											}
+											return -max / 4;
+										})()
+									);
+								}
+								if (get.attitude(player, target) > 0) {
+									if (shas.length >= Math.max(1, shans.length)) {
+										return "奇兵";
+									}
+									if (shans.length > shas.length) {
+										return "正兵";
+									}
+									return e1 > e2 ? "奇兵" : "正兵";
+								}
+								if (shas.length) {
+									e1 = -0.5;
+								}
+								if (shans.length) {
+									e2 = -0.7;
+								}
+								if (Math.abs(e1 - e2) <= 0.3) {
+									return Math.random() < 0.5 ? "奇兵" : "正兵";
+								}
+								var rand = Math.random();
+								if (e1 < e2) {
+									return rand < 0.1 ? "奇兵" : "正兵";
+								}
+								return rand < 0.1 ? "正兵" : "奇兵";
+							})()
+						)
+						.set("ai", () => _status.event.choice);
+					"step 1";
+					var map = trigger.getParent().customArgs,
+						id = target.playerid;
+					if (!map[id]) {
+						map[id] = {};
+					}
+					map[id].qizheng_name = result.control;
+					map[id].qizheng_aibuff = get.attitude(player, target) > 0;
+				},
+			},
+			gain:{
+				audio: "tianzuo",
+				trigger:{player:'phaseDrawBegin'},
+				filter:function(event,player){
+					var card = get.cardPile("qizhengxiangsheng", "field");
+					if (card) {
+						// player.gain(card, "gain2", "log");
+						//摘自武继
+						return true;
+					}
+				},
+				forced:true,
+				content:function(){
+
+					player.gain(get.cardPile("qizhengxiangsheng", "field"), "gain2", "log");
+
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_lingce: {
+		audio: 'lingce',
+		init: player => {
+			game.addGlobalSkill("sgsxjxfzmnl_lingce_global");
+		},
+		trigger: { global: "useCard" },
+		forced: true,
+		filter(event, player) {
+			// if (!event.card.isCard || !event.cards || event.cards.length !== 1) {
+			// 	return false;
+			// }
+			return event.card.name == "qizhengxiangsheng" || get.zhinangs().includes(event.card.name) || player.getStorage("sgsxjxfzmnl_dinghan").includes(event.card.name);
+		},
+		content() {
+			player.draw();
+		},
+		subSkill: {
+			global: {
+				ai: {
+					effect: {
+						player_use(card, player, target) {
+							if (typeof card !== "object") {
+								return;
+							}
+							let num = 0,
+								nohave = true;
+							game.countPlayer(i => {
+								if (i.hasSkill("sgsxjxfzmnl_lingce", null, null, false)) {
+									nohave = false;
+									if (
+										i.isIn() &&
+										lib.skill.sgsxjxfzmnl_lingce.filter(
+											{
+												card: card,
+												cards: card.cards ? card.cards : [card],
+											},
+											i
+										)
+									) {
+										num += get.sgnAttitude(player, i);
+									}
+								}
+							}, true);
+							if (nohave) {
+								game.removeGlobalSkill("sgsxjxfzmnl_lingce_global");
+							} else {
+								return [1, 0.8 * num];
+							}
+						},
+					},
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_dinghan: {
+		audio: 'dinghan',
+		trigger: {
+			target: "useCardToTarget",
+			player: "addJudgeBefore",
+		},
+		forced: true,
+		locked: false,
+		filter(event, player) {
+			if (event.name == "useCardToTarget" && get.type(event.card, null, false) != "trick") {
+				return false;
+			}
+			return !player.getStorage("sgsxjxfzmnl_dinghan").includes(event.card.name);
+		},
+		content() {
+			// player.markAuto("dinghan", [trigger.card.name]);
+			if (trigger.name == "addJudge") {
+				trigger.cancel();
+				var owner = get.owner(trigger.card);
+				if (owner && owner.getCards("hej").includes(trigger.card)) {
+					owner.lose(trigger.card, ui.discardPile);
+				} else {
+					game.cardsDiscard(trigger.card);
+				}
+				game.log(trigger.card, "进入了弃牌堆");
+			} else {
+				trigger.targets.remove(player);
+				trigger.getParent().triggeredTargets2.remove(player);
+				trigger.untrigger();
+			}
+		},
+		onremove: true,
+		intro: { content: "已记录牌名：$" },
+		group: "sgsxjxfzmnl_dinghan_add",
+		subSkill: {
+			add: {
+				trigger: { player: "phaseBegin" },
+				direct: true,
+				content() {
+					'step 0'
+					var dialog = [get.prompt('sgsxjxfzmnl_dinghan')];
+					(list1 = player.getStorage("sgsxjxfzmnl_dinghan")),
+						(list2 = lib.inpile.filter(function (i) {
+							return get.type2(i, false) == "trick" && !list1.includes(i);
+						}));
+					if (list1.length) {
+						dialog.push('<div class="text center">已记录</div>');
+						dialog.push([list1, "vcard"]);
+					}
+					if (list2.length) {
+						dialog.push('<div class="text center">未记录</div>');
+						dialog.push([list2, "vcard"]);
+					}
+					player.chooseButton(dialog,[1,Infinity]).set("ai", function (button) {
+						var player = _status.event.player,
+							name = button.link[2];
+						if (player.getStorage("sgsxjxfzmnl_dinghan").includes(name)) {
+							return -get.effect(player, { name: name }, player, player);
+						} else {
+							return get.effect(player, { name: name }, player, player) * (1 + player.countCards("hs", name));
+						}
+					});
+					'step 1'
+					player.logSkill("sgsxjxfzmnl_dinghan");
+					var listx=[],listy=[];
+					for(var i of  result.links){
+						var name = i[2];
+						if (player.getStorage("sgsxjxfzmnl_dinghan").includes(name)) {
+							listx.push([name])
+							player.unmarkAuto("sgsxjxfzmnl_dinghan", [name]);
+							// game.log(player, "从定汉记录中移除了", "#y" + get.translation(name));
+						} else {
+							listy.push([name])
+							player.markAuto("sgsxjxfzmnl_dinghan", [name]);
+							// game.log(player, "向定汉记录中添加了", "#y" + get.translation(name));
+						}
+
+					}
+					
+					if(listx.length){
+						// player.unmarkAuto("sgsxjxfzmnl_dinghan", listx);
+						game.log(player, "从定汉记录中移除了", "#y" + get.translation(listx));
+					}
+					if(listy.length){
+						// player.markAuto("sgsxjxfzmnl_dinghan", listy);
+						game.log(player, "向定汉记录中添加了", "#y" + get.translation(listy));
+					}
+					game.delayx();
+				},
+			},
+		},
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

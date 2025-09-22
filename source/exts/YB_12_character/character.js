@@ -151,8 +151,8 @@ const character = { //武将格式 :
 
 	sgsxjxfzmnl_yue_caiwenji:['female','qun',3,["sgsxjxfzmnl_dcshuangjia", "sgsxjxfzmnl_dcbeifen"],['rankAdd:legend','rankS:s','linkTo:yue_caiwenji','YB_mjz:yue_caiwenji','tempname:yue_caiwenji','name:蔡|琰']],
 	sgsxjxfzmnl_liuyan:['male','qun',3,['sgsxjxfzmnl_tushe','sgsxjxfzmnl_limu'],['rankAdd:legend','rankS:s','linkTo:liuyan','YB_mjz:liuyan','tempname:liuyan']],
-
-
+	sgsxjxfzmnl_shen_xunyu:['male','shen',3,["sgsxjxfzmnl_tianzuo", "sgsxjxfzmnl_lingce", "sgsxjxfzmnl_dinghan"],['rankAdd:legend','rankS:s','linkTo:shen_xunyu','YB_mjz:shen_xunyu','tempname:shen_xunyu','wei','clan:颍川荀氏']],
+	
 
 
 
