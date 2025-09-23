@@ -27,6 +27,7 @@ const characterSort = {
 			'qmsgswkjsgj_re_caorui','qmsgswkjsgj_re_caiwenji',
 			'qmsgswkjsgj_re_zhangxiu','qmsgswkjsgj_re_fuhuanghou',
 			'qmsgswkjsgj_shen_ganning','qmsgswkjsgj_re_sunhanhua',
+			'qmsgswkjsgj_re_shen_zhaoyun','qmsgswkjsgj_yingtian_simayi',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',
@@ -36,6 +37,9 @@ const characterSort = {
 			'sgsxjxfzmnl_re_jushou','sgsxjxfzmnl_shen_ganning',
 			'sgsxjxfzmnl_shichangshi','sgsxjxfzmnl_yue_caiwenji',
 			'sgsxjxfzmnl_liuyan','sgsxjxfzmnl_shen_xunyu',
+			'sgsxjxfzmnl_shen_zhangfei','sgsxjxfzmnl_wu_zhugeliang',
+			'sgsxjxfzmnl_sb_caopi','sgsxjxfzmnl_boss_zhaoyun',
+			'sgsxjxfzmnl_nanhualaoxian','sgsxjxfzmnl_mo_lvbu',
 		],
 		zzrsqlkjygzz:[
 			'zzrsqlkjygzz_shen_guanyu','zzrsqlkjygzz_shen_zhangjiao',

@@ -376,6 +376,21 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('乐')}`
 			},
 		})
+		lib.namePrefix.set('阴间武',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('武')}`
+			},
+		})
+		lib.namePrefix.set('阴间谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('阴间手杀',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('手杀')}`
+			},
+		})
 
 
 

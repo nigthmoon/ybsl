@@ -524,15 +524,71 @@ const translate = {
 	sgsxjxfzmnl_dinghan: "定汉",
 	sgsxjxfzmnl_dinghan_info: "①当你成为未记录过的普通锦囊牌的目标时，或有未记录过的延时锦囊牌进入你的判定区时，你<span style=\"text-decoration: line-through;\">记录此牌名并</span>取消之。②准备阶段，你可在〖定汉①〗的记录中添加或减少<span style=\"text-decoration: line-through;\">一种</span>锦囊牌的牌名。",
 
+	sgsxjxfzmnl_shen_zhangfei: "阴间神张飞",
+	sgsxjxfzmnl_shen_zhangfei_prefix: "阴间神",
+	sgsxjxfzmnl_shencai: "神裁",
+	sgsxjxfzmnl_shencai_info: "出牌阶段限一次，你可以令一名其他角色进行判定。你获得此判定牌，然后若此判定牌：包含以下要素中的任意一个，则其失去已有的下列效果，并获得对应的效果：{⒈体力：当其受到伤害后，其失去等量的体力、⒉武器：<span class=yellowtext>其不能响应牌</span>、⒊打出：当其失去手牌后，其再随机弃置一张手牌（不嵌套触发）、⒋距离：其的结束阶段开始时，其翻面}；若均不包含，你获得其区域里的一张牌，其获得一枚“死”并获得如下效果：其的角色手牌上限减至0、其的回合结束时，若X大于场上存活人数，则其死亡（X为其“死”标记数）。",
+	sgsxjxfzmnl_xunshi: "巡使",
+	sgsxjxfzmnl_xunshi_info: "锁定技。①你的多目标锦囊牌均视为花色为none的普【杀】。②你使用颜色为none的牌无距离和次数限制且可以指定任意目标，然后<span class=yellowtext>令你的〖神裁〗的发动次数上限+Y（Y为巡使发动次数）</span>。",
+
+	sgsxjxfzmnl_wu_zhugeliang: "阴间武诸葛亮",
+	sgsxjxfzmnl_wu_zhugeliang_prefix: "阴间武",
+	sgsxjxfzmnl_dcjincui: "尽瘁",
+	sgsxjxfzmnl_dcjincui_info: "锁定技。①游戏开始时，你将手牌摸至七张。②准备阶段，你<span class=yellowtext>回满体力</span>。然后你观看牌堆顶X张牌，将这些牌以任意顺序置于牌堆顶或牌堆底（X为你的体力值）。",
+	sgsxjxfzmnl_dcqingshi: "情势",
+	sgsxjxfzmnl_dcqingshi_info: "当你于出牌阶段使用牌时，若你本回合未因此牌名的牌发动过该技能，你可以选择一项：1.令此牌对其中一个目标角色造成的<span class=yellowtext>伤害+X（X为其全场相同阵营数）</span>；2.<span class=yellowtext>令任意名角色各摸Y张牌（Y为全场蜀阵营数）</span>；3.<span class=yellowtext>摸七张牌</span><span style=\"text-decoration: line-through;\">，然后〖情势〗于本回合无效</span>。",
+	sgsxjxfzmnl_dcqingshi_append:'（夜白哔哔：什么叫全场相同阵营？这是身份场能出现的吗？）（看了二项————原来这叫阵营……）',
+	sgsxjxfzmnl_dczhizhe: "智哲",
+	sgsxjxfzmnl_dczhizhe_clear: "invisible",
+	sgsxjxfzmnl_dczhizhe_info: "限定技。出牌阶段，你可以选择一张手牌并复制之。当你使用或打出此复制牌结算结束后，你获得之，然后你本回合不能再使用或打出此牌。<span class=yellowtext>这张牌无法被弃置</span>",
+
+	sgsxjxfzmnl_sb_caopi: "阴间谋曹丕",
+	sgsxjxfzmnl_sb_caopi_prefix: "阴间谋",
+	sgsxjxfzmnl_sbxingshang: "行殇",
+	sgsxjxfzmnl_sbxingshang_info: "①当一名角色受到伤害后<span style=\"text-decoration: line-through;\">（每回合限一次）</span>或死亡时，你获得2个“颂”标记<span style=\"text-decoration: line-through;\">（你至多拥有9个“颂”标记）</span>。②出牌阶段<span style=\"text-decoration: line-through;\">限两次</span>，你可以：1.移去2个“颂”标记，令一名角色复原武将牌;2.移去2个“颂”标记，令一名角色摸X张牌（X为本场已死亡角色数，至少为2）；3.移去5个“颂”标记，令一名角色回复X点体力，增加X点体力上限，随机恢复一个已废除的装备栏（X为本场已死亡角色数）（原文没写至少为2，我就不加了）；4.移去5个“颂”标记，获得一名阵亡角色武将牌上的所有技能，然后你失去〖行殇〗〖放逐〗〖颂威〗。",
+	sgsxjxfzmnl_sbfangzhu: "放逐",
+	sgsxjxfzmnl_sbfangzhu_info: "出牌阶段，<span class=yellowtext>若你拥有〖行殇〗</span>，你可以：1.移去1个“颂”标记，令一名其他角色于手牌中不能使用基本牌以外的牌直到其回合结束；2.移去2个“颂”标记，令一名其他角色于手牌中不能使用锦囊牌以外的牌直到其回合结束。3.移去3个“颂”标记，令一名其他角色于手牌中不能使用装备牌以外的牌直到其回合结束；4.移去2个“颂”标记，令一名其他角色的非Charlotte技能失效直到其回合结束；5.移去2个“颂”标记，令一名其他角色不能响应除其以外的角色使用的牌直到其回合结束；6.移去3个“颂”标记，令一名其他角色将武将牌翻面；",
+	sgsxjxfzmnl_sbfangzhu_append:'没有若为斗地主，若你拥有行殇是作者写的，作者咋描述我就咋写',
+	// sgsxjxfzmnl_sbfangzhu_info_doudizhu: "出牌阶段限一次，你可以：1.移去6个“颂”标记，令一名其他角色于手牌中只能使用锦囊牌直到其回合结束。2.移去4个“颂”标记，令一名其他角色不能响应除其以外的角色使用的牌直到其回合结束；3.移去8个“颂”标记，令一名其他角色将武将牌翻面；",
+	sgsxjxfzmnl_sbsongwei: "颂威",
+	sgsxjxfzmnl_sbsongwei_info: "主公技，出牌阶段开始时，<span class=yellowtext>若你拥有〖行殇〗</span>，你获得Y个“颂”标记（Y为场上其他魏势力角色数的两倍）。每回合限一次，你可以于出牌阶段令一名其他魏势力角色失去所有武将技能。",
+	sgsxjxfzmnl_sbsongwei_append:'若你拥有行殇是作者写的，作者咋描述我就咋写',
+
+	sgsxjxfzmnl_boss_zhaoyun: "阴间高达",
+	sgsxjxfzmnl_boss_zhaoyun_ab: "阴间神赵云",
+	sgsxjxfzmnl_boss_zhaoyun_prefix: "阴间神",
+	sgsxjxfzmnl_boss_juejing: "绝境",
+	sgsxjxfzmnl_boss_juejing2: "绝境",
+	sgsxjxfzmnl_boss_juejing_info: "持恒技，摸牌阶段开始前，你跳过此阶段。你的手牌数恒为4+X（X为你的武将星级）。",
+	sgsxjxfzmnl_boss_juejing_append:'武将星级还未实装。',
+	sgsxjxfzmnl_xinlonghun: "龙魂",
+	sgsxjxfzmnl_xinlonghun_info: "你可以将同花色的一至两张牌按下列规则使用或打出：红桃当【桃】，方块当火【杀】，梅花当【闪】，黑桃当普【无懈可击】。若你以此法转化了两张：红色牌，则此牌回复值或伤害值+1；黑色牌，则你弃置当前回合角色一张牌。",
+	sgsxjxfzmnl_zhanjiang: "斩将",
+	sgsxjxfzmnl_zhanjiang_info: "你始终视为装备【青釭剑】。",
+
+	sgsxjxfzmnl_nanhualaoxian: "阴间手杀南华老仙",
+	sgsxjxfzmnl_nanhualaoxian_prefix: "阴间手杀",
+	sgsxjxfzmnl_yufeng: "御风",
+	sgsxjxfzmnl_yufeng2: "御风",
+	sgsxjxfzmnl_yufeng_info: "出牌阶段，你可以令任意名其他角色获得“御风”效果，然后摸给出“御风”数张牌（准备阶段开始时，你进行判定。若结果为：红色，你跳过摸牌阶段；黑色，你跳过出牌阶段和弃牌阶段。）。",
+	sgsxjxfzmnl_tianshu: "天书",
+	sgsxjxfzmnl_tianshu_info: "出牌阶段开始时，若<span class=yellowtext>游戏内</span>上没有【太平要术】，则你可以弃置一张牌并选择一名角色。该角色获得并使用【太平要术】。",
+	sgsxjxfzmnl_tianshu_append:'鬼知道作者为啥反向突破',
+	sgsxjxfzmnl_taipingyaoshu: "太平要术",
+	sgsxjxfzmnl_taipingyaoshu_info: "锁定技，防止你受到属性伤害；你的手牌上限+X（X为全场势力数）；当你失去装备区内的此牌后，摸两张牌，若你的体力值不满，回复一点体力。",
+
+	sgsxjxfzmnl_mo_lvbu:'魔吕布',
+	sgsxjxfzmnl_mo_lvbu_prefix:'魔',
+	sgsxjxfzmnl_jielve:'劫掠',
+	sgsxjxfzmnl_jielve_info:'每当你对攻击范围内的其他角色造成伤害，你可以获得其一张手牌。',
+	sgsxjxfzmnl_zhenhuo:'枕惑',
+	sgsxjxfzmnl_zhenhuo_info:'锁定技，女性角色对你使用的锦囊牌不可被【无懈可击】响应，女性角色读你造成的伤害+1。',
+	sgsxjxfzmnl_wuqian: '无前',
+	sgsxjxfzmnl_wuqian_info: '每回合限一次，你可以将所有手牌当一张【杀】使用或打出，此【杀】不计入次数限制，不可被响应且伤害+1，当此【杀】造成伤害后你失去一点体力。',
 
 
 
 
-
-
-
-
-	
 
 
 
