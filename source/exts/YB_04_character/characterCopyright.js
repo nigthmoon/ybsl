@@ -75,6 +75,7 @@ const characterCopyright = {
 	ddddssssbbbb_dengai:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：露<br>♦︎代码撰写者：露<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	zxunnamed_gongsunyuan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：霜<br>♦︎代码撰写者：霜<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	FeO3_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：横云<br>♦︎代码撰写者：横云<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe343_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：从云<br>♦︎代码撰写者：从云<br>♦︎插图：暂无<br>♦︎配音：暂无',
 	
 	
 	

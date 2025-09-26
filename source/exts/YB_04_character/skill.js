@@ -4458,6 +4458,7 @@ const skill = {
 			}
 		}
 	},
+	//诸葛亮
 	FeO3_dafei : {
 		trigger : {
 			player: 'useCardToPlayered'
@@ -4592,6 +4593,103 @@ const skill = {
 				evt2.finish()
 				game.log(player, '令', _status.currentPhase, '结束了当前回合')
 			}
+		}
+	},
+	//诸葛亮
+	Fe3O4_chichi : {
+		enable : 'chooseToUse',
+		viewAs(cards) {
+			if (cards.length) return get.autoViewAs(cards[0])
+			return null
+		},
+		position : 'h',
+		log : false,
+		zhuanhuanji: true,
+		mark: true,
+		marktext: '☯',
+		intro: {
+			content(storage) {
+				if (storage == true) return '你可以以明置方式使用牌'
+				return '你可以以重铸方式使用牌'
+			}
+		},
+		filterCard(card, player, event) {
+			event ??= get.event()
+			if (!event._backup.filterCard(card, player, event)) return false
+			if (player.storage.Fe3O4_chichi) return player.canRecast(card)
+			return !get.is.shownCard(card)
+		},
+		async precontent(event, trigger, player) {
+			let next
+			if (player.storage.Fe3O4_chichi) next = player.recast(event.result.cards)
+			else next = player.addShownCards(event.result.cards, 'visible_Fe3O4_chichi')
+			event.result.cards = []
+			game.log('Fe3O4_chichi')
+			player.changeZhuanhuanji('Fe3O4_chichi')
+			await next
+			if (get.type(event.result.card) == 'equip' || get.type(event.result.card) == 'delay') event.getParent().nouse = true
+		},
+		ai : {
+			order : 7,
+			result : {
+				player : 1
+			}
+		}
+	},
+	Fe2O3_chichi : {
+		mod : {
+			cardEnabled(card, player) {
+				if (card.cards) {
+					for (const i of card.cards)
+						if (lib.skill.Fe2O3_chichi.mod.cardEnabled(i, player) === false) return false
+					return
+				}
+				if (!player.getCards().includes(card)) return
+				for (let i of player.getCards()) {
+					if (get.is.shownCard(i)) return false
+					if (i == card) return
+				}
+			},
+			get cardSavable() {
+				return lib.skill.Fe2O3_chichi.mod.cardEnabled
+			},
+			get cardRespondable() {
+				return lib.skill.Fe2O3_chichi.mod.cardEnabled
+			},
+			ignoredHandcard(card, player) {
+				for (let i of player.getCards()) {
+					if (get.is.shownCard(i)) return true
+					if (i == card) return
+				}
+			},
+			cardDiscardable(card, player, name) {
+				if (name == 'phaseDiscard') {
+					for (let i of player.getCards()) {
+						if (get.is.shownCard(i)) return false
+						if (i == card) return
+					}
+				}
+			}
+		},
+		forced : true,
+		trigger : {
+			player : 'recastBegin'
+		},
+		filter : (event, player) => player.countCards('he', card => {
+			if (get.suit(card) == 'none') return false
+			if (event.cards.includes(card)) return false
+			if (event.cards.every(i => get.suit(i) != get.suit(card))) return false
+			return player.canRecast(card)
+		}),
+		async content(event, trigger, player) {
+			const suits = [], cards = trigger.cards
+			for (const card of cards) suits.add(get.suit(card))
+			suits.remove('none')
+			for (const suit of suits) cards.addArray(player.getCards('he', card => get.suit(card) == suit && player.canRecast(card)))
+		},
+		ai : {
+			noSortCard: true,
+			neg : true
 		}
 	},
 

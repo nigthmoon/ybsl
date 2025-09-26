@@ -146,10 +146,20 @@ const character = { //武将格式 :
 	},//公孙渊
 	FeO3_zhugeliang : {
 		group : 'shen',
+		sex : 'male',
 		hp : 3,
 		skills : ['FeO3_dafei', 'FeO3_zhengjie', 'FeO3_jinqi'],
-		names : '诸葛|亮'
+		names : '诸葛|亮',
+		linkTo : 'zhugeliang'
 	},//诸葛亮
+	Fe3O4_zhugeliang : {
+		group : 'shu',
+		sex : 'male',
+		hp : 3,
+		skills : ['Fe3O4_chichi', 'Fe2O3_chichi'],
+		names : '诸葛|亮',
+		linkTo : 'zhugeliang'
+	},//到底还有多少诸葛亮
 	
 	
 	

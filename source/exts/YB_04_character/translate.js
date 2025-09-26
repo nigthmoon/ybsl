@@ -120,6 +120,12 @@ const translate = {
 	FeO3_jinqi : '紧气',
 	FeO3_jinqi_info : '一名角色死亡后，你可以获得本回合弃牌堆不同花色的牌各一张，然后结束当前阶段与当前回合。',
 	
+	Fe3O4_zhugeliang : '诸葛亮', //怎么全是诸葛亮
+	Fe3O4_chichi : '持持',
+	Fe3O4_chichi_info : '转换技，你可以以阳：明置阴：重铸方式使用手牌。',
+	Fe2O3_chichi : '迟迟',
+	Fe2O3_chichi_info : '锁定技，你不能整理手牌，你不能使用或打出明置手牌以右的牌且不计入手牌上限，你重铸牌时改为重铸此花色所有牌',
+	visible_Fe3O4_chichi : '明置',
 
 
 
