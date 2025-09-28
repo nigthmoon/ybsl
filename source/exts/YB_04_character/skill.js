@@ -4619,6 +4619,22 @@ const skill = {
 			if (player.storage.Fe3O4_chichi) return player.canRecast(card)
 			return !get.is.shownCard(card)
 		},
+		//邪门
+		frequent : true,
+		onChooseToUse(event) {
+			const player = get.player()
+			if (lib.config.autoskilllist.includes('Fe3O4_chichi')) return//此技能没有开启自动发动
+			let skills = player.getSkills("invisible")
+			skills = game.expandSkills(skills).concat(lib.skill.global).filter(skill => lib.filter.filterEnable(event, player, skill))
+			skills.remove('Fe3O4_chichi')
+			if (skills.length) return//有其他可以发动的技能
+			if (event.type != 'phase') return//不为出牌阶段
+			if (!event.isMine()) return//不是玩家操作
+			if (event.norestore || event._backup || event.skill) return//不能发动技能或已经有技能
+			event.fakeforce = true
+			event.backup('Fe3O4_chichi')
+			event.openskilldialog = ui.create.dialog(get.translation('Fe3O4_chichi'), '<div><div style="width:100%">' + lib.dynamicTranslate['Fe3O4_chichi'](player, 'Fe3O4_chichi') + "</div></div>");
+		},
 		async precontent(event, trigger, player) {
 			let next
 			if (player.storage.Fe3O4_chichi) next = player.recast(event.result.cards)
@@ -4663,6 +4679,7 @@ const skill = {
 				}
 			},
 			cardDiscardable(card, player, name) {
+				if (!player.getCards().includes(card)) return
 				if (name == 'phaseDiscard') {
 					for (let i of player.getCards()) {
 						if (get.is.shownCard(i)) return false
@@ -5504,12 +5521,12 @@ const skill = {
 			}
 			else {
 				event._result = false;
-				event.goto(4);
+				event.goto(3);
 			}
 			'step 2'
 			if (result.control && result.control != 'cancel2') {
 				if (!event.source.getStat('skill')[result.control]) event.source.getStat('skill')[result.control] = 0;
-				event.source.getStat('skill')[result.control]--;
+				//event.source.getStat('skill')[result.control]--;
 				event.skillName = result.control;
 				//↓此段代码感谢霸天大佬的指导
 				var next = event.source.chooseToUse();
@@ -5525,13 +5542,14 @@ const skill = {
 				// next.set('addCount',false);
 				next._triggered = null;
 				next.backup(event.skillName);
-				next;
+				next.set('chooseonly', true)
 			}
 			'step 3'
-			if (!result.bool) {
-				event.source.getStat('skill')[event.skillName]++;
+			if (result.boo) {
+				const evt = result.cost_data.ResultEvent
+				evt.addCount = false
+				evt.start()
 			}
-			'step 4'
 			if (!result.bool) {
 				if (event.source.countGainableCards(event.target, "h"))
 					event.target.gainPlayerCard('h', event.source, true).set("target", event.source).set("complexSelect", false).set("ai", button => {
@@ -5549,9 +5567,9 @@ const skill = {
 				// 	.set("att", get.attitude(event.target,  event.source));
 			}
 			else event.list2.push(event.source);
-			'step 5'
+			'step 4'
 			event.count++;
-			'step 6'
+			'step 5'
 			if (event.count < 2) event.goto(1);
 			else {
 				if (event.list2.length >= 2)
@@ -6798,7 +6816,7 @@ const skill = {
 			if (player.getStat("damage")) return false;
 			var list = [];
 			player.getHistory("useCard", function (evt) {
-				if (evt.card != event.card) list.push(evt.card);
+				if (evt != event) list.push(evt.card);
 			});
 			for (var i of list) {
 				if (get.type2(i) == get.type2(event.card)) return false;
@@ -6850,7 +6868,7 @@ const skill = {
 			var skill = yield targets[0].YB_control(list66, 8, '请选择一个出限一技能发动');
 			if (skill.control && skill.control != 'cancel2') {
 				if (!targets[0].getStat('skill')[skill.control]) yield targets[0].getStat('skill')[skill.control] = 0;
-				yield targets[0].getStat('skill')[skill.control]--;
+				//yield targets[0].getStat('skill')[skill.control]--;
 				// yield game.log('发动兴族时',targets[0].getStat('skill')[skill.control]);
 				// game.log(get.translation(skill.control),targets[0].getStat('skill')[skill.control])
 				var skillName = skill.control;
@@ -6859,8 +6877,7 @@ const skill = {
 				var ybnext = game.createEvent('YB_xingzu');
 				ybnext.tar = targets[0];
 				ybnext.skillname = skillName;
-				ybnext.setContent(function () {
-					'step 0'
+				ybnext.setContent(async function(event, trigger, player) {
 					var next = event.tar.chooseToUse();
 					next.set("openskilldialog", get.prompt(event.skillname));
 					next.set("norestore", true);
@@ -6874,10 +6891,15 @@ const skill = {
 					// next.set('addCount',false);
 					next._triggered = null;
 					next.backup(event.skillname);
-					'step 1'
-					if (!result.bool) {
-						event.tar.getStat('skill')[event.skillname]++;
-					}
+					next.set('chooseonly', true)
+					const result = await next.forResult()
+					if (!result.bool) return
+					//if (!result.bool) {
+						//event.tar.getStat('skill')[event.skillname]++;
+					//}
+					const evt = result.cost_data.ResultEvent
+					evt.addCount = false
+					await evt.start()
 
 				});
 				yield ybnext;
@@ -6984,8 +7006,14 @@ const skill = {
 				sub: true,
 				onremove: true,
 				mod: {
-					cardEnabled2: function (card) {
-						if (get.itemtype(card) == "card" && !card.hasGaintag("ybsl_lxweiyu_buff")) return false;
+					cardEnabled(card) {
+						for (const cardx of card.cards) if (!cardx.hasGaintag("ybsl_lxweiyu_buff")) return false
+					},
+					cardUsable(card) {
+						for (const cardx of card.cards) if (!cardx.hasGaintag("ybsl_lxweiyu_buff")) return false
+					},
+					cardSavable(card) {
+						for (const cardx of card.cards) if (!cardx.hasGaintag("ybsl_lxweiyu_buff")) return false
 					},
 				},
 				mark: true,
