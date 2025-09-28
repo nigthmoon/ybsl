@@ -4637,18 +4637,32 @@ const skill = {
 		},
 		async precontent(event, trigger, player) {
 			let next
-			if (player.storage.Fe3O4_chichi) next = player.recast(event.result.cards)
-			else next = player.addShownCards(event.result.cards, 'visible_Fe3O4_chichi')
-			event.result.cards = []
-			game.log('Fe3O4_chichi')
+			if (player.storage.Fe3O4_chichi) next = player.recast(event.result.cards.slice())
+			else next = player.addShownCards(event.result.cards.slice(), 'visible_Fe3O4_chichi')
+			player.logSkill('Fe3O4_chichi')
 			player.changeZhuanhuanji('Fe3O4_chichi')
 			await next
-			if (get.type(event.result.card) == 'equip' || get.type(event.result.card) == 'delay') event.getParent().nouse = true
+			event.getParent().Fe3O4_chichi = event.result.cards.slice()
+			player.addTempSkill('Fe3O4_chichi_nolose')
 		},
 		ai : {
 			order : 7,
 			result : {
 				player : 1
+			}
+		},
+		subSkill : {
+			nolose : {
+				charlotte:true,
+				direct : true,
+				firstDo : true,
+				trigger : {
+					global : ['cardsGotoOrderingBefore', 'loseBefore']
+				},
+				filter : event => event.getParent().name == 'useCard' && event.getParent(2).Fe3O4_chichi,
+				async content(event, trigger, player) {
+					trigger.cards.removeArray(trigger.getParent(2).Fe3O4_chichi)
+				},
 			}
 		}
 	},
