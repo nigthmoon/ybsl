@@ -5545,7 +5545,7 @@ const skill = {
 				next.set('chooseonly', true)
 			}
 			'step 3'
-			if (result.boo) {
+			if (result.bool) {
 				const evt = result.cost_data.ResultEvent
 				evt.addCount = false
 				evt.start()
