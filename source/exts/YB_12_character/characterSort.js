@@ -40,6 +40,8 @@ const characterSort = {
 			'sgsxjxfzmnl_shen_zhangfei','sgsxjxfzmnl_wu_zhugeliang',
 			'sgsxjxfzmnl_sb_caopi','sgsxjxfzmnl_boss_zhaoyun',
 			'sgsxjxfzmnl_nanhualaoxian','sgsxjxfzmnl_mo_lvbu',
+			'sgsxjxfzmnl_zhangxuan','sgsxjxfzmnl_caojinyu',
+			'sgsxjxfzmnl_shen_machao','sgsxjxfzmnl_sunhanhua',
 		],
 		zzrsqlkjygzz:[
 			'zzrsqlkjygzz_shen_guanyu','zzrsqlkjygzz_shen_zhangjiao',

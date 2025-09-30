@@ -158,6 +158,10 @@ const character = { //武将格式 :
 	sgsxjxfzmnl_boss_zhaoyun:['male','shen',1,["sgsxjxfzmnl_boss_juejing", "sgsxjxfzmnl_xinlonghun", "sgsxjxfzmnl_zhanjiang"],['rankAdd:legend','rankS:s','linkTo:boss_zhaoyun','YB_mjz:boss_zhaoyun','tempname:boss_zhaoyun','shu']],
 	sgsxjxfzmnl_nanhualaoxian:['male','qun',3,["sgsxjxfzmnl_yufeng", "sgsxjxfzmnl_tianshu"],['rankAdd:legend','rankS:s','linkTo:nanhualaoxian','YB_mjz:nanhualaoxian','tempname:nanhualaoxian','name:庄|周']],
 	sgsxjxfzmnl_mo_lvbu:['male','devil',6,['mashu','sgsxjxfzmnl_jielve','sgsxjxfzmnl_zhenhuo','sgsxjxfzmnl_wuqian','wushuang'],['rankAdd:rare','rankS:am','linkTo:lvbu','YB_mjz:lvbu','tempname:lvbu','qun']],
+	sgsxjxfzmnl_zhangxuan:['female','wu',4,['sgsxjxfzmnl_tongli','sgsxjxfzmnl_shezang'],['rankAdd:legend','rankS:s','linkTo:zhangxuan','YB_mjz:zhangxuan','tempname:zhangxuan']],
+	sgsxjxfzmnl_caojinyu:['female','wei',3,['sgsxjxfzmnl_yuqi','sgsxjxfzmnl_shanshen','sgsxjxfzmnl_xianjing'],['rankAdd:legend','rankS:s','linkTo:caojinyu','YB_mjz:caojinyu','tempname:caojinyu']],
+	sgsxjxfzmnl_shen_machao:['male','shen',4,['sgsxjxfzmnl_shouli','sgsxjxfzmnl_hengwu'],['rankAdd:legend','rankS:s','linkTo:shen_machao','YB_mjz:shen_machao','tempname:shen_machao','shu']],
+	sgsxjxfzmnl_sunhanhua:['female','wu',3,['sgsxjxfzmnl_chongxu','sgsxjxfzmnl_miaojian','sgsxjxfzmnl_shhlianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
 
 
 

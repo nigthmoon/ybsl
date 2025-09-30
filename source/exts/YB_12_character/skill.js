@@ -10068,6 +10068,1267 @@ const skill = {
 			},
 		}
 	},
+	//张嫙
+	sgsxjxfzmnl_tongli: {
+		audio: 'tongli',
+		trigger: { player: "useCardToPlayered" },
+		filter(event, player) {
+			if (!event.isFirstTarget || (event.card.storage && event.card.storage.sgsxjxfzmnl_tongli)) {
+				return false;
+			}
+			// var type = get.type(event.card);
+			// if (type != "basic" && type != "trick") {
+			// 	return false;
+			// }
+			// var hs = player.getCards("h");
+			// if (!hs.length) {
+			// 	return false;
+			// }
+			var evt = event.getParent("phaseUse");
+			if (!evt || evt.player != player) {
+				return false;
+			}
+			if(player.countMark('sgsxjxfzmnl_tongli_count')>=4)return false;
+			// var num1 = player.getHistory("useCard", function (evtx) {
+			// 	if (evtx.getParent("phaseUse") != evt) {
+			// 		return false;
+			// 	}
+			// 	return !evtx.card.storage || !evtx.card.storage.sgsxjxfzmnl_tongli;
+			// }).length;
+			// if (hs.length < num1) {
+			// 	return false;
+			// }
+			// var list = [];
+			// for (var i of hs) {
+			// 	list.add(get.suit(i, player));
+			// }
+			// return list.length == num1;
+			return true
+
+		},
+
+		prompt2(event, player) {
+			var evt = event.getParent("phaseUse");
+			var num = player.getHistory("useCard", function (evtx) {
+				if (evtx.getParent("phaseUse") != evt) {
+					return false;
+				}
+				return !evtx.card.storage || !evtx.card.storage.sgsxjxfzmnl_tongli;
+			}).length;
+			//var str='视为额外使用'+get.cnNumber(num)+'张'
+			var str = "额外结算" + get.cnNumber(num) + "次";
+			if (event.card.name == "sha" && game.hasNature(event.card)) {
+				str += get.translation(event.card.nature);
+			}
+			return str + "【" + get.translation(event.card.name) + "】";
+		},
+		check(event, player) {
+			return !get.tag(event.card, "norepeat");
+		},
+		content() {
+			//player.addTempSkill('sgsxjxfzmnl_tongli_effect');
+			var evt = trigger.getParent("phaseUse");
+			var num = player.getHistory("useCard", function (evtx) {
+				if (evtx.getParent("phaseUse") != evt) {
+					return false;
+				}
+				return true;
+				//return !evtx.card.storage||!evtx.card.storage.sgsxjxfzmnl_tongli;
+			}).length;
+			trigger.getParent().effectCount += num;
+			player.addTempSkill('sgsxjxfzmnl_tongli_count','phaseUseAfter')
+			player.addMark('sgsxjxfzmnl_tongli_count',1,false);
+		},
+		subSkill:{
+			count:{
+				onremove:true,
+			}
+		},
+		/*subSkill:{
+			effect:{
+				trigger:{player:'useCardAfter'},
+				forced:true,
+				charlotte:true,
+				filter:function(event,player){
+					return event.sgsxjxfzmnl_tongli_effect!=undefined;
+				},
+				content:function(){
+					'step 0'
+					event.card=trigger.sgsxjxfzmnl_tongli_effect[0];
+					event.count=trigger.sgsxjxfzmnl_tongli_effect[1];
+					'step 1'
+					event.count--;
+					for(var i of trigger.targets){
+						if(!i.isIn()||!player.canUse(card,i,false)) return;
+					}
+					if(trigger.addedTarget&&!trigger.addedTarget.isIn()) return;
+					if(trigger.addedTargets&&trigger.addedTargets.length){
+						for(var i of trigger.addedTargets){
+							if(!i.isIn()) return;
+						}
+					}
+					var next=player.useCard(get.copy(card),trigger.targets,false);
+					if(trigger.addedTarget) next.addedTarget=trigger.addedTarget;
+					if(trigger.addedTargets&&trigger.addedTargets.length) next.addedTargets=trigger.addedTargets.slice(0);
+					if(event.count>0) event.redo();
+				},
+			},
+		},*/
+	},
+	sgsxjxfzmnl_shezang: {
+		audio: 'shezang',
+		// round: 1,
+		trigger: { global: "dying" },
+		frequent: true,
+		filter(event, player) {
+			// return event.player == player || player == _status.currentPhase;
+			return true;
+		},
+		content() {
+			var cards = [];
+			for (var i of lib.suit) {
+				var card = get.cardPile2(function (card) {
+					return get.suit(card, false) == i;
+				});
+				if (card) {
+					cards.push(card);
+				}
+			}
+			if (cards.length) {
+				player.gain(cards, "gain2");
+			}
+		},
+	},
+	//曹金玉
+	sgsxjxfzmnl_yuqi: {
+		audio: 'yuqi',
+		trigger: { global: "damageEnd" },
+		getInfo(player) {
+			if (!player.storage.sgsxjxfzmnl_yuqi) {
+				player.storage.sgsxjxfzmnl_yuqi = [0, 3, 1, 1];
+			}
+			return player.storage.sgsxjxfzmnl_yuqi;
+		},
+		// usable: 2,
+		filter(event, player) {
+			var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			return event.player.isIn() && get.distance(player, event.player) <= list[0];
+		},
+		logTarget: "player",
+		content() {
+			"step 0";
+			event.list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			var cards = get.cards(event.list[1]);
+			event.cards = cards;
+			game.cardsGotoOrdering(cards);
+			var next = player.chooseToMove_new(true, "隅泣");
+			next.set("list", [
+				["牌堆顶的牌", cards],
+				[["交给" + get.translation(trigger.player) + '<div class="text center">至少一张' + (event.list[2] > 1 ? "<br>至多" + get.cnNumber(event.list[2]) + "张" : "") + "</div>"], ['交给自己<div class="text center">至多' + get.cnNumber(event.list[3]) + "张</div>"]],
+			]);
+			next.set("filterMove", function (from, to, moved) {
+				var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(_status.event.player);
+				if (to == 1) {
+					return moved[1].length < info[2];
+				}
+				if (to == 2) {
+					return moved[2].length < info[3];
+				}
+				return true;
+			});
+			next.set("processAI", function (list) {
+				var cards = list[0][1].slice(0).sort(function (a, b) {
+						return get.value(b, "raw") - get.value(a, "raw");
+					}),
+					player = _status.event.player,
+					target = _status.event.getTrigger().player;
+				var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(_status.event.player);
+				var cards1 = cards.splice(0, Math.min(info[3], cards.length - 1));
+				var card2;
+				if (get.attitude(player, target) > 0) {
+					card2 = cards.shift();
+				} else {
+					card2 = cards.pop();
+				}
+				return [cards, [card2], cards1];
+			});
+			next.set("filterOk", function (moved) {
+				return moved[1].length > 0;
+			});
+			"step 1";
+			if (result.bool) {
+				var moved = result.moved;
+				cards.removeArray(moved[1]);
+				cards.removeArray(moved[2]);
+				while (cards.length) {
+					ui.cardPile.insertBefore(cards.pop().fix(), ui.cardPile.firstChild);
+				}
+				var list = [[trigger.player, moved[1]]];
+				if (moved[2].length) {
+					list.push([player, moved[2]]);
+				}
+				game.loseAsync({
+					gain_list: list,
+					giver: player,
+					animate: "draw",
+				}).setContent("gaincardMultiple");
+			}
+		},
+		mark: true,
+		intro: {
+			content(storage, player) {
+				var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+				return '<div class="text center"><span class=thundertext>蓝色：' + info[0] + "</span>　<span class=firetext>红色：" + info[1] + "</span><br><span class=greentext>绿色：" + info[2] + "</span>　<span class=yellowtext>黄色：" + info[3] + "</span></div>";
+			},
+		},
+		ai: {
+			threaten: 8.8,
+		},
+		init(player, skill) {
+			const list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			player.addTip(skill, get.translation(skill) + " " + list.slice().join(" "));
+		},
+		onremove: (player, skill) => player.removeTip(skill),
+	},
+	sgsxjxfzmnl_shanshen: {
+		audio: 'shanshen',
+		trigger: { 
+			global: ["die",'dying']
+		},
+		direct: true,
+		content() {
+			"step 0";
+			if(event.triggername=='dying'){
+				event.ybxxx=true;
+			}
+			event.goon = !player.hasAllHistory("sourceDamage", function (evt) {
+				return evt.player == trigger.player;
+			});
+			var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			player
+				.chooseControl("<span class=thundertext>蓝色(" + list[0] + ")</span>", "<span class=firetext>红色(" + list[1] + ")</span>", "<span class=greentext>绿色(" + list[2] + ")</span>", "<span class=yellowtext>黄色(" + list[3] + ")</span>", "cancel2")
+				.set("prompt", get.prompt("sgsxjxfzmnl_shanshen"))
+				.set("prompt2", event.ybxxx?"令〖隅泣〗中的一个数字+1":"令〖隅泣〗中的一个数字+2" + (event.goon ? "并回复1点体力" : ""))
+				.set("ai", function () {
+					var player = _status.event.player,
+						info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+					if (
+						info[0] < info[3] &&
+						game.countPlayer(function (current) {
+							return get.distance(player, current) <= info[0];
+						}) < Math.min(3, game.countPlayer())
+					) {
+						return 0;
+					}
+					if (info[3] < info[1] - 1) {
+						return 3;
+					}
+					if (info[1] <= info[3]) {
+						return 1;
+					}
+					if (
+						// info[0] < 5 &&
+						game.hasPlayer(function (current) {
+							return current != player && get.distance(player, current) > info[0];
+						})
+					) {
+						return 0;
+					}
+					return 2;
+				});
+			"step 1";
+			if (result.control != "cancel2") {
+				var num = 2;
+				if(event.ybxxx){
+					num=1;
+				}
+				if (event.goon&&!event.ybxxx) {
+					player.recover();
+					num=4;
+				}
+				player.logSkill("sgsxjxfzmnl_shanshen", trigger.player);
+				var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+				list[result.index] = list[result.index] + num;
+				game.log(player, "将", result.control, "数字改为", "#y" + list[result.index]);
+				player.markSkill("sgsxjxfzmnl_yuqi");
+				lib.skill.sgsxjxfzmnl_yuqi.init(player, "sgsxjxfzmnl_yuqi");
+			}
+		},
+		ai: {
+			combo: "sgsxjxfzmnl_yuqi",
+		},
+		// group:'sgsxjxfzmnl_shanshen_2',
+		// subSkill:{
+		// 	2:{
+		// 		trigger:{global:"dying"},
+
+		// 	}
+		// }
+	},
+	sgsxjxfzmnl_xianjing: {
+		audio: 'xianjing',
+		trigger: { player: "phaseZhunbeiBegin" },
+		direct: true,
+		content() {
+			"step 0";
+			var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			player
+				.chooseControl("<span class=thundertext>蓝色(" + list[0] + ")</span>", "<span class=firetext>红色(" + list[1] + ")</span>", "<span class=greentext>绿色(" + list[2] + ")</span>", "<span class=yellowtext>黄色(" + list[3] + ")</span>", "cancel2")
+				.set("prompt", get.prompt("sgsxjxfzmnl_xianjing"))
+				.set("prompt2", "令〖隅泣〗中的一个数字+1")
+				.set("ai", function () {
+					var player = _status.event.player,
+						info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+					if (
+						info[0] < info[3] &&
+						game.countPlayer(function (current) {
+							return get.distance(player, current) <= info[0];
+						}) < Math.min(3, game.countPlayer())
+					) {
+						return 0;
+					}
+					if (info[3] < info[1] - 1) {
+						return 3;
+					}
+					if (info[1] <= info[3]) {
+						return 1;
+					}
+					if (
+						// info[0] < 5 &&
+						game.hasPlayer(function (current) {
+							return current != player && get.distance(player, current) > info[0];
+						})
+					) {
+						return 0;
+					}
+					return 2;
+				});
+			"step 1";
+			if (result.control != "cancel2") {
+				player.logSkill("sgsxjxfzmnl_xianjing");
+				var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+				list[result.index] = list[result.index] + 1;
+				game.log(player, "将", result.control, "数字改为", "#y" + list[result.index]);
+				player.markSkill("sgsxjxfzmnl_yuqi");
+				lib.skill.sgsxjxfzmnl_yuqi.init(player, "sgsxjxfzmnl_yuqi");
+				if (player.isDamaged()) {
+					event.finish();
+				}
+			} else {
+				event.finish();
+			}
+			"step 2";
+			var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+			player
+				.chooseControl("<span class=thundertext>蓝色(" + list[0] + ")</span>", "<span class=firetext>红色(" + list[1] + ")</span>", "<span class=greentext>绿色(" + list[2] + ")</span>", "<span class=yellowtext>黄色(" + list[3] + ")</span>", "cancel2")
+				.set("prompt", "是否令〖隅泣〗中的一个数字+1？")
+				.set("ai", function () {
+					var player = _status.event.player,
+						info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+					if (
+						info[0] < info[3] &&
+						game.countPlayer(function (current) {
+							return get.distance(player, current) <= info[0];
+						}) < Math.min(3, game.countPlayer())
+					) {
+						return 0;
+					}
+					if (info[3] < info[1] - 1) {
+						return 3;
+					}
+					if (info[1] <= info[3]) {
+						return 1;
+					}
+					if (
+						// info[0] < 5 &&
+						game.hasPlayer(function (current) {
+							return current != player && get.distance(player, current) > info[0];
+						})
+					) {
+						return 0;
+					}
+					return 2;
+				});
+			"step 3";
+			if (result.control != "cancel2") {
+				var list = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+				list[result.index] = list[result.index] + 1;
+				game.log(player, "将", result.control, "数字改为", "#y" + list[result.index]);
+				player.markSkill("sgsxjxfzmnl_yuqi");
+				lib.skill.sgsxjxfzmnl_yuqi.init(player, "sgsxjxfzmnl_yuqi");
+			}
+		},
+		ai: {
+			combo: "sgsxjxfzmnl_yuqi",
+		},
+	},
+	//神马超
+	sgsxjxfzmnl_shouli: {
+		audio: 'shouli',
+		mod: {
+			cardUsable(card) {
+				if (card.storage?.sgsxjxfzmnl_shouli) {
+					return Infinity;
+				}
+			},
+		},
+		enable: ["chooseToUse", "chooseToRespond"],
+		hiddenCard(player, name) {
+			if (player != _status.currentPhase && (name == "sha" || name == "shan")) {
+				return true;
+			}
+		},
+		filter(event, player) {
+			if (event.responded || event.sgsxjxfzmnl_shouli || event.type == "wuxie") {
+				return false;
+			}
+			if (
+				game.hasPlayer(function (current) {
+					return current.getCards("e", card => get.is.attackingMount(card)).length > 0;
+				}) &&
+				event.filterCard(
+					get.autoViewAs(
+						{
+							name: "sha",
+							storage: { sgsxjxfzmnl_shouli: true },
+						},
+						"unsure"
+					),
+					player,
+					event
+				)
+			) {
+				return true;
+			}
+			if (
+				game.hasPlayer(function (current) {
+					return current.getCards("e", card => get.is.defendingMount(card)).length > 0;
+				}) &&
+				event.filterCard(
+					get.autoViewAs(
+						{
+							name: "shan",
+							storage: { sgsxjxfzmnl_shouli: true },
+						},
+						"unsure"
+					),
+					player,
+					event
+				)
+			) {
+				return true;
+			}
+			return false;
+		},
+		delay: false,
+		locked: false,
+		filterTarget(card, player, target) {
+			var event = _status.event,
+				evt = event;
+			if (event._backup) {
+				evt = event._backup;
+			}
+			var equip3 = target.getCards("e", card => get.is.defendingMount(card, false));
+			var equip4 = target.getCards("e", card => get.is.attackingMount(card, false));
+			if (
+				equip3.length &&
+				equip3.some(card =>
+					evt.filterCard(
+						get.autoViewAs(
+							{
+								name: "shan",
+								storage: { sgsxjxfzmnl_shouli: true },
+							},
+							[card]
+						),
+						player,
+						event
+					)
+				)
+			) {
+				return true;
+			}
+			return equip4.some(card => {
+				var sha = get.autoViewAs(
+					{
+						name: "sha",
+						storage: { sgsxjxfzmnl_shouli: true },
+					},
+					[card]
+				);
+				if (evt.filterCard(sha, player, event)) {
+					if (!evt.filterTarget) {
+						return true;
+					}
+					return game.hasPlayer(function (current) {
+						return evt.filterTarget(sha, player, current);
+					});
+				}
+			});
+		},
+		prompt: "将场上的一张坐骑牌当做【杀】或【闪】使用或打出",
+		content() {
+			"step 0";
+			var evt = event.getParent(2);
+			evt.set("sgsxjxfzmnl_shouli", true);
+			var list = [];
+			var equip3 = target.getCards("e", card => get.is.defendingMount(card, false));
+			var equip4 = target.getCards("e", card => get.is.attackingMount(card, false));
+			var backupx = _status.event;
+			_status.event = evt;
+			try {
+				if (
+					equip3.length &&
+					equip3.some(card => {
+						var shan = get.autoViewAs(
+							{
+								name: "shan",
+								storage: { sgsxjxfzmnl_shouli: true },
+							},
+							[card]
+						);
+						if (evt.filterCard(shan, player, event)) {
+							return true;
+						}
+						return false;
+					})
+				) {
+					list.push("shan");
+				}
+				if (
+					equip4.length &&
+					equip4.some(card => {
+						var sha = get.autoViewAs(
+							{
+								name: "sha",
+								storage: { sgsxjxfzmnl_shouli: true },
+							},
+							[card]
+						);
+						if (
+							evt.filterCard(sha, player, evt) &&
+							(!evt.filterTarget ||
+								game.hasPlayer(function (current) {
+									return evt.filterTarget(sha, player, current);
+								}))
+						) {
+							return true;
+						}
+						return false;
+					})
+				) {
+					list.push("sha");
+				}
+			} catch (e) {
+				game.print(e);
+			}
+			_status.event = backupx;
+			if (list.length == 1) {
+				event.cardName = list[0];
+				var cards = list[0] == "shan" ? equip3 : equip4;
+				if (cards.length == 1) {
+					event._result = {
+						bool: true,
+						links: [cards[0]],
+					};
+				} else {
+					player
+						.choosePlayerCard(true, target, "e")
+						.set("filterButton", function (button) {
+							return _status.event.cards.includes(button.link);
+						})
+						.set("cards", cards);
+				}
+			} else {
+				player.choosePlayerCard(true, target, "e").set("filterButton", function (button) {
+					var card = button.link;
+					return get.is.attackingMount(card) || get.is.defendingMount(card);
+				});
+			}
+			"step 1";
+			var evt = event.getParent(2);
+			if (result.bool && result.links && result.links.length) {
+				var name = event.cardName || (get.is.attackingMount(result.links[0]) ? "sha" : "shan");
+				if (evt.name == "chooseToUse") {
+					game.broadcastAll(
+						function (result, name) {
+							lib.skill.sgsxjxfzmnl_shouli_backup.viewAs = {
+								name: name,
+								cards: [result],
+								storage: { sgsxjxfzmnl_shouli: true },
+							};
+							lib.skill.sgsxjxfzmnl_shouli_backup.prompt = "选择" + get.translation(name) + "（" + get.translation(result) + "）的目标";
+						},
+						result.links[0],
+						name
+					);
+					evt.set("_backupevent", "sgsxjxfzmnl_shouli_backup");
+					evt.backup("sgsxjxfzmnl_shouli_backup");
+					evt.set("openskilldialog", "选择" + get.translation(name) + "（" + get.translation(result.links[0]) + "）的目标");
+					evt.set("norestore", true);
+					evt.set("custom", {
+						add: {},
+						replace: { window() {} },
+					});
+				} else {
+					delete evt.result.used;
+					evt.result.card = get.autoViewAs(
+						{
+							name: name,
+							cards: [result.links[0]],
+							storage: { sgsxjxfzmnl_shouli: true },
+						},
+						result.links
+					);
+					evt.result.cards = [result.links[0]];
+					evt.result._apply_args = { addSkillCount: false };
+					target.$give(result.links[0], player, false);
+					if (player != target) {
+						target.addTempSkill("baiban");
+					}
+					target.addTempSkill("sgsxjxfzmnl_shouli_thunder");
+					player.addTempSkill("sgsxjxfzmnl_shouli_thunder");
+					evt.redo();
+					return;
+				}
+			}
+			evt.goto(0);
+		},
+		ai: {
+			respondSha: true,
+			respondShan: true,
+			skillTagFilter(player, tag) {
+				var func = get.is[tag == "respondSha" ? "attackingMount" : "defendingMount"];
+				return game.hasPlayer(function (current) {
+					return current.hasCard(card => func(card, false), "e");
+				});
+			},
+			order: 2,
+			result: {
+				player(player, target) {
+					var att = Math.max(8, get.attitude(player, target));
+					if (_status.event.type != "phase") {
+						return 9 - att;
+					}
+					if (!player.hasValueTarget({ name: "sha" })) {
+						return 0;
+					}
+					return 9 - att;
+				},
+			},
+		},
+		group: ["sgsxjxfzmnl_shouli_init",'sgsxjxfzmnl_shouli_hit'],
+		subSkill: {
+			thunder: {
+				charlotte: true,
+				trigger: { player: "damageBegin1" },
+				forced: true,
+				mark: true,
+				content() {
+					trigger.num++;
+					game.setNature(trigger, "thunder");
+				},
+				marktext: "⚡",
+				intro: { content: "受到的伤害+1且改为雷属性" },
+				ai: {
+					effect: {
+						target: (card, player, target) => {
+							if (!get.tag(card, "damage")) {
+								return;
+							}
+							if (
+								target.hasSkillTag("nodamage", null, {
+									natures: ["thunder"],
+								}) ||
+								target.hasSkillTag("nothunder")
+							) {
+								return "zeroplayertarget";
+							}
+							if (
+								target.hasSkillTag("filterDamage", null, {
+									player: player,
+									card: new lib.element.VCard(
+										{
+											name: card.name,
+											nature: "thunder",
+										},
+										[card]
+									),
+								})
+							) {
+								return;
+							}
+							return 2;
+						},
+					},
+				},
+			},
+			init: {
+				audio: "sgsxjxfzmnl_shouli",
+				trigger: {
+					global: "roundStart",
+				},
+				forced: true,
+				locked: false,
+				filter(event, player) {
+					// return event.name != "phase" || game.phaseNumber == 0;
+					return true;
+				},
+				logTarget: () => game.filterPlayer(),
+				content() {
+					"step 0";
+					var targets = game.filterPlayer().sortBySeat(player.getNext());
+					event.targets = targets;
+					event.num = 0;
+					"step 1";
+					var target = event.targets[num];
+					if (target.isIn()) {
+						var card = get.cardPile2(function (card) {
+							if (get.cardtag(card, "gifts")) {
+								return false;
+							}
+							var type = get.subtype(card);
+							if (type != "equip3" && type != "equip4" && type != "equip6") {
+								return false;
+							}
+							return target.canUse(card, target);
+						});
+						if (card) {
+							target.chooseUseTarget(card, "nopopup", "noanimate", true);
+						}
+					}
+					event.num++;
+					if (event.num < targets.length) {
+						event.redo();
+					}
+				},
+			},
+			backup: {
+				precontent() {
+					"step 0";
+					var cards = event.result.card.cards;
+					event.result.cards = cards;
+					event.result._apply_args = { addSkillCount: false };
+					var owner = get.owner(cards[0]);
+					event.target = owner;
+					owner.$give(cards[0], player, false);
+					player.popup(event.result.card.name, "metal");
+					game.delayx();
+					event.getParent().addCount = false;
+					"step 1";
+					if (player != target) {
+						target.addTempSkill("fengyin");
+					}
+					target.addTempSkill("sgsxjxfzmnl_shouli_thunder");
+					player.addTempSkill("sgsxjxfzmnl_shouli_thunder");
+				},
+				filterCard: () => false,
+				prompt: "请选择【杀】的目标",
+				selectCard: -1,
+				log: false,
+			},
+			hit:{
+				forced:true,
+				trigger:{
+					player:['useCard'],
+				},
+				filter(event,player){
+					return event.card.name == 'sha'&&event.targets?.length&&event.card.storage?.sgsxjxfzmnl_shouli;
+				},
+				content(){
+					trigger.directHit.addArray(game.filterPlayer())
+				}
+			}
+		},
+	},
+	sgsxjxfzmnl_hengwu: {
+		audio: 'hengwu',
+		trigger: { player: ["useCard", "respond"] },
+		frequent: true,
+		filter(event, player) {
+			var suit = get.suit(event.card);
+			if (
+				// !lib.suit.includes(suit) ||
+				player.hasCard(function (card) {
+					return get.suit(card, player) == suit;
+				}, "h")
+			) {
+				return false;
+			}
+			return game.hasPlayer(function (current) {
+				return current.hasCard(function (card) {
+					return get.suit(card, current) == suit;
+				}, "e");
+			});
+		},
+		content() {
+			var suit = get.suit(trigger.card);
+			player.draw(
+				game.countPlayer(function (current) {
+					return current.countCards("e", function (card) {
+						return get.suit(card, current) == suit;
+					});
+				})
+			);
+		},
+		ai: {
+			effect: {
+				player_use(card, player, target) {
+					if (typeof card !== "object") {
+						return;
+					}
+					let suit = get.suit(card);
+					if (
+						!lib.suit.includes(suit) ||
+						player.hasCard(function (i) {
+							return get.suit(i, player) == suit;
+						}, "h")
+					) {
+						return;
+					}
+					return [
+						1,
+						0.8 *
+							game.countPlayer(current => {
+								return current.countCards("e", card => {
+									return get.suit(card, current) == suit;
+								});
+							}),
+					];
+				},
+				target: (card, player, target) => {
+					if (
+						card.name === "sha" &&
+						!player.hasSkillTag(
+							"directHit_ai",
+							true,
+							{
+								target: target,
+								card: card,
+							},
+							true
+						) &&
+						game.hasPlayer(current => {
+							return current.hasCard(cardx => {
+								return get.subtype(cardx) === "equip3";
+							}, "e");
+						})
+					) {
+						return [0, -0.5];
+					}
+				},
+			},
+		},
+	},
+	//孙寒华
+	sgsxjxfzmnl_chongxu: {
+		audio: 'chongxu',
+		enable: "phaseUse",
+		usable: 3,
+		content() {
+			"step 0";
+			player.chooseToPlayBeatmap(lib.skill.sgsxjxfzmnl_chongxu.beatmaps.randomGet());
+			"step 1";
+			var score = Math.floor(Math.min(5, result.accuracy / 17));
+			event.score = score;
+			game.log(player, "的演奏评级为", "#y" + result.rank[0], "，获得积分点数", "#y" + score, "分");
+			if (score < 3) {
+				if (score >= 2) {
+					player.draw();
+				}
+				event.finish();
+				return;
+			}
+			var list = [];
+			if (player.countMark("sgsxjxfzmnl_miaojian") < 2 && player.hasSkill("sgsxjxfzmnl_miaojian")) {
+				list.push("修改【妙剑】");
+			}
+			if (player.countMark("sgsxjxfzmnl_shhlianhua") < 2 && player.hasSkill("sgsxjxfzmnl_shhlianhua")) {
+				list.push("修改【莲华】");
+			}
+			if (list.length) {
+				list.push("全部摸牌");
+				player.chooseControl(list).set("prompt", "冲虚：修改技能" + (score == 5 ? "并摸一张牌" : "") + "；或摸" + Math.floor(score / 2) + "张牌");
+			} else {
+				event._result = { control: "全部摸牌" };
+			}
+			"step 2";
+			var score = event.score;
+			if (result.control != "全部摸牌") {
+				score -= 3;
+				var skill = result.control == "修改【妙剑】" ? "sgsxjxfzmnl_miaojian" : "sgsxjxfzmnl_shhlianhua";
+				player.addMark(skill, 1, false);
+				game.log(player, "修改了技能", "#g【" + get.translation(skill) + "】");
+			}
+			if (score > 1) {
+				player.draw(Math.floor(score / 2));
+			}
+		},
+		ai: {
+			order: 10,
+			result: {
+				player: 1,
+			},
+		},
+		beatmaps: [
+			{
+				//歌曲名称
+				name: "鳥の詩",
+				//歌曲文件名（默认在audio/effect文件夹下 若要重定向到扩展 请写为'ext:扩展名称/文件名'的格式）
+				filename: "tori_no_uta",
+				//每个音符的开始时间点（毫秒，相对未偏移的开始播放时间）
+				timeleap: [1047, 3012, 4978, 5469, 5961, 6452, 6698, 7435, 8909, 10875, 12840],
+				//开始播放时间的偏移量（毫秒）
+				current: -110,
+				//判定栏高度（相对整个对话框高度比例）
+				judgebar_height: 0.16,
+				//Good/Great/Prefect的位置判定范围（百分比，相对于整个对话框。以滑条的底部作为判定基准）
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				//滑条每相对于整个对话框下落1%所需的时间（毫秒）
+				speed: 25,
+			},
+			{
+				name: "竹取飛翔　～ Lunatic Princess",
+				filename: "taketori_hishou",
+				timeleap: [1021, 1490, 1959, 2896, 3834, 4537, 4771, 5709, 6646, 7585, 8039, 8494, 9403, 10291, 11180, 11832, 12049, 12920, 13345, 13771, 14196],
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(rgba(250, 170, 190, 1), rgba(240, 160, 180, 1))",
+				judgebar_color: "linear-gradient(rgba(240, 120, 243, 1), rgba(245, 106, 230, 1))",
+			},
+			{
+				name: "ignotus",
+				filename: "ignotus",
+				//Number of tracks
+				//轨道数量
+				number_of_tracks: 4,
+				//Customize the track to generate for every note (0 is the first track)
+				//自定义每个音符生成的轨道（0是第一个轨道）
+				mapping: [0, 2, 3, 1, 1, 0, 3, 0, 0, 3, 0, 0, 2, 1, 2],
+				//Convert from beats (0 is the first beat) to timeleap
+				//将节拍（0是第一拍）转换为开始时间点
+				timeleap: game.generateBeatmapTimeleap(170, [0, 4, 8, 12, 14, 16, 16.5, 23.5, 24, 31, 32, 40, 45, 46, 47]),
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(rgba(240, 250, 240, 1), rgba(230, 240, 230, 1))",
+				judgebar_color: "linear-gradient(rgba(161, 59, 150, 1), rgba(58, 43, 74, 1))",
+			},
+			{
+				name: "Super Mario 3D World Theme",
+				filename: "sm3dw_overworld",
+				//Random (Randomly choose tracks to generate notes each play)
+				//随机（每次演奏时音符会随机选择轨道生成）
+				mapping: "random",
+				timeleap: [0, 1071, 1518, 2054, 4018, 4286, 5357, 6429, 7500, 8571, 9643, 10714, 11786, 12321, 12589, 12857, 13929, 15000, 16071, 17143, 18214, 18482, 18750, 19018, 19286, 20357],
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(rgba(120, 130, 240, 1), rgba(100, 100, 230, 1))",
+				judgebar_color: "linear-gradient(rgba(230, 40, 30, 1), rgba(220, 30, 10, 1))",
+			},
+			{
+				name: "只因你太美",
+				filename: "chicken_you_are_so_beautiful",
+				number_of_tracks: 7,
+				mapping: [3, 6, 4, 5, 6, 2, 3, 2, 1, 2, 0, 4, 3, 6, 5, 4, 3, 6, 3, 2, 3, 1, 0, 1, 2, 3, 4, 5, 6],
+				timeleap: game.generateBeatmapTimeleap(107, [2, 3.5, 4.5, 5.5, 6.5, 8.5, 10, 11.5, 12.5, 13.5, 14.5, 15.5, 18, 19.5, 20.5, 21.5, 22.5, 24.5, 26, 27.5, 28.5, 29.5, 30.5, 31, 31.5, 32, 32.5, 33, 33.5]),
+				//Hitsound file name (By default in the audio/effect folder. To redirect to the extension, please write in the format of 'ext:extension_name')
+				//打击音文件名（默认在audio/effect文件夹下 若要重定向到扩展 请写为'ext:扩展名称'的格式）
+				hitsound: "chickun.wav",
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(#99f, #66c)",
+				judgebar_color: "linear-gradient(#ccf, #99c)",
+			},
+			{
+				name: "Croatian Rhapsody",
+				filename: "croatian_rhapsody",
+				mapping: [4, 1, 2, 1, 0, 0, 4, 5, 1, 3, 2, 1, 0, 0],
+				timeleap: game.generateBeatmapTimeleap(96, [4, 6, 8, 9, 10, 11, 12, 13.5, 14, 15.5, 16, 17, 18, 19]),
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(#fff, #ccc)",
+				judgebar_color: "linear-gradient(#fff, #ccc)",
+			},
+			{
+				name: "罗刹海市",
+				filename: "rakshasa_sea_city",
+				number_of_tracks: 7,
+				mapping: "random",
+				timeleap: game.generateBeatmapTimeleap(150, [0, 2, 4, 6, 7, 9, 11, 13, 14, 16, 18, 20, 21, 23, 25, 27]),
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(#333, #000)",
+				judgebar_color: "linear-gradient(#c66, #933)",
+			},
+			{
+				name: "Pigstep (Stereo Mix)",
+				filename: "pigstep",
+				number_of_tracks: 16,
+				timeleap: game.generateBeatmapTimeleap(170, [3, 4, 6, 6.5, 7.5, 11, 12, 14, 14.5, 15.5, 19, 20, 22, 22.5, 23.5, 27, 28, 30, 30.5, 31.5, 35, 36, 38, 38.5, 39.5, 43, 44, 46, 46.5, 47.5, 51, 52, 54, 54.5, 55.5, 59, 60, 62, 62.5]),
+				current: -110,
+				judgebar_height: 0.16,
+				range1: [84, 110],
+				range2: [90, 104],
+				range3: [94, 100],
+				speed: 25,
+				node_color: "linear-gradient(#066, #033)",
+				judgebar_color: "linear-gradient(#633, #300)",
+			},
+		],
+		derivation: "sgsxjxfzmnl_chongxu_faq",
+	},
+	sgsxjxfzmnl_miaojian: {
+		audio: 'miaojian',
+		enable: "phaseUse",
+		usable(skill,player){
+			return player.countMark("sgsxjxfzmnl_miaojian")+1;
+		},
+		filter(event, player) {
+			var level = player.countMark("sgsxjxfzmnl_miaojian");
+			if (event.filterCard({ name: "sha", nature: "stab" }, player, event)) {
+				if (level == 2) {
+					return true;
+				}
+				if (
+					level == 1 &&
+					player.hasCard(function (card) {
+						return get.type2(card) == "basic";
+					}, "hs")
+				) {
+					return true;
+				}
+				if (
+					level == 0 &&
+					player.hasCard(function (card) {
+						return get.name(card) == "sha";
+					}, "hs")
+				) {
+					return true;
+				}
+			}
+			if (event.filterCard({ name: "wuzhong" }, player, event)) {
+				if (level == 2) {
+					return true;
+				}
+				if (
+					level == 1 &&
+					player.hasCard(function (card) {
+						return get.type2(card) != "basic";
+					}, "hes")
+				) {
+					return true;
+				}
+				if (
+					level == 0 &&
+					player.hasCard(function (card) {
+						return get.type2(card) == "trick";
+					}, "hs")
+				) {
+					return true;
+				}
+			}
+			return false;
+		},
+		chooseButton: {
+			dialog() {
+				return ui.create.dialog("妙剑", [
+					[
+						["基本", "", "sha", "stab"],
+						["锦囊", "", "wuzhong"],
+					],
+					"vcard",
+				]);
+			},
+			filter(button, player) {
+				var event = _status.event.getParent(),
+					level = player.countMark("sgsxjxfzmnl_miaojian");
+				if (button.link[2] == "sha") {
+					if (!event.filterCard({ name: "sha", nature: "stab" }, player, event)) {
+						return false;
+					}
+					if (level == 2) {
+						return true;
+					}
+					if (level == 1) {
+						return player.hasCard(function (card) {
+							return get.type2(card) == "basic";
+						}, "hs");
+					}
+					return (
+						level == 0 &&
+						player.hasCard(function (card) {
+							return get.name(card) == "sha";
+						}, "hs")
+					);
+				}
+				if (button.link[2] == "wuzhong") {
+					if (!event.filterCard({ name: "wuzhong" }, player, event)) {
+						return false;
+					}
+					if (level == 2) {
+						return true;
+					}
+					if (level == 1) {
+						return player.hasCard(function (card) {
+							return get.type2(card) != "basic";
+						}, "hes");
+					}
+					return (
+						level == 0 &&
+						player.hasCard(function (card) {
+							return get.type2(card) == "trick";
+						}, "hs")
+					);
+				}
+			},
+			check(button) {
+				var card = { name: button.link[2], nature: button.link[3] },
+					player = _status.event.player;
+				return get.value(card, player) * get.sgn(player.getUseValue(card));
+			},
+			backup(links, player) {
+				var index = links[0][2] == "sha" ? 0 : 1,
+					level = player.countMark("sgsxjxfzmnl_miaojian");
+				var next = {
+					audio: "sgsxjxfzmnl_miaojian",
+					filterCard: [
+						[
+							function (card) {
+								return get.name(card) == "sha";
+							},
+							function (card) {
+								return get.type(card) == "basic";
+							},
+							() => false,
+						],
+						[
+							function (card) {
+								return get.type2(card) == "trick";
+							},
+							function (card) {
+								return get.type(card) != "basic";
+							},
+							() => false,
+						],
+					][index][level],
+					position: "hes",
+					check(card) {
+						if (card) {
+							return 6.5 - get.value(card);
+						}
+						return 1;
+					},
+					viewAs: [
+						{
+							name: "sha",
+							nature: "stab",
+						},
+						{
+							name: "wuzhong",
+						},
+					][index],
+				};
+				if (level == 2) {
+					next.selectCard = -1;
+					next.viewAs.isCard = true;
+				}
+				return next;
+			},
+			prompt(links, player) {
+				var index = links[0][2] == "sha" ? 0 : 1,
+					level = player.countMark("sgsxjxfzmnl_miaojian");
+				return [
+					["将一张【杀】当做刺【杀】使用", "将一张基本牌当做刺【杀】使用", "请选择刺【杀】的目标"],
+					["将一张锦囊牌当做【无中生有】使用", "将一张非基本牌当做【无中生有】使用", "请选择【无中生有】的目标"],
+				][index][level];
+			},
+		},
+		onremove: true,
+		derivation: ["sgsxjxfzmnl_miaojian1", "sgsxjxfzmnl_miaojian2"],
+		subSkill: { backup: { audio: "sgsxjxfzmnl_miaojian" } },
+		ai: {
+			order: 7,
+			result: { player: 1 },
+		},
+	},
+	sgsxjxfzmnl_shhlianhua: {
+		audio: 'shhlianhua',
+		derivation: ["sgsxjxfzmnl_shhlianhua1", "sgsxjxfzmnl_shhlianhua2"],
+		trigger: { target: "useCardToTargeted" },
+		forced: true,
+		locked: false,
+		filter: event => event.card.name == "sha",
+		content() {
+			"step 0";
+			player.draw();
+			var level = player.countMark("sgsxjxfzmnl_shhlianhua");
+			if (!level) {
+				event.finish();
+			} else if (level == 1) {
+				event.goto(2);
+			} else {
+				event.goto(1);
+				// var eff = get.effect(player, trigger.card, trigger.player, trigger.player);
+			}
+			"step 1";
+			var cards = trigger.player.getCards("he", function (card) {
+				return lib.filter.cardDiscardable(card, trigger.player, "sgsxjxfzmnl_shhlianhua");
+			});
+			if(cards){
+				trigger.player.discard(cards.randomGet()).discarder = player;
+				event.finish();
+			}
+			else trigger.getParent().excluded.add(player);
+			"step 2";
+			player
+				.judge(function (result) {
+					return get.color(result) == "black" ? 1 : -1;
+				})
+				.set("judge2", result => result.bool);
+
+			"step 3";
+			if (result.bool) {
+				trigger.excluded.add(player);
+			}
+			event.finish();
+		},
+		ai: {
+			effect: {
+				target_use(card, player, target, current) {
+					if (card.name == "sha" && current < 0) {
+						return 0.7;
+					}
+				},
+			},
+		},
+	},
+
 
 
 
