@@ -4135,7 +4135,7 @@ const skill = {
 		},
 		filter(event, player) {
 			const filter = event.filterCard
-			if (player.hasSkill('Fe2O3_bayun_1')) return false
+			if (event.Fe2O3_bayun) player.tempBanSkill('Fe2O3_bayun')
 			if (filter(get.autoViewAs({ name: 'sha' }, 'unsure'), player, event)) return true
 			if (filter(get.autoViewAs({ name: 'shan' }, 'unsure'), player, event)) return true
 			if (filter(get.autoViewAs({ name: 'tao' }, 'unsure'), player, event)) return true
@@ -4173,6 +4173,7 @@ const skill = {
 			if (target) await player.gainPlayerCard(target, true)
 			else await player.draw()
 			event.getParent(2).goto(0)
+			event.getParent(2).Fe2O3_bayun = true
 			event.getParent(2).Fe2O3_bayun_longdan = target
 			player.addTempSkill('Fe2O3_bayun_1')
 			event.getParent(2).backup('Fe2O3_bayun_longdan')
@@ -4464,90 +4465,224 @@ const skill = {
 			player: 'useCardToPlayered'
 		},
 		filter(event, player) {
-			game.log(1)
 			if (event.targets.length != 1) return false
-			const evt = player.getAllHistory('useCard', evt => evt != event.getParent() && evt.targets).lastItem
+			const evt = player.getAllHistory('useCard', evt => evt != event.getParent()).lastItem
 			if (!evt) return false
  			if (evt.targets.length != 1) return false
 			const target = event.targets[0],
 				targetx = evt.targets[0]
 			if (target.hasSkill('undist') || targetx.hasSkill('undist')) return false
+			if (target.isDead() || targetx.isDead()) return
+			event.FeO3_dafei_target = targetx
 			let left = [],
 				right = [],
-				left2 = target,
-				right2 = target
+				left2 = target.getPrevious(),
+				right2 = target.getNext()
 			while (left2 != targetx && right2 != targetx) {
+				left.push(left2)
+				right.push(right2)
 				left2 = left2.getPrevious()
 				right2 = right2.getNext()
-				if (left2 != targetx) left.push(left2)
-				if (right2 != targetx) right.push(right2)
 			}
 			if (targetx == left2 && left.some(i => i.countDiscardableCards(player, 'he'))) return true
 			if (targetx == right2 && right.some(i => i.countDiscardableCards(player, 'he'))) return true
 			return false
 		},
-		async content(event, trigger, player) {
-			const evt = player.getAllHistory('useCard', evt => evt != trigger.getParent() && evt.targets).lastItem
+		async cost(event, trigger, player) {
 			const target = trigger.targets[0],
-				targetx = evt.targets[0]
+				targetx = trigger.FeO3_dafei_target
 			if (target.hasSkill('undist') || targetx.hasSkill('undist')) return
 			if (target.isDead() || targetx.isDead()) return
 			let left = [],
 				right = [],
-				left2 = target,
-				right2 = target,
+				left2 = target.getPrevious(),
+				right2 = target.getNext(),
 				left_eff = 0,
 				right_eff = 0
 			while (left2 != targetx && right2 != targetx) {
+				left.push(left2)
+				right.push(right2)
 				left2 = left2.getPrevious()
 				right2 = right2.getNext()
-				if (left2 != target) left.push(left2)
-				if (right2 != target) right.push(right2)
 			}
-			const choices = []
-			const card = { name: 'guohe_copy', position: 'he' }
+			const choices = [], cw = [], ccw = []
+			const card = get.autoViewAs({ name: 'guohe_copy2' })
 			if (targetx == right2)
 				for (const i of right) 
 					if (i.countDiscardableCards(player, 'he')) {
-						choices.add('↖顺时针')
+						cw.add(i)
 						right_eff += get.effect(i, card, player)
 					}
 			
 			if (targetx == left2)
 				for (const i of left) 
 					if (i.countDiscardableCards(player, 'he')) {
-						choices.add('逆时针↗')
+						ccw.add(i)
 						left_eff += get.effect(i, card, player)
 					}
-			const choice = right_eff > left_eff ? 1 : 0
-			const {result} = await player
-				.chooseControl(choices)
-				.set('prompt', get.prompt('FeO3_dafei'))
-				.set('prompt2', `弃置${get.translation(targetx)}和${get.translation(target)}某个方向之间的所有角色各一张牌`)
-				.set('choice', choice)
-			const targets = []
-			if (result.control == '↖顺时针') {
-				let current = targetx.getPrevious()
-				while (current != trigger.target) {
-					if (current.countDiscardableCards(player, 'he')) targets.push(current)
-					current = current.getPrevious()
+			const dialog = ui.create.dialog(`###是否发动〖大飞〗###弃置${get.translation(targetx)}和${get.translation(target)}之间角色各一张牌`, 'hidden')
+			const dialogs = {}
+			for (const current of [...cw, ...ccw]) {
+				const subdialog = ui.create.dialog('hidden')
+				game.broadcastAll(function(event, subdialog) {
+					if (event.isMine()) subdialog.open()
+				}, event, subdialog)
+				dialogs[current.playerid] = subdialog
+				subdialog.add(`弃置${get.translation(current)}一张牌`)
+				let expand_length = 0
+				const hs = current.getDiscardableCards(player, 'h')
+				expand_length += Math.ceil(hs.length / 6)
+				if (hs.length) {
+					const title = subdialog.add('<div class="text center" style="margin: 0px">手牌区</div>')
+					title.style.margin = '0px'
+					title.style.padding = '0px'
+					hs.randomSort()
+					if (current.isUnderControl(true) || player.hasSkillTag('viewHandcard', null, current, true)) subdialog.add(hs)
+					else {
+						const shown = hs.filter(card => get.is.shownCard(card))
+						if (shown.length) {
+							const hidden = hs.filter(card => !shown.includes(card))
+							const buttons = ui.create.div('.buttons', subdialog.content)
+							subdialog.buttons = subdialog.buttons.concat(ui.create.buttons(shown, 'card', buttons))
+							subdialog.buttons = subdialog.buttons.concat(ui.create.buttons(hidden, 'blank', buttons))
+							if (subdialog.buttons.length > 3) subdialog.classList.remove('forcebutton-auto')
+							else subdialog.classList.add('forcebutton-auto')
+						}
+						else subdialog.add([hs, 'blank'])
+						if (subdialog.buttons.length > 3) subdialog.classList.remove('forcebutton-auto')
+						else subdialog.classList.add('forcebutton-auto')
+					}
+				}
+				const es = current.getDiscardableCards(player, 'e')
+				if (es.length) {
+					expand_length += Math.ceil(es.length / 6)
+					const title = subdialog.add('<div class="text center" style="margin: 0px">装备区</div>')
+					title.style.margin = '0px'
+					title.style.padding = '0px'
+					subdialog.add(es)
+				}
+				if (expand_length > 2) subdialog.classList.add('fullheight')
+			}
+			dialog.buttons = Object.values(dialogs).reduce((buttons, dialog) => buttons.addArray(dialog.buttons), [])
+			const { result } = await player.chooseButtonTarget({
+				dialog,
+				dialogs,
+				filterTarget(card, player, target) {
+					const { cw, cww } = get.event()
+					if (!ui.selected.buttons.length) return [...cw, ...ccw].includes(target)
+					const targetx = get.owner(get.links(ui.selected.buttons)[0])
+					return cw.includes(target) && cw.includes(targetx) || ccw.includes(target) && ccw.includes(targetx)
+				},
+				selectButton : [0, Infinity],
+				selectTarget : [0, Infinity],
+				filterButton : button => get.owner(button.link) == ui.selected.targets[0] && ui.selected.buttons.every(buttonx => get.owner(button.link) != get.owner(buttonx.link)),
+				filterOk() {
+					const { cw, cww } = get.event()
+					if (cw.length && ui.selected.buttons.length == cw.length) return true
+					if (ccw.length && ui.selected.buttons.length == ccw.length) return true
+					return false
+				},
+				cw,
+				ccw,
+				left_eff,
+				right_eff,
+				complexSelect : true,
+				canHidden : false,
+				processAI() {
+					const event = get.event()
+					const { player, left_eff, right_eff, ccw, cw, dialogs } = event
+					if (left_eff <= 0 && right_eff <= 0) return { bool : false }
+					const links = []
+					if (right_eff > left_eff)
+						for (const target of cww) {
+							const buttons = dialogs[target.playerid].buttons.slice()
+							buttons.sort((a, b) => get.buttonValue(a) - get.buttonValue(b))
+							if (get.attitude(player, target) > 0) links.add(buttons[0].link)
+							else links.add(buttons.lastItem.link)
+						}
+					else 
+						for (const target of cw) {
+							const buttons = dialogs[target.playerid].buttons.slice()
+							buttons.sort((a, b) => get.buttonValue(a) - get.buttonValue(b))
+							if (get.attitude(player, target) > 0) links.add(buttons[0].link)
+							else links.add(buttons.lastItem.link)
+						}
+					return { bool : true, links, targets : [] }
+				},
+				custom : {
+					replace : {
+						button(button) {
+							const event = get.event()
+							if (!event.isMine()) return
+							if (!button.classList.contains('selectable')) return
+							if (button.classList.contains('selected')) {
+								button.classList.remove('selected')
+								ui.selected.buttons.remove(button)
+								get.owner(button.link).unprompt()
+							}
+							else {
+								button.classList.add('selected')
+								ui.selected.buttons.add(button)
+								get.owner(button.link).prompt('已选择', 'water')
+							}
+							if (event.custom.add.button) custom.add.button()
+							game.check()
+						},
+						target(target) {
+							const event = get.event()
+							const subdialog = event.dialogs[target.playerid]
+							if (!target.classList.contains('selectable')) return
+							if (target.classList.contains('selected')) {
+								ui.selected.targets.remove(target)
+								target.classList.remove('selected')
+								subdialog.hide()
+								event.dialog.show()
+							}
+							else {
+								ui.selected.targets.forEach(i => i.classList.remove('selected'))
+								ui.selected.targets = [target]
+								target.classList.add('selected')
+								Object.values(event.dialogs).forEach(dialog => dialog.hide())
+								event.dialog.hide()
+								subdialog.show()
+							}
+							if (event.custom.add.target) custom.add.target()
+							game.check()
+						},
+						window() {
+							game.uncheck()
+							const event = get.event()
+							Object.values(event.dialogs).forEach(dialog => dialog.hide())
+							event.dialog.show()
+							game.check()
+						}
+					},
+					add : {}
+				}
+			})
+			Object.values(event.dialogs).forEach(dialog => dialog.close())
+			event.result = {
+				bool : result.bool && result.links?.length,
+				cost_data : result.links?.map(card => [get.owner(card), [card]])
+			}
+		},
+		async content(event, trigger, player) {
+			player.addTempSkill('FeO3_dafei_discarder')
+			await game.loseAsync({ lose_list : event.cost_data }).setContent('discardMultiple')
+		},
+		subSkill : {
+			discarder : {
+				charlotte:true,
+				direct : true,
+				firstDo : true,
+				trigger : {
+					global : 'loseBefore'
+				},
+				filter : (event, player) => event.getParent().name == 'loseAsync' && event.getParent(2).name == 'FeO3_dafei' && event.getParent(2).player == player,
+				async content(event, trigger, player) {
+					trigger.discarder = player
 				}
 			}
-			else {
-				let current = targetx.getNext()
-				while (current != trigger.target) {
-					if (current.countDiscardableCards(player, 'he')) targets.push(current)
-					current = current.getNext()
-				}
-			}
-			if (!targets.length) return
-			const lose_list = []
-			for (const current of targets) {
-				if (!current.countDiscardableCards(player, 'he')) continue
-				const {result : result2} = await player.discardPlayerCard(current, true).set('chooseonly', true)
-				lose_list.push([current, result2.cards])
-			}
-			await game.loseAsync({lose_list}).setContent('discardMultiple')
 		}
 	},
 	FeO3_zhengjie : {
@@ -4563,6 +4698,27 @@ const skill = {
 		async content(event, trigger, player) {
 		}
 	},
+	//我覆盖个调虎离山
+	diaohulishan : {
+		charlotte: true,
+		group: 'undist',
+		mod : {
+			wuxieJudgeEnabled : () => false,
+			wuxieEnabled : () => false,
+			cardEnabled : () => false,
+			cardUsable : () => false,
+			cardSavable : () => false,
+			targetEnabled : () => false,
+		},
+		trigger : {
+			player : ['loseHpBefore', 'damageBefore', 'recoverBefore']
+		},
+		firstDo : true,
+		direct : true,
+		async content(event, trigger, player) {
+			trigger.cancel()
+		}
+	},
 	FeO3_jinqi : {
 		trigger: {
 			global: 'dieAfter'
@@ -4573,7 +4729,7 @@ const skill = {
 			if (cards.length) {
 				const suits = []
 				for (const card of cards) suits.add(get.suit(card))
-				const {result} = await player.chooseButton(['提子：获得不同花色的牌各一张', cards], true, suits.length)
+				const {result} = await player.chooseButton(['紧气：获得不同花色的牌各一张', cards], true, suits.length)
 					.set('ai', button => {
 						const player = get.player()
 						return get.value(button.link, player)
@@ -4586,6 +4742,7 @@ const skill = {
 				if (evt && evt.name == phase) {
 					evt.skipped = true
 					game.log(player, '令', _status.currentPhase, '结束了' + get.translation(phase))
+					break
 				}
 			}
 			const evt2 = event.getParent('phase')
@@ -4700,6 +4857,12 @@ const skill = {
 						if (i == card) return
 					}
 				}
+			},
+			get wuxieJudgeEnabled() {
+				return lib.skill.Fe2O3_chichi.mod.cardDiscardable
+			},
+			get wuxieEnabled() {
+				return lib.skill.Fe2O3_chichi.mod.cardDiscardable
 			}
 		},
 		forced : true,
@@ -5559,7 +5722,7 @@ const skill = {
 				next.set('chooseonly', true)
 			}
 			'step 3'
-			if (result.bool) {
+			if (result.boo) {
 				const evt = result.cost_data.ResultEvent
 				evt.addCount = false
 				evt.start()

@@ -3751,7 +3751,7 @@ const skill = {
 								counterNode = counterNode.childNodes[0];
 								counterNode.innerHTML = `×${count}`;
 							})(counterNode)) : counterNode = ui.create.caption(`<span style="font-family:xinwei; text-shadow:#FFF 0 0 4px, #FFF 0 0 4px, rgba(74,29,1,1) 0 0 3px;">×${count}</span>`, button);
-							event.parent?.controls?.[0]?.classList.add('disabled');
+							event.parent?.controls?.[0]?.classList.remove('disabled');
 							game.check();
 						},
 					},
@@ -11104,6 +11104,11 @@ const skill = {
 		derivation: "sgsxjxfzmnl_chongxu_faq",
 	},
 	sgsxjxfzmnl_miaojian: {
+		mod: {
+			cardUsable(card, player) {
+				if (card?.storage?.sgsxjxfzmnl_miaojian) return Infinity
+			}
+		},
 		audio: 'miaojian',
 		enable: "phaseUse",
 		usable(skill,player){
@@ -11111,7 +11116,7 @@ const skill = {
 		},
 		filter(event, player) {
 			var level = player.countMark("sgsxjxfzmnl_miaojian");
-			if (event.filterCard({ name: "sha", nature: "stab" }, player, event)) {
+			if (event.filterCard({ name: "sha", nature: "stab", storage : { sgsxjxfzmnl_miaojian : true } }, player, event)) {
 				if (level == 2) {
 					return true;
 				}
@@ -11132,7 +11137,7 @@ const skill = {
 					return true;
 				}
 			}
-			if (event.filterCard({ name: "wuzhong" }, player, event)) {
+			if (event.filterCard({ name: "wuzhong", storage : { sgsxjxfzmnl_miaojian : true } }, player, event)) {
 				if (level == 2) {
 					return true;
 				}
@@ -11169,7 +11174,7 @@ const skill = {
 				var event = _status.event.getParent(),
 					level = player.countMark("sgsxjxfzmnl_miaojian");
 				if (button.link[2] == "sha") {
-					if (!event.filterCard({ name: "sha", nature: "stab" }, player, event)) {
+					if (!event.filterCard({ name: "sha", nature: "stab", storage : { sgsxjxfzmnl_miaojian : true } }, player, event)) {
 						return false;
 					}
 					if (level == 2) {
@@ -11188,7 +11193,7 @@ const skill = {
 					);
 				}
 				if (button.link[2] == "wuzhong") {
-					if (!event.filterCard({ name: "wuzhong" }, player, event)) {
+					if (!event.filterCard({ name: "wuzhong", storage : { sgsxjxfzmnl_miaojian : true } }, player, event)) {
 						return false;
 					}
 					if (level == 2) {
@@ -11248,9 +11253,11 @@ const skill = {
 						{
 							name: "sha",
 							nature: "stab",
+							storage : { sgsxjxfzmnl_miaojian : true }
 						},
 						{
 							name: "wuzhong",
+							storage : { sgsxjxfzmnl_miaojian : true }
 						},
 					][index],
 				};
