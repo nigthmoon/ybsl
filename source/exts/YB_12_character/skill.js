@@ -10323,7 +10323,7 @@ const skill = {
 					if (info[3] < info[1] - 1) {
 						return 3;
 					}
-					if (info[1] <= info[3]) {
+					if (info[1] < info[3]+info[2]) {
 						return 1;
 					}
 					if (
@@ -10390,7 +10390,7 @@ const skill = {
 					if (info[3] < info[1] - 1) {
 						return 3;
 					}
-					if (info[1] <= info[3]) {
+					if (info[1] < info[3]+info[2]) {
 						return 1;
 					}
 					if (
@@ -10436,7 +10436,7 @@ const skill = {
 					if (info[3] < info[1] - 1) {
 						return 3;
 					}
-					if (info[1] <= info[3]) {
+					if (info[1] < info[3]+info[2]) {
 						return 1;
 					}
 					if (
