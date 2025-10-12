@@ -6434,6 +6434,363 @@ const skill = {
 		inherit:'dz017_zhushi',
 		audio:'ext:夜白神略/audio/character:1',
 	},
+	//----------------消消乐张晴
+	yb018_tongmou:{
+		audio:'ext:夜白神略/audio/character:2',
+		init(player,skill) {
+			player.storage[skill] = [[], [], [], [], []]
+			player.storage[skill + '_nature'] = {
+				fire : [],
+				thunder : [],
+				kami : [],
+				ice : [],
+				YB_wind : [],
+				YB_snow : [],
+				other : []
+			}
+		},
+		enable : 'phaseUse',
+		trigger : {
+			player : 'changeSkillsAfter'
+		},
+		usable : 1,
+		forced : true,
+		locked : false,
+		filter : event => event.name == 'chooseToUse' || event.addSkill.includes('yb018_tongmou'),
+		async content(event, trigger, player) {
+			async function addCards(bool) {
+				const num = player.countExpansions(event.name)
+				const cards = get.cards(25 - num)
+				const next = player.addToExpansion(cards, player)
+				next.gaintag.add(event.name)
+				await next
+				if (bool) {
+					const xs = player.getExpansions(event.name)
+					player.storage[event.name] = [
+						xs.slice(0, 5),
+						xs.slice(5, 10),
+						xs.slice(10, 15),
+						xs.slice(15, 20),
+						xs.slice(20, 25)
+					]
+				}
+				const { fire, thunder, kami, ice, YB_wind, YB_snow, other } = player.storage[event.name + '_nature']
+				for (const card of cards) {
+					const rand = Math.random()
+					if (rand > 0.999) kami.add(card)
+					else if (rand > 0.99) other.add(card)
+					else if (rand > 0.98) YB_wind.add(card)
+					else if (rand > 0.97) ice.add(card)
+					else if (rand > 0.96) thunder.add(card)
+					else if (rand > 0.95) YB_snow.add(card)
+					else if (rand > 0.94) fire.add(card)
+				}
+			}
+			if (trigger?.name == 'changeSkills') {
+				const num = player.countExpansions(event.name)
+				//什么情况下会出现这种情况呢？好奇怪啊
+				if (num) player.say('诶？上次玩完没放回去吗？')
+				if (num == 25) return
+				await addCards(true)
+				return
+			}
+			else {
+				const num = player.countExpansions(event.name)
+				//你只获得此技能时放牌，游戏开始时不放是这样的
+				if (num < 25) {
+					player.say('诶？我忘放牌了吗？洗一下吧')
+					await addCards(true)
+				}
+				const storage = player.storage[event.name]
+				const dialog = ui.create.dialog('hidden')
+				dialog.classList.add('fixed')
+				dialog.classList.add('scroll1')
+				dialog.classList.add('scroll2')
+				dialog.classList.add('fullwidth')
+				dialog.classList.add('fullheight')
+				dialog.classList.add('noupdate')
+				game.broadcastAll(function (player) {
+					if (game.me == player) dialog.open()
+					//   算了，不管了，不管联机了，联机禁了就行了
+				}, player)
+				dialog.matched = []
+				for (let x = 0; x < 5; x ++) {
+					for (let y = 0; y < 5; y ++) {
+						const card = ui.create.card(ui.special, 'noclick', true)
+						card.init(storage[x][y])
+						card.x = x
+						card.y = y
+						card.link = storage[x][y]
+						let str = ''
+						for (const nature of getNatures(card)) {
+							if (nature == 'other') str += '◈'
+							else str += get.translation(nature)
+						}
+						card.node.gaintag.innerHTML = str
+						card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
+						card.style.position = 'absolute'
+						card.style.opacity = 0
+						dialog.contentContainer.appendChild(card)
+					}
+				}
+				function update(bool) {
+					//确保5*5的卡牌可以完整展示
+					const card = ui.create.card(ui.special, 'noclick', true)
+					card.style.opacity = 0
+					dialog.contentContainer.appendChild(card)
+					ui.refresh(card)
+					const dw = dialog.contentContainer.offsetWidth,
+						dh = dialog.contentContainer.offsetHeight,
+						cw = card.offsetWidth,
+						ch = card.offsetHeight
+					card.remove()
+					const scale = Math.min(dw / cw / 6, dh / ch / 8)
+					const left = dw / 2 - cw * 2 * scale - cw / 2,
+						top = dh / 2 - ch * 3 * scale - ch / 2
+					const cards = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card')
+					for (const button of cards) {
+						if (get.itemtype(button) != 'card') continue
+						const { x, y } = button
+						button.style.transform = `scale(${scale * 100}%)`
+						if (bool === true) button.style.transitionDuration = '0.05s'
+						if (get.itemtype(bool) == 'card' && button != bool) continue
+						if (dialog.matched.includes(button)) {
+							const len = Math.max(5, dialog.matched.length)
+							const index = dialog.matched.indexOf(button)
+							button.style.transitionDuration = '0.75s'
+							button.style.left = left + cw * scale * index * 5 / len+ 'px'
+							button.style.top = top + ch * scale * 6 + 'px'
+							button.style.zIndex = index + ''
+						}
+						else {
+							button.style.left = left + cw * scale * x + 'px'
+							button.style.top = top + ch * scale * y + 'px'
+						}
+						ui.refresh(button)
+						button.style.opacity = 1
+					}
+				}
+				function click() {
+					if (dialog.isBusy) return
+					if (!dialog.selectedCard) {
+						this.classList.add('selected')
+						dialog.selectedCard = this
+					}
+					else if (dialog.selectedCard == this) {
+						delete dialog.selectedCard
+						this.classList.remove('selected')
+					}
+					else if (isAdj(dialog.selectedCard, this)){
+						swapCard(dialog.selectedCard, this)
+						dialog.selectedCard.classList.remove('selected')
+						delete dialog.selectedCard
+					}
+					else {
+						dialog.selectedCard.classList.remove('selected')
+						this.classList.add('selected')
+						dialog.selectedCard = this
+					}
+				}
+				function getNatures(...cards) {
+					const natures = []
+					const naturex = ['fire', 'thunder', 'kami', 'ice', 'YB_wind', 'YB_snow']
+					for (const card of cards) {
+						for (const [nature] of lib.nature) {
+							if (get.tag(card, nature + 'Damage')) {
+								if (naturex.includes(nature)) natures.add(nature)
+								else natures.add('other')
+							}
+						}
+						const sto = player.storage[event.name + '_nature']
+						for (const nature in sto) {
+							if (sto[nature].includes(card.link)) natures.add(nature)
+						}
+					}
+					return natures
+				}
+				function isAdj(card1, card2) {
+					if ([card1, card2].some(card => dialog.matched.includes(card))) return false
+					if (Math.abs(card1.x - card2.x) + Math.abs(card1.y - card2.y) == 1) return true
+					if (getNatures(card1, card2).includes('YB_wind')) return true
+					return false
+				}
+				//原本判断能不能换的，现在用不到了，不过可以给ai用，我懒得写了，ai禁用了吧
+				function checkSwap(card1, card2) {
+					if (!isAdj(card1, card2)) return false
+					function match(card1, card2) {
+						[card1.x, card2.x, card1.y, card2.y] = [card2.x, card1.x, card2.y, card1.y]
+						const cards = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card')
+						const matchx = [card2], matchy = [card2]
+						const { x, y } = card2
+						for (let xx = x - 1; xx >= 0; xx --) {
+							const cardx = cards.find(i => i.x == xx && i.y == y)
+							if (get.suit(cardx) == get.suit(card2)) matchx.push(cardx)
+							else break
+						}
+						for (let xx = x + 1; xx < 5; xx ++) {
+							const cardx = cards.find(i => i.x == xx && i.y == y)
+							if (get.suit(cardx) == get.suit(card2)) matchx.push(cardx)
+							else break
+						}
+						for (let yy = y - 1; yy >= 0; yy --) {
+							const cardy = cards.find(i => i.y == yy && i.x == x)
+							if (get.suit(cardy) == get.suit(card2)) matchy.push(cardy)
+							else break
+						}
+						for (let yy = y + 1; yy < 5; yy ++) {
+							const cardy = cards.find(i => i.y == yy && i.x == x)
+							if (get.suit(cardy) == get.suit(card2)) matchy.push(cardy)
+							else break
+						}
+						[card1.x, card2.x, card1.y, card2.y] = [card2.x, card1.x, card2.y, card1.y]
+						if (matchx.length > 2) return true
+						if (matchy.length > 2) return true
+						return false
+					}
+					if (match(card1, card2)) return true
+					if (match(card2, card1)) return true
+					return false
+				}
+				function matchCard() {
+					const matched = []
+					const cards = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card').filter(i => !dialog.matched.includes(i))
+					for (const card of cards) {
+						if (matched.includes(card)) continue
+						const matchx = [card], matchy = [card]
+						const { x, y } = card
+						for (let xx = x - 1; xx >= 0; xx --) {
+							const cardx = cards.find(i => i.x == xx && i.y == y)
+							if (get.suit(cardx) == get.suit(card)) matchx.push(cardx)
+							else break
+						}
+						for (let xx = x + 1; xx < 5; xx ++) {
+							const cardx = cards.find(i => i.x == xx && i.y == y)
+							if (get.suit(cardx) == get.suit(card)) matchx.push(cardx)
+							else break
+						}
+						for (let yy = y - 1; yy >= 0; yy --) {
+							const cardy = cards.find(i => i.y == yy && i.x == x)
+							if (get.suit(cardy) == get.suit(card)) matchy.push(cardy)
+							else break
+						}
+						for (let yy = y + 1; yy < 5; yy ++) {
+							const cardy = cards.find(i => i.y == yy && i.x == x)
+							if (get.suit(cardy) == get.suit(card)) matchy.push(cardy)
+							else break
+						}
+						if (matchx.length > 2) matched.addArray(matchx)
+						if (matchy.length > 2) matched.addArray(matchy)
+					}
+					let ice = false
+					for (const card of matched) {
+						const natures = getNatures(card)
+						if (natures.includes('kami')) matched.addArray(cards)
+						if (natures.includes('fire')) matched.addArray(cards.filter(i => i.y == card.y))
+						if (natures.includes('thunder')) matched.addArray(cards.filter(i => i.x == card.x))
+						if (natures.includes('YB_snow')) matched.addArray(cards.filter(i => Math.abs(i.y - card.y) + Math.abs(i.x - card.x) == 1))
+						if (natures.includes('other')) matched.addArray(cards.filter(i => get.suit(i) == get.suit(card)))
+						if (natures.includes('ice')) ice = true
+					}
+					dialog.matched.addArray(matched)
+					update()
+					setTimeout(() => {
+						if (ice && cards.some(card => cards.some(cardx => isAdj(card, cardx)))) dialog.isBusy = false
+						else {
+							let delay = 0
+							const add = get.cards(25 - cards.filter(i => !dialog.matched.includes(i)).length)
+							const { fire, thunder, kami, ice, YB_wind, YB_snow, other } = player.storage[event.name + '_nature']
+							for (const card of add) {
+								const rand = Math.random()
+								if (rand > 0.999) kami.add(card)
+								else if (rand > 0.99) other.add(card)
+								else if (rand > 0.98) YB_wind.add(card)
+								else if (rand > 0.97) ice.add(card)
+								else if (rand > 0.96) thunder.add(card)
+								else if (rand > 0.95) YB_snow.add(card)
+								else if (rand > 0.94) fire.add(card)
+							}
+							for (let x = 0; x < 5; x ++) {
+								const xs = cards.filter(i => i.x == x && !dialog.matched.includes(i)).sort((a, b) => b.y - a.y)
+								let len = xs.length
+								for (let i = 0; i < xs.length; i ++) {
+									const card = xs[i]
+									const time = Math.abs(card.y - 4 + i) / 4
+									delay = Math.max(delay, time)
+									card.style.transitionDuration = time + 's'
+									card.y = 4 - i
+								}
+								while (xs.length < 5) {
+									const card = ui.create.card(ui.special, 'noclick', true)
+									card.style.position = 'absolute'
+									card.style.opacity = 0
+									card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
+									dialog.contentContainer.appendChild(card)
+									card.style.transitionDuration = '0.05s'
+									xs.push(card)
+									card.link = add.shift()
+									card.init(card.link)
+									card.x = x
+									card.y = len - xs.length
+									let str = ''
+									for (const nature of getNatures(card)) {
+										if (nature == 'other') str += '◈'
+										else str += get.translation(nature)
+									}
+									card.node.gaintag.innerHTML = str
+									update(card)
+									const time = Math.abs(card.y - 5 + xs.length) / 4
+									delay = Math.max(delay, time)
+									card.style.transitionDuration = time + 's'
+									card.y = 5 - xs.length
+								}
+							}
+							update()
+							setTimeout(matched.length?  matchCard : ui.click.ok, delay * 1000)
+						}
+					}, 750)
+				}
+				function swapCard(card1, card2) {
+					dialog.isBusy = true
+					const time = Math.hypot(card1.x - card2.x, card1.y - card2.y) / 4
+					card1.style.transitionDuration = time + 's'
+					card2.style.transitionDuration = time + 's';
+					[card1.x, card2.x, card1.y, card2.y] = [card2.x, card1.x, card2.y, card1.y]
+					update()
+					setTimeout(() => {
+						matchCard()
+					}, time * 1000)
+				}
+				update(true)
+				const resizeObserver = new ResizeObserver(() => update(true))
+				resizeObserver.observe(dialog)
+				const result = await player.chooseButton(dialog)
+				const gain = get.links(dialog.matched)
+				const buttons = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card').filter(i => !dialog.matched.includes(i))
+				for (const nature in player.storage[event.name + '_nature']) player.storage[event.name + '_nature'][nature].removeArray(gain)
+				// dialog.show()
+				for (const { x, y, link } of buttons) player.storage[event.name][x][y] = link
+				//托管。。。不在动画过程中托管就行
+				const addToExpansions = get.links(buttons).filter(i => !player.getExpansions(event.name).includes(i))
+				//最后再处理这些牌，防周妃插结
+				await player.gain(gain, 'gain2')
+				const next = player.addToExpansion(addToExpansions, player)
+				next.gaintag.add(event.name)
+				await next
+			}
+		},
+		onremove(player, skill) {
+			const cards = player.getExpansions(skill)
+			if (cards.length) player.loseToDiscardpile(cards)
+			delete player.storage[skill]
+			delete player.storage[skill + '_nature']
+		},
+		__ai__ : {
+			order : 11,
+			result : {
+				player : 3
+			}
+		}
+	},
 	//-------------------------盛妍
 	'yb019_lincu':{
 		init:function (player,skill){

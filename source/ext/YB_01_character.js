@@ -22,7 +22,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 	var ybslj={ 
 		name:'ybslj',//武将包命名（必填） 
 		connect:true,//该武将包是否可以联机（必填） 
-		connectBanned:['ybold_018zhangqing','yboldshen_002chenailin'],
+		connectBanned:['ybold_018zhangqing','yboldshen_002chenailin','ybsp_018zhangqing'],
 		characterSort:characterSort,
 		character:character,//武将（必填） 
 		// characterIntro:YB_characterIntro(characterCopyright,characterCitetext,characterUndertext,characterIntro),//武将介绍（选填） 

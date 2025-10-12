@@ -38,7 +38,7 @@ const characterSort = {
 		'ybsl_spsp':[
 			'db_ybsp_014liutianyu','ybsp_016manchengqi','ybsp_072sulingyi',
 			'db_ybsp_038tengwu','ybsp_001sunlisong','ybsp_002chenailin','ybsp_027rain',
-			'ybsp_033xiaohui','ybsp_006wanghanzhen',
+			'ybsp_033xiaohui','ybsp_006wanghanzhen','ybsp_018zhangqing',
 		],
 		'ybsl_sjfk':[
 			'ybslshen_014liutianyu','ybslshen_018zhangqing','ybslshen_017xiaohong','ybslshen_002chenailin','ybslshen_071faraway',

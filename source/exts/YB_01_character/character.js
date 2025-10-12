@@ -155,6 +155,7 @@ const character = { //武将格式 :
 	'ybsp_016manchengqi':['female','YB_memory',3,['yb016_shanbiao','yb016_jiushi'],['rankAdd:epic','rankS:a','name:满城|柒','linkTo:ybsl_016manchengqi']],//孙丽松
 	'ybsp_033xiaohui':['female','YB_memory',6,['yb033_beilei','yb033_qijue'],['rankAdd:legend','rankS:s','name:null|小慧','linkTo:ybsl_033xiaohui','unseen']],//小慧
 	'ybsp_006wanghanzhen':['female','YB_memory',3,['yb006_xueyan'],['rankAdd:legend','rankS:s','name:王|汉桢','linkTo:ybsl_006wanghanzhen']],//王汉桢
+	ybsp_018zhangqing:['female','YB_memory',3,['yb018_tongmou'],['rankAdd:legend','rankS:s','name:张|晴','linkTo:ybsl_018zhangqing','forbidai']],//张晴
 	//----------------------忆包神将
 	'ybslshen_014liutianyu':['male','shen','3/5',['yb014_shizhui','ybsl_xuxian'],['YB_memory','rankAdd:legend','rankS:s','name:夜|白']],//神夜白
 	'ybslshen_017xiaohong':['female','shen',3,['yb017_mizhu','yb017_guangzhu','yb017_zhenshi','ybsl_xuxian'],['YB_memory','rankAdd:legend','rankS:s','name:涂山|小红']],//神涂山小红
