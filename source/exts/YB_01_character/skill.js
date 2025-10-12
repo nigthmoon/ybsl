@@ -6439,15 +6439,6 @@ const skill = {
 		audio:'ext:夜白神略/audio/character:2',
 		init(player,skill) {
 			player.storage[skill] = [[], [], [], [], []]
-			player.storage[skill + '_nature'] = {
-				fire : [],
-				thunder : [],
-				kami : [],
-				ice : [],
-				YB_wind : [],
-				YB_snow : [],
-				other : []
-			}
 		},
 		enable : 'phaseUse',
 		trigger : {
@@ -6473,17 +6464,6 @@ const skill = {
 						xs.slice(15, 20),
 						xs.slice(20, 25)
 					]
-				}
-				const { fire, thunder, kami, ice, YB_wind, YB_snow, other } = player.storage[event.name + '_nature']
-				for (const card of cards) {
-					const rand = Math.random()
-					if (rand > 0.999) kami.add(card)
-					else if (rand > 0.99) other.add(card)
-					else if (rand > 0.98) YB_wind.add(card)
-					else if (rand > 0.97) ice.add(card)
-					else if (rand > 0.96) thunder.add(card)
-					else if (rand > 0.95) YB_snow.add(card)
-					else if (rand > 0.94) fire.add(card)
 				}
 			}
 			if (trigger?.name == 'changeSkills') {
@@ -6513,6 +6493,9 @@ const skill = {
 					if (game.me == player) dialog.open()
 					//   算了，不管了，不管联机了，联机禁了就行了
 				}, player)
+				const tip = ui.create.div('.select-all.popup.pointerdiv', dialog.contentContainer)
+				tip.innerHTML = `${get.poptip(event.name + '_tip')}`
+				//加两行翻译 yb018_tongmou_tip : '属性效果', yb018_tongmou_tip_info : '牌附有能造成伤害的属性<br>火：清除此行牌<br>雷：清除此列牌<br>雪：清除相邻牌<br>神 : 清除全部牌<br>风：随意交换牌<br>其他：清除同花牌'
 				dialog.matched = []
 				for (let x = 0; x < 5; x ++) {
 					for (let y = 0; y < 5; y ++) {
@@ -6572,6 +6555,7 @@ const skill = {
 				}
 				function click() {
 					if (dialog.isBusy) return
+					if (dialog.matched.includes(this)) return
 					if (!dialog.selectedCard) {
 						this.classList.add('selected')
 						dialog.selectedCard = this
@@ -6600,10 +6584,6 @@ const skill = {
 								if (naturex.includes(nature)) natures.add(nature)
 								else natures.add('other')
 							}
-						}
-						const sto = player.storage[event.name + '_nature']
-						for (const nature in sto) {
-							if (sto[nature].includes(card.link)) natures.add(nature)
 						}
 					}
 					return natures
@@ -6693,61 +6673,52 @@ const skill = {
 					}
 					dialog.matched.addArray(matched)
 					update()
-					setTimeout(() => {
-						if (ice && cards.some(card => cards.some(cardx => isAdj(card, cardx)))) dialog.isBusy = false
-						else {
-							let delay = 0
-							const add = get.cards(25 - cards.filter(i => !dialog.matched.includes(i)).length)
-							const { fire, thunder, kami, ice, YB_wind, YB_snow, other } = player.storage[event.name + '_nature']
-							for (const card of add) {
-								const rand = Math.random()
-								if (rand > 0.999) kami.add(card)
-								else if (rand > 0.99) other.add(card)
-								else if (rand > 0.98) YB_wind.add(card)
-								else if (rand > 0.97) ice.add(card)
-								else if (rand > 0.96) thunder.add(card)
-								else if (rand > 0.95) YB_snow.add(card)
-								else if (rand > 0.94) fire.add(card)
-							}
-							for (let x = 0; x < 5; x ++) {
-								const xs = cards.filter(i => i.x == x && !dialog.matched.includes(i)).sort((a, b) => b.y - a.y)
-								let len = xs.length
-								for (let i = 0; i < xs.length; i ++) {
-									const card = xs[i]
-									const time = Math.abs(card.y - 4 + i) / 4
-									delay = Math.max(delay, time)
-									card.style.transitionDuration = time + 's'
-									card.y = 4 - i
-								}
-								while (xs.length < 5) {
-									const card = ui.create.card(ui.special, 'noclick', true)
-									card.style.position = 'absolute'
-									card.style.opacity = 0
-									card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
-									dialog.contentContainer.appendChild(card)
-									card.style.transitionDuration = '0.05s'
-									xs.push(card)
-									card.link = add.shift()
-									card.init(card.link)
-									card.x = x
-									card.y = len - xs.length
-									let str = ''
-									for (const nature of getNatures(card)) {
-										if (nature == 'other') str += '◈'
-										else str += get.translation(nature)
-									}
-									card.node.gaintag.innerHTML = str
-									update(card)
-									const time = Math.abs(card.y - 5 + xs.length) / 4
-									delay = Math.max(delay, time)
-									card.style.transitionDuration = time + 's'
-									card.y = 5 - xs.length
-								}
-							}
-							update()
-							setTimeout(matched.length?  matchCard : ui.click.ok, delay * 1000)
-						}
+					if (ice && cards.some(card => cards.some(cardx => isAdj(card, cardx)))) setTimeout(() => {
+						dialog.isBusy = false
+						dialog.ice = true
 					}, 750)
+					else {
+						let delay = 0.75
+						const add = get.cards(25 - cards.filter(i => !dialog.matched.includes(i)).length)
+						for (let x = 0; x < 5; x ++) {
+							const xs = cards.filter(i => i.x == x && !dialog.matched.includes(i)).sort((a, b) => b.y - a.y)
+							let len = xs.length
+							for (let i = 0; i < xs.length; i ++) {
+								const card = xs[i]
+								const time = Math.abs(card.y - 4 + i) / 4
+								delay = Math.max(delay, time)
+								card.style.transitionDuration = time + 's'
+								card.y = 4 - i
+							}
+							while (xs.length < 5) {
+								const card = ui.create.card(ui.special, 'noclick', true)
+								card.style.position = 'absolute'
+								card.style.opacity = 0
+								card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
+								dialog.contentContainer.appendChild(card)
+								card.style.transitionDuration = '0.05s'
+								xs.push(card)
+								card.link = add.shift()
+								card.init(card.link)
+								card.x = x
+								card.y = len - xs.length
+								let str = ''
+								for (const nature of getNatures(card)) {
+									if (nature == 'other') str += '◈'
+									else str += get.translation(nature)
+								}
+								card.node.gaintag.innerHTML = str
+								update(card)
+								const time = Math.abs(card.y - 5 + xs.length) / 4
+								delay = Math.max(delay, time)
+								card.style.transitionDuration = time + 's'
+								card.y = 5 - xs.length
+							}
+						}
+						update()
+						setTimeout((matched.length || dialog.ice) ? matchCard : game.resume2, delay * 1000)
+						dialog.ice = false
+					}
 				}
 				function swapCard(card1, card2) {
 					dialog.isBusy = true
@@ -6763,12 +6734,11 @@ const skill = {
 				update(true)
 				const resizeObserver = new ResizeObserver(() => update(true))
 				resizeObserver.observe(dialog)
-				const result = await player.chooseButton(dialog)
+				await game.pause2() //本来也没让你联机玩，直接game.pause2了
+				dialog.close()
 				const gain = get.links(dialog.matched)
 				const buttons = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card').filter(i => !dialog.matched.includes(i))
-				for (const nature in player.storage[event.name + '_nature']) player.storage[event.name + '_nature'][nature].removeArray(gain)
-				// dialog.show()
-				for (const { x, y, link } of buttons) player.storage[event.name][x][y] = link
+				for (const { x, y, link } of buttons) storage[x][y] = link
 				//托管。。。不在动画过程中托管就行
 				const addToExpansions = get.links(buttons).filter(i => !player.getExpansions(event.name).includes(i))
 				//最后再处理这些牌，防周妃插结
@@ -6782,13 +6752,15 @@ const skill = {
 			const cards = player.getExpansions(skill)
 			if (cards.length) player.loseToDiscardpile(cards)
 			delete player.storage[skill]
-			delete player.storage[skill + '_nature']
 		},
 		__ai__ : {
 			order : 11,
 			result : {
 				player : 3
 			}
+		},
+		subSkill : {
+			tip : {}
 		}
 	},
 	//-------------------------盛妍
