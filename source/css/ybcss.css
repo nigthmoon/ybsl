@@ -240,7 +240,14 @@ span[data-nature="YB_snowmm"] {
     text-align: left;
 }
 
-
+/* 仿拓域卡牌颜色 */
+.card.YB-zqxxl-zise:before {
+	opacity: 0.2;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgb(228, 64, 201) 0 0 5px;
+	background-color: #e440c9;
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+}
 
 
 .yb6attack {

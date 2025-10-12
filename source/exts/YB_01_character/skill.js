@@ -6513,6 +6513,14 @@ const skill = {
 						card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
 						card.style.position = 'absolute'
 						card.style.opacity = 0
+						//有现成的我就用了
+						const glow = {
+							heart : 'dctuoyu-qingqu-glow',
+							spade : 'dctuoyu-junshan-glow',
+							diamond : 'dctuoyu-fengtian-glow',
+							club:'YB-zqxxl-zise',
+						}
+						card.classList.add(glow[get.suit(card)])
 						dialog.contentContainer.appendChild(card)
 					}
 				}
@@ -6695,11 +6703,19 @@ const skill = {
 								card.style.position = 'absolute'
 								card.style.opacity = 0
 								card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
+								
 								dialog.contentContainer.appendChild(card)
 								card.style.transitionDuration = '0.05s'
 								xs.push(card)
 								card.link = add.shift()
 								card.init(card.link)
+								const glow = {
+									heart : 'dctuoyu-qingqu-glow',
+									spade : 'dctuoyu-junshan-glow',
+									diamond : 'dctuoyu-fengtian-glow',
+									club:'YB-zqxxl-zise',
+								}
+								card.classList.add(glow[get.suit(card)])
 								card.x = x
 								card.y = len - xs.length
 								let str = ''
