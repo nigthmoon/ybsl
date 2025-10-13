@@ -248,6 +248,9 @@ span[data-nature="YB_snowmm"] {
 	-webkit-filter: blur(3px);
 	filter: blur(3px);
 }
+.card.selected:before{
+	opacity: 0.6;
+}
 
 
 .yb6attack {

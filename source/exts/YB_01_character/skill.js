@@ -6482,17 +6482,13 @@ const skill = {
 					await addCards(true)
 				}
 				const storage = player.storage[event.name]
-				const dialog = ui.create.dialog('hidden')
+				const dialog = ui.create.dialog()
 				dialog.classList.add('fixed')
 				dialog.classList.add('scroll1')
 				dialog.classList.add('scroll2')
 				dialog.classList.add('fullwidth')
 				dialog.classList.add('fullheight')
 				dialog.classList.add('noupdate')
-				game.broadcastAll(function (player) {
-					if (game.me == player) dialog.open()
-					//   算了，不管了，不管联机了，联机禁了就行了
-				}, player)
 				const tip = ui.create.div('.select-all.popup.pointerdiv', dialog.contentContainer)
 				tip.innerHTML = `${get.poptip(event.name + '_tip')}`
 				//加两行翻译 yb018_tongmou_tip : '属性效果', yb018_tongmou_tip_info : '牌附有能造成伤害的属性<br>火：清除此行牌<br>雷：清除此列牌<br>雪：清除相邻牌<br>神 : 清除全部牌<br>风：随意交换牌<br>其他：清除同花牌'
@@ -6683,6 +6679,7 @@ const skill = {
 					update()
 					if (ice && cards.some(card => cards.some(cardx => isAdj(card, cardx)))) setTimeout(() => {
 						dialog.isBusy = false
+						if (!event.isMine()) ai()
 						dialog.ice = true
 					}, 750)
 					else {
@@ -6732,7 +6729,10 @@ const skill = {
 							}
 						}
 						update()
-						setTimeout((matched.length || dialog.ice) ? matchCard : game.resume2, delay * 1000)
+						setTimeout((matched.length || dialog.ice) ? matchCard : () => {
+							dialog.matchAfter = true
+							game.resume()
+						}, delay * 1000)
 						dialog.ice = false
 					}
 				}
@@ -6750,7 +6750,35 @@ const skill = {
 				update(true)
 				const resizeObserver = new ResizeObserver(() => update(true))
 				resizeObserver.observe(dialog)
-				await game.pause2() //本来也没让你联机玩，直接game.pause2了
+				if (!event.isMine()) ai()
+				event.switchToAuto = function() {
+					if (!dialog.isBusy && !dialog.matchAfter) ai()
+				}
+				//防止有人在动画过程中来了个game.resume
+				while (!dialog.matchAfter) await game.pause()
+				function ai() {
+					setTimeout(function() {
+						const cards = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card').filter(i => !dialog.matched.includes(i)).sort((a, b) => b.y - a.y)
+						let swaped = false
+						for (const card1 of cards) {
+							const card2 = cards.find(i => checkSwap(card1, i))
+							if (card2) {
+								swapCard(card1, card2)
+								swaped = true
+								break
+							}
+						}
+						if (swaped) return
+						cards.sort(() => 0.5 - Math.random())
+						for (const card1 of cards) {
+							const card2 = cards.find(i => isAdj(card1, i))
+							if (card2) {
+								swapCard(card1, card2)
+								break
+							}
+						}
+					}, 300)
+				}
 				dialog.close()
 				const gain = get.links(dialog.matched)
 				const buttons = Array.from(dialog.contentContainer.childNodes).filter(i => get.itemtype(i) == 'card').filter(i => !dialog.matched.includes(i))
@@ -6769,7 +6797,7 @@ const skill = {
 			if (cards.length) player.loseToDiscardpile(cards)
 			delete player.storage[skill]
 		},
-		__ai__ : {
+		ai : {
 			order : 11,
 			result : {
 				player : 3
