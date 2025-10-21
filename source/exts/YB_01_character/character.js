@@ -42,7 +42,7 @@ const character = { //武将格式 :
 	'ybsl_017xiaohong':['female','YB_memory',3,['yb017_chuanxinx','yb017_zuigui'],['rankAdd:legend','rankS:s','name:涂山|小红']],//涂山小红（新版
 	'ybsl_018zhangqing':['female','YB_memory',3,['yb018_huaimeng','yb018_minxing','yb018_fanling'],['rankAdd:legend','rankS:s','name:张|晴']],//张晴
 	'ybsl_018huanqing':['female','YB_dream',3,['yb018_lihun','yb018_wanyue','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:张|晴']],//梦——幻晴
-	'ybsl_019shengyan':['female','YB_memory',4,['yb019_cutan','yb019_misan','yb019_renxing','yb019_chicu'],['unseen','rankAdd:rare','rankS:b','name:盛|妍']],//盛妍
+	'ybsl_019shengyan':['female','YB_memory',4,['yb019_cutan','yb019_zhiyu','yb019_chicu'],['rankAdd:rare','rankS:b','name:盛|妍']],//盛妍
 	'ybsl_020jiayutong':['female','YB_memory',3,['yb043_zhishi','yb020_zhuangrong'],['rankAdd:epic','rankS:a','name:贾|雨桐']],//贾雨桐
 	'ybsl_021liuyufeng':['male','YB_memory',3,['yb021_shusuan','yb021_qiujiao'],['rankAdd:epic','rankS:a','name:刘|域楓']],//刘域楓
 	'ybsl_022salt':['female','YB_memory',3,['yb022_yiduan',/*'yb022_yaogong',*/'yb022_duanxiangxin'],['rankAdd:epic','rankS:a','name:null|盐']],//盐
@@ -188,6 +188,10 @@ const character = { //武将格式 :
 		'ybsl_clanqianlei',
 		'ybmjz_mumu',
 	],['clan:吴郡陆氏','name:null|null','forbidai']],
+	ybsl_mystery:['female','wei',4,
+		['yb011_kongbai','yb011_chenxing'],
+		['forbidai']
+	],
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }

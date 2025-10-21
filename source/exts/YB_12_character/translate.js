@@ -348,6 +348,57 @@ const translate = {
 	qmsgswkjsgj_rejuejing:'绝境',
 	qmsgswkjsgj_rejuejing_info:'锁定技，你的手牌上限+2。你进入或脱离濒死状态时，你摸两张牌。摸牌阶段，你令额定摸牌数+X（X为你已损失的体力值）。',
 
+	qmsgswkjsgj_shen_lusu:'缝神鲁肃',
+	qmsgswkjsgj_shen_lusu_prefix:'缝神',
+	qmsgswkjsgj_tamo: "榻谟",
+	qmsgswkjsgj_tamo_info: "游戏开始时，你可以重新分配所有角色的座次。",
+	qmsgswkjsgj_tamo_faq: "FAQ",
+	qmsgswkjsgj_tamo_faq_info: "<br><li>Q：在一号位不为主公的情况下，〖榻谟〗如何结算？</li><li>A：该角色可以正常进行座次交换。若受此技能影响导致一号位角色发生了变化，则以排列后的一号位角色为起始角色开始本局游戏。</li>",
+	qmsgswkjsgj_dingzhou: "定州",
+	qmsgswkjsgj_dingzhou_info: "出牌阶段限一次，玩家交给一名角色一张牌 ，然后玩家获得其场上的所有牌。",
+	//也不知道作者抽啥风，不说你，说玩家
+	qmsgswkjsgj_zhimeng: "智盟",
+	qmsgswkjsgj_zhimeng_info: "玩家的回合结束后，玩家可以选择一名其他角色，玩家与其交换手牌。",
+	
+	qmsgswkjsgj_re_sunquan:'界孙权',
+	qmsgswkjsgj_re_sunquan_prefix:'界',
+	qmsgswkjsgj_rezhiheng: "制衡",
+	qmsgswkjsgj_rezhiheng_info: "出牌阶段限一次，你可以摸X+1张牌，然后弃置X张牌。（X为你的牌数量。）",
+	qmsgswkjsgj_rejiuyuan: "救援",
+	qmsgswkjsgj_rejiuyuan_info: "主公技，当其他吴势力角色回复体力时，其可以改为令你回复1点体力，然后其摸一张牌。",
+	
+	qmsgswkjsgj_shen_zhouyu:'缝神周瑜',
+	qmsgswkjsgj_shen_zhouyu_prefix:'缝神',
+	qmsgswkjsgj_qinyin: "琴音",
+	qmsgswkjsgj_qinyin_info: "弃牌阶段结束时，你可以选择一项：1.令你选择的任意名角色各回复1点体力；2.令你选择的任意角色各失去1点体力或对其各造成一点伤害。",
+	qmsgswkjsgj_yeyan: "业炎",
+	qmsgswkjsgj_yeyan_info: "出牌阶段限一次，你可以选择至多三名角色，对这些角色造成共计至多3点火焰伤害（若你将对一名角色分配2点或更多火焰伤害，你须先弃置四张花色各不相同的手牌）。",
+	qmsgswkjsgj_refanjian:'反间',
+	qmsgswkjsgj_refanjian_info:'出牌阶段限一次，你可以展示一张手牌并交给一名其他角色，令其展示所有手牌，然后你选择一项：1.弃置其与此牌花色相同的所有牌；2.令其失去1点体力或对其造成1点伤害。',
+	qmsgswkjsgj_refanjian_card: "弃牌",
+	qmsgswkjsgj_refanjian_hp: "失去体力",
+
+	qmsgswkjsgj_shen_xunyu: "缝神荀彧",
+	qmsgswkjsgj_shen_xunyu_prefix: "缝神",
+	qmsgswkjsgj_tianzuo: "天佐",
+	qmsgswkjsgj_tianzuo_info: `锁定技。①游戏开始时，你将十六张${get.poptip("qizhengxiangsheng")}加入牌堆。②${get.poptip("qizhengxiangsheng")}对你无效。③出牌阶段限一次，你可视为使用一张${get.poptip("qizhengxiangsheng")}。`,
+	qmsgswkjsgj_lingce: "灵策",
+	qmsgswkjsgj_lingce_info: `锁定技。当有${get.poptip("qizhengxiangsheng")}或智囊或〖定汉①〗记录过的锦囊牌被使用时，则你摸一张牌。你以此法摸的牌，不计入手牌上限。`,
+	qmsgswkjsgj_dinghan: "定汉",
+	qmsgswkjsgj_dinghan_info: "①当你成为未记录过的普通锦囊牌的目标时，或有未记录过的延时锦囊牌进入你的判定区时，你记录此牌名并取消之。②准备阶段或你受到一点伤害后，你可在〖定汉①〗的记录中添加或减少一种锦囊牌的牌名。",
+	//这里作者把准备阶段写成了回合开始，我懒得多改代码，就帮他改过来了
+	qmsgswkjsgj_shenquhu:'驱虎',
+	qmsgswkjsgj_shenquhu_info:'出牌阶段限一次，你可以与一名角色拼点：若你赢，你令该角色对其攻击范围内的另一名角色造成1点伤害；若你没赢，其对你造成1点伤害。',
+
+	qmsgswkjsgj_shenxing:'神性',
+	qmsgswkjsgj_shenxing_info:`每轮游戏开始时，若你没有装备${get.poptip("mb_qingnangshu")}，你可将${get.poptip("mb_qingnangshu")}置入你的装备区。${get.poptip("mb_qingnangshu")}离开你的装备区时，立刻销毁。`,
+
+	qmsgswkjsgj_mb_luyusheng: "界势陆郁生",
+	qmsgswkjsgj_mb_luyusheng_prefix: "界势",
+	qmsgswkjsgj_mbrunwei: "润微",
+	qmsgswkjsgj_mbrunwei_info: "出牌阶段限一次，你可以展示牌堆顶至多五张牌，令一名角色获得其中一种颜色的所有牌。若如此做，你失去X张牌后（X为其因此获得的牌数），该技能可以再次发动。",
+	qmsgswkjsgj_mbshuanghuai: "霜怀",
+	qmsgswkjsgj_mbshuanghuai_info: "每回合限一次，当与你距离1以内的角色受到伤害时，你可以选择一项：防止此伤害；令其从弃牌堆中获得一张【桃】。若该角色与你上一次发动时相同，你与其各摸一张牌。",
 
 
 

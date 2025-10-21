@@ -790,8 +790,26 @@ const skill = {
 		charlotte:true,
 		equipSkill:true,
 		enable:['chooseToUse','chooseToRespond'],
-		filter:function(event,player){
-			return player.countCards('h')>0;
+		filter(event, player) {
+			const hs = player.getCards("h");
+			if (!hs.length) {
+				return false;
+			}
+			if (
+				hs.some(card => {
+					const mod2 = game.checkMod(card, player, "unchanged", "cardEnabled2", player);
+					return mod2 === false;
+				})
+			) {
+				return false;
+			}
+			return lib.inpile.some(name => {
+				if (name != "sha") {
+					return false;
+				}
+				const card = get.autoViewAs({ name }, hs);
+				return event.filterCard(card, player, event);
+			});
 		},
 		audio:'zhangba_skill',
 		viewAs:{name:'sha'},

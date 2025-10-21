@@ -273,39 +273,39 @@ window.list24 = [
 	[[1,6,9,10],'<br><span class = yellowtext> 9 + 10 = 19 ；<br> 19 + 6 = 25 ；<br> 25 - 1 = 24 </span><br>'],
 	[[1,6,9,12],'<br><span class = yellowtext> 12 - 9 = 3 ；<br> 3 + 1 = 4 ；<br> 4 * 6 = 24 </span><br>'],
 	[[1,6,9,13],'<br><span class = yellowtext> 13 - 9 = 4 ；<br> 4 * 1 = 4 ；<br> 4 * 6 = 24 </span><br>'],
-	[[1,6,10,12],'<br><span class = yellowtext> ? + ? = ? ；<br> ? + ? = ? ；<br> ? + ? = ? </span><br>'],//--------------是否有解存疑
+	[[1,6,10,12],'<br><span class = yellowtext> 10 * 12 = 120 ；<br> 6 - 1 = 5 ；<br> 120 / 5 = 24 </span><br>'],//--------------是否有解存疑
 	[[1,6,10,13],'<br><span class = yellowtext> 13 - 10 = 3 ；<br> 3 + 1 = 4 ；<br> 4 * 6 = 24 </span><br>'],
 	[[1,6,11,12],'<br><span class = yellowtext> 11 + 1 = 12 ；<br> 12 / 6 = 2 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,6,11,13],'<br><span class = yellowtext> ? + ? = ? ；<br> ? + ? = ? ；<br> ? + ? = ? </span><br>'],//---------------是否有解存疑
+	[[1,6,11,13],'<br><span class = yellowtext> 11 * 13 = 143 ；<br> 143 + 1 = 144 ；<br> 144 / 6 = 24 </span><br>'],//---------------是否有解存疑
 	[[1,6,12,12],'<br><span class = yellowtext> 12 / 6 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
 	[[1,6,12,13],'<br><span class = yellowtext> 12 / 6 = 2 ；<br> 13 - 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
 	[[1,7,7,9],'<br><span class = yellowtext> 1 + 9 = 10 ；<br> 7 + 7 = 14 ；<br> 14 + 10 = 24 </span><br>'],
 	[[1,7,7,10],'<br><span class = yellowtext> 1 * 10 = 10 ；<br> 7 + 7 = 14 ；<br> 14 + 10 = 24 </span><br>'],
 	[[1,7,7,11],'<br><span class = yellowtext> 11 - 1 = 10 ；<br> 7 + 7 = 14 ；<br> 14 + 10 = 24 </span><br>'],
-
-	[[1,7,7,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,8,8],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 8 = 23 ；<br> 23 + 1 = 24 </span><br>'],
-	[[1,7,8,9],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 9 = 24 ；<br> 24 * 1 = 24 </span><br>'],
-	[[1,7,8,11],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,8,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,9,9],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,9,10],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
-	[[1,7,9,11],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,9,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,9,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,10,12],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
-	[[1,7,10,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,12,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,7,12,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,7,12],'<br><span class = yellowtext> 7 / 7 = 1 ；<br> 1 + 1 = 2 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,8,8],'<br><span class = yellowtext> 1 + 7 = 8 ；<br> 8 + 8 = 16 ；<br> 16 + 8 = 24 </span><br>'],
+	[[1,7,8,9],'<br><span class = yellowtext> 7 + 9 = 16 ；<br> 16 + 8 = 24 ；<br> 24 * 1 = 24 </span><br>'],
+	[[1,7,8,11],'<br><span class = yellowtext> 11 - 7 = 4 ；<br> 4 - 1 = 3 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,7,8,12],'<br><span class = yellowtext> 8 - 7 = 1 ；<br> 1 + 1 = 2 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,9,9],'<br><span class = yellowtext> 9 + 9 = 18 ；<br> 7 - 1 = 6 ；<br> 18 + 6 = 24 </span><br>'],
+	[[1,7,9,10],'<br><span class = yellowtext> 10 - 7 = 3 ；<br> 9 - 1 = 8 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,7,9,11],'<br><span class = yellowtext> 11 + 1 = 12 ；<br> 9 - 7 = 2 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,9,12],'<br><span class = yellowtext> 9 - 7 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,9,13],'<br><span class = yellowtext> 9 - 7 = 2 ；<br> 13 - 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,10,12],'<br><span class = yellowtext> 10 - 7 = 3 ；<br> 3 - 1 = 2 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,10,13],'<br><span class = yellowtext> 13 - 10 = 3 ；<br> 7 + 1 = 8 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,7,12,12],'<br><span class = yellowtext> 7 - 1 = 6 ；<br> 12 / 6 = 2 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,7,12,13],'<br><span class = yellowtext> 13 + 1 = 14 ；<br> 14 / 7 = 2 ；<br> 2 * 12 = 24 </span><br>'],
 	// [[1,7,13,13],'<br><span class = yellowtext> 13 * 13 = 169 ；<br> 169 - 1 = 168 ；<br> 168 / 7 = 24 </span><br>'],//略
-	[[1,8,8,8],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 8 = 23 ；<br> 23 + 1 = 24 </span><br>'],
-	[[1,8,8,9],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 9 = 24 ；<br> 24 * 1 = 24 </span><br>'],
-	[[1,8,8,11],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,8,8,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,8,9,10],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
-	[[1,8,9,11],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,8,9,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	[[1,8,9,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
+	[[1,8,8,8],'<br><span class = yellowtext> 8 + 8 = 16 ；<br> 16 + 8 = 24 ；<br> 24 * 1 = 24 </span><br>'],
+	[[1,8,8,9],'<br><span class = yellowtext> 8 + 8 = 16 ；<br> 9 - 1 = 8 ；<br> 16 + 8 = 24 </span><br>'],
+	[[1,8,8,11],'<br><span class = yellowtext> 11 - 8 = 3 ；<br> 3 * 8 = 24 ；<br> 24 * 1 = 24 </span><br>'],
+	[[1,8,8,12],'<br><span class = yellowtext> 12 - 8 = 4 ；<br> 4 - 1 = 3 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,8,9,10],'<br><span class = yellowtext> ? * ? = ? ；<br> ? + ? = ? ；<br> ? - ? = 24 </span><br>'],//---------------是否有解存疑
+	[[1,8,9,11],'<br><span class = yellowtext> 11 - 9 = 2 ；<br> 2 + 1 = 3 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,8,9,12],'<br><span class = yellowtext> 12 - 9 = 3 ；<br> 3 * 1 = 3 ；<br> 3 * 8 = 24 </span><br>'],
+	[[1,8,9,13],'<br><span class = yellowtext> 13 - 9 = 4 ；<br> 4 - 1 = 3 ；<br> 3 * 8 = 24 </span><br>'],
+	
 	[[1,8,10,11],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
 	[[1,8,10,12],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
 	[[1,8,10,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
@@ -1019,7 +1019,7 @@ window.list24 = [
 	[[4,7,10,12],'<br><span class = yellowtext> 3 * 5 = 15 ；<br> 15 + 10 = 25 ；<br> 25 - 1 = 24 </span><br>'],
 	[[4,7,11,11],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
 	[[4,7,11,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
-	// [[4,7,11,13],'<br><span class = yellowtext> ? + ? = ? ；<br> ? + ? = ? ；<br> ? + ? = ? </span><br>'],//本人未能解出
+	[[4,7,11,13],'<br><span class = yellowtext> 4 * 11 = 44 ；<br> 7 + 13 = 20 ；<br> 44 - 20 = 24 </span><br>'],//aa
 	[[4,7,12,12],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
 	[[4,7,12,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 12 * 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
 	[[4,7,13,13],'<br><span class = yellowtext> 5 - 3 = 2 ；<br> 11 + 1 = 12 ；<br> 2 * 12 = 24 </span><br>'],
@@ -1366,7 +1366,7 @@ window.list24 = [
 	[[3,7,9,13],'<br><span class = yellowtext> 13 / 3 = 13/3 ；<br> 7 - 13/3 = 8/3 ；<br> 8/3 * 9 = 24 </span><br>'],//aa
 	[[3,8,8,10],'<br><span class = yellowtext> 8 * 10 = 80 ；<br> 80 - 8 = 72 ；<br> 72 / 3 = 24 </span><br>'],//aa
 	[[4,4,7,7],'<br><span class = yellowtext> 4 / 7 = 4/7 ；<br> 4 - 4/7 = 24/7 ；<br> 24/7 * 7 = 24 </span><br>'],//aa
-	[[4,7,11,13],'<br><span class = yellowtext> ? + ? = ? ；<br> ? + ? = ? ；<br> ? + ? = ? </span><br>'],//本人未能解出
+	[[4,7,11,13],'<br><span class = yellowtext> 4 * 11 = 44 ；<br> 7 + 13 = 20 ；<br> 44 - 20 = 24 </span><br>'],//aa
 	[[4,8,8,11],'<br><span class = yellowtext> 8 * 11 = 88 ；<br> 88 + 8 = 96 ；<br> 96 / 4 = 24 </span><br>'],//aa
 	[[4,8,8,13],'<br><span class = yellowtext> 8 * 13 = 104 ；<br> 104 - 8 = 96 ；<br> 96 / 4 = 24 </span><br>'],//aa
 	[[5,5,7,11],'<br><span class = yellowtext> 11 / 5 = 11/5 ；<br> 7 - 11/5 = 24/5 ；<br> 24/5 * 5 = 24 </span><br>'],//aa………………

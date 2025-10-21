@@ -3614,6 +3614,230 @@ const skill = {
 			},
 		},
 	},
+	//----------------
+	yb011_kongbai:{
+		audio:'ext:夜白神略/audio/character:4',
+		logAudio(event, player, name) {
+			if (name == "damageBegin4") {
+				return ['ext:夜白神略/audio/character/yb011_kongbai3','ext:夜白神略/audio/character/yb011_kongbai4'];
+			}
+			return ['ext:夜白神略/audio/character/yb011_kongbai1','ext:夜白神略/audio/character/yb011_kongbai2'];
+		},
+		trigger: {
+			player:["equipBegin",'damageBegin4'],
+		},
+		forced: true,
+		filter: function (event, player,name) {
+			if(name=='damageBegin4'){
+				var list = player.storage.yb011_khen||[];
+				return event.card&&!list.includes(event.card.name);
+			}
+			return true;
+			// return get.type(event.card) == "equip";
+		},
+		async content(event,trigger,player){
+			if(event.triggername=='damageBegin4'){
+				var card = trigger.card;
+				if(!player.hasSkill('yb011_khen'))player.addSkill('yb011_khen');
+				if(!player.storage.yb011_khen)player.storage.yb011_khen=[];
+				await player.storage.yb011_khen.push(card.name);
+				player.updateMarks();
+			}
+			else{
+				var card = trigger.card;
+				var cards = trigger.cards;
+				// player.addToExpansion(cards,player,'giveAuto').gaintag.add('sczs_qiangxi');
+				if(!player.hasSkill('yb011_lhen'))player.addSkill('yb011_lhen');
+				
+				if(!player.storage.yb011_lhen)player.storage.yb011_lhen=[];
+				await player.storage.yb011_lhen.push(card);
+				cards.forEach(cardx => {
+					cardx.fix();
+					cardx.remove();
+					cardx.destroyed = true;
+					game.log(cardx, "被销毁了");
+				});
+				var subtype = lib.card[card.name].subtype;
+				await player.disableEquip(subtype);
+				var info=lib.card[card.name].skills;
+				if(info&&info.length) await player.addAdditionalSkill('yb011_lhen',info,true);
+				
+				if (Array.isArray(info)) {
+					for (var i of info) {
+						var infox = lib.skill[i];
+						if (!infox.audioname2) infox.audioname2 = {};
+						if (!infox.audioname2.sgscq_dianwei) infox.audioname2.sgscq_dianwei = 'sczs_qiangxi_add';
+					}
+				}
+
+				player.updateMarks();
+			}
+		},
+	},
+	yb011_khen:{
+		audio:'yb011_kongbai',
+		logAudio:()=>['ext:夜白神略/audio/character/yb011_kongbai3','ext:夜白神略/audio/character/yb011_kongbai4'],
+		charlotte:true,
+		mark:true,
+		marktext:'痕',
+		intro:{
+			name:'痕',
+			content:function(storage,player){
+				if(storage&&storage.length){
+					var str = get.YB_tobo(storage);
+					if(player.hasSkill('yb011_hen'))return '<span style="color: #ff0000;">累了就毁灭吧：<br>' + str+'</span>';
+					return '你仿佛伤痕累累：<br>'+str;
+				}
+				return '你仿佛洁白无瑕';
+			},
+		},
+	},
+	yb011_lhen:{
+		audio:'yb011_kongbai',
+		logAudio:()=>2,
+		charlotte:true,
+		mark:true,
+		marktext:'迹',
+		intro:{
+			name:'迹',
+			mark:function(dialog,storage,player){
+				dialog.addText('你人生的白纸上写下了以下篇章');
+				var list = [];
+				for(var i=0;i<storage.length;i++){
+					list.add([storage[i].suit,storage[i].number,storage[i].name,get.YB_tag(storage[i])])
+				}
+				dialog.addSmall([list,'vcard'])
+			},
+
+		},
+	},
+	yb011_chenxing:{
+		audio:'ext:夜白神略/audio/character:2',
+		dutySkill: true,
+		group: ['yb011_chenxing_1', 'yb011_chenxing_2', 'yb011_chenxing_3', 'yb011_chenxing_4'],
+		subSkill:{
+			1:{},
+			2:{},
+			3:{//成功
+				audio:'yb002_xiangyun',
+				logAudio:()=>1,
+				trigger: {
+					player: ['phaseZhunbeiBegin'],
+				},
+				forced: true,
+				filter: (event, player) => player.countDisabled()>=3,
+				async content(event, trigger, player) {
+					player.$skill('使命成功');
+					player.awakenSkill('yb011_chenxing');
+					await player.gainMaxHp();
+					await player.recover();
+					await player.addSkill('yb011_yinmeng');
+				},
+			},
+			4:{//失败
+				audio:'yb002_xiangyun',
+				logAudio:()=>['ext:夜白神略/audio/character/yb011_chenxing_2'],
+				trigger: {
+					player: ['phaseZhunbeiBegin','dying'],
+				},
+				forced: true,
+				filter: (event, player,name) => {
+					if(name=='dying')return true;
+					return player.countDisabled()<3&&player.storage.yb011_khen?.length>=3
+
+				},
+				async content(event, trigger, player) {
+					player.$skill('使命失败');
+					player.awakenSkill('yb011_chenxing');
+					await player.loseMaxHp();
+					await player.recover(player.maxHp-player.hp);
+					await player.removeSkill('yb011_kongbai');
+					await player.addSkill('yb011_hen');
+				},
+			},
+		},
+		derivation:['yb011_yinmeng','yb011_hen']
+	},
+	yb011_yinmeng:{
+		audio:'ext:夜白神略/audio/character:2',
+		trigger:{
+			source:'damageBegin1',
+		},
+		filter(event,player){
+			if(!event.card)return false;
+			return true;
+		},
+		check:function(event,player){
+			var storage = player.storage.yb011_khen;
+			if(storage.length>0&&storage.includes(event.card.name))return event.player.hp*2-player.countCards('h')>2;
+			return true;
+		},
+		prompt2:function(event,player){
+			var storage = player.storage.yb011_khen;
+			if(storage.length>0&&storage.includes(event.card.name))return '当你即将造成卡牌伤害时，<span class=yellowtext>若你有此牌对应的“痕”，你可以防止此伤害并移除对应的“痕”，然后你与当前回合角色各摸一张牌</span>，否则你可以记录对应的“痕”。';
+			return '当你即将造成卡牌伤害时，若你有此牌对应的“痕”，你可以防止此伤害并移除对应的“痕”，然后你与当前回合角色各摸一张牌，<span class=yellowtext>否则你可以记录对应的“痕”</span>。';
+		},
+		content(){
+			'step 0'
+			var storage = player.storage.yb011_khen;
+			if(storage.length>0&&storage.includes(trigger.card.name)){
+				trigger.cancel()
+				player.storage.yb011_khen.remove(trigger.card.name);
+				player.updateMarks();
+				player.draw();
+				_status.currentPhase.draw();
+			}
+			else {
+				player.storage.yb011_khen.push(trigger.card.name);
+				player.updateMarks();
+			}
+		}
+	},
+	yb011_hen:{
+		audio:'ext:夜白神略/audio/character:2',
+		forced:true,
+		mod:{
+			maxHandcard:function(player,num){
+				var numb=player.storage.yb011_khen?.length;
+				if(numb>0)return num+numb;
+			},
+		},
+		trigger:{
+			player:['damageBegin3','phaseDrawBegin','phaseAfter'],
+			source:['damageBegin2'],
+		},
+		filter(event,player,name){
+			var storage = player.storage.yb011_khen;
+			if(name=='damageBegin2'){
+				return event.card&&storage.includes(event.card.name);
+			}
+			else if(name=='phaseAfter'){
+				return !player.getStat("kill")||player.getStat('kill')==0;
+			}
+			else if(name=='damageBegin3'){
+				return event.card&&storage.includes(event.card.name);
+			}
+			else {
+				return storage.length>0;
+			}
+		},
+		content(){
+			var storage = player.storage.yb011_khen;
+			var name = event.triggername;
+			if(name=='damageBegin2'){
+				trigger.num++;
+			}
+			else if(name=='phaseAfter'){
+				player.loseHp();
+			}
+			else if(name=='damageBegin3'){
+				trigger.cancel();
+			}
+			else {
+				trigger.num+=storage.length;
+			}
+		}
+	},
 	//---------------郑佳怡
 	yb012_bianqian:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -6439,6 +6663,7 @@ const skill = {
 		audio:'ext:夜白神略/audio/character:2',
 		init(player,skill) {
 			player.storage[skill] = [[], [], [], [], []]
+			player.markSkill(skill)
 		},
 		enable : 'phaseUse',
 		trigger : {
@@ -6472,6 +6697,7 @@ const skill = {
 				if (num) player.say('诶？上次玩完没放回去吗？')
 				if (num == 25) return
 				await addCards(true)
+				// player.markSkill('yb018_tongmou')
 				return
 			}
 			else {
@@ -6803,6 +7029,14 @@ const skill = {
 				player : 3
 			}
 		},
+		intro:{
+			mark(dialog, storage, player){
+				dialog.content.style["overflow-x"] = "visible";
+				if (!storage || !storage.length) {
+					return "（棋盘空空如也）";
+				}
+			},
+		},
 		subSkill : {
 			tip : {}
 		}
@@ -7110,6 +7344,74 @@ const skill = {
 			player.chooseToDiscard(true).type='ybsl_cu';
 		},
 
+	},
+	yb019_zhiyu:{
+		audio:'yb019_renxing',
+		enable:'phaseUse',
+		selectCard:1,
+		filterCard:function (card){
+			var player = _status.event.player;
+			return !player.storage.yb019_zhiyu_ban||!player.storage.yb019_zhiyu_ban.includes(card.name);
+		},
+		filter:function (event,player){
+			return true;
+		},
+		filterTarget:function (card,player,target){
+			return player!=target;
+		},
+		discard:false,
+		selectTarget:1,
+		content:async function (event,trigger,player){
+			await player.addTempSkill('yb019_zhiyu_ban');
+			if(!player.storage.yb019_zhiyu_ban)player.storage.yb019_zhiyu_ban=[];
+			await player.storage.yb019_zhiyu_ban.push(event.cards[0].name);
+			await player.showCards(event.cards);
+			await player.give(event.cards[0], event.target);
+			if(player.canUse(get.autoViewAs({
+				name:event.cards[0].name,
+				nature:event.cards[0].nature
+			}),event.target,false)){
+				await player.useCard({
+					name:event.cards[0].name,
+					nature:event.cards[0].nature
+				},event.target,false);
+			}
+		},
+		ai:{
+			order:5,
+			result:{
+				player:function(player,target){
+					if(card.name=='du') return -2;
+					return 0;
+				},
+				target:function(player,target){
+					var card = ui.selected.cards[0];
+					if(card.name=='cu') return -1;
+					else if(card.name=='du') return -2;
+					else if(player.canUse(get.autoViewAs({
+						name:event.cards[0].name,
+						nature:event.cards[0].nature
+					}),event.target,false)){
+						return get.effect(target,get.autoViewAs({
+							name:event.cards[0].name,
+							nature:event.cards[0].nature
+						}),player,target)+1;
+					}
+					else {
+						return 1;
+					}
+				}
+			}
+		},
+		subSkill:{
+			ban:{
+				intro:{
+					content:'extension'
+				},
+				onremove:true,
+				charlotte:true,
+			}
+		},
 	},
 	//--------------贾雨桐
 	'yb020_shange':{
@@ -8245,7 +8547,7 @@ const skill = {
 		trigger:{
 			player:'phaseZhunbeiBegin',
 		},
-		groupSkill:true,
+		groupSkill:'YB_dream',
 		direct:true,
 		filter:function(event,player){
 			return player.group=='YB_dream';
@@ -8304,9 +8606,14 @@ const skill = {
 				sub:true,
 			},
 			add:{
+				audio:'ybsl_sanmeng',
+				filter:function(event,player){
+					return player.group=='YB_dream';
+				},
 				trigger:{
 					player:'phaseDiscardBefore',
 				},
+				groupSkill:'YB_dream',
 				direct:true,
 				content:function(){
 					'step 0'
@@ -8319,6 +8626,7 @@ const skill = {
 					});
 					'step 1'
 					if(result.bool){
+						player.logSkill('ybsl_sanmeng_add')
 						// player.removeSkill('ybsl_sanmeng_buff');
 						lib.skill.chenliuwushi.change(player,1);
 					}
@@ -8857,14 +9165,7 @@ const skill = {
 				evt.targets.push(target);
 			}
 			"step 2"
-			var next=player.chooseTarget('是否移除水剑元，与一名能成为流离目标的玩家交换座位？现在由于作者菜，这个没写出来……',function(card,player,target){
-				var trigger=_status.event;
-				if(player.inRange(target)&&target!=trigger.source){
-					if(lib.filter.targetEnabled(trigger.card,trigger.source,target)) return true;
-				}
-				return false;
-				// return target!=player;
-			}
+			var next=player.chooseTarget('是否移除水剑元，与一名能成为流离目标的玩家交换座位？现在由于作者菜，这个没写出来……'
 			/*{
 				// filterCard:()=>false,
 				filterTarget:function(card,player,target){
@@ -8884,7 +9185,13 @@ const skill = {
 				card:trigger.card,
 			}
 			*/
-			).setHiddenSkill(event.name);
+			).set('filterTarget',function(card,player,target){
+				var trigger=_status.event;
+				if(player.inRange(target)&&target!=trigger.source){
+					if(lib.filter.targetEnabled(trigger.card,trigger.source,target)) return true;
+				}
+				return false;
+			}).setHiddenSkill(event.name);
 			"step 3"
 			if(result.bool){
 				var target=result.targets[0];
@@ -9504,10 +9811,10 @@ const skill = {
 			];
 			if(!player.storage.yb033_qijue_dc)player.storage.yb033_qijue_dc=[
 				['①你下次弃置牌后','discardEnd'],
-				['②对场上角色各造成1点伤害',function(){
+				['②对所有其他角色各造成1点伤害',function(){
 					var targets = game.filterPlayer().sortBySeat(player);
 					for(var i of targets){
-						if(i.isIn())i.damage(player);
+						if(i.isIn()&&i!=player)i.damage(player);
 					}
 				}],
 				['③令一个数字之后的效果向前错位',function(){
@@ -9604,7 +9911,7 @@ const skill = {
 							let storageC3=player.storage.yb033_qijue_dc;
 							if(link){
 								if(link[0] == 0){
-									var storageC4=storageC1;
+									const storageC4=storageC1;
 									player.storage.yb033_qijue_lh[0]=storageC2[0];
 									player.storage.yb033_qijue_lh[1]=storageC2[1];
 									player.storage.yb033_qijue_lh[2]=storageC2[2];
@@ -9616,7 +9923,7 @@ const skill = {
 									player.storage.yb033_qijue_dc[2]=storageC4[2];
 								}
 								else if(link[0] == 1){
-									var storageC4=storageC1;
+									const storageC4=storageC1;
 									player.storage.yb033_qijue_lh[1]=storageC2[1];
 									player.storage.yb033_qijue_lh[2]=storageC2[2];
 									player.storage.yb033_qijue_da[1]=storageC3[1];
@@ -9625,7 +9932,7 @@ const skill = {
 									player.storage.yb033_qijue_dc[2]=storageC4[2];
 								}
 								else if(link[0] == 2){
-									var storageC4=storageC1;
+									const storageC4=storageC1;
 									player.storage.yb033_qijue_lh[2]=storageC2[2];
 									player.storage.yb033_qijue_da[2]=storageC3[2];
 									player.storage.yb033_qijue_dc[2]=storageC4[2];
@@ -10084,7 +10391,7 @@ const skill = {
 			event.count=0;
 			var evt=trigger.getl(player);
 			if(player.countMark('yb037_kexie')==0){
-				event.count=trigger.num;
+				event.count=evt.cards2.length;
 				event.goto(1);
 			};
 			if(player.countMark('yb037_kexie')==1){
@@ -10102,7 +10409,20 @@ const skill = {
 			'step 1'
 			player.loseHp(event.count);
 		},
-		
+		// getIndex(event,player){
+		// 	var num = player.storage.yb037_kexie;
+		// 	var evt = event.getl(player);
+		// 	if(!num||num==0)return event.num;
+		// 	else if(num==1)return evt.cards2.filter(function(card){
+		// 		return get.color(card,player)=='red'
+		// 	}).length;
+		// 	else return evt.cards2.filter(function(card){
+		// 		return get.suit(card,player)=='heart'
+		// 	}).length;
+		// },
+		// content(){
+		// 	player.loseHp();
+		// }
 	},
 	'yb037_guiling':{
 		trigger:{player:'damageBegin4'},

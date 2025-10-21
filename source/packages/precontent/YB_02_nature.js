@@ -261,6 +261,12 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('魂')}${get.prefixSpan('神')}`
 			},
 		})
+		
+		lib.namePrefix.set('界势',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
+			},
+		})
 		// lib.namePrefix.set('魔',{
 		// 	showName:'魔',
 		// 	color:'#e328b7',
@@ -306,6 +312,15 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('界')}${get.prefixSpan('缝')}${get.prefixSpan('神')}`
 			},
 		})
+
+		
+		lib.namePrefix.set('界势',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
+			},
+		})
+
+		
 		lib.namePrefix.set('魂',{
 			showName:'魂',
 			color:'#28ffff',
