@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickable Text</title>
+    <style>
+        .clickable-text {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .clickable-text:hover {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <p>这是一个带有点击功能的文本：<span class="clickable-text" onclick="console.log('文本被点击了！'); this.textContent = '已点击！'">动态生成的文本</span></p>
+    <script>
+        function generateInitialText() {
+            return '动态生成的文本';
+        }
+        document.querySelector('.clickable-text').textContent = generateInitialText();
+    </script>
+
+    <script>
+        // 后续可以在这里添加更复杂的事件逻辑
+    </script>
+</body>
+</html>

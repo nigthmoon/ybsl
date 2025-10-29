@@ -435,7 +435,7 @@ const skill = {
 		},
 		async cost(event, trigger, player) {
 			event.result = await player
-				.choosePlayerCard(get.prompt("refankui", trigger.source), trigger.source, trigger.source != player ? "he" : "e")
+				.choosePlayerCard(get.prompt("ybmjz_fankui", trigger.source), trigger.source, trigger.source != player ? "he" : "e")
 				.set("ai", button => {
 					let val = get.buttonValue(button);
 					if (get.event("att") > 0) return 1 - val;

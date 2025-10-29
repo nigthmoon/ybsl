@@ -58,20 +58,40 @@ span[data-nature="YB_moneym"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0
 div[data-nature="YB_moneymm"],
 span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,
 	rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,black 0 0 1px;
-}/*----------------定义风颜色----------------*/
-.player .identity[data-color="YB_snow"],
-div[data-nature="YB_snow"],
-span[data-nature="YB_snow"] {
+}
+/*----------------定义风颜色----------------*/
+.player .identity[data-color="YB_windy"],
+div[data-nature="YB_windy"],
+span[data-nature="YB_windy"] {
 	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 10px,
 	rgba(255, 237, 123,1) 0 0 10px
 }
-div[data-nature="YB_snowm"],
-span[data-nature="YB_snowm"] {
+div[data-nature="YB_windym"],
+span[data-nature="YB_windym"] {
 	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 5px,
 	rgba(255, 237, 123,1) 0 0 5px,black 0 0 1px;
 }
-div[data-nature="YB_snowmm"],
-span[data-nature="YB_snowmm"] {
+div[data-nature="YB_windymm"],
+span[data-nature="YB_windymm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,
+	rgba(255, 237, 123,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(255, 237, 123,1) 0 0 20px,rgba(255, 237, 123,1) 0 0 20px,black 0 0 1px;*/
+/*----------------定义岩颜色----------------*/
+/*----------------定义其实我就是懒得找颜色了----------------*/
+.player .identity[data-color="YB_rock"],
+div[data-nature="YB_rock"],
+span[data-nature="YB_rock"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 10px,
+	rgba(255, 237, 123,1) 0 0 10px
+}
+div[data-nature="YB_rockm"],
+span[data-nature="YB_rockm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 5px,
+	rgba(255, 237, 123,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_rockmm"],
+span[data-nature="YB_rockmm"] {
 	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,
 	rgba(255, 237, 123,1) 0 0 2px,black 0 0 1px;
 }
@@ -94,6 +114,10 @@ span[data-nature="YB_snowmm"] {
 	border: 1px solid #E328B7;
 }*/
 .card.fullskin.YB_windy>.name {
+	color: #ffed7a;
+	border: 1px solid #ffdd00;
+}
+.card.fullskin.YB_rock>.name {
 	color: #ffed7a;
 	border: 1px solid #ffdd00;
 }

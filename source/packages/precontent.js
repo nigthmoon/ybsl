@@ -14,6 +14,7 @@ import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 import { typeimage } from './function.js'
 // import { sgstrxs } from '../sgstrxs.js';
+import { cyyydsgs } from '../pile/cyyydsgs.js'
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// const scriptPaths=[
@@ -318,6 +319,7 @@ export async function precontent() {
 
 				// }
 			}
+			
 		}
 		{//nodeintro修复
 			var YB_nodeIntro = get.nodeintro;
@@ -1074,6 +1076,17 @@ export async function precontent() {
 			// 	}
 			// });
 		}
+		{//YB_promot
+			
+			get.YB_prompt2=function (skill, target, player) {
+				var str = get.prompt.apply(this, arguments);
+				if (!lib.translate[skill + "_info"]&&!lib.translate[skill + "_info"]) {
+					return str;
+				}
+				if(lib.dynamicTranslate[skill]&&lib.dynamicTranslate[skill]!=undefined)return "###" + str + "###" + '<br>'+lib.dynamicTranslate[skill](player);
+				return "###" + str + "###" + '<br>'+lib.translate[skill + "_info"];
+			}
+		}
 		{// 千幻换肤相关
 			if(!lib.qhlypkg){
 				lib.qhlypkg=[];
@@ -1332,5 +1345,5 @@ export async function precontent() {
 	// 		}
 	// 	}	
 	// })
-
+	cyyydsgs();
 }
