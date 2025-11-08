@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 import { YB_yebailvcheng } from '../../../yblc/YBLC_1.js'
 import { YB_xnqbd } from '../../../yblc/YBLC_2.js'
+import { cyyydsgs2 } from '../../pile/cyyydsgs.js'
 export { YBSL_brawl }
 /**
  * 
@@ -16,6 +17,7 @@ const YBSL_brawl = function(){
 		else if(lib.config.extension_夜白神略_ybsl_wujinshilian=='qbd'){
 			if(YB_xnqbd)YB_xnqbd();
 		}
+		// if(cyyydsgs2)cyyydsgs2()
 		if (!lib.storage.stage["夜白旅程（二）"]) {
 			lib.storage.stage["夜白旅程（二）"] = {
 				name: "夜白旅程（二）",

@@ -10341,12 +10341,264 @@ const skill = {
 	},
 	yb036_qianjin:{
 		audio:'ext:夜白神略/audio/character:2',
+		derivation:['yb036_chongzheng','yb036_aoxiang'],
+		dutySkill:true,
+		forced:true,
+		locked:false,
+		trigger:{
+			player:['useCard','phaseJieshuBegin','damageAfter'],
+		},
+		filter(event,player,name){
+			// if(name=='useCard')return true;
+			// else return player.countMark('yb036_qianjin')>0;
+			return true;
+		},
+		content(){
+			if(event.triggername=='useCard'){
+				player.addMark('yb036_qianjin',1);
+				trigger.trigger('yb036_qianjin_change')
+			}
+			else if(player.countMark('yb036_qianjin')>0){
+				player.removeMark('yb036_qianjin',1);
+				trigger.trigger('yb036_qianjin_change')
+			}
+			else {
+				trigger.trigger('yb036_qianjin_fail')
+			}
+		},
+		mark:true,
+		marktext:'进',
+		intro:{
+			name:'进',
+			content:'extension',
+		},
+		ai:{
+			effect:{
+				target:function(card,player,target,result2){
+					if(get.tag(card,'damage')){
+						return result2-2;
+					}
+					return result2;
+				}
+			},
+		},
+		group: ['yb036_qianjin_achieve', 'yb036_qianjin_fail'],
+		subSkill:{
+			achieve:{
+				trigger:{
+					player:'yb036_qianjin_change',
+				},
+				forced: true,
+				filter(event,player){
+					var num = player.yb036_qianjin_achieve;
+					if(player.countMark('yb036_qianjin')>=num) return true;
+				},
+				init(player){
+					if(!player.yb036_qianjin_achieve)player.yb036_qianjin_achieve=5;
+				},
+				skillAnimation: true,
+				animationColor: 'YB_dream',
+				content(){
+					'step 0'
+					player.$skill('使命成功');
+					player.changeSkin({ characterName: "ybsl_036bright" }, "ybsl_036bright_aoxiang");
+					'step 1'
+					player.awakenSkill('yb036_qianjin');
+					'step 2'
+					player.draw(2);
+					'step 3'
+					player.addSkill('yb036_aoxiang');
+				},
+			},
+			fail:{
+				trigger:{
+					player:'yb036_qianjin_fail',
+				},
+				filter(event,player){
+					return true;
+				},
+				content(){
+					'step 0'
+					player.$skill('使命失败');
+					'step 1'
+					player.awakenSkill('yb036_qianjin');
+					player.changeSkin({ characterName: "ybsl_036bright" }, "ybsl_036bright_chongzheng");
+					'step 2'
+					player.addSkill('yb036_chongzheng');
+					player.restoreSkill('yb036_chongzheng');
+				},
+			},
+		},
 	},
 	yb036_chongzheng:{
 		audio:'ext:夜白神略/audio/character:2',
+		skillAnimation: true,
+		animationColor: 'YB_dream',
+		limited:true,
+		trigger:{
+			player:['phaseZhunbeiBegin','phaseJieshuBegin']
+		},
+		enable:'chooseToUse',
+		filter(event,player,name){
+			if(name)return true;
+			if(player.storage.yb036_chongzheng) return false;
+			if(event.type=='dying'){
+				if(player!=event.dying) return false;
+				return true;
+			}
+			return false;
+		},
+		check(event,player,name){
+			if(name) return player.getDamagedHp()>0||player.countCards('h')<=1;
+			return true;
+		},
+		content(){
+			'step 0'
+			player.awakenSkill('yb036_chongzheng');
+			'step 1'
+			player.recover()
+			'step 2'
+			player.draw(2);
+			'step 3'
+			player.restoreSkill('yb036_qianjin');
+			player.changeSkin({ characterName: "ybsl_036bright" }, "ybsl_036bright");
+		}
 	},
 	yb036_aoxiang:{
 		audio:'ext:夜白神略/audio/character:2',
+		group:['yb036_aoxiang_draw','yb036_aoxiang_restore'],
+		subSkill:{
+			draw:{
+				forced:true,
+				trigger:{
+					player:['useCard'],
+				},
+				filter(event,player){
+					return player.countMark('yb036_qianjin')>0;
+				},
+				content(){
+					'step 0'
+					player.removeMark('yb036_qianjin',1);
+					trigger.trigger('yb036_qianjin_change')
+
+					'step 1'
+					player.draw();
+				}
+			},
+			restore:{
+				trigger:{
+					player:'yb036_qianjin_change',
+				},
+				forced: true,
+				filter(event,player){
+					return player.countMark('yb036_qianjin')==0;
+				},
+				// skillAnimation: true,
+				// animationColor: 'YB_dream',
+				content(){
+					'step 0'
+					player.removeSkill('yb036_aoxiang');
+					player.restoreSkill('yb036_qianjin');
+					player.changeSkin({ characterName: "ybsl_036bright" }, "ybsl_036bright");
+					'step 1'
+					if(player.yb036_qianjin_achieve){
+						var list = [];
+						if(player.yb036_qianjin_achieve<8)list.push('增加');
+						if(player.yb036_qianjin_achieve>3)list.push('减少');
+						list.push('取消');
+						player.chooseControl(list).set('prompt',`当前临界值为${player.yb036_qianjin_achieve}，请选择增加还是减少（至多加至8，至少减至3）`);
+					}
+					else{
+						event.finish();
+					}
+					'step 2'
+					if(result.control&&result.control!='取消'){
+						if(result.control=='增加'){
+							player.yb036_qianjin_achieve++;
+						}
+						else if(result.control=='减少'){
+							player.yb036_qianjin_achieve--;
+						}
+
+					}
+				},
+
+			},
+		},
+		enable:['chooseToUse','chooseToRespond'],
+		//发动时提示的技能描述
+		prompt:'将红牌当【杀】，黑牌当【闪】使用或打出',
+		//动态的viewAs
+		viewAs:function(cards,player){
+			var name=false;
+			var color=get.color(cards[0],player);
+			//根据选择的卡牌的花色 判断要转化出的卡牌是闪还是火杀还是无懈还是桃
+			switch(color){
+				case 'red':
+					name='sha';
+				case 'black':
+					name='shan';
+			}
+			//返回判断结果
+			if(name) return {
+				name:name
+			};
+			return null;
+		},
+		check:function(card){
+			var val = get.value(card);
+			return 5 - val;
+		},
+		selectCard:1,
+		position:'hes',
+		filterCard:function(card,player,event){
+			//如果已经选了一张牌 那么第二张牌和第一张花色相同即可
+			// if(ui.selected.cards.length) return get.suit(card,player)==get.suit(ui.selected.cards[0],player);
+			event=event||_status.event;
+			//获取当前时机的卡牌选择限制
+			var filter=event._backup.filterCard;
+			//获取卡牌颜色
+			var name=get.color(card,player);
+			//如果这张牌是梅花并且当前时机能够使用/打出闪 那么这张牌可以选择
+			if(name=='black'&&filter({name:'shan',cards:[card]},player,event)) return true;
+			//如果这张牌是方片并且当前时机能够使用/打出雷杀 那么这张牌可以选择
+			if(name=='red'&&filter({name:'sha',cards:[card]},player,event)) return true;
+			//上述条件都不满足 那么就不能选择这张牌
+			return false;
+		},
+		filter:function(event,player){
+			// if(player.countMark('yb070_meiying')<1) return false;
+			//获取当前时机的卡牌选择限制
+			var filter=event.filterCard;
+			//如果当前时机能够使用/打出火杀并且角色有方片 那么可以发动技能
+			if(filter({name:'sha'},player,event)&&player.countCards('hes',{color:'red'})) return true;
+			//如果当前时机能够使用/打出闪并且角色有梅花 那么可以发动技能
+			if(filter({name:'shan'},player,event)&&player.countCards('hes',{color:'black'})) return true;
+			return false;
+		},
+		// hiddenCard:function(player,name){
+		// 	// if(player.countMark('yb070_meiying')<1) return false;
+		// 	if(name=='wuxie'&&_status.connectMode&&player.countCards('hs')>0) return true;
+		// 	if(name=='wuxie') return player.countCards('hes',{suit:'spade'})>0;
+		// 	if(name=='tao') return player.countCards('hes',{suit:'heart'})>0;
+		// },
+		ai:{
+			respondSha:true,
+			respondShan:true,
+			//让系统知道角色“有杀”“有闪”
+			skillTagFilter:function(player,tag){
+				var name;
+				switch(tag){
+					case 'respondSha':name='red';break;
+					case 'respondShan':name='black';break;
+				}
+				if(!player.countCards('hes',{color:name})) return false;
+			},
+			//AI牌序
+			order:function(item,player){
+				return 2;
+			},
+		},
 	},
 	//----------------------方块Q
 	'yb037_yizhong':{
@@ -13928,8 +14180,8 @@ const skill = {
 					var name=list[i];
 					if(player.countCards('hes',function(card){
 						return (name!='sha'||get.value(card)<5)&&get.suit(card,player)==map[name];
-					})>0&&player.getUseValue({name:name,nature:name=='sha'?'fire':null})>0){
-						var temp=get.order({name:name,nature:name=='sha'?'fire':null});
+					})>0&&player.getUseValue({name:name,nature:name=='sha'?'thunder':null})>0){
+						var temp=get.order({name:name,nature:name=='sha'?'thunder':null});
 						if(temp>max){
 							max=temp;
 							name2=map[name];

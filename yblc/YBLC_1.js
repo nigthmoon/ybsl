@@ -299,6 +299,13 @@ const YB_yebailvcheng=function(){
 			(lib.config.yebailvcheng_level?('你的最高纪录是连续通过'+lib.config.yebailvcheng_level+'关，是否能够突破这一记录呢？'):'你能否过五关斩六将，击败古城战神蔡阳呢？'),
 		],
 		init:function(){
+			game.YB_save = function(lib, game, ui, get, ai, _status){
+			}
+			game.YB_load = function(lib, game, ui, get, ai, _status){
+			}
+			game.YB_hasload = function(){
+				return false;
+			}
 			if(!_status.yebailvcheng) _status.yebailvcheng={
 				completeNumber:0,
 				used:['pujing','huban','caiyang'],
@@ -574,7 +581,10 @@ const YB_yebailvcheng=function(){
 					]
 				],
 				replace_character:function(){
-					'step 0'
+					'step 0';
+					game.YB_save(lib, game, ui, get, ai, _status)
+					
+					'step 1'
 					if(game.zhu._oldniepan){
 						game.zhu.removeSkill('oldniepan');
 						delete game.zhu._oldniepan;
@@ -583,6 +593,7 @@ const YB_yebailvcheng=function(){
 					if(!lib.config.yebailvcheng_level||lib.config.yebailvcheng_level<_status.yebailvcheng.completeNumber){
 						lib.config.yebailvcheng_level=_status.yebailvcheng.completeNumber;
 						game.saveConfig('yebailvcheng_level',lib.config.yebailvcheng_level);
+
 					}
 					if(game.fellow&&game.fellow.isAlive()){
 						if(ui.land&&ui.land.player==game.fellow){
@@ -616,7 +627,6 @@ const YB_yebailvcheng=function(){
 							ui.discardPile.appendChild(cards.shift());
 						}
 					}
-					'step 1'
 					/*
 					if(game.fellow||game.fan){
 						if(game.fan){
@@ -625,6 +635,7 @@ const YB_yebailvcheng=function(){
 						}
 					}
 					*/
+					'step 2'
 					if(game.fellow){
 						game.dead.remove(game.fellow);
 						game.fellow.remove();
@@ -715,7 +726,7 @@ const YB_yebailvcheng=function(){
 							// 'choiceList',list).set(
 							// 'prompt','下一关BOSS战，请选择一项（当前已通过'+_status.yebailvcheng.completeNumber+'关）');
 					// }
-					'step 2'
+					'step 3'
 					if(result.index==4){
 						game.over(true);
 						return;
@@ -754,7 +765,7 @@ const YB_yebailvcheng=function(){
 					}
 					*/
 					/*功能正在测试*/
-					'step 3'
+					'step 4'
 					_status.event.getParent('phaseLoop').player=game.zhu;
 					var source=game.fan;
 					var ybme=game.zhu;
@@ -878,7 +889,7 @@ const YB_yebailvcheng=function(){
 							ybme.addSkill(list10[numb1][1][1]);
 						}
 					}
-					'step 4'
+					'step 5'
 					var cards=Array.from(ui.ordering.childNodes);
 					while(cards.length){
 						cards.shift().discard();
@@ -891,7 +902,18 @@ const YB_yebailvcheng=function(){
 						_status.event.untrigger(true);
 					}
 				},
+				player:{
+				// 	// character,
+				// 	// player,
+				// 	// cardPile,
+				// 	// discardPile,
+				// 	lib, game, ui, get, ai, _status
+				}
 			};
+			//
+			// const  zhuancun = {lib, game, ui, get, ai, _status};
+			// _status.yebailvcheng.player=zhuancun
+			//
 			_status.yebailvcheng.player_number=get.config('player_number');
 			game.saveConfig('player_number','2','identity');
 		},
@@ -905,119 +927,129 @@ const YB_yebailvcheng=function(){
 					next.showConfig=true;
 					next.setContent(function(){
 						'step 0'
-						ui.arena.classList.add('choose-character');
-						game.me.identity='zhu';
-						game.zhu=game.me;
-						game.fan=game.me.next;
-						game.fan.identity='fan';
-						game.zhu.setIdentity();
-						game.zhu.identityShown=true;
-						game.zhu.node.identity.classList.remove('guessing');
-						game.fan.setIdentity();
-						game.fan.identityShown=true;
-						game.fan.node.identity.classList.remove('guessing');
-						event.list=[];
-						for(var i in lib.character){
-							if(lib.filter.characterDisabled(i)) continue;
-							event.list.push(i);
-						}
-						event.list.randomSort();
-						_status.characterlist=event.list.slice(0);
-						var list=event.list.slice(0,5);
-						var list2=['ybslshen_014liutianyu'];
-						delete event.swapnochoose;
-						var dialog;
-						if(event.swapnodialog){
-							dialog=ui.dialog;
-							event.swapnodialog(dialog,list);
-							delete event.swapnodialog;
-						}
-						else{
-							var str='选择角色';
-							var strt='神夜白将在此界面常驻，方便选择<br>（若有其他想点的将可以联系作者进行加入）';
-							//或者在上边list2方括号里自己写武将ID，将与将之间用英文逗号隔开
-							dialog=ui.create.dialog(str,'hidden',strt,[list,'character'],[list2,'character']);
-						}
-						dialog.setCaption('选择角色');
-						game.me.chooseButton(dialog,true).set('onfree',true);
-						ui.create.cheat=function(){
-							_status.createControl=ui.cheat2;
-							ui.cheat=ui.create.control('更换',function(){
-								if(ui.cheat2&&ui.cheat2.dialog==_status.event.dialog){
-									return;
-								}
-								if(game.changeCoin){
-									game.changeCoin(-3);
-								}
-								event.list.randomSort();
-								list=event.list.slice(0,5);
-								var buttons=ui.create.div('.buttons');
-								var node=_status.event.dialog.buttons[0].parentNode;
-								_status.event.dialog.buttons=ui.create.buttons(list,'character',buttons);
-								_status.event.dialog.content.insertBefore(buttons,node);
-								buttons.animate('start');
-								node.remove();
-								game.uncheck();
-								game.check();
-							});
-							delete _status.createControl;
-						};
-						if(lib.onfree){
-							lib.onfree.push(function(){
-								event.dialogxx=ui.create.characterDialog('heightset');
-								if(ui.cheat2){
-									ui.cheat2.animate('controlpressdownx',500);
-									ui.cheat2.classList.remove('disabled');
-								}
-							});
-						}
-						else{
-							event.dialogxx=ui.create.characterDialog('heightset');
-						}
-						ui.create.cheat2=function(){
-							ui.cheat2=ui.create.control('自由选将',function(){
-								if(this.dialog==_status.event.dialog){
-									if(game.changeCoin){
-										game.changeCoin(50);
-									}
-									this.dialog.close();
-									_status.event.dialog=this.backup;
-									this.backup.open();
-									delete this.backup;
-									game.uncheck();
-									game.check();
-									if(ui.cheat){
-										ui.cheat.animate('controlpressdownx',500);
-										ui.cheat.classList.remove('disabled');
-									}
-								}
-								else{
-									if(game.changeCoin){
-										game.changeCoin(-10);
-									}
-									this.backup=_status.event.dialog;
-									_status.event.dialog.close();
-									_status.event.dialog=_status.event.parent.dialogxx;
-									this.dialog=_status.event.dialog;
-									this.dialog.open();
-									game.uncheck();
-									game.check();
-									if(ui.cheat){
-										ui.cheat.classList.add('disabled');
-									}
-								}
-							});
-							if(lib.onfree){
-								ui.cheat2.classList.add('disabled');
-							}
-						}
-						if(!_status.brawl||!_status.brawl.chooseCharacterFixed){
-							if(!ui.cheat&&get.config('change_choice'))
-								ui.create.cheat();
-							if(!ui.cheat2&&get.config('free_choose'))
-								ui.create.cheat2();
+						if(game.YB_hasload()){
+							game.me.chooseBool('是否继续上次游戏？')
 						}
 						'step 1'
+						if(result.bool){
+							event.goto(5)
+						}
+						else {
+							ui.arena.classList.add('choose-character');
+							game.me.identity='zhu';
+							game.zhu=game.me;
+							game.fan=game.me.next;
+							game.fan.identity='fan';
+							game.zhu.setIdentity();
+							game.zhu.identityShown=true;
+							game.zhu.node.identity.classList.remove('guessing');
+							game.fan.setIdentity();
+							game.fan.identityShown=true;
+							game.fan.node.identity.classList.remove('guessing');
+							event.list=[];
+							for(var i in lib.character){
+								if(lib.filter.characterDisabled(i)) continue;
+								event.list.push(i);
+							}
+							event.list.randomSort();
+							_status.characterlist=event.list.slice(0);
+							var list=event.list.slice(0,5);
+							var list2=['ybslshen_014liutianyu'];
+							delete event.swapnochoose;
+							var dialog;
+							if(event.swapnodialog){
+								dialog=ui.dialog;
+								event.swapnodialog(dialog,list);
+								delete event.swapnodialog;
+							}
+							else{
+								var str='选择角色';
+								var strt='神夜白将在此界面常驻，方便选择<br>（若有其他想点的将可以联系作者进行加入）';
+								//或者在上边list2方括号里自己写武将ID，将与将之间用英文逗号隔开
+								dialog=ui.create.dialog(str,'hidden',strt,[list,'character'],[list2,'character']);
+							}
+							dialog.setCaption('选择角色');
+							game.me.chooseButton(dialog,true).set('onfree',true);
+							ui.create.cheat=function(){
+								_status.createControl=ui.cheat2;
+								ui.cheat=ui.create.control('更换',function(){
+									if(ui.cheat2&&ui.cheat2.dialog==_status.event.dialog){
+										return;
+									}
+									if(game.changeCoin){
+										game.changeCoin(-3);
+									}
+									event.list.randomSort();
+									list=event.list.slice(0,5);
+									var buttons=ui.create.div('.buttons');
+									var node=_status.event.dialog.buttons[0].parentNode;
+									_status.event.dialog.buttons=ui.create.buttons(list,'character',buttons);
+									_status.event.dialog.content.insertBefore(buttons,node);
+									buttons.animate('start');
+									node.remove();
+									game.uncheck();
+									game.check();
+								});
+								delete _status.createControl;
+							};
+							if(lib.onfree){
+								lib.onfree.push(function(){
+									event.dialogxx=ui.create.characterDialog('heightset');
+									if(ui.cheat2){
+										ui.cheat2.animate('controlpressdownx',500);
+										ui.cheat2.classList.remove('disabled');
+									}
+								});
+							}
+							else{
+								event.dialogxx=ui.create.characterDialog('heightset');
+							}
+							ui.create.cheat2=function(){
+								ui.cheat2=ui.create.control('自由选将',function(){
+									if(this.dialog==_status.event.dialog){
+										if(game.changeCoin){
+											game.changeCoin(50);
+										}
+										this.dialog.close();
+										_status.event.dialog=this.backup;
+										this.backup.open();
+										delete this.backup;
+										game.uncheck();
+										game.check();
+										if(ui.cheat){
+											ui.cheat.animate('controlpressdownx',500);
+											ui.cheat.classList.remove('disabled');
+										}
+									}
+									else{
+										if(game.changeCoin){
+											game.changeCoin(-10);
+										}
+										this.backup=_status.event.dialog;
+										_status.event.dialog.close();
+										_status.event.dialog=_status.event.parent.dialogxx;
+										this.dialog=_status.event.dialog;
+										this.dialog.open();
+										game.uncheck();
+										game.check();
+										if(ui.cheat){
+											ui.cheat.classList.add('disabled');
+										}
+									}
+								});
+								if(lib.onfree){
+									ui.cheat2.classList.add('disabled');
+								}
+							}
+							if(!_status.brawl||!_status.brawl.chooseCharacterFixed){
+								if(!ui.cheat&&get.config('change_choice'))
+									ui.create.cheat();
+								if(!ui.cheat2&&get.config('free_choose'))
+									ui.create.cheat2();
+							}
+
+						}
+						'step 2'
 						if(ui.cheat){
 							ui.cheat.close();
 							delete ui.cheat;
@@ -1031,7 +1063,7 @@ const YB_yebailvcheng=function(){
 						_status.characterlist.remove(result.buttons[0].link);
 						_status.yebailvcheng.used.add(result.buttons[0].link);
 						game.zhu.chooseControl('一阶','二阶','三阶','四阶','五阶').set('prompt','请选择武将等阶');
-						'step 2'
+						'step 3'
 						var hp=Math.floor(result.index/2);
 						event.draw=Math.floor((result.index+1)/2);
 						if(hp){
@@ -1045,7 +1077,7 @@ const YB_yebailvcheng=function(){
 						// list666.push('ybsl_059starsFall3');
 						list666.push('ybsl_012zhengjiayi');
 						game.zhu.chooseButton(['请选择对手的登场武将',[list666,'character']],true);
-						'step 3'
+						'step 4'
 						game.fan.init(result.links[0]);
 						// game.fan.addMark('_YBLC_level');
 						_status.characterlist.remove(result.links[0]);
@@ -1114,6 +1146,9 @@ const YB_yebailvcheng=function(){
 						game.fan.dieAfter=lib.element.player.dieAfter;
 						game.zhu.dieAfter2=lib.element.player.dieAfter2;
 						game.fan.dieAfter2=lib.element.player.dieAfter2;
+						event.finish();
+						'step 5'
+						game.YB_load(lib, game, ui, get, ai, _status)
 					});
 				};
 			}

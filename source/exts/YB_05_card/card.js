@@ -159,8 +159,6 @@ const card = {
 			game.cardsGotoOrdering(event.showCards);
 			player.showCards(event.showCards);
 			player.$throw(event.showCards,1000);
-			player.loseToDiscardpile(event.showCards);
-			game.log(player,'将',event.showCards,'置入了弃牌堆');
 			'step 1'
 			if(player.isIn()&&target.isIn()&&event.showCards.length){
 				for(var i of event.showCards){
@@ -171,6 +169,11 @@ const card = {
 						break;
 					}
 				}
+			}
+			'step 2'
+			if (event.showCards.length) {
+				player.loseToDiscardpile(event.showCards);
+				game.log(player,'将',event.showCards,'置入了弃牌堆');
 			}
 		},
 		ai:{
