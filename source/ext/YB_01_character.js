@@ -1,5 +1,5 @@
-"use strict";
-// import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
+// "use strict";
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
 import { characterSort } from '../exts/YB_01_character/characterSort.js'
 import { character } from '../exts/YB_01_character/character.js'
 import { characterIntro } from '../exts/YB_01_character/characterIntro.js'
@@ -73,6 +73,14 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		card:card,
 		translate:translate,//翻译（必填） 
 		dynamicTranslate:dynamicTranslate,
+
+		characterSubstitute: {
+			ybsl_036bright: [
+				// ["ybsl_036bright", ['ext:夜白神略/image/ybsl001/ybsl_036bright.jpg','die:夜白神略/audio/die/ybsl_036bright']],
+				["ybsl_036bright_aoxiang", ['ext:夜白神略/image/ybsl001/ybsl_036bright_aoxiang.jpg','die:夜白神略/audio/die/ybsl_036bright']],
+				["ybsl_036bright_chongzheng", ['ext:夜白神略/image/ybsl001/ybsl_036bright_chongzheng.jpg','die:夜白神略/audio/die/ybsl_036bright']],
+			],
+		},
 		
 	};
 	typeimage(ybslj,'ybsl001')

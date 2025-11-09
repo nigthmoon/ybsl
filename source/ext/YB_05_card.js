@@ -1,4 +1,5 @@
-"use strict";
+// "use strict";
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
 import { card } from '../exts/YB_05_card/card.js'
 import { skill } from '../exts/YB_05_card/skill.js'
 import { translate } from '../exts/YB_05_card/translate.js'
@@ -8,7 +9,7 @@ game.import('card',function(lib, game, ui, get, ai, _status){
 	var ybslc={
 		name:'ybslc',//卡包命名
 		connect:true,//卡包是否可以联机
-		init:true,
+		// init:true,
 		
 		card:card,//卡牌
 		skill:skill,

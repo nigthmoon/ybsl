@@ -1,4 +1,5 @@
-"use strict";//此文件手动格式化太累了，有机会用电脑整整
+// "use strict";
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
 import { card } from '../exts/YB_06_card/card.js'
 import { skill } from '../exts/YB_06_card/skill.js'
 import { translate } from '../exts/YB_06_card/translate.js'
@@ -8,7 +9,7 @@ game.import('card',function(lib, game, ui, get, ai, _status){
 	var ybgod={
 		name:'ybgod',//卡包命名
 		connect:true,//卡包是否可以联机
-		init:false,
+		// init:false,
 		card:card,//卡牌
 		skill:skill,//技能
 		translate:translate,//卡牌翻译

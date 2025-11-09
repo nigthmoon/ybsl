@@ -14,12 +14,13 @@ import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 import { typeimage } from './function.js'
 // import { sgstrxs } from '../sgstrxs.js';
-import { cyyydsgs } from '../pile/cyyydsgs.js'
+// import { cyyydsgs } from '../pile/cyyydsgs.js'
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
-		// const scriptPaths=[
+		// let scriptPaths=[
 		// 	'ext/YB_01_character.js','ext/YB_02_character.js','ext/YB_03_character.js','ext/YB_04_character.js',
 		// 	'ext/YB_05_card.js','ext/YB_06_card.js','ext/YB_07_card.js','ext/YB_08_character.js','ext/YB_09_character.js',
+		// 	'ext/YB_10_character.js','ext/YB_11_character.js','ext/YB_12_character.js','ext/YB_13_character.js',
 		// 	// 'ext/YB_01_character.js'
 		// ];
 		let scriptPaths = files;
@@ -1345,5 +1346,5 @@ export async function precontent() {
 	// 		}
 	// 	}	
 	// })
-	cyyydsgs();
+	// cyyydsgs();
 }

@@ -279,7 +279,7 @@ const skill = {
 			trigger.num++;
 		},
 	},
-	heiguangkai_ai: {
+	ybsl_jinyinrukai_ai: {
 		ai: {
 			effect: {
 				player(card, player, target) {

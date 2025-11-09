@@ -1,4 +1,5 @@
-"use strict";
+// "use strict";
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
 import { characterSort } from '../exts/YB_13_character/characterSort.js'
 import { character } from '../exts/YB_13_character/character.js'
 import { characterIntro } from '../exts/YB_13_character/characterIntro.js'
