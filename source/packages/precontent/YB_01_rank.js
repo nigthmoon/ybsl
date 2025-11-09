@@ -6,7 +6,8 @@ export { YBSL_rank }
 const YBSL_rank = function(){
 	
 	var packages = [
-		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
+		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic',
+		'ybnew3',
 		// 'YB_one'
 	]
 	{//修改函数以防止失灵
@@ -180,7 +181,7 @@ const YBSL_rank = function(){
 	lib.translate['ybart'+'_charactersInfo']='温馨提示：<br>开启本将包会一并开启“六艺”机制，详情请右键六艺篇查看，简单来说就是全场自带私人木牛流马。<br>因之前有群友反馈，说不喜欢这个机制，因此被我放在这里隔离，开启与否视个人喜好吧'
 	lib.translate['ybxh'+'_charactersInfo']='校花的贴身高手，很多武将虚位以待，敬请投稿'
 	lib.translate['ybdd'+'_charactersInfo']='本人接单制作的武将'
-	lib.translate['ybnew1'+'_charactersInfo']='杂设，部分为闲暇之余的设计，部分为参与其他投稿的落榜之作'
+	lib.translate['ybnew3'+'_charactersInfo']='杂设，部分为闲暇之余的设计，部分为参与其他投稿的落榜之作'
 	lib.translate['ybmjz'+'_charactersInfo']='夜白自己的界限突破……'
 	lib.translate['ybMagic'+'_charactersInfo']='理论上应该有武将的，但没设计好呢，再等等'
 	lib.translate['yhky'+'_charactersInfo']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'

@@ -1,0 +1,137 @@
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
+export { characterCopyright }
+
+const characterCopyright = {
+		
+	//-----------------------上古神话专题---------------------------//
+	sgsh_tiandi:'<font color=cyan>上古神话-001</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_shennong:'<font color=cyan>上古神话-002</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_xuanyuan:'<font color=cyan>上古神话-003</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_shaohao:'<font color=cyan>上古神话-004</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_zhuanxu:'<font color=cyan>上古神话-005</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_qinglong:'<font color=cyan>上古神话-006</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_baihu:'<font color=cyan>上古神话-007</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_zhuque:'<font color=cyan>上古神话-008</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_xuanwu:'<font color=cyan>上古神话-009</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_qilin:'<font color=cyan>上古神话-010</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_dongwanggong':'<font color=cyan>上古神话-011</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_xiwangmu':'<font color=cyan>上古神话-012</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_huaxu':'<font color=cyan>上古神话-013</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_yaoji:'<font color=cyan>上古神话-014</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_hongjunlaozu:'<font color=cyan>上古神话-015</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_gonggong:'<font color=cyan>上古神话-016</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_zhurong:'<font color=cyan>上古神话-017</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_goumang:'<font color=cyan>上古神话-018</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_houtu:'<font color=cyan>上古神话-019</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_yuqiang':'<font color=cyan>上古神话-020</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_fuxi:'<font color=cyan>上古神话-021</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_xiangliu:'<font color=cyan>上古神话-022</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_houyi:'<font color=cyan>上古神话-023</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_dayu':'<font color=cyan>上古神话-024</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_kuafu:'<font color=cyan>上古神话-025</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_tubo:'<font color=cyan>上古神话-026</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_jingwei:'<font color=cyan>上古神话-027</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_qibo:'<font color=cyan>上古神话-028</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_taizichangqin':'<font color=cyan>上古神话-029</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_yeming:'<font color=cyan>上古神话-030</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_yinglong':'<font color=cyan>上古神话-031</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_nvba':'<font color=cyan>上古神话-032</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_chiyou:'<font color=cyan>上古神话-033</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_fenghou:'<font color=cyan>上古神话-034</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_jiutianxuannv:'<font color=cyan>上古神话-035</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：从雨<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_luozu:'<font color=cyan>上古神话-036</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：从雨<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_cangjie:'<font color=cyan>上古神话-037</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_limu:'<font color=cyan>上古神话-038</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_changxian:'<font color=cyan>上古神话-039</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：从雨<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_guiyuqu:'<font color=cyan>上古神话-040</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：从雨<br>♦︎插图：网图<br>♦︎配音：暂无',//鬼臾区
+	sgsh_limu:'<font color=cyan>上古神话-041</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	sgsh_shijiamouni:'<font color=cyan>上古神话-042</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_luohou':'<font color=cyan>上古神话-043</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	'sgsh_xingtian':'<font color=cyan>上古神话-044</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',
+	// //---------------------------------//上古神话
+	// 'sgsh_huaxu':'<font color=cyan>上古神话-001</font><br>♦︎技能设计：龙腾杀上古诸神<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//华胥
+	// 'sgsh_taizichangqin':'<font color=cyan>上古神话-002</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//太子长琴
+	// 'sgsh_nvba':'<font color=cyan>上古神话-003</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//女魃
+	// 'sgsh_luohou':'<font color=cyan>上古神话-004</font><br>♦︎技能设计：龙腾杀上古诸神<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//罗睺
+	// 'sgsh_dongwanggong':'<font color=cyan>上古神话-005</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//东王公
+	// 'sgsh_yinglong':'<font color=cyan>上古神话-006</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//应龙
+	// 'sgsh_xingtian':'<font color=cyan>上古神话-007</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//刑天
+	// 'sgsh_xiwangmu':'<font color=cyan>上古神话-008</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//西王母
+	// 'sgsh_yuqiang':'<font color=cyan>上古神话-009</font><br>♦︎技能设计：龙腾杀上古诸神<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//禺强
+	// 'sgsh_dayu':'<font color=cyan>上古神话-010</font><br>♦︎技能设计：龙腾杀上古诸神<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//大禹
+	// 'sgsh_limu':'<font color=cyan>上古神话-011</font><br>♦︎技能设计：龙腾杀上古诸神<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//力牧
+	// 'sgsh_chiyou':'<font color=cyan>上古神话-012</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//蚩尤
+	// 'sgsh_jingwei':'<font color=cyan>上古神话-013</font><br>♦︎技能设计：龙腾杀上古诸神（夜白改）（如有）<br>♦︎代码撰写者：夜白<br>♦︎插图：网图<br>♦︎配音：暂无',//精卫
+
+	//
+	ybsl_xuyou:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方许攸', //许攸
+	niya_re_liuyan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：官方刘焉',
+	niya_caowei:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：喵曹金玉<br>♦︎代码撰写者：夜白<br>♦︎插图：p站<br>♦︎配音：暂无',
+	Fe2O3_duqiong:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：从雨<br>♦︎代码撰写者：夜白<br>♦︎插图：图先欠着<br>♦︎配音：暂无',
+	zxunnamed_zhenji:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe2O3_zixu:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe3O4_guanyu:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe2O3_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：找不到虫子的鸟<br>♦︎代码撰写者：找不到虫子的鸟<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe2O3_zhaoyun:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：合<br>♦︎代码撰写者：合<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	ddddssssbbbb_dengai:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：露<br>♦︎代码撰写者：露<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	zxunnamed_gongsunyuan:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：霜<br>♦︎代码撰写者：霜<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	FeO3_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：横云<br>♦︎代码撰写者：横云<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	Fe343_zhugeliang:'<font color=cyan>群友共创-编号暂无</font><br>♦︎技能设计：从云<br>♦︎代码撰写者：从云<br>♦︎插图：暂无<br>♦︎配音：暂无',
+	
+	
+	
+	
+	
+	
+	
+	
+	//冷门民杀搬运
+	ybslshen_zhenji:'<font color=cyan>冷门民杀搬运-编号暂无</font><br>✿技能设计：冷门民杀搬运<br>✿代码撰写者：夜白<br>✿插图：冷门民杀搬运<br>✿配音：暂无',
+	//夜白杂设
+	ybsl_kamome:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：Summer Pockets（若有）',//久岛鸥
+	ybsl_hairi:'<font color=cyan>夜白杂设-编号暂无</font><br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：Summer Pockets<br>❀配音：Summer Pockets（若有）',
+	sp_key_umi:'<font color=cyan>夜白杂设-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：Summer Pockets<br>❃配音：Summer Pockets（若有）',
+	ybsl_pujing:'<font color=cyan>夜白杂设-编号暂无</font><br>♣︎️技能设计：夜白<br>♣︎️代码撰写者：夜白<br>♣︎️插图：三国杀官方（若有）<br>♣︎️配音：三国杀官方（若有）',
+	
+
+
+
+
+
+
+
+
+
+
+	
+	//别群比赛
+	ybsl_lvyi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //吕乂
+	ybsl_yinfan:'<font color=cyan>别群比赛-小白杯（重在参与）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //隐蕃
+	ybsl_shlizhaoyi:'<font color=cyan>别群比赛-小白杯（重在参与）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //李昭仪
+	ybsl_sunsháo:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //孙韶
+	ybsl_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
+	ybnb_wangbi:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //王必
+	ybsl_jiangziwen:'<font color=cyan>别群比赛-小白杯（落榜）-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）', //蒋子文
+	ybsl_suojing:'<font color=cyan>别群比赛-鸿渐赛·笔走龙蛇-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白（bug修复：同）<br>♦︎插图：鸿渐赛笔走龙蛇（若有）<br>♦︎配音：鸿渐赛笔走龙蛇（若有）',//索靖
+	ybsl_wangpou:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
+	ybsl_yangxu:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
+	ybsl_shichong:'<font color=cyan>别群比赛-小白杯-编号暂无</font><br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：小白杯（若有）<br>♦︎配音：小白杯（若有）',
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//宗族武将
+	//吴郡陆氏
+	ybslclan_luji:'<font color=green>夜白自设-吴郡陆氏-编号暂无</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：暂无<br>◈配音：暂无', //族陆绩
+	ybslclan_luxun:'<font color=green>夜白自设-吴郡陆氏-编号暂无</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：暂无<br>◈配音：暂无', //族陆逊
+	ybslclan_luyan:'<font color=green>夜白自设-吴郡陆氏-编号暂无</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：暂无<br>◈配音：暂无', //族陆延
+	//一将成名
+	ybslshen_pangtong:'<font color=cyan>三国杀十周年-重在参与-编号暂无</font><br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：三国杀十周年<br>◈配音：暂无',
+
+}

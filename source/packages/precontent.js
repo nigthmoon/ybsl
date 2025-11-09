@@ -1111,6 +1111,7 @@ export async function precontent() {
 				'yhky':'ybsl011',
 				'sgstrxs':'ybsl012',
 				'ybwhjx':'ybsl013',
+				'ybnew3':'ybsl004',
 			}
 			// var listxxxxx= [];
 			for(var i in packagesx){

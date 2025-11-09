@@ -481,7 +481,8 @@ const YBSL_special = function () {
 	lib.translate.ybsl_magicbook = '刻印';
 	{//缘分机智
 		var packages = [
-			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz','yhky','sgstrxs','ybMagic','ybnew2'
+			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz','yhky','sgstrxs','ybMagic','ybnew2',
+			'ybnew3',
 			// 'YB_one'
 		]
 		lib.arenaReady.push(function () {

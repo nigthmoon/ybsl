@@ -1,9 +1,21 @@
 import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterCopyright }
+export { characterCitetext }
 
-const characterCopyright = {
-	
-
+const characterCitetext = {
+		
+	ybsl_shlizhaoyi: '“我不能二三屈辱！”', //第11届小白杯 突围赛第4轮  重在参与的设计
+	//---------------------------------//上古神话
+	// 'sgsh_huaxu':'引文待填写。',//华胥
+	// 'sgsh_taizichangqin':'引文待填写。',//太子长琴
+	// 'sgsh_nvba':'引文待填写。',//女魃
+	// 'sgsh_luohou':'引文待填写。',//罗睺
+	// 'sgsh_dongwanggong':'引文待填写。',//东王公
+	// 'sgsh_yinglong':'引文待填写。',//应龙
+	// 'sgsh_xingtian':'引文待填写。',//刑天
+	// 'sgsh_xiwangmu':'引文待填写。',//西王母
+	// 'sgsh_yuqiang':'引文待填写。',//禺强
+	// 'sgsh_dayu':'引文待填写。',//大禹
+		
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
 	//---------------------------------//忆包武将
@@ -42,5 +54,5 @@ const characterCopyright = {
 	//空无  <br>◎技能设计：夜白<br>◎代码撰写者：夜白<br>◎插图：暂无<br>◎配音：暂无
 	//细雪  <br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：暂无<br>❅配音：暂无
 	*/
-	
+	niya_caowei:'一技能有点问题，以后再修，反正你看到这个将的时候一定会看困进而没兴趣玩',
 }
