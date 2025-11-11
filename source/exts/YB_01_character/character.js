@@ -118,7 +118,7 @@ const character = { //武将格式 :
 	// 'ybsl_083xiaozhu':['female','YB_dream',3,['yb083_shenshou','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','unseen','name:null|小筑']],//小筑
 	//047原张汨位置，现在张汨调整序号
 	'ybsl_085DGY':['female','YB_memory',3,['yb085_muyuan','yb085_cibie'],['rankAdd:legend','rankS:s','name:独孤|雨']],//独孤雨
-	// 'ybsl_086GJ':['female','YB_memory',3,[],['rankAdd:epic','rankS:a']],//龚洁
+	'ybsl_086GJ':['female','YB_memory',3,['yb086_jieyin'],['rankAdd:epic','rankS:a']],//龚洁
 	// 'ybsl_087tianlu':['female','YB_memory',3,[],['rankAdd:epic','rankS:a']],//田璐
 	// 'ybsl_088lijiaxin':['female','YB_memory',3,[],['rankAdd:epic','rankS:a']],//李嘉欣
 	// 'ybsl_089lvjinling':['female','YB_memory',3,[],['rankAdd:epic','rankS:a']],//吕金玲

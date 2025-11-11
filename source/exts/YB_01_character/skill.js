@@ -3177,7 +3177,7 @@ const skill = {
 				if(player.isPhaseUsing()) {
 					var card = evt.card
 					var num = player.getUseValue({ name : card.name, nature : card.nature })
-					if (player.countCard('hs', cardx => player.getUseValue(cardx) > num)) return 1
+					if (player.countCards('hs', cardx => player.getUseValue(cardx) > num)) return 1
 					return 11
 				}
 				return 1;
@@ -7406,7 +7406,7 @@ const skill = {
 		subSkill:{
 			ban:{
 				intro:{
-					content:'extension'
+					content:'expansion',
 				},
 				onremove:true,
 				charlotte:true,
@@ -10340,7 +10340,8 @@ const skill = {
 		inherit:'ybsl_sanmeng',
 	},
 	yb036_qianjin:{
-		audio:'ext:夜白神略/audio/character:2',
+		audio:'ext:夜白神略/audio/character:4',
+		logAudio: () => 2,
 		derivation:['yb036_chongzheng','yb036_aoxiang'],
 		dutySkill:true,
 		forced:true,
@@ -10370,21 +10371,25 @@ const skill = {
 		marktext:'进',
 		intro:{
 			name:'进',
-			content:'extension',
+			content:'$',
 		},
-		ai:{
-			effect:{
-				target:function(card,player,target,result2){
-					if(get.tag(card,'damage')){
-						return result2-2;
-					}
-					return result2;
-				}
-			},
-		},
+		// ai:{
+		// 	effect:{
+		// 		target:function(card,player,target,result2){
+		// 			if(get.tag(card,'damage')){
+		// 				return result2-10;
+		// 			}
+		// 			return result2;
+		// 		}
+		// 	},
+		// },
 		group: ['yb036_qianjin_achieve', 'yb036_qianjin_fail'],
 		subSkill:{
 			achieve:{
+				audio:"yb036_qianjin",
+				logAudio(event, player) {
+					return ["ext:夜白神略/audio/yb036_qianjin3.mp3"];
+				},
 				trigger:{
 					player:'yb036_qianjin_change',
 				},
@@ -10396,8 +10401,8 @@ const skill = {
 				init(player){
 					if(!player.yb036_qianjin_achieve)player.yb036_qianjin_achieve=5;
 				},
-				skillAnimation: true,
-				animationColor: 'YB_dream',
+				// skillAnimation: true,
+				// animationColor: 'YB_dream',
 				content(){
 					'step 0'
 					player.$skill('使命成功');
@@ -10411,12 +10416,17 @@ const skill = {
 				},
 			},
 			fail:{
+				audio:"yb036_qianjin",
+				logAudio(event, player) {
+					return ["ext:夜白神略/audio/yb036_qianjin4.mp3"];
+				},
 				trigger:{
 					player:'yb036_qianjin_fail',
 				},
 				filter(event,player){
 					return true;
 				},
+				forced:true,
 				content(){
 					'step 0'
 					player.$skill('使命失败');
@@ -10535,9 +10545,9 @@ const skill = {
 			//根据选择的卡牌的花色 判断要转化出的卡牌是闪还是火杀还是无懈还是桃
 			switch(color){
 				case 'red':
-					name='sha';
+					name='sha';break;
 				case 'black':
-					name='shan';
+					name='shan';break;
 			}
 			//返回判断结果
 			if(name) return {
@@ -16512,6 +16522,360 @@ const skill = {
 	// 'yb085_muyuan_info':'当你使用非装备牌指定唯一其他角色为目标后，你可获得其一张牌，然后其摸一张牌。',
 	// 'yb085_cibie':'辞别',
 	// 'yb085_cibie_info':'你可以让使你脱离濒死状态的角色获得技能【慕愿】。限定技，出牌阶段，你可以失去全部体力，并令一名其他角色选择：弃置等量手牌（牌数不够不可选），或受到等量伤害。',
+	//--------------------龚洁------------------//
+	// 'ybsl_086GJ':'龚洁',
+	yb086_jieyin:{
+		audio:'ext:夜白神略/audio/character:6',
+		logAudio: () => 2,
+		dutySkill:true,
+		usable:1,
+		enable:'phaseUse',
+		filter(event,player){
+			if(_status.yb086_jieyin){
+				for(var i of _status.yb086_jieyin){
+					if(i[0]==player||i[1]==player){
+						return false;
+					}
+				}
+			}
+			return !player.choubanhunli;
+		},
+		filterTarget(card,player,target){
+			if(_status.yb086_jieyin){
+				for(var i of _status.yb086_jieyin){
+					if(i[0]==target||i[1]==target){
+						return false;
+					}
+				}
+			}
+			return !target.choubanhunli/*&&player.differentSexFrom(target);*/
+		},
+		derivation:'yb086_zuiyuan',
+		selectTarget:1,
+		async content(event,trigger,player){
+			var target = event.target;
+			var result = await target.chooseBool(get.translation(player)+'想你请求结姻，是否同意？').set('ai',function(){
+				if(get.attitude(player,target)>5) return true;
+				return false;
+			}).forResult();
+			if(result.bool){
+				await target.logSkill('yb086_jieyin_ok',player);
+				player.choubanhunli=target;
+				target.choubanhunli=player;
+				player.storage.hunlizijin=0;
+				player.storage.choubanshijian=0;
+				await player.markSkill('yb086_jieyin_ok');
+				await player.markSkill('yb086_jieyin_hunlijishi');
+				await target.addSkill('yb086_jieyin_choubanhunli')
+				game.delayx();
+			}
+		},
+		ai:{
+			order:10,
+			result:{
+				player:function(player,target){
+					return get.attitude(player,target)-5;
+				},
+				target:10,
+			},
+		},
+		group:[
+			/*'yb086_jieyin_choubanhunli',*/
+			'yb086_jieyin_achieve','yb086_jieyin_fail',
+			'yb086_jieyin_hunlijishi'
+		],
+		subSkill:{
+			ok:{
+				skillAnimation: true,
+				animationColor: "YB_snow",
+				mark:true,
+				marktext:'婚',
+				intro:{
+					markcount:function(storage,player){
+						return player.storage.hunlizijin;
+					},
+					content(storage,player){
+						return '婚礼资金：'+player.storage.hunlizijin;
+					},
+				}
+			},
+			hunlijishi:{
+				direct:true,
+				trigger:{
+					global:['roundStart'],
+				},
+				filter(event,player){
+					return player.storage.choubanshijian&&player.storage.choubanshijian>=0;
+				},
+				content(){
+					'step 0'
+					player.storage.choubanshijian++;
+					'step 1'
+					trigger.trigger('yb086_jieyin_choubanshijian');
+				},
+				mark:true,
+				marktext:'筹',
+				intro:{
+					markcount:function(storage,player){
+						return player.storage.choubanshijian||0;
+					}
+				}
+			},
+			choubanhunli:{
+				audio:"yb086_jieyin",
+				logAudio(event, player) {
+					return ["ext:夜白神略/audio/yb086_jieyin3.mp3","ext:夜白神略/audio/yb086_jieyin4.mp3"];
+				},
+				trigger:{
+					global:['loseAfter'],
+				},
+				// usable:1,
+				enable:'phaseUse',
+				filter(event,player,name){
+					if(name&&name=='loseAfter'){
+						if(event.type!='discard'){return false;}
+						return player.choubanhunli&&player.choubanhunli.isIn()&&(event.player==player||event.player==player.choubanhunli);
+					}
+					else {
+						return true;
+					}
+				},
+				selectCard:1,
+				filterCard(){return true},
+				position:'he',
+				check(card){
+					return get.value(card)<=6.5;
+				},
+				discard:false,
+				cost(){
+					event.result = trigger.player.chooseBool('是否出售这些牌？<br>'+get.translation(trigger.cards)).set('ai',function(){
+						return true;
+					}).forResult();
+					
+				},
+				content(){
+					var cards = event.triggername?trigger.cards:event.cards;
+					if(trigger.cards)console.log('trigger.cards',trigger.cards);
+					if(event.cards)console.log('event.cards',event.cards);
+					var player2 = player.hasSkill('yb086_jieyin')?player:player.choubanhunli;
+					if(player)console.log('player',player);
+					if(player.choubanhunli)console.log('player.choubanhunli',player.choubanhunli);
+					for(var i of cards){
+						game.log(trigger.player,'出售了',i)
+						player2.addToExpansion(i).gaintag.add('yb086_jieyin');
+						player2.storage.hunlizijin+=get.cardNameLength(i);
+						trigger.trigger('yb086_jieyin_choubanhunli')
+					}
+				},
+			},
+			achieve:{
+				audio:"yb086_jieyin",
+				logAudio(event, player) {
+					return ["ext:夜白神略/audio/yb086_jieyin5.mp3"];
+				},
+				// skillAnimation: true,
+				// animationColor: 'YB_dream',
+				trigger:{
+					player:'yb086_jieyin_choubanhunli',
+				},
+				filter(event,player){
+					return player.storage.hunlizijin>=18;
+				},
+				forced:true,
+				// *content(event,map){
+				// 	let player=map.player,trigger=map.trigger;
+				// 	if(!_status.yb086_jieyin)_status.yb086_jieyin=[]
+				// 	_status
+
+				// }
+				content(){
+					'step 0'
+					player.$skill('婚礼筹办成功');
+					event.target = player.choubanhunli;
+					'step 1'
+					player.awakenSkill('yb086_jieyin');
+					delete player.choubanhunli;
+					delete event.target.choubanhunli;
+					delete player.storage.choubanshijian;
+					player.unmarkSkill('yb086_jieyin_ok');
+					player.unmarkSkill('yb086_jieyin_hunlijishi');
+					event.target.removeSkill('yb086_jieyin_choubanhunli')
+					'step 2'
+					if(!_status.yb086_jieyin)_status.yb086_jieyin=[]
+					_status.yb086_jieyin.push([player,event.target])
+					player.markSkill('yb086_jieyin_banlv')
+					event.target.markSkill('yb086_jieyin_banlv');
+					'step 3'
+					player.gainMaxHp()
+					event.target.gainMaxHp();
+					'step 4'
+					player.addSkill('yb086_zuiyuan');
+					event.target.addSkill('yb086_zuiyuan');
+					'step 5'
+					delete player.storage.hunlizijin;
+					let cards=player.getExpansions('yb086_jieyin');
+					player.lose(cards,ui.discardPile,'visible');
+					game.log(player,'将',cards,'置入了弃牌堆');
+
+				}
+			},
+			fail:{
+				audio:"yb086_jieyin",
+				logAudio(event, player) {
+					return ["ext:夜白神略/audio/yb086_jieyin6.mp3"];
+				},
+				trigger:{
+					player:['yb086_jieyin_choubanshijian'],
+					global:['dieEnd'],
+				},
+				filter(event,player,name){
+					if(name=='dieEnd'){
+						return player.choubanhunli&&(event.player==player||event.player==player.choubanhunli);
+					}
+					else {
+						return player.storage.choubanshijian&&player.storage.choubanshijian>3;
+					}
+				},
+				forced:true,
+				forceDie:true,
+				*content(event,map){
+					let player=map.player,trigger=map.trigger;
+					var target=player;
+					let player2 = player.choubanhunli;
+					yield player.$skill('婚礼筹办失败');
+					yield player.awakenSkill('yb086_jieyin');
+					delete player.choubanhunli;
+					delete player2.choubanhunli;
+					delete player.storage.hunlizijin;
+					delete player.storage.choubanshijian;
+					yield player.unmarkSkill('yb086_jieyin_ok');
+					yield player.unmarkSkill('yb086_jieyin_hunlijishi');
+					yield player2.removeSkill('yb086_jieyin_choubanhunli')
+					if(event.triggername=='dieEnd'){
+						if(trigger.player==player){
+							target=player.choubanhunli;
+						}
+						if(player.getExpansions('yb086_jieyin').length>0){
+							var relu = yield target.chooseBool('是否赎回出售的牌？');
+							if(relu.bool){
+								yield target.gain(player.getExpansions('yb086_jieyin'),'gain2')
+							}
+						}
+					}
+					else{
+						var list = ['赎回卡牌','重新择偶'];
+						var relu = yield target.chooseControl(list,true).set('ai',function(control){
+							return '重新择偶';
+						})
+						if(relu=='赎回卡牌'){
+							if(player.getExpansions('yb086_jieyin').length>0){
+								yield target.gain(player.getExpansions('yb086_jieyin'),'gain2')
+							}
+						}
+						else {
+							if(player.getExpansions('yb086_jieyin').length>0){
+								let cards=player.getExpansions('yb086_jieyin');
+							}
+							yield player.restoreSkill('yb086_jieyin');
+							if(cards){
+								yield player.lose(cards,ui.discardPile,'visible');
+								game.log(player,'将',cards,'置入了弃牌堆');
+							}
+						}
+					}
+				},
+			},
+			banlv:{
+				charlotte:true,
+				mark:true,
+				marktext:'婚',
+				intro:{
+					content(storage,player){
+						if(_status.yb086_jieyin){
+							for(var i of _status.yb086_jieyin){
+								if(i[0]==player||i[1]==player){
+									var target = i[0]==player?i[1]:i[0];
+									return '你和'+get.translation(target)+'组成“结姻伴侣”。';
+								}
+							}
+						}
+						else return ;
+					}
+				},
+			},
+		},
+	},
+	yb086_zuiyuan:{
+		audio:'ext:夜白神略/audio/character:2',
+		enable:'phaseUse',
+		usable:1,
+		filter(event,player){
+			if(player.getCards('he',function(card){
+				return card.hasGaintag('yb086_zuiyuan');
+			}).length>0){
+				return false;
+			}
+			return player.countCards('he')>=2;
+		},
+		selectCard:2,
+		filterCard(card,player){
+			return player.getDiscardableCards(player,'he').includes(card)
+		},
+		position:'he',
+		filterTarget(card,player,target){
+			return player!=target;
+		},
+		selectTarget:1,
+		async content(event,trigger,player){
+			var target = event.target;
+			async function jiaohe(player,target){
+				await target.recover();
+				var num = Math.min(target.hp,5);
+				var draw = player.draw(num);
+				draw.gaintag = ['yb086_zuiyuan'];
+				await draw;
+			}
+			await jiaohe(player,target);
+			if(_status.yb086_jieyin){
+				for(var i of _status.yb086_jieyin){
+					if(i[0]==player||i[1]==player){
+						var target2 = i[0]==player?i[1]:i[0];
+						if(target==target2){
+							var result = await target.chooseToDiscard('he','弃置两张牌与'+get.translation(player)+'嬉戏？',2).set('ai',function(card){
+								if(get.attitude(target,player))return 10-get.value(card);
+							}).forResult();
+							if(result.cards){
+								await jiaohe(target,player);
+							}
+						}
+					}
+				}
+			}
+		},
+		check(card){
+			return 10-get.value(card);
+		},
+		ai:{
+			order:1,
+			result:{
+				player:function(player,target){
+					if(_status.yb086_jieyin){
+						for(var i of _status.yb086_jieyin){
+							if(i[0]==player||i[1]==player){
+								var target = i[0]==player?i[1]:i[0];
+								return get.attitude(player,target);
+							}
+						}
+					}
+				},
+				target:5,
+			},
+		}
+	},
+	// yb086_jieyin:'结姻',
+	// yb086_jieyin_info:`使命技，出牌阶段限一次，若你没有结姻角色，你邀请一名其他异性角色是否结姻。若其选择是，则开始筹办婚礼。筹办婚礼：对方出牌阶段，其可以出售一张手牌（移出游戏，并根据其字数获得资金）；你和对方因弃置而失去牌时，失去牌的人可以改为出售之。成功：筹办婚礼后三轮内，若资金达到18或更多，你和对方获得技能${get.poptip('yb086_zuiyuan')}。失败：筹办婚礼三轮后，若资金未达到18，则你选择：①移去所有资金，赎回出售的牌（获得因此移出游戏的牌）②重置此技能，移去所有资金，因此出售的牌进入弃牌堆。`,
+	// yb086_zuiyuan:'醉缘',
+	// yb086_zuiyuan_info:'出牌阶段限一次，你可以弃置两张牌，并指定一名其他角色进行交合（其回复一点体力，然后你摸其体力值数张牌，因此摸的牌存在手牌中时，无法发动〖醉缘〗），若目标拥有〖醉缘〗，其可以与你交合。',
 	//--------------玉蝶心
 	yb092_biyue:{
 		audio:'ext:夜白神略/audio/character:2',

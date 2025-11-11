@@ -139,7 +139,7 @@ const characterCitetext = {
 	// 'ybsl_083xiaozhu':'引文待填写。',
 	//047 张汨原位置，新角色待定
 	'ybsl_085DGY':'你在我的心里，立了一块碑。我的心，从此荒芜。',
-	// 'ybsl_086GJ':'引文待填写。',
+	'ybsl_086GJ':'你是否愿意与他，长相厮守，共度余生？',
 	// 'ybsl_087tianlu':['female','YB_memory',3,[],['epic']],//田璐
 	// 'ybsl_088lijiaxin':['female','YB_memory',3,[],['epic']],//李嘉欣
 	// 'ybsl_089lvjinling':['female','YB_memory',3,[],['epic']],//吕金玲

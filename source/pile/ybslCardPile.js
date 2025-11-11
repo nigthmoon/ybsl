@@ -180,13 +180,13 @@ window.cardPile=[
 	['spade',1,'guaguliaodu'],
 	['spade',2,'qixingbaodao',null,['gifts']],
 	['spade',3,'shunshou',null,['gifts']],
-	['spade',4,'du',null,['gifts']],
-	['spade',5,'du',null,['gifts']],
+	['spade',4,'sha',null,['gifts']],//毒
+	['spade',5,'sha',null,['gifts']],//毒
 	['spade',6,'sha','stab'],
 	['spade',7,'sha','stab'],
 	['spade',8,'sha','stab'],
-	['spade',9,'du',null,['gifts']],
-	['spade',10,'du',null,['gifts']],
+	['spade',9,'sha',null,['gifts']],//毒
+	['spade',10,'sha',null,['gifts']],//毒
 	['spade',11,'wuxie'],
 	['spade',12,'chenghuodajie'],
 	['spade',13,'chenghuodajie'],
@@ -208,7 +208,7 @@ window.cardPile=[
 	['club',1,'duanjian',null,['gifts']],
 	['club',2,'sha','stab'],
 	['club',3,'yinfengyi',null,['gifts']],
-	['club',4,'du'],
+	['club',4,'sha'],//毒
 	['club',5,'yitianjian'],
 	['club',6,'sha','stab'],
 	['club',7,'sha','stab'],
@@ -233,7 +233,8 @@ window.cardPile=[
 	['diamond',12,'shan'],
 	['diamond',13,'sha','stab'],
 
-	['spade','2','du',null,['gifts']],//原夜白神略毒包紫电剑格，现调剂至用间牌堆原黑桃A
+	['spade','2','sha',null,['gifts']],//原夜白神略毒包紫电剑格，现调剂至用间牌堆原黑桃A
+	//毒
 	['heart',12,'youdishenru'],
 	//-----------运筹牌堆---------------//
 	//---------------------//
@@ -287,7 +288,7 @@ window.cardPile=[
 	['diamond','1','ybsl_qinglinkui'],//青鳞盔
 	['diamond','2','wuxie',null,['gifts']],//达成
 	['diamond','3','ybsl_qiuxianruoke'],//募兵
-	['diamond','4','du'],//锁子甲七星甲
+	['diamond','4','sha'],//锁子甲七星甲//毒
 	['diamond','5','yitianjian',null,['gifts']],//达成
 	['diamond','6','sha','YB_blood'],//瘟疫
 	['diamond','7','ybsl_lanhua',null,['yingbian_zhuzhan','yingbian_add']],//达成
@@ -327,7 +328,7 @@ window.cardPile=[
 	['heart',9,'yuanjiao'],//国战调剂
 	['heart','10','guaguliaodu',null,['gifts']],//达成
 	['heart',11,'yiyi'],//国战调剂
-	['heart','12','du',null,['gifts']],//毒爆
+	['heart','12','sha',null,['gifts']],//毒爆//毒
 	['heart','13','shan',null,['yingbian_fujia','yingbian_draw']],//达成//-----------原红桃3
 	//---------------------梅花
 	['club','1','ybsl_liuxing'],//达成
@@ -619,9 +620,9 @@ window.cardPile=[
 	// ['spade',5,'xiaolicangdao'],
 	// ['diamond',11,'xiaolicangdao'],
 
-	['spade','2','du',null,['gifts']],//宴安鸩毒
-	['spade','3','ybsl_duboom'],
-	['spade','4','ybsl_duboom'],
+	['spade','2','sha',null,['gifts']],//宴安鸩毒//毒
+	['spade','3','sha'],//毒爆
+	['spade','4','sha'],//毒爆
 	['spade','6','ybsl_tianhuoduan','fire'],
 	['spade','8','ybsl_tianhuoduan','fire',['gifts']],
 
@@ -633,9 +634,9 @@ window.cardPile=[
 	['heart','11','ybsl_hsbwp','fire',['yingbian_zhuzhan','yingbian_all']],
 	['heart','13','ybsl_hsbwp','fire',['yingbian_zhuzhan','yingbian_all']],
 
-	['club','2','du'],//青囊
-	['club','3','ybsl_duboom'],
-	['club','4','ybsl_duboom'],
+	['club','2','sha'],//青囊//毒
+	['club','3','sha'],//毒爆
+	['club','4','sha'],//毒爆
 	['club','9','ybsl_tianhuoduan','fire'],
 
 	['diamond','12','ybsl_tianhuoduan','fire'],

@@ -5709,7 +5709,7 @@ const skill = {
 			'step 2'
 			if (result.control && result.control != 'cancel2') {
 				if (!event.source.getStat('skill')[result.control]) event.source.getStat('skill')[result.control] = 0;
-				//event.source.getStat('skill')[result.control]--;
+				event.source.getStat('skill')[result.control]--;
 				event.skillName = result.control;
 				//↓此段代码感谢霸天大佬的指导
 				var next = event.source.chooseToUse();
@@ -5728,12 +5728,13 @@ const skill = {
 				next.set('chooseonly', true)
 			}
 			'step 3'
-			if (result.boo) {
-				const evt = result.cost_data.ResultEvent
-				evt.addCount = false
-				evt.start()
-			}
+			// if (result.bool) {
+			// 	// const evt = result.cost_data.ResultEvent
+			// 	// evt.addCount = false
+			// 	// evt.start()
+			// }
 			if (!result.bool) {
+				event.source.getStat('skill')[event.skillname]++;
 				if (event.source.countGainableCards(event.target, "h"))
 					event.target.gainPlayerCard('h', event.source, true).set("target", event.source).set("complexSelect", false).set("ai", button => {
 						let val = get.buttonValue(button);
@@ -7051,7 +7052,7 @@ const skill = {
 			var skill = yield targets[0].YB_control(list66, 8, '请选择一个出限一技能发动');
 			if (skill.control && skill.control != 'cancel2') {
 				if (!targets[0].getStat('skill')[skill.control]) yield targets[0].getStat('skill')[skill.control] = 0;
-				//yield targets[0].getStat('skill')[skill.control]--;
+				yield targets[0].getStat('skill')[skill.control]--;
 				// yield game.log('发动兴族时',targets[0].getStat('skill')[skill.control]);
 				// game.log(get.translation(skill.control),targets[0].getStat('skill')[skill.control])
 				var skillName = skill.control;
@@ -7076,13 +7077,13 @@ const skill = {
 					next.backup(event.skillname);
 					next.set('chooseonly', true)
 					const result = await next.forResult()
-					if (!result.bool) return
-					//if (!result.bool) {
-						//event.tar.getStat('skill')[event.skillname]++;
-					//}
-					const evt = result.cost_data.ResultEvent
-					evt.addCount = false
-					await evt.start()
+					// if (!result.bool) return
+					if (!result.bool) {
+						event.tar.getStat('skill')[event.skillname]++;
+					}
+					// const evt = result.cost_data.ResultEvent
+					// evt.addCount = false
+					// await evt.start()
 
 				});
 				yield ybnext;
