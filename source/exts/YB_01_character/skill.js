@@ -12440,6 +12440,166 @@ const skill = {
 		}
 	},
 	//--------------------王婉儿049
+	yb049_rongxiao:{
+		audio:'ext:夜白神略/audio/character:2',
+		limited:true,
+		skillAnimation:true,
+		animationColor:"YB_snow",
+		trigger:{
+			player:['damageEnd','recoverEnd'],
+		},
+		filter(event,player){
+			var discarded=ui['discardPile'].childNodes;
+			if(discarded.length){
+				for(var i of discarded){
+					if(get.type(i)=='trick')return true;
+				}
+			}
+			return false;
+		},
+		cost(){
+			event.result = player.chooseTarget(1,get.prompt2('yb049_rongxiao')).set('filterTarget',function(card,player,target){
+				return target!=player&&target.hp<player.hp;
+			}).set('ai',function(target){
+				return get.attitude(player,target);
+			}).forResult();
+		},
+		content(){
+			'step 0'
+			player.awakenSkill('yb049_rongxiao')
+			'step 1'
+			var discarded=ui['discardPile'].childNodes;
+			event.list = [];
+			if(discarded.length){
+				for(var i of discarded){
+					if(get.type(i)=='trick')event.list.push(i);
+				}
+			}
+			if(event.list.length){
+				event.targets[0].chooseCardButton('选择一张获得之',event.list,true).set('ai',function(button){
+					return get.value(button.link);
+				});
+			}
+			'step 2'
+			if(result.bool&&result.links){
+				var gaintag=[];
+				gaintag.add('yb049_rongxiao');
+				player.addSkill('yb049_rongxiao_use');
+				event.targets[0].gain(result.links,'gain2').gaintag.addArray(gaintag);
+			}
+		},
+		subSkill:{
+			use:{
+				trigger:{
+					global: ["useCardAfter"],
+				},
+				filter:function(event,player){
+					return event.player.hasHistory("lose", evt => evt.getParent() == event && Object.values(evt.gaintag_map).some(value => value.includes("yb049_rongxiao")))&&!event.yb049_rongxiao;
+				},
+				popup:false,
+				content(){
+					var cards = trigger.cards;
+					var card = trigger.card;
+					trigger.yb049_rongxiao=true;
+					if(player.hasUseTarget(card)){
+						player.chooseUseTarget(
+							card,
+							false //若有false，此牌不计入次数。
+						).set('logSkill','yb049_rongxiao_use')
+					}
+				}
+			}
+		}
+	},
+	yb049_fuhun:{
+		audio:'ext:夜白神略/audio/character:2',
+		limited:true,
+		skillAnimation:true,
+		animationColor:"YB_snow",
+		trigger:{
+			global:'damageEnd',
+		},
+		filter(event,player){
+			return event.player.isIn()&&event.source&&event.source!=event.player;
+		},
+		logTarget:function(event,player){
+			return event.player;
+		},
+		content(){
+			'step 0'
+			player.awakenSkill('yb049_fuhun')
+			'step 1'
+			player.addSkill('yb049_fuhun_use');
+			var gaintag = ['yb049_fuhun'];
+			trigger.player.draw(4).gaintag.addArray(gaintag);
+		},
+		subSkill:{
+			use:{
+				trigger:{
+					global: ["loseAfter"],
+				},
+				popup:false,
+				filter:function(event,player){
+					if (event.type != "discard") {
+						return false;
+					}
+					return event.player.hasHistory("lose", evt => {
+						if(evt!=event&&evt.getParent() != event ){
+							return false;
+						}
+						event.cardsx = [];
+						evt.cards.forEach(c=>{
+							if(evt.gaintag_map[c.cardid]&&evt.gaintag_map[c.cardid].includes("yb049_fuhun")&&!event.cardsx.includes(c)){
+								console.log('c',c);
+								event.cardsx.push(c);
+							}
+						})
+						// for(var i in evt.gaintag_map){
+						// 	if(evt.gaintag_map[i].includes("yb049_fuhun")){
+						// 		console.log('evt.cards',evt.cards);
+						// 		evt.cards.forEach(c=>{
+						// 			if(c.cardid = i&&!event.cardsx.includes(c)){
+						// 				console.log('c',c);
+						// 				event.cardsx.push(c);
+						// 			}
+						// 		})
+						// 	}
+						// }
+						console.log('event.cardsx',event.cardsx);
+						return event.cardsx.length>0;
+					})&&!event.yb049_fuhun;
+				},
+				content(){
+					'step 0'
+					var cards = trigger.cardsx;
+					trigger.yb049_fuhun=true;
+					// if(cards.length>1){
+					player.chooseButton(['选择一张使用之？',cards],1).set('filterButton',function(button){
+						var cardxx=button.link;
+						if(player.hasUseTarget(cardxx))return lib.filter.filterCard.apply(this,arguments);
+						return false;
+					})
+					// }
+					// else {
+					// 	event.result = {bool:true,links:cards}
+					// }
+					'step 1'
+					if(result.links){
+						var card = result.links[0];
+						if(player.hasUseTarget(card)){
+							player.chooseUseTarget(
+								card,
+								false //若有false，此牌不计入次数。
+							).set('logSkill','yb049_fuhun_use')
+						}
+					}
+				}
+			},
+		},
+	},
+	yb049_zhongliu:{
+		audio:'ext:夜白神略/audio/character:2',
+	},
 	//--------------------鐏柬050
 	//--------------------北落师门051
 	//--------------------姜森052

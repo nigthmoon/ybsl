@@ -237,88 +237,52 @@ export async function precontent() {
 			}
 			var YB_characterIntro = get.characterIntro;
 			get.characterIntro=function(name){
-				
-				// if(lib.accessoryPacket[name]&&lib.accessoryPacket[name].character){
-				// 	const buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character")
-				// 	const arr = []
-				// 	for (const i of buttons) {
-				// 		(_status.YB_582267 ??= {})[i.link] = i
-				// 		let strx = i.outerHTML
-				// 		strx = `${strx.slice(0, 5)}onclick='ui.click.charactercard("${i.link}", null, null, true, _status.YB_582267.${i.link}, "${i.link}")' ${strx.slice(5)}`
-				// 		arr.push(strx)
-				// 	}
-				// 	return arr.reduce((a,b)=>a+b, '')
-				// }
-				// else{
-					var str = '';
-					if (lib.characterCopyright[name]) {//版权信息
-						// str += lib.characterCopyright[name];
-						var cpright = get.copyright(name);
-						str += cpright;
-						str += '<br>';
+				var str = '';
+				if (lib.characterCopyright[name]) {//版权信息
+					// str += lib.characterCopyright[name];
+					var cpright = get.copyright(name);
+					str += cpright;
+					str += '<br>';
+				}
+				if (lib.characterCitetext[name]) {//上引文
+					str += lib.characterCitetext[name];
+					str += '<br>';
+				}
+				if (lib.characterUndertext[name]) {//下引文
+					str += lib.characterUndertext[name];
+					str += '<br>';
+				}
+				if (lib.characterLightext[name]&&lib.characterLightext[name](name)) {//缘分点亮
+					str += lib.characterLightext[name](name)[lib.characterLightext[name](name).length-1];
+					str += '<br>';
+				}
+				if(lib.accessoryPacket[name]&&lib.accessoryPacket[name].character){
+					
+					var buttonsx = ui.create.div('.buttons')
+					buttonsx.classList.add("smallzoom");
+					let buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character",buttonsx, "character")
+					
+					
+					const arr = []
+					for (const i of buttons) {
+						(_status.YB_582267 ??= {})[i.link] = i
+						let strx = i.outerHTML
+						strx = `${strx.slice(0, 5)}onclick='ui.click.charactercard("${i.link}", null, null, true, _status.YB_582267.${i.link}, "${i.link}")' ${strx.slice(5)}`
+						strx = `${strx.slice(0, 5)}ondblclick='ui.click.intro.call(_status.YB_582267.${i.link}, {
+							clientX: this.getBoundingClientRect().left + 18,
+							clientY: this.getBoundingClientRect().top + 12
+						})' ${strx.slice(5)}`
+						strx = `${strx.slice(0, 5)}oncontextmenu='ui.click.intro.call(_status.YB_582267.${i.link}, {
+							clientX: this.getBoundingClientRect().left + 18,
+							clientY: this.getBoundingClientRect().top + 12
+						})' ${strx.slice(5)}`
+						arr.push(strx)
 					}
-					if (lib.characterCitetext[name]) {//上引文
-						str += lib.characterCitetext[name];
-						str += '<br>';
-					}
-					if (lib.characterUndertext[name]) {//下引文
-						str += lib.characterUndertext[name];
-						str += '<br>';
-					}
-					if (lib.characterLightext[name]&&lib.characterLightext[name](name)) {//缘分点亮
-						str += lib.characterLightext[name](name)[lib.characterLightext[name](name).length-1];
-						str += '<br>';
-					}
-					if(lib.accessoryPacket[name]&&lib.accessoryPacket[name].character){
-						// const buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character")
-						// const arr = []
-						// for (const i of buttons) {
-						// 	(_status.YB_582267 ??= {})[i.link] = i
-						// 	let strx = i.outerHTML
-						// 	strx = `${strx.slice(0, 5)}
-						// 		onclick='ui.click.charactercard("${i.link}", null, null, true, _status.YB_582267.${i.link}, "${i.link}")' 
-						// 	${strx.slice(5)}`
-						// 	strx = `${strx.slice(0, 5)}ondblclick='ui.click.intro.call(_status.YB_582267.${i.link}, {
-						// 		clientX: this.getBoundingClientRect().left + 18,
-						// 		clientY: this.getBoundingClientRect().top + 12
-						// 	})' ${strx.slice(5)}`
-						// 	strx = `${strx.slice(0, 5)}oncontextmenu='ui.click.intro.call(_status.YB_582267.${i.link}, {
-						// 		clientX: this.getBoundingClientRect().left + 18,
-						// 		clientY: this.getBoundingClientRect().top + 12
-						// 	})' ${strx.slice(5)}`
-						// 	arr.push(strx)
-						// }
-						var buttonsx = ui.create.div('.buttons')
-						buttonsx.classList.add("smallzoom");
-						let buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character",buttonsx, "character")
-						// var buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character")
-						// buttons.classList.add("smallzoom");
-						
-						const arr = []
-						for (const i of buttons) {
-							(_status.YB_582267 ??= {})[i.link] = i
-							let strx = i.outerHTML
-							strx = `${strx.slice(0, 5)}onclick='ui.click.charactercard("${i.link}", null, null, true, _status.YB_582267.${i.link}, "${i.link}")' ${strx.slice(5)}`
-							strx = `${strx.slice(0, 5)}ondblclick='ui.click.intro.call(_status.YB_582267.${i.link}, {
-								clientX: this.getBoundingClientRect().left + 18,
-								clientY: this.getBoundingClientRect().top + 12
-							})' ${strx.slice(5)}`
-							strx = `${strx.slice(0, 5)}oncontextmenu='ui.click.intro.call(_status.YB_582267.${i.link}, {
-								clientX: this.getBoundingClientRect().left + 18,
-								clientY: this.getBoundingClientRect().top + 12
-							})' ${strx.slice(5)}`
-							arr.push(strx)
-						}
-						arr.reduce((a,b)=>a+b, '')
-						// return 
-						// arr.reduce((a,b)=>a+b, '')
-						str += arr
-						str += '<br>';
-						// console.log(str);
-					}
-					return str += YB_characterIntro.apply(this,arguments);
-
-				// }
+					arr.reduce((a,b)=>a+b, '')
+					str += arr
+					str += '<br>';
+				}
+				return str += YB_characterIntro.apply(this,arguments);
 			}
 			
 		}
@@ -1052,30 +1016,6 @@ export async function precontent() {
 				YB_intro.style.width = '358px'
 				return YB_intro;
 			};
-			// lib.arenaReady.push(function(){
-			// 	for(var pack of packages){
-			// 		for(var name in lib.characterPack[pack]){
-			// 			//['junk','common','rare','epic','legend']
-			// 			var infoy = lib.characterPack[pack][name][4];
-			// 			for(var infox of infoy){
-			// 				if(infox.startsWith('rankAdd:')){
-			// 					var rarity = infox.slice(8);
-			// 					if(lib.rank.rarity[rarity])lib.rank.rarity[rarity].add(name);
-			// 				}
-			// 				if(infox.startsWith('rankS:')){
-			// 					var infoz = infox.slice(6);
-			// 					if(lib.rank[infoz])lib.rank[infoz].add(name);
-			// 				}
-			// 			}
-			// 			if(lib.characterPack[pack][name]['rankAdd']){
-			// 				var rarity = lib.characterPack[pack][name]['rankAdd'];
-			// 				if(lib.rank.rarity[rarity])lib.rank.rarity[rarity].add(name);
-			// 				var rarityS = lib.characterPack[pack][name]['rankS'];
-			// 				if(lib.rank[rarityS])lib.rank[rarityS].add(name);
-			// 			}
-			// 		}
-			// 	}
-			// });
 		}
 		{//YB_promot
 			
@@ -1126,6 +1066,7 @@ export async function precontent() {
 						// for(var i=0;i<qianzhui.length;i++){
 						// 	if(name.indexOf(qianzhui[i])==0) return true;
 						// }
+						if(!lib.characterPack[i])return ;
 						if(lib.characterPack[i][name])return true;
 						//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
 						//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。

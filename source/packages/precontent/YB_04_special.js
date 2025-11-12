@@ -523,7 +523,7 @@ const YBSL_special = function () {
 								lib.skill[namex].mainSkill = true;
 								if (lib.character[name]) {
 									lib.character[name][3].push(namex);
-								}//QQQ
+								}
 								else {
 									debugger;
 								}
@@ -946,5 +946,14 @@ const YBSL_special = function () {
 
 		})
 		
+	}
+	{//王婉儿中流
+		lib.arenaReady.push(function(){
+			game.YB_addAudio(
+				['clanzhongliu',{ybsl_049waner:'yb049_zhongliu'}],
+			)
+
+		})
+
 	}
 }

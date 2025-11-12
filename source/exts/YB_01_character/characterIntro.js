@@ -62,7 +62,7 @@ const characterIntro = {
 	
 	'ybsl_018zhangqing':'<span class=thundertext>张晴，原型为同名本人，转学后三中的同学。与我关系甚好，高中时常短信沟通。曾取得其QQ号和密码以玩王者，后来其注销了。关系还算不错。</span>',
 	'ybsl_019shengyan':'><span class=thundertext>盛妍，原型为同名本人，高中时期涂山小红的同学，常因我和涂山小红交谈甚欢而不高兴，我称其为吃醋。如今在为电商引流的路上越走越远。<span style="opacity:0.5;">挣钱嘛，不磕碜。</span></span>',
-	'ybsl_020jiayutong':'<span class=thundertext>贾雨桐，原型为同名本人，高中时期同学，喜欢唱歌，<span style="text-decoration: line-through;">&#20307;&#32982;&#65292;</span>天真活泼，经常与我讨论数学题，房某的好朋友（房姓某人还未做出，打算和贾拼个双将）。</span>',
+	'ybsl_020jiayutong':'<span class=thundertext>贾雨桐，原型为同名本人，高中时期同学，喜欢唱歌，<span style="text-decoration: line-through;">&#20307;&#32982;&#65292;</span>天真活泼，经常与我讨论数学题，房某的好朋友</span>',
 	'ybsl_021liuyufeng':'<span class=thundertext>刘域枫，原型为同名本人，转学后三中的同学，一度为我同桌，三国杀同好，喜欢向我讨教数学问题。升入高中后偶有联系，如今渐无联系。</span>',
 	'ybsl_022salt':'<span class=thundertext><span style="opacity:0.3;">盐，原型为六中教导主任，<span style="text-decoration: line-through;">&#23545;&#38738;&#24180;&#30007;&#22899;&#30340;&#20146;&#23494;&#20851;&#31995;&#25104;&#35265;&#26497;&#22823;</span>。那年圣诞节中午，我饭后买了点糖在路上嚼。在校门口二十步的地方，突然想起，早上说过，今天禁止给对象送糖，否则取消本月文明班的评选。我想着省得带进去引起误会，就在原地奋力的吃。就在这时，天杀的教导主任从背后出现，看我拿着糖就火了，不管三七二十一就给我记了。我：？？？回到学校，我果然被通报了。我上去和老师解释了一番，老师也没骂我，<span style="text-decoration: line-through;">&#21453;&#20498;&#21644;&#25105;&#19968;&#21516;&#21457;&#36215;&#20102;&#29282;&#39578;</span>此事就此揭过。后来她还办了一件令人气愤的事，详见陈爱琳简介。</span></span>',
 	// 'ybsl_025shiqingyu':'<span class=thundertext>史庆宇，高中同班同学，关系甚好。</span>',
@@ -96,7 +96,7 @@ const characterIntro = {
 	'ybsl_047zhangmi':'<span class=thundertext>张汨，记2023年6月7日之8日梦。梦见彡，还有另一个丫头<span style="text-decoration: line-through;">&#20993&#22919</span>，我为其命名为张汨。我们一同进入陌生的大学。我和彡一直在腻歪，张汨就一直辱骂彡，我就一直抱着彡安抚她。然后我气不过，准备回骂，但由于情绪过于激动，导致梦醒。</span>',
 	
 	'ybsl_048wushuang':'<span class=thundertext>吴爽，原型为同名本人。童年玩伴。一直为我创造乐趣。后来张玉洁也加入，她俩一起为我创造乐趣。曾画过一些地图，但遍布陷阱。<br>可惜当初它她本人画的地图已经轶失，于是我秉承着遍布陷阱这一核心，仿制了个新的地图。<br/><div style="border:2px solid gray"><span><img style=width:500px src=\'extension/夜白神略/image/其它/遍布陷阱的宫殿.png\'></span></span>',
-	'ybsl_049waner':'<span class=thundertext>王婉儿，原型保密，事迹暂无。</span>',
+	'ybsl_049waner':'<span class=thundertext>王婉儿，原型高中同学，关系微妙。印象中她一直是在笑着，通情达理，给人一种亲近、好相处的感觉。与人交往使人如沐春风。</span>',
 	'ybsl_050zunjian':'<span class=thundertext>鐏柬，原型保密，事迹暂无。</span>',
 	'ybsl_051fomalhaut':'<span class=thundertext>北落师门，原型保密，事迹暂无。</span>',
 	'ybsl_052trees':'<span class=thundertext>姜森，原型保密，事迹暂无。</span>',

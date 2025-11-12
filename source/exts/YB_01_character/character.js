@@ -75,7 +75,7 @@ const character = { //武将格式 :
 	'ybsl_047shan':['female','YB_memory',3,['yb047_youhun','yb047_wanxin','yb047_shouqing'],['rankAdd:legend','rankS:s','name:null|彡']],//彡
 	'ybsl_047zhangmi':['female','YB_dream',3,['yb047_xundu','yb047_efei','yb047_pomeng','ybsl_rumeng'],['YB_memory','rankAdd:legend','rankS:s','name:张|汨']],//张汨
 	'ybsl_048wushuang':['female','YB_memory',3,['yb048_zhimeng','yb048_shennv','yb048_minzhen'],['rankAdd:legend','rankS:s','name:吴|爽']],//吴爽
-	'ybsl_049waner':['female','YB_memory',3,[/*'技能'*/],['unseen','rankAdd:legend','rankS:s','name:王|婉儿']],//王婉儿
+	'ybsl_049waner':['female','YB_memory','3/4',['yb049_rongxiao','yb049_fuhun','clanzhongliu'/*'技能'*/],['rankAdd:legend','rankS:s','name:王|婉儿','clan:太原王氏']],//王婉儿
 	'ybsl_050zunjian':['female','YB_memory',3,[/*'技能'*/],['unseen']],//鐏柬
 	'ybsl_051fomalhaut':['male','YB_memory',3,[/*'技能'*/],['unseen']],//北落师门
 	'ybsl_052trees':['male','YB_memory',5,['yb052_chongji'],['rankAdd:epic','rankS:a']],//姜森
