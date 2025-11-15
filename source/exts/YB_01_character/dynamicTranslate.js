@@ -151,6 +151,32 @@ const dynamicTranslate = {//动态翻译
 		if(player.storage.yb053_yinren==true) return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；②每个回合结束时，你选择回复2点体力或摸X+1张牌（X为你已损体力值且至多为3）。';//；③你持有的此技能改名为【迸射】
 		return '锁定技，①当你受到伤害时，你需选择：弃置一张牌，或令此伤害+1；然后获得如下效果直至当前回合结束：②每个回合结束时，你选择回复2点体力或摸X+1张牌（X为你已损体力值且至多为3）；③当你脱离濒死状态时，你令②效果变为常驻效果。';//，然后将技能改名为【迸射】
 	},
+	yb054_qiangzhi:function(player){
+		var str = [
+			'转换技，出牌阶段开始时或当你受到伤害后，你可以',
+			'展示手牌并：',
+			'阳：弃置所有红色手牌；',
+			'阴，弃置所有黑色手牌（无牌不弃）。',
+			'然后摸三张牌。',
+			'当你因弃置而失去以此法摸的牌时，你令此技能下次发动仅转一下，并对当前回合角色造成一点伤害。'
+		];
+		if(player){
+			if(player.storage.yb054_qiangzhi){
+				str[2]='<span class=thundertext>'+str[2]+'</span>'
+			}
+			else {
+				str[3]='<span class=thundertext>'+str[3]+'</span>'
+			}
+			if(player.storage.yb054_qiangzhi_top==true){
+				str[1]='<span style="text-decoration: line-through;text-decoration-color: red;">'+str[1];
+				str.push(str[5]);
+				str[4]+='</span>转一下：';
+				str[5]=player.storage.yb054_qiangzhi?'<span class=thundertext>阳</span>':'<span class=thundertext>阴</span>';
+				str[5]+='。'
+			}
+		}
+		return str.join('');
+	},
 	yb069_wenhuan:function(player){//温幻
 		if(player.storage.yb069_wenhuan==true) return '转换技，阳，当有角色受到伤害后，你可以令其武将牌复位并令其摸一张牌。<span class="bluetext">阴，当有角色回复体力时，你可令其翻面，并令此次恢复效果+1。</span>';
 		return '转换技，<span class="bluetext">阳，当有角色受到伤害后，你可以令其武将牌复位并令其摸一张牌。</span>阴，当有角色回复体力时，你可令其翻面，并令此次恢复效果+1。';

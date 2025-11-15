@@ -7380,10 +7380,11 @@ const skill = {
 		ai:{
 			order:5,
 			result:{
-				player:function(player,target){
-					if(card.name=='du') return -2;
-					return 0;
-				},
+				// player:function(player,target){
+					// var card = ui.selected.cards[0];
+					// if(card.name=='du') return -2;
+					// return 0;
+				// },
 				target:function(player,target){
 					var card = ui.selected.cards[0];
 					if(card.name=='cu') return -1;
@@ -12505,7 +12506,7 @@ const skill = {
 						player.chooseUseTarget(
 							card,
 							false //若有false，此牌不计入次数。
-						).set('logSkill','yb049_rongxiao_use')
+						).set('logSkill','yb049_rongxiao')
 					}
 				}
 			}
@@ -12550,7 +12551,7 @@ const skill = {
 						event.cardsx = [];
 						evt.cards.forEach(c=>{
 							if(evt.gaintag_map[c.cardid]&&evt.gaintag_map[c.cardid].includes("yb049_fuhun")&&!event.cardsx.includes(c)){
-								console.log('c',c);
+								// console.log('c',c);
 								event.cardsx.push(c);
 							}
 						})
@@ -12565,7 +12566,7 @@ const skill = {
 						// 		})
 						// 	}
 						// }
-						console.log('event.cardsx',event.cardsx);
+						// console.log('event.cardsx',event.cardsx);
 						return event.cardsx.length>0;
 					})&&!event.yb049_fuhun;
 				},
@@ -12590,7 +12591,7 @@ const skill = {
 							player.chooseUseTarget(
 								card,
 								false //若有false，此牌不计入次数。
-							).set('logSkill','yb049_fuhun_use')
+							).set('logSkill','yb049_fuhun')
 						}
 					}
 				}
@@ -12962,6 +12963,114 @@ const skill = {
 				}
 			}
 		}
+	},
+	yb054_qiangzhi:{
+		audio:'ext:夜白神略/audio/character:2',
+		zhuanhuanji:true,
+		mark:true,
+		marktext:'☯',
+		intro:{
+			content:function(storage,player,skill){
+				var str = [
+					'转换技，出牌阶段开始时或当你受到伤害后，你可以',
+					'展示手牌并：',
+					'阳：弃置所有红色手牌；',
+					'阴，弃置所有黑色手牌（无牌不弃）。',
+					'然后摸三张牌。',
+					'当你因弃置而失去以此法摸的牌时，你令此技能下次发动仅转一下，并对当前回合角色造成一点伤害。'
+				];
+				if(player.storage.yb054_qiangzhi){
+					str[2]='<span class=thundertext>'+str[2]+'</span>'
+				}
+				else {
+					str[3]='<span class=thundertext>'+str[3]+'</span>'
+				}
+				if(player.storage.yb054_qiangzhi_top==true){
+					str[1]='<span style="text-decoration: line-through;text-decoration-color: red;">'+str[1];
+					str.push(str[5]);
+					str[4]+='</span>转一下：';
+					str[5]=player.storage.yb054_qiangzhi?'<span class=thundertext>阳</span>':'<span class=thundertext>阴</span>';
+					str[5]+='。'
+				}
+				return str.join('');
+			},
+		},
+		trigger:{
+			player:['phaseUseBegin','damageEnd']
+		},
+		filter(event,player){
+			return player.isIn();
+		},
+		check(event,player){
+			var color = player.storage.yb054_qiangzhi?'red':'black';
+			var target = _status.currentPhase;
+			var cards = player.getCards('h',{color:target});
+			if(cards.length>0){
+				if(get.attitude(player,target)>0)return false;
+				else if(cards.forEach(c=>get.value(c)>5))return false;
+				return true;
+			}
+			return true;
+		},
+		init:function(player){
+			player.storage.yb054_qiangzhi=true;
+		},
+		content(){
+			'step 0'
+			if(player.storage.yb054_qiangzhi_top){
+				player.storage.yb054_qiangzhi_top=false;
+				player.unmarkSkill('yb054_qiangzhi_top');
+				event.goto(3);
+			}
+			'step 1'
+			var color = player.storage.yb054_qiangzhi?'red':'black';
+			if(player.countCards('h')){
+				player.showCards(player.getCards('h'));
+				player.discard(player.getCards('h',{color:color}),true);
+			}
+			'step 2'
+			player.draw(3).gaintag.addArray(['yb054_qiangzhi_top']);
+			'step 3'
+			player.changeZhuanhuanji('yb054_qiangzhi');
+		},
+		group:['yb054_qiangzhi_top'],
+		subSkill:{
+			top:{
+				trigger:{
+					player: "loseAfter",
+					global: "loseAsyncAfter",
+				},
+				filter(event,player){
+					if (event.type != "discard") {
+						return false;
+					}
+					var evt = event.getl(player);
+					if (!evt || !evt.cards || !evt.cards.length) {
+						return false;
+					}
+					for (var i in evt.gaintag_map){
+						if(evt.gaintag_map[i].includes("yb054_qiangzhi_top"))return true;
+					}
+					return false;
+					
+				},
+				mark:true,
+
+				marktext:'转',
+				forced:true,
+				content:function(){
+					'step 0'
+					player.markSkill('yb054_qiangzhi_top');
+					player.storage.yb054_qiangzhi_top=true;
+					'step 1'
+					var target = _status.currentPhase;
+					if(target.isIn()){
+						target.damage();
+					}
+				}
+				
+			}
+		},
 	},
 	/*
 	'yb054_caijin':'裁巾',
