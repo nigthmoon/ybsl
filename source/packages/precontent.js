@@ -291,11 +291,11 @@ export async function precontent() {
 			get.nodeintro=function(node,simple,evt){
 				var YB_intro = ui.create.dialog("hidden", "notouchscroll");
 				if (node.classList.contains("player") && !node.name) {
-					return uiintro;
+					return YB_intro;
 				}
 				var i, translation, intro, str;
 				if (node._nointro) return;
-				if(node.classList.contains('player') && node.linkplayer&&(lib.characterTitle[node.name]||lib.characterCitetext[node.name]||(lib.characterLightext[node.name1]&&lib.characterLightext[node.name1](node))||lib.characterUndertext[node.name])){
+				if(node.classList.contains('player')&&node.linkplayer&&(lib.characterTitle[node.name]||lib.characterCitetext[node.name]||(lib.characterLightext[node.name1]&&lib.characterLightext[node.name1](node))||lib.characterUndertext[node.name])){
 					if (node.linkplayer) {
 						node = node.link;
 					}

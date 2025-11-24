@@ -2547,7 +2547,7 @@ const skill = {
 			}
 			if (num % 5 == 0) {
 				var card = get.cardPile(function (card) {
-					return ["juedou",'huohe'].includes(card.name);
+					return ["juedou",'guohe'].includes(card.name);
 				});
 				if (card) {
 					cards.push(card);

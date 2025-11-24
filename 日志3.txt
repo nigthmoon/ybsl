@@ -714,3 +714,6 @@ ybsl_beige，yb002_ziren，
 2025.11.15
 悦儿改版
 王婉儿两个限定技的二段加特效
+
+2025.11.24
+qmsgswkjsgj_qinzheng修正
