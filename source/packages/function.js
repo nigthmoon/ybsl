@@ -1257,24 +1257,24 @@ const nodeintro = function(node, simple, evt){
 }
 const typeimage = function(pagename,filename){
 	for(var i in pagename.character){
-		if(Array.isArray(pagename.character[i])){
-			var infoy = pagename.character[i][4];
-			for(var infox of infoy){
-				if(infox.startsWith('YB_mjz:')){
-					// return ;
-					
-					var char = infox.slice(7);
-					pagename.character[i][4].push(`img:image/character/${char}.jpg`);
-					pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
-				}
-			}
+		if(pagename.character[i].YB_mjz){
+			// return ;
+			var infoy = pagename.character[i].YB_mjz;
+			pagename.character[i].img = `img:image/character/${infoy}.jpg`;
+			pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
 		}
 		else {
-			if(pagename.character[i].YB_mjz){
-				// return ;
-				var infoy = pagename.character[i].YB_mjz;
-				pagename.character[i].img = `img:image/character/${infoy}.jpg`;
-				pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
+			if(Array.isArray(pagename.character[i])){
+				var infoy = pagename.character[i][4];
+				for(var infox of infoy){
+					if(infox.startsWith('YB_mjz:')){
+						// return ;
+						
+						var char = infox.slice(7);
+						pagename.character[i][4].push(`img:image/character/${char}.jpg`);
+						pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
+					}
+				}
 			}
 		}
 	} 

@@ -28,6 +28,21 @@ const characterSort = {
 			'qmsgswkjsgj_re_zhangxiu','qmsgswkjsgj_re_fuhuanghou',
 			'qmsgswkjsgj_shen_ganning','qmsgswkjsgj_re_sunhanhua',
 			'qmsgswkjsgj_re_shen_zhaoyun','qmsgswkjsgj_yingtian_simayi',
+			'qmsgswkjsgj_shen_lusu','qmsgswkjsgj_re_sunquan',
+			'qmsgswkjsgj_shen_zhouyu','qmsgswkjsgj_shen_xunyu',
+			'qmsgswkjsgj_mb_luyusheng','qmsgswkjsgj_shen_luxun',
+			'qmsgswkjsgj_shen_caocao','qmsgswkjsgj_shen_lvbu',
+			'qmsgswkjsgj_pot_weiyan','qmsgswkjsgj_pot_taishici',
+			'qmsgswkjsgj_re_caopi','qmsgswkjsgj_re_shamoke',
+			'qmsgswkjsgj_re_peixiu','qmsgswkjsgj_re_shichangshi',
+			'qmsgswkjsgj_re_jushou','qmsgswkjsgj_shen_huatuo',
+
+
+
+			//神赐
+			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_re_duyu',
+			'qmsgswkjsgj_shenci_wu_luxun','qmsgswkjsgj_shenci_sb_caopi',
+			'qmsgswkjsgj_shenci_re_sunhanhua',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',

@@ -67,6 +67,35 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			sgsxjxfzmnl_scs_duangui: [["sgsxjxfzmnl_scs_duangui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui_dead.jpg',"die:shichangshi"]]],
 			sgsxjxfzmnl_scs_guosheng: [["sgsxjxfzmnl_scs_guosheng_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng_dead.jpg',"die:shichangshi"]]],
 			sgsxjxfzmnl_scs_gaowang: [["sgsxjxfzmnl_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
+
+			
+			qmsgswkjsgj_shichangshi: [["qmsgswkjsgj_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_zhangrang: [["qmsgswkjsgj_scs_zhangrang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_zhaozhong: [["qmsgswkjsgj_scs_zhaozhong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_sunzhang: [["qmsgswkjsgj_scs_sunzhang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_bilan: [["qmsgswkjsgj_scs_bilan_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_bilan_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_xiayun: [["qmsgswkjsgj_scs_xiayun_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_xiayun_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_hankui: [["qmsgswkjsgj_scs_hankui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_hankui_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_lisong: [["qmsgswkjsgj_scs_lisong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_lisong_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_duangui: [["qmsgswkjsgj_scs_duangui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_guosheng: [["qmsgswkjsgj_scs_guosheng_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_gaowang: [["qmsgswkjsgj_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
+
+			qmsgswkjsgj_pot_weiyan:[
+				['qmsgswkjsgj_pot_weiyan_achieve',['img:image/character/pot_weiyan_achieve.jpg','tempname:pot_weiyan_achieve']],
+				['qmsgswkjsgj_pot_weiyan_fail',['img:image/character/pot_weiyan_fail.jpg','tempname:pot_weiyan_fail']],
+			],
+			// qmsgswkjsgj_pot_taishici:[
+			// 	['qmsgswkjsgj_pot_taishici_achieve',['img:image/character/pot_taishici_achieve.jpg','tempname:pot_taishici_achieve']],
+			// 	['qmsgswkjsgj_pot_taishici_fail',['img:image/character/pot_taishici_fail.jpg','tempname:pot_taishici_fail']],
+			// ],
+			qmsgswkjsgj_pot_taishici: [
+				["qmsgswkjsgj_pot_taishici_shadow1", ['img:image/character/pot_taishici_shadow1.jpg',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow2", ['img:image/character/pot_taishici_shadow2.jpg',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow3", ['img:image/character/pot_taishici_shadow3.jpg',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow4", ['img:image/character/pot_taishici_shadow4.jpg',"die:pot_taishici"]],
+			],
+
 		},
 	}; 
 	// for(var i in sgstrxs.character){

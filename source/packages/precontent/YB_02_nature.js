@@ -190,6 +190,16 @@ const YBSL_nature = function(){
 		lib.selectGroup.add('YB_gui');
 	}
 	{//此处收纳前缀
+		lib.namePrefix.set('YB',{
+			getSpan: () => {
+				const span = document.createElement("span"), style = span.style;
+				style.writingMode = style.webkitWritingMode = "horizontal-tb";
+				style.fontFamily = "MotoyaLMaru";
+				style.transform = "scaleY(0.85)";
+				span.textContent = "YB";
+				return span.outerHTML;
+			}
+		})
 		lib.namePrefix.set('废案',{
 			showName:'废',
 			color:'#a4a4a4',
@@ -299,7 +309,7 @@ const YBSL_nature = function(){
 		})
 		lib.namePrefix.set('缝',{
 			showName:'缝',
-			color:'#ff7b00',
+			color:'#ffff00',
 			nature:'black',
 		})
 		lib.namePrefix.set('旧应天神',{
@@ -312,11 +322,36 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('界')}${get.prefixSpan('缝')}${get.prefixSpan('神')}`
 			},
 		})
+		lib.namePrefix.set('缝手杀神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('缝')}${get.prefixSpan('手杀')}${get.prefixSpan('神')}`
+			},
+		})
 
 		
 		lib.namePrefix.set('界势',{
 			getSpan:(prefix,name)=>{
 				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
+			},
+		})
+		lib.namePrefix.set('神赐',{
+			showName:'宥',
+			color:'#ff7b00',
+			nature:'black',
+		})
+		lib.namePrefix.set('神赐武',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('神赐')}${get.prefixSpan('武')}`
+			},
+		})
+		lib.namePrefix.set('神赐界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('神赐')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('神赐谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('神赐')}${get.prefixSpan('谋')}`
 			},
 		})
 

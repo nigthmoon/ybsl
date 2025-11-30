@@ -21,6 +21,65 @@ const dynamicTranslate = {//动态翻译
 			return str+str2+'<span class=thundertext>'+strwind+'</span>'+'；'+strthunder+'。';
 		}
 	},
+	qmsgswkjsgj_potkuanggu:function(player){
+        if (player.getStorage("potkuanggu", 0)) {
+			return lib.translate["qmsgswkjsgj_potkuanggu_pot_weiyan_achieve_info"];
+		}
+		return lib.translate["qmsgswkjsgj_potkuanggu_info"];
+	},
+	qmsgswkjsgj_pothanzhan(player) {
+		let str = lib.translate.qmsgswkjsgj_pothanzhan_info;
+		if (!player.storage.pothanzhan) {
+			return str;
+		}
+		return str.replace(
+			"X为你的体力上限",
+			"X为" +
+				{
+					hp: "你的体力值",
+					damagedHp: "你的损失体力值",
+					countplayer: "场上存活角色数",
+				}[player.storage.pothanzhan]
+		);
+	},
+	qmsgswkjsgj_potzhanlie(player) {
+		let str = lib.translate.qmsgswkjsgj_potzhanlie_info;
+		
+		if(player?.storage?.potzhanlie){
+			str = str.replace(
+				"X为你本次移除的标记数",
+				"X为" +
+					{
+						hp: "你的体力值",
+						damagedHp: "你的损失体力值",
+						countplayer: "场上存活角色数",
+					}[player.storage.potzhanlie]
+			);
+		}
+		if(player?.hasSkill('qmsgswkjsgj_potzhanlie_plus')){
+			str = str.replace(
+				"你的出牌阶段结束时",
+				"每名角色出牌阶段结束时"
+			);
+		}
+		return str;
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	sgsxjxfzmnl_yuqi(player) {
 		var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
 		return "锁定技，有角色受伤后，若你与其距离小于等于<span class=thundertext>" + info[0] + "</span>，你可以观看牌堆顶<span class=firetext>" + info[1] + "</span>张牌，将其中至多<span class=greentext>" + info[2] + "</span>张交给受伤角色，至多<span class=yellowtext>" + info[3] + "</span>张自己获得，其余的牌放回牌堆顶。"

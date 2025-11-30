@@ -579,6 +579,20 @@ const YBSL_ybslf = function () {
 			this.addTempSkill(skill);
 			this.markSkill(skill);
 		}
+		
+		lib.element.player.YB_tempz = function (skill, keys) {
+			if (!lib.skill[skill]) lib.skill[skill] = { onremove: true, charlotte: true, }
+			
+			this.addTempSkill(skill);
+			if(!this.storage[skill])this.storage[skill]=[]
+			this.storage[skill].push(keys);
+			this.markSkill(skill);
+			// if(!lib.skill[skill].intro){
+			// 	lib.skill[skill].intro={
+
+			// 	};
+			// }
+		}
 		//-----------改变血量至
 		lib.element.player.YB_HpTo = function (num) {
 			var next = game.createEvent('YB_HpTo', false);

@@ -154,6 +154,9 @@ const characterCitetext = {
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_107tushanshuili': '引文待填写。',
+	// ybsl_121tujing:'引文待填写。',
+	// ybsl_122wangbingyu:'引文待填写。',
+	// ybsl_123xuelang:'引文待填写。',
 	//---------------------------------//忆包SP
 	// 'db_ybsp_014liutianyu':'引文待填写。',
 	'ybsp_016manchengqi':'若思悔不及，则万念俱成枯。趁你还年轻，他还未老。',

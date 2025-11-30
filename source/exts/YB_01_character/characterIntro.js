@@ -144,7 +144,7 @@ const characterIntro = {
 	// 'ybsl_089lvjinling':['female','YB_memory',3,[],['epic']],//吕金玲
 	// 'ybsl_090dengtingyue':['female','YB_memory',3,[],['epic']],//邓婷月
 	// 'ybsl_086GJ':['female','YB_memory',3,[],['epic']],//王彩钰
-	'ybsl_092handan':'<span class=thundertext>玉蝶心，。</span>',
+	'ybsl_092handan':'<span class=thundertext>玉蝶心，原型保密。</span>',
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
@@ -155,6 +155,7 @@ const characterIntro = {
 	'ybsl_107tushanshuili': '<span class=thundertext>涂山水璃，来自于我2024年5月4日左右的梦。<br>不知为何，我遇见了一个妹子，还捡到一个小狐狸。我抱起小狐狸，想找到她的家。最终来到一处房屋深处。不知为何，有一个指示方向的箭头，我跟着箭头走到一处，突然醒了。翌日深夜，我猛然想起，遂向群友征集该角色名字，最终敲定涂山水璃。</span>',
 	ybsl_121tujing:'<span class=thundertext>涂静，来自于我2025年3月6日-7日夜梦。<br>梦见一个药罐子做我同桌，后来发现我体质有特异功能，和她一同转学出去了。<br>有一个同学暗恋她，趁着在我后面我走路，向她表白，让人以为是我开的口。（这段细节忘记了）<br>事后细思极恐，我感觉我也是为了治疗她的病，为她制造出来的。<br>我为其命名为 涂静</栗子碰撞星云></span>',//涂静
 	ybsl_122wangbingyu:'<span class=thundertext>王冰雨，记7月2日至3日梦<br>梦见邂逅一个妹子（取名为王冰雨）（和王婉莹，张立冰，夏新雨相似）貌似是一座商场，也貌似是一个酒店。<br>只记得如下：<br>我开了一个房，然后在休息区碰到她。再想找她的时候迷了路，然后来到了一个商场后门的地方。费了九牛二虎之力终于回来了，但是貌似到了退房的时间。<br>我当时还想淋浴来着…</span>',//
+	ybsl_123xuelang:'<span class=thundertext>雪琅，原名保密。童年玩伴。</span>',//雪琅
 
 	//---------------------------------//忆包SP
 	'db_ybsp_014liutianyu':'<span class=thundertext>夜白，原型为作者本人，2019年春自号北地诗仙，2020年春夏自取别名夜白。故事仍在继续书写，也许永无尽头。</span>',
@@ -166,6 +167,7 @@ const characterIntro = {
 	'ybsp_001sunlisong':'<span class=thundertext>孙丽松，原型为同名本人，陈爱琳和王汉桢的闺蜜，六中三班的一员。不算太熟，但隐约记得关系还不错，言行举止令人如沐春风。</span>',
 	ybsp_018zhangqing:'<span class=thundertext>2025年10月7日，和她本人聊天。得知她消消乐已经10000多关。感慨其毅力同时，突发灵感，遂设此武将。</span>',
 	ybsp_033xiaohui:'<span class=thundertext>初中的时候，她和一个男生谈恋爱。后来貌似是男的甩了她，她在宿舍楼下哭的死去活来。</span>',
+	ybsl_079xiaoxin:'<span class=thundertext>小新，原型保密。</span>',
 	//---------------------------------//界限突破（什么沙比玩意）
 	'ybnb_034zhoulianyuan':'<span class=thundertext>周怜渊，记2022年9月15日之16日的一场梦。<br>这次载入的梦境大致是一个作文考试，我叙写了一篇文章，讲述了一个言辞锋利的监察者，具体事迹不详，只记得名字叫周怜渊。为了纪念这一场梦，并撰写此武将。</span>',
 	

@@ -43,4 +43,16 @@ const card = {
         },
 
     },
+    qmsgswkjsgj_chuanguoyuxi:{
+        audio: true,
+        fullskin: true,
+        type: "equip",
+        subtype: "equip5",
+        bingzhu: ["刘宏", "袁术", "司马炎"],
+        skills: ["qmsgswkjsgj_chuanguoyuxi_skill"],
+        ai: {
+            equipValue: 9,
+        },
+
+    },
 };

@@ -92,6 +92,70 @@ const character = { //武将格式 :
 	qmsgswkjsgj_shen_zhouyu:['male','shen',4,['qmsgswkjsgj_qinyin','qmsgswkjsgj_yeyan','reyingzi','qmsgswkjsgj_refanjian'],['rankAdd:legend','rankS:s','linkTo:shen_zhouyu','YB_mjz:shen_zhouyu','tempname:shen_zhouyu','wu']],
 	qmsgswkjsgj_shen_xunyu:['male','shen',3,['qmsgswkjsgj_tianzuo','qmsgswkjsgj_lingce','qmsgswkjsgj_dinghan','qmsgswkjsgj_shenquhu','rejieming'],['rankAdd:legend','rankS:s','linkTo:shen_xunyu','YB_mjz:shen_xunyu','tempname:re_xunyu','wei']],
 	qmsgswkjsgj_mb_luyusheng:['female','wu',3,['qmsgswkjsgj_mbrunwei','qmsgswkjsgj_mbshuanghuai'],['rankAdd:legend','rankS:s','linkTo:mb_luyusheng','YB_mjz:mb_luyusheng','tempname:mb_luyusheng']],
+	qmsgswkjsgj_shen_caocao:['male','shen',3,['qmsgswkjsgj_guixin','qmsgswkjsgj_feiying','new_rejianxiong'],['rankAdd:legend','rankS:s','linkTo:shen_caocao','YB_mjz:shen_caocao','tempname:shen_caocao','wei']],
+	qmsgswkjsgj_shen_luxun:['male','shen',4,['nzry_junlve','qmsgswkjsgj_nzry_cuike','nzry_dinghuo','qmsgswkjsgj_resbqianxun','qmsgswkjsgj_resblianying'],['rankAdd:legend','rankS:s','linkTo:shen_luxun','YB_mjz:shen_luxun','tempname:shen_luxun','wu']],
+	qmsgswkjsgj_shen_lvbu:['male','shen',5,['qmsgswkjsgj_baonu','qmsgswkjsgj_wumou','qmsgswkjsgj_wuqian','qmsgswkjsgj_shenfen','qmsgswkjsgj_wushuang'],['rankAdd:legend','rankS:s','linkTo:shen_lvbu','YB_mjz:shen_lvbu','tempname:shen_lvbu','qun']],
+	qmsgswkjsgj_pot_weiyan:['male','shu',4,['qmsgswkjsgj_potzhongao','qmsgswkjsgj_potzhuangshi','qmsgswkjsgj_potyinzhan'],['rankAdd:legend','rankS:s','linkTo:pot_weiyan','YB_mjz:pot_weiyan','tempname:pot_weiyan']],
+	qmsgswkjsgj_pot_taishici:['male','wu',4,['qmsgswkjsgj_pothanzhan','qmsgswkjsgj_potzhanlie','qmsgswkjsgj_potzhenfeng'],['rankAdd:legend','rankS:s','linkTo:pot_taishici','YB_mjz:pot_taishici','tempname:pot_taishici']],
+	// qmsgswkjsgj_re_caopi:['male','wei',3,['qmsgswkjsgj_rexingshang','qmsgswkjsgj_refangzhu','qmsgswkjsgj_songwei'],['zhu','rankAdd:rare','rankS:a','linkTo:re_caopi','YB_mjz:re_caopi','tempname:re_caopi']],
+	// qmsgswkjsgj_re_shamoke:['male','shu',4,['qmsgswkjsgj_gzjili'],['rankAdd:rare','rankS:a','linkTo:shamoke','YB_mjz:shamoke','tempname:shamoke']],
+	// qmsgswkjsgj_re_peixiu:['male','qun',3,['qmsgswkjsgj_xingtu','qmsgswkjsgj_juezhi'],['rankAdd:legend','rankS:s','linkTo:peixiu','YB_mjz:peixiu','tempname:peixiu']],
+	// qmsgswkjsgj_re_jushou:['male','qun','2/3/3',['qmsgswkjsgj_rejianying','dcshibei'],['rankAdd:legend','rankS:s','linkTo:re_jushou','YB_mjz:re_jushou','tempname:re_jushou']],
+
+	// qmsgswkjsgj_re_shichangshi:{
+	// 	sex: "male",
+	// 	group: "qun",
+	// 	hp: 1,
+	// 	skills: ["qmsgswkjsgj_mbdanggu", "qmsgswkjsgj_mbmowang"],
+	// 	trashBin: ["sex:male_castrated"],
+	// 	names: "张|让-赵|忠-孙|璋-毕|岚-夏|恽-韩|悝-栗|嵩-段|珪-郭|胜-高|望",
+	// 	linkTo:'shichangshi',
+	// 	// YB_mjz:'shichangshi',
+	// 	img:'extension/夜白神略/image/ybsl012/shichangshi.jpg',
+	// },
+	// qmsgswkjsgj_scs_zhangrang:['male','qun',0,['qmsgswkjsgj_scstaoluan'],['unseen','sex:male_castrated','tempname:scs_zhangrang','linkTo:scs_zhangrang','name:张|让','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang.jpg']],
+	// qmsgswkjsgj_scs_zhaozhong:['male','qun',0,['qmsgswkjsgj_scschiyan'],['unseen','sex:male_castrated','tempname:scs_zhaozhong','linkTo:scs_zhaozhong','name:赵|忠','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong.jpg']],
+	// qmsgswkjsgj_scs_sunzhang:['male','qun',0,['qmsgswkjsgj_scszimou'],['unseen','sex:male_castrated','tempname:scs_sunzhang','linkTo:scs_sunzhang','name:孙|璋','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang.jpg']],
+	// qmsgswkjsgj_scs_bilan:['male','qun',0,['qmsgswkjsgj_scspicai'],['unseen','sex:male_castrated','tempname:scs_bilan','linkTo:scs_bilan','name:毕|岚','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_bilan.jpg']],
+	// qmsgswkjsgj_scs_xiayun:['male','qun',0,['qmsgswkjsgj_scsyaozhuo'],['unseen','sex:male_castrated','tempname:scs_xiayun','linkTo:scs_xiayun','name:夏|恽','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_xiayun.jpg']],
+	// qmsgswkjsgj_scs_hankui:['male','qun',0,['qmsgswkjsgj_scsxiaolu'],['unseen','sex:male_castrated','tempname:scs_hankui','linkTo:scs_hankui','name:韩|悝','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_hankui.jpg']],
+	// qmsgswkjsgj_scs_lisong:['male','qun',0,['qmsgswkjsgj_scskuiji'],['unseen','sex:male_castrated','tempname:scs_lisong','linkTo:scs_lisong','name:栗|嵩','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_lisong.jpg']],
+	// qmsgswkjsgj_scs_duangui:['male','qun',0,['qmsgswkjsgj_scschihe'],['unseen','sex:male_castrated','tempname:scs_duangui','linkTo:scs_duangui','name:段|珪','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui.jpg']],
+	// qmsgswkjsgj_scs_guosheng:['male','qun',0,['qmsgswkjsgj_scsniqu'],['unseen','sex:male_castrated','tempname:scs_guosheng','linkTo:scs_guosheng','name:郭|胜','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng.jpg']],
+	// qmsgswkjsgj_scs_gaowang:['male','qun',0,['scsanruo'],['unseen','sex:male_castrated','tempname:scs_gaowang','linkTo:scs_gaowang','name:高|望','ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang.jpg']],
+	
+	// sgsxjxfzmnl_shichangshi_dead:{
+	// 	sex: "male",
+	// 	group: "qun",
+	// 	hp: 1,
+	// 	skills: ["qmsgswkjsgj_mbdanggu", "qmsgswkjsgj_mbmowang"],
+	// 	trashBin: ["sex:male_castrated"],
+	// 	names: "张|让-赵|忠-孙|璋-毕|岚-夏|恽-韩|悝-栗|嵩-段|珪-郭|胜-高|望",
+	// 	linkTo:'shichangshi',
+	// 	isUnseen:true,
+	// },
+	// sgsxjxfzmnl_scs_zhangrang_dead:['male','qun',0,['sgsxjxfzmnl_scstaoluan'],['unseen','sex:male_castrated','tempname:scs_zhangrang','linkTo:scs_zhangrang','name:张|让']],
+	// sgsxjxfzmnl_scs_zhaozhong_dead:['male','qun',0,['sgsxjxfzmnl_scschiyan'],['unseen','sex:male_castrated','tempname:scs_zhaozhong','linkTo:scs_zhaozhong','name:赵|忠']],
+	// sgsxjxfzmnl_scs_sunzhang_dead:['male','qun',0,['sgsxjxfzmnl_scszimou'],['unseen','sex:male_castrated','tempname:scs_sunzhang','linkTo:scs_sunzhang','name:孙|璋']],
+	// sgsxjxfzmnl_scs_bilan_dead:['male','qun',0,['sgsxjxfzmnl_scspicai'],['unseen','sex:male_castrated','tempname:scs_bilan','linkTo:scs_bilan','name:毕|岚']],
+	// sgsxjxfzmnl_scs_xiayun_dead:['male','qun',0,['sgsxjxfzmnl_scsyaozhuo'],['unseen','sex:male_castrated','tempname:scs_xiayun','linkTo:scs_xiayun','name:夏|恽']],
+	// sgsxjxfzmnl_scs_hankui_dead:['male','qun',0,['sgsxjxfzmnl_scsxiaolu'],['unseen','sex:male_castrated','tempname:scs_hankui','linkTo:scs_hankui','name:韩|悝']],
+	// sgsxjxfzmnl_scs_lisong_dead:['male','qun',0,['sgsxjxfzmnl_scskuiji'],['unseen','sex:male_castrated','tempname:scs_lisong','linkTo:scs_lisong','name:栗|嵩']],
+	// sgsxjxfzmnl_scs_duangui_dead:['male','qun',0,['sgsxjxfzmnl_scschihe'],['unseen','sex:male_castrated','tempname:scs_duangui','linkTo:scs_duangui','name:段|珪']],
+	// sgsxjxfzmnl_scs_guosheng_dead:['male','qun',0,['sgsxjxfzmnl_scsniqu'],['unseen','sex:male_castrated','tempname:scs_guosheng','linkTo:scs_guosheng','name:郭|胜']],
+	// sgsxjxfzmnl_scs_gaowang_dead:['male','qun',0,['sgsxjxfzmnl_scsmiaoyu'],['unseen','sex:male_castrated','tempname:scs_gaowang','linkTo:scs_gaowang','name:高|望']],
+
+	// qmsgswkjsgj_shen_huatuo:['male','shen',3,['qmsgswkjsgj_wuling','qmsgswkjsgj_youyi','qmsgswkjsgj_qingnang','qmsgswkjsgj_jijiu'],['rankAdd:legend','rankS:s','linkTo:shen_huatuo','YB_mjz:shen_huatuo','tempname:shen_huatuo','qun']],
+
+
+
+
+	// qmsgswkjsgj_shenci_wu_zhugeliang:['male','shu','4/7',['qmsgswkjsgj_shenci_dcjincui','qmsgswkjsgj_shenci_dcqingshi','qmsgswkjsgj_shenci_dczhizhe'],['rankAdd:legend','rankS:s','linkTo:wu_zhugeliang','YB_mjz:wu_zhugeliang','tempname:wu_zhugeliang']],
+	// qmsgswkjsgj_shenci_wu_luxun:['male','wu',4,['qmsgswkjsgj_shenci_dcxiongmu','qmsgswkjsgj_shenci_dczhangcai','qmsgswkjsgj_shenci_dcruxian'],['rankAdd:legend','rankS:s','linkTo:wu_luxun','YB_mjz:wu_luxun','tempname:wu_luxun']],
+	// qmsgswkjsgj_shenci_re_duyu:['male','qun',4,['qmsgswkjsgj_shenci_spwuku','qmsgswkjsgj_shenci_spsanchen'],['rankAdd:legend','rankS:s','linkTo:duyu','YB_mjz:duyu','tempname:duyu']],
+	// qmsgswkjsgj_shenci_sb_caopi:['male','wei',3,['qmsgswkjsgj_sbxingshang','qmsgswkjsgj_sbfangzhu','qmsgswkjsgj_sbsongwei'],['zhu','rankAdd:legend','rankS:s','linkTo:sb_caopi','YB_mjz:sb_caopi','tempname:sb_caopi']],
+	// qmsgswkjsgj_shenci_re_sunhanhua:['female','wu',3,['qmsgswkjsgj_shenci_chongxu','qmsgswkjsgj_shenci_miaojian','qmsgswkjsgj_shenci_lianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
+
 
 
 

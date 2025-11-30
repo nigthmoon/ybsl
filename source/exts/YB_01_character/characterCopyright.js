@@ -159,7 +159,8 @@ const characterCopyright = {
     'ybsl_092handan': ['忆','092','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
     'ybsl_107tushanshuili': ['忆','107','夜白','夜白，潜水的火（踏野，妖异）','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
     'ybsl_121tujing': ['忆','121','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
-
+	ybsl_122wangbingyu:['忆','122','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
+	ybsl_123xuelang:['忆','123','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
 	    //---------------------------------//忆包SP
     'db_ybsp_014liutianyu': ['忆','SP-001','夜白','夜白','QQ小世界AI绘图','暂无','✿'],
     'ybsp_016manchengqi': ['忆','SP-002','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
@@ -171,7 +172,9 @@ const characterCopyright = {
     'ybsp_006wanghanzhen': ['忆','SP-007','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>B站发布成品','暂无','❀'],
     'ybsp_033xiaohui': ['忆','SP-008','夜白','夜白？','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❅'],
 	ybsp_018zhangqing:['忆','SP-009','夜白','X','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
-    //---------------------------------//界限突破
+    ybsp_079xiaoxin:['忆','SP-010','夜白','夜白','<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>群内半成品图片','暂无','❀'],
+	
+	//---------------------------------//界限突破
     'ybnb_034zhoulianyuan': ['忆','界-034','夜白','夜白','暂无','暂无','◈'],
     
     //---------------------------六艺篇

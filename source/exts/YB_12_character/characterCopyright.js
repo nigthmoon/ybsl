@@ -45,6 +45,36 @@ const characterCopyright = {
 	qmsgswkjsgj_shen_zhouyu:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
 	qmsgswkjsgj_shen_xunyu:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
 	qmsgswkjsgj_mb_luyusheng:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_shen_luxun:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_shen_caocao:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_shen_lvbu:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_pot_weiyan:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_pot_taishici:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_caopi:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_shamoke:'<font color=cyan>全民三国杀，我开局神郭嘉（番茄小说）</font><br>❃技能设计：天一笙水<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
+	qmsgswkjsgj_re_peixiu:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_re_shichangshi:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_zhangrang:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_zhaozhong:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_sunzhang:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_bilan:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_xiayun:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_hankui:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_lisong:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_duangui:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_guosheng:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_scs_gaowang:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_re_jushou:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_shen_huatuo:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+
+	qmsgswkjsgj_shenci_wu_zhugeliang:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_shenci_re_duyu:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_shenci_wu_luxun:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_shenci_sb_caopi:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+	qmsgswkjsgj_shenci_re_sunhanhua:['全民三国杀，我开局神郭嘉（番茄小说）','','天一笙水','夜白','三国杀官方','三国杀官方','❃'],
+
+
+
 
 
 
