@@ -69,7 +69,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			sgsxjxfzmnl_scs_gaowang: [["sgsxjxfzmnl_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
 
 			
-			qmsgswkjsgj_shichangshi: [["qmsgswkjsgj_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_re_shichangshi: [["qmsgswkjsgj_re_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
 			qmsgswkjsgj_scs_zhangrang: [["qmsgswkjsgj_scs_zhangrang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang_dead.jpg',"die:shichangshi"]]],
 			qmsgswkjsgj_scs_zhaozhong: [["qmsgswkjsgj_scs_zhaozhong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong_dead.jpg',"die:shichangshi"]]],
 			qmsgswkjsgj_scs_sunzhang: [["qmsgswkjsgj_scs_sunzhang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang_dead.jpg',"die:shichangshi"]]],

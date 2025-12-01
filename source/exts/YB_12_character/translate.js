@@ -486,7 +486,7 @@ const translate = {
 	qmsgswkjsgj_potzhanlie: "战烈",
 	qmsgswkjsgj_potzhanlie_info: "每名角色回合中的杀进入弃牌堆时，若此牌在弃牌堆内，你获得1个“烈”标记，你至多拥有6个“烈”标记。你的出牌阶段结束时，你可移除任意数量的“烈”标记，视为使用一张无次数限制的【杀】并选择以下选项中的至多X项（X为你本次移除的标记数）：1.此【杀】目标+1；2.此【杀】基础伤害值+1；3.此【杀】需额外弃置一张牌方可响应。4.此【杀】结算结束后你摸两张牌。",
 	qmsgswkjsgj_potzhenfeng: "振锋",
-	qmsgswkjsgj_potzhenfeng_info: "限定技，出牌阶段或当你进入濒死状态时，你可以选择一项：①回复2点体力；②修改战烈的你的出牌阶段结束时为每名角色出牌阶段结束时，直到你的下个回合开始。",
+	qmsgswkjsgj_potzhenfeng_info: "限定技，出牌阶段或当你进入濒死状态时，你可以选择一项：①回复2点体力；②膝盖战烈的你的出牌阶段结束时为每名角色出牌阶段结束时，直到你的下个回合开始。",
 	qmsgswkjsgj_potzhenfeng_append: "本体战烈改不了。<br>其实也不是不能改，只是会显得我有大病",
 	//②修改〖酣战〗和〖战烈〗描述中的“X”为当前体力值、已损失体力值、场上人数中的一项（拥有对应技能方可选择）
 
@@ -520,7 +520,7 @@ const translate = {
 	qmsgswkjsgj_re_shichangshi: "界十常侍",
 	qmsgswkjsgj_re_shichangshi_prefix: "界",
 	qmsgswkjsgj_mbdanggu: "党锢",
-	qmsgswkjsgj_mbdanggu_info: "锁定技。①游戏开始时，你获得十张“常侍”牌，然后你进行一次结党。②当你修整结束后，你进行一次结党并摸两张牌。③若你有亮出的“常侍”牌，你视为拥有这些牌的技能。",
+	qmsgswkjsgj_mbdanggu_info: "锁定技。①游戏开始时，你获得十张“常侍”牌，然后你进行一次结党。②当你修整结束后，你进行一次结党并摸两张牌。③若你有亮出的“常侍”牌，你视为拥有这些牌的技能。（全民三国杀我开局神郭嘉的十常侍专用）",
 	qmsgswkjsgj_mbdanggu_faq: "关于结党",
 	qmsgswkjsgj_mbdanggu_faq_info: "<br>系统随机选择一张未亮出过的“常侍”牌，然后选择四张未亮出过的“常侍”牌。你观看前者，然后从后者中选择一名认可前者的“常侍”牌。然后若此时不为双将模式，你将这两张武将牌作为你的武将牌（不移除原有技能）；否则你获得这两张武将牌上的技能。",
 	qmsgswkjsgj_mbdanggu_faq2: "关于认可",
@@ -579,19 +579,22 @@ const translate = {
 	qmsgswkjsgj_jijiu:'急救',
 	qmsgswkjsgj_jijiu_info:'你于回合外可以将一张红色牌当【桃】使用，其他角色使用【桃】时，你摸一张牌。',
 
+
+	qmsgswkjsgj_wuling_append:'最后一段的修改顺序我没写，懒',
 	qmsgswkjsgj_wuling: "五灵",
 	qmsgswkjsgj_wuling_info: `⓪你始终拥有“五灵”标记，并按照你指定的顺序获得“五禽戏”。①美轮游戏开始时限两次。你可以选择一名没有“${get.poptip({
 		id: "qmsgswkjsgj_wl_wuqinxi",
 		name: "五禽戏",
 		type: "character",
 		info: `“五禽戏”分为“虎、鹿、熊、猿、鹤”五个不同的效果：<span style='font-family: yuanli'>
-				<br><li>虎：当你使用指定唯一目标的牌对目标角色造成伤害时，此伤害+1。
-				<br><li>鹿：①当你获得此效果时，你回复1点体力并弃置判定区的所有牌。②你不能成为延时锦囊牌的目标。
-				<br><li>熊：每回合限一次，当你受到伤害时，此伤害-1。
-				<br><li>猿：当你获得此效果时，你选择一名其他角色，获得其装备区里的一张牌。
-				<br><li>鹤：当你获得此效果时，你摸三张牌。
+				<br><li>虎：当你使用牌对目标角色造成伤害时，此伤害+1。
+				<br><li>鹿：①当你获得此效果时，你回复2点体力并弃置判定区的所有牌。②你不能成为延时锦囊牌的目标。
+				<br><li>熊：当你受到伤害时，此伤害-1。
+				<br><li>猿：当你获得此效果时，你选择一名其他角色，获得其装备区里的牌。
+				<br><li>鹤：当你获得此效果时，你摸五张牌。
 			</span>`,
-	})}”的角色，按照你选择的顺序向其传授“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”，且其获得如下效果：其获得你选择的第一种“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”的效果，并在其每个准备阶段移除当前“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”的效果并切换为下一种。②出牌阶段，你可以重新调整拥有“五灵”标记角色后续未触发的“五禽戏”顺序。`,
+	})}”的角色，按照你选择的顺序向其传授“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”，且其获得如下效果：其获得你选择的第一种“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”的效果，并在其每个准备阶段移除当前“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”的效果并切换为下一种。`,
+	//②出牌阶段，你可以重新调整拥有“五灵”标记角色后续未触发的“五禽戏”顺序。
 	//当你死亡时，你令场上的角色失去你传授的“${get.poptip("qmsgswkjsgj_wl_wuqinxi")}”
 	qmsgswkjsgj_wuling_wuqinxi: "五禽戏",
 	get qmsgswkjsgj_wuling_wuqinxi_info() {
@@ -601,7 +604,7 @@ const translate = {
 	qmsgswkjsgj_youyi_info: "①弃牌阶段结束时，你可以将所有于此阶段弃置的牌置入仁区。②出牌阶段限一次。你可以将仁区的所有牌置入弃牌堆，令所有角色各回复1点体力。",
 	qmsgswkjsgj_wuqinxi_hu: "虎",
 	qmsgswkjsgj_wuqinxi_hu_bg: "虎",
-	qmsgswkjsgj_wuqinxi_hu_info: "当你使用牌对目标角色造成伤害时，此伤害+1（每张牌限一次）。",
+	qmsgswkjsgj_wuqinxi_hu_info: "当你使用牌对目标角色造成伤害时，此伤害+1。",
 	qmsgswkjsgj_wuqinxi_hu_append: "作者原文是：你使用牌对目标角色造成伤害时，令此牌对其中一个目标造成的伤害值+1。",
 	//我的【评价是：云玩家还想吃这碗饭
 	qmsgswkjsgj_wuqinxi_lu: "鹿",
@@ -698,7 +701,7 @@ const translate = {
 	qmsgswkjsgj_shenci_lianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
 	qmsgswkjsgj_shenci_lianhua2:'莲华·极',
 	qmsgswkjsgj_shenci_lianhua2_info:'你成为其他角色牌的目标后，你可以摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果不为红桃，则取消之。',
-
+//由于剧情里，孙寒华在对局中被神赐，已升级的技能仍然延续神赐之前的等级，因此这里以及界孙寒华尽量也要和本体孙寒华互通
 
 
 

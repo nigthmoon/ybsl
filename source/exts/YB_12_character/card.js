@@ -55,4 +55,31 @@ const card = {
         },
 
     },
+	//神肘不疑的五灵卡牌
+	qmsgswkjsgj_wuqinxi_hu: {
+		fullskin: true,
+		noname: true,
+        image:'image/card/wuqinxi_hu.png',
+	},
+	qmsgswkjsgj_wuqinxi_lu: {
+		fullskin: true,
+		noname: true,
+        image:'image/card/wuqinxi_lu.png',
+	},
+	qmsgswkjsgj_wuqinxi_xiong: {
+		fullskin: true,
+		noname: true,
+        image:'image/card/wuqinxi_xiong.png',
+	},
+	qmsgswkjsgj_wuqinxi_yuan: {
+		fullskin: true,
+		noname: true,
+        image:'image/card/wuqinxi_yuan.png',
+	},
+	qmsgswkjsgj_wuqinxi_he: {
+		fullskin: true,
+		noname: true,
+        image:'image/card/wuqinxi_he.png',
+	},
+    
 };
