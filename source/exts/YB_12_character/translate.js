@@ -344,12 +344,12 @@ const translate = {
 	qmsgswkjsgj_miaojian1_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制。',
 	qmsgswkjsgj_miaojian2:'妙剑·极',
 	qmsgswkjsgj_miaojian2_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。',
-	qmsgswkjsgj_lianhua:'莲华',
-	qmsgswkjsgj_lianhua_info:'你成为其他角色【杀】的目标后，你摸一张牌，然后进行一次判定，若结果为黑桃，则取消之。',
-	qmsgswkjsgj_lianhua1:'莲华·改',
-	qmsgswkjsgj_lianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。',
-	qmsgswkjsgj_lianhua2:'莲华·极',
-	qmsgswkjsgj_lianhua2_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
+	qmsgswkjsgj_shhlianhua:'莲华',
+	qmsgswkjsgj_shhlianhua_info:'你成为其他角色【杀】的目标后，你摸一张牌，然后进行一次判定，若结果为黑桃，则取消之。',
+	qmsgswkjsgj_shhlianhua1:'莲华·改',
+	qmsgswkjsgj_shhlianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。',
+	qmsgswkjsgj_shhlianhua2:'莲华·极',
+	qmsgswkjsgj_shhlianhua2_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
 
 	qmsgswkjsgj_yingtian_simayi:'旧应天神司马懿',
 	qmsgswkjsgj_yingtian_simayi_prefix:'旧应天神',
@@ -435,14 +435,6 @@ const translate = {
 	qmsgswkjsgj_nzry_cuike_append: "一切以作者口胡（实战）为准",
 
 
-
-	qmsgswkjsgj_mb_luyusheng: "界势陆郁生",
-	qmsgswkjsgj_mb_luyusheng_prefix: "界势",
-	qmsgswkjsgj_mbrunwei: "润微",
-	qmsgswkjsgj_mbrunwei_info: "出牌阶段限一次，你可以展示牌堆顶至多五张牌，令一名角色获得其中一种颜色的所有牌。若如此做，你失去X张牌后（X为其因此获得的牌数），该技能可以再次发动。",
-	qmsgswkjsgj_mbshuanghuai: "霜怀",
-	qmsgswkjsgj_mbshuanghuai_info: "每回合限一次，当与你距离1以内的角色受到伤害时，你可以选择一项：防止此伤害；令其从弃牌堆中获得一张【桃】。若该角色与你上一次发动时相同，你与其各摸一张牌。",
-
 	qmsgswkjsgj_shen_caocao:'缝神曹操',
 	qmsgswkjsgj_shen_caocao_prefix:'缝神',
 	qmsgswkjsgj_guixin:'归心',
@@ -464,31 +456,6 @@ const translate = {
 	qmsgswkjsgj_wushuang:'无双',
 	qmsgswkjsgj_wushuang_info:'锁定技。①你使用的【杀】需两张【闪】才能抵消；与你进行【决斗】的角色每次需要打出两张【杀】。②每回合限一次，当你使用【杀】或【决斗】造成伤害时，此伤害+1。',
 
-
-	qmsgswkjsgj_pot_weiyan: "界势魏延",
-	qmsgswkjsgj_pot_weiyan_prefix: "界势",
-	qmsgswkjsgj_potzhongao: "忠傲",
-	qmsgswkjsgj_potzhongao_info: `使命技，①游戏开始时，你获得${get.poptip("qmsgswkjsgj_potkuanggu")}。②成功：你杀死一名角色后，升级〖狂骨〗，然后若你本阶段使用的牌数：小于因〖壮誓〗弃置的牌数，摸一张牌；小于因〖壮誓〗失去的体力值，回复1点体力（体力值已满则改为摸一张牌）。③失败：你进入濒死，或你未于出牌阶段开始时执行〖壮誓〗，失去〖壮誓〗并获得${get.poptip("kunfenx")}。（全民三国杀我开局神郭嘉）`,
-	qmsgswkjsgj_potzhuangshi: "壮誓",
-	qmsgswkjsgj_potzhuangshi_info: "出牌阶段开始时，你可以执行任意项：1.弃置任意张手牌，令你此阶段使用的前等量+1张牌无距离限制且不可被响应；2.失去任意点体力，令你此阶段使用的前等量+1张牌不计入次数限制。",
-	qmsgswkjsgj_potzhuangshi_tag: "已选择弃置",
-	qmsgswkjsgj_potyinzhan: "饮战",
-	qmsgswkjsgj_potyinzhan_info: `锁定技，你对一名角色造成伤害时，若：1.你的体力值小于等于其，此伤害+1；2.你的牌数小于等于其，你于此牌结算结束后弃置其一张牌；${get.poptip("rule_chengshi")}：你回复1点体力，获得其弃置的牌。`,
-	qmsgswkjsgj_potkuanggu: "狂骨",
-	qmsgswkjsgj_potkuanggu_info: "你对一名角色造成1点伤害后，可以选择一项：1.回复1点体力；2.摸一张牌。",
-	qmsgswkjsgj_potkuanggu_pot_weiyan_achieve: "狂骨·二级",
-	qmsgswkjsgj_potkuanggu_pot_weiyan_achieve_info: `你对一名角色造成1点伤害后，可以选择一项：1.回复1点体力；2.摸一张牌；3.${get.poptip("rule_beishui")}：弃置一张牌并令你此阶段使用【杀】的次数+1。`,
-
-	qmsgswkjsgj_pot_taishici: "界势太史慈",
-	qmsgswkjsgj_pot_taishici_prefix: "界势",
-	qmsgswkjsgj_pothanzhan: "酣战",
-	qmsgswkjsgj_pothanzhan_info: "出牌阶段限一次，你可以选择一名其他角色，你将手牌数摸至X张（X为你的体力上限且至多摸5张），然后你视为对其使用一张【决斗】。",
-	qmsgswkjsgj_potzhanlie: "战烈",
-	qmsgswkjsgj_potzhanlie_info: "每名角色回合中的杀进入弃牌堆时，若此牌在弃牌堆内，你获得1个“烈”标记，你至多拥有6个“烈”标记。你的出牌阶段结束时，你可移除任意数量的“烈”标记，视为使用一张无次数限制的【杀】并选择以下选项中的至多X项（X为你本次移除的标记数）：1.此【杀】目标+1；2.此【杀】基础伤害值+1；3.此【杀】需额外弃置一张牌方可响应。4.此【杀】结算结束后你摸两张牌。",
-	qmsgswkjsgj_potzhenfeng: "振锋",
-	qmsgswkjsgj_potzhenfeng_info: "限定技，出牌阶段或当你进入濒死状态时，你可以选择一项：①回复2点体力；②膝盖战烈的你的出牌阶段结束时为每名角色出牌阶段结束时，直到你的下个回合开始。",
-	qmsgswkjsgj_potzhenfeng_append: "本体战烈改不了。<br>其实也不是不能改，只是会显得我有大病",
-	//②修改〖酣战〗和〖战烈〗描述中的“X”为当前体力值、已损失体力值、场上人数中的一项（拥有对应技能方可选择）
 
 	qmsgswkjsgj_re_caopi:'界曹丕',
 	qmsgswkjsgj_re_caopi_prefix:'界',
@@ -622,6 +589,45 @@ const translate = {
 
 
 
+	qmsgswkjsgj_mb_luyusheng: "界势陆郁生",
+	qmsgswkjsgj_mb_luyusheng_prefix: "界势",
+	qmsgswkjsgj_mbrunwei: "润微",
+	qmsgswkjsgj_mbrunwei_info: "出牌阶段限一次，你可以展示牌堆顶至多五张牌，令一名角色获得其中一种颜色的所有牌。若如此做，你失去X张牌后（X为其因此获得的牌数），该技能可以再次发动。",
+	qmsgswkjsgj_mbshuanghuai: "霜怀",
+	qmsgswkjsgj_mbshuanghuai_info: "每回合限一次，当与你距离1以内的角色受到伤害时，你可以选择一项：防止此伤害；令其从弃牌堆中获得一张【桃】。若该角色与你上一次发动时相同，你与其各摸一张牌。",
+
+	qmsgswkjsgj_pot_weiyan: "界势魏延",
+	qmsgswkjsgj_pot_weiyan_prefix: "界势",
+	qmsgswkjsgj_potzhongao: "忠傲",
+	qmsgswkjsgj_potzhongao_info: `使命技，①游戏开始时，你获得${get.poptip("qmsgswkjsgj_potkuanggu")}。②成功：你杀死一名角色后，升级〖狂骨〗，然后若你本阶段使用的牌数：小于因〖壮誓〗弃置的牌数，摸一张牌；小于因〖壮誓〗失去的体力值，回复1点体力（体力值已满则改为摸一张牌）。③失败：你进入濒死，或你未于出牌阶段开始时执行〖壮誓〗，失去〖壮誓〗并获得${get.poptip("kunfenx")}。（全民三国杀我开局神郭嘉）`,
+	qmsgswkjsgj_potzhuangshi: "壮誓",
+	qmsgswkjsgj_potzhuangshi_info: "出牌阶段开始时，你可以执行任意项：1.弃置任意张手牌，令你此阶段使用的前等量+1张牌无距离限制且不可被响应；2.失去任意点体力，令你此阶段使用的前等量+1张牌不计入次数限制。",
+	qmsgswkjsgj_potzhuangshi_tag: "已选择弃置",
+	qmsgswkjsgj_potyinzhan: "饮战",
+	qmsgswkjsgj_potyinzhan_info: `锁定技，你对一名角色造成伤害时，若：1.你的体力值小于等于其，此伤害+1；2.你的牌数小于等于其，你于此牌结算结束后弃置其一张牌；${get.poptip("rule_chengshi")}：你回复1点体力，获得其弃置的牌。`,
+	qmsgswkjsgj_potkuanggu: "狂骨",
+	qmsgswkjsgj_potkuanggu_info: "你对一名角色造成1点伤害后，可以选择一项：1.回复1点体力；2.摸一张牌。",
+	qmsgswkjsgj_potkuanggu_pot_weiyan_achieve: "狂骨·二级",
+	qmsgswkjsgj_potkuanggu_pot_weiyan_achieve_info: `你对一名角色造成1点伤害后，可以选择一项：1.回复1点体力；2.摸一张牌；3.${get.poptip("rule_beishui")}：弃置一张牌并令你此阶段使用【杀】的次数+1。`,
+
+	qmsgswkjsgj_pot_taishici: "界势太史慈",
+	qmsgswkjsgj_pot_taishici_prefix: "界势",
+	qmsgswkjsgj_pothanzhan: "酣战",
+	qmsgswkjsgj_pothanzhan_info: "出牌阶段限一次，你可以选择一名其他角色，你将手牌数摸至X张（X为你的体力上限且至多摸5张），然后你视为对其使用一张【决斗】。",
+	qmsgswkjsgj_potzhanlie: "战烈",
+	qmsgswkjsgj_potzhanlie_info: "每名角色回合中的杀进入弃牌堆时，若此牌在弃牌堆内，你获得1个“烈”标记，你至多拥有6个“烈”标记。你的出牌阶段结束时，你可移除任意数量的“烈”标记，视为使用一张无次数限制的【杀】并选择以下选项中的至多X项（X为你本次移除的标记数）：1.此【杀】目标+1；2.此【杀】基础伤害值+1；3.此【杀】需额外弃置一张牌方可响应。4.此【杀】结算结束后你摸两张牌。",
+	qmsgswkjsgj_potzhenfeng: "振锋",
+	qmsgswkjsgj_potzhenfeng_info: "限定技，出牌阶段或当你进入濒死状态时，你可以选择一项：①回复2点体力；②膝盖战烈的你的出牌阶段结束时为每名角色出牌阶段结束时，直到你的下个回合开始。",
+	qmsgswkjsgj_potzhenfeng_append: "本体战烈改不了。<br>其实也不是不能改，只是会显得我有大病",
+	//②修改〖酣战〗和〖战烈〗描述中的“X”为当前体力值、已损失体力值、场上人数中的一项（拥有对应技能方可选择）
+
+	qmsgswkjsgj_pot_yuji: "界势于吉",
+	qmsgswkjsgj_pot_yuji_prefix: "界势",
+	qmsgswkjsgj_potfuji: "符济",
+	qmsgswkjsgj_potfuji_info: "出牌阶段限一次，你可以展示至多X张牌并交给任意角色，称为“符济”（X为场上角色数）。其角色使用“符济”牌时获得一张与“符济”牌花色相同的牌；然后若此牌为：【杀】，此牌造成的伤害+1；【闪】，结算完毕后其摸一张牌；【桃】，回复数值+1；【酒】，其可弃置场上一张牌。然后若你的手牌数为全场最低，则你摸一张牌，且你使用的下一张【杀】【闪】【桃】【酒】视为拥有对应效果直到你的下个回合开始（可叠加）。",
+	qmsgswkjsgj_potdaozhuan: "道转",
+	qmsgswkjsgj_potdaozhuan_info: "每回合每种牌名限一次限一次，你可以将你或者当前回合角色的一张牌置入弃牌堆，视为使用一张基本牌。若当前回合角色因此失去了牌，则本回合此技能失效。",
+
 
 
 
@@ -675,15 +681,15 @@ const translate = {
 	
 	qmsgswkjsgj_shenci_sb_caopi:'神赐谋曹丕',
 	qmsgswkjsgj_shenci_sb_caopi_prefix:'神赐谋',
-	qmsgswkjsgj_sbxingshang: "行殇",
-	qmsgswkjsgj_sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段限两次，你可以：选择一名角色，移去任意数量的“颂”令其执行对应的一个操作：1个，复原武将牌；2个，摸X张牌（X为本局已死亡角色数，至少为3）；3个，增加1点体力上限并回复一点体力，然后恢复被废除的装备栏（体力上限不大于12方可选择）；4个，追思一名未被追思过的已阵亡角色的武将牌上的技能，然后你失去“行殇”。",
+	qmsgswkjsgj_shenci_sbxingshang: "行殇",
+	qmsgswkjsgj_shenci_sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段限两次，你可以：选择一名角色，移去任意数量的“颂”令其执行对应的一个操作：1个，复原武将牌；2个，摸X张牌（X为本局已死亡角色数，至少为3）；3个，增加1点体力上限并回复一点体力，然后恢复被废除的装备栏（体力上限不大于12方可选择）；4个，追思一名未被追思过的已阵亡角色的武将牌上的技能，然后你失去“行殇”。",
 	// sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段限两次，你可以：" + ["移去2个“颂”标记，令一名角色复原武将牌", "移去2个“颂”标记，令一名角色摸三张牌", "移去3个“颂”标记，令一名体力上限小于10的角色回复1点体力，增加1点体力上限，随机恢复一个已废除的装备栏", "移去4个“颂”标记，获得一名阵亡角色武将牌上的所有技能，然后你失去〖行殇〗〖放逐〗〖颂威〗"].map((str, index) => `${index + 1}.${str}`).join("；") + "。",
-	qmsgswkjsgj_sbfangzhu: "放逐",
-	qmsgswkjsgj_sbfangzhu_info:'出牌阶段限两次，你可以选择一名其他角色，移去任意数量的“颂”令其执行对应的一个操作：1个，你指定一种类型的牌，直到其下回合结束，其只能使用此类型的牌；2个，直到其下回合结束，其武将技能失效或不可响应另一名角色使用的牌；3个，其翻面。',
+	qmsgswkjsgj_shenci_sbfangzhu: "放逐",
+	qmsgswkjsgj_shenci_sbfangzhu_info:'出牌阶段限两次，你可以选择一名其他角色，移去任意数量的“颂”令其执行对应的一个操作：1个，你指定一种类型的牌，直到其下回合结束，其只能使用此类型的牌；2个，直到其下回合结束，其武将技能失效或不可响应另一名角色使用的牌；3个，其翻面。',
 	// sbfangzhu_info: "出牌阶段限一次，你可以：" + ["移去2个“颂”标记，令一名其他角色于手牌中只能使用基本牌直到其回合结束", "移去6个“颂”标记，令一名其他角色于手牌中只能使用锦囊牌直到其回合结束", "移去8个“颂”标记，令一名其他角色于手牌中只能使用装备牌直到其回合结束", "移去6个“颂”标记，令一名其他角色的非Charlotte技能失效直到其回合结束", "移去4个“颂”标记，令一名其他角色不能响应另一名角色使用的牌直到其回合结束", "移去8个“颂”标记，令一名其他角色将武将牌翻面"].map((str, index) => `${index + 1}.${str}`).join("；") + "。",
 	// sbfangzhu_info_doudizhu: "出牌阶段限一次，你可以：" + ["移去2个“颂”标记，令一名其他角色于手牌中只能使用基本牌直到其回合结束", "移去6个“颂”标记，令一名其他角色于手牌中只能使用锦囊牌直到其回合结束", "移去4个“颂”标记，令一名其他角色不能响应另一名角色使用的牌直到其回合结束"].map((str, index) => `${index + 1}.${str}`).join("；") + "。",
-	qmsgswkjsgj_sbsongwei: "颂威",
-	qmsgswkjsgj_sbsongwei_info: "主公技，出牌阶段开始时，你获得Y个“颂”标记（Y为本局游戏魏势力角色数的两倍）。每局游戏限一次，你可以于出牌阶段令一名其他魏势力角色失去其武将牌上的所有技能。",
+	qmsgswkjsgj_shenci_sbsongwei: "颂威",
+	qmsgswkjsgj_shenci_sbsongwei_info: "主公技，出牌阶段开始时，你获得Y个“颂”标记（Y为本局游戏魏势力角色数的两倍）。每局游戏限一次，你可以于出牌阶段令一名其他魏势力角色失去其武将牌上的所有技能。",
 
 	qmsgswkjsgj_shenci_re_sunhanhua:'神赐界孙寒华',
 	qmsgswkjsgj_shenci_re_sunhanhua_prefix:'神赐界',
@@ -695,13 +701,20 @@ const translate = {
 	qmsgswkjsgj_shenci_miaojian1_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。你的【杀】均可视为刺【杀】',
 	qmsgswkjsgj_shenci_miaojian2:'妙剑·极',
 	qmsgswkjsgj_shenci_miaojian2_info:'出牌阶段限一次，你可以视为使用一张刺【杀】，你的【杀】均可视为刺【杀】。刺【杀】无次数和距离限制。',
-	qmsgswkjsgj_shenci_lianhua:'莲华',
-	qmsgswkjsgj_shenci_lianhua_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。',
-	qmsgswkjsgj_shenci_lianhua1:'莲华·改',
-	qmsgswkjsgj_shenci_lianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
-	qmsgswkjsgj_shenci_lianhua2:'莲华·极',
-	qmsgswkjsgj_shenci_lianhua2_info:'你成为其他角色牌的目标后，你可以摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果不为红桃，则取消之。',
-//由于剧情里，孙寒华在对局中被神赐，已升级的技能仍然延续神赐之前的等级，因此这里以及界孙寒华尽量也要和本体孙寒华互通
+	qmsgswkjsgj_shenci_shhlianhua:'莲华',
+	qmsgswkjsgj_shenci_shhlianhua_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。',
+	qmsgswkjsgj_shenci_shhlianhua1:'莲华·改',
+	qmsgswkjsgj_shenci_shhlianhua1_info:'你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。',
+	qmsgswkjsgj_shenci_shhlianhua2:'莲华·极',
+	qmsgswkjsgj_shenci_shhlianhua2_info:'你成为其他角色牌的目标后，你可以摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果不为红桃，则取消之。',
+	//由于剧情里，孙寒华在对局中被神赐，已升级的技能仍然延续神赐之前的等级，因此这里以及界孙寒华尽量也要和本体孙寒华互通
+
+	qmsgswkjsgj_shenci_dc_zhouxuān: "神赐周宣",
+	qmsgswkjsgj_shenci_dc_zhouxuān_prefix: "神赐",
+	qmsgswkjsgj_shenci_dcwumei: "寤寐",
+	qmsgswkjsgj_shenci_dcwumei_info: "每轮限一次。回合开始前，你可以令一名角色执行一个额外回合，此回合内，其造成的所有伤害+1。以此法进行的回合结束时，将场上所有角色的体力值改为此回合开始时的数值。",
+	qmsgswkjsgj_shenci_dczhanmeng: "占梦",
+	qmsgswkjsgj_shenci_dczhanmeng_info: "当你使用或打出牌时，你可以选择一项：1.上一回合内，若没有同名牌被使用过，你获得一张非伤害牌；2.下一回合内，当同名牌被使用后，你获得一张伤害牌；3.弃置一名其他角色两张牌，对其造成1点火焰伤害。",
 
 
 

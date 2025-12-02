@@ -36,13 +36,13 @@ const characterSort = {
 			'qmsgswkjsgj_re_caopi','qmsgswkjsgj_re_shamoke',
 			'qmsgswkjsgj_re_peixiu','qmsgswkjsgj_re_shichangshi',
 			'qmsgswkjsgj_re_jushou','qmsgswkjsgj_shen_huatuo',
-
+			'qmsgswkjsgj_pot_yuji',
 
 
 			//神赐
 			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_re_duyu',
 			'qmsgswkjsgj_shenci_wu_luxun','qmsgswkjsgj_shenci_sb_caopi',
-			'qmsgswkjsgj_shenci_re_sunhanhua',
+			'qmsgswkjsgj_shenci_re_sunhanhua','qmsgswkjsgj_shenci_dc_zhouxuān',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',

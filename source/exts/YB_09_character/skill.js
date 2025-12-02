@@ -4031,7 +4031,7 @@ const skill = {
 		},
 	},
 	North_shh_qingsi:{
-		audio:'miaojian',
+		audio:"miaojian",
 		trigger:{player:['useCard','respond']},
 		filter:function(event,player){
 			return get.color(event.card)=='red';

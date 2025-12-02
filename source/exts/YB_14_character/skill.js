@@ -1331,6 +1331,7 @@ const skill = {
 			event.result = player.choosePlayerCard(player, 'he')
 				.set('prompt2', '是否展示一张牌警示' + get.translation(trigger.player) + '？')
 				.set('ai', function (card) {
+					var player =player||_status.event.player;
 					var att = get.attitude(player, trigger.player);
 					if (att > 0) {
 						// var cards = player.getCards('he');

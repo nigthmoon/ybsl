@@ -956,4 +956,16 @@ const YBSL_special = function () {
 		})
 
 	}
+	{//神赐武陆逊
+		get.ZC_playerCards = function(player,num){
+			let count = 1;
+			if (typeof num == "number") {
+				count = Math.max(
+					1,
+					player.countCards("h", card => get.number(card) == num)
+				);
+			}
+			return count;
+		}
+	}
 }

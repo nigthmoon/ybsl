@@ -23,13 +23,20 @@ const YBSL_ybslf = function () {
 			let cards = [];
 			let str = '遗计';
 			let num;
+			let tag='';
 			let fun=function(card, player, target){return true};
 			// 遍历输入的元素，根据类型赋值
 			args.forEach(arg => {
 				if (typeof arg === 'object') {
 					cards = arg; // 如果是数组，赋值给 cards
 				} else if (typeof arg === 'string') {
-					str = arg; // 如果是字符串，赋值给 str
+					if(arg.startsWith('tag:')){
+						tag = arg.slice(4);
+					}
+					else {
+						str = arg;
+					}
+					// str = arg; // 如果是字符串，赋值给 str
 				} else if (typeof arg === 'number') {
 					num = arg; // 如果是数字，赋值给 num
 				} else if (typeof arg ==='function') {
@@ -46,6 +53,7 @@ const YBSL_ybslf = function () {
 			next.cards = cards;
 			next.number = num;
 			next.fun = fun;
+			next.tag = tag;
 			next.setContent('YB_yiji');
 			next.str = str;
 			return next;
@@ -55,6 +63,7 @@ const YBSL_ybslf = function () {
 			let num = event.number;
 			let num2 = cards.length - num;
 			let str = event.str;
+			let tag = event.tag;
 			const fun = event.fun||function(card, player, target){return true};
 			if (_status.connectMode)
 				game.broadcastAll(function () {
@@ -118,7 +127,9 @@ const YBSL_ybslf = function () {
 			game.loseAsync({
 				gain_list: list,
 				giver: player,
-				animate: "draw",
+				animate: "give",
+				gaintag:[tag],
+
 			}).setContent("gaincardMultiple");
 			event.result = list;
 			

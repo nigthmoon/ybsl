@@ -96,6 +96,9 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				["qmsgswkjsgj_pot_taishici_shadow4", ['img:image/character/pot_taishici_shadow4.jpg',"die:pot_taishici"]],
 			],
 
+			qmsgswkjsgj_pot_yuji: [
+				["qmsgswkjsgj_pot_yuji_shadow", ['img:image/character/pot_yuji_shadow.jpg',"die:pot_yuji"]]
+			],
 		},
 	}; 
 	// for(var i in sgstrxs.character){

@@ -21,6 +21,39 @@ const dynamicTranslate = {//动态翻译
 			return str+str2+'<span class=thundertext>'+strwind+'</span>'+'；'+strthunder+'。';
 		}
 	},
+
+	
+	qmsgswkjsgj_miaojian(player) {
+		return [
+			"出牌阶段限一次，你可以将一张基本牌当作刺【杀】使用，该刺【杀】不计入次数限制。",
+			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制。",
+			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。"
+		][player.countMark("qmsgswkjsgj_miaojian")];
+	},
+	qmsgswkjsgj_shhlianhua(player) {
+		return [
+			"你成为其他角色【杀】的目标后，你摸一张牌，然后进行一次判定，若结果为黑桃，则取消之。",
+			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。",
+			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。"
+		][player.countMark("qmsgswkjsgj_shhlianhua")];
+	},
+
+	qmsgswkjsgj_shenci_miaojian(player) {
+		return [
+			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。",
+			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。你的【杀】均可视为刺【杀】",
+			"出牌阶段限一次，你可以视为使用一张刺【杀】，你的【杀】均可视为刺【杀】。刺【杀】无次数和距离限制。"
+		][player.countMark("qmsgswkjsgj_shenci_miaojian")];
+	},
+	qmsgswkjsgj_shenci_shhlianhua(player) {
+		return [
+			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。",
+			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。",
+			"你成为其他角色牌的目标后，你可以摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果不为红桃，则取消之。"
+		][player.countMark("qmsgswkjsgj_shenci_shhlianhua")];
+	},
+
+
 	qmsgswkjsgj_potkuanggu:function(player){
         if (player.getStorage("potkuanggu", 0)) {
 			return lib.translate["qmsgswkjsgj_potkuanggu_pot_weiyan_achieve_info"];
@@ -65,6 +98,9 @@ const dynamicTranslate = {//动态翻译
 		return str;
 	},
 
+	qmsgswkjsgj_shenci_dczhangcai(player) {
+		return "当你失去一张" + (player.hasSkill("qmsgswkjsgj_shenci_dczhangcai_all") ? "" : "点数为8的") + "牌时，你可以摸X张牌（X为你手牌区里" + (player.hasSkill("qmsgswkjsgj_shenci_dczhangcai_all") ? "与此牌点数相同" : "点数为8") + "的牌数且至少为1）。";
+	},
 
 
 
@@ -89,14 +125,14 @@ const dynamicTranslate = {//动态翻译
 			"出牌阶段限一次，你可以使用[杀]当做一张不限次数的[刺杀]使用，或将一张锦囊牌当做[无中生有]使用。",
 			"出牌阶段限两次，你可以将一张基本牌当做一张不限次数的[刺杀]使用，或将一张非基本牌当做[无中生有]使用。",
 			"出牌阶段限三次，你可以视为使用一张不限次数的[刺杀]或视为使用一张[无中生有]。"
-		][player.countMark("miaojian")];
+		][player.countMark("sgsxjxfzmnl_miaojian")];
 	},
 	sgsxjxfzmnl_shhlianhua(player) {
 		return [
 			"你成为其他角色使用[杀]的目标时，你摸一张牌。",
 			"你成为其他角色使用[杀]的目标时，你摸一张牌，然后进行一次判定，若判定结果为黑色，则取消之。",
 			"你成为其他角色使用牌的目标时，你摸一张牌，然后随机弃该角色一张牌，若该角色没有牌则取消之，若该角色成功弃牌则进行判定，若判定结果为黑色，取消之。"
-		][player.countMark("shhlianhua")];
+		][player.countMark("sgsxjxfzmnl_shhlianhua")];
 	},
 
 
@@ -116,18 +152,4 @@ const dynamicTranslate = {//动态翻译
 
 
 	
-	qmsgswkjsgj_miaojian(player) {
-		return [
-			"出牌阶段限一次，你可以将一张基本牌当作刺【杀】使用，该刺【杀】不计入次数限制。",
-			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制。",
-			"出牌阶段限一次，你可以视为使用一张刺【杀】，该刺【杀】不计入次数限制且无距离限制。"
-		][player.countMark("miaojian")];
-	},
-	qmsgswkjsgj_lianhua(player) {
-		return [
-			"你成为其他角色【杀】的目标后，你摸一张牌，然后进行一次判定，若结果为黑桃，则取消之。",
-			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑桃，则取消之。",
-			"你成为其他角色【杀】的目标后，你摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果为黑色，则取消之。"
-		][player.countMark("shhlianhua")];
-	},
 }

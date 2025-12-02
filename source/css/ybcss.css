@@ -298,3 +298,66 @@ span[data-nature="YB_rockmm"] {
     top: 327px;
 }
 
+.player>.zb_10202{
+	background-image: url(../../image/card/zb_10202.png);
+	left:10%;
+    width: 30%; 
+    aspect-ratio: 1/1;
+	display: flex;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(var(--zb_10202-grayscale, 0%));
+    transition: filter 0.3s ease;
+}
+/* .player>.huimu:before{
+	background-color: darkgrey;
+	opacity: 0.6;
+
+} */
+/* .player>.touming:before{
+	background-color: darkgrey;
+	opacity: 0;
+
+} */
+/* .player.zb_10202:before{
+	opacity: 0.6;
+} */
+
+/*----------------定义亮灰色文字样式----------------*/
+.bright-gray-text {
+	color: #d3d3d3; /* 亮灰色 */
+	text-shadow: 
+		-1px -1px 0 #000,  /* 左上黑色描边 */
+		1px -1px 0 #000,   /* 右上黑色描边 */
+		-1px 1px 0 #000,   /* 左下黑色描边 */
+		1px 1px 0 #000,    /* 右下黑色描边 */
+		0 -1px 0 #000,     /* 上黑色描边 */
+		0 1px 0 #000,      /* 下黑色描边 */
+		-1px 0 0 #000,     /* 左黑色描边 */
+		1px 0 0 #000;      /* 右黑色描边 */
+	font-weight: bold; /* 加粗字体使效果更明显 */
+}
+
+/* 简化版亮灰色文字样式 - 使用stroke效果 */
+.bright-gray-text-simple {
+	color: #d3d3d3; /* 亮灰色 */
+	text-shadow: 
+		-2px -2px 0 #000,
+		2px -2px 0 #000,
+		-2px 2px 0 #000,
+		2px 2px 0 #000;
+	font-weight: bold;
+}
+
+/* 轻量版亮灰色文字样式 - 单层描边 */
+.bright-gray-text-light {
+	color: #e0e0e0; /* 更亮的灰色 */
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+	font-weight: bold;
+}
+.sgsxjxfzmnl {
+	color:lightslategrey; /* 更亮的灰色 */
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+	font-weight: bold;
+}
