@@ -2,60 +2,6 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { dynamicTranslate }
 
 const dynamicTranslate = {//动态翻译
-	ybsl_xianyin:function(player){//弦音
-		var str0=`转换技，（括号内的阴阳为${get.poptip('ybsl_luanming')}的形态）<br/>`;
-		var str1='阳（阳）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
-		var str2='阳（阴）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；';
-		var str3='阳（阳）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；';
-		var str4='阴（阴）：当你因弃置而失去一张方块牌时，你可令一名角色下个摸牌阶段少摸一张牌。';
-		var str5='<span class="bluetext">';//蓝色字符
-		var str6='<span class=yellowtext>';//黄色字符
-		var str7='<span class=firetext>';//红色字符
-		var str8='</span>';
-		var str9='（若你没有鸾鸣或鸾鸣已使用则改为黑色牌）<br/>';
-		var str10='（若你没有鸾鸣或鸾鸣已使用则改为红色牌）<br/>';
-		if(player.storage.ybsl_xianyin==true) {//弦音阳
-			if(player.storage.ybsl_luanming==true){//鸾鸣阳
-				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
-					var str=str0+str1+str9+str6+str2+str8+str9+str3+str10+str5+str4+str8+str10;//√
-				}
-				else{//--------------------------------无鸾鸣
-					var str=str0+str1+str9+str6+str2+str9+str8+str3+str10+str5+str4+str10+str8;//√
-				}
-			}
-			else{//-------------------------------------鸾鸣阴
-				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
-					var str=str0+str6+str1+str8+str9+str2+str9+str5+str3+str8+str10+str4+str10;//√
-				}
-				else{//--------------------------------无鸾鸣
-					var str=str0+str6+str1+str9+str8+str2+str9+str5+str3+str10+str8+str4+str10;//√
-				}
-			}
-		}
-		else{//---------------------------------弦音阴
-			if(player.storage.ybsl_luanming==true){//鸾鸣阳
-				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
-					var str=str0+str1+str9+str5+str2+str8+str9+str3+str10+str6+str4+str8+str10;
-				}
-				else{//------------------------------无鸾鸣
-					var str=str0+str1+str9+str5+str2+str9+str8+str3+str10+str6+str4+str10+str8;
-				}
-			}
-			else{//---------------------------------鸾鸣阴
-				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
-					var str=str0+str5+str1+str8+str9+str2+str9+str6+str3+str8+str10+str4+str10;
-				}
-				else{//-------------------------------无鸾鸣
-					var str=str0+str5+str1+str9+str8+str2+str9+str6+str3+str10+str8+str4+str10;
-				}
-			}
-		}
-		return str;
-	},
-	ybsl_luanming:function(player){//鸾鸣
-		if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次。</span><br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用【桃】选择其为目标！</span>';
-		return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。<br><span class=yellowtext>注意：此技能不能用于响应其他牌，更不能在别人濒死时用【桃】选择其为目标！</span>';
-	},
 	yb001_minglun:function(player){
 		var str='锁定技，回合开始时，你展示牌堆顶一张牌并放在武将牌上，至多放四张。根据“命轮”的花色，你视为拥有技能：<br>';
 		var list={'spade':`黑桃：${get.poptip('yb001_minglun_spade')}`,'heart':`红桃：${get.poptip('yb001_minglun_heart')}`,'club':`<br>梅花：${get.poptip('yb001_minglun_club')}`,'diamond':`方块：${get.poptip('yb001_minglun_diamond')}`};

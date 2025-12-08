@@ -1029,11 +1029,11 @@ const skill = {
 		return str;
 			},
 		},
-		init:function(player){
-			player.storage.ybsl_xianyin=false;
-			// player.storage.ybsl_xianyin=true;
-			// player.changeZhuanhuanji('ybsl_xianyin');
-		},
+		// init:function(player){
+		// 	player.storage.ybsl_xianyin=false;
+		// 	// player.storage.ybsl_xianyin=true;
+		// 	// player.changeZhuanhuanji('ybsl_xianyin');
+		// },
 		marktext:'☯',
 		trigger:{player:'loseAfter'},
 		filter:function(event,player){
@@ -1159,35 +1159,59 @@ const skill = {
 		zhuanhuanji:true,
 		mark:true,
 		intro:{
-			content:function(storage,player){//<br><span class="yellowtext">注意：此技能不能用于响应其他牌，更不能在别人濒死时用桃选择其为目标！</span>
-				if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次。</span>';
-				return '转换技，每回合限一次，当你可以使用牌时，你可以弃置一黑一红共两张牌，然后：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
+			content:function(storage,player){
+				if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次</span>。';
+				return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
 			},
 		},
-		init:function(player){
-			player.storage.ybsl_luanming=false;
-			// player.storage.ybsl_luanming=true;
-			// player.changeZhuanhuanji('ybsl_luanming');
-		},
+		// init:function(player){
+		// 	player.storage.ybsl_luanming=false;
+		// 	// player.storage.ybsl_luanming=true;
+		// 	// player.changeZhuanhuanji('ybsl_luanming');
+		// },
 		marktext:'☯',
 		usable:1,
 		enable:'chooseToUse',
 		position:'hs',
-		filterCard:function(card){
-			var color=get.color(card);
-			for(var i=0;i<ui.selected.cards.length;i++){
-				if(get.color(ui.selected.cards[i])==color) return false;
+		filterCard:function(card,player){
+			// var player=_status.event.player;
+			if(player.storage.ybsl_luanming==true){
+				var colro = 'red';
 			}
-			return get.color(card)!='none';
+			else {
+				var colro = 'black';
+			}
+			// var evt=lib.filter.filterCard;
+			// if(event.filterCard) evt=event.filterCard;
+			// if(lib.filter.canBeDiscarded(card,player)){
+				var color=get.color(card);
+				for(var i=0;i<ui.selected.cards.length;i++){
+					if(get.color(ui.selected.cards[i])==color) return false;
+				}
+				// if(color==colro)return evt(card,player);
+				return get.color(card)!='none';
+			// }
+			// if(evt(card,player,event)&&get.color(card)==colro){
+			// }
 			// return true;
 		},
 		selectCard:2,
 		complexCard:true,
 		discard:true,
+		lose:true,
 		ignoreMod:true,
 		precontent:function(){
 			'step 0'
 			player.discard(event.result.cards)
+			'step 1'
+			if(player.storage.ybsl_luanming==true){var color='red';}//阳，红色
+			else{var color='black';}//阴，黑色
+			for(var i of event.result.cards){
+				if(get.color(i)==color){
+					event.result.cards=[i];
+				}
+			}
+			'step 2'
 			player.changeZhuanhuanji('ybsl_luanming')
 			// event.card.effectCount++;
 		// 	if(player.storage.ybsl_luanming==true){event.color='red';}//阳，红色

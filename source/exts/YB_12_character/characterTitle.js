@@ -63,6 +63,7 @@ const characterTitle = {//称号
 	qmsgswkjsgj_re_jushou:'<font color=cyan></font>',
 	qmsgswkjsgj_shen_huatuo:'<font color=cyan></font>',
 	qmsgswkjsgj_pot_yuji:'<font color=cyan></font>',
+	qmsgswkjsgj_re_caomao:'<font color=cyan></font>',
 
 	qmsgswkjsgj_shenci_wu_zhugeliang:'<font color=yellow></font>',
 	qmsgswkjsgj_shenci_re_duyu:'<font color=yellow></font>',
@@ -70,6 +71,7 @@ const characterTitle = {//称号
 	qmsgswkjsgj_shenci_sb_caopi:'<font color=yellow></font>',
 	qmsgswkjsgj_shenci_re_sunhanhua:'<font color=yellow></font>',
 	qmsgswkjsgj_shenci_dc_zhouxuān:'<font color=yellow></font>',
+	qmsgswkjsgj_shenci_caomao:'<font color=yellow></font>',
 
 
 

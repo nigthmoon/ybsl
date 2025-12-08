@@ -152,6 +152,10 @@ const character = { //武将格式 :
 	
 	sp_key_umi:['female','key',3,['caiyi','guili'],['rankAdd:epic','rankS:a','name:加藤|うみ','linkTo:key_umi']],
 	
+	//---------------------名将改写
+	// 'dzsl_luxun':['male','wu',3,['dzsl_shenhuo','dzsl_buxi','dzsl_shennu'],['forbidai','rankAdd:junk','rankS:d','name:陆|逊']],//陆逊
+	'ybsl_zhouyuxiaoqiao':['double','wu',4,['ybsl_xianyin','ybsl_luanming'],['rankAdd:epic','rankS:a','name:周|瑜-小|乔']],//周瑜小乔
+	// 'ybnb_guanyinping':['female','shu',4,['ybsl_kuwangxx','ybsl_xueji'],['rankAdd:legend','rankS:s','name:关|银屏']],//关银屏
 
 	
 	ybslshen_pangtong:['male','shen',3,['ybsl_ptchiling','ybsl_ptqiwu'],['rankAdd:epic','name:庞|统','linkTo:shen_pangtong']],

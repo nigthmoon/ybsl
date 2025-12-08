@@ -31,7 +31,7 @@ const skill = {
 					var skill = lib.skill[j];
 					if (!skill || skill.zhuSkill || banned.includes(j)) continue;
 					if (skill.ai && (skill.ai.combo || skill.ai.neg)) continue;
-					const infox = get.plainText(get.skillInfoTranslation(j));
+					const infox = get.skillInfoTranslation(j);
 					if (bannedInfo.some(item => infox.includes(item))) continue;
 					const info = get.plainText(get.translation(j));
 					if ("龙".split("/").some(item => info.includes(item))) skills.add(j);

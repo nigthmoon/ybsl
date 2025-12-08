@@ -2,6 +2,62 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { dynamicTranslate }
 
 const dynamicTranslate = {//动态翻译
+    
+	ybsl_xianyin:function(player){//弦音
+		var str0=`转换技，（括号内的阴阳为${get.poptip('ybsl_luanming')}的形态）<br/>`;
+		var str1='阳（阳）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
+		var str2='阳（阴）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；';
+		var str3='阳（阳）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；';
+		var str4='阴（阴）：当你因弃置而失去一张方块牌时，你可令一名角色下个摸牌阶段少摸一张牌。';
+		var str5='<span class="bluetext">';//蓝色字符
+		var str6='<span class=yellowtext>';//黄色字符
+		var str7='<span class=firetext>';//红色字符
+		var str8='</span>';
+		var str9='（若你没有鸾鸣或鸾鸣已使用则改为黑色牌）<br/>';
+		var str10='（若你没有鸾鸣或鸾鸣已使用则改为红色牌）<br/>';
+		if(player.storage.ybsl_xianyin==true) {//弦音阳
+			if(player.storage.ybsl_luanming==true){//鸾鸣阳
+				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
+					var str=str0+str1+str9+str6+str2+str8+str9+str3+str10+str5+str4+str8+str10;//√
+				}
+				else{//--------------------------------无鸾鸣
+					var str=str0+str1+str9+str6+str2+str9+str8+str3+str10+str5+str4+str10+str8;//√
+				}
+			}
+			else{//-------------------------------------鸾鸣阴
+				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
+					var str=str0+str6+str1+str8+str9+str2+str9+str5+str3+str8+str10+str4+str10;//√
+				}
+				else{//--------------------------------无鸾鸣
+					var str=str0+str6+str1+str9+str8+str2+str9+str5+str3+str10+str8+str4+str10;//√
+				}
+			}
+		}
+		else{//---------------------------------弦音阴
+			if(player.storage.ybsl_luanming==true){//鸾鸣阳
+				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
+					var str=str0+str1+str9+str5+str2+str8+str9+str3+str10+str6+str4+str8+str10;
+				}
+				else{//------------------------------无鸾鸣
+					var str=str0+str1+str9+str5+str2+str9+str8+str3+str10+str6+str4+str10+str8;
+				}
+			}
+			else{//---------------------------------鸾鸣阴
+				if(player.hasSkill('ybsl_luanming')&&!player.getStat('skill').ybsl_luanming){//拥有鸾鸣
+					var str=str0+str5+str1+str8+str9+str2+str9+str6+str3+str8+str10+str4+str10;
+				}
+				else{//-------------------------------无鸾鸣
+					var str=str0+str5+str1+str9+str8+str2+str9+str6+str3+str10+str8+str4+str10;
+				}
+			}
+		}
+		return str;
+	},
+	ybsl_luanming:function(player){//鸾鸣
+		if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次</span>。';
+		return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
+	},
+    
 	ybsl_benzhan:function(player){
         if (player.storage.ybsl_benzhan==true){
             return '转换技，<span class="bluetext">阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；</span>阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';

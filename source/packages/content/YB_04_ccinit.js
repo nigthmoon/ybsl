@@ -39,7 +39,7 @@ const YBSL_ccinit = function(){
 					}
 				});
 			});
-			game.getFileList('extension/十周年UI/image/card',(folders,files)=>{
+			game.getFileList('extension/十周年UI/image/card/caise',(folders,files)=>{
 				var YBtenpng = files;
 				game.getFileList('extension/夜白神略/image/十周年卡牌',(folders,files)=> {
 					// var decoration=[
@@ -69,7 +69,7 @@ const YBSL_ccinit = function(){
 						if(!YBtenpng.includes(image)){
 							if(game.readFile&&game.writeFile){
 								game.readFile('extension/夜白神略/image/十周年卡牌/'+image,(data) => {
-									game.writeFile( data,'extension/十周年UI/image/card',image,()=>{});
+									game.writeFile( data,'extension/十周年UI/image/card/caise',image,()=>{});
 								},(err)=>console.log(err));
 							}
 						}

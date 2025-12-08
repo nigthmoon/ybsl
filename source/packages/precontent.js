@@ -914,7 +914,7 @@ export async function precontent() {
 									if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
 								}
 			
-								YB_intro.add('<div><div class="skill">' + translation + "</div><div>" + get.skillInfoTranslation(skills[i]) + "</div></div>");
+								YB_intro.add('<div><div class="skill">' + translation + "</div><div>" + get.skillInfoTranslation(skills[i],null, false) + "</div></div>");
 			
 								if (lib.translate[skills[i] + "_append"]) {
 									YB_intro._place_text = YB_intro.add('<div class="text">' + lib.translate[skills[i] + "_append"] + "</div>");
@@ -1105,6 +1105,7 @@ export async function precontent() {
 		}
 	})
 	//嗨梨相关的整理完后挪到对应将包
+	//蓄力点改蓝条
 	lib.arenaReady.push(function () {
 		if(lib.config.extension_夜白神略_夜白神略的蓄力点改蓝条==true){
 			/**

@@ -132,7 +132,7 @@ const characterIntro = {
 	'ybsl_078zhuyahai':'<span class=thundertext>朱涯海，记2023年3月5日之6日梦见的第二个场景。这次载入的梦境是，我在一间教室里参加宴会，同时还有若干人，不过仅剩下的印象只有两人，一个跑的飞快，另一个是宴会的举办者。都不知道名。</span><span class=yellowtext>举办者被我命名为朱涯海。</span><span class=thundertext>朱涯海给我一种深藏不露的感觉，却莫名深得人们的信任。</span>',
 	'ybsl_079xiaoxin':'<span class=thundertext>小新，原型保密，事迹暂无。</span>',
 	'ybsl_080phoenix':'<span class=thundertext>凤，原型为作者高二那年在路边看到的一只野鸡。当时我就在幻想，要是我把它捡回来养着，以后能不能变凤凰。</span>',
-	'ybsl_081chenli':'<span class=thundertext>陈丽，。</span>',
+	'ybsl_081chenli':'<span class=thundertext>陈丽，2023年4月26日晚梦。</span>',
 	'ybsl_081chensi':'<span class=thundertext>陈思，。</span>',
 	
 	'ybsl_083xiaozhu':'<span class=thundertext>小筑，记2023年5月30日之31日梦。由于未能及时记录导致梦境遗忘较多，只记得这个姑娘擅长搭建建筑，但被风一吹就散架恢复原样。</span>',

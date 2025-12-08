@@ -3,47 +3,43 @@ export { characterCopyright }
 
 const characterCopyright = {
 		
-	ybmjz_caocao:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_simayi:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_xiahoudun:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhangliao:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_xuzhu:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_guojia:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhenji:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
+	ybmjz_caocao:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_simayi:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_xiahoudun:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhangliao:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_xuzhu:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_guojia:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhenji:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
 
-	ybmjz_liubei:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_guanyu:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhangfei:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhugeliang:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhaoyun:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_machao:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_huangyueying:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
+	ybmjz_liubei:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_guanyu:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhangfei:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhugeliang:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhaoyun:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_machao:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_huangyueying:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
 
-	ybmjz_sunquan:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_ganning:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_lvmeng:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_huanggai:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_zhouyu:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_daqiao:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_luxun:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_sunshangxiang:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
+	ybmjz_sunquan:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_ganning:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_lvmeng:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_huanggai:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_zhouyu:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_daqiao:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_luxun:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_sunshangxiang:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
 
-	ybmjz_huatuo:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_lvbu:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
-	ybmjz_diaochan:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方', 
+	ybmjz_huatuo:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_lvbu:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
+	ybmjz_diaochan:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'], 
 
-	ybmjz_liuyan:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',
-	ybmjz_zhangqiying:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//张琪瑛
-	ybmjz_shen_zhugeliang:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//诸葛亮
-	ybmjz_majun:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//马钧
-	ybmjz_sunluyu:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：喵曹金玉<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方',//孙鲁育
+	ybmjz_liuyan:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'],
+	ybmjz_zhangqiying:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'],//张琪瑛
+	ybmjz_shen_zhugeliang:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'],//诸葛亮
+	ybmjz_majun:['夜白名将传','编号暂无','夜白','夜白','三国杀官方','三国杀官方','❃'],//马钧
+	ybmjz_sunluyu:['夜白名将传','编号暂无','喵曹金玉','夜白','三国杀官方','三国杀官方','❃'],//孙鲁育
 
 
 
-	yb_key_hina:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//佐藤雏
-	ybsl_youta:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//
-	yb_key_kotori:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//神户小鸟
-	yb_key_kagari:'<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：无名杀本体<br>❃配音：无名杀本体（若有）',//篝
 	
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔

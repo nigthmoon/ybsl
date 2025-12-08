@@ -587,6 +587,35 @@ const translate = {
 	qmsgswkjsgj_wuqinxi_he_bg: "鹤",
 	qmsgswkjsgj_wuqinxi_he_info: "当你获得此效果时，你摸五张牌。",
 
+	qmsgswkjsgj_re_caomao:'界曹髦',
+	qmsgswkjsgj_re_caomao_prefix:'界',
+	qmsgswkjsgj_mbqianlong:'潜龙',
+	qmsgswkjsgj_mbqianlong_info:`${get.poptip("rule_chihengji")}。①游戏开始时，你获得20枚“道心”标记。②当你得到牌后/受到1点伤害后/造成1点伤害后，你获得5/15/15枚“道心”（上限为99枚）。③若你的“道心”数不小于25/50/75/99，你视为拥有${get.poptip("qmsgswkjsgj_mbcmqingzheng")}/${get.poptip("qmsgswkjsgj_mbcmjiushi")}/${get.poptip("qmsgswkjsgj_mbcmfangzhu")}/${get.poptip("qmsgswkjsgj_mbjuejin")}。`,
+	qmsgswkjsgj_mbcmqingzheng: "清正",
+	qmsgswkjsgj_mbcmqingzheng_info: `${get.poptip("rule_chihengji")}。出牌阶段开始时，你可以弃置一种花色的所有手牌，并观看一名有手牌的其他角色的手牌，你弃置其中一种花色的所有牌。然后对其造成1点伤害。`,
+	qmsgswkjsgj_mbcmjiushi: "酒诗",
+	qmsgswkjsgj_mbcmjiushi_info: `${get.poptip("rule_chihengji")}。①当你需要使用【酒】时，若你的武将牌正面向上，你可以翻面，视为使用一张【酒】。②当你受到伤害后，若你武将牌背面朝上且未因此次伤害发动过〖酒诗〗，你可以翻面。③当你翻面后，你获得牌堆里的一张锦囊牌。`,
+	qmsgswkjsgj_mbcmfangzhu: "放逐",
+	qmsgswkjsgj_mbcmfangzhu_info: `${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以选择一名其他角色，选择一项：⒈令其不能使用手牌中的一种类型牌直到其回合结束；⒉令其所有非Charlotte技能失效直到其回合结束。`,
+	qmsgswkjsgj_mbjuejin: "决进",
+	qmsgswkjsgj_mbjuejin_info: `${get.poptip("rule_chihengji")}，限定技。出牌阶段，你可以令所有角色依次将体力调整至1并获得X点护甲（X为一名角色以此法减少的体力值且你以此法获得的护甲数额外+2）。然后你将牌堆、弃牌堆、场上及所有角色手牌中的【闪】、【桃】和【酒】移出游戏且增加全局技能“${get.poptip({
+		id: "juejin_xiangsicunwei",
+		name: "向死存魏",
+		type: "character",
+		info: "当有牌进入弃牌堆后，系统将这些牌中的【闪】、【桃】和【酒】移出游戏。",
+	})}”。（全民三国杀我开局神郭嘉的界曹髦）`,
+	qmsgswkjsgj_mbweitong:'卫统',
+	qmsgswkjsgj_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_mbqianlong")}，你获得X点道心值（X为其他魏势力角色数*20）（全民三国杀我开局神郭嘉的界曹髦）。`,
+
+
+
+
+
+
+
+
+
+
 
 
 	qmsgswkjsgj_mb_luyusheng: "界势陆郁生",
@@ -716,6 +745,27 @@ const translate = {
 	qmsgswkjsgj_shenci_dczhanmeng: "占梦",
 	qmsgswkjsgj_shenci_dczhanmeng_info: "当你使用或打出牌时，你可以选择一项：1.上一回合内，若没有同名牌被使用过，你获得一张非伤害牌；2.下一回合内，当同名牌被使用后，你获得一张伤害牌；3.弃置一名其他角色两张牌，对其造成1点火焰伤害。",
 
+	qmsgswkjsgj_shenci_caomao:'神赐曹髦',
+	qmsgswkjsgj_shenci_caomao_prefix:'神赐',
+	qmsgswkjsgj_shenci_mbqianlong:'潜龙',
+	qmsgswkjsgj_shenci_mbqianlong_info:`${get.poptip("rule_chihengji")}。①游戏开始时，你获得30枚“道心”标记。②当你得到牌后/受到1点伤害后/造成1点伤害后，你获得10/20/20枚“道心”（上限为99枚）。③若你的“道心”数不小于20/40/60/80/99，你视为拥有${get.poptip("qmsgswkjsgj_shenci_mbcmqingzheng")}/${get.poptip("qmsgswkjsgj_shenci_mbcmjiushi")}/${get.poptip("qmsgswkjsgj_shenci_mbcmfangzhu")}/${get.poptip("qmsgswkjsgj_shenci_cmhuituo")}/${get.poptip("qmsgswkjsgj_shenci_mbjuejin")}。`,
+	qmsgswkjsgj_shenci_mbcmqingzheng: "清正",
+	qmsgswkjsgj_shenci_mbcmqingzheng_info: `${get.poptip("rule_chihengji")}。出牌阶段开始时，你可以弃置一张手牌，并观看一名有手牌的其他角色的手牌，你弃置其中一种花色的所有牌。然后对其造成1点伤害。`,
+	qmsgswkjsgj_shenci_mbcmjiushi: "酒诗",
+	qmsgswkjsgj_shenci_mbcmjiushi_info: `${get.poptip("rule_chihengji")}。①当你需要使用【酒】时，若你的武将牌正面向上，你可以翻面，视为使用一张【酒】。②当你受到伤害后，若你武将牌背面朝上且未因此次伤害发动过〖酒诗〗，你可以翻面。③当你翻面后，你获得牌堆或弃牌堆中的一张指定牌名的锦囊牌。`,
+	qmsgswkjsgj_shenci_mbcmfangzhu: "放逐",
+	qmsgswkjsgj_shenci_mbcmfangzhu_info: `${get.poptip("rule_chihengji")}。出牌阶段限两次，你可以选择一名其他角色，选择一项：⒈令其不能使用手牌中的一种类型牌直到其回合结束；⒉令其所有非Charlotte技能失效直到其回合结束；3.其翻面。`,
+	qmsgswkjsgj_shenci_cmhuituo: "恢拓",
+	qmsgswkjsgj_shenci_cmhuituo_info: `${get.poptip("rule_chihengji")}。当你受到1点伤害后，你可以令一名角色进行一次判定，若结果为红色，该角色回复X点体力；若结果为黑色，该角色摸X张牌。（X为此次伤害的伤害点数）`,
+	qmsgswkjsgj_shenci_mbjuejin: "决进",
+	qmsgswkjsgj_shenci_mbjuejin_info: `${get.poptip("rule_chihengji")}，限定技。出牌阶段，你可以令任意角色依次将体力调整至1并获得X点护甲（X为一名角色以此法减少的体力值且你以此法获得的护甲数额外+2）。然后你将牌堆、弃牌堆、场上及所有角色手牌中的【闪】、【桃】和【酒】移出游戏且增加全局技能“${get.poptip({
+		id: "juejin_xiangsicunwei",
+		name: "向死存魏",
+		type: "character",
+		info: "当有牌进入弃牌堆后，系统将这些牌中的【闪】、【桃】和【酒】移出游戏。",
+	})}”，若你因此失去手牌，你可以摸等量的牌，并反转${get.poptip("qmsgswkjsgj_shenci_cmhuituo")}的判定效果。（全民三国杀我开局神郭嘉的神赐曹髦）`,
+	qmsgswkjsgj_shenci_mbweitong:'卫统',
+	qmsgswkjsgj_shenci_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_shenci_mbqianlong")}，你获得X点道心值（X为其他魏势力角色数*20）（全民三国杀我开局神郭嘉的神赐曹髦）。`,
 
 
 

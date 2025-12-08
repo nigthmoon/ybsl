@@ -145,7 +145,7 @@ const character = { //武将格式 :
 	// sgsxjxfzmnl_scs_gaowang_dead:['male','qun',0,['sgsxjxfzmnl_scsmiaoyu'],['unseen','sex:male_castrated','tempname:scs_gaowang','linkTo:scs_gaowang','name:高|望']],
 
 	qmsgswkjsgj_shen_huatuo:['male','shen',3,['qmsgswkjsgj_wuling','youyi','qmsgswkjsgj_qingnang','qmsgswkjsgj_jijiu'],['rankAdd:legend','rankS:s','linkTo:shen_huatuo','YB_mjz:shen_huatuo','tempname:shen_huatuo','qun']],
-
+	qmsgswkjsgj_re_caomao:['male','wei',3,['qmsgswkjsgj_mbqianlong','qmsgswkjsgj_mbweitong'],['zhu','rankAdd:legend','rankS:s','linkTo:mb_caomao','YB_mjz:mb_caomao','tempname:mb_caomao']],
 
 
 
@@ -154,7 +154,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_pot_weiyan:['male','shu',4,['qmsgswkjsgj_potzhongao','qmsgswkjsgj_potzhuangshi','qmsgswkjsgj_potyinzhan'],['rankAdd:legend','rankS:s','linkTo:pot_weiyan','YB_mjz:pot_weiyan','tempname:pot_weiyan']],
 	qmsgswkjsgj_pot_taishici:['male','wu',4,['qmsgswkjsgj_pothanzhan','qmsgswkjsgj_potzhanlie','qmsgswkjsgj_potzhenfeng'],['rankAdd:legend','rankS:s','linkTo:pot_taishici','YB_mjz:pot_taishici','tempname:pot_taishici']],
 	qmsgswkjsgj_pot_yuji:['male','qun',3,["qmsgswkjsgj_potfuji", "qmsgswkjsgj_potdaozhuan"],['rankAdd:legend','rankS:s','linkTo:pot_yuji','YB_mjz:pot_yuji','tempname:pot_yuji']],
-
+	
 
 
 
@@ -167,7 +167,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_shenci_sb_caopi:['male','wei',3,['qmsgswkjsgj_shenci_sbxingshang','qmsgswkjsgj_shenci_sbfangzhu','qmsgswkjsgj_shenci_sbsongwei'],['zhu','rankAdd:legend','rankS:s','linkTo:sb_caopi','YB_mjz:sb_caopi','tempname:sb_caopi']],
 	qmsgswkjsgj_shenci_re_sunhanhua:['female','wu',3,['qmsgswkjsgj_shenci_chongxu','qmsgswkjsgj_shenci_miaojian','qmsgswkjsgj_shenci_shhlianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
 	qmsgswkjsgj_shenci_dc_zhouxuān:['male','wei',3,['qmsgswkjsgj_shenci_dcwumei','qmsgswkjsgj_shenci_dczhanmeng'],['rankAdd:legend','rankS:s','linkTo:dc_zhouxuān','YB_mjz:dc_zhouxuān','tempname:dc_zhouxuān']],
-
+	qmsgswkjsgj_shenci_caomao:['male','wei',3,['qmsgswkjsgj_shenci_mbqianlong','qmsgswkjsgj_shenci_mbweitong'],['zhu','rankAdd:legend','rankS:s','linkTo:mb_caomao','YB_mjz:mb_caomao','tempname:mb_caomao']],
 
 
 

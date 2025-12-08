@@ -3,10 +3,6 @@ export { character }
 
 /** @type { importCharacterConfig['character'] } */
 const character = { //武将格式 : 
-	//---------------------名将改写
-	// 'dzsl_luxun':['male','wu',3,['dzsl_shenhuo','dzsl_buxi','dzsl_shennu'],['forbidai','rankAdd:junk','rankS:d','name:陆|逊']],//陆逊
-	// 'ybsl_zhouyuxiaoqiao':['double','wu',4,['ybsl_xianyin','ybsl_luanming'],['rankAdd:epic','rankS:a','name:周|瑜-小|乔']],//周瑜小乔
-	// 'ybnb_guanyinping':['female','shu',4,['ybsl_kuwangxx','ybsl_xueji'],['rankAdd:legend','rankS:s','name:关|银屏']],//关银屏
 	//---------------------鬼神易的足迹
 	'dzsl_013yinji':['female','YB_memory',3,['dz017_shanwu','dz013_qingling'],['rankAdd:legend','rankS:s','name:尹|null','linkTo:ybsl_013yinji']],//尹姬（鬼神易版
 	'dzsl_014liutianyu':['male','YB_memory','3/6',['dz014_fuhua','dz014_xinsheng','dz014_xinkui','dz014_zaomeng'],['zhu','rankAdd:legend','rankS:s','name:夜|白','linkTo:ybsl_014liutianyu']],//夜白（鬼神易版

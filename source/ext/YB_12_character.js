@@ -99,6 +99,16 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			qmsgswkjsgj_pot_yuji: [
 				["qmsgswkjsgj_pot_yuji_shadow", ['img:image/character/pot_yuji_shadow.jpg',"die:pot_yuji"]]
 			],
+
+			
+			qmsgswkjsgj_mb_caomao: [
+				["qmsgswkjsgj_mb_caomao_shadow", ['img:image/character/mb_caomao_shadow.jpg',"die:mb_caomao"]],
+				["qmsgswkjsgj_mb_caomao_dead", ['img:image/character/mb_caomao_dead.jpg',"die:mb_caomao"]],
+			],
+			qmsgswkjsgj_shenci_caomao: [
+				["qmsgswkjsgj_shenci_caomao_shadow", ['img:image/character/mb_caomao_shadow.jpg',"die:mb_caomao"]],
+				["qmsgswkjsgj_shenci_caomao_dead", ['img:image/character/mb_caomao_dead.jpg',"die:mb_caomao"]],
+			],
 		},
 	}; 
 	// for(var i in sgstrxs.character){

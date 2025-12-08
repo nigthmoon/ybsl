@@ -101,7 +101,14 @@ const dynamicTranslate = {//动态翻译
 	qmsgswkjsgj_shenci_dczhangcai(player) {
 		return "当你失去一张" + (player.hasSkill("qmsgswkjsgj_shenci_dczhangcai_all") ? "" : "点数为8的") + "牌时，你可以摸X张牌（X为你手牌区里" + (player.hasSkill("qmsgswkjsgj_shenci_dczhangcai_all") ? "与此牌点数相同" : "点数为8") + "的牌数且至少为1）。";
 	},
-
+	qmsgswkjsgj_shenci_cmhuituo(player){
+		var list = [
+			'该角色回复X点体力',
+			'该角色摸X张牌'
+		];
+		var storage = player.countMark("qmsgswkjsgj_shenci_cmhuituo")%2;
+		return `${get.poptip("rule_chihengji")}。当你受到1点伤害后，你可以令一名角色进行一次判定，若结果为红色，${list[storage]}；若结果为黑色，${list[storage?0:1]}。（X为此次伤害的伤害点数）`
+	},
 
 
 
