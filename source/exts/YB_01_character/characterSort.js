@@ -50,10 +50,10 @@ const characterSort = {
 		ybsl_jxtp:[
 			'ybnb_034zhoulianyuan'
 		],
-		'ybsl_mjgx':[
-			'dzsl_luxun','ybsl_machao','ybsl_zhouyuxiaoqiao','ybsl_zhanghe',
-			'ybnb_guanyinping',
-		],
+		// 'ybsl_mjgx':[
+		// 	'dzsl_luxun','ybsl_machao','ybsl_zhouyuxiaoqiao','ybsl_zhanghe',
+		// 	'ybnb_guanyinping',
+		// ],
 		'ybsl_laji':[
 			'ybold_018zhangqing','yboldshen_002chenailin','ybsb_047zhangmi','ybsb_077yangqixu',
 			'ybsb_068qingyue','ybsb_048wushuang','ybold_019shengyan','ybold_016manchengqi',

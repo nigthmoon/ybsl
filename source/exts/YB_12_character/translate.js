@@ -605,7 +605,7 @@ const translate = {
 		info: "当有牌进入弃牌堆后，系统将这些牌中的【闪】、【桃】和【酒】移出游戏。",
 	})}”。（全民三国杀我开局神郭嘉的界曹髦）`,
 	qmsgswkjsgj_mbweitong:'卫统',
-	qmsgswkjsgj_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_mbqianlong")}，你获得X点道心值（X为其他魏势力角色数*20）（全民三国杀我开局神郭嘉的界曹髦）。`,
+	qmsgswkjsgj_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_mbqianlong")}，你改为获得60点道心值（全民三国杀我开局神郭嘉的界曹髦）。`,
 
 
 
@@ -765,7 +765,7 @@ const translate = {
 		info: "当有牌进入弃牌堆后，系统将这些牌中的【闪】、【桃】和【酒】移出游戏。",
 	})}”，若你因此失去手牌，你可以摸等量的牌，并反转${get.poptip("qmsgswkjsgj_shenci_cmhuituo")}的判定效果。（全民三国杀我开局神郭嘉的神赐曹髦）`,
 	qmsgswkjsgj_shenci_mbweitong:'卫统',
-	qmsgswkjsgj_shenci_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_shenci_mbqianlong")}，你获得X点道心值（X为其他魏势力角色数*20）（全民三国杀我开局神郭嘉的神赐曹髦）。`,
+	qmsgswkjsgj_shenci_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_shenci_mbqianlong")}，你获得60点道心值（全民三国杀我开局神郭嘉的神赐曹髦）。`,
 
 
 

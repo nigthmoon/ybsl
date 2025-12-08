@@ -9439,7 +9439,12 @@ const skill = {
 				forced: true,
 				locked: false,
 				async content(event, trigger, player) {
-					const num = lib.skill.qmsgswkjsgj_mbqianlong.beginMarkCount;
+					const num = game.hasPlayer(current => {
+						return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_mbweitong", current);
+					})
+						? 60
+						: lib.skill.qmsgswkjsgj_mbqianlong.beginMarkCount;
+					// const num = lib.skill.qmsgswkjsgj_mbqianlong.beginMarkCount;
 					lib.skill.qmsgswkjsgj_mbqianlong.addMark(player, num);
 				},
 			},
@@ -9510,10 +9515,10 @@ const skill = {
 		forced: true,
 		locked: false,
 		async content(event, trigger, player) {
-			const num = game.countPlayer(current => {
-				return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_mbweitong", current);
-			});
-			lib.skill.qmsgswkjsgj_mbqianlong.addMark(player, num);
+			// const num = game.countPlayer(current => {
+			// 	return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_mbweitong", current);
+			// });
+			// lib.skill.qmsgswkjsgj_mbqianlong.addMark(player, num);
 		},
 		ai: {
 			combo: "qmsgswkjsgj_mbqianlong",
@@ -12827,10 +12832,12 @@ const skill = {
 		forced: true,
 		locked: false,
 		async content(event, trigger, player) {
-			const num = game.countPlayer(current => {
+			// const num = game.countPlayer(current => {
+			// 	return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_shenci_mbweitong", current);
+			// });
+			if(game.hasPlayer(current => {
 				return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_shenci_mbweitong", current);
-			});
-			lib.skill.qmsgswkjsgj_shenci_mbqianlong.addMark(player, num);
+			}))lib.skill.qmsgswkjsgj_shenci_mbqianlong.addMark(player, 60);
 		},
 		ai: {
 			combo: "qmsgswkjsgj_shenci_mbqianlong",

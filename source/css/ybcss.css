@@ -357,7 +357,7 @@ span[data-nature="YB_rockmm"] {
 	font-weight: bold;
 }
 .sgsxjxfzmnl {
-	color:lightslategrey; /* 更亮的灰色 */
-	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+	color:rgb(179, 126, 248); /* 更亮的灰色 */
+	/* text-shadow: 1px 1px 0 #adadad, -1px -1px 0 #adadad; */
 	font-weight: bold;
 }

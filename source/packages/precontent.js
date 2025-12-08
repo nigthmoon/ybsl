@@ -322,6 +322,29 @@ export async function precontent() {
 					// if (lib.characterLightext[node.name1]) {
 					// 	YB_intro.addText(get.colorspan(lib.characterLightext[node.name1]()[lib.characterLightext[node.name1].length]));
 					// }
+					
+					if (lib.config.show_sortPack) {
+						for (let packname in lib.characterPack) {
+						  if (node.name in lib.characterPack[packname]) {
+							let pack = lib.translate[packname + "_character_config"], sort;
+							if (lib.characterSort[packname]) {
+							  let sorted = lib.characterSort[packname];
+							  for (let sortname in sorted) {
+								if (sorted[sortname].includes(node.name)) {
+								  sort = `<span style = "font-size:small">${lib.translate[sortname]}</span>`;
+								  break;
+								}
+							  }
+							}
+							const sortPack = document.createElement("div");
+							sortPack.innerHTML = `${pack}${sort ? `<br>[${sort}]` : ""}`;
+							sortPack.appendChild(document.createElement("hr"));
+							sortPack.insertBefore(document.createElement("hr"), sortPack.firstChild);
+							YB_intro.add(sortPack);
+							break;
+						  }
+						}
+					  }
 					if (get.characterInitFilter(node.name)) {
 						const initFilters = get.characterInitFilter(node.name).filter(tag => {
 							if (!lib.characterInitFilter[node.name]) return true;
@@ -667,111 +690,121 @@ export async function precontent() {
 						YB_intro.add(addFavourite);
 					}
 					if (!simple || get.is.phoneLayout()) {
-						if ((lib.config.change_skin || lib.skin) && !node.isUnseen()) {
-							var num = 1;
-							var introadded = false;
-							var createButtons = function (num, avatar2) {
-								if (!introadded) {
-									introadded = true;
-									YB_intro.add('<div class="text center">更改皮肤</div>');
-								}
-								var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
-								lib.setMousewheel(buttons);
-								var nameskin = avatar2 ? node.name2 : node.name1;
-								var nameskin2 = nameskin;
-								var gzbool = false;
-								if (nameskin.startsWith("gz_shibing")) {
-									nameskin = nameskin.slice(3, 11);
-								} else if (nameskin.startsWith("gz_")) {
-									nameskin = nameskin.slice(3);
-									gzbool = true;
-								}
-								for (var i = 0; i <= num; i++) {
-									var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
-										if (this._link) {
-											if (avatar2) {
-												lib.config.skin[nameskin] = this._link;
-												node.node.avatar2.style.backgroundImage = this.style.backgroundImage;
-											} else {
-												lib.config.skin[nameskin] = this._link;
-												node.node.avatar.style.backgroundImage = this.style.backgroundImage;
-											}
-										} else {
-											delete lib.config.skin[nameskin];
-											if (avatar2) {
-												if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar2.setBackground(nameskin2, "character");
-												else node.node.avatar2.setBackground(nameskin, "character");
-											} else {
-												if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar.setBackground(nameskin2, "character");
-												else node.node.avatar.setBackground(nameskin, "character");
-											}
-										}
-										game.saveConfig("skin", lib.config.skin);
-									});
-									button._link = i;
-									if (i) {
-										button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
-									} else {
-										if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
-										else button.setBackground(nameskin, "character", "noskin");
-									}
-								}
-								YB_intro.add(buttons);
-							};
-							var loadImage = function (avatar2) {
-								var img = new Image();
-								img.onload = function () {
-									num++;
-									loadImage(avatar2);
-								};
-								img.onerror = function () {
-									num--;
-									if (num) {
-										createButtons(num, avatar2);
-									}
-									if (!avatar2) {
-										if (!node.classList.contains("unseen2") && node.name2) {
-											num = 1;
-											loadImage(true);
-										}
-									}
-								};
-								var nameskin = avatar2 ? node.name2 : node.name1;
-								var nameskin2 = nameskin;
-								var gzbool = false;
-								if (nameskin.startsWith("gz_shibing")) {
-									nameskin = nameskin.slice(3, 11);
-								} else if (nameskin.startsWith("gz_")) {
-									nameskin = nameskin.slice(3);
-									gzbool = true;
-								}
-								img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
-							};
-							if (lib.config.change_skin) {
-								if (!node.isUnseen(0)) {
-									loadImage();
-								} else if (node.name2) {
-									loadImage(true);
-								}
-							} else {
-								setTimeout(function () {
-									var nameskin1 = node.name1;
-									var nameskin2 = node.name2;
-									if (nameskin1 && nameskin1.startsWith("gz_")) {
-										nameskin1 = nameskin1.slice(3);
-									}
-									if (nameskin2 && nameskin2.startsWith("gz_")) {
-										nameskin2 = nameskin2.slice(3);
-									}
-									if (!node.isUnseen(0) && lib.skin[nameskin1]) {
-										createButtons(lib.skin[nameskin1]);
-									}
-									if (!node.isUnseen(1) && lib.skin[nameskin2]) {
-										createButtons(lib.skin[nameskin2], true);
-									}
-								});
-							}
-						}
+						// if ((lib.config.change_skin || lib.skin) && !node.isUnseen()) {
+						// 	var num = 1;
+						// 	var introadded = false;
+						// 	var createButtons = function (num, avatar2) {
+						// 		if (!introadded) {
+						// 			introadded = true;
+						// 			YB_intro.add('<div class="text center">更改皮肤</div>');
+						// 		}
+						// 		var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
+						// 		lib.setMousewheel(buttons);
+						// 		var nameskin = avatar2 ? node.name2 : node.name1;
+						// 		var nameskin2 = nameskin;
+						// 		var gzbool = false;
+						// 		if (nameskin.startsWith("gz_shibing")) {
+						// 			nameskin = nameskin.slice(3, 11);
+						// 		} else if (nameskin.startsWith("gz_")) {
+						// 			nameskin = nameskin.slice(3);
+						// 			gzbool = true;
+						// 		}
+						// 		for (var i = 0; i <= num; i++) {
+						// 			var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
+						// 				if (this._link) {
+						// 					if (avatar2) {
+						// 						lib.config.skin[nameskin] = this._link;
+						// 						node.node.avatar2.style.backgroundImage = this.style.backgroundImage;
+						// 					} else {
+						// 						lib.config.skin[nameskin] = this._link;
+						// 						node.node.avatar.style.backgroundImage = this.style.backgroundImage;
+						// 					}
+						// 				} else {
+						// 					delete lib.config.skin[nameskin];
+						// 					if (avatar2) {
+						// 						if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar2.setBackground(nameskin2, "character");
+						// 						else node.node.avatar2.setBackground(nameskin, "character");
+						// 					} else {
+						// 						if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar.setBackground(nameskin2, "character");
+						// 						else node.node.avatar.setBackground(nameskin, "character");
+						// 					}
+						// 				}
+						// 				game.saveConfig("skin", lib.config.skin);
+						// 			});
+						// 			button._link = i;
+						// 			if (i) {
+						// 				button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
+						// 			} else {
+						// 				if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
+						// 				else button.setBackground(nameskin, "character", "noskin");
+						// 			}
+						// 		}
+						// 		YB_intro.add(buttons);
+						// 	};
+						// 	var loadImage = function (avatar2) {
+						// 		var img = new Image();
+						// 		img.onload = function () {
+						// 			num++;
+						// 			loadImage(avatar2);
+						// 		};
+						// 		img.onerror = function () {
+						// 			num--;
+						// 			if (num) {
+						// 				createButtons(num, avatar2);
+						// 			}
+						// 			if (!avatar2) {
+						// 				if (!node.classList.contains("unseen2") && node.name2) {
+						// 					num = 1;
+						// 					loadImage(true);
+						// 				}
+						// 			}
+						// 		};
+						// 		var nameskin = avatar2 ? node.name2 : node.name1;
+						// 		var nameskin2 = nameskin;
+						// 		var gzbool = false;
+						// 		if (nameskin.startsWith("gz_shibing")) {
+						// 			nameskin = nameskin.slice(3, 11);
+						// 		} else if (nameskin.startsWith("gz_")) {
+						// 			nameskin = nameskin.slice(3);
+						// 			gzbool = true;
+						// 		}
+						// 		img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
+						// 	};
+						// 	if (lib.config.change_skin) {
+						// 		if (!node.isUnseen(0)) {
+						// 			loadImage();
+						// 		} else if (node.name2) {
+						// 			loadImage(true);
+						// 		}
+						// 	} else {
+						// 		setTimeout(function () {
+						// 			var nameskin1 = node.name1;
+						// 			var nameskin2 = node.name2;
+						// 			if (nameskin1 && nameskin1.startsWith("gz_")) {
+						// 				nameskin1 = nameskin1.slice(3);
+						// 			}
+						// 			if (nameskin2 && nameskin2.startsWith("gz_")) {
+						// 				nameskin2 = nameskin2.slice(3);
+						// 			}
+						// 			if (!node.isUnseen(0) && lib.skin[nameskin1]) {
+						// 				createButtons(lib.skin[nameskin1]);
+						// 			}
+						// 			if (!node.isUnseen(1) && lib.skin[nameskin2]) {
+						// 				createButtons(lib.skin[nameskin2], true);
+						// 			}
+						// 		});
+						// 	}
+						// }
+						
+						let viewInfo = ui.create.div(".text.center.pointerdiv");
+						viewInfo.link = node;
+						viewInfo.innerHTML = "查看资料";
+						viewInfo.listen(function() {
+						  let player2 = this.link;
+						  let audioName = player2.skin.name || player2.name1 || player2.name;
+						  ui.click.charactercard(player2.name1 || player2.name, null, null, true, player2.node.avatar, audioName);
+						});
+						YB_intro.add(viewInfo);
 					}
 			
 					YB_intro.add(ui.create.div(".placeholder.slim"));
@@ -802,6 +835,28 @@ export async function precontent() {
 					}
 					if (lib.characterLightext[node.link]&&lib.characterLightext[node.link](node.link)) {
 						YB_intro.addText(get.colorspan(lib.characterLightext[node.link](node.link)[lib.characterLightext[node.link](node.link).length-1]));
+					}
+					if (lib.config.show_sortPack) {
+					  for (let packname in lib.characterPack) {
+						if (node.link in lib.characterPack[packname]) {
+						  let pack = lib.translate[packname + "_character_config"], sort;
+						  if (lib.characterSort[packname]) {
+							let sorted = lib.characterSort[packname];
+							for (let sortname in sorted) {
+							  if (sorted[sortname].includes(node.link)) {
+								sort = `<span style = "font-size:small">[${lib.translate[sortname]}]</span>`;
+								break;
+							  }
+							}
+						  }
+						  const sortPack = document.createElement("div");
+						  sortPack.innerHTML = `${pack}${sort ? `<br>${sort}` : ""}`;
+						  sortPack.appendChild(document.createElement("hr"));
+						  sortPack.insertBefore(document.createElement("hr"), sortPack.firstChild);
+						  YB_intro.add(sortPack);
+						  break;
+						}
+					  }
 					}
 			
 					if (get.characterInitFilter(node.link)) {
@@ -936,75 +991,85 @@ export async function precontent() {
 						} else {
 							YB_intro.add(ui.create.div(".placeholder.slim"));
 						}
-						var addskin = false;
-						if (node.parentNode?.classList?.contains("menu-buttons")) {
-							addskin = !lib.config.show_charactercard;
-						} else {
-							addskin = lib.config.change_skin || lib.skin;
-						}
-						if (addskin && (!simple || get.is.phoneLayout())) {
-							var num = 1;
-							var introadded = false;
-							var nameskin = node.link;
-							var nameskin2 = nameskin;
-							var gzbool = false;
-							if (nameskin.startsWith("gz_shibing")) {
-								nameskin = nameskin.slice(3, 11);
-							} else if (nameskin.startsWith("gz_")) {
-								nameskin = nameskin.slice(3);
-								gzbool = true;
-							}
-							var createButtons = function (num) {
-								if (!num) return;
-								if (!introadded) {
-									introadded = true;
-									YB_intro.add('<div class="text center">更改皮肤</div>');
-								}
-								var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
-								lib.setMousewheel(buttons);
-								for (var i = 0; i <= num; i++) {
-									var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
-										if (this._link) {
-											lib.config.skin[nameskin] = this._link;
-											node.style.backgroundImage = this.style.backgroundImage;
-											game.saveConfig("skin", lib.config.skin);
-										} else {
-											delete lib.config.skin[nameskin];
-											if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.setBackground(nameskin2, "character");
-											else node.setBackground(nameskin, "character");
-											game.saveConfig("skin", lib.config.skin);
-										}
-									});
-									button._link = i;
-									if (i) {
-										button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
-									} else {
-										if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
-										else button.setBackground(nameskin, "character", "noskin");
-									}
-								}
-								YB_intro.add(buttons);
-							};
-							var loadImage = function () {
-								var img = new Image();
-								img.onload = function () {
-									num++;
-									loadImage();
-								};
-								img.onerror = function () {
-									num--;
-									createButtons(num);
-								};
-								img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
-							};
-							if (lib.config.change_skin) {
-								loadImage();
-							} else {
-								setTimeout(function () {
-									createButtons(lib.skin[nameskin]);
-								});
-							}
-						}
+						// var addskin = false;
+						// if (node.parentNode?.classList?.contains("menu-buttons")) {
+						// 	addskin = !lib.config.show_charactercard;
+						// } else {
+						// 	addskin = lib.config.change_skin || lib.skin;
+						// }
+						// if (addskin && (!simple || get.is.phoneLayout())) {
+						// 	var num = 1;
+						// 	var introadded = false;
+						// 	var nameskin = node.link;
+						// 	var nameskin2 = nameskin;
+						// 	var gzbool = false;
+						// 	if (nameskin.startsWith("gz_shibing")) {
+						// 		nameskin = nameskin.slice(3, 11);
+						// 	} else if (nameskin.startsWith("gz_")) {
+						// 		nameskin = nameskin.slice(3);
+						// 		gzbool = true;
+						// 	}
+						// 	var createButtons = function (num) {
+						// 		if (!num) return;
+						// 		if (!introadded) {
+						// 			introadded = true;
+						// 			YB_intro.add('<div class="text center">更改皮肤</div>');
+						// 		}
+						// 		var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
+						// 		lib.setMousewheel(buttons);
+						// 		for (var i = 0; i <= num; i++) {
+						// 			var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
+						// 				if (this._link) {
+						// 					lib.config.skin[nameskin] = this._link;
+						// 					node.style.backgroundImage = this.style.backgroundImage;
+						// 					game.saveConfig("skin", lib.config.skin);
+						// 				} else {
+						// 					delete lib.config.skin[nameskin];
+						// 					if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.setBackground(nameskin2, "character");
+						// 					else node.setBackground(nameskin, "character");
+						// 					game.saveConfig("skin", lib.config.skin);
+						// 				}
+						// 			});
+						// 			button._link = i;
+						// 			if (i) {
+						// 				button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
+						// 			} else {
+						// 				if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
+						// 				else button.setBackground(nameskin, "character", "noskin");
+						// 			}
+						// 		}
+						// 		YB_intro.add(buttons);
+						// 	};
+						// 	var loadImage = function () {
+						// 		var img = new Image();
+						// 		img.onload = function () {
+						// 			num++;
+						// 			loadImage();
+						// 		};
+						// 		img.onerror = function () {
+						// 			num--;
+						// 			createButtons(num);
+						// 		};
+						// 		img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
+						// 	};
+						// 	if (lib.config.change_skin) {
+						// 		loadImage();
+						// 	} else {
+						// 		setTimeout(function () {
+						// 			createButtons(lib.skin[nameskin]);
+						// 		});
+						// 	}
+						// }
+        if (!simple || get.is.phoneLayout()) {
+			let viewInfo = ui.create.div(".text.center.pointerdiv");
+			viewInfo.link = node.link;
+			viewInfo.innerHTML = "查看资料";
+			viewInfo.style.marginBottom = "15px";
+			viewInfo.listen(function() {
+			  return ui.click.charactercard(this.link, node);
+			});
+			YB_intro.add(viewInfo);
+		  }
 					}
 					if (lib.characterUndertext[node.link]) {
 						YB_intro.addText(get.colorspan(lib.characterUndertext[node.link]));

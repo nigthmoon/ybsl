@@ -57,7 +57,7 @@ const characterTitle = {//称号
 	ybsl_xuyou: '夜白设计',
 	ybsl_pujing: '夜白设计',
 	
-	niya_re_liuyan:'',
+	niya_re_liuyan:'裂土之宗',
 	niya_caowei:'',
 	Fe2O3_duqiong:'蜀之球琳',
 	zxunnamed_zhenji:'',

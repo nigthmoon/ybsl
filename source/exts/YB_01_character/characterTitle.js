@@ -117,6 +117,11 @@ const characterTitle = {//称号
 	'ybsp_001sunlisong':'<font color=cyan>皓腕凝霜雪</font>',
 	'ybsp_002chenailin':'<font color=cyan>玉殒香消</font>',
 	'ybsp_027rain':'<font color=cyan>巡梦鸣觉</font>',
+	ybsp_033xiaohui:'<font color=cyan>悲泣断肠</font>',
+	ybsp_006wanghanzhen:'<font color=cyan>似水流年</font>',
+	ybsp_018zhangqing:'<font color=cyan>一万关的消消乐</font>',
+	ybsp_079xiaoxin:'<font color=cyan>似水流年</font>',
+
 	//---------------------------------//界限突破（什么沙比玩意）
 	'ybnb_034zhoulianyuan':'<font color=cyan>庄子的执剑人</font>',
 	//----------------------六艺篇
