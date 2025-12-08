@@ -5,6 +5,75 @@ window.ybslb_update={
 	//感谢狂神对于这种写法的帮助，
 	version:'5.7.0-1.12',
 	
+	'5.7.0-2.0':{
+		changeLog:[
+			//----------------5.7.0-1.8--------------//
+			'理论上可联机，建议搭配1.11.0本体使用',
+			'当前版本：5.7.0-2.0',
+			'更新日期：2025-12-08',
+			'本条公告可在扩展介绍页面查看',
+			'------------更新详情------------',
+			'- 新武将：盛妍，熙，龚洁，王婉儿，悦儿，王冰雨，雪琅，SP小新。',
+			'- 新武将：瑜乔。',
+			//，紫虚，甄宓，关羽，诸葛亮，赵云
+			'- 新武将：三国杀同人小说一堆武将。',
+			'- 全民三国杀，我开局神郭嘉：缝神鲁肃，界孙权，缝神周瑜，缝神荀彧，界势陆郁生，缝神陆逊，缝神曹操，缝神吕布，界势魏延，界势太史慈，界曹丕，界沙摩柯，界十常侍，缝手杀神华佗，神赐武诸葛亮，神赐界杜预，神赐武陆逊，神赐谋曹丕，神赐界孙寒华，界势于吉，界曹髦，神赐曹髦，',
+			'- 三国杀仙界下凡怎么你了：阴间十常侍，阴间神荀彧，阴间神张飞，阴间武诸葛，阴间谋曹丕，阴间高达一号，阴间南华老登（手杀），魔吕布，阴间张嫙，阴间神马超，阴间曹金玉，阴间孙寒华',
+			'------------修复相关------------',
+			'- 安抚码魂，码魂大悦',
+			'- 咳血优化',
+			'- 散梦修复第二段不是梦势力也会生效',
+			'- 绿沉枪修复，梅影优化，万钧神弩优化',
+			'- 普净示刀修复了一个潜在bug',
+			'- 林逸驭龙优化',
+			'- 十周年UI素材路径更新',
+			'- 修复右键武将展示技能不能展开的问题',
+			'- 也许有其他隐形bug被修复或添加',
+			'------------注意事项------------',
+			'- 本扩展需本体版本为1.11.0以上，建议最新版！。',
+			'- 开启云中守望情况下，屏蔽傀夜白和名神曹丕',
+			'- 修复若干bug，可能添加若干bug。',
+			'- 晶的水剑元交换位置部分仍旧有点bug，无法发动，还望体谅',
+			'------------鸣谢清单------------',
+			'- 狂神is NB！',
+			'- 经过我和B站up主鸣濑白羽酱的沟通，现本扩展包部分武将插图采用他的ai制图，具体被应用的武将在该角色的简介里备注。',
+			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
+			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
+			'- 制作仓促，有bug烦请加群反馈。',
+			'- 进群答案合理即可。',
+			'- 交流QQ群：369015096。',
+			'- 感谢一直以来各位游玩者的关注与支持。',
+			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
+			'- 感谢火佬对本扩展的无私奉献',
+			'- 感谢子虚对本扩展的无私奉献',
+			'- 铝宝就是天使！。',
+			'- <span class=yellowtext>感谢Angle为本扩展的想去远方撰写ai，以及优化张晴。</span>',
+			'- <span class=yellowtext>感谢周子鱼为本扩展制作的十周年美化卡牌。</span>',
+			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
+			//为什么用黄色？因为这些是我花钱搞的=w=
+			'- 铝宝就是天使！。',
+		],
+		players:[
+			'ybsp_018zhangqing',
+			'ybsl_wangpou','ybsl_yangxu','ybsl_suojing','ybsl_shichong',
+			'ybmjz_sunluyu','ybmjz_liubei','ybmjz_huangyueying',
+			'qmsgswkjsgj_re_lusu','qmsgswkjsgj_re_caorui','qmsgswkjsgj_re_caiwenji',
+			'qmsgswkjsgj_re_zhangxiu','qmsgswkjsgj_re_fuhuanghou','qmsgswkjsgj_shen_ganning','qmsgswkjsgj_re_sunhanhua',
+			'qmsgswkjsgj_yingtian_simayi','qmsgswkjsgj_re_shen_zhaoyun',
+			'sgsxjxfzmnl_shichangshi','sgsxjxfzmnl_yue_caiwenji','sgsxjxfzmnl_liuyan',
+			'sgsxjxfzmnl_shen_xunyu','sgsxjxfzmnl_shen_zhangfei','sgsxjxfzmnl_wu_zhugeliang',
+			'sgsxjxfzmnl_sb_caopi','sgsxjxfzmnl_boss_zhaoyun','sgsxjxfzmnl_nanhualaoxian',
+			'sgsxjxfzmnl_mo_lvbu','sgsxjxfzmnl_zhangxuan','sgsxjxfzmnl_caojinyu',
+			'sgsxjxfzmnl_shen_machao','sgsxjxfzmnl_sunhanhua',
+			
+		],
+		cards:[
+
+		],
+		files:[
+			
+		],
+	},
 	'5.7.0-1.12':{
 		changeLog:[
 			//----------------5.7.0-1.8--------------//
