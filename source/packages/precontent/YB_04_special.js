@@ -21,6 +21,7 @@ export { YBSL_special }
  * 久岛鸥
  * 泛用的令某牌视为某牌
  * 应变
+ * 批量将一些技能加入界雷击禁止名单
  */
 const YBSL_special = function () {
 	_status.YB_jingxieList=[
@@ -967,5 +968,13 @@ const YBSL_special = function () {
 			}
 			return count;
 		}
+	}
+	//界雷击
+	{
+		
+		lib.arenaReady.push(function(){
+			lib.skill.xinleiji_misa.disableReason.push('天祈')
+			lib.skill.xinleiji_misa.disableReason.push('神策')
+		})
 	}
 }

@@ -2730,9 +2730,9 @@ const skill = {
 				case 0:event.finish();break;
 			}
 		},
-		init:function(player,skill){
-			lib.skill.xinleiji_misa.disableReason.push('天祈')
-		},
+		// init:function(player,skill){
+		// 	lib.skill.xinleiji_misa.disableReason.push('天祈')
+		// },
 	},
 	'yb004_shangyuan':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -2762,7 +2762,7 @@ const skill = {
 			player.removeSkill('yb004_wunv');
 			player.storage.yb004_shangyuan=true;
 			// player.YB_levelUp(['yb004_tianqi']);
-			lib.skill.xinleiji_misa.disableReason.remove('天祈')
+			// lib.skill.xinleiji_misa.disableReason.remove('天祈')
 			player.chooseDrawRecover(2,true);
 			player.addSkill('yb004_yujie');
 		},

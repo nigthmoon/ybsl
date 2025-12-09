@@ -304,8 +304,8 @@ const translate = {
 	'yb004_wunv_info':'锁定技，你使用的普通锦囊牌不能被【无懈可击】响应；当你对手牌数不大于你的其他角色造成伤害时，此伤害+1。',
 	'yb004_tianqi':'天祈',
 	'yb004_tianqi_info':`锁定技，当你对其他角色造成伤害后，你进行判定：若伤害不大于1，且结果为红色，你回复1点体力或摸一张牌；若伤害大于1，且结果为黑色，你失去1点体力并摸一张牌。当你受到伤害后，你进行判定，若结果为黑色，你摸x+1张牌，否则你回复x-1点体力（x为此次伤害值）（此技能不可触发${get.poptip('releiji')}）`,
-	'yb004_shangyuan':'殇怨',
-	'yb004_shangyuan_info':`觉醒技，当你造成伤害致人死亡后，若伤害大于1，则你失去${get.poptip('yb004_wunv')}，修改${get.poptip('yb004_tianqi')}（修改后的技能可以触发${get.poptip('releiji')}），然后选择回复1点体力或摸两张牌，最后获得${get.poptip('yb004_yujie')}。`,
+	'yb004_shangyuan':'殇怨',//（修改后的技能可以触发${get.poptip('releiji')}）
+	'yb004_shangyuan_info':`觉醒技，当你造成伤害致人死亡后，若伤害大于1，则你失去${get.poptip('yb004_wunv')}，修改${get.poptip('yb004_tianqi')}，然后选择回复1点体力或摸两张牌，最后获得${get.poptip('yb004_yujie')}。`,
 	yb004_tianqi_rewrite:'天祈·改',
 	yb004_tianqi_rewrite_info:'准备阶段或结束阶段或当你受到伤害后，你可以进行一次判定，若结果为红色，则你回复1点体力或摸两张牌。',
 	'yb004_yujie':'玉洁',
