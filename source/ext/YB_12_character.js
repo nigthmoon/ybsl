@@ -56,58 +56,58 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		dynamicTranslate:dynamicTranslate,
 		
 		characterSubstitute: {
-			sgsxjxfzmnl_shichangshi: [["sgsxjxfzmnl_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_zhangrang: [["sgsxjxfzmnl_scs_zhangrang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_zhaozhong: [["sgsxjxfzmnl_scs_zhaozhong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_sunzhang: [["sgsxjxfzmnl_scs_sunzhang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_bilan: [["sgsxjxfzmnl_scs_bilan_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_bilan_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_xiayun: [["sgsxjxfzmnl_scs_xiayun_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_xiayun_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_hankui: [["sgsxjxfzmnl_scs_hankui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_hankui_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_lisong: [["sgsxjxfzmnl_scs_lisong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_lisong_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_duangui: [["sgsxjxfzmnl_scs_duangui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_guosheng: [["sgsxjxfzmnl_scs_guosheng_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng_dead.jpg',"die:shichangshi"]]],
-			sgsxjxfzmnl_scs_gaowang: [["sgsxjxfzmnl_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
+			sgsxjxfzmnl_shichangshi: [["sgsxjxfzmnl_shichangshi_dead", ['YB_mjz:shichangshi_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_zhangrang: [["sgsxjxfzmnl_scs_zhangrang_dead", ['YB_mjz:scs_zhangrang_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_zhaozhong: [["sgsxjxfzmnl_scs_zhaozhong_dead", ['YB_mjz:scs_zhaozhong_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_sunzhang: [["sgsxjxfzmnl_scs_sunzhang_dead", ['YB_mjz:scs_sunzhang_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_bilan: [["sgsxjxfzmnl_scs_bilan_dead", ['YB_mjz:scs_bilan_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_xiayun: [["sgsxjxfzmnl_scs_xiayun_dead", ['YB_mjz:scs_xiayun_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_hankui: [["sgsxjxfzmnl_scs_hankui_dead", ['YB_mjz:scs_hankui_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_lisong: [["sgsxjxfzmnl_scs_lisong_dead", ['YB_mjz:scs_lisong_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_duangui: [["sgsxjxfzmnl_scs_duangui_dead", ['YB_mjz:scs_duangui_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_guosheng: [["sgsxjxfzmnl_scs_guosheng_dead", ['YB_mjz:scs_guosheng_dead',"die:shichangshi"]]],
+			sgsxjxfzmnl_scs_gaowang: [["sgsxjxfzmnl_scs_gaowang_dead", ['YB_mjz:scs_gaowang_dead',"die:shichangshi"]]],
 
 			
-			qmsgswkjsgj_re_shichangshi: [["qmsgswkjsgj_re_shichangshi_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_shichangshi_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_zhangrang: [["qmsgswkjsgj_scs_zhangrang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhangrang_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_zhaozhong: [["qmsgswkjsgj_scs_zhaozhong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_zhaozhong_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_sunzhang: [["qmsgswkjsgj_scs_sunzhang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_sunzhang_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_bilan: [["qmsgswkjsgj_scs_bilan_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_bilan_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_xiayun: [["qmsgswkjsgj_scs_xiayun_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_xiayun_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_hankui: [["qmsgswkjsgj_scs_hankui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_hankui_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_lisong: [["qmsgswkjsgj_scs_lisong_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_lisong_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_duangui: [["qmsgswkjsgj_scs_duangui_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_duangui_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_guosheng: [["qmsgswkjsgj_scs_guosheng_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_guosheng_dead.jpg',"die:shichangshi"]]],
-			qmsgswkjsgj_scs_gaowang: [["qmsgswkjsgj_scs_gaowang_dead", ['ext:夜白神略/image/ybsl012/sgsxjxfzmnl_scs_gaowang_dead.jpg',"die:shichangshi"]]],
+			qmsgswkjsgj_re_shichangshi: [["qmsgswkjsgj_re_shichangshi_dead", ['YB_mjz:shichangshi_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_zhangrang: [["qmsgswkjsgj_scs_zhangrang_dead", ['YB_mjz:scs_zhangrang_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_zhaozhong: [["qmsgswkjsgj_scs_zhaozhong_dead", ['YB_mjz:scs_zhaozhong_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_sunzhang: [["qmsgswkjsgj_scs_sunzhang_dead", ['YB_mjz:scs_sunzhang_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_bilan: [["qmsgswkjsgj_scs_bilan_dead", ['YB_mjz:scs_bilan_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_xiayun: [["qmsgswkjsgj_scs_xiayun_dead", ['YB_mjz:scs_xiayun_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_hankui: [["qmsgswkjsgj_scs_hankui_dead", ['YB_mjz:scs_hankui_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_lisong: [["qmsgswkjsgj_scs_lisong_dead", ['YB_mjz:scs_lisong_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_duangui: [["qmsgswkjsgj_scs_duangui_dead", ['YB_mjz:scs_duangui_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_guosheng: [["qmsgswkjsgj_scs_guosheng_dead", ['YB_mjz:scs_guosheng_dead',"die:shichangshi"]]],
+			qmsgswkjsgj_scs_gaowang: [["qmsgswkjsgj_scs_gaowang_dead", ['YB_mjz:scs_gaowang_dead',"die:shichangshi"]]],
 
 			qmsgswkjsgj_pot_weiyan:[
-				['qmsgswkjsgj_pot_weiyan_achieve',['img:image/character/pot_weiyan_achieve.jpg','tempname:pot_weiyan_achieve']],
-				['qmsgswkjsgj_pot_weiyan_fail',['img:image/character/pot_weiyan_fail.jpg','tempname:pot_weiyan_fail']],
+				['qmsgswkjsgj_pot_weiyan_achieve',['YB_mjz:pot_weiyan_achieve','tempname:pot_weiyan_achieve']],
+				['qmsgswkjsgj_pot_weiyan_fail',['YB_mjz:pot_weiyan_fail','tempname:pot_weiyan_fail']],
 			],
 			// qmsgswkjsgj_pot_taishici:[
 			// 	['qmsgswkjsgj_pot_taishici_achieve',['img:image/character/pot_taishici_achieve.jpg','tempname:pot_taishici_achieve']],
 			// 	['qmsgswkjsgj_pot_taishici_fail',['img:image/character/pot_taishici_fail.jpg','tempname:pot_taishici_fail']],
 			// ],
 			qmsgswkjsgj_pot_taishici: [
-				["qmsgswkjsgj_pot_taishici_shadow1", ['img:image/character/pot_taishici_shadow1.jpg',"die:pot_taishici"]],
-				["qmsgswkjsgj_pot_taishici_shadow2", ['img:image/character/pot_taishici_shadow2.jpg',"die:pot_taishici"]],
-				["qmsgswkjsgj_pot_taishici_shadow3", ['img:image/character/pot_taishici_shadow3.jpg',"die:pot_taishici"]],
-				["qmsgswkjsgj_pot_taishici_shadow4", ['img:image/character/pot_taishici_shadow4.jpg',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow1", ['YB_mjz:pot_taishici_shadow1',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow2", ['YB_mjz:pot_taishici_shadow2',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow3", ['YB_mjz:pot_taishici_shadow3',"die:pot_taishici"]],
+				["qmsgswkjsgj_pot_taishici_shadow4", ['YB_mjz:pot_taishici_shadow4',"die:pot_taishici"]],
 			],
 
 			qmsgswkjsgj_pot_yuji: [
-				["qmsgswkjsgj_pot_yuji_shadow", ['img:image/character/pot_yuji_shadow.jpg',"die:pot_yuji"]]
+				["qmsgswkjsgj_pot_yuji_shadow", ['YB_mjz:pot_yuji_shadow',"die:pot_yuji"]]
 			],
 
 			
-			qmsgswkjsgj_mb_caomao: [
-				["qmsgswkjsgj_mb_caomao_shadow", ['img:image/character/mb_caomao_shadow.jpg',"die:mb_caomao"]],
-				["qmsgswkjsgj_mb_caomao_dead", ['img:image/character/mb_caomao_dead.jpg',"die:mb_caomao"]],
+			qmsgswkjsgj_re_caomao: [
+				["qmsgswkjsgj_re_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
+				["qmsgswkjsgj_re_caomao_dead", ['YB_mjz:/mb_caomao_dead',"die:mb_caomao"]],
 			],
 			qmsgswkjsgj_shenci_caomao: [
-				["qmsgswkjsgj_shenci_caomao_shadow", ['img:image/character/mb_caomao_shadow.jpg',"die:mb_caomao"]],
-				["qmsgswkjsgj_shenci_caomao_dead", ['img:image/character/mb_caomao_dead.jpg',"die:mb_caomao"]],
+				["qmsgswkjsgj_shenci_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
+				["qmsgswkjsgj_shenci_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
 			],
 		},
 	}; 

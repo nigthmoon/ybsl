@@ -56,6 +56,9 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			yhky_shlizhaoyi: [
 				["yhky_shlizhaoyi_shadow", ["die:yhky_shlizhaoyi"]],
 			],
+			yhky_diaochan: [
+				["yhky_diaochan_shadow", ["die:yhky_diaochan"]],
+			],
 		},
 	};
 	typeimage(yhky,'ybsl011')

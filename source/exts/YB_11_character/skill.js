@@ -8,7 +8,7 @@ const skill = {
 		audio: 'ext:夜白神略/audio/character:6',
 		persevereSkill: true,
 		trigger: {
-			player: ["yhky_lzyjuekang_beginAfter", "yhky_lzyjuekang_addAfter", "yhky_lzyjuekangAfter"],
+			player: ["yhky_lzyjuekang_beginAfter", "yhky_lzyjuekang_addAfter"],
 		},
 		filter(event, player) {
 			let skills = [];
@@ -1839,6 +1839,606 @@ const skill = {
 
 	},
 
+	//貂蝉
+	yhky_dcyingwu:{
+		audio: 'ext:夜白神略/audio/character:2',
+		derivation: ["yhky_dclihun", "yhky_dclianji","yhky_dcjiuchi", "yhky_dczuixiao", "yhky_dchuayan"],
+
+		persevereSkill: true,
+		trigger: {
+			player: ["yhky_dcyingwu_beginAfter", "yhky_dcyingwu_addAfter",'yhky_dcchanjuanAfter'],
+			// player:'yhky_dcyingwu_changeMark',
+		},
+		filter(event, player) {
+			let skills = [];
+			let current = player.additionalSkills?.yhky_dcyingwu?.length ?? 0;
+			let target = player.countMark("yhky_dcyingwu") == lib.skill.yhky_dcyingwu.maxMarkCount ? lib.skill.yhky_dcyingwu.derivation.length : Math.floor(player.countMark("yhky_dcyingwu") / 20);
+			// console.log(target,current)
+			return target;
+		},
+		forced: true,
+		popup: false,
+		locked: false,
+		beginMarkCount: 20,
+		maxMarkCount: 99,
+		addMark(player, num) {
+			num = Math.min(num, lib.skill.yhky_dcyingwu.maxMarkCount - player.countMark("yhky_dcyingwu"));
+			player.addMark("yhky_dcyingwu", num);
+			// if(player.hasSkill("yhky_dcyingwu"))player.useSkill('yhky_dcyingwu');
+		},
+		removeMark(player, num){
+			num = Math.min(num, player.countMark("yhky_dcyingwu"));
+			player.removeMark("yhky_dcyingwu", num);
+			// if(player.hasSkill("yhky_dcyingwu"))player.useSkill('yhky_dcyingwu');
+		},
+		group: ["yhky_dcyingwu_begin", "yhky_dcyingwu_add", "yhky_dcyingwu_die"],
+		async content(event, trigger, player) {
+			const derivation = lib.skill.yhky_dcyingwu.derivation,
+				skills = player.countMark("yhky_dcyingwu") == lib.skill.yhky_dcyingwu.maxMarkCount ? derivation : derivation.slice(0, Math.floor(player.countMark("yhky_dcyingwu") / 20));
+			player.addAdditionalSkill("yhky_dcyingwu", skills);
+		},
+		marktext: "魅",
+		intro: {
+			name: "魅力(盈舞)",
+			name2: "魅力",
+			content: "当前魅力值为#",
+		},
+		subSkill: {
+			begin: {
+				audio: "yhky_dcyingwu",
+				persevereSkill: true,
+				trigger: {
+					global: "phaseBefore",
+					player: "enterGame",
+				},
+				filter(event, player) {
+					return event.name != "phase" || game.phaseNumber == 0;
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					const num = lib.skill.yhky_dcyingwu.beginMarkCount;
+					lib.skill.yhky_dcyingwu.addMark(player, num);
+					// trigger.trigger('yhky_dcyingwu_changeMark');
+				},
+			},
+			add: {
+				audio: "yhky_dcyingwu",
+				persevereSkill: true,
+				trigger: {
+					// player: ["gainAfter", "damageEnd"],
+					// source: "damageSource",
+					// global: "loseAsyncAfter",
+					player: ["damageEnd"],
+					source: "damageSource",
+					global: ["loseAfter", "equipAfter", "loseAsyncAfter", "cardsDiscardAfter"],
+				},
+				filter(event, player,name) {
+					if (player.countMark("yhky_dcyingwu") >= lib.skill.yhky_dcyingwu.maxMarkCount) return false;
+					if (event.name === "damage") return event.num > 0;
+					// return event.getg(player).length > 0;
+					var suits = [];
+					game.getGlobalHistory("cardMove", function (evt) {
+						// if (suits.length >= 4) {
+						// 	return;
+						// }
+						if(evt!=event){
+							if (evt.name == "lose") {
+								if (evt.position == ui.discardPile) {
+									for (var i of evt.cards) {
+										suits.add(get.suit(i, false));
+									}
+								}
+							} else {
+								if (evt.name == "cardsDiscard") {
+									for (var i of evt.cards) {
+										suits.add(get.suit(i, false));
+									}
+								}
+							}
+						}
+					});
+					var num=0
+					event.getd().some(card=>{
+						if(!suits.includes(get.suit(card, false))){
+							suits.add(get.suit(card, false))
+							num++;
+						}
+					})
+					// if(event.cards)for(var i of event.cards){
+					// 	if(!suits.includes(get.suit(i, false))&&event.position==ui.discardPile){
+					// 		suits.add(get.suit(i, false))
+					// 		num++;
+					// 	}
+					// }
+					// else if(event.lose_list){
+					// 	for(var i of event.lose_list){
+					// 		for(var k of i[1]){
+					// 			if(!suits.includes(get.suit(k, false))&&event.position==ui.discardPile){
+					// 				suits.add(get.suit(k, false))
+					// 				num++;
+					// 			}
+					// 		}
+					// 	}
+					// }
+					// if(name=='loseAfter')for(var i of event.cards){
+					// 	if(!suits.includes(get.suit(i, false))){
+					// 		suits.add(get.suit(i, false))
+					// 		num++;
+					// 	}
+					// }
+					// else if(name=='loseAsyncAfter'){
+					// 	for(var i of event.lose_list){
+					// 		for(var k of i[1]){
+					// 			if(!suits.includes(get.suit(k, false))){
+					// 				suits.add(get.suit(k, false))
+					// 				num++;
+					// 			}
+					// 		}
+					// 	}
+					// }
+					
+					return num>0;
+				},
+				getIndex(event, player, name) {
+					if (event.name === "damage") return event.num;
+					else {
+						var suits = [];
+						game.getGlobalHistory("cardMove", function (evt) {
+							if(evt!=event){
+								if (evt.name == "lose") {
+									if (evt.position == ui.discardPile) {
+										for (var i of evt.cards) {
+											suits.add(get.suit(i, false));
+										}
+									}
+								} else {
+									if (evt.name == "cardsDiscard") {
+										for (var i of evt.cards) {
+											suits.add(get.suit(i, false));
+										}
+									}
+								}
+							}
+						});
+						var num=0
+						event.getd().some(card=>{
+							if(!suits.includes(get.suit(card, false))){
+								suits.add(get.suit(card, false))
+								num++;
+							}
+						})
+						return num;
+					}
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					let num = function(num){
+						if(num<=2)return 1;
+						else return num(num-1)+num(num-2)
+					}
+					// [1,1,2,3,5,8]
+					// let toAdd = num(3 + (trigger.name === "damage") + (event.triggername === "damageSource"));
+					let toAdd = 5*(1 + (trigger.name === "damage") + (event.triggername === "damageSource"));
+					lib.skill.yhky_dcyingwu.addMark(player, toAdd);
+					// trigger.trigger('yhky_dcyingwu_changeMark');
+				},
+			},
+			die: {
+				trigger: {
+					player: "dieBefore",
+				},
+				charlotte: true,
+				firstDo: true,
+				forced: true,
+				popup: false,
+				forceDie: true,
+				async content(event, trigger, player) {
+					//这里本该是阵亡换原画，但我没有素材
+					// player.changeSkin({ characterName: "yhky_shlizhaoyi" }, "yhky_shlizhaoyi_dead");
+				},
+			},
+		},
+	},
+	yhky_dclihun:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable:'phaseUse',
+		usable:1,
+		filter:function(event,player){
+			return game.countPlayer(function(current){
+				return current!=player&&current.hasSex('male');
+			});
+		},
+		check:function(card){return 10-get.value(card)},
+		filterCard:true,
+		position:'he',
+		filterTarget:function(card,player,target){
+			if(player==target) return false;
+			if(!target.hasSex('male')) return false;
+			// if(ui.selected.targets.length==1){
+			// 	return target.canUse({name:'juedou'},ui.selected.targets[0]);
+			// }
+			return true;
+		},
+		selectTarget:1,
+		content:async function(event,trigger,player){
+			let target=event.target;
+			if(target.countCards('h')){
+				await player.viewHandcards(target);
+				if(player.storage.yhky_dchuayan_dcjuewu){
+					var num=0;
+					while(num<5&&num<target.hp){
+						num++;
+						var cards = target.getCards('h');
+						// var cardsx = cards.filter(card=>target.hasUseTarget(card));
+						if(cards.length){
+							// var relu = await player.chooseButton(['请选择要令'+get.translation(target)+'使用的牌。'+num,cards],1)
+							// 	.set('filterButton',function(button){
+							// 		return target.hasUseTarget(button.link);
+							// 	}).forResult();
+							var relu = await player.chooseButtonTarget({
+								createDialog: ['请选择要令'+get.translation(target)+'使用的牌。'+num, [cards]],
+								selectButton: 1,
+								filterButton: function(button){
+									return target.hasUseTarget(button.link);
+								},
+								selectTarget:function(){
+									// if(ui.selected.buttons.length)return lib.card[ui.selected.buttons[0].link].selectTarget;
+									if(ui.selected.buttons.length)return 1;
+									return false;
+								},
+								filterTarget: function(card,player,target1){
+									// if(ui.selected.buttons.length)return lib.card[ui.selected.buttons[0].link].filterTarget;
+									if(ui.selected.buttons.length)return target.canUse(ui.selected.buttons[0].link,target1);
+									return false;
+									// return target.canUse({name:'juedou'},target1);
+								},
+								ai1(button) {
+									if (game.hasPlayer(target => {
+										return get.attitude(get.player(), target) < 0;
+									})) {
+										return 1;
+									}
+									return 0;
+								},
+								ai2(target) {
+									return -get.attitude(get.player(), target);
+								},
+							}).forResult();
+							if(relu&&relu.links){
+								var cardx = relu.links[0];
+								// await target.chooseUseTarget(cardx, false,'noanimate').set('nowuxie',true);
+								await target.useCard(cardx, false,relu.targets).set('nowuxie',true);
+							}
+							else {
+								break;
+							}
+						}
+						else {
+							break;
+						}
+					}
+				}
+			}
+			if(game.hasPlayer(function(current){
+				return current!=player&&target.canUse({name:'juedou'},current)&&current.hasSex('male');
+			})){
+				var relu2 = await player.chooseTarget(1,function(card,player1,target1){
+					return target1!=player1&&target.canUse({name:'juedou'},target1)&&target1.hasSex('male');
+				},`请选择${get.translation(target)}使用【决斗】的目标`).set('ai',function(targetx){
+					var target=_status.event.target;
+					return get.effect(targetx,{name:'juedou'},target,player);
+				}).set('target',target).forResult();
+				if(relu2){
+					var targetx = relu2.targets[0];
+					const useCardEvent = await target.useCard({name:'juedou',isCard:true},'nowuxie',targetx);
+					useCardEvent.animate = false;
+					await game.delay(0.5);
+				}
+			}
+		},
+		
+	},
+	yhky_dclianji:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		usable: 1,
+		filterTarget: lib.filter.notMe,
+		async content(event, trigger, player) {
+			const target = event.target;
+			await target.draw();
+			const list = get.inpileVCardList(info => {
+				const card = new lib.element.VCard({ name: info[2], nature: info[3], isCard: true });
+				// if(!player.storage.yhky_dchuayan_dcjuewu){
+					if (!player.storage.yhky_dchuayan_dcjuewu?(!get.tag(card, "damage")):false || !["basic", "trick"].includes(get.type(card, false))) {
+						return false;
+					}
+
+				// }
+				return target.hasUseTarget(card);
+			});
+			if (!list.length) {
+				return;
+			}
+			const result = await player
+				.chooseButton([`连计：选择要令${get.translation(target)}使用的牌`, [list, "vcard"]], true)
+				.set("ai", button => {
+					const card = new lib.element.VCard({ name: button.link[2], nature: button.link[3], isCard: true }),
+						{ player, target } = get.event();
+					return target.getUseValue(card) * get.attitude(player, target);
+				})
+				.set("target", target)
+				.forResult();
+			if (result.bool) {
+				const card = new lib.element.VCard({ name: result.links[0][2], nature: result.links[0][3], isCard: true });
+				if (target.hasUseTarget(card)) {
+					await target.chooseUseTarget(card, true);
+				}
+			}
+		},
+		ai: {
+			order: 6,
+			result: {
+				target: 1,
+			},
+		},
+	},
+	yhky_dcmoucheng:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		usable: 1,
+		viewAs: { name: "jiedao" },
+		filterCard:function(card,player){
+			if(player.storage.yhky_dchuayan_dcjuewu)return true;
+			else return get.color(card,player)=='black';
+		},
+		position: "he",
+		check(card) {
+			return 4.5 - get.value(card);
+		},
+	},
+	yhky_dcjiuchi:{
+		mod: {
+			cardUsable(card, player, num) {
+				if (card.name == "jiu"&&player.storage.yhky_dchuayan_dcjuewu) {
+					return Infinity;
+				}
+			},
+		},
+		audio: 'ext:夜白神略/audio/character:2',
+		enable: "chooseToUse",
+		filterCard(card) {
+			return get.suit(card) == "spade";
+		},
+		viewAs: { name: "jiu" },
+		position: "hes",
+		viewAsFilter(player) {
+			return player.hasCard(card => get.suit(card) == "spade", "hs");
+		},
+		prompt: "将一张黑桃手牌当酒使用",
+		check(cardx, player) {
+			if (player && player == cardx.player) {
+				return true;
+			}
+			if (_status.event.type == "dying") {
+				return 1;
+			}
+			var player = _status.event.player;
+			var shas = player.getCards("hs", function (card) {
+				return card != cardx && get.name(card, player) == "sha";
+			});
+			if (!shas.length) {
+				return -1;
+			}
+			if (shas.length > 1 && (player.getCardUsable("sha") > 1 || player.countCards("hs", "zhuge"))) {
+				return 0;
+			}
+			shas.sort(function (a, b) {
+				return get.order(b) - get.order(a);
+			});
+			var card = false;
+			if (shas.length) {
+				for (var i = 0; i < shas.length; i++) {
+					if (shas[i] != cardx && lib.filter.filterCard(shas[i], player)) {
+						card = shas[i];
+						break;
+					}
+				}
+			}
+			if (card) {
+				if (
+					game.hasPlayer(function (current) {
+						return (
+							get.attitude(player, current) < 0 &&
+							!current.hasShan() &&
+							current.hp + current.countCards("h", { name: ["tao", "jiu"] }) > 1 + (player.storage.jiu || 0) &&
+							player.canUse(card, current, true, true) &&
+							!current.hasSkillTag("filterDamage", null, {
+								player: player,
+								card: card,
+								jiu: true,
+							}) &&
+							get.effect(current, card, player) > 0
+						);
+					})
+				) {
+					return 4 - get.value(cardx);
+				}
+			}
+			return -1;
+		},
+		ai: {
+			threaten: 1.5,
+		},
+	},
+	yhky_dczuixiao:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		usable: 1,
+		filterTarget: lib.filter.notMe,
+		selectTarget:1,
+		content:async function(event,trigger,player){
+			let target=event.target;
+			await player.useCard({name:'xujiu'},false,target);
+			await target.useCard({name:'jiu'},false,target);
+			if(player.storage.yhky_dchuayan_dcjuewu&&player.canUse({name:'llfx_shanfengdianhuo'},target)){
+				var result = await player.chooseBool('是否视为对其使用一张【煽风点火】？').set('ai',function(bool){
+					var player = _status.event.player;
+					var eff = get.effect(target,{name:'llfx_shanfengdianhuo'},player,player)
+					return eff>1;
+				}).forResult();
+				if(result){
+					await player.useCard({name:'llfx_shanfengdianhuo'},target,false);
+				}
+			}
+		},
+	},
+	yhky_dchuayan:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		enable: "phaseUse",
+		limited: true,
+		skillAnimation: true,
+		animationColor: "metal",
+		filterCard: () => false,
+		selectCard: [-1, -2],
+		filterTarget: true,
+		selectTarget: -1,
+		multiline: true,
+		async contentBefore(event, trigger, player) {
+			// 目前并无换肤素材
+			player.changeSkin({ characterName: "yhky_diaochan" }, "yhky_diaochan_shadow");
+			player.awakenSkill("yhky_dchuayan");
+			await player.addSkill('yhky_dchuayan_juewu')
+			player.storage.yhky_dchuayan_dcjuewu=true;
+		},
+		async content(event, trigger, player) {
+			var target = event.target;
+			game.addVideo("jiuNode", target, true);
+			if (!target.storage.jiu) {
+				target.storage.jiu = 0;
+			}
+			target.storage.jiu += 1;
+			game.broadcastAll(function(target){
+				target.addSkill('jiu');
+				if(!target.node.jiu&&lib.config.jiu_effect){
+					target.node.jiu=ui.create.div('.playerjiu',target.node.avatar);
+					target.node.jiu2=ui.create.div('.playerjiu',target.node.avatar2);
+				}
+			},target);
+		},
+		subSkill:{
+			juewu:{
+				persevereSkill:true,
+				forced:true,
+				charlotte:true,
+				onremove(player,skill){
+					player.storage.yhky_dchuayan_dcjuewu=false;
+					player.changeSkin({ characterName: "yhky_diaochan_shadow" }, "yhky_diaochan");
+				},
+				mark:true,
+				marktext:'舞',
+				intro:{
+					name:'绝舞',
+					content:'貂蝉已随那清风去，化作了一片白云！'
+				},
+			},
+		},
+	},
+	yhky_dcchanjuan:{
+		audio: 'ext:夜白神略/audio/character:2',
+		persevereSkill: true,
+		trigger:{
+			global:['changeSkillsAfter','useCard'],
+		},
+		filter(event,player,name){
+			if(name=='changeSkillsAfter')return event.addSkill.includes('jiu')||event.removeSkill.includes('jiu');
+			return player==_status.currentPhase&&event.player!=player;
+		},
+		async cost(event, trigger, player){
+			if(event.triggername=='changeSkillsAfter'){
+				event.result = await player.chooseBool(get.translation(trigger.player)+trigger.addSkill.includes('jiu')?'进入':'脱离'+'酒状态，是否摸一张牌？').set('ai',function(){
+					return true;
+				}).forResult();
+			}
+			else {
+				if(player.storage.yhky_dchuayan_dcjuewu){
+					event.result = {
+						bool:true,
+						cost_data:'背水！'
+					}
+				}
+				else {
+					var list = ["摸牌"];
+					var choiceList = [
+						"选项一：摸一张牌",
+						"选项二：令此牌基础伤害或恢复值+1",
+						"选项三：使其本回合获得"+get.poptip("wushuang")+"",
+					];
+					if(get.tag(trigger.card,'damage')||get.tag(trigger.card,'recover')){
+						list.push("加伤");
+					}
+					else {
+						choiceList[1]=`<span class = 'transparent'>${choiceList[1]}</span>`
+					}
+					if(!trigger.player.hasSkill('wushuang')){
+						list.push("无双");
+					}
+					else {
+						choiceList[2]=`<span class = 'transparent'>${choiceList[2]}</span>`
+					}
+					if(player.countMark('yhky_dcyingwu')>0/*||trigger.player.hasSkill('xujiu2')||trigger.player?.node?.jiu?.classList.contains('playerjiu')*/){
+						list.push('背水！');
+					}
+					list.push("cancel2");
+					var str = get.translation(trigger.player)+(trigger.targets?'对'+get.translation(trigger.targets):'')+'使用了'+get.translation(trigger.card)+'，是否选择一项？'
+					const control = await player
+						.chooseControl(list)
+						.set("prompt", str)
+						.set("choiceList", choiceList)
+						.set("displayIndex", false)
+						// .set("choice", choice)
+						.set("ai", () => {
+							return '摸牌';
+						})
+						.forResultControl();
+					event.result = {
+						bool:control != "cancel2",
+						cost_data:control
+					}
+				}
+			}
+		},
+		async content(event, trigger, player){
+			if(event.triggername=='changeSkillsAfter'){
+				player.draw();
+			}
+			else {
+				const result = event.cost_data;
+				if(result == "背水！"/*&&!trigger.player.hasSkill('xujiu2')&&!trigger.player?.node?.jiu?.classList.contains('playerjiu')*/){
+					lib.skill.yhky_dcyingwu.removeMark(player, 6);
+					// trigger.trigger('yhky_dcyingwu_changeMark');
+				}
+				if(result == "背水！"||result == "摸牌"){
+					await player.draw(player.storage.yhky_dchuayan_dcjuewu?2:1);
+				}
+				if(result == "背水！"||result == "加伤"){
+					trigger.baseDamage++;
+				}
+				if(result == "背水！"||result == "无双"){
+					await trigger.player.addTempSkill('wushuang');
+				}
+			}
+		},
+		contentAfter(){
+			trigger.trigger('yhky_dcchanjuanAfter')
+		}
+	},
 
 
 

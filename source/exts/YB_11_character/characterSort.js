@@ -13,7 +13,7 @@ const characterSort = {
 	
 		],
 		yhky_qun:[
-	
+			'yhky_diaochan',
 		],
 		yhky_jin:[
 			

@@ -9488,7 +9488,7 @@ const skill = {
 				popup: false,
 				forceDie: true,
 				async content(event, trigger, player) {
-					player.changeSkin({ characterName: "qmsgswkjsgj_mb_caomao" }, "qmsgswkjsgj_mb_caomao_dead");
+					player.changeSkin({ characterName: "qmsgswkjsgj_re_caomao" }, "qmsgswkjsgj_re_caomao_dead");
 				},
 			},
 		},
@@ -10182,7 +10182,7 @@ const skill = {
 				_status.tempMusic = "effect_caomaoBJM";
 				game.playBackgroundMusic();
 			});
-			player.changeSkin({ characterName: "qmsgswkjsgj_mb_caomao" }, "qmsgswkjsgj_mb_caomao_shadow");
+			player.changeSkin({ characterName: "qmsgswkjsgj_re_caomao" }, "qmsgswkjsgj_re_caomao_shadow");
 			player.awakenSkill(event.skill);
 		},
 		async content(event, trigger, player) {
@@ -12823,18 +12823,30 @@ const skill = {
 		persevereSkill: true,
 		zhuSkill: true,
 		trigger: {
-			global: "phaseBefore",
+			global: ["phaseBefore",'recoverAfter'],
 			player: "enterGame",
 		},
 		filter(event, player) {
+			if(event.name == "recover")return event.player !=player&&event.player.group == "wei"&&player.hasZhuSkill("qmsgswkjsgj_shenci_mbweitong", event.player)
 			return event.name != "phase" || game.phaseNumber == 0;
 		},
-		forced: true,
+		// forced: true,
+		cost(){
+			if(event.triggername=='recoverAfter'){
+				event.result = player.chooseBool(get.prompt2('qmsgswkjsgj_shenci_mbweitong')).set('ai',true).forResult();
+			}
+			else {
+				event.result={bool:true}
+			}
+		},
 		locked: false,
 		async content(event, trigger, player) {
 			// const num = game.countPlayer(current => {
 			// 	return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_shenci_mbweitong", current);
 			// });
+			if(event.triggername=='recoverAfter'){
+				player.draw()
+			}
 			if(game.hasPlayer(current => {
 				return current !== player && current.group === "wei" && player.hasZhuSkill("qmsgswkjsgj_shenci_mbweitong", current);
 			}))lib.skill.qmsgswkjsgj_shenci_mbqianlong.addMark(player, 60);

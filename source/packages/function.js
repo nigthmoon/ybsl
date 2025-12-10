@@ -1278,6 +1278,29 @@ const typeimage = function(pagename,filename){
 			}
 		}
 	} 
+	
+	if(pagename.characterSubstitute&&Object.keys(pagename.characterSubstitute).length>0){
+		var substitute = pagename.characterSubstitute;
+		for(var i in substitute){
+			for(var k=0;k<substitute[i].length;k++){
+
+				if(Array.isArray(substitute[i][k])){
+					var infoy = substitute[i][k][1];
+					for(var infox of infoy){
+						if(infox.startsWith('YB_mjz:')){
+							// return ;
+							
+							var char = infox.slice(7);
+							pagename.characterSubstitute[i][k][1].push(`img:image/character/${char}.jpg`);
+							// if(noneStartWithPrefix(pagename.characterSubstitute[i][k][1],'die:')){
+							// 	pagename.characterSubstitute[i][k][1].push(`die:../../audio/die/${i}.mp3`);
+							// }
+						}
+					}
+				}
+			}
+		}
+	}
 	/**
 	 * 检查数组中所有字符串是否均不以指定前缀开头
 	 * @param {Array} arr - 要检查的数组
@@ -1325,4 +1348,23 @@ const typeimage = function(pagename,filename){
 		}
 		
 	} 
+	if(pagename.characterSubstitute&&Object.keys(pagename.characterSubstitute).length>0){
+		var substitute = pagename.characterSubstitute;
+		for(var i in substitute){
+			for(var k=0;k<substitute[i].length;k++){
+
+				if(Array.isArray(substitute[i][k])){
+					var infoy = substitute[i][k][1];
+					if(noneStartWithPrefix(infoy,'YB_mjz:')){
+						if(noneStartWithPrefix(infoy,'ext:')){
+							pagename.characterSubstitute[i][k][1].push(`img:extension/夜白神略/image/${filename}/${pagename.characterSubstitute[i][k][0]}.jpg`);
+						}
+						if(noneStartWithPrefix(infoy,'die:')){
+							pagename.characterSubstitute[i][k][1].push(`die:夜白神略/audio/die/${i}.mp3`);
+						}
+					}
+				}
+			}
+		}
+	}
 }

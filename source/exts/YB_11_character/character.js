@@ -5,5 +5,6 @@ export { character }
 const character = { //武将格式 : 
 	yhky_shlizhaoyi:['female','shu',3,['yhky_lzyjuekang','yhky_lzyjuejing'],['rankAdd:legend','rankS:s','linkTo:ybsl_shlizhaoyi']],
 	yhky_caoying:['female','wei',4,['yhky_cylingwei','yhky_cylingren'],['rankAdd:legend','rankS:s','linkTo:caoying','tempname:caoying']],
+	yhky_diaochan:['female','qun',3,['yhky_dcyingwu','yhky_dcchanjuan'],['rankAdd:legend','rankS:s','linkTo:re_diaochan','tempname:re_diaochan']],
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }
