@@ -57,6 +57,7 @@ const characterSort = {
 		'ybsl_laji':[
 			'ybold_018zhangqing','yboldshen_002chenailin','ybsb_047zhangmi','ybsb_077yangqixu',
 			'ybsb_068qingyue','ybsb_048wushuang','ybold_019shengyan','ybold_016manchengqi',
+			'ybsb_069xiangzi',
 		],
 	},
 }

@@ -47,11 +47,16 @@ const YBSL_special = function () {
 	//宗族：吴郡陆氏
 	game.YB_addAudio= function(...objects){
 		// if(typeof objects=='')
-		objects.forEach((currentObj, index) => {
+		objects.forEach((currentObj, index,num=2) => {
 			// if(!lib.skill[currentObj[0]])continue;
 			if(!lib.skill[currentObj[0]].audioname2)lib.skill[currentObj[0]].audioname2={}
 			for(var i in currentObj[1]){
 				lib.skill[currentObj[0]].audioname2[i]=currentObj[1][i];
+				if(!lib.skill[currentObj[1][i]]){
+					lib.skill[currentObj[1][i]]={
+						audio:num,
+					}
+				}
 			}
 		});
 	}
@@ -976,5 +981,30 @@ const YBSL_special = function () {
 			lib.skill.xinleiji_misa.disableReason.push('天祈')
 			lib.skill.xinleiji_misa.disableReason.push('神策')
 		})
+	}
+	{//缝神孙策激昂
+		lib.arenaReady.push(function(){
+			game.YB_addAudio(
+				['jiang',{qmsgswkjsgj_shen_sunce:'jiang_re_sunben'}],
+				['reyingzi',{qmsgswkjsgj_shen_sunce:'reyingzi_re_sunben'}],
+				['yinghun',{qmsgswkjsgj_shen_sunce:'yinghun_re_sunben'}],
+			)
+			// if(!lib.skill.jiang_re_sunben){
+			// 	lib.skill.jiang_re_sunben={
+			// 		audio:2,
+			// 	}
+			// }
+			// if(!lib.skill.reyingzi_re_sunben){
+			// 	lib.skill.reyingzi_re_sunben={
+			// 		audio:2,
+			// 	}
+			// }
+			// if(!lib.skill.yinghun_re_sunben){
+			// 	lib.skill.yinghun_re_sunben={
+			// 		audio:2,
+			// 	}
+			// }
+		})
+
 	}
 }

@@ -84,7 +84,7 @@ const translate = {
 		name: "绝舞",
 		type: "character",
 		info: `开启后，其他技能在此形态下均有变化：
-			<br><li>${get.poptip("yhky_dclihun")}改为：${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以弃置一张牌，并选择一名其他男性角色，你观看其手牌，然后可以依次选择其中一张令其使用之（至多为其体力值数且至多为5），然后你可以令其视为对另一名男性角色使用一张【决斗】（以此法使用的牌不可被【无懈可击】响应）。
+			<br><li>${get.poptip("yhky_dclihun")}改为：${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以弃置一张牌，并选择一名其他男性角色，你观看其手牌，然后可以依次选择其中一张令其对你指定的一名目标使用之（目标需合法，至多执行次数为其体力值数且至多为5），然后你可以令其视为对另一名男性角色使用一张【决斗】（以此法使用的牌不可被【无懈可击】响应）。
 			<br><li>${get.poptip("yhky_dclianji")}改为：${get.poptip("rule_chihengji")}。出牌阶段限一次，你可令一名其他角色摸一张牌，然后令其视为使用一张你指定的基本或锦囊牌。
 			<br><li>${get.poptip("yhky_dcjiuchi")}改为：${get.poptip("rule_chihengji")}。你可以将一张♠牌当作【酒】使用。你使用【酒】无次数限制。
 			<br><li>${get.poptip("yhky_dczuixiao")}改为：${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以视为对一名其他角色使用【酗酒】，然后其视为使用一张【酒】，然后可以视为对其使用一张【煽风点火】。
@@ -109,4 +109,11 @@ const translate = {
 	yhky_dcchanjuan_info:get.poptip("rule_chihengji")+'。当其他角色于你的回合内使用牌时，你可以选择①摸一张牌；②令此牌基础伤害或恢复值+1；③使其本回合获得'+get.poptip("wushuang")+'；④'+get.poptip("rule_beishui")+'：移去6点魅力值。',//当有角色进入或脱离【酒】状态时，你可以摸一张牌（这句作废）。
 
 
+
+
+
+
+
+
+	
 }

@@ -95,7 +95,7 @@ const character = { //武将格式 :
 	//'ybsl_066wujun':['female','YB_memory',3,[/*'技能'*/],[]],//武筠
 	'db_ybsl_067snake':['female','YB_dream',4,['yb067_chanqing','yb067_kuiyi','ybsl_sanmeng'],['doublegroup:YB_memory:YB_dream','rankAdd:legend','rankS:s','name:蛇|妃']],//蛇妃
 	'ybsl_068qingyue':['female','YB_memory',3,['yb010_mingzhu','yb068_chenyu','yb068_yingxian'],['rankAdd:legend','rankS:s','name:null|清月']],//清月姑娘
-	'ybsl_069xiangzi':['female','YB_dream',3,['yb069_yaomian','yb069_wenhuan','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:null|香紫']],//香紫
+	'ybsl_069xiangzi':['female','YB_dream',3,['yb069_yaomiany','yb069_wenhuan','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:null|香紫']],//香紫
 	'ybsl_070lvyanqiu':['female','YB_memory',3,['yb070_queshi','yb070_meiying','yb070_fuyi'],['rankAdd:legend','rankS:s','name:吕|艳秋']],//吕艳秋
 	//071想去远方
 	//072苏令燚
@@ -174,6 +174,7 @@ const character = { //武将格式 :
 	'ybsb_048wushuang':['female','YB_memory',3,['yb048_ningyuan','yb048_wuling','yb048_huanjie'],['rankAdd:legend','rankS:s','name:吴|爽','linkTo:ybsl_048wushuang']],//吴爽
 	'ybold_016manchengqi':['female','YB_memory',3,['yb016_xianyue','yb016_tianliao','yb016_qingjie','yb016_pojie'],['rankAdd:rare','rankS:b','name:满城|柒','linkTo:ybsl_016manchengqi']],//旧版SP满城柒（其实是清明节设计的，机制很清奇但貌似很弱）
 
+	'ybsb_069xiangzi':['female','YB_dream',3,['yb069_yaomian','yb069_wenhuan','ybsl_sanmeng','ybsl_rumeng'],['YB_memory','rankAdd:epic','rankS:a','name:null|香紫']],//香紫
 	ybsl_windmoon:['female','wei',4,[
 		// 'kagari_ybzongsi',
 		'kagari_ybzongsix',

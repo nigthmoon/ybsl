@@ -44,6 +44,7 @@ const card = {
 	},
 	//-----------------------飘雪神符
 	'ybsl_piaoxueruyi':{
+		bingzhu:['江雪舞'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip1',
@@ -1125,6 +1126,7 @@ const card = {
 	// },
 	//---------无双铠
 	ybsl_nodouble:{
+		bingzhu:['吕布','吕玲绮'],
 		fullskin:true,
 		type:"equip",
 		subtype:"equip2",
@@ -1137,6 +1139,7 @@ const card = {
 	},
 	//-----------------------乌孙
 	'ybsl_wusun':{
+		bingzhu:['司马懿'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip3',
@@ -1187,6 +1190,7 @@ const card = {
 	},
 	//-----------------------王追
 	'ybsl_wangzhui':{
+		bingzhu:['张飞'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip3',
@@ -1237,6 +1241,7 @@ const card = {
 	},
 	//-----------------------西极
 	'ybsl_xiji':{
+		bingzhu:['司马懿'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip4',
@@ -1287,6 +1292,7 @@ const card = {
 	},
 	//-----------------------奔雷
 	'ybsl_benlei':{
+		bingzhu:['张郃'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip4',
@@ -1337,6 +1343,7 @@ const card = {
 	},
 	//-----------------------照夜玉狮
 	'ybsl_zhaoyeyushi':{
+		bingzhu:['赵云'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip3',
@@ -1399,6 +1406,7 @@ const card = {
 	},
 	//-----------------------玉兰白龙驹
 	'ybsl_yulanbailongju':{
+		bingzhu:['赵云'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip4',
@@ -1450,6 +1458,7 @@ const card = {
 	},
 	//------------圣诞麋鹿
 	ybsl_milu:{
+		// bingzhu:['王朗'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip4',
@@ -1502,6 +1511,7 @@ const card = {
 	},
 	//------------神兽羊驼
 	ybsl_yangtuo:{
+		// bingzhu:['孙坚'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip3',
@@ -1554,6 +1564,7 @@ const card = {
 	},
 	//-----------------------乌云踏雪
 	'rewrite_ybsl_wangzhui':{
+		bingzhu:['张飞'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip3',
@@ -1607,6 +1618,7 @@ const card = {
 	},
 	//-----------------------烈焰赤兔
 	'rewrite_chitu':{
+		bingzhu:['关羽','吕布'],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip4',
@@ -1660,6 +1672,7 @@ const card = {
 	},
 	//------------------方天锁链鞭（什么J8玩意）
 	rewrite_fangtian:{
+		bingzhu: ["吕布"],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip1',
@@ -1706,6 +1719,7 @@ const card = {
 	},
 	//------------------北斗七星扇
 	'rewrite_zhuque':{
+		bingzhu: ["诸葛亮"],
 		fullskin:true,
 		type:'equip',
 		subtype:'equip1',
@@ -1720,6 +1734,7 @@ const card = {
 	},
 	//--------------------七星龙渊剑
 	'rewrite_yitianjian':{
+		bingzhu: ["赵云"],
 		type:'equip',
 		subtype:'equip1',
 		fullskin:true,
@@ -1736,6 +1751,7 @@ const card = {
 	},
 	//--------------------原版铜雀
 	'rewrite_tongque':{
+		bingzhu: ["曹操"],
 		type:'equip',
 		subtype:'equip5',
 		fullskin:true,
@@ -1750,6 +1766,7 @@ const card = {
 	},
 	//--------------------百鸟朝凤枪
 	'ybsl_bainiaochaofeng':{
+		bingzhu: ["赵云"],
 		type:'equip',
 		subtype:'equip1',
 		fullskin:true,
@@ -2409,6 +2426,7 @@ const card = {
 	//----------界铜雀
 	//-----------锁龙偃月刀
 	rewrite_qinglong:{
+		bingzhu: ["关羽", "关兴", "张苞", "关银屏"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2426,6 +2444,7 @@ const card = {
 	},
 	//-----------桃之夭夭
 	ybsl_taoyao:{
+		bingzhu: ["孙尚香"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2440,6 +2459,7 @@ const card = {
 	},
 	//--------------绿沉枪
 	ybsl_lvchenqiang:{
+		bingzhu: ["姜维"],
 		type:'equip',
 		subtype:'equip1',
 		fullskin:true,
@@ -2465,6 +2485,7 @@ const card = {
 		// toself:true,
 	},
 	ybsl_fuxizhenhunqin:{
+		bingzhu: ["周瑜"],
 		type:'equip',
 		subtype:'equip1',
 		fullskin:true,
@@ -2480,6 +2501,7 @@ const card = {
 	},
 	//----------之子于归
 	ybsl_zhiziyugui:{
+		bingzhu: ["孙尚香"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2505,6 +2527,7 @@ const card = {
 	},
 	//--------------青鳞盔
 	ybsl_qinglinkui:{
+		bingzhu: ["廖化"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2519,6 +2542,7 @@ const card = {
 	},
 	//--------------水镜袍
 	ybsl_shuijingpao:{
+		bingzhu: ["司马徽"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2533,6 +2557,7 @@ const card = {
 	},
 	//------------国士圣袍
 	ybsl_guoshishengpao:{
+		bingzhu: ["吕蒙"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2547,6 +2572,7 @@ const card = {
 	},
 	////-------------凤求凰
 	ybsl_fengqiuhuang:{
+		bingzhu: ["王元姬"],
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
 		type:'equip',
@@ -2561,6 +2587,7 @@ const card = {
 	},
 	//------------吴六剑
 	ybsl_baihong:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2577,6 +2604,7 @@ const card = {
 		skills:['ybsl_baihong'],
 	},
 	ybsl_zidian:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2593,6 +2621,7 @@ const card = {
 		skills:['ybsl_zidian1','ybsl_zidian2'],
 	},
 	ybsl_bixie:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2609,6 +2638,7 @@ const card = {
 		skills:['ybsl_bixie'],
 	},
 	ybsl_liuxing:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2625,6 +2655,7 @@ const card = {
 		skills:['ybsl_liuxing'],
 	},
 	ybsl_qingming:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2641,6 +2672,7 @@ const card = {
 		skills:['ybsl_qingming'],
 	},
 	ybsl_baili:{
+		bingzhu: ["孙权"],
 		fullskin:true,
 		type:'equip',
 		legend:true,
@@ -2658,6 +2690,7 @@ const card = {
 	},
 	//-------------七星刀
 	ybsl_qixingdao:{
+		bingzhu: ["曹操", "王允", "董卓"],
 		fullskin:true,
 		type:'equip',
 		legend:true,

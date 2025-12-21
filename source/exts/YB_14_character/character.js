@@ -112,12 +112,14 @@ const character = { //武将格式 :
 		group : 'wei',
 		sex : 'male',
 		hp : 4,
+		linkTo:'dengai',
 		skills : ['ddddssssbbbb_chouxuan']
 	},//邓艾
 	zxunnamed_gongsunyuan : {
 		sex : 'male',
 		group : 'qun',
 		hp : 4,
+		linkTo:'gongsunyuan',
 		skills : ['zxunnamed_huaiyi'],
 		names : '公孙|渊'
 	},//公孙渊

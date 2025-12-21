@@ -157,4 +157,5 @@ const characterTitle = {//称号
 	'ybsb_077yangqixu':'<font color=cyan>似水流年</font>',
 	'ybsb_068qingyue':'<font color=cyan>似水流年</font>',
 	'ybsb_048wushuang':'<font color=cyan>似水流年</font>',
+	ybsb_069xiangzi:'<font color=cyan>似水流年</font>',
 }

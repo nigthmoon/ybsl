@@ -14262,14 +14262,31 @@ const skill = {
 		usable:1,
 		enable:'phaseUse',
 		filterTarget:function(card,player,target){
+			if(player==target)return false;
+			var str = '';
+			if(target.hasSex('male')){
+				str+='获得一张牌<br>';
+			}
+			str+='各自翻面';
+			target.prompt(str);
 			return player!=target;
 		},
 		filterCard:false,
-		content:function(){
-			if(target.countCards('he')>0&&target.hasSex('male'))player.gainPlayerCard(target,true,'he',1);
-			player.turnOver();
-			target.turnOver();
+		content:async function(event,trigger,player){
+			var target = event.target;
+			if(target.countCards('he')>0&&target.hasSex('male'))await player.gainPlayerCard(target,true,'he',1);
+			await player.turnOver();
+			await target.turnOver();
 		},
+		// targetprompt(target) {
+		// 	var player = _status.event.player;
+		// 	var str = '';
+		// 	if(target.hasSex('male')){
+		// 		str+='获得一张牌<br>';
+		// 	}
+		// 	str+='各自翻面';
+		// 	return str;
+		// },
 		ai:{
 			order:6,
 			result:{
@@ -14284,6 +14301,149 @@ const skill = {
 					if(!target.classList.contains('turnedover')) num-=6;
 					if(target.classList.contains('turnedover')) num+=10;
 					if(target.hasSex('male')) num-=1;
+					return num;
+				}
+			},
+			threaten:1.5,//嘲讽值
+			effect:{
+				target:function(card){
+					if(card.name=='guiyoujie') return [0,2];
+				}
+			}
+		},
+	},
+	'yb069_yaomianx':{
+		audio:'yb069_yaomian',
+		usable:1,
+		enable:'phaseUse',
+		filterTarget:function(card,player,target){
+			if(player==target)return false;
+			var str = '';
+			if(target.hasSex('male')){
+				str+='获得一张牌<br>';
+			}
+			str+='各自回血';
+			target.prompt(str);
+			return player!=target;
+		},
+		filterCard:false,
+		content:async function(event,trigger,player){
+			var target = event.target;
+			if(target.countCards('he')>0&&target.hasSex('male'))await player.gainPlayerCard(target,true,'he',1);
+			await player.recover();
+			await target.recover();
+		},
+		// targetprompt(target) {
+		// 	var player = _status.event.player;
+		// 	var str = '';
+		// 	if(target.hasSex('male')){
+		// 		str+='获得一张牌<br>';
+		// 	}
+		// 	str+='各自回血';
+		// 	return str;
+		// },
+		ai:{
+			order:6,
+			result:{
+				player:function(player,target){
+					var num=0;
+					if(player.isDamaged()) num+=2;
+					if(target.hasSex('male')) num+=1;
+					return num;
+				},
+				target:function(player,target){
+					var num=0;
+					if(target.isDamaged()) num+=1;
+					// if(!target.classList.contains('turnedover')) num-=6;
+					// if(target.classList.contains('turnedover')) num+=10;
+					if(target.hasSex('male')) num-=1;
+					return num;
+				}
+			},
+			threaten:1.5,//嘲讽值
+			effect:{
+				target:function(card){
+					if(card.name=='guiyoujie') return [0,2];
+				}
+			}
+		},
+	},
+	'yb069_yaomiany':{
+		audio:'yb069_yaomian',
+		usable:1,
+		enable:'phaseUse',
+		filterTarget:function(card,player,target){
+			if(player==target)return false;
+			var str = '';
+			if(target.hasSex('male')){
+				str+='获得一张牌<br>';
+			}
+			if(player.storage.yb069_yaomiany&&player.storage.yb069_yaomiany.includes(target)){
+				str+='各自回血';
+			}
+			else {
+				str+='各自翻面';
+			}
+			target.prompt(str);
+			return player!=target;
+		},
+		filterCard:false,
+		content:async function(event,trigger,player){
+			var target = event.target;
+			if(target.countCards('he')>0&&target.hasSex('male'))await player.gainPlayerCard(target,true,'he',1);
+			if(!player.storage.yb069_yaomiany||!player.storage.yb069_yaomiany.includes(target)){
+				player.storage.yb069_yaomiany=player.storage.yb069_yaomiany||[];
+				player.storage.yb069_yaomiany.push(target);
+				await player.turnOver();
+				await target.turnOver();
+			}
+			else {
+				await player.recover();
+				await target.recover();
+			}
+		},
+		// targetprompt(target) {
+		// 	var player = _status.event.player;
+		// 	var str = '';
+		// 	if(target.hasSex('male')){
+		// 		str+='获得一张牌<br>';
+		// 	}
+		// 	if(player.storage.yb069_yaomiany&&player.storage.yb069_yaomiany.includes(target)){
+		// 		str+='各自回血';
+		// 	}
+		// 	else {
+		// 		str+='各自翻面';
+		// 	}
+		// 	return str;
+		// },
+		ai:{
+			order:6,
+			result:{
+				player:function(player,target){
+					var num=0;
+					var storage=player.storage.yb069_yaomiany||[];
+					if(storage.includes(target)){
+						if(player.isDamaged()) num+=2;
+						if(target.hasSex('male')) num+=1;
+					}
+					else {
+						if(player.classList.contains('turnedover')) num+=10;
+						if(target.hasSex('male')) num+=1;
+					}
+					return num;
+				},
+				target:function(player,target){
+					var num=0;
+					var storage=player.storage.yb069_yaomiany||[];
+					if(storage.includes(target)){
+						if(target.isDamaged()) num+=1;
+						if(target.hasSex('male')) num-=1;
+					}
+					else {
+						if(!target.classList.contains('turnedover')) num-=6;
+						if(target.classList.contains('turnedover')) num+=10;
+						if(target.hasSex('male')) num-=1;
+					}
 					return num;
 				}
 			},

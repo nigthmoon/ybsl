@@ -8,6 +8,7 @@ const YBSL_rank = function(){
 	var packages = [
 		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic',
 		'ybnew3',
+		'cyyydsgs','jhjx',
 		// 'YB_one'
 	]
 	{//修改函数以防止失灵

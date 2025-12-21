@@ -167,7 +167,7 @@ const characterIntro = {
 	'ybsp_001sunlisong':'<span class=thundertext>孙丽松，原型为同名本人，陈爱琳和王汉桢的闺蜜，六中三班的一员。不算太熟，但隐约记得关系还不错，言行举止令人如沐春风。</span>',
 	ybsp_018zhangqing:'<span class=thundertext>2025年10月7日，和她本人聊天。得知她消消乐已经10000多关。感慨其毅力同时，突发灵感，遂设此武将。</span>',
 	ybsp_033xiaohui:'<span class=thundertext>初中的时候，她和一个男生谈恋爱。后来貌似是男的甩了她，她在宿舍楼下哭的死去活来。</span>',
-	ybsl_079xiaoxin:'<span class=thundertext>小新，原型保密。</span>',
+	ybsp_079xiaoxin:'<span class=thundertext>小新，原型保密。</span>',
 	//---------------------------------//界限突破（什么沙比玩意）
 	'ybnb_034zhoulianyuan':'<span class=thundertext>周怜渊，记2022年9月15日之16日的一场梦。<br>这次载入的梦境大致是一个作文考试，我叙写了一篇文章，讲述了一个言辞锋利的监察者，具体事迹不详，只记得名字叫周怜渊。为了纪念这一场梦，并撰写此武将。</span>',
 	

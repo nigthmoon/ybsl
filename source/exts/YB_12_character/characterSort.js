@@ -37,8 +37,8 @@ const characterSort = {
 			'qmsgswkjsgj_re_peixiu','qmsgswkjsgj_re_shichangshi',
 			'qmsgswkjsgj_re_jushou','qmsgswkjsgj_shen_huatuo',
 			'qmsgswkjsgj_pot_yuji','qmsgswkjsgj_re_caomao',
-
-
+			'qmsgswkjsgj_shen_sunce',
+			'qmsgswkjsgj_mengpo',
 			//神赐
 			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_re_duyu',
 			'qmsgswkjsgj_shenci_wu_luxun','qmsgswkjsgj_shenci_sb_caopi',

@@ -924,4 +924,14 @@ const translate = {
 	yiruoshengqiang_info: "造成伤害时，若受伤角色体力值大于伤害来源，此伤害+1。",
 	shichongerjiao: "恃宠而骄",
 	shichongerjiao_info: "结束阶段，若你的体力值为全场唯一最多，你弃一张牌；若你的手牌数为全场最多，你失去1点体力。",
+
+
+
+	//太虚幻境搬运
+	boss_aotang: '熬汤',
+	boss_aotang_info: '锁定技，回合开始时，你令随机一名敌方角色遗忘所有武将技能直到你的下回合开始。',
+	boss_yunjv: '云飓',
+	boss_yunjv_info: '锁定技，敌方角色的回合结束时，该角色随机弃置一张手牌和一张装备区里的牌。',
+	boss_guimeic: '鬼魅',
+	boss_guimeic_info: '锁定技，你不会被翻面；若你的出牌阶段被跳过，你跳过本回合的弃牌阶段；若你的摸牌阶段被跳过，你摸一张牌。',
 }

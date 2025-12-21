@@ -1589,20 +1589,20 @@ const skill = {
 	},
 	//鬼赐福
 	//鬼许攸
-	qmsgswkjsgj_baolian: {
-		trigger: { player: "phaseJieshuBegin" },
-		forced: true,
-		content: function () {
-			player.draw(2);
-		},
-	},
-	qmsgswkjsgj_taiping: {
-		trigger: { player: "phaseDrawBegin" },
-		forced: true,
-		content: function () {
-			trigger.num += 2;
-		},
-	},
+	// qmsgswkjsgj_baolian: {
+	// 	trigger: { player: "phaseJieshuBegin" },
+	// 	forced: true,
+	// 	content: function () {
+	// 		player.draw(2);
+	// 	},
+	// },
+	// qmsgswkjsgj_taiping: {
+	// 	trigger: { player: "phaseDrawBegin" },
+	// 	forced: true,
+	// 	content: function () {
+	// 		trigger.num += 2;
+	// 	},
+	// },
 
 
 	//缝神郭嘉
@@ -7715,7 +7715,439 @@ const skill = {
 			},
 		},
 	},
+	//孟婆
+	// qmsgswkjsgj_aotang:{
+	// 	audio: 'ext:夜白神略/audio/character:1',
+	// 	// master:['boss_mengpo','qmsgswkjsgj_mengpo'],
+	// 	master:['孟婆'],
+	// 	trigger:{
+	// 		player:'phaseBegin',
+	// 	},
+	// 	filter(event,player){
+	// 		var namex = lib.skill.qmsgswkjsgj_aotang.master;
+	// 		const names = get
+	// 				.characterSurname(player.name)
+	// 				.map(info => info.join(""))
+	// 				.concat([get.rawName(player.name)]);
+	// 		if(!names)return false;
+	// 		return game.countPlayer(current=>player.getEnemies().includes(current))>0
+	// 	},
+	// 	forced:true,
+	// 	locked:false,
+	// 	content(){
+	// 		var list = game.filterPlayer(function (current) {
+	// 			return current != player&&player.getEnemies().includes(current);
+	// 		});
+	// 		if (list.length) {
+	// 			var target = list.randomGet();
+	// 			player.line(target);
+	// 			var skills = game.filterSkills(
+	// 				target.getStockSkills(true, true).filter(skill => {
+	// 					const info = get.info(skill);
+	// 					return !info.persevereSkill || !info.charlotte;
+	// 				}),
+	// 				target
+	// 			);
+	// 			target.disableSkill("qmsgswkjsgj_aotang", skills);
+	// 			target.addTempSkill("qmsgswkjsgj_aotang_restore");
+				
+	// 		}
+	// 	},
+	// },
+	qmsgswkjsgj_yunju:{
+		audio: 'boss_yunjv',
+		trigger: {
+			global: 'phaseEnd',
+		},
+		forced: true,
+		filter(event, player) {
+			return player.getEnemies().includes(event.player) && event.player.countCards('he') > 0 && event.player != player;
+		},
+		logTarget: 'player',
+		content() {
+			if (trigger.player.countCards('h') > 0) {
+				var card1 = trigger.player.getCards('h').randomGet();
+				trigger.player.discard(card1);
+			}
+		},
+		ai: {
+			expose: 0.2,
+		},
 
+	},
+	//神孙笨
+	qmsgswkjsgj_yingba: {
+		audio: 'yingba',
+		mod: {
+			aiOrder(player, card, num) {
+				if (num > 0 && _status.event && _status.event.type == "phase" && get.tag(card, "recover")) {
+					if (player.needsToDiscard()) {
+						return num / 3;
+					}
+					return 0;
+				}
+			},
+			targetInRange(card, player, target) {
+				if (target.hasMark("yingba_mark")) {
+					return true;
+				}
+			},
+			cardUsableTarget(card,player,target){
+				if(target.hasMark("yingba_mark")){
+					return true;
+				}
+			}
+		},
+		enable: "phaseUse",
+		usable: 2,
+		filter: (event, player) => game.hasPlayer(current => current != player),
+		filterTarget: (card, player, target) => target != player ,
+		content() {
+			"step 0";
+			target.loseMaxHp();
+			"step 1";
+			if (target.isIn()) {
+				target.addMark("yingba_mark", 1);
+			}
+			player.loseMaxHp();
+		},
+		locked: false,
+		//global:'yingba_mark',
+		ai: {
+			threaten(player, target) {
+				if (player === target || player.isDamaged() || get.attitude(player, target) > 0) {
+					return 1;
+				}
+				return 8 / player.maxHp;
+			},
+			order: 11,
+			result: {
+				player(player, target) {
+					if (player.maxHp == 1) {
+						return -2.5;
+					}
+					return -0.25;
+				},
+				target(player, target) {
+					if (target.isHealthy()) {
+						return -2;
+					}
+					if (!target.hasMark("yingba_mark")) {
+						return -1;
+					}
+					return -0.2;
+				},
+			},
+		},
+		subSkill: {
+			mark: {
+				marktext: "定",
+				intro: {
+					name: "平定",
+					content: "mark",
+					onunmark: true,
+				},
+				mod: {
+					maxHandcard(player, numx) {
+						var num = player.countMark("yingba_mark");
+						if (num) {
+							return (
+								numx +
+								num *
+									game.countPlayer(function (current) {
+										return current.hasSkill("qmsgswkjsgj_yingba");
+									})
+							);
+						}
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_scfuhai: {
+		audio: 'scfuhai',
+		trigger: { player: "useCardToPlayered" },
+		forced: true,
+		filter(event, player) {
+			return event.target && event.target.hasMark("yingba_mark");
+		},
+		logTarget: "target",
+		content() {
+			trigger.directHit.add(trigger.target);
+			player.draw();
+		},
+		group: ["qmsgswkjsgj_scfuhai_die",'qmsgswkjsgj_scfuhai_usea'],
+		ai: {
+			directHit_ai: true,
+			skillTagFilter(player, tag, arg) {
+				return arg && arg.target && arg.target.hasMark("yingba_mark");
+			},
+			combo: "qmsgswkjsgj_yingba",
+		},
+		subSkill: {
+			usea: {
+				audio: "qmsgswkjsgj_scfuhai",
+				trigger: { player: "useCardAfter" },
+				// forced: true,
+				prompt: "是否移除其“平定”标记，并恢复X点体力上限",
+				filter(event, player) {
+					return lib.skill.qmsgswkjsgj_scfuhai_usea.logTarget(event, player).length > 0;
+				},
+				logTarget(event, player) {
+					return event.targets.filter(function (i) {
+						return i.hasMark("yingba_mark");
+					});
+				},
+				content() {
+					var num = 0;
+					for (var i of trigger.targets) {
+						var numx = i.countMark("yingba_mark");
+						if (numx) {
+							num += numx;
+							i.removeMark("yingba_mark", numx);
+						}
+					}
+					if (num) {
+						player.gainMaxHp(num);
+					}
+				},
+			},
+			die: {
+				audio: "qmsgswkjsgj_scfuhai",
+				trigger: { global: "die" },
+				forced: true,
+				filter(event, player) {
+					return event.player.countMark("yingba_mark") > 0;
+				},
+				content() {
+					player.gainMaxHp(trigger.player.countMark("yingba_mark"));
+					player.draw(trigger.player.countMark("yingba_mark"));
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_pinghe: {
+		audio: 'pinghe',
+		mod: {
+			maxHandcardBase(player) {
+				return player.getDamagedHp()+3;
+			},
+		},
+		trigger: { player: "damageBegin2" },
+		forced: true,
+		filter(event, player) {
+			return event.source && event.source != player && player.maxHp > 1 && player.countCards("h") > 0;
+		},
+		content() {
+			"step 0";
+			trigger.cancel();
+			player.loseMaxHp();
+			"step 1";
+			player.chooseCardTarget({
+				prompt: "请选择【冯河】的牌和目标",
+				prompt2: "将一张手牌交给一名其他角色并防止伤害" + (player.hasSkill("qmsgswkjsgj_yingba") ? "，然后令伤害来源获得一个“平定”标记" : ""),
+				filterCard: true,
+				// forced: true,
+				filterTarget: lib.filter.notMe,
+				ai1(card) {
+					if (
+						get.tag(card, "recover") &&
+						!game.hasPlayer(function (current) {
+							return get.attitude(current, player) > 0 && !current.hasSkillTag("nogain");
+						})
+					) {
+						return 0;
+					}
+					return 1 / Math.max(0.1, get.value(card));
+				},
+				ai2(target) {
+					var player = _status.event.player,
+						att = get.attitude(player, target);
+					if (target.hasSkillTag("nogain")) {
+						att /= 9;
+					}
+					return 4 + att;
+				},
+			});
+			"step 2";
+			if (result.bool) {
+				var target = result.targets[0];
+				//player.logSkill('qmsgswkjsgj_pinghe',target);
+				player.line(target, "green");
+				player.give(result.cards, target);
+			}
+			'step 3'
+			if (player.hasSkill("qmsgswkjsgj_yingba")) {
+				trigger.source.addMark("yingba_mark", 1);
+			}
+		},
+		ai: {
+			maixie_defend: true,
+			effect: {
+				target(card, player, target) {
+					if (player !== target && target.maxHp > 1 && target.countCards("h") > 0) {
+						if (get.tag(card, "damage") && target.hasSkill("qmsgswkjsgj_yingba")) {
+							let damage = 1.6;
+							if (target.isHealthy()) {
+								damage += 1.6;
+							}
+							if (
+								game.hasPlayer(cur => {
+									return cur !== target && get.attitude(target, cur) > 0;
+								})
+							) {
+								damage -= 0.9;
+							}
+							return [0, -damage, 0, -0.4];
+						}
+						if (card.name === "tiesuo") {
+							return 0.4;
+						}
+					}
+					if (get.tag(card, "recover") && _status.event.type == "phase" && !player.needsToDiscard()) {
+						return 0;
+					}
+				},
+			},
+		},
+	},
+	// qmsgswkjsgj_shenjiang_audio:{
+	// 	audio:'jiang_re_sunben',
+	// },
+	qmsgswkjsgj_shenhunzi:{
+		audio: 'rehunzi',
+		// trigger: { player: "phaseBegin" },
+		// filter(event, player) {
+		// 	return player.countCards("h") > 0;
+		// },
+		trigger:{
+			global:'phaseBefore',
+			player:'enterGame',
+		},
+		forced:true,
+		filter(event,player){
+			return (event.name!='phase'||game.phaseNumber==0)
+		},
+		content() {
+			player.addSkills(['qmsgswkjsgj_shenyingzi','qmsgswkjsgj_shenyinghun'])
+		},
+		derivation:['qmsgswkjsgj_shenyingzi','qmsgswkjsgj_shenyinghun'],
+		ai: {
+			threaten: 1.5,
+			expose: 0.2,
+		},
+		// subSkill:{
+		// 	audio:{
+		// 		audio:'reyingzi_re_sunben',
+		// 	}
+		// },
+	},
+	qmsgswkjsgj_shenyingzi:{
+		audio:'reyingzi',
+		trigger: { player: "phaseDrawBegin2" },
+		forced: true,
+		preHidden: true,
+		filter(event, player) {
+			return !event.numFixed;
+		},
+		content() {
+			trigger.num++;
+		},
+		ai: {
+			threaten: 1.5,
+		},
+	},
+	qmsgswkjsgj_shenyinghun:{
+		audio:'yinghun',
+		mod: {
+			aiOrder(player, card, num) {
+				if (num > 0 && _status.event && _status.event.type == "phase" && get.tag(card, "recover")) {
+					if (player.needsToDiscard()) {
+						return num / 3;
+					}
+					return 0;
+				}
+			},
+		},
+		locked: false,
+		trigger: { player: "phaseZhunbeiBegin" },
+		preHidden: true,
+		async cost(event, trigger, player) {
+			event.result = await player
+				.chooseTarget(get.prompt2(event.skill), function (card, player, target) {
+					return player != target;
+				})
+				.set("ai", function (target) {
+					const player = _status.event.player;
+					// if (player.getDamagedHp() == 1 && target.countCards("he") == 0) {
+					// 	return 0;
+					// }
+					if (get.attitude(_status.event.player, target) > 0) {
+						return 10 + get.attitude(_status.event.player, target);
+					}
+					// if (player.getDamagedHp() == 1) {
+					// 	return -1;
+					// }
+					return 1;
+				})
+				.setHiddenSkill(event.name.slice(0, -5))
+				.forResult();
+		},
+		async content(event, trigger, player) {
+			const num = player.getDamagedHp();
+			const [target] = event.targets;
+			let directcontrol = num == 1;
+			if (!directcontrol) {
+				const str1 = "摸" + get.cnNumber(num, true) ;
+				const str2 = "弃" + get.cnNumber(num, true);
+				directcontrol =
+					str1 ==
+					(await player
+						.chooseControl(str1, str2, function (event, player) {
+							if (player.isHealthy()) {
+								return 1 - _status.event.choice;
+							}
+							return _status.event.choice;
+						})
+						.set("choice", get.attitude(player, target) > 0 ? 0 : 1)
+						.forResultControl());
+			}
+			if (directcontrol) {
+				if (num > 0) {
+					await target.draw(num);
+				}
+				// await target.chooseToDiscard(true, "he");
+			} else {
+				// await target.draw();
+				if (num > 0) {
+					await target.chooseToDiscard(num, true, "he", "allowChooseAll");
+				}
+			}
+		},
+		ai: {
+			effect: {
+				target(card, player, target) {
+					if (
+						get.tag(card, "damage") &&
+						get.itemtype(player) === "player" &&
+						target.hp >
+							(player.hasSkillTag("damageBonus", true, {
+								target: target,
+								card: card,
+							})
+								? 2
+								: 1)
+					) {
+						return [1, 0.5];
+					}
+				},
+			},
+			threaten(player, target) {
+				return Math.max(0.5, target.getDamagedHp() / 2);
+			},
+			maixie: true,
+		},
+	},
 
 
 
@@ -14373,7 +14805,7 @@ const skill = {
 			skillTagFilter(player, tag, arg) {
 				return arg && arg.target && arg.target.hasMark("yingba_mark");
 			},
-			combo: "yingba",
+			combo: "qmsgswkjsgj_yingba",
 		},
 		subSkill: {
 			usea: {
@@ -14381,7 +14813,7 @@ const skill = {
 				trigger: { player: "useCardAfter" },
 				forced: true,
 				filter(event, player) {
-					return lib.skill.scfuhai_usea.logTarget(event, player).length > 0;
+					return lib.skill.qmsgswkjsgj_scfuhai_usea.logTarget(event, player).length > 0;
 				},
 				logTarget(event, player) {
 					return event.targets.filter(function (i) {
@@ -14414,6 +14846,88 @@ const skill = {
 			},
 		},
 
+	},
+	sgsxjxfzmnl_pinghe: {
+		audio: "pinghe",
+		mod: {
+			maxHandcardBase(player) {
+				return player.getDamagedHp();
+			},
+		},
+		trigger: { player: "damageBegin2" },
+		forced: true,
+		filter(event, player) {
+			return event.source && event.source != player && player.maxHp > 1 && player.countCards("h") > 0;
+		},
+		content() {
+			"step 0";
+			trigger.cancel();
+			player.loseMaxHp();
+			"step 1";
+			player.chooseCardTarget({
+				prompt: "请选择【冯河】的牌和目标",
+				prompt2: "将一张手牌交给一名其他角色并防止伤害" + (player.hasSkill("qmsgswkjsgj_yingba") ? "，然后令伤害来源获得一个“平定”标记" : ""),
+				filterCard: true,
+				forced: true,
+				filterTarget: lib.filter.notMe,
+				ai1(card) {
+					if (
+						get.tag(card, "recover") &&
+						!game.hasPlayer(function (current) {
+							return get.attitude(current, player) > 0 && !current.hasSkillTag("nogain");
+						})
+					) {
+						return 0;
+					}
+					return 1 / Math.max(0.1, get.value(card));
+				},
+				ai2(target) {
+					var player = _status.event.player,
+						att = get.attitude(player, target);
+					if (target.hasSkillTag("nogain")) {
+						att /= 9;
+					}
+					return 4 + att;
+				},
+			});
+			"step 2";
+			if (result.bool) {
+				var target = result.targets[0];
+				//player.logSkill('pinghe',target);
+				player.line(target, "green");
+				player.give(result.cards, target);
+				trigger.source.addMark("yingba_mark", 1);
+			}
+		},
+		ai: {
+			maixie_defend: true,
+			effect: {
+				target(card, player, target) {
+					if (player !== target && target.maxHp > 1 && target.countCards("h") > 0) {
+						if (get.tag(card, "damage") && target.hasSkill("qmsgswkjsgj_yingba")) {
+							let damage = 1.6;
+							if (target.isHealthy()) {
+								damage += 1.6;
+							}
+							if (
+								game.hasPlayer(cur => {
+									return cur !== target && get.attitude(target, cur) > 0;
+								})
+							) {
+								damage -= 0.9;
+							}
+							return [0, -damage, 0, -0.4];
+						}
+						if (card.name === "tiesuo") {
+							return 0.4;
+						}
+					}
+					if (get.tag(card, "recover") && _status.event.type == "phase" && !player.needsToDiscard()) {
+						return 0;
+					}
+				},
+			},
+		},
 	},
 	//阴间谋夏侯氏
 	sgsxjxfzmnl_sbqiaoshi: {

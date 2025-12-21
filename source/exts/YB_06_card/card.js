@@ -562,6 +562,7 @@ const card = {
 		},
 	},
 	zong: {
+		mode: ['versus'],
 		fullskin: true,
 		type: "basic",
 		cardcolor: "red",
@@ -633,6 +634,7 @@ const card = {
 		},
 	},
 	xionghuangjiu: {
+		mode: ['versus'],
 		fullskin: true,
 		type: "basic",
 		enable: function (event, player) {
@@ -765,6 +767,7 @@ const card = {
 		},
 	},
 	tongzhougongji: {
+		mode: ['versus'],
 		fullskin: true,
 		cardimage: "lulitongxin",
 		notarget: true,
@@ -822,6 +825,7 @@ const card = {
 		},
 	},
 	lizhengshangyou: {
+		mode: ['versus'],
 		fullskin: true,
 		cardimage: "lianjunshengyan",
 		type: "trick",

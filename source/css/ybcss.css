@@ -361,3 +361,478 @@ span[data-nature="YB_rockmm"] {
 	/* text-shadow: 1px 1px 0 #adadad, -1px -1px 0 #adadad; */
 	font-weight: bold;
 }
+
+
+
+
+
+
+
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 基础的星空文字样式，颜色为深邃午夜蓝 */
+.starry-text {
+	color: #0F1929;
+	font-family: 'Arial', sans-serif;
+	/* 推荐使用衬线字体或艺术字体以增强梦幻感 */
+	font-weight: bold;
+	text-shadow: 0 0 5px #A288E3, 0 0 10px #FFC8DD;
+	/* 文字阴影模拟光晕 */
+}
+
+/* 带有渐变效果的星空文字，适用于单行文本 */
+.starry-text-gradient {
+	background: linear-gradient(to right, #A288E3, #FFC8DD, #E8E5FF);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	/* 必须将文字颜色设为透明才能显示背景 */
+	font-weight: bold;
+}
+
+/* 基础的尊贵金色文字样式 */
+.royal-gold-text {
+	color: #B98B3C;
+	/* 核心尊贵金 */
+	font-family: 'Georgia', serif;
+	/* 衬线字体更能体现尊贵感 */
+	font-weight: bold;
+	text-shadow: 0 0 8px #FFD700, 0 0 15px #F4E5D3;
+	/* 使用亮金和香槟金创建光晕 */
+}
+
+/* 带有渐变效果的尊贵金色文字 */
+.royal-gold-gradient {
+	background: linear-gradient(to right, #B98B3C, #FFD700, #F4E5D3);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	font-weight: bold;
+}
+/* 赛博朋克霓虹星海 */
+.cyber-neon-text {
+	color: #00FFF0;
+	/* 青色作为主文字色 */
+	/* font-family: 'Orbitron', 'Arial', sans-serif; */
+	/* 推荐使用有科技感的字体 */
+	font-weight: bold;
+	text-shadow:
+		0 0 5px #FF10F0,
+		0 0 10px #FF10F0,
+		0 0 20px #00FFF0,
+		0 0 40px #00FFF0;
+}
+
+/* 仙女座星云渐变 */
+.nebula-gradient-text {
+	background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	/* font-family: 'Cursive', 'Georgia', serif; */
+	/* 推荐使用手写体或优雅的衬线体 */
+	font-weight: bold;
+}
+
+/*极光流动效果*/
+.aurora-flow-text {
+	/* font-family: 'Trebuchet MS', sans-serif; */
+	font-weight: bold;
+	/* font-size: 2em; */
+	/* 较大的字体能更好展示动画效果 */
+
+	/* 背景渐变尺寸是动画的关键 */
+	background-size: 200% 200%;
+	background-image: linear-gradient(45deg, #00FFA1, #00D9FF, #B967FF, #00FFA1);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义 */
+	animation: auroraFlow 4s ease-in-out infinite;
+}
+
+/* 关键帧动画 */
+@keyframes auroraFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*熔金流动*/
+.molten-gold-flow-text {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 300% 300%;
+	/* 增大渐变范围，使流动更平滑 */
+	background-image: linear-gradient(45deg, #B8860B, #FFA500, #FFD700, #FFF8DC, #FFD700);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义：流动速度稍慢，显沉稳 */
+	animation: goldFlow 6s ease-in-out infinite;
+	/* background-color: ; */
+}
+
+/* 熔金流动动画 */
+@keyframes goldFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*香槟金流动*/
+.champagne-gold-flow-text {
+	/* font-family: 'Helvetica', sans-serif; */
+	/* font-weight: 300; */
+	/* font-size: 2.5em; */
+
+	background-size: 250% 250%;
+	background-image: linear-gradient(60deg, #E8E5E0, #F4E5D3, #E4C5AF, #FFFACD, #F4E5D3);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义：流动更轻快，显灵动 */
+	animation: champagneFlow 5s linear infinite;
+}
+
+/* 香槟金流动动画 */
+@keyframes champagneFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*修改后的赛博朋克霓虹星海*/
+.cyber-flow-revamped {
+	/* font-family: 'Orbitron', sans-serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 背景渐变用于填充文字本体 */
+	background-size: 200% 200%;
+	background-image: linear-gradient(to right, #FF10F0, #00FFF0, #FF10F0);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 沉毅的对比色边框 */
+	-webkit-text-stroke: 1px #1A1A1A;
+
+	/* 动画 */
+	animation: cyberColorShift 3s ease-in-out infinite;
+}
+
+@keyframes cyberColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*修改后的星云流动*/
+.nebula-flow-revamped {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 200% 200%;
+	background-image: linear-gradient(to right, #B967FF, #FFC8DD, #B967FF);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	-webkit-text-stroke: 1px #120624;
+
+	animation: nebulaColorShift 4s ease-in-out infinite;
+}
+
+@keyframes nebulaColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*修改后的熔金流动*/
+.gold-flow-revamped {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 300% 300%;
+	background-image: linear-gradient(45deg, #B8860B, #FFA500, #FFD700, #FFF8DC, #FFD700);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	-webkit-text-stroke: 1px #2C1810;
+
+	animation: goldColorShift 5s ease-in-out infinite;
+}
+
+@keyframes goldColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*亮金流动*/
+.gold-flow-revamped-bright {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 使用更明亮、更纯净的金色系 */
+	background-size: 300% 300%;
+	background-image: linear-gradient(45deg, #FFFACD, #FFEC8B, #FFD700, #FFEC8B);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 沉毅的对比色边框保持不变，以凸显亮度 */
+	/* -webkit-text-stroke: 1px #2C1810; */
+
+	/* 动画可以稍微加快，以匹配明快的色彩 */
+	animation: brightGoldFlow 4s ease-in-out infinite;
+}
+
+/* 为明亮金色流光定义新的动画 */
+@keyframes brightGoldFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*亮金流动光晕*/
+.solid-gold-with-flow-halo {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 1. 纯金色的文字本体 */
+	color: #FFD700;
+
+	/* 2. 流动的光晕效果（通过多层阴影实现） */
+	/* 阴影的颜色、模糊度和偏移都会在动画中变化 */
+	text-shadow:
+		0 0 5px #FFEC8B,
+		0 0 10px #FFFACD,
+		0 0 15px #FFD700,
+		0 0 25px #FFD700;
+
+	/* 应用到光晕上的呼吸动画 */
+	animation: haloPulse 5s ease-in-out infinite;
+}
+
+/* 光晕呼吸动画 */
+@keyframes haloPulse {
+	0% {
+		/* 动画起始：光晕较小、较集中 */
+		text-shadow:
+			0 0 5px #FFEC8B,
+			0 0 10px #FFFACD,
+			0 0 15px #FFD700;
+	}
+
+	50% {
+		/* 动画中点：光晕扩大、变得更亮更扩散 */
+		text-shadow:
+			0 0 8px #FFEC8B,
+			0 0 16px #FFFACD,
+			0 0 30px #FFD700,
+			0 0 40px #FFD700;
+	}
+
+	100% {
+		/* 动画结束：回到初始状态 */
+		text-shadow:
+			0 0 5px #FFEC8B,
+			0 0 10px #FFFACD,
+			0 0 15px #FFD700;
+	}
+}
+/*赛博朋克光晕流动*/
+.cyber-neon-halo-flow {
+	/* font-family: 'Orbitron', 'Arial', sans-serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 1. 稳定的霓虹文字本体 */
+	color: #00FFF0;
+
+	/* 2. 流动的光晕效果（通过多层阴影实现） */
+	/* 初始状态的光晕，颜色以品红为主 */
+	text-shadow:
+		0 0 5px #FF10F0,
+		0 0 10px #FF10F0,
+		0 0 20px #00FFF0,
+		0 0 40px #FF10F0;
+
+	/* 应用到光晕上的流动动画 */
+	animation: neonHaloFlow 5s ease-in-out infinite;
+}
+
+/* 赛博朋克光晕流动动画 */
+@keyframes neonHaloFlow {
+	0% {
+		/* 动画起始：品红光晕占主导 */
+		text-shadow:
+			0 0 5px #FF10F0,
+			0 0 10px #FF10F0,
+			0 0 20px #00FFF0,
+			0 0 40px #FF10F0;
+	}
+
+	50% {
+		/* 动画中点：青色光晕变得最强，品红减弱 */
+		text-shadow:
+			0 0 8px #00FFF0,
+			0 0 16px #00FFF0,
+			0 0 30px #00FFF0,
+			0 0 50px #00FFF0;
+	}
+
+	100% {
+		/* 动画结束：回到初始的品红光晕状态 */
+		text-shadow:
+			0 0 5px #FF10F0,
+			0 0 10px #FF10F0,
+			0 0 20px #00FFF0,
+			0 0 40px #FF10F0;
+	}
+}

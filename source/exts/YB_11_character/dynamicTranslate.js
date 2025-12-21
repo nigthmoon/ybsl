@@ -15,7 +15,7 @@ const dynamicTranslate = {
     //     else return '锁定技，若攻击范围内包含你的角色数量为1，<span class=thundertext>则其（'+get.translation(players[0])+'）获得牌时你摸等量的牌</span>，否则你使用基本牌或普通锦囊牌时结算两次且可以额外指定任意名角色为目标。';
     // },
     yhky_dclijian(player){
-        if(player.storage.yhky_dchuayan_dcjuewu)return get.poptip("rule_chihengji")+'。出牌阶段限一次，你可以弃置一张牌，并选择一名其他男性角色，你观看其手牌，然后可以依次选择其中一张令其使用之（至多为其体力值数且至多为5），然后你可以令其视为对另一名男性角色使用一张【决斗】（以此法使用的牌不可被【无懈可击】响应）。'
+        if(player.storage.yhky_dchuayan_dcjuewu)return get.poptip("rule_chihengji")+'。出牌阶段限一次，你可以弃置一张牌，并选择一名其他男性角色，你观看其手牌，然后可以依次选择其中一张令其对你指定的一名目标使用之（目标需合法，至多至多执行次数为其体力值数且至多为5），然后你可以令其视为对另一名男性角色使用一张【决斗】（以此法使用的牌不可被【无懈可击】响应）。'
         return get.poptip("rule_chihengji")+'。出牌阶段限一次，你可以弃置一张牌，并选择一名其他男性角色，你观看其手牌，然后你可以令其视为对另一名男性角色使用一张【决斗】（不可被【无懈可击】响应）。'
     },
 	yhky_dclianji(player){

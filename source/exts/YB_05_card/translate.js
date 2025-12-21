@@ -10,8 +10,8 @@ const translate = {
 	yingbian_cunZhi_tag:'(寸止)',
 	_yingbian_doubleBlow:'连打',
 	_ybsl_yingbian:'连打',
-	'ybsl_tianhuoduan_skill':'天火煅',
-	'ybsl_tianhuoduan_skill_info':'天火煅',
+	'ybsl_tianhuoduan_skill':'煅',
+	'ybsl_tianhuoduan_skill_info':'煅',
 	
 	ybsl_lvchenqiang1_skill:'绿沉枪',
 	ybsl_lvchenqiang1_skill_info:'若你有手牌，你可以把所有手牌当【杀】使用或打出。',
@@ -75,9 +75,9 @@ const translate = {
 	'ybsl_juhua_append':'菊华的菊。有毒慎食！',
 	'rewrite_du':'毒箭',
 	'rewrite_du_info':'出牌阶段，对一名其他角色使用，其须使用一张闪响应，否则你对其造成1点伤害，然后令其获得一张【毒】。',
-	'ybsl_tianhuoduan':'天火煅',
-	'ybsl_tianhuoduan_bg':'煅',
-	'ybsl_tianhuoduan_info':'出牌阶段，你可以升级手中或装备区内的可升级装备（此牌多次结算无效）。可重铸。',
+	'ybsl_tianhuoduan':'煅',
+	// 'ybsl_tianhuoduan_bg':'煅',
+	'ybsl_tianhuoduan_info':'出牌阶段，你可以升级手中或装备区内的可升级装备。可重铸。',
 	//'ybsl_tianhuoduan_append':'目前可强化的有八卦阵，白银狮子，诸葛连弩，藤甲，烂银甲，仁王盾，赤兔，王追等。',
 	//--------------------------锦囊
 	'ybsl_dafeng':'大风',

@@ -3,6 +3,7 @@ export {card};
 /** @type { importCardConfig['card'] } */
 const card = {
 	ybsl_qingfengshan:{
+		bingzhu: ["庞统"],
 		fullskin: true,
 		type: "equip",
 		subtype: "equip1",
@@ -15,6 +16,7 @@ const card = {
 		skills: ["ybsl_qingfengshan"],
 	},
 	ybsl_zhongkai:{
+		// bingzhu: [""],
 		fullskin: true,
 		type: "equip",
 		subtype: "equip2",
@@ -26,6 +28,7 @@ const card = {
 		skills: ["ybsl_zhongkai_1","ybsl_zhongkai_2"],
 	},
 	ybsl_jinyinrukai:{
+		bingzhu: ["孙权"],
 		fullskin: true,
 		type: "equip",
 		subtype: "equip2",
@@ -37,6 +40,7 @@ const card = {
 		skills: ["ybsl_jinyinrukai_1",'ybsl_jinyinrukai_2'],
 	},
 	ybsl_jizhiguan:{
+		bingzhu: ["黄月英"],
 		fullskin: true,
 		type: "equip",
 		subtype: "equip5",
@@ -48,6 +52,7 @@ const card = {
 		skills: ["ybsl_jizhiguan"],
 	},
 	ybsl_feijingsanjian:{
+		bingzhu: ["曹丕"],
 		fullskin: true,
 		type: "equip",
 		subtype: "equip1",

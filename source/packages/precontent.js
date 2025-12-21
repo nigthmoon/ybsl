@@ -14,7 +14,7 @@ import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 import { typeimage } from './function.js'
 // import { sgstrxs } from '../sgstrxs.js';
-// import { cyyydsgs } from '../pile/cyyydsgs.js'
+import { cyyydsgs } from '../pile/cyyydsgs.js'
 export async function precontent() {
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// let scriptPaths=[
@@ -1354,5 +1354,5 @@ export async function precontent() {
 	// 		}
 	// 	}	
 	// })
-	// cyyydsgs();
+	cyyydsgs();
 }

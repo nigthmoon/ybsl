@@ -9735,4 +9735,155 @@ const skill = {
 		},
 	},
 
+
+	//太虚搬运
+
+	//孟婆
+	boss_aotang: {
+		audio: 'ext:夜白神略/audio/character:1',
+		trigger: {
+			player: 'phaseBegin',
+		},
+		forced: true,
+		filter(event, player) {
+			return game.hasPlayer(function (current) {
+				return player.getEnemies().includes(current);
+			});
+		},
+		content() {
+			var list = game
+				.filterPlayer(function (current) {
+					return player.getEnemies().includes(current);
+				})
+				.randomGet();
+			player.line(list);
+			list.addSkill('boss_aotang_fengyin');
+		},
+		group: 'boss_aotang_delete',
+		subSkill: {
+			delete: {
+				trigger: {
+					player: ['phaseBegin', 'dieBegin'],
+				},
+				forced: true,
+				_priority: 20,
+				forced: true,
+				content() {
+					game.countPlayer(function (current) {
+						if (current.hasSkill('boss_aotang_fengyin')) {
+							current.removeSkill('boss_aotang_fengyin');
+						}
+					});
+				},
+			},
+			fengyin: {
+				charlotte: true,
+				init(player, skill) {
+					player.addSkillBlocker(skill);
+				},
+				onremove(player, skill) {
+					player.removeSkillBlocker(skill);
+				},
+				skillBlocker(skill, player) {
+					return skill != 'boss_aotang_fengyin' && !lib.skill[skill].charlotte;
+				},
+				mark: true,
+				intro: {
+					name: '熬汤',
+					content(storage, player, skill) {
+						var str = '无失效技能';
+						var list = player.getSkills(null, false, false).filter(function (i) {
+							return lib.skill.boss_aotang_fengyin.skillBlocker(i, player);
+						});
+						if (list.length) str = '失效技能:' + get.translation(list);
+						return str;
+					},
+				},
+			},
+		},
+	},
+	boss_guimeic: {
+		audio: 'ext:夜白神略/audio/character:1',
+		group: ['boss_guimeic_draw', 'boss_guimeic_use'],
+		trigger: {
+			player: 'turnOverBefore',
+		},
+		_priority: 20,
+		filter(event, player) {
+			return !player.isTurnedOver();
+		},
+		forced: true,
+		content() {
+			trigger.cancel();
+			game.log(player, '取消了翻面');
+		},
+		subSkill: {
+			draw: {
+				trigger: {
+					player: 'phaseDrawSkipped',
+				},
+				forced: true,
+				content() {
+					player.draw();
+				},
+			},
+			use: {
+				trigger: {
+					player: 'phaseUseSkipped',
+				},
+				forced: true,
+				content() {
+					player.addTempSkill('boss_guimeic_xiaoguo');
+				},
+			},
+			xiaoguo: {
+				mod: {
+					ignoredHandcard(card, player) {
+						return true;
+					},
+					cardDiscardable(card, player, name) {
+						if (name == 'phaseDiscard') return false;
+					},
+				},
+				forced: true,
+				fixed: true,
+				popup: false,
+			},
+		},
+		ai: {
+			noturn: true,
+			effect: {
+				target(card, player, target) {
+					if (get.type(card) == 'delay') return 0.5;
+				},
+			},
+		},
+	},
+	boss_yunjv: {
+		audio: 'ext:夜白神略/audio/character:1',
+		trigger: {
+			global: 'phaseEnd',
+		},
+		forced: true,
+		filter(event, player) {
+			return player.getEnemies().includes(event.player) && event.player.countCards('he') > 0 && event.player != player;
+		},
+		logTarget: 'player',
+		content() {
+			if (trigger.player.countCards('h') > 0) {
+				var card1 = trigger.player.getCards('h').randomGet();
+			}
+			if (trigger.player.countCards('e') > 0) {
+				var card2 = trigger.player.getCards('e').randomGet();
+			}
+			if (trigger.player.countCards('e') > 0 && trigger.player.countCards('h') == 0) trigger.player.discard(card2);
+			if (trigger.player.countCards('e') == 0 && trigger.player.countCards('h') > 0) trigger.player.discard(card1);
+			if (trigger.player.countCards('e') > 0 && trigger.player.countCards('h') > 0) trigger.player.discard([card1, card2]);
+		},
+		ai: {
+			expose: 0.2,
+		},
+	},
+
+	
 }

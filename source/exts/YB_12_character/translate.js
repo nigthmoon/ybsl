@@ -230,12 +230,12 @@ const translate = {
 	qmsgswkjsgj_gui_sunquan:'黑无常赐福孙权',
 	qmsgswkjsgj_gui_sunquan_prefix:'黑无常赐福',
 	//神鬼赐福
-	qmsgswkjsgj_taiping: "太平",
-	qmsgswkjsgj_taiping_info: "锁定技，摸牌阶段摸牌时，你的摸牌数量+2。",
-	qmsgswkjsgj_taiping_append: "黑无常赐福。",
-	qmsgswkjsgj_baolian:'暴敛',
-	qmsgswkjsgj_baolian_info: "锁定技，结束阶段，你摸两张牌。",
-	qmsgswkjsgj_baolian_append: "白无常赐福。",
+	// qmsgswkjsgj_taiping: "太平",
+	// qmsgswkjsgj_taiping_info: "锁定技，摸牌阶段摸牌时，你的摸牌数量+2。",
+	// qmsgswkjsgj_taiping_append: "黑无常赐福。",
+	// qmsgswkjsgj_baolian:'暴敛',
+	// qmsgswkjsgj_baolian_info: "锁定技，结束阶段，你摸两张牌。",
+	// qmsgswkjsgj_baolian_append: "白无常赐福。",
 
 	qmsgswkjsgj_shen_guojia:'缝神郭嘉',
 	qmsgswkjsgj_shen_guojia_prefix:'缝神',
@@ -607,13 +607,34 @@ const translate = {
 	qmsgswkjsgj_mbweitong:'卫统',
 	qmsgswkjsgj_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_mbqianlong")}，你改为获得60点道心值（全民三国杀我开局神郭嘉的界曹髦）。`,
 
+	qmsgswkjsgj_mengpo_ab: "孟婆",
+	qmsgswkjsgj_mengpo: "孟婆·孟姜女",
+	// qmsgswkjsgj_shiyou: "拾忧",
+	// qmsgswkjsgj_shiyou_info: "其他角色于弃牌阶段弃置的牌进入弃牌堆前，你可以选择其中任意张花色各不相同的牌获得之。",
+	// qmsgswkjsgj_wanghun: "忘魂",
+	// qmsgswkjsgj_wanghun_info: "锁定技，你死亡时，令随机两名敌方角色各随机失去一个技能（主公技除外），并在牌堆中加入2张回魂。(回魂只能在挑战模式出现)",
+	// qmsgswkjsgj_wangshi: "往事",
+	// qmsgswkjsgj_wangshi_info: "锁定技，你存活时，敌方角色的回合开始时，令其于本回合不能使用或打出随机一种类型的牌（基本、锦囊、装备）。",
+	// qmsgswkjsgj_aotang:'熬汤',
+	// qmsgswkjsgj_aotang_info:'孟婆回合开始时随机使一名敌方角色遗忘所有武将技能，持续至孟婆下回合开始。',
+	qmsgswkjsgj_yunju:'云飓',
+	qmsgswkjsgj_yunju_info:'锁定技，敌方角色的回合结束时随机弃置一张手牌。',
 
-
-
-
-
-
-
+	qmsgswkjsgj_shen_sunce:'缝神孙策',
+	qmsgswkjsgj_shen_sunce_prefix:'缝神',
+	qmsgswkjsgj_yingba: "英霸",
+	qmsgswkjsgj_yingba_info: "①出牌阶段限两次，你可令一名其他角色减少1点体力上限并获得“平定”标记，然后你减少1点体力上限。②你对拥有“平定”标记的角色使用牌没有距离限制和次数限制。",
+	qmsgswkjsgj_scfuhai: "覆海",
+	qmsgswkjsgj_scfuhai_info: "锁定技。①当你使用牌指定目标后，若目标角色有“平定”标记，则其不可响应此牌，然后你摸一张牌。此牌结算后，你可以移除其“平定”标记，并恢复X点体力上限。②拥有“平定”标记的角色死亡时，你增加X点体力上限并摸X张牌。（X为其拥有的“平定”标记数）。",
+	qmsgswkjsgj_pinghe: "冯河",
+	qmsgswkjsgj_pinghe_info: "锁定技。①你的手牌上限基数等于你已损失的体力值+3。②当你受到其他角色造成的伤害时，若你有牌且你的体力上限大于1，则你防止此伤害，减1点体力上限并可将一张手牌交给一名其他角色。然后若你拥有〖英霸〗，则伤害来源获得一个“平定”标记。",
+	qmsgswkjsgj_shenhunzi:'魂姿',
+	qmsgswkjsgj_shenhunzi_info:`锁定技，游戏开始时，你获得${get.poptip("qmsgswkjsgj_shenyingzi")}和${get.poptip("qmsgswkjsgj_shenyinghun")}`,
+	qmsgswkjsgj_shenyingzi:'英姿',
+	qmsgswkjsgj_shenyingzi_info:`锁定技，摸牌阶段，你多摸一张牌。`,
+	qmsgswkjsgj_shenyinghun:'英魂',
+	qmsgswkjsgj_shenyinghun_info:`准备阶段，若你已受伤，你可以选择一名其他角色并选择一项：1.令其摸Y张牌；2.令其弃置Y张牌。（Y为你已损失的体力值）`,
+	qmsgswkjsgj_shenjiang:'激昂',
 
 
 
@@ -794,8 +815,8 @@ const translate = {
 	sgsxjxfzmnl_yingba_info: "①出牌阶段每名角色限一次，你可令一名体力上限大于1的其他角色减少1点体力上限并获得“平定”标记，然后你减少1点体力上限。②你对拥有“平定”标记的角色使用牌没有距离限制和次数限制。",
 	sgsxjxfzmnl_scfuhai: "覆海",
 	sgsxjxfzmnl_scfuhai_info: "锁定技。①当你使用牌指定目标后，若目标角色有“平定”标记，则其不可响应此牌。若你本回合内以此法得到的牌数小于4，则你摸一张牌。②拥有“平定”标记的角色死亡时，你增加X点体力上限并摸X张牌。（X为其拥有的“平定”标记数）。",
-	// sgsxjxfzmnl_pinghe: "冯河",
-	// sgsxjxfzmnl_pinghe_info: "锁定技。①你的手牌上限基数等于你已损失的体力值。②当你受到其他角色造成的伤害时，若你有牌且你的体力上限大于1，则你防止此伤害，减1点体力上限并将一张手牌交给一名其他角色。然后若你拥有〖英霸〗，则伤害来源获得一个“平定”标记。",
+	sgsxjxfzmnl_pinghe: "冯河", 
+	sgsxjxfzmnl_pinghe_info: "锁定技。①你的手牌上限基数等于你已损失的体力值。②当你受到其他角色造成的伤害时，若你有牌且你的体力上限大于1，则你防止此伤害，减1点体力上限并将一张手牌交给一名其他角色。然后伤害来源获得一个“平定”标记。",
 	
 	sgsxjxfzmnl_sb_xiahoushi: "阴间谋夏侯氏",
 	sgsxjxfzmnl_sb_xiahoushi_prefix: "阴间谋",

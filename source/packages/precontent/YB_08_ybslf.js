@@ -2535,4 +2535,95 @@ const YBSL_ybslf = function () {
 			else return `image/character/${character}.jpg`;
 		}
 	}
+	
+	//封装：将武将牌制成游戏牌
+	//没写完呢
+	{
+		lib.element.card.YB_characterToCard = function(character,card= {
+			fullimage: true,
+			image: "character:" + character,
+			type: "equip",
+			subtype: "equip1",
+			enable: true,
+			selectTarget: -1,
+			filterTarget(card, player, target) {
+				if (player != target) {
+					return false;
+				}
+				return target.canEquip(card, true);
+			},
+			modTarget: true,
+			allowMultiple: false,
+			content: lib.element.content.equipCard,
+			toself: true,
+			ai: {},
+		},translate={
+			name:lib.translate[character + "_ab"]?lib.translate[character + "_ab"]:lib.translate[character],
+			info:lib.character[character],
+		},remove=false,player=null){
+			game.broadcastAll(
+				function (player, character) {
+					player.tempname.addArray(character);
+					
+				},
+				player,
+				character
+			);
+		}
+		/**
+		 * ,content=function(){
+			var name = character;
+			var info = lib.character[name];
+			var maxHp = get.infoMaxHp(info[2]);
+			if (maxHp != 1) {
+				card.distance = { attackFrom: 1 - maxHp };
+			}
+			var skills = info[3].filter(function (skill) {
+				var info = get.skillInfoTranslation(skill);
+				if (!info.includes("【杀】")) {
+					return false;
+				}
+				var list = get.skillCategoriesOf(skill, get.player());
+				list.remove("锁定技");
+				return list.length == 0;
+			});
+			var str = "锁定技。";
+			if (skills.length) {
+				card.skills.addArray(skills);
+				str += "你视为拥有技能";
+				for (var skill of skills) {
+					str += "〖" + get.translation(skill) + "〗";
+					str += "、";
+				}
+				str = str.slice(0, str.length - 1);
+				str += "；";
+				card.ai.equipValue = function (card, player) {
+					let val = maxHp;
+					val *= 0.6;
+					return (val += skills.length);
+				};
+			}
+			if(remove){
+				if(remove.translate)str+=remove.translate;
+			}
+			// str += "此牌离开你的装备区后，改为置入剩余武将牌牌堆。";
+			lib.translate["YB_characterToCard_" + name + "_info"] = str;
+			var append = "";
+			if (skills.length) {
+				for (var skill of skills) {
+					if (lib.skill[skill].nobracket) {
+						append += '<div class="skilln">' + get.translation(skill) + '</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + "</span></div><br><br>";
+					} else {
+						var translation = lib.translate[skill + "_ab"] || get.translation(skill).slice(0, 2);
+						append += '<div class="skill">【' + translation + '】</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + "</span></div><br><br>";
+					}
+				}
+				str = str.slice(0, str.length - 8);
+			}
+			lib.translate["YB_characterToCard_" + name + "_append"] = append;
+			lib.card["YB_characterToCard_" + name] = card;
+			event.onlyContent = true;
+		}
+		 */
+	}
 }

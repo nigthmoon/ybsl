@@ -5,6 +5,7 @@ export { YBSL_nature }
  * 自建属性相关
  * 自建势力相关
  * 前缀收纳
+ * 穿越也要打三国杀（曾有
  */
 const YBSL_nature = function(){
 	{//相关函数
@@ -525,169 +526,169 @@ const YBSL_nature = function(){
 			})
 		}
 	}
-	{
-		/**
-		 * 
-		 * @param {*} skill 
-		 * @param {*} player 
-		 * @returns 获取技能的等级
-		 */
-		get.YB_skill_lv = function(skill,player){
-			if(!lib.skill[skill].cyyydsgs)return 0;
-			if(!player.YB_skill_lv||!player.YB_skill_lv[skill])return 1;
-			return player.YB_skill_lv[skill]-0;
-		}
-		// get.YB_source_character = function(target){
-		//	 return target.name
-		// }
-		/**
-		 * 
-		 * @param {*} name 
-		 * @returns 获取武将的等阶
-		 */
-		get.YB_character_lv = function(name){
-			if(Array.isArray(lib.character[name])){
-				var infoy = lib.character[name][4]
-				for(var infox of infoy){
-					if(infox.startsWith('YB_character_lv:')){
-						var str = infox.slice(16);
-						return str
-					}
-				}
-			}
-			else if(lib.character[name].YB_character_lv){
-				return lib.character[name].YB_character_lv
-			}
-			else {
-				var infoy = lib.character[name][4]
-				for(var infox of infoy){
-					if(infox.startsWith('YB_character_lv:')){
-						var str = infox.slice(16);
-						return str
-					}
-				}
-			}
-		}
-		/**
-		 * 
-		 * @param {*} mark 
-		 * @param {*} num 
-		 * @returns 增加标记
-		 */
-		lib.element.player.YB_addMark = function(mark,num,type){
-			if(!num)var num = 1;
-			var next = game.createEvent('YB_addMark', false);
-			next.player = this;
-			next.mark = mark;
-			next.number = num;
-			if(!type)var type = null;
-			next.YB_type = type;
-			next.setContent('YB_addMark');
-			// next.trigger('YB_addMark_'+mark)
-			return next;
-		}
-		lib.element.content.YB_addMark = function(){
-			if(num==0)return;
-			if(!player.hasSkill(event.mark)){
-				player.addSkill(event.mark);
-			}
-			player.addMark(event.mark,event.number);
-			event.trigger('YB_addMark_'+event.mark);
-			// next;
-			// trigger.trigger('YB_addMark_'+event.mark);
-		}
-		/**
-		 * 
-		 * @param {*} mark 
-		 * @param {*} num 
-		 * @returns 失去标记
-		 */
-		lib.element.player.YB_removeMark = function(mark,num,type){
-			if(!num)var num = 1;
-			var next = game.createEvent('YB_removeMark', false);
-			next.player = this;
-			next.mark = mark;
-			next.number = num;
-			if(!type)var type = null;
-			next.YB_type = type;
-			next.setContent('YB_removeMark');
-			// next.trigger('YB_removeMark_'+mark)
-			return next;
-		}
-		lib.element.content.YB_removeMark = function(){
-			if(num==0)return;
-			player.removeMark(event.mark,event.number);
-			event.trigger('YB_removeMark_'+event.mark);
-			// next;
-			if(player.countMark(event.mark)==0){
-				player.removeSkill(event.mark);
-			}
-		}
-		//创建岩属性
-		{
-			//（岩属性释义：非官方概念；受到岩属性伤害时，若受伤者装备区内没有牌，此伤害+1。)
-			game.addNature('YB_rock',)
-			game.addNature('YB_rock','岩',{
-				linked:true,
-				order:58,
-				lineColor:'YB_windy',
-				color:'YB_windy',
-			})
-			/**@type { importCharacterConfig[skill]} */
-			lib.skill._YB_rock={
-				trigger:{
-					player:'damageBegin4',
-				},
-				equipSkill:false,
-				ruleSkill:true,
-				shaRelated:true,
-				firstDo:true,
-				filter:function (event,player){
-					return event.hasNature('YB_rock')&&event.num>0&&!event.player.countCards('e');
-				},
-				content(){
-					trigger.num++;
-				},
-			}
-			lib.skill.YB_rockdamage={
-				ai: {
-					result: {
-						target:function(player,target){
-							if(!target.countCards('e'))return -3;
-							return -1.5;
-						},
-					},
-					tag: {
-						damage: 1,
-						YB_rockDamage: 1,
-						natureDamage: 1,
-					},
-				},
-			}
-		}
-		/**@type { importCharacterConfig[skill]} */
-		lib.skill._YB_skill_lv_init={
-			trigger:{
-				player:'changeSkillsAfter'
-			},
-			forced : true,
-			filter:function(event,player){
-				return event.addSkill.some(function(skill){
-					return lib.skill[skill].cyyydsgs
-				})
-			},
-			silent:true,
-			content(){
-				console.log(trigger.addSkill)
-				if(!player.YB_skill_lv)player.YB_skill_lv={}
-				trigger.addSkill.some(function(skill){
-					if(lib.skill[skill].cyyydsgs){
-						if(!player.YB_skill_lv[skill])player.YB_skill_lv[skill] = 1
-					}
-				})
-			},
-		}
+	// {
+	// 	/**
+	// 	 * 
+	// 	 * @param {*} skill 
+	// 	 * @param {*} player 
+	// 	 * @returns 获取技能的等级
+	// 	 */
+	// 	get.YB_skill_lv = function(skill,player){
+	// 		if(!lib.skill[skill].cyyydsgs)return 0;
+	// 		if(!player.YB_skill_lv||!player.YB_skill_lv[skill])return 1;
+	// 		return player.YB_skill_lv[skill]-0;
+	// 	}
+	// 	// get.YB_source_character = function(target){
+	// 	//	 return target.name
+	// 	// }
+	// 	/**
+	// 	 * 
+	// 	 * @param {*} name 
+	// 	 * @returns 获取武将的等阶
+	// 	 */
+	// 	get.YB_character_lv = function(name){
+	// 		if(Array.isArray(lib.character[name])){
+	// 			var infoy = lib.character[name][4]
+	// 			for(var infox of infoy){
+	// 				if(infox.startsWith('YB_character_lv:')){
+	// 					var str = infox.slice(16);
+	// 					return str
+	// 				}
+	// 			}
+	// 		}
+	// 		else if(lib.character[name].YB_character_lv){
+	// 			return lib.character[name].YB_character_lv
+	// 		}
+	// 		else {
+	// 			var infoy = lib.character[name][4]
+	// 			for(var infox of infoy){
+	// 				if(infox.startsWith('YB_character_lv:')){
+	// 					var str = infox.slice(16);
+	// 					return str
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	/**
+	// 	 * 
+	// 	 * @param {*} mark 
+	// 	 * @param {*} num 
+	// 	 * @returns 增加标记
+	// 	 */
+	// 	lib.element.player.YB_addMark = function(mark,num,type){
+	// 		if(!num)var num = 1;
+	// 		var next = game.createEvent('YB_addMark', false);
+	// 		next.player = this;
+	// 		next.mark = mark;
+	// 		next.number = num;
+	// 		if(!type)var type = null;
+	// 		next.YB_type = type;
+	// 		next.setContent('YB_addMark');
+	// 		// next.trigger('YB_addMark_'+mark)
+	// 		return next;
+	// 	}
+	// 	lib.element.content.YB_addMark = function(){
+	// 		if(num==0)return;
+	// 		if(!player.hasSkill(event.mark)){
+	// 			player.addSkill(event.mark);
+	// 		}
+	// 		player.addMark(event.mark,event.number);
+	// 		event.trigger('YB_addMark_'+event.mark);
+	// 		// next;
+	// 		// trigger.trigger('YB_addMark_'+event.mark);
+	// 	}
+	// 	/**
+	// 	 * 
+	// 	 * @param {*} mark 
+	// 	 * @param {*} num 
+	// 	 * @returns 失去标记
+	// 	 */
+	// 	lib.element.player.YB_removeMark = function(mark,num,type){
+	// 		if(!num)var num = 1;
+	// 		var next = game.createEvent('YB_removeMark', false);
+	// 		next.player = this;
+	// 		next.mark = mark;
+	// 		next.number = num;
+	// 		if(!type)var type = null;
+	// 		next.YB_type = type;
+	// 		next.setContent('YB_removeMark');
+	// 		// next.trigger('YB_removeMark_'+mark)
+	// 		return next;
+	// 	}
+	// 	lib.element.content.YB_removeMark = function(){
+	// 		if(num==0)return;
+	// 		player.removeMark(event.mark,event.number);
+	// 		event.trigger('YB_removeMark_'+event.mark);
+	// 		// next;
+	// 		if(player.countMark(event.mark)==0){
+	// 			player.removeSkill(event.mark);
+	// 		}
+	// 	}
+	// 	//创建岩属性
+	// 	{
+	// 		//（岩属性释义：非官方概念；受到岩属性伤害时，若受伤者装备区内没有牌，此伤害+1。)
+	// 		game.addNature('YB_rock',)
+	// 		game.addNature('YB_rock','岩',{
+	// 			linked:true,
+	// 			order:58,
+	// 			lineColor:'YB_windy',
+	// 			color:'YB_windy',
+	// 		})
+	// 		/**@type { importCharacterConfig[skill]} */
+	// 		lib.skill._YB_rock={
+	// 			trigger:{
+	// 				player:'damageBegin4',
+	// 			},
+	// 			equipSkill:false,
+	// 			ruleSkill:true,
+	// 			shaRelated:true,
+	// 			firstDo:true,
+	// 			filter:function (event,player){
+	// 				return event.hasNature('YB_rock')&&event.num>0&&!event.player.countCards('e');
+	// 			},
+	// 			content(){
+	// 				trigger.num++;
+	// 			},
+	// 		}
+	// 		lib.skill.YB_rockdamage={
+	// 			ai: {
+	// 				result: {
+	// 					target:function(player,target){
+	// 						if(!target.countCards('e'))return -3;
+	// 						return -1.5;
+	// 					},
+	// 				},
+	// 				tag: {
+	// 					damage: 1,
+	// 					YB_rockDamage: 1,
+	// 					natureDamage: 1,
+	// 				},
+	// 			},
+	// 		}
+	// 	}
+	// 	/**@type { importCharacterConfig[skill]} */
+	// 	lib.skill._YB_skill_lv_init={
+	// 		trigger:{
+	// 			player:'changeSkillsAfter'
+	// 		},
+	// 		forced : true,
+	// 		filter:function(event,player){
+	// 			return event.addSkill.some(function(skill){
+	// 				return lib.skill[skill].cyyydsgs
+	// 			})
+	// 		},
+	// 		silent:true,
+	// 		content(){
+	// 			console.log(trigger.addSkill)
+	// 			if(!player.YB_skill_lv)player.YB_skill_lv={}
+	// 			trigger.addSkill.some(function(skill){
+	// 				if(lib.skill[skill].cyyydsgs){
+	// 					if(!player.YB_skill_lv[skill])player.YB_skill_lv[skill] = 1
+	// 				}
+	// 			})
+	// 		},
+	// 	}
 		
-	}
+	// }
 	
 }
