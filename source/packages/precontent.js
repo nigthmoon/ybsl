@@ -186,11 +186,16 @@ export async function precontent() {
 							var { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
 						}
 						if(startTag)str+=startTag;
-						if(strx['pack'])str+=strx['pack'];
-						if(strx['pack']&&strx['num'])str+='-';
-						if(strx['num'])str+=strx['num'];
-						if(strx['num']&&lib.characterTitle[name])str+='-';
-						if(content)str+=content;
+						// if(strx['pack'])str+=strx['pack'];
+						// if(strx['pack']&&strx['num'])str+='-';
+						// if(strx['num'])str+=strx['num'];
+						// if(strx['num']&&lib.characterTitle[name])str+='-';
+						var strlist = [];
+						if(strx['pack'])strlist.push(strx['pack']);
+						if(strx['num'])strlist.push(strx['num']);
+						if(content)strlist.push(content);
+						if(strlist.length>0)str+=strlist.join('-');
+						// if(content)str+=content;
 						// if(lib.characterTitle[name])str+=lib.characterTitle[name];
 						if(endTag)str+=endTag;
 						str+='<br>';

@@ -2292,7 +2292,7 @@ const skill = {
 					var eff = get.effect(target,{name:'llfx_shanfengdianhuo'},player,player)
 					return eff>1;
 				}).forResult();
-				if(result){
+				if(result?.bool){
 					await player.useCard({name:'llfx_shanfengdianhuo'},target,false);
 				}
 			}

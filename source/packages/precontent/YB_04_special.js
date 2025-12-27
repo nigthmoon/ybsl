@@ -47,14 +47,14 @@ const YBSL_special = function () {
 	//宗族：吴郡陆氏
 	game.YB_addAudio= function(...objects){
 		// if(typeof objects=='')
-		objects.forEach((currentObj, index,num=2) => {
+		objects.forEach((currentObj, index) => {
 			// if(!lib.skill[currentObj[0]])continue;
 			if(!lib.skill[currentObj[0]].audioname2)lib.skill[currentObj[0]].audioname2={}
 			for(var i in currentObj[1]){
 				lib.skill[currentObj[0]].audioname2[i]=currentObj[1][i];
 				if(!lib.skill[currentObj[1][i]]){
 					lib.skill[currentObj[1][i]]={
-						audio:num,
+						audio:currentObj[2]||2,
 					}
 				}
 			}

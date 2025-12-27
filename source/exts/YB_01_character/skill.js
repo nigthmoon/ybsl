@@ -1454,20 +1454,20 @@ const skill = {
 			order:2,
 			useful:0,
 			value:function(card,player,index,method){//不知道哪个参数有用，全写了
-				if(player.countGroup!='shen'){
+				if(player.group!='shen'){
 					return 7;
 				}
 				else {return 0}
 			},
 			result:{
 				// player:function(player,target){//发动这个技能对你的收益
-					// if(player.countGroup!='shen'){
+					// if(player.group!='shen'){
 						// return 7;
 					// }
 					// else {return 0}
 				// },
 				target:function(player,target){//发动这个技能对你的收益
-					if(target.countGroup!='shen'){
+					if(target.group!='shen'){
 						return 7;
 					}
 					else {return 0}

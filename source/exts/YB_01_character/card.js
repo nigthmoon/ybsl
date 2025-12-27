@@ -94,7 +94,7 @@ const card = {
 	// 		order:2,
 	// 		useful:0,
 	// 		value:function(card,player,index,method){//不知道哪个参数有用，全写了
-	// 			if(player.countGroup!='shen'){
+	// 			if(player.group!='shen'){
 	// 				return 7;
 	// 			}
 	// 			else {return 0}

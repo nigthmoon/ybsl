@@ -1258,10 +1258,11 @@ const nodeintro = function(node, simple, evt){
 const typeimage = function(pagename,filename){
 	for(var i in pagename.character){
 		if(pagename.character[i].YB_mjz){
+			console.log(pagename.character[i].YB_mjz)
 			// return ;
 			var infoy = pagename.character[i].YB_mjz;
-			pagename.character[i].img = `img:image/character/${infoy}.jpg`;
-			pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
+			pagename.character[i].img = `image/character/${infoy}.jpg`;
+			pagename.character[i].die = `../../audio/die/${infoy}.mp3`;
 		}
 		else {
 			if(Array.isArray(pagename.character[i])){

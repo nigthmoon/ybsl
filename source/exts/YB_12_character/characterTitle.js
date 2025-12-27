@@ -159,6 +159,17 @@ const characterTitle = {//称号
 	sgsxjxfzmnl_caojinyu:'<span class="sgsxjxfzmnl">金乡公主</span>',
 	sgsxjxfzmnl_shen_machao:'<span class="sgsxjxfzmnl">神威天将军</span>',
 	sgsxjxfzmnl_sunhanhua:'<span class="sgsxjxfzmnl">挣绽的青莲</span>',
+	sgsxjxfzmnl_xin_guozhao:'<span class="sgsxjxfzmnl">文德皇后</span>',
+	sgsxjxfzmnl_sb_guanyu:'<span class="sgsxjxfzmnl">关圣帝君</span>',
+
+
+
+
+
+
+
+
+
 
 
 	sgsxjxfzmnl_mo_diaochan:'<span class="sgsxjxfzmnl">乱世的舞姬</span>',

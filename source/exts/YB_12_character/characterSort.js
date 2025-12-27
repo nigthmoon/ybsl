@@ -58,6 +58,18 @@ const characterSort = {
 			'sgsxjxfzmnl_nanhualaoxian','sgsxjxfzmnl_mo_lvbu',
 			'sgsxjxfzmnl_zhangxuan','sgsxjxfzmnl_caojinyu',
 			'sgsxjxfzmnl_shen_machao','sgsxjxfzmnl_sunhanhua',
+			'sgsxjxfzmnl_xin_guozhao','sgsxjxfzmnl_sb_guanyu',
+			'sgsxjxfzmnl_sb_huanggai','sgsxjxfzmnl_dc_zhouxuān',
+			'sgsxjxfzmnl_sunlingluan','sgsxjxfzmnl_xushao',
+			// 'sgsxjxfzmnl_sp_huaman','sgsxjxfzmnl_quyi',
+			// 'sgsxjxfzmnl_shen_jiangwei','sgsxjxfzmnl_dc_liuye',
+			// 'sgsxjxfzmnl_peixiu','sgsxjxfzmnl_wu_luxun',
+
+			'sgsxjxfzmnl_scs_zhangrang','sgsxjxfzmnl_scs_zhaozhong',
+			'sgsxjxfzmnl_scs_sunzhang','sgsxjxfzmnl_scs_bilan',
+			'sgsxjxfzmnl_scs_xiayun','sgsxjxfzmnl_scs_hankui',
+			'sgsxjxfzmnl_scs_lisong','sgsxjxfzmnl_scs_duangui',
+			'sgsxjxfzmnl_scs_guosheng','sgsxjxfzmnl_scs_gaowang',
 		],
 		zzrsqlkjygzz:[
 			'zzrsqlkjygzz_shen_guanyu','zzrsqlkjygzz_shen_zhangjiao',
