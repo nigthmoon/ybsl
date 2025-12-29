@@ -282,7 +282,7 @@ const YBSL_ybslf = function () {
 		 * @param {*} targets 
 		 * @returns 
 		 */
-		lib.element.player.YB_wugu = function (cards, str, targets) {
+		lib.element.player.YB_wugu = function (cards, str, targets) {//暂时作废
 			var next = game.createEvent('YB_wugu', false);
 			next.player = this;
 			next.cards = cards;
@@ -294,7 +294,7 @@ const YBSL_ybslf = function () {
 		// lib.element.content.YB_wugu = async function(event, trigger, player){
 
 		// }
-		lib.element.content.YB_wugu = function* (event, map) {
+		lib.element.content.YB_wugu = function* (event, map) {//暂时作废
 			let trigger = map.trigger, player = map.player;
 			var cards = event.cards;
 			var str = event.str;
@@ -335,6 +335,17 @@ const YBSL_ybslf = function () {
 		//至子虚：从这往下到截止的地方，别忘CV过去，这是关联函数。
 		//----------获取同族角色
 
+		/**
+		 * 判断`player`的同族角色
+		 * - 若`bool`为true，则包括自己，否则不包括自己
+		 * - 返回同族角色数组
+		 * 
+		 * @param {Player} player - 角色
+		 * @param {boolean} bool - 是否包括自己
+		 * @returns 同族角色数组
+		 * 
+		 * @example
+		 */
 		get.YB_clan = function (player, bool) {
 			var list = [];
 			game.hasPlayer2(current => {
@@ -401,7 +412,8 @@ const YBSL_ybslf = function () {
 		//点燃卡牌与吸收卡牌火焰
 		{//神庞统相关函数
 			/**
-			 * 输出list中未点燃的卡
+			 * 夜白神庞统相关函数
+			 * - 输出list中未点燃的卡
 			 * @param {*} list 
 			 * @returns 
 			 */
@@ -410,7 +422,9 @@ const YBSL_ybslf = function () {
 				return list2;
 			}
 			/**
-			 * 输出list中点燃的卡
+			 * 
+			 * 夜白神庞统相关函数
+			 * - 输出list中点燃的卡
 			 * @param {*} list 
 			 * @returns 
 			 */
@@ -419,7 +433,8 @@ const YBSL_ybslf = function () {
 				return list2;
 			}
 			/**
-			 * 点燃输入卡组
+			 * 夜白神庞统相关函数
+			 * - 点燃输入卡组
 			 * @param {*} list 
 			 */
 			game.YB_fire = function (list) {
@@ -430,8 +445,10 @@ const YBSL_ybslf = function () {
 						c.classList.add("YB_flames");
 					}
 				})
-			}/**
-			* 熄灭输入卡组
+			}
+			/**
+			* 夜白神庞统相关函数
+			* - 熄灭输入卡组
 			* @param {*} list 
 			*/
 			game.YB_nofire = function (list) {
@@ -445,7 +462,8 @@ const YBSL_ybslf = function () {
 			}
 			// var list= Array.from(ui.cardPile)
 			/**
-			 * 吸收卡组火焰
+			 * 夜白神庞统相关函数
+			 * - 吸收卡组火焰
 			 * @param {*} list 
 			 */
 			lib.element.player.YB_nofire = function (list) {
@@ -463,6 +481,12 @@ const YBSL_ybslf = function () {
 				var cards = get.translation(num);
 				game.log(this, '吸收了', '#y' + cards, `的火焰，获得了共计<span style=\'color:yellow\'>${num.length}</span>枚`, '#g' + '火焰', '。')
 			}
+			/**
+			 * 夜白神庞统相关函数
+			 * - 输出火焰数
+			 * @param {*} num 
+			 * @returns 
+			 */
 			get.YB_fire_num = function (num) {
 				switch (num) {
 					case 1: return 2;
@@ -1223,13 +1247,7 @@ const YBSL_ybslf = function () {
 			var list = [];
 			for (var i in map) {
 				list.push(i);
-				// list[list.length-1].innerHTML='<span>'+map[i]+'</span>';
 			}
-			// var list2=[];
-			// for(var k=0;k<list.length;k++){
-			// 	list2.push(list[k]);
-			// 	list2[k].innerHTML='<span>'+map[list[k]]+'</span>';
-			// }
 			return list;
 		}
 
@@ -1271,14 +1289,14 @@ const YBSL_ybslf = function () {
 		}
 		//-------------重铸函数（需输入要重铸的牌）
 		//-------------本体已经有重铸函数了，player.recast(cards)即可
-		lib.element.player.YB_chongzhu = function (card) {
+		lib.element.player.YB_chongzhu = function (card) {//暂时作废
 			'step 0'
 			this.loseToDiscardpile(card);
 			'step 1'
 			this.draw(card.length || 1);
 		}
 		//-------------制衡函数
-		lib.element.player.YB_zhiheng = function (list) {
+		lib.element.player.YB_zhiheng = function (list) {//暂时作废
 			this.discard(list);
 			this.draw(list.length);
 		}
@@ -1729,11 +1747,11 @@ const YBSL_ybslf = function () {
 		// get.YB_friend = function(player){
 		// }
 		//-------------彩蛋
-		lib.element.player.addMaxHp = function (num, num2) {
+		lib.element.player.addMaxHp = function (num, num2) {//暂时作废
 			this.gainMaxHp(num || 1);
 			this.recover(num2 || num || 1);
 		}
-		lib.element.player.YB_rua = function (str) {
+		lib.element.player.YB_rua = function (str) {//暂时作废
 			lib.card['YB_' + get.pinyin(str)] = {
 				fullimage: true,
 				image: 'character:' + get.pinyin(str),
@@ -2538,7 +2556,7 @@ const YBSL_ybslf = function () {
 	
 	//封装：将武将牌制成游戏牌
 	//没写完呢
-	{
+	{//暂时作废
 		lib.element.card.YB_characterToCard = function(character,card= {
 			fullimage: true,
 			image: "character:" + character,

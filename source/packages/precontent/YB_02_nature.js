@@ -335,6 +335,12 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
 			},
 		})
+		
+		lib.namePrefix.set('界书',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('界')}${get.prefixSpan('书')}`
+			},
+		})
 		lib.namePrefix.set('神赐',{
 			showName:'宥',
 			color:'#ff7b00',

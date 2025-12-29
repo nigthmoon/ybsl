@@ -2,6 +2,8 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { characterCopyright }
 
 const shiroha = '<a id="shiroha_bilibili" href="https://space.bilibili.com/2170177" target="_blank"><span class="YB_http">哔哩哔哩up主鸣濑白羽酱</span></a>'
+
+/**@type {importCharacterConfig[characterCopyright]} */
 const characterCopyright = {
 		
 	//---------------------------------//名将改写

@@ -43,6 +43,24 @@ const card = {
         },
 
     },
+
+	sgsxjxfzmnl_pilitoushiche: {
+		fullskin: true,
+		derivation: "sgsxjxfzmnl_dc_liuye",
+		cardimage: "ly_piliche",
+		cardcolor: "diamond",
+		type: "equip",
+		subtype: "equip5",
+		skills: ["sgsxjxfzmnl_pilitoushiche"],
+		destroy: true,
+		ai: {
+			basic: {
+				equipValue: 3,
+			},
+		},
+	},
+
+
     qmsgswkjsgj_chuanguoyuxi:{
         audio: true,
         fullskin: true,

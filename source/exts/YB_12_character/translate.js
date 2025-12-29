@@ -636,6 +636,27 @@ const translate = {
 	qmsgswkjsgj_shenyinghun_info:`准备阶段，若你已受伤，你可以选择一名其他角色并选择一项：1.令其摸Y张牌；2.令其弃置Y张牌。（Y为你已损失的体力值）`,
 	qmsgswkjsgj_shenjiang:'激昂',
 
+	qmsgswkjsgj_re_mb_zhangzhi:'界书张芝',
+	qmsgswkjsgj_re_mb_zhangzhi_prefix:'界书',
+	qmsgswkjsgj_shiju:'势举',
+	qmsgswkjsgj_shiju_info:`锁定技，你使用牌结算结束后，若此牌与上一张被使用的牌：类别相同，你获得牌堆顶的一张牌；颜色相同，你获得牌堆底的一张牌；乘势：若牌名也相同，你升级“枯白”或刷新“枯白”。`,
+
+	qmsgswkjsgj_shen_taishici:'缝神太史慈',
+	qmsgswkjsgj_shen_taishici_prefix:'缝神',
+	qmsgswkjsgj_dulie: "笃烈",
+	qmsgswkjsgj_dulie_info: "锁定技。当你成为【杀】的目标时，你进行判定。若结果为红色，则取消此目标。",
+	qmsgswkjsgj_tspowei: "破围",
+	qmsgswkjsgj_tspowei_info: `使命技。①游戏开始时，你令所有其他角色获得一个“围”，你对有“围”的角色使用【杀】没有距离限制。②一名角色受到伤害后，你可以移去其“围”。③回合开始时，你可重新分配场上的“围”标记。④一名其他角色的回合开始时，若其有“围”，则你可以选择一项：⒈对其造成1点伤害。⒉你获得其一张手牌。背水，你视为在其攻击范围内直到回合结束。⑤使命：回合开始时，若场上“围”标记数不大于X（X为你的体力上限），则你获得技能${get.poptip("qmsgswkjsgj_shenzhu")}。⑥失败：当你进入濒死状态时，你将体力值回复至上限。`,
+	qmsgswkjsgj_shenzhu: "神著",
+	qmsgswkjsgj_shenzhu_info: "锁定技，当你使用【杀】结算结束后，你选择一项：①摸一张牌，且本回合使用【杀】的次数上限+1。②摸X张牌，且本回合不能再使用【杀】（X为你的体力上限）。",
+	qmsgswkjsgj_dangmo: "荡魔",
+	qmsgswkjsgj_dangmo_info: "当你于出牌阶段内使用第一张【杀】选择目标后，你可以为此牌增加至多X个目标（X为你的体力上限）。",
+	qmsgswkjsgj_shentianyi:'天义',
+	qmsgswkjsgj_shentianyi_info:'出牌阶段限一次，你可以和一名其他角色拼点。若你赢，你获得以下技能效果直到回合结束：你使用【杀】没有距离限制；可额外使用一张【杀】；使用【杀】时可额外指定一个目标。',
+	qmsgswkjsgj_shenhanzhan:'酣战',
+	qmsgswkjsgj_shenhanzhan_info:'①当你发起拼点时，或成为拼点的目标时，你可以令对方选择拼点牌的方式改为随机选择一张手牌。②当你拼点结束后，你可以获得本次拼点的拼点牌中点数最大的牌。',
+
+
 
 
 
@@ -677,7 +698,6 @@ const translate = {
 	qmsgswkjsgj_potfuji_info: "出牌阶段限一次，你可以展示至多X张牌并交给任意角色，称为“符济”（X为场上角色数）。其角色使用“符济”牌时获得一张与“符济”牌花色相同的牌；然后若此牌为：【杀】，此牌造成的伤害+1；【闪】，结算完毕后其摸一张牌；【桃】，回复数值+1；【酒】，其可弃置场上一张牌。然后若你的手牌数为全场最低，则你摸一张牌，且你使用的下一张【杀】【闪】【桃】【酒】视为拥有对应效果直到你的下个回合开始（可叠加）。",
 	qmsgswkjsgj_potdaozhuan: "道转",
 	qmsgswkjsgj_potdaozhuan_info: "每回合每种牌名限一次限一次，你可以将你或者当前回合角色的一张牌置入弃牌堆，视为使用一张基本牌。若当前回合角色因此失去了牌，则本回合此技能失效。",
-
 
 
 
@@ -787,6 +807,28 @@ const translate = {
 	})}”，若你因此失去手牌，你可以摸等量的牌，并反转${get.poptip("qmsgswkjsgj_shenci_cmhuituo")}的判定效果。（全民三国杀我开局神郭嘉的神赐曹髦）`,
 	qmsgswkjsgj_shenci_mbweitong:'卫统',
 	qmsgswkjsgj_shenci_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_shenci_mbqianlong")}，你获得60点道心值；其他魏势力角色回复体力时，你可以摸一张牌（全民三国杀我开局神郭嘉的神赐曹髦）。`,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1069,7 +1111,7 @@ const translate = {
 	sgsxjxfzmnl_sb_guanyu_prefix: "阴间谋",
 	sgsxjxfzmnl_sbwusheng: "武圣",
 	sgsxjxfzmnl_sbwusheng_wusheng_backup: "武圣",
-	sgsxjxfzmnl_sbwusheng_info: "你可以将一张手牌当作任意【杀】使用或打出。出牌阶段开始时，你可以选择一名其他角色，本阶段对其使用【杀】无距离和次数限制，使用【杀】指定其为目标后摸两张牌，对其使用X张【杀】后不能对其使用【杀】（X为<span class=yellowtext>目标体力值</span>）。",
+	sgsxjxfzmnl_sbwusheng_info: "你可以将一张手牌当作任意【杀】使用或打出。出牌阶段开始时，你可以选择一名其他角色，本阶段对其使用【杀】无距离和次数限制，使用【杀】指定其为目标后摸两张牌，对其使用X张【杀】后不能对其使用【杀】（X为<span class=yellowtext>目标体力值</span>）（<span class=yellowtext>经主角实战，X实为指定目标时的目标体力值</span>）。",
 	sgsxjxfzmnl_sbyijue: "义绝",
 	sgsxjxfzmnl_sbyijue_info: "锁定技，每名角色每局游戏限一次，<span class=firetext>一名其他角色受到你对其造成的伤害时并进入濒死状态时，若其脱离濒死状态</span>，则本回合你使用牌指定其为目标时，此牌对其无效。",
 
@@ -1121,9 +1163,10 @@ const translate = {
 	sgsxjxfzmnl_shen_jiangwei: "阴间神姜维",
 	sgsxjxfzmnl_shen_jiangwei_prefix: "阴间神",
 	sgsxjxfzmnl_tianren: "天任",
-	sgsxjxfzmnl_tianren_info: "锁定技。①<span class=firetext>当有牌进入弃牌堆后</span>，你获得一枚“天任”标记。②当你获得“天任”标记或体力上限变化后，若你的“天任”数不小于X，则你移去X枚“天任”，加1点体力上限并回复一点体力，然后摸两张牌（X为你的体力上限）。",
+	sgsxjxfzmnl_tianren_info: "锁定技。①<span class=firetext>当有牌进入弃牌堆后</span>，你获得一枚“天任”标记。②当你获得“天任”标记或体力上限变化后，若你的“天任”数不小于X，则你移去X枚“天任”，加1点体力上限<span class=yellowtext>并回复一点体力</span>，然后摸两张牌（X为你的体力上限）。",
 	sgsxjxfzmnl_jiufa: "九伐",
 	sgsxjxfzmnl_jiufa_info: "当你声明使用牌后或打出牌时，你记录此牌的牌名。②当你使用或打出的牌结算结束后，若你的〖九伐〗记录中包含至少九种不同的牌名，则你可以亮出牌堆顶的九张牌，选择并获得其中任意张点数有重复的牌（每个点数限获得一张），清除所有的记录，将其余牌置入弃牌堆。<span class=yellowtext>你以此法获得的牌标记为“伐”，你使用“伐”无距离限制且无法被响应。</span>",
+	sgsxjxfzmnl_jiufa_tag: '伐',
 	sgsxjxfzmnl_pingxiang: "平襄",
 	sgsxjxfzmnl_pingxiang_info: "限定技。出牌阶段，你可减9点体力上限，视为使用至多<span class=firetext>9+X</span>张无距离限制的火【杀】，<span style=\"text-decoration: line-through;\">然后失去〖九伐〗，</span>并将手牌上限基数改为体力上限直到游戏结束。<span class=yellowtext>（X为场上魏势力角色数）</span>",
 
@@ -1132,7 +1175,7 @@ const translate = {
 	sgsxjxfzmnl_dcpoyuan: "破垣",
 	sgsxjxfzmnl_dcpoyuan_info: "<span class=firetext>游戏开始时</span>，将一张【阴间霹雳车】置入装备区；回合开始时，你可以弃置一名其他角色X张牌，X为其体力值。",
 	sgsxjxfzmnl_dchuace: "画策",
-	sgsxjxfzmnl_dchuace_info: "<span class=firetext>出牌阶段限Y次。(Y为场上势力数)</span>你可以将一张手牌当做任意基本牌或普通锦囊牌使用（不得是你本回合你以此法使用过的牌）<span class=yellowtext>，然后你摸一张牌</span>。",
+	sgsxjxfzmnl_dchuace_info: "<span class=firetext>出牌阶段限Y次。（Y为场上势力数）</span>你可以将一张手牌当做任意基本牌或普通锦囊牌使用（不得是你本回合你以此法使用过的牌）<span class=yellowtext>，然后你摸一张牌</span>。",
 	sgsxjxfzmnl_pilitoushiche: "阴间霹雳车",
 	sgsxjxfzmnl_pilitoushiche_info: "锁定技。当你使用基本牌无距离限制，且牌面数值+1。②当你于回合外使用或打出基本牌时，你摸一张牌。<span class=yellowtext>③此宝物无法离开装备区。</span>",
 
@@ -1148,7 +1191,7 @@ const translate = {
 	sgsxjxfzmnl_wu_luxun: "阴间武陆逊",
 	sgsxjxfzmnl_wu_luxun_prefix: "阴间武",
 	sgsxjxfzmnl_dcxiongmu: "雄幕",
-	sgsxjxfzmnl_dcxiongmu_tag: "雄幕",
+	sgsxjxfzmnl_dcxiongmu_tag: "雄幕（阴间）",
 	sgsxjxfzmnl_dcxiongmu_info: "①每轮开始时，你可以将手牌摸至体力上限（若手牌数不小于体力上限则跳过），然后将任意张牌随机置入牌堆，从牌堆或弃牌堆中获得等量的点数为8的牌，且这些牌<span style=\"text-decoration: line-through;\">本轮</span>不计入手牌上限。②当你于一回合首次受到伤害时，若你的手牌数不大于你的体力值，此伤害-1。",
 	// sgsxjxfzmnl_dczhangcai: "彰才",
 	// sgsxjxfzmnl_dczhangcai_info: "当你使用或打出点数为8的牌时，你可以摸X张牌（X为你手牌区里点数为8的牌数且至少为1）。",
