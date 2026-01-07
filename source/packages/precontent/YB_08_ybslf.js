@@ -620,7 +620,10 @@ const YBSL_ybslf = function () {
 			
 			this.addTempSkill(skill);
 			if(!this.storage[skill])this.storage[skill]=[]
-			this.storage[skill].push(keys);
+			if(Array.isArray(keys)){
+				this.storage[skill].addArray(keys);
+			}
+			else this.storage[skill].push(keys);
 			this.markSkill(skill);
 			// if(!lib.skill[skill].intro){
 			// 	lib.skill[skill].intro={
@@ -1087,6 +1090,7 @@ const YBSL_ybslf = function () {
 					info.audioname2.old_yuanshu = 'weidi';
 				}
 			}, map.skills);
+			event._result = map;
 			event.finish();
 			'step 3'
 			event.num = event.numa;
@@ -1146,6 +1150,7 @@ const YBSL_ybslf = function () {
 				_status.characterlist.add(event.numb);
 				_status.characterlist.remove(result.links[0]);
 			}
+			event._result = result;
 			event.finish();
 			'step 5'
 			event.num = event.numa;
@@ -1198,6 +1203,7 @@ const YBSL_ybslf = function () {
 				player.flashAvatar(event.numb, name);
 				game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');
 				player.addSkill(lib.character[name][3])
+				event._result = result;
 			}
 		}
 		//-------------逐个翻译
@@ -2643,5 +2649,87 @@ const YBSL_ybslf = function () {
 			event.onlyContent = true;
 		}
 		 */
+	}
+	//摸指定要求的牌
+	{//----------自定义函数3
+		//摸指定要求的牌
+		lib.element.player.YB_drawCard = function(){
+			var next = game.createEvent('YB_drawCard');
+			next.player = this;
+			for(var i =0;i<arguments.length;i++){
+				if(typeof arguments[i] === 'number'){
+					next.num = arguments[i];
+				}
+				else if(typeof arguments[i] === 'function'){
+					next.fun = arguments[i];
+					next.filter = Array.from(arguments).slice(i+1);
+					break;
+				}
+				else if(typeof arguments[i] === 'object'&&!Array.isArray(arguments[i])){
+					var ctrl = arguments[i]
+					next.fun = (function getCards(){
+						return function(num){
+							if (typeof num != "number") {
+								num = 1;
+							}
+							if (num <= 0) {
+								return [];
+							}
+							var list = [];
+							if(num>0){
+								for(var i of ui.cardPile.childNodes){
+									var types = Object.keys(ctrl)
+									for(var type in ctrl){
+										var typename = ctrl[type]
+										if(type!='bkts'){
+											if(type=='tag'){
+												if(typename.startsWith('!')){
+													if(get[type](i,typename.slice(1))){
+														i.bool=false;
+													}
+												}
+												else if(!get[type](i,typename)){
+													i.bool=false;
+												}
+											}
+											else {
+												if(typename.startsWith('!')){
+													if(get[type](i)==typename.slice(1)){
+														i.bool=false;
+													}
+												}
+												else if(get[type](i)!=typename){
+													i.bool=false;
+												}
+											}
+										}
+									}
+									if(i.bool!=false){
+										list.push(i);
+										i.bool=false;
+									}
+									if(list.length>=num){
+										break;
+									}
+								}
+								if(list.length<num&&!ctrl.bkts){
+									list.addArray(get.cards(num-list.length));
+								}
+							}
+							return list;
+						}
+					})(ctrl)
+					next.filter = Array.from(arguments).slice(i+1);
+					break;
+				}
+			}
+
+			next.setContent(function () {
+				'step 0'
+				console.log(event.fun)
+				player.draw(num,event.filter).set('otherGetCards',event.fun).gaintag=event.gaintag||[];
+			});
+			return next;
+		}
 	}
 }

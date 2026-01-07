@@ -2288,7 +2288,7 @@ const skill = {
 	},
 	ybsl_kuangfeng: {
 		unique: true,
-		audio: 2,
+		audio: 'kuangfeng',
 		enable: 'phaseUse',
 		usable: 1,
 		filter: function (event, player) {
@@ -2312,7 +2312,7 @@ const skill = {
 		subSkill: {
 			66: {
 				unique: true,
-				audio: 2,
+				audio: 'kuangfeng',
 				trigger: { player: 'phaseJieshuBegin' },
 				direct: true,
 				filter: function (event, player) {
@@ -9229,7 +9229,7 @@ const skill = {
 	sgsk_zhuiri: {//实测不影响游玩
 		audio: 'ext:夜白神略/audio/character:2',
 		group: ["sgsk_zhuiri_summer"],
-		audio: 2,
+		// audio: 2,
 		// trigger: {
 		// 	player: "useCard2",
 		// },

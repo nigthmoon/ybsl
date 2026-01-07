@@ -930,8 +930,10 @@ const translate = {
 	//太虚幻境搬运
 	boss_aotang: '熬汤',
 	boss_aotang_info: '锁定技，回合开始时，你令随机一名敌方角色遗忘所有武将技能直到你的下回合开始。',
+	'#ext:太虚幻境/audio/skill/boss_aotang':'品汤消愁，情怨断灭。',
 	boss_yunjv: '云飓',
 	boss_yunjv_info: '锁定技，敌方角色的回合结束时，该角色随机弃置一张手牌和一张装备区里的牌。',
+	'#ext:太虚幻境/audio/skill/boss_yunjv':'云雾缭绕，飓风逸动。',
 	boss_guimeic: '鬼魅',
 	boss_guimeic_info: '锁定技，你不会被翻面；若你的出牌阶段被跳过，你跳过本回合的弃牌阶段；若你的摸牌阶段被跳过，你摸一张牌。',
 }

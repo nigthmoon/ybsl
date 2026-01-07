@@ -1262,7 +1262,10 @@ const typeimage = function(pagename,filename){
 			// return ;
 			var infoy = pagename.character[i].YB_mjz;
 			pagename.character[i].img = `image/character/${infoy}.jpg`;
-			pagename.character[i].die = `../../audio/die/${infoy}.mp3`;
+			// pagename.character[i].die = `${infoy}`;
+			if(!pagename.character[i].dieAudios){
+				pagename.character[i].dieAudios = [infoy]
+			}
 		}
 		else {
 			if(Array.isArray(pagename.character[i])){
@@ -1273,7 +1276,10 @@ const typeimage = function(pagename,filename){
 						
 						var char = infox.slice(7);
 						pagename.character[i][4].push(`img:image/character/${char}.jpg`);
-						pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
+						pagename.character[i][4].push(`die:${char}`);
+						// if(!infox.startsWith('dieAudios:')){
+
+						// }
 					}
 				}
 			}
@@ -1343,7 +1349,7 @@ const typeimage = function(pagename,filename){
 					pagename.character[i].img=`extension/夜白神略/image/${filename}/${i}.jpg`;
 				}
 				if(!pagename.character[i].die){
-					pagename.character[i].die=`extension/夜白神略/audio/die/${i}.mp3`;
+					pagename.character[i].dieAudios=[`extension/夜白神略/audio/die/${i}.mp3`];
 				}
 			}
 		}

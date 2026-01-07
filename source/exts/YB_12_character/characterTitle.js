@@ -73,10 +73,21 @@ const characterTitle = {//称号
 	qmsgswkjsgj_shen_huatuo:'<span class = \''+qmsgswkjsgj_span+'\'>悬壶济世</span>',
 	qmsgswkjsgj_pot_yuji:'<span class = \''+qmsgswkjsgj_span+'\'>夙仙望道</span>',
 	qmsgswkjsgj_re_caomao:'<span class = \''+qmsgswkjsgj_span+'\'>向死存魏</span>',
-	qmsgswkjsgj_mengpo:'<span class = \''+qmsgswkjsgj_span+'\'>忘川难断</span>',
-	qmsgswkjsgj_shen_sunce:'<span class = \''+qmsgswkjsgj_span+'\'>踞江鬼雄</span>',
-
-
+	qmsgswkjsgj_mengpo: '<span class = \'' + qmsgswkjsgj_span + '\'>忘川难断</span>',
+	qmsgswkjsgj_shen_sunce: '<span class = \'' + qmsgswkjsgj_span + '\'>踞江鬼雄</span>',
+	
+	qmsgswkjsgj_mb_sunluyu: '<span class = \'' + qmsgswkjsgj_span + '\'>舍身饲虎</span>',
+	qmsgswkjsgj_re_mb_zhangzhi: '<span class = \'' + qmsgswkjsgj_span + '\'></span>',
+	qmsgswkjsgj_shen_taishici: '<span class = \'' + qmsgswkjsgj_span + '\'>义信天武</span>',
+	
+	qmsgswkjsgj_re_zhangxuan: '<span class = \'' + qmsgswkjsgj_span + '\'>玉宇嫁蔷</span>',
+	qmsgswkjsgj_re_chenshi: '<span class = \'' + qmsgswkjsgj_span + '\'>裨将可期</span>',
+	qmsgswkjsgj_re_dc_tengfanglan: '<span class = \'' + qmsgswkjsgj_span + '\'>铃兰零落</span>',
+	qmsgswkjsgj_re_zhenghun: '<span class = \'' + qmsgswkjsgj_span + '\'>民安寇灭</span>',
+	qmsgswkjsgj_re_re_liuzan: '<span class = \'' + qmsgswkjsgj_span + '\'>啸天亢声</span>',
+	qmsgswkjsgj_re_wupu: '<span class = \'' + qmsgswkjsgj_span + '\'>健体养魄</span>',
+	qmsgswkjsgj_re_ruanyu: '<span class = \'' + qmsgswkjsgj_span + '\'>清谈高论</span>',
+	qmsgswkjsgj_re_dc_duyu: '<span class = \'' + qmsgswkjsgj_span + '\'>文成武德</span>',
 
 
 
@@ -159,11 +170,45 @@ const characterTitle = {//称号
 	sgsxjxfzmnl_caojinyu:'<span class="sgsxjxfzmnl">金乡公主</span>',
 	sgsxjxfzmnl_shen_machao:'<span class="sgsxjxfzmnl">神威天将军</span>',
 	sgsxjxfzmnl_sunhanhua:'<span class="sgsxjxfzmnl">挣绽的青莲</span>',
-	sgsxjxfzmnl_xin_guozhao:'<span class="sgsxjxfzmnl">文德皇后</span>',
-	sgsxjxfzmnl_sb_guanyu:'<span class="sgsxjxfzmnl">关圣帝君</span>',
-
-
-
+	sgsxjxfzmnl_xin_guozhao: '<span class="sgsxjxfzmnl">文德皇后</span>',
+	sgsxjxfzmnl_sb_guanyu: '<span class="sgsxjxfzmnl">关圣帝君</span>',
+	sgsxjxfzmnl_mb_caomao: '<span class="sgsxjxfzmnl">向死存魏</span>',
+	sgsxjxfzmnl_puyuan: '<span class="sgsxjxfzmnl">淬炼百兵</span>',
+	sgsxjxfzmnl_dc_shen_huatuo: '<span class="sgsxjxfzmnl">灵魂的医者</span>',
+	sgsxjxfzmnl_dc_xujing: '<span class="sgsxjxfzmnl">璞玉有瑕</span>',
+	sgsxjxfzmnl_shen_zhangjiao: '<span class="sgsxjxfzmnl">末世的起首</span>',
+	sgsxjxfzmnl_xizhicai: '<span class="sgsxjxfzmnl">负俗的夭才</span>',
+	sgsxjxfzmnl_sb_sp_zhugeliang: '<span class="sgsxjxfzmnl">忠武侯</span>',
+	sgsxjxfzmnl_dc_qinghegongzhu: '<span class="sgsxjxfzmnl">大魏长公主</span>',
+	sgsxjxfzmnl_bianxi: '<span class="sgsxjxfzmnl">伏龛蛇影</span>',
+	sgsxjxfzmnl_shen_sunquan: '<span class="sgsxjxfzmnl">坐断东南</span>',
+	sgsxjxfzmnl_panshu: '<span class="sgsxjxfzmnl">江东神女</span>',
+	sgsxjxfzmnl_haozhao: '<span class="sgsxjxfzmnl">扣弦的豪将</span>',
+	sgsxjxfzmnl_fuqian: '<span class="sgsxjxfzmnl">危汉绝勇</span>',
+	sgsxjxfzmnl_sb_caoren: '<span class="sgsxjxfzmnl">固若金汤</span>',
+	sgsxjxfzmnl_yue_miheng: '<span class="sgsxjxfzmnl">鹗立鸷群</span>',
+	sgsxjxfzmnl_zhujianping: '<span class="sgsxjxfzmnl">识面知秋</span>',
+	sgsxjxfzmnl_shen_huangzhong: '<span class="sgsxjxfzmnl">战意破苍穹</span>',
+	sgsxjxfzmnl_dc_tengfanglan: '<span class="sgsxjxfzmnl">铃兰零落</span>',
+	sgsxjxfzmnl_sb_diaochan: '<span class="sgsxjxfzmnl">离间计</span>',
+	sgsxjxfzmnl_re_zuoci: '<span class="sgsxjxfzmnl">羽化飞升</span>',
+	sgsxjxfzmnl_chengui: '<span class="sgsxjxfzmnl">弄虎如婴</span>',
+	sgsxjxfzmnl_dc_sunru: '<span class="sgsxjxfzmnl">呦呦鹿鸣</span>',
+	sgsxjxfzmnl_yue_xiaoqiao: '<span class="sgsxjxfzmnl">绿绮嫒媛</span>',
+	sgsxjxfzmnl_dc_sb_simayi: '<span class="sgsxjxfzmnl">韬谋韫势</span>',
+	sgsxjxfzmnl_mb_zhangfen: '<span class="sgsxjxfzmnl">究械菁杰</span>',
+	sgsxjxfzmnl_liuzan: '<span class="sgsxjxfzmnl">啸天亢声</span>',
+	sgsxjxfzmnl_xurong: '<span class="sgsxjxfzmnl">玄菟战魔</span>',
+	sgsxjxfzmnl_dc_sb_huanggai: '<span class="sgsxjxfzmnl">毁身纾难</span>',
+	sgsxjxfzmnl_yuanyin: '<span class="sgsxjxfzmnl">载路素车</span>',
+	sgsxjxfzmnl_v_zhangliao: '<span class="sgsxjxfzmnl">威锐镇西风</span>',
+	sgsxjxfzmnl_ol_nanhualaoxian: '<span class="sgsxjxfzmnl">逍遥仙游</span>',
+	sgsxjxfzmnl_dc_sb_zhouyu: '<span class="sgsxjxfzmnl">炽谋英隽</span>',
+	sgsxjxfzmnl_dc_simashi: '<span class="sgsxjxfzmnl">唯几成务</span>',
+	sgsxjxfzmnl_xuelingyun: '<span class="sgsxjxfzmnl">霓裳缀红泪</span>',
+	sgsxjxfzmnl_yangbiao: '<span class="sgsxjxfzmnl">德彰海内</span>',
+	sgsxjxfzmnl_simazhao: '<span class="sgsxjxfzmnl">堕节肇业</span>',
+	sgsxjxfzmnl_caoying: '<span class="sgsxjxfzmnl">龙城凤鸣</span>',
 
 
 
@@ -174,8 +219,13 @@ const characterTitle = {//称号
 
 	sgsxjxfzmnl_mo_diaochan:'<span class="sgsxjxfzmnl">乱世的舞姬</span>',
 	sgsxjxfzmnl_mo_lvbu:'<span class="sgsxjxfzmnl">武的化身</span>',
-
-
+	sgsxjxfzmnl_mo_caopi: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_guanyu: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_re_diaochan: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_zhangfei: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_jiaxu: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_guosi: '<span class="sgsxjxfzmnl"></span>',
+	sgsxjxfzmnl_mo_zhangji: '<span class="sgsxjxfzmnl"></span>',
 
 
 

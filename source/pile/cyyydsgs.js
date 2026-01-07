@@ -1082,6 +1082,9 @@ export async function cyyydsgs() {
 					selectTarget(){
 						return [1,2];
 					},
+					check(card){
+						return get.value(card)<=6;
+					},
 					filterTarget(card,player,target){
 						return target!=player;
 					},
@@ -1135,8 +1138,8 @@ export async function cyyydsgs() {
 						// let num = trigger.num;
 						event.result = {bool:false,cost_data:{draw_card:false,recover_hp:false}}
 						const controls = ["draw_card"];
-						if (target.isDamaged()) {
-							event.num2 = Math.min(event.num2, target.getDamagedHp());
+						if (player.isDamaged()) {
+							event.num2 = Math.min(event.num2, player.getDamagedHp());
 							controls.push("recover_hp");
 						}
 						controls.push("cancel2");
@@ -1169,8 +1172,8 @@ export async function cyyydsgs() {
 									return choices.randomGet();
 								}
 							);
-							next.set('prompt',get.prompt('cyyydsgs_jilei'))
-							next.set('prompt2',get.YB_prompt2('cyyydsgs_jilei',null,player))
+							next.set('prompt',get.prompt('jhjx_jilei'))
+							next.set('prompt2',get.YB_prompt2('jhjx_jilei',null,player))
 							result = await next.forResult();
 						}
 						
@@ -1868,7 +1871,7 @@ export async function cyyydsgs() {
 
 				},
 				//雹灾魔
-				jhjx_bingzai:{
+				jhjx_baozai:{
 					audio: 'ext:夜白神略/audio/character:1',
 					trigger: {
 						global: 'phaseZhunbeiBegin',
@@ -1929,7 +1932,7 @@ export async function cyyydsgs() {
 					forced:true,
 					locked:false,
 					async content(event,trigger,player){
-						let list = ['jhjx_leizaimo','jhjx_hongzaimo','jhjx_rongzaimo','jhjx_bingzaimo','jhjx_dizaimo'];
+						let list = ['jhjx_leizaimo','jhjx_hongzaimo','jhjx_rongzaimo','jhjx_baozaimo','jhjx_dizaimo'];
 						var cards = [];
 						// _status.characterlist.removeArray(list);
 						for(let i=0;i<list.length;i++){
@@ -1971,6 +1974,7 @@ export async function cyyydsgs() {
 								ai: {},
 								skills: [],
 							}
+							var info = lib.character[name];
 							var maxHp = get.infoMaxHp(info[2]);
 							if (maxHp != 1) {
 								card.distance = { attackFrom: 1 - maxHp };
@@ -1996,10 +2000,12 @@ export async function cyyydsgs() {
 									return (val += skills.length);
 								};
 							}
+							lib.translate["YB_characterToCard_" + name] = lib.translate[name];
 							lib.translate["YB_characterToCard_" + name + "_info"] = str;
 							var append = "";
 							if (skills.length) {
 								for (var skill of skills) {
+									// console.log(skill)
 									if (lib.skill[skill].nobracket) {
 										append += '<div class="skilln">' + get.translation(skill) + '</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + "</span></div><br><br>";
 									} else {
@@ -2013,6 +2019,12 @@ export async function cyyydsgs() {
 							lib.card["YB_characterToCard_" + name] = card;
 							var cardx = game.YB_createCard('YB_characterToCard_'+name,null,null);
 							cards.push(cardx);
+						}
+						for(var z=0;z<cards.length;z++){
+							var type = 'equip'+(z+1);
+							const cardv = get.autoViewAs(cards[z]);
+							cardv.subtypes = [type];
+							await player.equip(cardv);
 						}
 					},
 				},

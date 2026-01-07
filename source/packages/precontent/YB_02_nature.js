@@ -273,11 +273,11 @@ const YBSL_nature = function(){
 			},
 		})
 		
-		lib.namePrefix.set('界势',{
-			getSpan:(prefix,name)=>{
-				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
-			},
-		})
+		// lib.namePrefix.set('界势',{
+		// 	getSpan:(prefix,name)=>{
+		// 		return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
+		// 	},
+		// })
 		// lib.namePrefix.set('魔',{
 		// 	showName:'魔',
 		// 	color:'#e328b7',
@@ -330,6 +330,7 @@ const YBSL_nature = function(){
 		})
 
 		
+
 		lib.namePrefix.set('界势',{
 			getSpan:(prefix,name)=>{
 				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
@@ -362,6 +363,143 @@ const YBSL_nature = function(){
 			},
 		})
 
+		
+		lib.namePrefix.set('星月',{
+			showName:'☪️',
+			// color:'#28ffff',
+			// nature:'black',
+		})
+		lib.namePrefix.set('星月手杀',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('手杀')}`
+			},
+		})
+		lib.namePrefix.set('星月手杀界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('星月手杀谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('星月手杀神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('星月新杀',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('新杀')}`
+			},
+		})
+		lib.namePrefix.set('星月新杀界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('星月新杀谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('星月新杀神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('星月OL',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('OL')}`
+			},
+		})
+		lib.namePrefix.set('星月OL界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月OL')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('星月OL谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月OL')}${get.prefixSpan('谋')}`
+			},
+		})
+
+		lib.namePrefix.set('星月OL神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月OL')}${get.prefixSpan('神')}`
+			},
+		})
+
+		lib.namePrefix.set('星月界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('星月SP',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('SP')}`
+			},
+		})
+		lib.namePrefix.set('星月谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('星月神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('星月界神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('星月界势',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('势')}`
+			},
+		})
+		lib.namePrefix.set('星月界书',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('书')}`
+			},
+		})
+		lib.namePrefix.set('星月神赐',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}`
+			},
+		})
+		lib.namePrefix.set('星月神赐武',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('武')}`
+			},
+		})
+		lib.namePrefix.set('星月神赐界',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('界')}`
+			},
+		})
+		lib.namePrefix.set('星月神赐谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('星月神赐神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('神')}`
+			},
+		})
+		lib.namePrefix.set('星月应天神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('应天')}${get.prefixSpan('神')}`
+			},
+		})
+		
+
+		
+		
 		
 		lib.namePrefix.set('魂',{
 			showName:'魂',
@@ -448,6 +586,37 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('手杀')}`
 			},
 		})
+		lib.namePrefix.set('阴间新杀',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('新杀')}`
+			},
+		})
+		lib.namePrefix.set('阴间OL',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('OL')}`
+			},
+		})
+		lib.namePrefix.set('阴间新杀谋',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('新杀')}${get.prefixSpan('谋')}`
+			},
+		})
+		lib.namePrefix.set('阴间威',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('威')}`
+			},
+		})
+		lib.namePrefix.set('阴间SP',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('SP')}`
+			},
+		})
+		lib.namePrefix.set('阴间玄',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('阴间')}${get.prefixSpan('玄')}`
+			},
+		})
+
 
 
 

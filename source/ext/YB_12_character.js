@@ -42,7 +42,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 
 		*/
 		characterReplace:{//同名武将切换
-			
+			// sgsxjxfzmnl_puyuan:['puyuan'],
 		},//同名武将切换
 		perfectPair:perfectPair,//珠联璧合武将（选填）
 		characterFilter:{//禁用
@@ -103,11 +103,23 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			
 			qmsgswkjsgj_re_caomao: [
 				["qmsgswkjsgj_re_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
-				["qmsgswkjsgj_re_caomao_dead", ['YB_mjz:/mb_caomao_dead',"die:mb_caomao"]],
+				["qmsgswkjsgj_re_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
 			],
 			qmsgswkjsgj_shenci_caomao: [
 				["qmsgswkjsgj_shenci_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
 				["qmsgswkjsgj_shenci_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
+			],
+
+			sgsxjxfzmnl_shen_jiangwei: [
+				["sgsxjxfzmnl_shen_jiangwei_shadow", ["die:shen_jiangwei"]],
+			],
+			
+			sgsxjxfzmnl_caomao: [
+				["sgsxjxfzmnl_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
+				["sgsxjxfzmnl_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
+			],
+			sgsxjxfzmnl_sb_sp_zhugeliang: [
+				["sgsxjxfzmnl_sb_zhugeliang", ['YB_mjz:sb_zhugeliang',"die:sb_sp_zhugeliang"]]
 			],
 		},
 	}; 

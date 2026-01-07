@@ -20,6 +20,11 @@ export const config = {
 			};
 		},
 	},
+	"不再提示关闭兼容模式的弹窗":{
+		"name":"<b>不再提示关闭兼容模式的弹窗</b>",
+		'init': false,
+		'intro': '<font color=\'#ADEAEA\'>不再提示关闭兼容模式的弹窗</font>',
+	},
 	"ybslb_help":{
 		name:'<span class="yellowtext">查看介绍</span><span style="color:#ff00cc"><font size="4px">▶▶▶</font></span>',
 		clear:true,

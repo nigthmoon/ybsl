@@ -211,8 +211,8 @@ const card = {
 		content:function(){
 			'step 0'
 			target.say('山不厌高，海不厌深，周公吐哺，天下归心。');
-			if(player.isUnderControl()){
-				game.swapPlayerAuto(player);
+			if(target.isUnderControl()){
+				game.swapPlayerAuto(target);
 			}
 			var suit={
 				'spade':'黑桃',
@@ -391,7 +391,7 @@ const card = {
 				game.countChoose();
 			};
 			if(event.isMine()){
-				chooseButton(player);
+				chooseButton(target);
 			}
 			else if(event.isOnline()){
 				event.player.send(chooseButton,event.player);
@@ -549,7 +549,8 @@ const card = {
 		fullskin:true,
 		type:'trick',
 		enable:true,
-		chongzhu:true,
+		// chongzhu:true,
+		recastable: true,
 		filterTarget:function(card,player,target){
 			if(player==target) return false;
 			return (target.countCards('h')||target.isUnseen(2));
@@ -864,7 +865,8 @@ const card = {
 		fullskin:true,
 		enable:true,
 		type:'basic',
-		toself:true,
+		// toself:true,
+		selectTarget:1,
 		filterTarget:function(card,player,target){
 			var he=player.getCards('he');
 			var list=_status.YB_jingxieList;
@@ -934,7 +936,8 @@ const card = {
 			// 	}
 			// }
 		},
-		chongzhu:true,
+		// chongzhu:true,
+		recastable: true,
 		ai:{
 			order:7,
 			useful:0,

@@ -9740,7 +9740,8 @@ const skill = {
 
 	//孟婆
 	boss_aotang: {
-		audio: 'ext:夜白神略/audio/character:1',
+		// audio: 'ext:夜白神略/audio/character:true',
+		audio: 'ext:太虚幻境/audio/skill:true',
 		trigger: {
 			player: 'phaseBegin',
 		},
@@ -9803,7 +9804,8 @@ const skill = {
 		},
 	},
 	boss_guimeic: {
-		audio: 'ext:夜白神略/audio/character:1',
+		// audio: 'ext:夜白神略/audio/character:true',
+		audio: 'ext:太虚幻境/audio/skill:true',
 		group: ['boss_guimeic_draw', 'boss_guimeic_use'],
 		trigger: {
 			player: 'turnOverBefore',
@@ -9860,7 +9862,8 @@ const skill = {
 		},
 	},
 	boss_yunjv: {
-		audio: 'ext:夜白神略/audio/character:1',
+		// audio: 'ext:夜白神略/audio/character:true',
+		audio: 'ext:太虚幻境/audio/skill:true',
 		trigger: {
 			global: 'phaseEnd',
 		},

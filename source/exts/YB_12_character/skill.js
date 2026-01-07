@@ -117,7 +117,7 @@ const skill = {
 	},
 	sgskjdbzjms_kuangfeng:{
 		unique: true,
-		audio: 2,
+		audio: 'kuangfeng',
 		trigger: { player: "phaseJieshuBegin" },
 		direct: true,
 		filter(event, player) {
@@ -1146,7 +1146,7 @@ const skill = {
 		locked: true,
 		filter(event, player,name) {
 			event.xianfu_bool=false;
-			if(name=='die')return player.storage.qmsgswkjsgj_xianfu2&&player.storage.qmsgswkjsgj_xianfu2.includes(event.player)&&game.hasPlayer(current => current != player&&current!=event.player);
+			if(name=='die')return player.storage.xianfu2&&player.storage.xianfu2.includes(event.player)&&game.hasPlayer(current => current != player&&current!=event.player);
 			if(name=='phaseBefore'&&event.player==player)return game.hasPlayer(current => current != player);
 			event.xianfu_bool=true;
 			return game.hasPlayer(current => current != player) && (event.name != "phase" || game.phaseNumber == 0);
@@ -1154,8 +1154,8 @@ const skill = {
 		async cost(event, trigger, player) {
 			var bool=trigger.xianfu_bool;
 			const result = await player
-				.chooseTarget("请"+(player.storage.qmsgswkjsgj_xianfu2?'重新':'')+"选择【先辅】的目标", lib.translate.xianfu_info, bool, function (card, player, target) {
-					return target != player /*&& (!player.storage.qmsgswkjsgj_xianfu2 || !player.storage.qmsgswkjsgj_xianfu2.includes(target))*/;
+				.chooseTarget("请"+(player.storage.xianfu2?'重新':'')+"选择【先辅】的目标", lib.translate.xianfu_info, bool, function (card, player, target) {
+					return target != player /*&& (!player.storage.xianfu2 || !player.storage.xianfu2.includes(target))*/;
 				})
 				.set("ai", function (target) {
 					let att = get.attitude(_status.event.player, target);
@@ -1174,28 +1174,28 @@ const skill = {
 		async content(event, trigger, player) {
 			let target = event.cost_data;
 			let targetold=[];
-			if(player.storage.qmsgswkjsgj_xianfu2&&player.storage.qmsgswkjsgj_xianfu2.length){
-				targetold=player.storage.qmsgswkjsgj_xianfu2;
+			if(player.storage.xianfu2&&player.storage.xianfu2.length){
+				targetold=player.storage.xianfu2;
 			}
-			if (!player.storage.qmsgswkjsgj_xianfu2||player.storage.qmsgswkjsgj_xianfu2.length) player.storage.qmsgswkjsgj_xianfu2 = [];
-			player.storage.qmsgswkjsgj_xianfu2.push(target);
+			if (!player.storage.xianfu2||player.storage.xianfu2.length) player.storage.xianfu2 = [];
+			player.storage.xianfu2.push(target);
 			player.addSkill("qmsgswkjsgj_xianfu2");
 
 			const func = (player, target,targetold) => {
 				if(targetold?.length)for(var i of targetold){
-					if(i.storage.qmsgswkjsgj_xianfu_mark&&i.storage.qmsgswkjsgj_xianfu_mark.includes(player)){
-						i.storage.qmsgswkjsgj_xianfu_mark.remove(player);
-						if(i.storage.qmsgswkjsgj_xianfu_mark.length==0){
-							delete i.storage.qmsgswkjsgj_xianfu_mark;
-							i.unmarkSkill('qmsgswkjsgj_xianfu_mark')
-							i.removeSkill('qmsgswkjsgj_xianfu_mark')
+					if(i.storage.xianfu_mark&&i.storage.xianfu_mark.includes(player)){
+						i.storage.xianfu_mark.remove(player);
+						if(i.storage.xianfu_mark.length==0){
+							delete i.storage.xianfu_mark;
+							i.unmarkSkill('xianfu_mark')
+							i.removeSkill('xianfu_mark')
 						}
 					}
 				}
-				if (!target.storage.qmsgswkjsgj_xianfu_mark) target.storage.qmsgswkjsgj_xianfu_mark = [];
-				target.storage.qmsgswkjsgj_xianfu_mark.add(player);
-				target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
-				target.markSkill("qmsgswkjsgj_xianfu_mark", null, null, true);
+				if (!target.storage.xianfu_mark) target.storage.xianfu_mark = [];
+				target.storage.xianfu_mark.add(player);
+				target.storage.xianfu_mark.sortBySeat();
+				target.markSkill("xianfu_mark", null, null, true);
 			};
 			if (event.isMine()) func(player, target,targetold);
 			else if (player.isOnline2()) player.send(func, player, target,targetold);
@@ -1223,7 +1223,7 @@ const skill = {
 		forced: true,
 		sourceSkill: "qmsgswkjsgj_xianfu",
 		filter(event, player) {
-			if (event.player.isDead() || !player.storage.qmsgswkjsgj_xianfu2 || !player.storage.qmsgswkjsgj_xianfu2.includes(event.player) || event.num <= 0) {
+			if (event.player.isDead() || !player.storage.xianfu2 || !player.storage.xianfu2.includes(event.player) || event.num <= 0) {
 				return false;
 			}
 			if (event.name == "damage") {
@@ -1241,12 +1241,12 @@ const skill = {
 		content() {
 			"step 0";
 			var target = trigger.player;
-			if (!target.storage.qmsgswkjsgj_xianfu_mark) {
-				target.storage.qmsgswkjsgj_xianfu_mark = [];
+			if (!target.storage.xianfu_mark) {
+				target.storage.xianfu_mark = [];
 			}
-			target.storage.qmsgswkjsgj_xianfu_mark.add(player);
-			target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
-			target.markSkill("qmsgswkjsgj_xianfu_mark");
+			target.storage.xianfu_mark.add(player);
+			target.storage.xianfu_mark.sortBySeat();
+			target.markSkill("xianfu_mark");
 			game.delayx();
 			"step 1";
 			var card = trigger.card?trigger.card:null;
@@ -1255,20 +1255,20 @@ const skill = {
 			player[trigger.name](trigger.num,card,source,nature);
 		},
 		onremove(player) {
-			if (!player.storage.qmsgswkjsgj_xianfu2) {
+			if (!player.storage.xianfu2) {
 				return;
 			}
 			game.countPlayer(function (current) {
-				if (player.storage.qmsgswkjsgj_xianfu2.includes(current) && current.storage.qmsgswkjsgj_xianfu_mark) {
-					current.storage.qmsgswkjsgj_xianfu_mark.remove(player);
-					if (!current.storage.qmsgswkjsgj_xianfu_mark.length) {
-						current.unmarkSkill("qmsgswkjsgj_xianfu_mark");
+				if (player.storage.xianfu2.includes(current) && current.storage.xianfu_mark) {
+					current.storage.xianfu_mark.remove(player);
+					if (!current.storage.xianfu_mark.length) {
+						current.unmarkSkill("xianfu_mark");
 					} else {
-						current.markSkill("qmsgswkjsgj_xianfu_mark");
+						current.markSkill("xianfu_mark");
 					}
 				}
 			});
-			delete player.storage.qmsgswkjsgj_xianfu2;
+			delete player.storage.xianfu2;
 		},
 		group: "qmsgswkjsgj_xianfu3",
 	},
@@ -1277,13 +1277,13 @@ const skill = {
 		silent: true,
 		sourceSkill: "xianfu",
 		filter(event, player) {
-			return event.player == player || (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(player));
+			return event.player == player || (player.storage.xianfu2 && player.storage.xianfu2.includes(player));
 		},
 		content() {
 			if (player == trigger.player) {
 				lib.skill.qmsgswkjsgj_xianfu2.onremove(player);
 			} else {
-				player.storage.qmsgswkjsgj_xianfu2.remove(event.player);
+				player.storage.xianfu2.remove(event.player);
 			}
 		},
 	},
@@ -1316,14 +1316,14 @@ const skill = {
 			}
 			else {
 				var next = player.chooseTarget('令一名角色摸一张牌');
-				if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.length) {
-					next.set('prompt2', '（若目标为' + get.translation(player.storage.qmsgswkjsgj_xianfu2) + '则改为摸两张牌）');
+				if (player.storage.xianfu2 && player.storage.xianfu2.length) {
+					next.set('prompt2', '（若目标为' + get.translation(player.storage.xianfu2) + '则改为摸两张牌）');
 				}
 				next.set('ai', function (target) {
 					var player = _status.event.player;
 					var att = get.attitude(player, target) / Math.sqrt(1 + target.countCards('h'));
 					if (target.hasSkillTag('nogain')) att /= 10;
-					if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(target)) return att * 2;
+					if (player.storage.xianfu2 && player.storage.xianfu2.includes(target)) return att * 2;
 					return att;
 				})
 			}
@@ -1355,11 +1355,11 @@ const skill = {
 				player.line(target, 'green');
 				if (event.color == 'black') player.gainPlayerCard(target, 'h', true);
 				else {
-					if (player.storage.qmsgswkjsgj_xianfu2 && player.storage.qmsgswkjsgj_xianfu2.includes(target)) {
-						if (!target.storage.qmsgswkjsgj_xianfu_mark) target.storage.qmsgswkjsgj_xianfu_mark = [];
-						target.storage.qmsgswkjsgj_xianfu_mark.add(player);
-						target.storage.qmsgswkjsgj_xianfu_mark.sortBySeat();
-						target.markSkill('qmsgswkjsgj_xianfu_mark');
+					if (player.storage.xianfu2 && player.storage.xianfu2.includes(target)) {
+						if (!target.storage.xianfu_mark) target.storage.xianfu_mark = [];
+						target.storage.xianfu_mark.add(player);
+						target.storage.xianfu_mark.sortBySeat();
+						target.markSkill('xianfu_mark');
 						target.draw(2);
 					}
 					else target.draw();
@@ -1438,7 +1438,7 @@ const skill = {
 		audio:'mizhao',
 		enable: "phaseUse",
 		usable: 1,
-		audio: 2,
+		audio: 'mizhao',
 		filter(event, player) {
 			return player.countCards("h") > 0;
 		},
@@ -4337,7 +4337,7 @@ const skill = {
 	},
 	//什么均贫卡
 	qmsgswkjsgj_zhimeng: {
-		audio: 2,
+		audio: 'zhimeng',
 		trigger: { player: "phaseAfter" },
 		filter(event, player) {
 			return game.hasPlayer(target => {
@@ -6111,76 +6111,7 @@ const skill = {
 		content() {
 			var type=event.cost_data;
 			var num = player.getHistory("useCard").length + player.getHistory("respond").length;
-			// if(!lib.element.player.getDeckCards){
-			// 	lib.element.player.getDeckCards= function (num) {
-			// 		if (typeof num != "number") {
-			// 			num = 1;
-			// 		}
-			// 		if (!this.deckCards) {
-			// 			return get.cards(num);
-			// 		}
-			// 		var player = this;
-			// 		for (var i = 0; i < 5; i++) {
-			// 			if (player.deckCards.length < num) {
-			// 				get.deck(player, player.deck);
-			// 			} else {
-			// 				break;
-			// 			}
-			// 		}
-			// 		var list = [];
-			// 		for (var i = 0; i < num; i++) {
-			// 			list.push(player.deckCards.randomRemove());
-			// 		}
-			// 		return list;
-			// 	}
-			// }
-			// var list = [];
-			// if(num>0){
-				
-			// 	for(var i of ui.cardPile.childNodes){
-			// 		if(get.type2(i)==type){
-			// 			console.log(i)
-			// 			// const card = ui.cardPile.childNodes.splice(i, 1); // 移除并获取元素
-			// 			list.push(i);
-			// 		}
-			// 		if(list.length>=num){
-			// 			break;
-			// 		}
-			// 	}
-			// 	if(list.length<num){
-			// 		list.addArray(get.cards(num-list.length));
-			// 	}
-			// 	player.deckCards = list;
-			// }
-			const YBcards = (function getCards(){
-				return function(num){
-					if (typeof num != "number") {
-						num = 1;
-					}
-					if (num <= 0) {
-						return [];
-					}
-					var list = [];
-					if(num>0){
-						for(var i of ui.cardPile.childNodes){
-							if(get.type2(i)==type){
-								console.log(i)
-								list.push(i);
-							}
-							if(list.length>=num){
-								break;
-							}
-						}
-						if(list.length<num){
-							list.addArray(get.cards(num-list.length));
-						}
-					}
-					return list;
-				}
-			})(type)
-			player.draw(num)
-			// .set('drawDeck',num);
-			.set('otherGetCards',YBcards);
+			player.YB_drawCard(num,{type2:type})
 		},
 		ai: {
 			threaten: 1.8,
@@ -9285,7 +9216,7 @@ const skill = {
 		},
 		filterCard: true,
 		position: "he",
-		selectCard: () => [1, Infinity],
+		selectCard: () => [1, game.countPlayer()],
 		check(card) {
 			const player = get.player();
 			if (
@@ -9306,6 +9237,7 @@ const skill = {
 			const { cards: links } = event;
 			await player.showCards(links, get.translation(player) + "发动了【" + get.translation(event.name) + "】");
 			var cards = game.cardsGotoOrdering(links);
+			console.log(cards)
 			var relu = await player.YB_yiji(cards,links.length,function(){return true},'符济','tag:qmsgswkjsgj_potfuji').forResult();
 			if(relu){
 				var gain_list = relu;
@@ -10647,6 +10579,2180 @@ const skill = {
 					await game.cardsGotoSpecial(cards);
 					game.log(cards, "被移出了游戏");
 				},
+			},
+		},
+	},
+
+	//手杀差异化孙鲁育
+	qmsgswkjsgj_mbmeibu: {
+		audio: "meibu",
+		trigger: {
+			global: "phaseUseBegin",
+		},
+		filter(event, player) {
+			return event.player != player && event.player.isIn() ;
+		},
+		direct: true,
+		derivation: ["qmsgswkjsgj_mbzhixi"],
+		checkx(event, player) {
+			if (get.attitude(player, event.player) >= 0) {
+				return false;
+			}
+			var e2 = player.getEquip(2);
+			if (e2) {
+				if (e2.name == "tengjia" || e2.name == "rewrite_tengjia") {
+					return true;
+				}
+				if (e2.name == "bagua" || e2.name == "rewrite_bagua") {
+					return true;
+				}
+			}
+			return event.player.countCards("h") > event.player.hp;
+		},
+		content() {
+			"step 0";
+			var check = lib.skill.qmsgswkjsgj_mbmeibu.checkx(trigger, player);
+			player.chooseBool(get.prompt2("qmsgswkjsgj_mbmeibu", trigger.player)).set('ai',check).set("logSkill", ["qmsgswkjsgj_mbmeibu", trigger.player]);
+			// player
+			// 	.chooseToDiscard(get.prompt2("qmsgswkjsgj_mbmeibu", trigger.player), "he")
+			// 	.set("ai", function (card) {
+			// 		if (_status.event.check) {
+			// 			return 6 - get.value(card);
+			// 		}
+			// 		return 0;
+			// 	})
+			// 	.set("check", check)
+			// 	.set("logSkill", ["qmsgswkjsgj_mbmeibu", trigger.player]);
+			"step 1";
+			if (result.bool) {
+				var target = trigger.player;
+				var card = result.cards[0];
+				player.line(target, "green");
+				target.addTempSkills("qmsgswkjsgj_mbzhixi", "phaseUseAfter");
+				target.addTempSkill("qmsgswkjsgj_mbmeibu_range", "phaseUseAfter");
+				target.markAuto("qmsgswkjsgj_mbmeibu_range", player);
+				target.markSkillCharacter("qmsgswkjsgj_mbmeibu", player, "魅步", "锁定技。出牌阶段，你使用牌时需弃置一张手牌，若你于此阶段使用过的牌数不小于X，你不能使用牌（X为你的体力值）；当你使用锦囊牌时，你结束此阶段；你使用装备牌后，本回合手牌上限-1。");
+			}
+		},
+		ai: {
+			expose: 0.2,
+		},
+		subSkill: {
+			range: {
+				onremove: true,
+				charlotte: true,
+				mod: {
+					globalFrom(from, to, num) {
+						if (from.getStorage("qmsgswkjsgj_mbmeibu_range").includes(to)) {
+							return -Infinity;
+						}
+					},
+				},
+				sub: true,
+			},
+		},
+	},
+	qmsgswkjsgj_mbmumu: {
+		audio: "mumu",
+		trigger: {
+			player: "phaseUseBegin",
+		},
+		filter(event, player) {
+			return game.hasPlayer(current => {
+				if (current == player) {
+					return current.getEquips(2).length > 0;
+				}
+				return current.countCards("hje") > 0;
+			});
+		},
+		direct: true,
+		content() {
+			"step 0";
+			player
+				.chooseTarget(get.prompt("qmsgswkjsgj_mbmumu"), "弃置一名其他角色区域内的一张牌，或者获得一名角色装备区内的防具牌", function (card, player, target) {
+					if (target == player) {
+						return target.getEquips(2).length > 0;
+					}
+					return target.countCards("hje") > 0;
+				})
+				.set("ai", function (target) {
+					var player = _status.event.player;
+					var att = get.attitude(player, target);
+					if (target.getEquip(2) && player.hasEmptySlot(2)) {
+						return -2 * att;
+					}
+					return -att;
+				});
+			"step 1";
+			if (result.bool && result.targets && result.targets.length) {
+				event.target = result.targets[0];
+				player.logSkill("qmsgswkjsgj_mbmumu", event.target);
+				player.line(event.target, "green");
+				var e = event.target.getEquips(2);
+				event.e = e;
+				if (target == player) {
+					event.choice = "获得一张防具牌";
+				} else if (e.length > 0) {
+					player.chooseControl("弃置一张牌", "获得一张防具牌").set("ai", function () {
+						if (_status.event.player.getEquips(2).length > 0) {
+							return "弃置一张牌";
+						}
+						return "获得一张防具牌";
+					});
+				} else {
+					event.choice = "弃置一张牌";
+				}
+			} else {
+				event.finish();
+			}
+			"step 2";
+			var choice = event.choice || result.control;
+			if (choice == "弃置一张牌") {
+				player.discardPlayerCard(event.target, "hje", true);
+			} else {
+				if (event.e) {
+					player.gain(event.e, event.target, "give", "bySelf");
+					// player.addTempSkill("new_mumu_notsha");
+				}
+			}
+		},
+		subSkill: {
+			notsha: {
+				mark: true,
+				intro: {
+					content: "不能使用【杀】",
+				},
+				charlotte: true,
+				mod: {
+					cardEnabled(card) {
+						if (card.name == "sha") {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_mbzhixi: {
+		mod: {
+			cardEnabled(card, player) {
+				if (player.countMark("qmsgswkjsgj_mbzhixi") >= player.hp) {
+					return false;
+				}
+			},
+			cardUsable(card, player) {
+				if (player.countMark("qmsgswkjsgj_mbzhixi") >= player.hp) {
+					return false;
+				}
+			},
+			cardSavable(card, player) {
+				if (player.countMark("qmsgswkjsgj_mbzhixi") >= player.hp) {
+					return false;
+				}
+			},
+		},
+		trigger: {
+			player: "useCard1",
+		},
+		forced: true,
+		popup: false,
+		firstDo: true,
+		init(player, skill) {
+			player.storage[skill] = 0;
+			var evt = _status.event.getParent("phaseUse");
+			if (evt && evt.player == player) {
+				player.getHistory("useCard", function (evtx) {
+					if (evtx.getParent("phaseUse") == evt) {
+						player.storage[skill]++;
+					}
+				});
+			}
+		},
+		onremove(player) {
+			player.unmarkSkill("qmsgswkjsgj_mbmeibu");
+			delete player.storage.qmsgswkjsgj_mbzhixi;
+		},
+		content() {
+			player.addMark("qmsgswkjsgj_mbzhixi", 1, false);
+			player.addTempSkill("qmsgswkjsgj_mbzhixi_clear", "phaseChange");
+			if (get.type2(trigger.card) == "trick") {
+				var evt = trigger.getParent("phaseUse");
+				if (evt && evt.player == player) {
+					evt.skipped = true;
+					game.log(player, "结束了出牌阶段");
+				}
+			}
+		},
+		group:['qmsgswkjsgj_mbzhixi_discard','qmsgswkjsgj_mbzhixi_maxHand'],
+		subSkill: {
+			clear: {
+				charlotte: true,
+				onremove(player) {
+					player.clearMark("qmsgswkjsgj_mbzhixi", false);
+				},
+			},
+			discard:{
+				trigger: {
+					player: "useCard",
+				},
+				forced: true,
+				filter(event, player) {
+					return true;
+				},
+				content() {
+					player.chooseToDiscard("h", true);
+				},
+				ai: {
+					neg: true,
+					nokeep: true,
+				},
+			},
+			maxHand:{
+				trigger: {
+					player: "useCardAfter",
+				},
+				forced: true,
+				filter(event, player) {
+					return get.type(event.card)=='equip';
+				},
+				content() {
+					player.addMark('qmsgswkjsgj_mbzhixi_maxHand',1,false);
+				},
+				mark:true,
+				intro:{
+					markcount:'-$',
+					content:'手牌上限减$',
+				},
+				onremove(player) {
+					player.clearMark('qmsgswkjsgj_mbzhixi_maxHand');
+				},
+			},
+		},
+		ai: {
+			presha: true,
+			pretao: true,
+			neg: true,
+			nokeep: true,
+		},
+	},
+
+	//在本体张芝改动至和手杀实战一致之前，我不会再动这个武将一笔
+	//书张芝
+	// qmsgswkjsgj_mbshiju: {
+	// 	audio: 'mbshiju',
+	// 	trigger: {
+	// 		player: "useCardAfter",
+	// 	},
+	// 	filter(event, player) {
+	// 		const history = game.getAllGlobalHistory("useCard"),
+	// 			index = history.indexOf(event);
+	// 		if (index <= 0) {
+	// 			return false;
+	// 		}
+	// 		const evt = history[index - 1];
+	// 		return get.type2(evt.card) == get.type2(event.card) || get.suit(evt.card) == get.suit(event.card);
+	// 	},
+	// 	forced: true,
+	// 	async content(event, trigger, player) {
+	// 		const history = game.getAllGlobalHistory("useCard"),
+	// 			index = history.indexOf(trigger);
+	// 		if (index <= 0) {
+	// 			return;
+	// 		}
+	// 		const evt = history[index - 1];
+	// 		const bool1 = get.type2(evt.card) == get.type2(trigger.card),
+	// 			bool2 = get.suit(evt.card) == get.suit(trigger.card),
+	// 			bool3 = get.name(evt.card) == get.name(trigger.card);
+	// 		if (bool1) {
+	// 			await player.gain(get.cards(1, true), "gain2", false);
+	// 		}
+	// 		if (bool2) {
+	// 			await player.gain(get.bottomCards(1, true), "gain2", false);
+	// 		}
+	// 		if (bool1 && bool2) {
+	// 			player.popup("乘势", "fire");
+	// 			if (bool3) {
+	// 				if (!player.hasSkill("mbkubai", null, null, false)) {
+	// 					await player.addSkills("mbkubai");
+	// 				} else if (player.countMark("mbkubai") < 2) {
+	// 					game.log(player, "升级了", "#g【枯白】");
+	// 					player.addMark("mbkubai", 1, false);
+	// 					get.info("mbkubai").init(player, "mbkubai");
+	// 				}
+	// 			}
+	// 		}
+	// 	},
+	// 	init(player, skill) {
+	// 		player.addSkill(`${skill}_record`);
+	// 	},
+	// 	onremove(player, skill) {
+	// 		player.removeSkill(`${skill}_record`);
+	// 	},
+	// 	mod: {
+	// 		aiOrder(player, card, num) {
+	// 			if (typeof card == "object") {
+	// 				const evts = game.getAllGlobalHistory("useCard");
+	// 				if (evts.length) {
+	// 					let evt = evts[evts.length - 1];
+	// 					const bool1 = get.type2(evt.card) == get.type2(card),
+	// 						bool2 = get.suit(evt.card) == get.suit(card),
+	// 						bool3 = get.name(evt.card) == get.name(card);
+	// 					if (bool1) {
+	// 						num += 10;
+	// 					}
+	// 					if (bool2) {
+	// 						num += 10;
+	// 					}
+	// 					if (bool1 && bool2 && bool3) {
+	// 						num += 30;
+	// 					}
+	// 				}
+	// 				return num;
+	// 			}
+	// 		},
+	// 	},
+	// 	derivation: ["mbkubai"],
+	// 	subSkill: {
+	// 		record: {
+	// 			charlotte: true,
+	// 			trigger: {
+	// 				global: "useCard1",
+	// 			},
+	// 			async cost(event, trigger, player) {
+	// 				get.info(event.skill).init(player, event.skill);
+	// 			},
+	// 			intro: {
+	// 				markcount() {
+	// 					const history = game.getAllGlobalHistory("useCard");
+	// 					if (history.length) {
+	// 						const evt = history.at(-1);
+	// 						if (evt) {
+	// 							return get.translation(get.suit(evt.card));
+	// 						}
+	// 					}
+	// 					return 0;
+	// 				},
+	// 				content() {
+	// 					const history = game.getAllGlobalHistory("useCard");
+	// 					if (history.length) {
+	// 						const evt = history.at(-1);
+	// 						if (evt) {
+	// 							return `
+	// 								上一张被使用的牌：${get.translation(evt.card.name)}<br>
+	// 								花色：${get.translation(get.suit(evt.card))}<br>
+	// 								类型：${get.translation(get.type2(evt.card))}
+	// 							`;
+	// 						}
+	// 					}
+	// 					return "无效果";
+	// 				},
+	// 			},
+	// 			init(player, skill) {
+	// 				const history = game.getAllGlobalHistory("useCard");
+	// 				if (history.length) {
+	// 					const evt = history.at(-1);
+	// 					if (!evt) {
+	// 						return;
+	// 					}
+	// 					player.addTip(skill, `势举 ${get.translation(evt.card.name)}${get.translation(get.suit(evt.card))}`);
+	// 					player.markSkill(skill);
+	// 					game.broadcastAll(
+	// 						(evt, player) => {
+	// 							const mark = player.marks.mbshiju_record;
+	// 							if (mark) {
+	// 								mark.firstChild.innerHTML = get.translation(get.type2(evt.card));
+	// 							}
+	// 						},
+	// 						evt,
+	// 						player
+	// 					);
+	// 				}
+	// 			},
+	// 			onremove(player, skill) {
+	// 				player.removeTip(skill);
+	// 			},
+	// 		},
+	// 	},
+	// },
+	//神太史慈
+	qmsgswkjsgj_dulie: {
+		audio: 'dulie',
+		trigger: { target: "useCardToTarget" },
+		forced: true,
+		logTarget: "player",
+		filter(event, player) {
+			return event.card.name == "sha" ;
+		},
+		content() {
+			"step 0";
+			player.judge(function (result) {
+				if (get.color(result) == "red") {
+					return 2;
+				}
+				return -1;
+			}).judge2 = function (result) {
+				return result.bool;
+			};
+			"step 1";
+			if (result.bool) {
+				trigger.targets.remove(player);
+				trigger.getParent().triggeredTargets2.remove(player);
+				trigger.untrigger();
+			}
+		},
+		ai: {
+			effect: {
+				target_use(card, player, target, current, isLink) {
+					if (card.name == "sha" && !isLink && player.hp > target.hp) {
+						return 0.5;
+					}
+				},
+			},
+		},
+		marktext: "围",
+		intro: {
+			name: "破围(围)",
+			name2: "围",
+			content: "mark",
+		},
+	},
+	qmsgswkjsgj_tspowei: {
+		audio: 'tspowei',
+		dutySkill: true,
+		derivation: "shenzhu",
+		mod:{
+			targetInRange(card, player, target) {
+				if (target.hasMark("dulie")&&card.name=="sha") {
+					return true;
+				}
+			},
+		},
+		group: ["qmsgswkjsgj_tspowei_init", "qmsgswkjsgj_tspowei_move", "qmsgswkjsgj_tspowei_achieve", "qmsgswkjsgj_tspowei_fail", "qmsgswkjsgj_tspowei_use", "qmsgswkjsgj_tspowei_remove"],
+		subSkill: {
+			remove: {
+				audio: "tspowei3.mp3",
+				trigger: { global: "damageEnd" },
+				filter(event, player) {
+					return event.player && event.player.isIn() && event.player.hasMark("dulie");
+				},
+				// forced: true,
+				logTarget: "player",
+				// cost(){
+				// 	event.result = 
+				// },
+				prompt: function(event,player){
+					var player = player||_status.event.player;
+					var target = event.player;
+					return '是否移除'+get.translation(target)+'的【围】标记？';
+				},
+				content() {
+					trigger.player.removeMark("dulie", trigger.player.countMark("dulie"));
+				},
+			},
+			use: {
+				audio: "tspowei3.mp3",
+				trigger: { global: "phaseBegin" },
+				direct: true,
+				filter(event, player) {
+					return event.player != player && event.player.hasMark("dulie") && (player.countCards("h") > 0 || (player.hp >= event.player.hp && event.player.countCards("h") > 0));
+				},
+				content() {
+					"step 0";
+					var list = [],
+						target = trigger.player,
+						choiceList = ["对其造成1点伤害", "获得其一张手牌"];
+					event.target = target;
+					if (
+						true
+					) {
+						list.push("选项一");
+					} else {
+						choiceList[0] = '<span style="opacity:0.5">' + choiceList[0] + "</span>";
+					}
+					if (player.hp >= target.hp && target.countCards("h") > 0) {
+						list.push("选项二");
+					} else {
+						choiceList[1] = '<span style="opacity:0.5">' + choiceList[1] + "</span>";
+					}
+					if (list.length>0) {
+						list.push('背水！');
+					}
+					player
+						.chooseControl(list, "cancel2")
+						.set("prompt", get.prompt("qmsgswkjsgj_tspowei", target))
+						.set("choiceList", choiceList)
+						.set("ai", function () {
+							var a=false,b=false;
+							var evt = _status.event.getParent();
+							if (
+								// evt.player.hasCard(function (card) {
+								// 	return lib.filter.cardDiscardable(card, evt.player, "tspowei_use") && get.value(card, evt.player) < 7;
+								// }, "h") &&
+								get.damageEffect(evt.target, evt.player, evt.player) > 0
+							) {
+								a=true;
+							}
+							if (evt.player.hp >= evt.target.hp && evt.target.countCards("h") > 0 && get.attitude(evt.player, evt.target) <= 0 && !evt.target.hasSkillTag("noh")) {
+								b=true;
+							}
+							if(a&&b){return '背水！'}
+							else if(a){return '选项一'}
+							else if(b){return '选项二'}
+							return "cancel2";
+						});
+					"step 1";
+					if (result.control != "cancel2") {
+						if (result.control == "选项二"||result.control=="背水！") {
+							player.logSkill("tspowei_use", target);
+							player.gainPlayerCard(target, "h", true);
+							if(result.control!="背水！")event.goto(3);
+						}
+					} else {
+						event.finish();
+					}
+					"step 2";
+					// player.chooseToDiscard("h", true).logSkill = ["tspowei_use", target];
+					// if (get.mode() != "identity" || player.identity != "nei") {
+					// 	player.addExpose(0.2);
+					// }
+					player.logSkill('qmsgswkjsgj_tspowei_use',target)
+					target.damage();
+					"step 3";
+					player.addTempSkill("qmsgswkjsgj_tspowei_inRange");
+				},
+				ai: { expose: 0.2 },
+			},
+			inRange: {
+				charlotte: true,
+				mod: {
+					inRangeOf(from, to) {
+						if (from == _status.currentPhase) {
+							return true;
+						}
+					},
+				},
+			},
+			init: {
+				audio: "tspowei3.mp3",
+				trigger: {
+					global: "phaseBefore",
+					player: "enterGame",
+				},
+				forced: true,
+				filter(event, player) {
+					return event.name != "phase" || game.phaseNumber == 0;
+				},
+				logTarget(event, player) {
+					return game.filterPlayer(current => current != player && !current.hasMark("dulie"));
+				},
+				content() {
+					var list = game.filterPlayer(current => current != player && !current.hasMark("dulie")).sortBySeat();
+					for (var i of list) {
+						i.addMark("dulie", 1, false);
+					}
+				},
+			},
+			move: {
+				audio: "tspowei3.mp3",
+				trigger: { player: "phaseBegin" },
+				forced: true,
+				filter(event, player) {
+					return game.hasPlayer(current => current != player && current.hasMark("dulie"));
+				},
+				content() {
+					'step 0'
+					var list = game.filterPlayer(current => current != player && current.hasMark("dulie")).sortBySeat();
+					// var map = {};
+					for (var i of list) {
+						var num = i.countMark("dulie");
+						i.removeMark("dulie", num);
+						// map[i.playerid] = num;
+					}
+					// for (var i of list) {
+					// 	var next = i.next;
+					// 	if (next == player) {
+					// 		next = next.next;
+					// 	}
+					// 	next.addMark("dulie", map[i.playerid]);
+					// }
+					player.chooseTarget(list.length,true,'请重新分配其他角色的“围”标记');
+					'strp 1'
+					if(result.bool){
+						var targets=result.targets;
+						targets.sortBySeat();
+						for(var i=0;i<targets.length;i++){
+							targets[i].addMark("dulie");
+						}
+					}
+				},
+			},
+			achieve: {
+				audio: "tspowei1.mp3",
+				trigger: { player: "phaseBegin" },
+				forced: true,
+				skillAnimation: true,
+				animationColor: "metal",
+				filter(event, player) {
+					return game.countPlayer(function (current) {
+						return current.hasMark("dulie");
+					})<=player.maxHp;
+				},
+				content() {
+					game.log(player, "成功完成使命");
+					player.awakenSkill("qmsgswkjsgj_tspowei");
+					player.addSkills("qmsgswkjsgj_shenzhu");
+				},
+			},
+			fail: {
+				audio: "tspowei2.mp3",
+				trigger: { player: "dying" },
+				forced: true,
+				content() {
+					"step 0";
+					game.log(player, "使命失败");
+					player.awakenSkill("qmsgswkjsgj_tspowei");
+					if (player.hp < player.maxHp) {
+						player.recover(player.maxHp - player.hp);
+					}
+					// "step 1";
+					// var num = player.countCards("e");
+					// if (num > 0) {
+					// 	player.chooseToDiscard("e", true, num);
+					// }
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_shenzhu: {
+		audio: 'shenzhu',
+		trigger: { player: "useCardAfter" },
+		forced: true,
+		filter(event, player) {
+			return event.card.name == "sha" && event.card.isCard && event.cards.length == 1;
+		},
+		content() {
+			"step 0";
+			player
+				.chooseControl()
+				.set("choiceList", ["摸一张牌，且本回合使用【杀】的次数上限+1", "摸体力上限张牌，且本回合不能再使用【杀】"])
+				.set("ai", () => (_status.event.player.hasSha() ? 0 : 1));
+			"step 1";
+			if (result.index == 0) {
+				player.draw();
+				player.addTempSkill("qmsgswkjsgj_shenzhu_more");
+				player.addMark("qmsgswkjsgj_shenzhu_more", 1, false);
+			} else {
+				player.draw(player.maxHp);
+				player.addTempSkill("qmsgswkjsgj_shenzhu_less");
+			}
+		},
+		subSkill: {
+			more: {
+				charlotte: true,
+				onremove: true,
+				mod: {
+					cardUsable(card, player, num) {
+						if (card.name == "sha") {
+							return num + player.countMark("qmsgswkjsgj_shenzhu_more");
+						}
+					},
+				},
+			},
+			less: {
+				charlotte: true,
+				mod: {
+					cardEnabled(card) {
+						if (card.name == "sha") {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+
+	qmsgswkjsgj_shentianyi: {
+		audio: 'tianyi',
+		audioname: ["re_taishici"],
+		enable: "phaseUse",
+		usable: 1,
+		filterTarget(card, player, target) {
+			return player.canCompare(target);
+		},
+		filter(event, player) {
+			return player.countCards("h") > 0;
+		},
+		async content(event, trigger, player) {
+			const { bool } = await player.chooseToCompare(event.target).forResult();
+			if (bool) {
+				player.addTempSkill("qmsgswkjsgj_shentianyi2");
+			}
+		},
+		ai: {
+			order(name, player) {
+				const cards = player.getCards("h");
+				if (player.countCards("h", "sha") == 0) {
+					return 1;
+				}
+				for (let i = 0; i < cards.length; i++) {
+					if (cards[i].name != "sha" && get.number(cards[i]) > 11 && get.value(cards[i]) < 7) {
+						return 9;
+					}
+				}
+				return get.order({ name: "sha" }) - 1;
+			},
+			result: {
+				player(player) {
+					if (player.countCards("h", "sha") > 0) {
+						return 0.6;
+					}
+					const num = player.countCards("h");
+					if (num > player.hp) {
+						return 0;
+					}
+					if (num == 1) {
+						return -2;
+					}
+					if (num == 2) {
+						return -1;
+					}
+					return -0.7;
+				},
+				target(player, target) {
+					const num = target.countCards("h");
+					if (num == 1) {
+						return -1;
+					}
+					if (num == 2) {
+						return -0.7;
+					}
+					return -0.5;
+				},
+			},
+			threaten: 1.3,
+		},
+	},
+	qmsgswkjsgj_shentianyi2: {
+		mod: {
+			targetInRange(card, player, target, now) {
+				if (card.name == "sha") {
+					return true;
+				}
+			},
+			selectTarget(card, player, range) {
+				if (card.name == "sha" && range[1] != -1) {
+					range[1]++;
+				}
+			},
+			cardUsable(card, player, num) {
+				if (card.name == "sha") {
+					return num + 1;
+				}
+			},
+		},
+		charlotte: true,
+	},
+
+	qmsgswkjsgj_shenhanzhan: {
+		audio: 'hanzhan',
+		trigger: {
+			global: "chooseToCompareBegin",
+		},
+		filter(event, player) {
+			if (player == event.player) {
+				return true;
+			}
+			if (event.targets) {
+				return event.targets.includes(player);
+			}
+			return player == event.target;
+		},
+		logTarget(event, player) {
+			if (player != event.player) {
+				return event.player;
+			}
+			return event.targets || event.target;
+		},
+		prompt2(event, player) {
+			return "令其改为使用随机的手牌进行拼点";
+		},
+		check(trigger, player) {
+			var num = 0;
+			var targets = player == trigger.player ? (trigger.targets ? trigger.targets.slice(0) : [trigger.target]) : [trigger.player];
+			while (targets.length) {
+				var target = targets.shift();
+				if (target.getCards("h").length > 1) {
+					num -= get.attitude(player, target);
+				}
+			}
+			return num > 0;
+		},
+		content() {
+			var targets = player == trigger.player ? (trigger.targets ? trigger.targets.slice(0) : [trigger.target]) : [trigger.player];
+			if (!trigger.fixedResult) {
+				trigger.fixedResult = {};
+			}
+			while (targets.length) {
+				var target = targets.shift();
+				var hs = target.getCards("h");
+				if (hs.length) {
+					trigger.fixedResult[target.playerid] = hs.randomGet();
+				}
+			}
+		},
+		group: "qmsgswkjsgj_shenhanzhan_gain",
+		subfrequent: ["gain"],
+	},
+	qmsgswkjsgj_shenhanzhan_gain: {
+		trigger: {
+			global: "chooseToCompareAfter",
+		},
+		audio: "hanzhan",
+		sourceSkill: "qmsgswkjsgj_shenhanzhan",
+		filter(event, player) {
+			if (event.preserve) {
+				return false;
+			}
+			if (player != event.player && player != event.target && (!event.targets || !event.targets.includes(player))) {
+				return false;
+			}
+			for (var i of event.lose_list) {
+				if (Array.isArray(i[1])) {
+					for (var j of i[1]) {
+						if (get.position(j, true) == "o") {
+							return true;
+						}
+					}
+				} else {
+					var j = i[1];
+					if (get.position(j, true) == "o") {
+						return true;
+					}
+				}
+			}
+			return false;
+		},
+		frequent: true,
+		prompt2(event, player) {
+			var cards = [],
+				max = 0;
+			for (var i of event.lose_list) {
+				if (Array.isArray(i[1])) {
+					for (var j of i[1]) {
+						if (get.position(j, true) == "o") {
+							var num = get.number(j, i[0]);
+							if (num > max) {
+								cards = [];
+								max = num;
+							}
+							if (num == max) {
+								cards.push(j);
+							}
+						}
+					}
+				} else {
+					var j = i[1];
+					if (get.position(j, true) == "o") {
+						var num = get.number(j, i[0]);
+						if (num > max) {
+							cards = [];
+							max = num;
+						}
+						if (num == max) {
+							cards.push(j);
+						}
+					}
+				}
+			}
+			return "获得" + get.translation(cards);
+		},
+		content() {
+			var cards = [],
+				max = 0;
+			for (var i of trigger.lose_list) {
+				if (Array.isArray(i[1])) {
+					for (var j of i[1]) {
+						if (get.position(j, true) == "o") {
+							var num = get.number(j, i[0]);
+							if (num > max) {
+								cards = [];
+								max = num;
+							}
+							if (num == max) {
+								cards.push(j);
+							}
+						}
+					}
+				} else {
+					var j = i[1];
+					if (get.position(j, true) == "o") {
+						var num = get.number(j, i[0]);
+						if (num > max) {
+							cards = [];
+							max = num;
+						}
+						if (num == max) {
+							cards.push(j);
+						}
+					}
+				}
+			}
+			player.gain(cards, "gain2");
+		},
+	},
+
+	//界张嫙
+	qmsgswkjsgj_re_shezang: {
+		audio: 'shezang',
+		// round: 1,
+		trigger: { global: "dying" },
+		frequent: true,
+		filter(event, player) {
+			// return event.player == player || player == _status.currentPhase;
+			return true;
+		},
+		content() {
+			var cards = [];
+			for (var i of lib.suit) {
+				var card = get.cardPile2(function (card) {
+					return get.suit(card, false) == i;
+				});
+				if (card) {
+					cards.push(card);
+				}
+			}
+			if (cards.length) {
+				player.gain(cards, "gain2");
+			}
+		},
+	},
+	//界陈式
+	qmsgswkjsgj_re_qingbei: {
+		audio: 'qingbei',
+		trigger: {
+			global: "roundStart",
+			player: "useCardAfter",
+		},
+		filter(event, player) {
+			if (event.name != "useCard") {
+				return true;
+			}
+			if (!player.getStorage("qmsgswkjsgj_re_qingbei_effect").length) {
+				return false;
+			}
+			const suit = get.suit(event.card);
+			if (!suit) {
+				return false;
+			}
+			return suit !== "none";
+		},
+		async cost(event, trigger, player) {
+			if (trigger.name == "useCard") {
+				event.result = {
+					bool: true,
+				};
+				return;
+			}
+			const result = await player
+				.chooseButton([
+					`###${get.prompt(event.skill)}###<div class='text center'>选择任意个花色，令你本轮不能使用这些花色的牌</div>`, 
+					[lib.suit.map(i => ["", "", "lukai_" + i]), "vcard"],
+				], [1, 4])
+				.set("ai", button => {
+					const player = get.player(),
+						suit = button.link[2].slice(6),
+						val = player
+							.getCards("hs", { suit: suit })
+							.map(card => {
+								return get.value(card) + player.getUseValue(card) / 3;
+							})
+							.reduce((sum, value) => {
+								return sum + value;
+							}, 0);
+					if (val > 10 && ui.selected.buttons.length > 0) {
+						return -1;
+					}
+					if (val > 6 && ui.selected.buttons.length == 2) {
+						return -1;
+					}
+					if (ui.selected.buttons.length == 3) {
+						return -1;
+					}
+					return 1 + 1 / val;
+				})
+				.forResult();
+			if (result?.bool && result.links?.length) {
+				event.result = {
+					bool: true,
+					cost_data: result.links,
+				}
+			}
+		},
+		async content(event, trigger, player) {
+			if (trigger.name == "useCard") {
+				await player.draw(player.getStorage("qmsgswkjsgj_re_qingbei_effect").length+1, "nodelay");
+				return;
+			}
+			const { name, cost_data: links } = event;
+			const suits = links.map(i => i[2].slice(6)).sort((a, b) => lib.suit.indexOf(b) - lib.suit.indexOf(a));
+			const skill = `${name}_effect`;
+			player.addTempSkill(skill, "roundStart");
+			player.setStorage(skill, suits, true);
+			player.addTip(skill, `${get.translation(skill)}${suits.map(i => get.translation(i)).join("")}`);
+		},
+		ai: {
+			threaten: 2.3,
+		},
+		subSkill: {
+			effect: {
+				charlotte: true,
+				onremove(player, skill) {
+					delete player.storage[skill];
+					player.removeTip(skill);
+				},
+				mark: true,
+				intro: {
+					content: `本轮内不能使用$花色的牌`,
+				},
+				mod: {
+					cardEnabled(card, player) {
+						if (player.getStorage("qmsgswkjsgj_re_qingbei_effect").includes(get.suit(card))) {
+							return false;
+						}
+					},
+					cardSavable(card, player) {
+						if (player.getStorage("qmsgswkjsgj_re_qingbei_effect").includes(get.suit(card))) {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+
+	//滕芳兰
+	qmsgswkjsgj_re_dcluochong: {
+		audio: 'dcluochong',
+		trigger: { global: "roundStart" },
+		filter(event, player) {
+			return game.hasPlayer(current => current.countDiscardableCards(player, "hej") > 0);
+		},
+		direct: true,
+		async content(event, trigger, player) {
+			if (_status.connectMode) {
+				game.broadcastAll(function () {
+					_status.noclearcountdown = true;
+				});
+			}
+			const lose_list = [];
+			let num = 4 - player.countMark("qmsgswkjsgj_re_dcluochong");
+			let log = false;
+			while (num > 0) {
+				const result = await player
+					.chooseTarget(get.prompt("qmsgswkjsgj_re_dcluochong"), `弃置任意名角色区域内的累计至多${num}张牌`, (card, player, target) => {
+						return target.hasCard(card => {
+							return lib.filter.canBeDiscarded(card, player, target, "dcluochong");
+						}, "hej");
+					})
+					.set("ai", target => {
+						const player = _status.event.player,
+							discarded = _status.event.lose_list.find(item => item[0] == target);
+						if (discarded) {
+							if (target == player) {
+								return 0;
+							}
+							const num = discarded[1].length;
+							if (num > 1 && player.hp + player.hujia > 2) {
+								return 0;
+							}
+						}
+						if (target == player) {
+							if (ui.cardPile.childNodes.length > 80 && player.hasCard(card => get.value(card) < 8)) {
+								return 20;
+							}
+							return 0;
+						}
+						return get.effect(target, { name: "guohe_copy2" }, player, player);
+					})
+					.set("lose_list", lose_list)
+					.forResult();
+				if (result.bool) {
+					if (!log) {
+						player.logSkill("qmsgswkjsgj_re_dcluochong");
+						log = true;
+					}
+					const target = result.targets[0];
+					const { cards } = await player
+						.choosePlayerCard(target, true, "hej", [1, num], `选择弃置${get.translation(target)}区域内的牌`, "allowChooseAll")
+						.set("filterButton", button => {
+							const card = button.link,
+								target = _status.event.target,
+								player = get.player();
+							return lib.filter.canBeDiscarded(card, player, target, "qmsgswkjsgj_re_dcluochong");
+						})
+						.set("lose_list", lose_list)
+						.set("ai", button => {
+							if (ui.selected.buttons.length > 0) {
+								return false;
+							}
+							var val = get.buttonValue(button);
+							if (get.attitude(_status.event.player, _status.event.target) > 0) {
+								return -val;
+							}
+							return val;
+						})
+						.forResult();
+					num -= cards.length;
+					const index = lose_list.find(item => item[0] == target);
+					if (!index) {
+						lose_list.push([target, cards]);
+					} else {
+						index[1].addArray(cards);
+					}
+					await target.discard(cards, "notBySelf").set("discarder", player);
+				} else {
+					break;
+				}
+			}
+			if (_status.connectMode) {
+				game.broadcastAll(function () {
+					delete _status.noclearcountdown;
+					game.stopCountChoose();
+				});
+			}
+			// if (lose_list.length > 0 && lose_list.some(i => i[1].length > 2)) {
+			// 	game.log(player, "可弃置牌数", "#g-1");
+			// 	player.addMark("dcluochong", 1, false);
+			// }
+		},
+		ai: {
+			threaten: 2.5,
+			effect: {
+				target(card, player, target, current) {
+					if (get.type(card) == "delay" && current < 0) {
+						var current2 = _status.currentPhase;
+						if (current2 && current2.getSeatNum() > target.getSeatNum()) {
+							return 0.1;
+						}
+					}
+				},
+			},
+		},
+		group:['qmsgswkjsgj_re_dcluochong_change'],
+		subSkill:{
+			change:{
+				firstDo:true,
+				charlotte:true,
+				direct:true,
+				locked:true,
+				trigger: {
+					global: ["loseAfter"],
+				},
+				filter(event, player, name) {
+					const evt = event.getParent(2);
+					if (evt.name == "qmsgswkjsgj_re_dcluochong") {
+						return true;
+					}
+				},
+				content(){
+					var evt = trigger.getParent(2);
+					evt.name='dcluochong'
+				}
+			},
+		},
+	},
+	qmsgswkjsgj_re_dcaichen: {
+		audio: 'dcaichen',
+		// init(player) {
+		// 	game.addGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// },
+		// onremove(player) {
+		// 	if (!game.hasPlayer(current => current.hasSkill("qmsgswkjsgj_re_dcaichen", null, null, false), true)) {
+		// 		game.removeGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// 	}
+		// },
+		trigger: {
+			player: ["loseAfter", "phaseDiscardBefore"],
+			// target: "useCardToTargeted",
+		},
+		filter(event, player, name) {
+			if (event.name == "phaseDiscard") {
+				// return ui.cardPile.childNodes.length > 40;
+				return true;
+			}
+			// if (name == "useCardToTargeted") {
+			// 	return ui.cardPile.childNodes.length < 40 && get.suit(event.card) == "spade";
+			// }
+			const evt = event.getParent(2);
+			if (evt.name != "dcluochong" || evt.player != player ) {
+				return false;
+			}
+			if (!event.getl(player).cards.length) {
+				return false;
+			}
+			// return ui.cardPile.childNodes.length > 80;
+			return true;
+		},
+		forced: true,
+		getIndex(event,player){
+			return event.getl(player).cards.length;
+		},
+		content() {
+			if (trigger.name.indexOf("lose") == 0) {
+				player.draw(2);
+			} else if (trigger.name == "phaseDiscard") {
+				trigger.cancel();
+				game.log(player, "跳过了弃牌阶段");
+			} else {
+				player.say('我是怎么进入这条分支的？')
+				// trigger.directHit.add(player);
+				// game.log(player, "不可响应", trigger.card);
+			}
+		},
+		// subSkill: {
+		// 	hit: {
+		// 		trigger: { player: "dieAfter" },
+		// 		filter(event, player) {
+		// 			return !game.hasPlayer(current => current.hasSkill("qmsgswkjsgj_re_dcaichen", null, null, false), true);
+		// 		},
+		// 		silent: true,
+		// 		forceDie: true,
+		// 		content() {
+		// 			game.removeGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// 		},
+		// 		ai: {
+		// 			directHit_ai: true,
+		// 			skillTagFilter(player, tag, arg) {
+		// 				return arg && arg.card && arg.target && arg.target.hasSkill("qmsgswkjsgj_re_dcaichen") && ui.cardPile.childNodes.length < 40 && get.suit(arg.card) === "spade";
+		// 			},
+		// 		},
+		// 	},
+		// },
+	},
+	//郑浑
+	qmsgswkjsgj_re_dcpitian: {
+		audio: 'dcpitian',
+		trigger: {
+			player: ["loseAfter", "damageEnd"],
+			global: "loseAsyncAfter",
+		},
+		forced: true,
+		locked: false,
+		group: "qmsgswkjsgj_re_dcpitian_draw",
+		filter(event, player) {
+			if (event.name == "damage") {
+				return true;
+			}
+			return event.type == "discard" && event.getl(player).cards2.length > 0;
+		},
+		getIndex(event, player){
+			if(event.name=="damage"){
+				return event.num;
+			}
+			else {
+				if(event.type == "discard"&&event.getl(player).cards2.length>0){
+					return event.getl(player).cards2.length;
+				}
+			}
+		},
+		content() {
+			player.addMark("qmsgswkjsgj_re_dcpitian_handcard", 1, false);
+			player.addSkill("qmsgswkjsgj_re_dcpitian_handcard");
+			game.log(player, "的手牌上限", "#y+1");
+		},
+		subSkill: {
+			draw: {
+				audio: "dcpitian",
+				trigger: { player: "phaseJieshuBegin" },
+				filter(event, player) {
+					return player.countCards("h") < player.getHandcardLimit();
+				},
+				prompt2(event, player) {
+					return "摸" + get.cnNumber(player.getHandcardLimit() - player.countCards("h")) + "张牌，重置因〖辟田〗增加的手牌上限";
+				},
+				check(event, player) {
+					return player.getHandcardLimit() - player.countCards("h") > Math.min(2, player.hp - 1);
+				},
+				content() {
+					"step 0";
+					var num = player.getHandcardLimit() - player.countCards("h");
+					if (num > 0) {
+						player.draw(num);
+					}
+					// "step 1";
+					// player.removeMark("qmsgswkjsgj_re_dcpitian_handcard", player.countMark("dcpitian_handcard"), false);
+					// game.log(player, "重置了", "#g【辟田】", "增加的手牌上限");
+				},
+			},
+			handcard: {
+				markimage: "image/card/handcard.png",
+				intro: {
+					content(storage, player) {
+						return "手牌上限+" + storage;
+					},
+				},
+				charlotte: true,
+				mod: {
+					maxHandcard(player, num) {
+						return num + player.countMark("qmsgswkjsgj_re_dcpitian_handcard");
+					},
+				},
+			},
+		},
+		ai: {
+			effect: {
+				target(card, player, target) {
+					if (get.tag(card, "discard")) {
+						return 0.9;
+					}
+					if (get.tag(card, "damage")) {
+						return 0.95;
+					}
+				},
+			},
+		},
+	},
+
+	//新岩泽(划掉)留赞
+	qmsgswkjsgj_re_refenyin: {
+		audio: 'refenyin',
+		audioname: ["wufan"],
+		trigger: { global: ["loseAfter", "cardsDiscardAfter", "loseAsyncAfter", "equipAfter"] },
+		forced: true,
+		filter(event, player) {
+			if (player != _status.currentPhase) {
+				return false;
+			}
+			var cards = event.getd();
+			if (!cards.length) {
+				return false;
+			}
+			var list = [];
+			var num = cards.length;
+			for (var i = 0; i < cards.length; i++) {
+				var card = cards[i];
+				list.add(get.number(card, false));
+			}
+			game.getGlobalHistory("cardMove", function (evt) {
+				if (evt.name != "lose" && evt.name != "cardsDiscard") {
+					return false;
+				}
+				if (evt.name == "lose" && evt.position != ui.discardPile) {
+					return false;
+				}
+				if (evt == event || evt.getParent() == event) {
+					return false;
+				}
+				num += evt.cards.length;
+				for (var i = 0; i < evt.cards.length; i++) {
+					var card = evt.cards[i];
+					list.remove(get.number(card, evt.cards2 && evt.cards2.includes(card) ? evt.player : false));
+				}
+			});
+			player.storage.qmsgswkjsgj_re_refenyin_mark2 = num;
+			return list.length > 0;
+		},
+		content() {
+			var list = [];
+			var list2 = [];
+			var cards = trigger.getd();
+			for (var i = 0; i < cards.length; i++) {
+				var card = cards[i];
+				var suit = get.number(card, false);
+				list.add(suit);
+				list2.add(suit);
+			}
+			game.getGlobalHistory("cardMove", function (evt) {
+				if (evt.name != "lose" && evt.name != "cardsDiscard") {
+					return false;
+				}
+				if (evt.name == "lose" && evt.position != ui.discardPile) {
+					return false;
+				}
+				if (evt == trigger || evt.getParent() == trigger) {
+					return false;
+				}
+				for (var i = 0; i < evt.cards.length; i++) {
+					var card = evt.cards[i];
+					var suit = get.number(card, false);
+					list.remove(suit);
+					list2.add(suit);
+				}
+			});
+			list2.sort();
+			player.draw(list.length);
+			player.storage.qmsgswkjsgj_re_refenyin_mark = list2;
+			player.addTempSkill("qmsgswkjsgj_re_refenyin_mark");
+			player.markSkill("qmsgswkjsgj_re_refenyin_mark");
+		},
+		subSkill: {
+			mark: {
+				charlotte: true,
+				onremove(player) {
+					delete player.storage.qmsgswkjsgj_re_refenyin_mark;
+					delete player.storage.qmsgswkjsgj_re_refenyin_mark2;
+				},
+				intro: {
+					content(s, p) {
+						var str = "本回合已经进入过弃牌堆的卡牌的花色：";
+						//保留这玩意你才知道原来抄的是奋音
+						for (var i = 0; i < s.length; i++) {
+							str += get.translation(s[i]);
+						}
+						str += "<br>本回合进入过弃牌堆的牌数：";
+						str += p.storage.qmsgswkjsgj_re_refenyin_mark2;
+						return str;
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_re_liji: {
+		enable: "phaseUse",
+		usable(skill, player) {
+			return get.event().qmsgswkjsgj_re_liji_num+1;
+		},
+		audio: 'liji',
+		onChooseToUse(event) {
+			if (game.online) {
+				return;
+			}
+			var num = 0;
+			var evt2 = event.getParent();
+			if (!evt2.qmsgswkjsgj_re_liji_all) {
+				evt2.qmsgswkjsgj_re_liji_all = 3;
+			}
+			game.getGlobalHistory("cardMove", function (evt) {
+				if (evt.name == "cardsDiscard" || (evt.name == "lose" && evt.position == ui.discardPile)) {
+					num += evt.cards.length;
+				}
+			});
+			event.set("qmsgswkjsgj_re_liji_num", Math.floor(num / evt2.qmsgswkjsgj_re_liji_all));
+		},
+		filterCard: true,
+		position: "he",
+		check(card) {
+			var val = get.value(card);
+			if (!_status.event.player.getStorage("qmsgswkjsgj_re_refenyin_mark").includes(get.suit(card))) {
+				return 12 - val;
+			}
+			return 8 - val;
+		},
+		filterTarget: lib.filter.notMe,
+		content() {
+			target.damage("nocard");
+		},
+		ai: {
+			order: 1,
+			result: {
+				target: -1.5,
+			},
+			tag: {
+				damage: 1,
+			},
+		},
+	},
+	//吴普
+	qmsgswkjsgj_re_dcduanti: {
+		audio: 'dcduanti',
+		// trigger: {
+		// 	player: ["useCardAfter", "respondAfter"],
+		// },
+		trigger:{
+			// global:['loseAsyncAfter'],
+			// player:['loseAfter'],
+			player:'qmsgswkjsgj_re_dcduanti',
+		},
+		forced: true,
+		locked:true,
+		filter(event, player) {
+			// return event._copqmsgswkjsgj_re_dcduanti;
+			return true;
+		},
+		// getIndex(event,player){
+		// 	var num = event.getl('player').length;
+		// 	return num;
+		// },
+		// cost(){
+
+		// },
+		onremove: ["qmsgswkjsgj_re_dcduanti", "qmsgswkjsgj_re_dcduanti_counter"],
+		group: "qmsgswkjsgj_re_dcduanti_counter",
+		async content(event, trigger, player) {
+			await player.recover();
+			if (player.countMark("qmsgswkjsgj_re_dcduanti") >= 10) {
+				return;
+			}
+			player.addMark("qmsgswkjsgj_re_dcduanti", 1, false);
+			await player.gainMaxHp();
+		},
+		subSkill: {
+			counter: {
+				trigger:{
+					global:['loseAsyncAfter'],
+					player:['loseAfter'],
+				},
+				forced: true,
+				charlotte: true,
+				popup: false,
+				firstDo: true,
+				getIndex(event,player){
+					var evt = event.getl(player);
+					console.log(evt)
+					return evt.cards.length;
+				},
+				async content(event, trigger, player) {
+					// var num = event.getl('player')
+					// if (num) {
+					// 	player.addMark("qmsgswkjsgj_re_dcduanti_counter", num, false);
+					// }
+					player.addMark("qmsgswkjsgj_re_dcduanti_counter", 1, false);
+					if (player.countMark("qmsgswkjsgj_re_dcduanti_counter") % 3 === 0) {
+						// trigger._copqmsgswkjsgj_re_dcduanti = true;
+						trigger.trigger('qmsgswkjsgj_re_dcduanti',player)
+					}
+					player.markSkill("qmsgswkjsgj_re_dcduanti");
+				},
+			},
+		},
+		intro: {
+			markcount(storage, player) {
+				return player.countMark("qmsgswkjsgj_re_dcduanti_counter");
+			},
+			content(storage, player) {
+				return `<li>已失去过${get.cnNumber(player.countMark("qmsgswkjsgj_re_dcduanti_counter"))}张牌<br><li>已以此法增加${player.countMark("qmsgswkjsgj_re_dcduanti")}点体力上限`;
+			},
+		},
+	},
+	qmsgswkjsgj_re_dcshicao: {
+		audio: 'dcshicao',
+		enable: "phaseUse",
+		onremove: ["qmsgswkjsgj_re_dcshicao_aiRecord"],
+		chooseButton: {
+			dialog(event, player) {
+				return ui.create.dialog("###识草###选择一种类型与要摸牌的来源", [["caoying_basic", "caoying_trick", "caoying_equip"], "vcard"], [["牌堆顶", "牌堆底"], "tdnodes"]);
+			},
+			check(button) {
+				const player = get.player();
+				const bottom = player.storage.qmsgswkjsgj_re_dcshicao_bottom,
+					aiStorage = player.getStorage("qmsgswkjsgj_re_dcshicao_aiRecord");
+				if (bottom && aiStorage.length > 0 && ui.cardPile.lastChild && get.name(ui.cardPile.lastChild, false) === get.name(aiStorage.lastItem, false)) {
+					if (button.link === "牌堆底" || button.link[2].slice(8) === get.type2(aiStorage.lastItem, false)) {
+						return 20;
+					}
+				}
+				if (button.link === "牌堆顶" || button.link[2].slice(8) === "basic") {
+					return 10;
+				}
+				return 5 + Math.random();
+			},
+			filter(button, player) {
+				if (!ui.selected.buttons.length) {
+					return true;
+				}
+				return ui.selected.buttons[0].parentNode != button.parentNode;
+			},
+			select: 2,
+			backup(links, player) {
+				if (links[0].includes("牌堆")) {
+					links.reverse();
+				}
+				return {
+					audio: "dcshicao",
+					type: links[0][2].slice(8),
+					pos: links[1],
+					filterCard: () => false,
+					selectCard: -1,
+					async content(event, trigger, player) {
+						let { type, pos } = lib.skill.qmsgswkjsgj_re_dcshicao_backup;
+						game.log(player, "声明了", `#y${get.translation(type)}牌`);
+						const next = player.draw();
+						const bottom = pos === "牌堆底";
+						if (bottom) {
+							next.set("bottom", true);
+							if (player.getStorage("qmsgswkjsgj_re_dcshicao_aiRecord").length > 0) {
+								player.storage.qmsgswkjsgj_re_dcshicao_aiRecord.pop();
+							}
+						}
+						const drawnCards = await next.forResult();
+						if (get.type2(drawnCards[0], player) === type) {
+							return;
+						}
+						let cards;
+						if (!bottom) {
+							cards = get.bottomCards(3);
+							cards.reverse();
+						} else {
+							cards = get.cards(3);
+						}
+						await game.cardsGotoOrdering(cards);
+						await player.viewCards(`${bottom ? "牌堆顶" : "牌堆底"}的两张牌(靠左的在牌堆更靠上)`, cards);
+						player.storage.qmsgswkjsgj_re_dcshicao_record = cards.slice();
+						player.storage.qmsgswkjsgj_re_dcshicao_aiRecord = cards.slice();
+						player.storage.qmsgswkjsgj_re_dcshicao_bottom = !bottom;
+						const skill = "qmsgswkjsgj_re_dcshicao";
+						player.localMarkSkill(skill, player, event);
+						if (bottom) {
+							cards.reverse();
+						}
+						await game.cardsGotoPile(cards, bottom ? "insert" : null);
+						player.tempBanSkill(skill);
+					},
+					ai: {
+						result: { player: 1 },
+					},
+				};
+			},
+			prompt(links, player) {
+				return `点击“确定”，从${links[1]}摸一张牌`;
+			},
+		},
+		intro: {
+			mark(dialog, content, player) {
+				var cards = player.getStorage("dcshicao_record");
+				if (cards && cards.length) {
+					if (player.isUnderControl(true)) {
+						dialog.addText(`上一次观看的${player.storage.dcshicao_bottom ? "牌堆底" : "牌堆顶"}的牌：`);
+						dialog.addAuto(cards);
+						dialog.addText("（牌堆顶——牌堆底）");
+					} else {
+						return "不给看";
+					}
+				}
+			},
+		},
+		subSkill: {
+			backup: {},
+		},
+		ai: {
+			order: 8,
+			result: {
+				player: 1,
+			},
+		},
+	},
+
+
+	//阮瑀
+	qmsgswkjsgj_re_xingzuo: {
+		audio: 'xingzuo',
+		// trigger: { player: "phaseUseBegin" },
+		// frequent: true,
+		enable:'phaseUse',
+		usable:1,
+		content() {
+			"step 0";
+			player.addTempSkill("qmsgswkjsgj_re_xingzuo2");
+			var cards = get.bottomCards(5);
+			event.cards2 = cards;
+			game.cardsGotoOrdering(cards);
+			var next = player.chooseToMove("兴作：将五张牌置于牌堆底");
+			var list = [["牌堆底", cards]],
+				hs = player.getCards("h");
+			if (hs.length) {
+				list.push(["手牌", hs]);
+				next.set("filterMove", function (from, to) {
+					return typeof to != "number";
+				});
+			}
+			next.set("list", list);
+			next.set("processAI", function (list) {
+				var allcards = list[0][1].slice(0),
+					cards = [];
+				if (list.length > 1) {
+					allcards = allcards.concat(list[1][1]);
+				}
+				var canchoose = allcards.slice(0);
+				var player = _status.event.player;
+				var getv = function (button) {
+					if (
+						button.name == "sha" &&
+						allcards.filter(function (card) {
+							return (
+								card.name == "sha" &&
+								!cards.filter(function () {
+									return button == card;
+								}).length
+							);
+						}).length > player.getCardUsable({ name: "sha" })
+					) {
+						return 10;
+					}
+					return -player.getUseValue(button, player);
+				};
+				while (cards.length < 5) {
+					canchoose.sort(function (a, b) {
+						return getv(b) - getv(a);
+					});
+					cards.push(canchoose.shift());
+				}
+				return [cards, canchoose];
+			});
+			"step 1";
+			if (result.bool) {
+				event.forceDie = true;
+				var cards = result.moved[0];
+				event.cards = cards;
+				player.storage.qmsgswkjsgj_re_xingzuo2 = cards;
+				var hs = player.getCards("h");
+				var lose = [],
+					gain = event.cards2;
+				for (var i of cards) {
+					if (hs.includes(i)) {
+						lose.push(i);
+					} else {
+						gain.remove(i);
+					}
+				}
+				if (lose.length) {
+					player.lose(lose, ui.cardPile);
+				}
+				if (gain.length) {
+					player.gain(gain, "draw");
+				}
+			} else {
+				event.finish();
+			}
+			"step 2";
+			for (var i of cards) {
+				if (!"hejsdx".includes(get.position(i, true))) {
+					i.fix();
+					ui.cardPile.appendChild(i);
+				}
+			}
+			game.updateRoundNumber();
+		},
+	},
+	qmsgswkjsgj_re_xingzuo2: {
+		trigger: { player: "phaseJieshuBegin" },
+		direct: true,
+		charlotte: true,
+		onremove: true,
+		sourceSkill: "qmsgswkjsgj_re_xingzuo",
+		filter(event, player) {
+			return game.hasPlayer(function (target) {
+				return target.countCards("h") > 0;
+			});
+		},
+		content() {
+			"step 0";
+			player
+				.chooseTarget(function (card, player, target) {
+					return target.countCards("h") > 0;
+				}, "兴作：是否令一名角色将其手牌与牌堆底的五张牌替换？")
+				.set("ai", function (target) {
+					var player = _status.event.player,
+						att = get.attitude(player, target),
+						hs = target.getCards("h"),
+						num = hs.length;
+					var getv = function (list, target) {
+							var num = 0;
+							for (var i of list) {
+								num += get.value(i, target);
+							}
+							return num;
+						},
+						val = getv(hs, target) - getv(player.storage.xingzuo2, target);
+					if (num < 5) {
+						return att * Math.sqrt(Math.max(0, -val)) * 1.5;
+					}
+					if (num == 5) {
+						return -att * Math.sqrt(Math.max(0, val));
+					}
+					// if (player.hp < (num > 5 ? 3 : 2)) {
+					// 	return 0;
+					// }
+					return -att * Math.sqrt(Math.max(0, val));
+				});
+			"step 1";
+			if (result.bool) {
+				var target = result.targets[0];
+				player.logSkill("qmsgswkjsgj_re_xingzuo", target);
+				var cards = get.bottomCards(5);
+				game.cardsGotoOrdering(cards);
+				var hs = target.getCards("h");
+				target.lose(hs, ui.cardPile);
+				target.gain(cards, "draw");
+				// if (hs.length > 3) {
+				// 	player.loseHp();
+				// }
+			} else {
+				event.finish();
+			}
+			"step 2";
+			game.updateRoundNumber();
+		},
+	},
+	qmsgswkjsgj_re_miaoxian: {
+		hiddenCard(player, name) {
+			return  ["trick",'basic'].includes(get.type2(name)) && player.countCards("h", { color: "black" }) == 1;
+		},
+		audio: 'miaoxian',
+		enable: "chooseToUse",
+		filter(event, player) {
+			// if (player.hasSkill("qmsgswkjsgj_re_miaoxian_used")) {
+			// 	return false;
+			// }
+			var cards = player.getCards("h", { color: "black" });
+			if (cards.length != 1) {
+				return false;
+			}
+			var mod2 = game.checkMod(cards[0], player, "unchanged", "cardEnabled2", player);
+			if (mod2 === false) {
+				return false;
+			}
+			for (var i of lib.inpile) {
+				if (
+					["trick",'basic'].includes(get.type2(i)) &&
+					event.filterCard(
+						{
+							name: i,
+							cards: cards,
+						},
+						player,
+						event
+					)
+				) {
+					return true;
+				}
+			}
+			return false;
+		},
+		chooseButton: {
+			dialog(event, player) {
+				var cards = player.getCards("h", { color: "black" });
+				var list = [];
+				for (var i of lib.inpile) {
+					if (
+						["trick",'basic'].includes(get.type2(i)) &&
+						event.filterCard(
+							{
+								name: i,
+								cards: cards,
+							},
+							player,
+							event
+						)
+					) {
+						list.push([get.type2(i), "", i]);
+						if (i == 'sha') {
+							for (var k of get.YB_natureList()) {
+								list.push(['基本', '', i, k]);
+							}
+							// list.push(['基本', '', i, 'kami']);
+						}
+					}
+				}
+				return ui.create.dialog("妙弦", [list, "vcard"], "hidden");
+			},
+			check(button) {
+				var player = _status.event.player;
+				return player.getUseValue({ name: button.link[2] }) + 1;
+			},
+			backup(links, player) {
+				return {
+					audio: "miaoxian",
+					popname: true,
+					filterCard: { color: "black" },
+					selectCard: -1,
+					position: "h",
+					viewAs: {
+						name: links[0][2],
+					},
+					// onuse(links, player) {
+					// 	player.addTempSkill("miaoxian_used");
+					// },
+				};
+			},
+			prompt(links, player) {
+				return "将" + get.translation(player.getCards("h", { color: "black" })[0]) + "当做" +(links[0][3]?get.translation(links[0][3]):"")+ get.translation(links[0][2]) + "使用";
+			},
+		},
+		group: "qmsgswkjsgj_re_miaoxian_use",
+		subfrequent: ["use"],
+		subSkill: {
+			use: {
+				audio: "miaoxian",
+				trigger: { player: "loseAfter" },
+				frequent: true,
+				prompt: "是否发动【妙弦】摸一张牌？",
+				filter(event, player) {
+					var evt = event.getParent();
+					if (evt.name != "useCard"&&evt.name!="respond") {
+						return false;
+					}
+					return event.hs && event.hs.length == 1 && event.cards && event.cards.length == 1 && get.color(event.hs[0], player) == "red" && !player.countCards("h", { color: "red" });
+				},
+				content() {
+					player.draw();
+					var evt = trigger.getParent();
+					if(evt.name=="useCard"){
+						evt.directHit.addArray(game.players);
+					}
+				},
+				mod:{
+					cardUsable:function(card,player,num){
+						var cards = player.getCards('h',function(x){
+							return get.color(x,player)=='red';
+						})
+						if(cards.length==1){
+							if(get.color(card)=='red')return Infinity;
+						}
+					},
+					cardEnabled:function(card,player){
+						var cards = player.getCards('h',function(x){
+							return get.color(x,player)=='red';
+						})
+						if(cards.length==1){
+							if(get.color(card)=='red')return true;
+						}
+					},
+					targetInRange(card, player, target) {
+						var cards = player.getCards('h',function(x){
+							return get.color(x,player)=='red';
+						})
+						if(cards.length==1){
+							if(get.color(card)=='red')return true;
+						}
+					},
+				}
+			},
+			backup: { audio: "miaoxian" },
+			used: { charlotte: true },
+		},
+		ai: {
+			order: 12,
+			result: { player: 1 },
+		},
+	},
+
+	//杜预
+	qmsgswkjsgj_re_dcjianguo: {
+		audio: 'dcjianguo',
+		enable: "phaseUse",
+		filter(event, player) {
+			return ["discard", "draw"].some(i => !player.getStorage("qmsgswkjsgj_re_dcjianguo_used").includes(i));
+		},
+		chooseButton: {
+			dialog(event, player) {
+				var dialog = ui.create.dialog("谏国：请选择一项", "hidden");
+				dialog.add([
+					[
+						["discard", "令一名角色弃置一半手牌，若其弃置的牌数量小于你的体力值，你对其造成一点伤害"],
+						["draw", "令一名角色摸等同于手牌数一半的牌，若其摸牌数量大于等于你的体力值，你回复一点体力"],
+					],
+					"textbutton",
+				]);
+				return dialog;
+			},
+			filter(button, player) {
+				return !player.getStorage("qmsgswkjsgj_re_dcjianguo_used").includes(button.link);
+			},
+			check(button) {
+				var player = _status.event.player;
+				if (button.link == "discard") {
+					var discard = Math.max.apply(
+						Math,
+						game
+							.filterPlayer(current => {
+								return lib.skill.qmsgswkjsgj_re_dcjianguo_discard.filterTarget(null, player, current);
+							})
+							.map(current => {
+								return get.effect(current, "qmsgswkjsgj_re_dcjianguo_discard", player, player);
+							})
+					);
+					return discard;
+				}
+				if (button.link == "draw") {
+					var draw = Math.max.apply(
+						Math,
+						game
+							.filterPlayer(current => {
+								return lib.skill.qmsgswkjsgj_re_dcjianguo_draw.filterTarget(null, player, current);
+							})
+							.map(current => {
+								return get.effect(current, "qmsgswkjsgj_re_dcjianguo_draw", player, player);
+							})
+					);
+					return draw;
+				}
+				return 0;
+			},
+			backup(links) {
+				return get.copy(lib.skill["qmsgswkjsgj_re_dcjianguo_" + links[0]]);
+			},
+			prompt(links) {
+				if (links[0] == "discard") {
+					return "令一名角色弃置一半手牌，若其弃置的牌数量小于你的体力值，你对其造成一点伤害";
+				}
+				return "令一名角色摸等同于手牌数一半的牌，若其摸牌数量大于等于你的体力值，你回复一点体力";
+			},
+		},
+		ai: {
+			order: 10,
+			threaten: 2.8,
+			result: {
+				//想让杜预两个技能自我联动写起来太累了，开摆
+				player: 1,
+			},
+		},
+		subSkill: {
+			used: {
+				charlotte: true,
+				onremove: true,
+			},
+			backup: { audio: "dcjianguo" },
+			discard: {
+				audio: "dcjianguo",
+				filterTarget: () => true,
+				filterCard: () => false,
+				selectCard: -1,
+				content() {
+					"step 0";
+					player.addTempSkill("qmsgswkjsgj_re_dcjianguo_used", "phaseUseAfter");
+					player.markAuto("qmsgswkjsgj_re_dcjianguo_used", ["discard"]);
+					// target.draw();
+					game.delayex();
+					"step 1";
+					var num = Math.ceil(target.countCards("h") / 2);
+					if (num > 0) {
+						event._result = target.chooseToDiscard(num, true, "谏国：请弃置" + get.cnNumber(num) + "张手牌");
+						// console.log(event._result)
+					}
+					'step 2'
+					// console.log(result)
+					if(result){
+						if(result.cards&&result.cards.length<player.hp){
+							target.damage();
+						}
+					}
+				},
+				ai: {
+					result: {
+						target(player, target) {
+							return 1.1 - Math.floor(target.countCards("h") / 2);
+						},
+					},
+					tag: {
+						gain: 1,
+						loseCard: 2,
+					},
+				},
+			},
+			draw: {
+				audio: "dcjianguo",
+				filterTarget(card, player, target) {
+					return target.countCards("he");
+				},
+				filterCard: () => false,
+				selectCard: -1,
+				content() {
+					"step 0";
+					player.addTempSkill("qmsgswkjsgj_re_dcjianguo_used", "phaseUseAfter");
+					player.markAuto("qmsgswkjsgj_re_dcjianguo_used", ["draw"]);
+					// target.chooseToDiscard("he", true, "谏国：请弃置一张牌");
+					"step 1";
+					var num = Math.ceil(target.countCards("h") / 2);
+					if (num > 0) {
+						event._result = target.draw(num);
+						// console.log(event._result)
+					}
+					'step 2'
+					if(result){
+						if(result&&result.length>=player.hp){
+							player.recover()
+						}
+					}
+				},
+				ai: {
+					result: {
+						target(player, target) {
+							var fix = 0;
+							var num = target.countCards("h");
+							if (player == target && num % 2 == 1 && num >= 5) {
+								fix += 1;
+							}
+							return Math.ceil(num / 2 - 0.5) + fix;
+						},
+					},
+					tag: {
+						loseCard: 1,
+						gain: 2,
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_re_dcdyqingshi: {
+		audio: 'dcdyqingshi',
+		trigger: {
+			player: "useCard",
+		},
+		filter(event, player) {
+			if (player != _status.currentPhase) {
+				return false;
+			}
+			// if (!event.isFirstTarget) {
+			// 	return false;
+			// }
+			// if (event.card.name != "sha" && get.type(event.card, null, false) != "trick") {
+			// 	return false;
+			// }
+			if (player.countCards("h") != player.getHistory("useCard").indexOf(event) + 1) {
+				return false;
+			}
+			// return event.targets.some(target => {
+			// 	return target != player && target.isIn();
+			// });
+			return true;
+		},
+		direct: true,
+		locked: false,
+		content() {
+			"step 0";
+			var targets = trigger.targets.filter(target => {
+				return target != player && target.isIn();
+			});
+			player
+				.chooseTarget(get.prompt("qmsgswkjsgj_re_dcdyqingshi"), "对一名角色造成1点伤害", (card, player, target) => {
+					return true;
+				})
+				.set("ai", target => {
+					var player = _status.event.player;
+					return get.damageEffect(target, player, player);
+				})
+				.set("targets", targets);
+			"step 1";
+			if (result.bool) {
+				var target = result.targets[0];
+				player.logSkill("qmsgswkjsgj_re_dcdyqingshi", target);
+				target.damage();
+			}
+		},
+		mod: {
+			aiOrder(player, card, num) {
+				if (_status.currentPhase != player) {
+					return;
+				}
+				var cardsh = [];
+				if (Array.isArray(card.cards)) {
+					cardsh.addArray(
+						card.cards.filter(card => {
+							return get.position(card) == "h";
+						})
+					);
+				}
+				var del = player.countCards("h") - cardsh.length - player.getHistory("useCard").length - 1;
+				if (del < 0) {
+					return;
+				}
+				if (del > 0) {
+					if (card.name == "sha" || get.type(card, null, player) != "trick") {
+						return num / 3;
+					}
+					return num + 1;
+				}
+				return num + 15;
 			},
 		},
 	},
@@ -14986,7 +17092,7 @@ const skill = {
 			},
 		},
 	},
-	//阴间魔貂蝉
+	//魔貂蝉
 	sgsxjxfzmnl_meihuo:{
 		audio: 'lijian',
 		enable: "phaseUse",
@@ -15103,6 +17209,137 @@ const skill = {
 		frequent:true,
 		content:function (){
 			player.draw(2);
+		},
+	},
+	//阴间祢衡
+	sgsxjxfzmnl_kuangcai: {
+		audio: 'kuangcai',
+		trigger: { player: "phaseUseBegin" },
+		filter(event, player) {
+			return !event.player.isMad();
+		},
+		content() {
+			game.broadcastAll(function (player) {
+				if (!player.forceCountChoose) {
+					player.forceCountChoose = {};
+				}
+				var numxl = player.starLevel||0;
+				var numxx = 5+numxl;
+				player.forceCountChoose.phaseUse = numxx;
+			}, player);
+			player.addSkill("sgsxjxfzmnl_kuangcai_use");
+			player.addSkill("sgsxjxfzmnl_kuangcai_cancel");
+			//ui.auto.hide();
+		},
+		subSkill: {
+			use: {
+				mod: {
+					cardUsable(card) {
+						if (get.info(card) && get.info(card).forceUsable) {
+							return;
+						}
+						return Infinity;
+					},
+					targetInRange() {
+						return true;
+					},
+					aiOrder(player, card, num) {
+						var name = get.name(card);
+						if (name == "tao") {
+							return num + 7 + Math.pow(player.getDamagedHp(), 2);
+						}
+						if (name == "sha") {
+							return num + 6;
+						}
+						if (get.subtype(card) == "equip2") {
+							return num + get.value(card) / 3;
+						}
+					},
+				},
+				trigger: { player: "useCard" },
+				forced: true,
+				charlotte: true,
+				silent: true,
+				popup: false,
+				filter(event, player) {
+					if (!player.forceCountChoose || !player.forceCountChoose.phaseUse) {
+						return false;
+					}
+					return true;
+				},
+				content() {
+					player.draw();
+					if (player.forceCountChoose.phaseUse == 1) {
+						var evt = event.getParent("phaseUse");
+						if (evt) {
+							evt.skipped = true;
+						}
+					} else {
+						game.broadcastAll(function (player) {
+							player.forceCountChoose.phaseUse--;
+						}, player);
+					}
+				},
+			},
+			cancel: {
+				trigger: { player: "phaseUseEnd" },
+				firstDo: true,
+				silent: true,
+				charlotte: true,
+				content() {
+					game.broadcastAll(function (player) {
+						delete player.forceCountChoose;
+					}, player);
+					//ui.auto.show();
+					player.removeSkill("sgsxjxfzmnl_kuangcai_use");
+					player.removeSkill("sgsxjxfzmnl_kuangcai_cancel");
+				},
+			},
+		},
+		ai: {
+			threaten: 4.5,
+		},
+	},
+	sgsxjxfzmnl_shejian: {
+		audio: 'shejian',
+		trigger: { player: "phaseDiscardEnd" },
+		direct: true,
+		filter(event, player) {
+			var cards = [];
+			player.getHistory("lose", function (evt) {
+				if (evt.type == "discard" && evt.getParent("phaseDiscard") == event) {
+					cards.addArray(evt.cards2);
+				}
+			});
+			if (cards) {
+				return true;
+			}
+			return false;
+		},
+		content() {
+			"step 0";
+			var cards = [];
+			player.getHistory("lose", function (evt) {
+				if (evt.type == "discard" && evt.getParent("phaseDiscard") == trigger) {
+					cards.addArray(evt.cards2);
+				}
+			});
+			event.num = cards.length||1;
+			player.chooseTarget(get.prompt("sgsxjxfzmnl_shejian"), "弃置一名其他角色的"+event.num+"张牌", function (card, player, target) {
+				if (player == target) {
+					return false;
+				}
+				return target.countDiscardableCards(player, "he") > 0;
+			}).ai = function (target) {
+				return -get.attitude(player, target);
+			};
+			"step 1";
+			if (result.bool) {
+				player.logSkill("sgsxjxfzmnl_shejian", result.targets);
+				player.discardPlayerCard(result.targets[0],event.num, "he", true);
+			} else {
+				event.finish();
+			}
 		},
 	},
 	//阴间王元姬
@@ -17697,7 +19934,7 @@ const skill = {
 	
 	},
 	sgsxjxfzmnl_limu:{
-		audioL:'xinfu_limu',
+		audio:'xinfu_limu',
 		mod: {
 			targetInRange(card, player, target) {
 				if (player.countCards("j") /*&& player.inRange(target)*/) {
@@ -22789,21 +25026,23 @@ const skill = {
 				game.log(player, "选择了", "#y" + event.cost_data);
 			}
 			if (event.cost_data == "选项一") {
-				let card = get.cardPile2(card => {
-					return !get.tag(card, "damage");
-				});
-				if (card) {
-					await player.gain(card, "gain2");
-				}
+				// let card = get.cardPile2(card => {
+				// 	return !get.tag(card, "damage");
+				// });
+				// if (card) {
+				// 	await player.gain(card, "gain2");
+				// }
+				await player.YB_drawCard({tag:'!damage'});
 			} else if (event.cost_data == "选项二") {
 				// trigger["dczhanmeng_" + player.playerid] = true;
 				// player.addSkill("dczhanmeng_delay");
-				let card = get.cardPile2(card => {
-					return get.tag(card, "damage");
-				});
-				if (card) {
-					await player.gain(card, "gain2");
-				}
+				// let card = get.cardPile2(card => {
+				// 	return get.tag(card, "damage");
+				// });
+				// if (card) {
+				// 	await player.gain(card, "gain2");
+				// }
+				await player.YB_drawCard({tag:'damage'});
 			} else {
 				const { result } = await player.chooseTarget("占梦：令一名其他角色弃置两张牌，并对其造成1点火焰伤害", lib.filter.notMe, true).set("ai", target => {
 					let player = _status.event.player;
@@ -23264,7 +25503,7 @@ const skill = {
 	sgsxjxfzmnl_pingjian: {
 		initList() {
 			// game.initCharacterList();
-			var list = lib.characterSort.sgstrxs.sgsxjxfzmnl.filter(c=>lib.translate[c].startsWith('阴间'));
+			var list = lib.characterSort.sgstrxs.sgsxjxfzmnl.filter(c=>lib.character[c]&&lib.translate[c].startsWith('阴间'));
 			// list.filter(c=>lib.translate[c].startsWith('阴间'))
 			return list;
 		},
@@ -23640,6 +25879,36 @@ const skill = {
 					}
 				});
 				game.broadcastAll((player, names) => player.tempname.removeArray(names), player, names);
+			}
+			var suffixs = ['used', 'round', 'block', 'blocker'];
+			var info = get.info(skill);
+			var resetSkills = [];
+			if (typeof info.usable == 'number') {
+				if (player.hasSkill('counttrigger') && player.storage.counttrigger[skill] && player.storage.counttrigger[skill] >= 1) {
+					delete player.storage.counttrigger[skill];
+					resetSkills.add(skill);
+				}
+				if (typeof get.skillCount(skill) == 'number' && get.skillCount(skill) >= 1) {
+					delete player.getStat('skill')[skill];
+					resetSkills.add(skill);
+				}
+			}
+			if (info.round && player.storage[skill + '_roundcount']) {
+				delete player.storage[skill + '_roundcount'];
+				resetSkills.add(skill);
+			}
+			if (player.storage[`temp_ban_${skill}`]) {
+				delete player.storage[`temp_ban_${skill}`];
+			}
+			if (player.awakenedSkills.contains(skill)) {
+				player.restoreSkill(skill);
+				resetSkills.add(skill);
+			}
+			for (var suffix of suffixs) {
+				if (player.hasSkill(skill + '_' + suffix)) {
+					player.removeSkill(skill + '_' + suffix);
+					resetSkills.add(skill);
+				}
 			}
 			delete player.storage.sgsxjxfzmnl_pingjian_check[skill];
 		},
@@ -24067,28 +26336,45 @@ const skill = {
 		},
 		content() {
 			"step 0";
+			player.changeSkin({ characterName: "sgsxjxfzmnl_shen_jiangwei" }, "sgsxjxfzmnl_shen_jiangwei_shadow");
 			player.awakenSkill(event.name);
 			player.loseMaxHp(9);
 			event.maxnum = game.countPlayer(c=>c.group=='wei')+9;
 			event.num = 0;
+			event.forceDie = true;
 			"step 1";
 			event.num++;
-			player.chooseUseTarget(
-				{
+			var cardv ={
+				name: "sha",
+				nature: "fire",
+				isCard: true,
+			};
+			player.chooseTarget(
+				"请选择火【杀】的目标（" + (event.num == 9 ? "⑨" : event.num) + "/"+event.maxnum+"）",
+				// false
+			).set('filterTarget',function(card,player,target){
+				return player.canUse(cardv,target)
+			}).set('forceDie',true);
+			"step 2";
+			if(result.bool){
+				var cardv = {
 					name: "sha",
 					nature: "fire",
 					isCard: true,
-				},
-				"请选择火【杀】的目标（" + (event.num == 9 ? "⑨" : event.num) + "/"+event.maxnum+"）",
-				false
-			);
-			"step 2";
-			if (result.bool && event.num < event.maxnum) {
+				}
+				var targets = result.targets;
+				player.useCard(cardv, targets, false).forceDie = true;
+			}
+			else{
+				event.goto(4)
+			}
+			'step 3'
+			if (event.num < event.maxnum) {
 				event.goto(1);
 			} else {
 				// player.removeSkills("sgsxjxfzmnl_jiufa");
 			}
-			"step 3";
+			"step 4";
 			player.addSkill("sgsxjxfzmnl_pingxiang_effect");
 		},
 		forceDie:true,
@@ -24531,8 +26817,8 @@ const skill = {
 
 			}
 			'step 1'
-			if (result.cards) {
-				player.gain(result.cards, "gain2");
+			if (result.links) {
+				player.gain(result.links, "gain2");
 			}
 		},
 		ai: {
@@ -24749,6 +27035,8 @@ const skill = {
 		},
 		subSkill: {
 			huifu: {
+				audio: 'dcruxian_huifu',
+				forced:true,
 				trigger: { player: "phaseAfter" },
 				filter(event, player) {
 					return player.getStat("kill") >= game.countPlayer(c=>c.group=='wu')
@@ -24763,32 +27051,4922 @@ const skill = {
 	},
 
 
+	//曹髦  史?! 我求你别改了
+	sgsxjxfzmnl_mbqianlong: {
+		audio: 'mbqianlong',
+		persevereSkill: true,
+		trigger: {
+			player: ["sgsxjxfzmnl_mbqianlong_beginAfter", "sgsxjxfzmnl_mbqianlong_addAfter", "sgsxjxfzmnl_mbweitongAfter"],
+		},
+		filter(event, player) {
+			let skills = [];
+			let current = player.additionalSkills?.sgsxjxfzmnl_mbqianlong?.length ?? 0;
+			var list = [0,25,50,75,99,100];
+			for(var i=0;i<list.length;i++){
+				if(player.countMark("sgsxjxfzmnl_mbqianlong")<=list[i]){
+					var target = i+1;
+					break;
+				}
+			}
+			// let target = player.countMark("sgsxjxfzmnl_mbqianlong") == lib.skill.sgsxjxfzmnl_mbqianlong.maxMarkCount ? lib.skill.sgsxjxfzmnl_mbqianlong.derivation.length : Math.floor(player.countMark("mbqianlong") / 25);
+			return target > current;
+		},
+		forced: true,
+		popup: false,
+		locked: false,
+		beginMarkCount: 20,
+		maxMarkCount: 100,
+		derivation: ['sgsxjxfzmnl_mbcmjianxiong',"sgsxjxfzmnl_mbcmqingzheng", "sgsxjxfzmnl_mbcmjiushi", "sgsxjxfzmnl_mbcmfangzhu", "sgsxjxfzmnl_mbjuejin",'sgsxjxfzmnl_mbcmguixin'],
+		addMark(player, num) {
+			num = Math.min(num, lib.skill.sgsxjxfzmnl_mbqianlong.maxMarkCount - player.countMark("sgsxjxfzmnl_mbqianlong"));
+			player.addMark("sgsxjxfzmnl_mbqianlong", num);
+		},
+		group: ["sgsxjxfzmnl_mbqianlong_begin", "sgsxjxfzmnl_mbqianlong_add", "sgsxjxfzmnl_mbqianlong_die"],
+		async content(event, trigger, player) {
+			var list = [0,25,50,75,99,100];
+			for(var i=0;i<list.length;i++){
+				if(player.countMark("sgsxjxfzmnl_mbqianlong")<=list[i]){
+					var target = i+1;
+					break;
+				}
+			}
+			const derivation = lib.skill.sgsxjxfzmnl_mbqianlong.derivation,
+				skills = derivation.slice(0, target);
+			player.addAdditionalSkill("sgsxjxfzmnl_mbqianlong", skills);
+		},
+		marktext: "道",
+		intro: {
+			name: "道心(阴间潜龙)",
+			name2: "道心",
+			content: "当前道心数为#",
+		},
+		subSkill: {
+			begin: {
+				audio: "mbqianlong",
+				persevereSkill: true,
+				trigger: {
+					global: "phaseBefore",
+					player: "enterGame",
+				},
+				filter(event, player) {
+					return event.name != "phase" || game.phaseNumber == 0;
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					const num = game.hasPlayer(current => {
+						return current !== player && current.group === "wei" && player.hasZhuSkill("mbweitong", current);
+					})
+						? 99
+						: lib.skill.sgsxjxfzmnl_mbqianlong.beginMarkCount;
+					lib.skill.sgsxjxfzmnl_mbqianlong.addMark(player, num);
+				},
+			},
+			add: {
+				audio: "mbqianlong",
+				persevereSkill: true,
+				trigger: {
+					player: ["gainAfter", "damageEnd"],
+					source: "damageSource",
+					global: "loseAsyncAfter",
+				},
+				filter(event, player) {
+					if (player.countMark("sgsxjxfzmnl_mbqianlong") >= lib.skill.sgsxjxfzmnl_mbqianlong.maxMarkCount) {
+						return false;
+					}
+					if (event.name === "damage") {
+						return event.num > 0;
+					}
+					return event.getg(player).length > 0;
+				},
+				getIndex(event, player, triggername) {
+					if (event.name === "damage") {
+						return event.num;
+					}
+					return 1;
+				},
+				forced: true,
+				locked: false,
+				async content(event, trigger, player) {
+					let toAdd = 5 * (1 + (trigger.name === "damage") + (event.triggername === "damageSource"));
+					lib.skill.sgsxjxfzmnl_mbqianlong.addMark(player, toAdd);
+				},
+			},
+			die: {
+				trigger: {
+					player: "dieBefore",
+				},
+				charlotte: true,
+				firstDo: true,
+				forced: true,
+				popup: false,
+				forceDie: true,
+				async content(event, trigger, player) {
+					player.changeSkin({ characterName: "sgsxjxfzmnl_mb_caomao" }, "sgsxjxfzmnl_mb_caomao_dead");
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_mbweitong: {
+		audio: 'mbweitong',
+		persevereSkill: true,
+		zhuSkill: true,
+		trigger: {
+			player: "sgsxjxfzmnl_mbqianlong_beginBegin",
+		},
+		forced: true,
+		locked: false,
+		content() {},
+		ai: {
+			combo: "sgsxjxfzmnl_mbqianlong",
+		},
+	},
+	sgsxjxfzmnl_mbcmjianxiong: {
+		audio: 'mbcmqingzheng',
+		audioname2: { caoying: "lingren_jianxiong" },
+		persevereSkill: true,
+		preHidden: true,
+		trigger: { player: "damageEnd" },
+		filter(event, player) {
+			return get.itemtype(event.cards) == "cards" && get.position(event.cards[0], true) == "o";
+		},
+		async content(event, trigger, player) {
+			player.gain(trigger.cards, "gain2");
+		},
+		ai: {
+			maixie: true,
+			maixie_hp: true,
+			effect: {
+				target(card, player, target) {
+					if (player.hasSkillTag("jueqing", false, target)) {
+						return [1, -1];
+					}
+					if (get.tag(card, "damage")) {
+						return [1, 0.55];
+					}
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_mbcmqingzheng: {
+		audio: 'mbcmqingzheng',
+		persevereSkill: true,
+		trigger: { player: "phaseUseBegin" },
+		filter(event, player) {
+			return player.countCards("h") > 0 && game.hasPlayer(current => player != current && current.countCards("h") > 0);
+		},
+		/**
+		 * player选择target的一种花色的牌
+		 * @param {Player} player
+		 * @param {Player} target
+		 */
+		chooseOneSuitCard(player, target, force = false, limit, str = "请选择一个花色的牌", ai = { bool: false }) {
+			const { promise, resolve } = Promise.withResolvers();
+			const event = _status.event;
+			event.selectedCards = [];
+			event.selectedButtons = [];
+			//对手牌按花色分类
+			let suitCards = Object.groupBy(target.getCards("h"), c => get.suit(c, target));
+			suitCards.heart ??= [];
+			suitCards.diamond ??= [];
+			suitCards.spade ??= [];
+			suitCards.club ??= [];
+			let dialog = (event.dialog = ui.create.dialog());
+			dialog.classList.add("fullheight");
+			event.control_ok = ui.create.control("ok", link => {
+				_status.imchoosing = false;
+				event.dialog.close();
+				event.control_ok?.close();
+				event.control_cancel?.close();
+				event._result = {
+					bool: true,
+					cards: event.selectedCards,
+				};
+				resolve(event._result);
+				game.resume();
+			});
+			event.control_ok.classList.add("disabled");
+			//如果是非强制的，才创建取消按钮
+			if (!force) {
+				event.control_cancel = ui.create.control("cancel", link => {
+					_status.imchoosing = false;
+					event.dialog.close();
+					event.control_ok?.close();
+					event.control_cancel?.close();
+					event._result = {
+						bool: false,
+					};
+					resolve(event._result);
+					game.resume();
+				});
+			}
+			event.switchToAuto = function () {
+				_status.imchoosing = false;
+				event.dialog?.close();
+				event.control_ok?.close();
+				event.control_cancel?.close();
+				event._result = ai();
+				resolve(event._result);
+				game.resume();
+			};
+			dialog.addNewRow(str);
+			let keys = Object.keys(suitCards).sort((a, b) => {
+				let arr = ["spade", "heart", "club", "diamond", "none"];
+				return arr.indexOf(a) - arr.indexOf(b);
+			});
+			//添加框
+			while (keys.length) {
+				let key1 = keys.shift();
+				let cards1 = suitCards[key1];
+				let key2 = keys.shift();
+				let cards2 = suitCards[key2];
+				//点击容器的回调
+				/**@type {Row_Item_Option['clickItemContainer']} */
+				const clickItemContainer = function (container, item, allContainer) {
+					if (!item?.length || item.some(card => !lib.filter.cardDiscardable(card, player, event.name))) {
+						return;
+					}
+					if (event.selectedButtons.includes(container)) {
+						container.classList.remove("selected");
+						event.selectedButtons.remove(container);
+						event.selectedCards.removeArray(item);
+					} else {
+						if (event.selectedButtons.length >= limit) {
+							let precontainer = event.selectedButtons[0];
+							precontainer.classList.remove("selected");
+							event.selectedButtons.remove(precontainer);
+							let suit = get.suit(event.selectedCards[0], target),
+								cards = target.getCards("h", { suit: suit });
+							event.selectedCards.removeArray(cards);
+						}
+						container.classList.add("selected");
+						event.selectedButtons.add(container);
+						event.selectedCards.addArray(item);
+					}
+					event.control_ok.classList[event.selectedButtons.length === limit ? "remove" : "add"]("disabled");
+				};
+				//给框加封条，显示xxx牌多少张
+				function createCustom(suit, count) {
+					return function (itemContainer) {
+						function formatStr(str) {
+							return str.replace(/(?:♥︎|♦︎)/g, '<span style="color: red; ">$&</span>');
+						}
+						let div = ui.create.div(itemContainer);
+						if (count) {
+							div.innerHTML = formatStr(`${get.translation(suit)}牌${count}张`);
+						} else {
+							div.innerHTML = formatStr(`没有${get.translation(suit)}牌`);
+						}
+						div.css({
+							position: "absolute",
+							width: "100%",
+							bottom: "1%",
+							height: "35%",
+							background: "#352929bf",
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							fontSize: "1.2em",
+							zIndex: "2",
+						});
+					};
+				}
+				//框的样式，不要太宽，高度最小也要100px，防止空框没有高度
+				/**@type {Row_Item_Option['itemContainerCss']} */
+				let itemContainerCss = {
+					border: "solid #c6b3b3 2px",
+					minHeight: "100px",
+				};
+				if (key2) {
+					dialog.addNewRow(
+						{
+							item: cards1,
+							ItemNoclick: true, //卡牌不需要被点击
+							clickItemContainer,
+							custom: createCustom(key1, cards1.length), //添加封条
+							itemContainerCss,
+						},
+						{
+							item: cards2,
+							ItemNoclick: true, //卡牌不需要被点击
+							clickItemContainer,
+							custom: createCustom(key2, cards2.length),
+							itemContainerCss,
+						}
+					);
+				} else {
+					dialog.addNewRow({
+						item: cards1,
+						ItemNoclick: true, //卡牌不需要被点击
+						clickItemContainer,
+						custom: createCustom(key1, cards1.length),
+						itemContainerCss,
+					});
+				}
+			}
+			game.pause();
+			dialog.open();
+			_status.imchoosing = true;
+			return promise;
+		},
+		async cost(event, trigger, player) {
+			const list = get.addNewRowList(player.getCards("h"), "suit", player);
+			let limit = event.skill === "sbqingzheng" ? 3 - player.countMark("sbjianxiong") : 1;
+			const { result } = await player.chooseButtonTarget({
+				createDialog: [
+					[
+						[[`${get.prompt(event.skill)}<div class="text center">${get.translation(event.skill, "info")}</div>`], "addNewRow"],
+						[
+							dialog => {
+								dialog.classList.add("fullheight");
+								// 不添加scroll1和scroll2的类名
+								dialog.forcebutton = false;
+								dialog._scrollset = false;
+							},
+							"handle",
+						],
+						list.map(item => [Array.isArray(item) ? item : [item], "addNewRow"]),
+					],
+				],
+				filterButton(button) {
+					const player = get.player();
+					if (!button.links.length || button.links.some(card => !lib.filter.cardDiscardable(card, player, get.event().getParent().skill))) {
+						return false;
+					}
+					return true;
+				},
+				selectButton: limit,
+				limit,
+				filterTarget(card, player, target) {
+					return target != player && target.countCards("h");
+				},
+				ai1(button) {
+					const player = get.player();
+					if (!game.hasPlayer(current => player != current && current.countDiscardableCards(player, "h") > 0 && get.attitude(player, current) < 0)) {
+						return 0;
+					}
+					let values = button.links.map(i => get.value(i)).reduce((p, c) => p + c, 0) / button.links.length;
+					if (button.links.length > 4 || values > 6) {
+						return 0;
+					}
+					return (13 - button.links.length) / values;
+				},
+				ai2(target) {
+					const player = get.player(),
+						att = get.attitude(player, target);
+					if (att >= 0) {
+						return 0;
+					}
+					return 1 - att / 2 + Math.sqrt(target.countCards("h"));
+				},
+			});
+			event.result = {
+				bool: result?.bool,
+				cost_data: result?.links,
+				targets: result?.targets,
+			};
+			if (event.result.bool && result?.links?.length) {
+				event.result.cards = player.getCards("h").filter(card => result.links.includes(get.suit(card, player)));
+			}
+		},
+		async content(event, trigger, player) {
+			const {
+				targets: [target],
+				cards: cards1,
+			} = event;
+			await player.discard(cards1);
+			if (
+				!target.countCards("h") ||
+				lib.suits
+					.slice()
+					.filter(suit => target.hasCard((card, playerx) => get.suit(card, playerx) === suit, "h"))
+					.every(suit => target.hasCard((card, playerx) => get.suit(card, playerx) === suit && !lib.filter.cardDiscardable(card, player), "h"))
+			) {
+				if (target.countCards("h")) {
+					const content = [`###清正###<div class="text center">${get.translation(target)}的手牌</div>`, target.getCards("h")];
+					await player.chooseControl("ok").set("dialog", content);
+				}
+				return;
+			}
+			const list = get.addNewRowList(target.getCards("h"), "suit", target);
+			let { result } = await player
+				.chooseButton(
+					[
+						[
+							[[`清正：弃置${get.translation(target)}一种花色的所有牌`], "addNewRow"],
+							[
+								dialog => {
+									dialog.classList.add("fullheight");
+									dialog.forcebutton = false;
+									dialog._scrollset = false;
+								},
+								"handle",
+							],
+							list.map(item => [Array.isArray(item) ? item : [item], "addNewRow"]),
+						],
+					],
+					true
+				)
+				.set("filterButton", button => {
+					const player = get.player();
+					if (!button.links.length || button.links.some(card => !lib.filter.cardDiscardable(card, player, get.event().getParent().name))) {
+						return false;
+					}
+					return true;
+				})
+				.set("ai", button => {
+					const player = get.player();
+					return button.links.length;
+				});
+			if (!result?.links?.length) {
+				return;
+			}
+			const cards2 = target.getDiscardableCards(player, "h").filter(card => result.links.includes(get.suit(card, target)));
+			if (cards2.length) {
+				await target.discard(cards2, "notBySelf").set("discarder", player);
+			}
+			if (cards1.length > cards2.length) {
+				await target.damage(player,'fire');
+			}
+			if (event.name !== "sbqingzheng" || player.countMark("sbjianxiong") >= 2) {
+				return;
+			}
+			if (["sbjianxiong", "jdjianxiong"].some(skill => player.hasSkill(skill, null, null, false))) {
+				result = await player
+					.chooseBool("是否获得1枚“治世”？")
+					.set("choice", Math.random() >= 0.5)
+					.forResult();
+				if (result?.bool) {
+					player.addMark("sbjianxiong", 1);
+				}
+			}
+		},
+	},
+	sgsxjxfzmnl_mbcmjiushi: {
+		audio: 'mbcmjiushi',
+		inherit: "rejiushi",
+		persevereSkill: true,
+		group: ["sgsxjxfzmnl_mbcmjiushi_use", "sgsxjxfzmnl_mbcmjiushi_turnback", "sgsxjxfzmnl_mbcmjiushi_gain"],
+		subSkill: {
+			use: {
+				hiddenCard(player, name) {
+					if (name == "jiu") {
+						return !player.isTurnedOver();
+					}
+					return false;
+				},
+				audio: "mbcmjiushi",
+				enable: "chooseToUse",
+				filter(event, player) {
+					if (player.classList.contains("turnedover")) {
+						return false;
+					}
+					return event.filterCard({ name: "jiu", isCard: true }, player, event);
+				},
+				async content(event, trigger, player) {
+					if (_status.event.getParent(2).type == "dying") {
+						event.dying = player;
+						event.type = "dying";
+					}
+					await player.turnOver();
+					await player.useCard({ name: "jiu", isCard: true }, player);
+				},
+				ai: {
+					save: true,
+					skillTagFilter(player, tag, arg) {
+						return !player.isTurnedOver() && _status.event?.dying == player;
+					},
+					order: 5,
+					result: {
+						player(player) {
+							if (_status.event.parent.name == "phaseUse") {
+								if (player.countCards("h", "jiu") > 0) {
+									return 0;
+								}
+								if (player.getEquip("zhuge") && player.countCards("h", "sha") > 1) {
+									return 0;
+								}
+								if (!player.countCards("h", "sha")) {
+									return 0;
+								}
+								var targets = [];
+								var target;
+								var players = game.filterPlayer();
+								for (var i = 0; i < players.length; i++) {
+									if (get.attitude(player, players[i]) < 0) {
+										if (player.canUse("sha", players[i], true, true)) {
+											targets.push(players[i]);
+										}
+									}
+								}
+								if (targets.length) {
+									target = targets[0];
+								} else {
+									return 0;
+								}
+								var num = get.effect(target, { name: "sha" }, player, player);
+								for (var i = 1; i < targets.length; i++) {
+									var num2 = get.effect(targets[i], { name: "sha" }, player, player);
+									if (num2 > num) {
+										target = targets[i];
+										num = num2;
+									}
+								}
+								if (num <= 0) {
+									return 0;
+								}
+								var e2 = target.getEquip(2);
+								if (e2) {
+									if (e2.name == "tengjia") {
+										if (!player.countCards("h", { name: "sha", nature: "fire" }) && !player.getEquip("zhuque")) {
+											return 0;
+										}
+									}
+									if (e2.name == "renwang") {
+										if (!player.countCards("h", { name: "sha", color: "red" })) {
+											return 0;
+										}
+									}
+									if (e2.name == "baiyin") {
+										return 0;
+									}
+								}
+								if (player.getEquip("guanshi") && player.countCards("he") > 2) {
+									return 1;
+								}
+								return target.countCards("h") > 3 ? 0 : 1;
+							}
+							if (player == _status.event.dying || player.isTurnedOver()) {
+								return 3;
+							}
+						},
+					},
+					effect: {
+						target(card, player, target) {
+							if (target.isTurnedOver()) {
+								if (get.tag(card, "damage")) {
+									if (player.hasSkillTag("jueqing", false, target)) {
+										return [1, -2];
+									}
+									if (target.hp == 1) {
+										return;
+									}
+									return [1, target.countCards("h") / 2];
+								}
+							}
+						},
+					},
+				},
+			},
+			turnback: {
+				audio: "mbcmjiushi",
+				persevereSkill: true,
+				trigger: { player: "damageEnd" },
+				check(event, player) {
+					return player.isTurnedOver();
+				},
+				filter(event, player) {
+					if (
+						player.hasHistory("useCard", evt => {
+							if (evt.card.name != "jiu" || evt.getParent().name != "sgsxjxfzmnl_mbcmjiushi_use") {
+								return false;
+							}
+							return evt.getParent("damage", true) == event;
+						})
+					) {
+						return false;
+					}
+					return player.isTurnedOver();
+				},
+				prompt(event, player) {
+					return "是否发动【酒诗】，将武将牌翻面？";
+				},
+				content() {
+					player.turnOver();
+				},
+			},
+			gain: {
+				audio: "mbcmjiushi",
+				persevereSkill: true,
+				trigger: { player: "turnOverAfter" },
+				frequent: true,
+				prompt: "是否发动【酒诗】，获得牌堆中的一张锦囊牌？",
+				content() {
+					var card = get.cardPile2(function (card) {
+						return get.type2(card) == "trick";
+					});
+					if (card) {
+						player.gain(card, "draw");
+					}
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_mbcmfangzhu: {
+		audio: 'mbcmfangzhu',
+		persevereSkill: true,
+		inherit: "sbfangzhu",
+		filter(event, player) {
+			const target = player.storage.sgsxjxfzmnl_mbcmfangzhu;
+			return game.hasPlayer(current => current !== player && (target ? target != current : true));
+		},
+		usable: 1,
+		chooseButton: {
+			dialog() {
+				const dialog = ui.create.dialog("放逐：令一名其他角色...", "hidden");
+				dialog.add([
+					[
+						[1, "不能使用手牌中的非锦囊牌直到其回合结束"],
+						[2, "非Charlotte技能失效直到其回合结束"],
+					],
+					"textbutton",
+				]);
+				return dialog;
+			},
+			check(button) {
+				const player = get.player();
+				if (button.link === 2) {
+					if (
+						game.hasPlayer(target => {
+							if (target.hasSkill("sgsxjxfzmnl_mbcmfangzhu_ban") || target.hasSkill("fengyin") || target.hasSkill("baiban")) {
+								return false;
+							}
+							return (
+								get.attitude(player, target) < 0 &&
+								["name", "name1", "name2"]
+									.map((sum, name) => {
+										if (target[name] && (name != "name1" || target.name != target.name1)) {
+											if (get.character(target[name])) {
+												return get.rank(target[name], true);
+											}
+										}
+										return 0;
+									})
+									.reduce((p, c) => {
+										return p + c;
+									}, 0) > 5
+							);
+						})
+					) {
+						return 6;
+					}
+				}
+				return button.link === 1 ? 1 : 0;
+			},
+			backup(links, player) {
+				return {
+					num: links[0],
+					audio: "mbcmfangzhu",
+					filterCard: () => false,
+					selectCard: -1,
+					filterTarget(card, player, target) {
+						if (target == player) {
+							return false;
+						}
+						const num = lib.skill.mbcmfangzhu_backup.num,
+							storage = target.getStorage("sgsxjxfzmnl_mbcmfangzhu_ban"),
+							targetx = player.storage.sgsxjxfzmnl_mbcmfangzhu;
+						if (target == targetx) {
+							return false;
+						}
+						return num != 1 || !storage.length;
+					},
+					async content(event, trigger, player) {
+						const target = event.target;
+						const num = lib.skill.sgsxjxfzmnl_mbcmfangzhu_backup.num;
+						// player.storage.sgsxjxfzmnl_mbcmfangzhu = target;
+						let evt = event.getParent("phaseUse", true);
+						if (evt) {
+							evt.fangzhuUsed = true;
+						}
+						// player
+						// 	.when("phaseUseEnd")
+						// 	.filter(evtx => !evtx.fangzhuUsed)
+						// 	.then(() => {
+						// 		player.storage.sgsxjxfzmnl_mbcmfangzhu = player;
+						// 	});
+						switch (num) {
+							case 1:
+								target.addTempSkill("sgsxjxfzmnl_mbcmfangzhu_ban", { player: "phaseEnd" });
+								target.markAuto("sgsxjxfzmnl_mbcmfangzhu_ban", ["trick"]);
+								lib.skill.mbcmfangzhu_ban.init(target, "mbcmfangzhu_ban");
+								break;
+							case 2:
+								target.addTempSkill("sgsxjxfzmnl_mbcmfangzhu_baiban", { player: "phaseEnd" });
+								break;
+						}
+					},
+					ai: {
+						result: {
+							target(player, target) {
+								switch (lib.skill.mbcmfangzhu_backup.num) {
+									case 1:
+										return -target.countCards("h", card => get.type(card) != "trick") - 1;
+									case 2:
+										return -target.getSkills(null, null, false).reduce((sum, skill) => {
+											return sum + Math.max(get.skillRank(skill, "out"), get.skillRank(skill, "in"));
+										}, 0);
+								}
+							},
+						},
+					},
+				};
+			},
+			prompt(links, player) {
+				const str = "###放逐###";
+				switch (links[0]) {
+					case 1:
+						return str + "令一名其他角色不能使用手牌中的非锦囊牌直到其回合结束";
+					case 2:
+						return str + "令一名其他角色的非Charlotte技能失效直到其回合结束";
+				}
+			},
+		},
+		ai: {
+			order: 10,
+			result: {
+				player(player) {
+					return game.hasPlayer(current => get.attitude(player, current) < 0) ? 1 : 0;
+				},
+			},
+		},
+		subSkill: {
+			backup: {},
+			baiban: {
+				init(player, skill) {
+					player.addSkillBlocker(skill);
+					player.addTip(skill, "放逐 技能失效");
+				},
+				onremove(player, skill) {
+					player.removeSkillBlocker(skill);
+					player.removeTip(skill);
+				},
+				inherit: "baiban",
+				marktext: "逐",
+			},
+			ban: {
+				init(player, skill) {
+					let storage = player.getStorage(skill);
+					if (storage.length) {
+						player.addTip(skill, "放逐 限" + (storage.length === 1 ? get.translation(storage[0])[0] : "手牌"));
+					}
+				},
+				onremove(player, skill) {
+					player.removeTip(skill);
+					delete player.storage[skill];
+				},
+				charlotte: true,
+				mark: true,
+				marktext: "禁",
+				intro: {
+					markcount: () => 0,
+					content(storage) {
+						if (storage.length > 1) {
+							return "不能使用手牌";
+						}
+						return "不能使用手牌中的非" + get.translation(storage[0]) + "牌";
+					},
+				},
+				mod: {
+					cardEnabled(card, player) {
+						const storage = player.getStorage("sgsxjxfzmnl_mbcmfangzhu_ban");
+						const hs = player.getCards("h"),
+							cards = [card];
+						if (Array.isArray(card.cards)) {
+							cards.addArray(card.cards);
+						}
+						if (cards.containsSome(...hs) && !storage.includes(get.type2(card))) {
+							return false;
+						}
+					},
+					cardSavable(card, player) {
+						const storage = player.getStorage("sgsxjxfzmnl_mbcmfangzhu_ban");
+						const hs = player.getCards("h"),
+							cards = [card];
+						if (Array.isArray(card.cards)) {
+							cards.addArray(card.cards);
+						}
+						if (cards.containsSome(...hs) && !storage.includes(get.type2(card))) {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_mbjuejin: {
+		audio: 'mbjuejin',
+		persevereSkill: true,
+		enable: "phaseUse",
+		limited: true,
+		skillAnimation: true,
+		animationColor: "thunder",
+		filterCard: () => false,
+		selectCard: [-1, -2],
+		filterTarget: true,
+		selectTarget: -1,
+		multiline: true,
+		async contentBefore(event, trigger, player) {
+			game.broadcastAll(() => {
+				_status.tempMusic = "effect_caomaoBJM";
+				game.playBackgroundMusic();
+			});
+			player.changeSkin({ characterName: "sgsxjxfzmnl_mb_caomao" }, "sgsxjxfzmnl_mb_caomao_shadow");
+			player.awakenSkill(event.skill);
+		},
+		async content(event, trigger, player) {
+			const target = event.target;
+			const delt = target.getHp(true) - 1,
+				num = Math.abs(delt);
+			if (delt != 0) {
+				if (delt > 0) {
+					const next = target.changeHp(-delt);
+					next._triggered = null;
+					await next;
+				} else {
+					await target.recover(num);
+				}
+			}
+			if (delt > 0) {
+				await target.changeHujia(num + (player == target ? 2 : 0), null, true);
+			} else if (player == target) {
+				await target.changeHujia(2, null, true);
+			}
+		},
+		async contentAfter(event, trigger, player) {
+			game.addGlobalSkill("sgsxjxfzmnl_mbjuejin_xiangsicunwei");
+			player.$fullscreenpop("向死存魏！", "thunder");
+			const cards = ["cardPile", "discardPile"].map(pos => Array.from(ui[pos].childNodes)).flat();
+			const filter = card => ["shan", "tao", "jiu"].includes(card.name);
+			const cardx = cards.filter(filter);
+			if (cardx.length) {
+				await game.cardsGotoSpecial(cardx);
+				game.log(cardx, "被移出了游戏");
+			}
+			for (const target of game.filterPlayer()) {
+				const sishis = target.getCards("hej", filter);
+				if (sishis.length) {
+					target.$throw(sishis);
+					game.log(sishis, "被移出了游戏");
+					await target.lose(sishis, ui.special);
+				}
+			}
+		},
+		ai: {
+			order: 0.1,
+			result: {
+				player(player) {
+					let eff = 1;
+					game.countPlayer(current => {
+						const att = get.attitude(player, current),
+							num = Math.abs(current.getHp(true) - 1);
+						const delt = Math.max(0, num + current.hujia - 5);
+						eff -= att * delt;
+					});
+					return eff > 0 ? 1 : 0;
+				},
+			},
+		},
+		subSkill: {
+			xiangsicunwei: {
+				trigger: {
+					global: ["loseAfter", "equipAfter", "loseAsyncAfter", "cardsDiscardAfter"],
+				},
+				forced: true,
+				silent: true,
+				firstDo: true,
+				filter(event, player) {
+					const nameList = ["shan", "tao", "jiu"];
+					return event.getd().some(card => {
+						return nameList.includes(get.name(card, false)) && get.position(card, true) === "d";
+					});
+				},
+				async content(event, trigger, player) {
+					const nameList = ["shan", "tao", "jiu"];
+					const cards = trigger.getd().filter(card => {
+						return nameList.includes(get.name(card, false)) && get.position(card, true) === "d";
+					});
+					await game.cardsGotoSpecial(cards);
+					game.log(cards, "被移出了游戏");
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_mbcmguixin: {
+		audio: 'guixin',
+		trigger: { player: "damageEnd" },
+		filter(event, player) {
+			return game.hasPlayer(cur => {
+				return cur !== player && cur.countCards("hej") > 0;
+			});
+		},
+		check(event, player) {
+			if (player.isTurnedOver() || event.num > 1) {
+				return true;
+			}
+			var num = game.countPlayer(function (current) {
+				if (current.countCards("he") && current != player && get.attitude(player, current) <= 0) {
+					return true;
+				}
+				if (current.countCards("j") && current != player && get.attitude(player, current) > 0) {
+					return true;
+				}
+			});
+			return num >= 2;
+		},
+		getIndex(event, player) {
+			return event.num;
+		},
+		async content(event, trigger, player) {
+			let targets = game.filterPlayer(current => current != player).sortBySeat();
+			player.line(targets, "green");
+			await player.gainMultiple(targets, "hej");
+			// await player.turnOver();
+		},
+		ai: {
+			maixie: true,
+			maixie_hp: true,
+			threaten(player, target) {
+				if (target.hp == 1) {
+					return 2.5;
+				}
+				return 0.5;
+			},
+			effect: {
+				target(card, player, target) {
+					if (
+						!target._guixin_eff &&
+						get.tag(card, "damage") &&
+						target.hp >
+							(player.hasSkillTag("damageBonus", true, {
+								card: card,
+								target: target,
+							})
+								? 2
+								: 1)
+					) {
+						if (player.hasSkillTag("jueqing", false, target)) {
+							return [1, -2];
+						}
+						target._guixin_eff = true;
+						let gain = game.countPlayer(function (current) {
+							if (target == current) {
+								return 0;
+							}
+							if (get.attitude(target, current) > 0) {
+								if (current.hasCard(cardx => lib.filter.canBeGained(cardx, target, current, "guixin") && get.effect(current, cardx, current, current) < 0, "ej")) {
+									return 1.3;
+								}
+								return 0;
+							}
+							if (current.hasCard(cardx => lib.filter.canBeGained(cardx, target, current, "guixin") && get.effect(current, cardx, current, current) > 0, "ej")) {
+								return 1.1;
+							}
+							if (current.hasCard(cardx => lib.filter.canBeGained(cardx, target, current, "guixin"), "h")) {
+								return 0.9;
+							}
+							return 0;
+						});
+						if (target.isTurnedOver()) {
+							gain += 2.3;
+						} else {
+							gain -= 2.3;
+						}
+						delete target._guixin_eff;
+						return [1, Math.max(0, gain)];
+					}
+				},
+			},
+		},
+	},
 
 
+	//蒲元
+	sgsxjxfzmnl_pytianjiang: {
+		audio: 'pytianjiang',
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		forced: true,
+		locked: false,
+		filter(event, player) {
+			return event.name != "phase" || game.phaseNumber == 0;
+		},
+		content() {
+			"step 0";
+			var i = 0;
+			var list = [];
+			while (i++ < 4) {
+				var card = get.cardPile(
+					function (card) {
+						if (get.type(card) != "equip") {
+							return false;
+						}
+						return list.length == 0 || !get.YB_suit(list,'subtype').includes(get.subtype(card));
+					},
+					false,
+					"random"
+				);
+				if (card) {
+					list.push(card);
+				}
+			}
+			if (!list.length) {
+				event.finish();
+				return;
+			}
+			event.list = list;
+			player.gain(event.list, "gain2");
+			"step 1";
+			game.delay(1);
+			var card = event.list.shift();
+			if (player.getCards("h").includes(card)) {
+				player.$give(card, player, false);
+				player.equip(card);
+			}
+			if (event.list.length) {
+				event.redo();
+			}
+		},
+		group: "sgsxjxfzmnl_pytianjiang_move",
+	},
+	sgsxjxfzmnl_pytianjiang_move: {
+		audio: "pytianjiang",
+		prompt: "将装备区里的一张牌移动至其他角色的装备区",
+		enable: "phaseUse",
+		position: "e",
+		sourceSkill: "sgsxjxfzmnl_pytianjiang",
+		filter(event, player) {
+			return player.countCards("e") > 0;
+		},
+		check() {
+			return 1;
+		},
+		filterCard: true,
+		filterTarget(event, player, target) {
+			return target != player && target.canEquip(ui.selected.cards[0], true);
+		},
+		prepare: "give",
+		discard: false,
+		lose: false,
+		content() {
+			"step 0";
+			target.equip(cards[0]);
+			"step 1";
+			if (cards[0].name.indexOf("sgsxjxfzmnl_pyzhuren_") == 0 && !player.getCards("e").includes(cards[0])) {
+				var list = [];
+				var suits = {
+					spade:[],
+					heart:[],
+					club:[],
+					diamond:[],
+					none:[]
+				}
+				for(var i of ui.cardPile.childNodes){
+					var suit = get.suit(i);
+					suits[suit].push(i);
+				}
+				for(var k in suits){
+					if(suits[k].length>0){
+						list.addArray(suits[k].randomGets(1).slice(0,1))
+					}
+				}
+				var fun = (function getCards(){
+					return function(num){
+						if (typeof num != "number") {
+							num = 1;
+						}
+						if (num <= 0) {
+							return [];
+						}
+						return list;
+					}
+				})(list)
+				if(list.length>0)player.YB_drawCard(list.length,fun)
+			}
+		},
+		ai: {
+			order: (item, player) => {
+				if (player.hasCard(i => get.subtype(i) === "equip1", "h")) {
+					return 11;
+				}
+				return 1;
+			},
+			expose: 0.2,
+			result: {
+				target(player, target) {
+					if (ui.selected.cards.length) {
+						let card = ui.selected.cards[0],
+							tv = get.value(card, target),
+							sub = get.subtype(card);
+						if (sub === "equip1") {
+							let ev = Infinity,
+								te = target.getEquips(1);
+							if (!te.length) {
+								return tv;
+							}
+							te.forEach(i => {
+								ev = Math.min(ev, get.value(i));
+							});
+							if (card.name.indexOf("sgsxjxfzmnl_pyzhuren_") == 0) {
+								return 2 + tv - ev;
+							}
+							return tv - ev;
+						}
+						if (target.hasCard(i => get.subtype(i) === sub, "he")) {
+							return 0;
+						}
+						let pv = get.value(card, player);
+						if (pv > 0 && Math.abs(tv) <= pv) {
+							return 0;
+						}
+						return tv;
+					}
+					return 0;
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_pyzhuren: {
+		audio: 'pyzhuren',
+		enable: "phaseUse",
+		usable: 1,
+		filterCard: true,
+		selectCard: 1,
+		check(card) {
+			var player = _status.event.player;
+			var name = "sgsxjxfzmnl_pyzhuren_" + card[card.name == "shandian" ? "name" : "suit"];
+			if (!lib.card[name] || (_status.sgsxjxfzmnl_pyzhuren && _status.sgsxjxfzmnl_pyzhuren[name])) {
+				if (!player.countCards("h", "sha")) {
+					return 4 - get.value(card);
+				}
+				return 0;
+			}
+			return 7 - get.value(card);
+		},
+		content() {
+			//player.addSkill('pyzhuren_destroy');
+			if (!_status.sgsxjxfzmnl_pyzhuren) {
+				_status.sgsxjxfzmnl_pyzhuren = {};
+			}
+			var rand = 0.85;
+			var num = get.number(cards[0]);
+			if (num > 4) {
+				rand = 0.9;
+			}
+			if (num > 8) {
+				rand = 0.95;
+			}
+			if (num > 12 || cards[0].name == "shandian" || get.isLuckyStar(player)) {
+				rand = 1;
+			}
+			var name = "sgsxjxfzmnl_pyzhuren_" + cards[0][cards[0].name == "shandian" ? "name" : "suit"];
+			if (!lib.card[name] || _status.sgsxjxfzmnl_pyzhuren[name] || Math.random() > rand) {
+				player.popup("杯具");
+				game.log(player, "锻造失败");
+				var card = get.cardPile(function (card) {
+					return card.name == "sha";
+				});
+				if (card) {
+					player.gain(card, "gain2");
+				}
+			} else {
+				_status.sgsxjxfzmnl_pyzhuren[name] = true;
+				var card = game.createCard(name, cards[0].name == "shandian" ? "spade" : cards[0].suit, 1);
+				card.destroyed = "discardPile";
+				player.gain(card, "gain2");
+			}
+		},
+		ai: {
+			order: 10,
+			result: {
+				player: 1,
+			},
+		},
+	},
+	sgsxjxfzmnl_pyzhuren_heart: {
+		audio: true,
+		trigger: { source: "damageSource" },
+		// usable: 1,
+		equipSkill: true,
+		filter(event, player) {
+			return event.getParent().name == "sha";
+		},
+		content() {
+			"step 0";
+			player.judge(function (card) {
+				var player = _status.event.getParent("sgsxjxfzmnl_pyzhuren_heart").player;
+				if (player.isHealthy() && get.color(card) == "red") {
+					return 0;
+				}
+				return 2;
+			});
+			"step 1";
+			switch (result.color) {
+				case "red":
+					player.recover();
+					break;
+				case "black":
+					player.draw(2);
+					break;
+				default:
+					break;
+			}
+		},
+		ai: {
+			equipValue(card, player) {
+				if (player.isDamaged()) {
+					return 4.5;
+				}
+				return 6;
+			},
+			basic: {
+				equipValue: 4.5,
+			},
+		},
+	},
+	sgsxjxfzmnl_pyzhuren_diamond: {
+		audio: true,
+		trigger: { source: "damageBegin1" },
+		// usable: 2,
+		equipSkill: true,
+		locked: false,
+		mod: {
+			cardUsable(card, player, num) {
+				var cardx = player.getEquip("pyzhuren_diamond");
+				if (card.name == "sha" && (!cardx || player.hasSkill("pyzhuren_diamond", null, false) || (!_status.pyzhuren_diamond_temp && !ui.selected.cards.includes(cardx)))) {
+					return num + 1;
+				}
+			},
+			cardEnabled2(card, player) {
+				if (!_status.event.addCount_extra || player.hasSkill("pyzhuren_diamond", null, false)) {
+					return;
+				}
+				if (card && card == player.getEquip("pyzhuren_diamond")) {
+					_status.pyzhuren_diamond_temp = true;
+					var bool = lib.filter.cardUsable(get.autoViewAs({ name: "sha" }, ui.selected.cards.concat([card])), player);
+					delete _status.pyzhuren_diamond_temp;
+					if (!bool) {
+						return false;
+					}
+				}
+			},
+		},
+		filter(event, player) {
+			if (event.getParent().name != "sha") {
+				return false;
+			}
+			return (
+				player.countCards("he", card => {
+					return card != player.getEquip("pyzhuren_diamond");
+				}) > 0
+			);
+		},
+		// async cost(event, trigger, player) {
+		// 	const next = player.chooseToDiscard(
+		// 		"he",
+		// 		(card, player) => {
+		// 			return card != player.getEquip("pyzhuren_diamond");
+		// 		},
+		// 		get.prompt(event.name.slice(0, -5), trigger.player),
+		// 		"弃置一张牌，令即将对其造成的伤害+1"
+		// 	);
+		// 	next.set("target", trigger.player);
+		// 	next.set("ai", card => {
+		// 		const { goon, target } = get.event();
+		// 		if (goon) {
+		// 			return 30 / (1 + target.hp) - get.value(card);
+		// 		}
+		// 		return -1;
+		// 	});
+		// 	next.set(
+		// 		"goon",
+		// 		get.attitude(player, trigger.player) < 0 &&
+		// 			!trigger.player.hasSkillTag("filterDamage", null, {
+		// 				player: player,
+		// 				card: trigger.card,
+		// 			}) &&
+		// 			get.damageEffect(trigger.player, player, player, get.natureList(trigger)) > 0
+		// 	);
+		// 	event.result = await next.forResult();
+		// },
+		check(trigger,player){
+			// var player = _status.event.player;
+			var target = trigger.player;
+			var goon = get.attitude(player, trigger.player) < 0 &&
+				!trigger.player.hasSkillTag("filterDamage", null, {
+					player: player,
+					card: trigger.card,
+				}) &&
+				get.damageEffect(trigger.player, player, player, get.natureList(trigger)) > 0
+			if (goon) {
+				return 30 / (1 + target.hp) - get.value(card);
+			}
+			return -1;
+		},
+		logTarget: "player",
+		async content(event, trigger, player) {
+			trigger.num++;
+		},
+		ai: {
+			expose: 0.25,
+			equipValue(card, player) {
+				return Math.min(7, 3.6 + player.countCards("h") / 2);
+			},
+			basic: { equipValue: 4.5 },
+		},
+	},
+	sgsxjxfzmnl_pyzhuren_club: {
+		audio: true,
+		trigger: { player: "useCard2" },
+		direct: true,
+		equipSkill: true,
+		filter(event, player) {
+			if (event.card.name != "sha" && get.type(event.card) != "trick") {
+				return false;
+			}
+			var info = get.info(event.card);
+			if (info.allowMultiple == false) {
+				return false;
+			}
+			var num = player.getHistory("useSkill", function (evt) {
+				return evt.skill == "sgsxjxfzmnl_pyzhuren_club";
+			}).length;
+			// if (num >= 2) {
+			// 	return false;
+			// }
+			if (event.targets && !info.multitarget) {
+				if (
+					game.hasPlayer(function (current) {
+						return lib.filter.targetEnabled2(event.card, player, current) && !event.targets.includes(current);
+					})
+				) {
+					return true;
+				}
+			}
+			return false;
+		},
+		content() {
+			"step 0";
+			var prompt2 = "为" + get.translation(trigger.card) + "额外指定一个目标";
+			player
+				.chooseTarget([1, player.storage.fumian_red], get.prompt(event.name), function (card, player, target) {
+					var player = _status.event.player;
+					if (_status.event.targets.includes(target)) {
+						return false;
+					}
+					return lib.filter.targetEnabled2(_status.event.card, player, target);
+				})
+				.set("prompt2", prompt2)
+				.set("ai", function (target) {
+					var trigger = _status.event.getTrigger();
+					var player = _status.event.player;
+					return get.effect(target, trigger.card, player, player);
+				})
+				.set("targets", trigger.targets)
+				.set("card", trigger.card);
+			"step 1";
+			if (result.bool) {
+				if (!event.isMine() && !event.isOnline()) {
+					game.delayx();
+				}
+				event.targets = result.targets;
+			}
+			"step 2";
+			if (event.targets) {
+				player.logSkill(event.name, event.targets);
+				trigger.targets.addArray(event.targets);
+			}
+		},
+		ai: {
+			equipValue(card, player) {
+				if (player.getEnemies().length < 2) {
+					if (player.isDamaged()) {
+						return 0;
+					}
+					return 1;
+				}
+				return 4.5;
+			},
+			basic: {
+				equipValue: 4.5,
+			},
+		},
+		// subSkill: {
+		// 	lose: {
+		// 		audio: "pyzhuren_club",
+		// 		forced: true,
+		// 		charlotte: true,
+		// 		equipSkill: true,
+		// 		trigger: {
+		// 			player: "loseAfter",
+		// 			global: ["equipAfter", "addJudgeAfter", "gainAfter", "loseAsyncAfter", "addToExpansionAfter"],
+		// 		},
+		// 		filter: (event, player) => {
+		// 			return player.isDamaged() && !player.hasSkillTag("unequip2");
+		// 		},
+		// 		getIndex(event, player) {
+		// 			const evt = event.getl(player);
+		// 			const lostCards = [];
+		// 			evt.es.forEach(card => {
+		// 				const VEquip = evt.vcard_map.get(card);
+		// 				if (VEquip.name === "sgsxjxfzmnl_pyzhuren_club") {
+		// 					lostCards.add(VEquip);
+		// 				}
+		// 			});
+		// 			return lostCards.length;
+		// 		},
+		// 		async content(event, trigger, player) {
+		// 			await player.recover();
+		// 		},
+		// 	},
+		// },
+	},
+	sgsxjxfzmnl_pyzhuren_spade: {
+		audio: true,
+		trigger: { player: "useCardToPlayered" },
+		filter(event, player) {
+			return event.card.name == "sha"; //&&event.targets.length==1&&get.color(event.card)=='black';
+		},
+		check(event, player) {
+			return get.attitude(player, event.target) <= 0;
+		},
+		equipSkill: true,
+		logTarget: "target",
+		content() {
+			var num = player.getHistory("useSkill", function (evt) {
+				return evt.skill == "sgsxjxfzmnl_pyzhuren_spade";
+			}).length;
+			trigger.target.loseHp(num); //.set('source',player);
+		},
+		ai: {
+			equipValue(card, player) {
+				return 1 + 4 * Math.min(5, player.getCardUsable("sha"));
+			},
+			basic: {
+				equipValue: 5,
+			},
+			jueqing: true,
+			unequip_ai: true,
+			skillTagFilter(player, tag, arg) {
+				if (tag == "unequip_ai") {
+					return arg && arg.name === "sha";
+				}
+			},
+		},
+	},
+	sgsxjxfzmnl_pyzhuren_shandian: {
+		audio: true,
+		trigger: { player: "useCardToPlayered" },
+		filter(event, player) {
+			return event.card.name == "sha"; //&&event.targets.length==1;
+		},
+		check(event, player) {
+			return get.attitude(player, event.target) <= 0;
+		},
+		equipSkill: true,
+		logTarget: "target",
+		content() {
+			"step 0";
+			trigger.target.judge(function (card) {
+				var suit = get.suit(card);
+				if (suit == "spade") {
+					return -10;
+				}
+				if (suit == "club") {
+					return -5;
+				}
+				return 0;
+			}).judge2 = function (result) {
+				return result.color == "black" ? true : false;
+			};
+			"step 1";
+			if (result.suit == "spade") {
+				trigger.target.damage(3, "thunder");
+				//trigger.getParent().excluded.add(trigger.target);
+			} else if (result.suit == "club") {
+				trigger.target.damage("thunder");
+				player.recover();
+				player.draw();
+			}
+		},
+		ai: {
+			equipValue(card, player) {
+				if (player.isDamaged()) {
+					return 6;
+				}
+				return 4.8;
+			},
+			basic: {
+				equipValue: 5,
+			},
+		},
+	},
 
 
+	//十周年神华佗
+	sgsxjxfzmnl_jingyu: {
+		audio: 'jingyu',
+		trigger: {
+			global: ["useSkill", "logSkillBegin"],
+		},
+		filter(event, player) {
+			if (["global", "equip"].includes(event.type)) {
+				return false;
+			}
+			let skill = get.sourceSkillFor(event);
+			if (!skill || skill === "sgsxjxfzmnl_jingyu") {
+				return false;
+			}
+			let info = get.info(skill);
+			if (!info || info.charlotte || info.equipSkill) {
+				return false;
+			}
+			// return !player.getStorage("sgsxjxfzmnl_jingyu_used").includes(skill);
+			return true;
+		},
+		direct: true,
+		forced: true,
+		async content(event, trigger, player) {
+			// if (!player.storage.jingyu_used) {
+			// 	player
+			// 		.when({ global: "roundStart" })
+			// 		.assign({
+			// 			firstDo: true,
+			// 		})
+			// 		.then(() => delete player.storage.sgsxjxfzmnl_jingyu_used);
+			// }
+			// let skill = get.sourceSkillFor(trigger);
+			// player.markAuto("jingyu_used", skill);
+			player.logSkill(event.name);
+			await player.draw();
+		},
+		ai: { threaten: 6 },
+	},
+	sgsxjxfzmnl_lvxin: {
+		audio: 'lvxin',
+		enable: "phaseUse",
+		usable: 1,
+		filterCard: true,
+		filterTarget: lib.filter.notMe,
+		filter() {
+			const round = game.roundNumber;
+			return typeof round == "number" && round > 0;
+		},
+		check(card) {
+			const round = game.roundNumber,
+				player = get.player();
+			let valueFix = 0;
+			if (["sha", "shan"].includes(get.name(card, false))) {
+				valueFix += 3;
+			}
+			if (
+				(round <= 2 &&
+					player.hasCard(card => {
+						return ["sha", "shan"].includes(get.name(card)) && get.value(card) <= 3;
+					})) ||
+				game.hasPlayer(current => {
+					return current !== player && get.attitude(player, current) > 0;
+				})
+			) {
+				return 6 - get.value(card) + valueFix;
+			}
+			return 4.5 - get.value(card) + valueFix;
+		},
+		delay: false,
+		discard: false,
+		lose: false,
+		async content(event, trigger, player) {
+			const { target, cards } = event,
+				round = game.countGroup();
+				// round = Math.min(5, game.roundNumber);
+			const name = get.translation(target);
+			await player.give(cards, target);
+			const result = await player
+				.chooseControl(["摸牌", "弃牌"])
+				.set("choiceList", [`令${name}摸${get.cnNumber(round)}张牌`, `令${name}随机弃置${get.cnNumber(round)}张手牌`])
+				.set("prompt", "滤心：请选择一项")
+				.set("ai", () => {
+					return get.event("choice");
+				})
+				.set("choice", get.attitude(player, target) > 0 ? "摸牌" : "弃牌")
+				.forResult();
+			let cards2 = [];
+			const makeDraw = result.index === 0;
+			if (makeDraw) {
+				cards2 = await target.draw(round).forResult();
+			} else {
+				const cards = target.getCards("h", card => {
+					return lib.filter.cardDiscardable(card, target, "lvxin");
+				});
+				if (cards.length > 0) {
+					const evt = target.discard(cards.randomGets(round)).set("discarder", target);
+					await evt;
+					cards2 = evt.done.cards2;
+				}
+			}
+			const cardName = get.name(cards[0], player);
+			if (
+				cards2.some(card => {
+					return get.name(card, target) === cardName;
+				})
+			) {
+				const skillName = `sgsxjxfzmnl_lvxin_${makeDraw ? "recover" : "lose"}`;
+				target.addSkill(skillName);
+				target.addMark(skillName, 1, false);
+			}
+		},
+		subSkill: {
+			recover: {
+				trigger: { player: ["useSkill", "logSkillBegin", "useCard", "respond"] },
+				filter(event, player) {
+					if (["global", "equip"].includes(event.type)) {
+						return false;
+					}
+					if ((get.info(event.skill) || {}).charlotte) {
+						return false;
+					}
+					const skill = get.sourceSkillFor(event);
+					const info = get.info(skill);
+					return info && !info.charlotte && !info.equipSkill;
+				},
+				forced: true,
+				onremove: true,
+				charlotte: true,
+				async content(event, trigger, player) {
+					player.recover(player.countMark(event.name));
+					player.removeSkill(event.name);
+				},
+				intro: { content: "下次发动技能时回复#点体力" },
+			},
+			lose: {
+				trigger: { player: ["useSkill", "logSkillBegin", "useCard", "respond"] },
+				filter(event, player) {
+					if (["global", "equip"].includes(event.type)) {
+						return false;
+					}
+					if ((get.info(event.skill) || {}).charlotte) {
+						return false;
+					}
+					const skill = get.sourceSkillFor(event);
+					const info = get.info(skill);
+					return info && !info.charlotte && !info.equipSkill;
+				},
+				forced: true,
+				onremove: true,
+				charlotte: true,
+				async content(event, trigger, player) {
+					player.loseHp(player.countMark(event.name));
+					player.removeSkill(event.name);
+				},
+				intro: { content: "下次发动技能时失去#点体力" },
+			},
+		},
+		ai: {
+			order: 5,
+			result: {
+				target(player, target) {
+					const round = game.roundNumber;
+					if (
+						round <= 2 &&
+						target.countCards("h") > round * 2 &&
+						player.getCards("h").some(card => {
+							return ["sha", "shan"].includes(get.name(card)) && get.value(card) <= 3;
+						})
+					) {
+						return 1;
+					}
+					if (get.attitude(player, target) > 0) {
+						return round + Math.sqrt(1 + target.getDamagedHp());
+					}
+					return -(round + Math.sqrt(Math.max(0, 2 - target.getHp())));
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_huandao: {
+		audio: 'huandao',
+		enable: "phaseUse",
+		usable: 1,
+		limited: true,
+		filterTarget: lib.filter.notMe,
+		skillAnimation: true,
+		animationColor: "metal",
+		async content(event, trigger, player) {
+			player.awakenSkill(event.name);
+			const { target } = event;
+			await target.turnOver(false);
+			await target.link(false);
+			//？
+			let names = [target.name1 || target.name];
+			if (target.name2) {
+				names.add(target.name2);
+			}
+			names = names.map(name => get.rawName(name));
+			if (!_status.characterlist) {
+				game.initCharacterList();
+			}
+			var characters = [];
+			outer: for (const name of _status.characterlist) {
+				const info = lib.character[name];
+				if (names.includes(get.rawName(name))) {
+					characters.push(name);
+				}
+			}
+			if(!characters.length){
+				return;
+			}
+			player.line(target, "green");
+			var relu = await player.chooseButton([ '选择令'+get.translation(target)+'获得一张武将牌上的所有技能，并失去原有技能。', [characters, 'character']], true).forResult();
+			if(relu.bool){
+				await target.clearSkills(true);
+				await target.addTip('sgsxjxfzmnl_huandao', "被利斧砍开头颅");
+				game.log(target, '获得了', '#y' + get.translation(relu.links[0]), '的所有技能');
+				await target.addSkill(lib.character[relu.links[0]].skills);
+			}
+		},
+		ai: {
+			order: 5,
+			result: {
+				target(player, target) {
+					if (!_status.characterlist) {
+						game.initCharacterList();
+					}
+					if (game.roundNumber * game.countPlayer() <= (1.5 * game.countPlayer2()) / Math.sqrt(player.getDamagedHp() + 1)) {
+						return 0;
+					}
+					const ownedSkills = target.getSkills(null, false, false).filter(skill => {
+						const info = get.info(skill);
+						if (!info || info.charlotte || !get.skillInfoTranslation(skill, player).length) {
+							return false;
+						}
+						return true;
+					});
+					const uselessSkills = ownedSkills.filter(skill => {
+						const info = get.info(skill);
+						if (!info) {
+							return false;
+						}
+						if (target.awakenedSkills.includes(skill) && (info.limited || info.juexingji || info.dutySkill)) {
+							return true;
+						}
+						if (info.ai && (info.ai.neg || info.ai.halfneg)) {
+							return true;
+						}
+						return false;
+					});
+					if (uselessSkills.length) {
+						return 3;
+					}
+					let names = [target.name1 || target.name];
+					if (target.name2) {
+						names.add(target.name2);
+					}
+					names = names.map(name => get.rawName(name));
+					if (_status.characterlist.some(name => names.includes(get.rawName(name)))) {
+						return 1;
+					}
+					return 0;
+				},
+			},
+		},
+	},
 
 
+	//新杀许靖
+	sgsxjxfzmnl_dccaixia: {
+		audio: 'dccaixia',
+		trigger: {
+			player: "damageEnd",
+			source: "damageSource",
+		},
+		filter(event, player) {
+			return !player.hasMark("sgsxjxfzmnl_dccaixia_clear");
+		},
+		direct: true,
+		locked: false,
+		content() {
+			"step 0";
+			var choices = Array.from({
+				length: Math.min(5, game.players.length + game.dead.length),
+			}).map((_, i) => get.cnNumber(i + 1, true));
+			var uses=game.countGroup();
+			player
+				.chooseControl(choices, "cancel2")
+				.set("prompt", get.prompt("sgsxjxfzmnl_dccaixia"))
+				.set("prompt2", "你可以摸至多" + get.cnNumber(choices.length) + "张牌，但是你此后需要再使用" + get.cnNumber(uses) + "张牌才可再发动本技能。")
+				.set("ai", () => {
+					return _status.event.choice;
+				})
+				.set(
+					"choice",
+					(function () {
+						// var cards = player.getCards("hs", card => get.name(card, player) !== "sha" && player.hasValueTarget(card));
+						// var damage = Math.min(player.getCardUsable({ name: "sha" }), player.countCards("hs", "sha")) + cards.filter(i => get.tag(i, "damage")).length;
+						// if (player.isPhaseUsing() || player.hp + player.hujia + player.countCards("hs", card => get.tag(card, "recover")) > 2) {
+						// 	if (damage) {
+						// 		return Math.min(choices.length - 1, cards.length - damage);
+						// 	}
+						// 	return Math.min(choices.length - 1, cards.length - 1);
+						// }
+						return choices.length - 1;
+					})()
+				);
+			"step 1";
+			if (result.control != "cancel2") {
+				player.logSkill("sgsxjxfzmnl_dccaixia");
+				var num = result.index + 1;
+				var numx = game.countGroup();
+				player.draw(num);
+				player.addMark("sgsxjxfzmnl_dccaixia_clear", numx, false);
+				player.addSkill("sgsxjxfzmnl_dccaixia_clear");
+			}
+		},
+		mod: {
+			aiOrder(player, card, num) {
+				if (!get.tag(card, "damage")) {
+					return;
+				}
+				if (player.countMark("sgsxjxfzmnl_dccaixia_clear") > 1) {
+					return num / 3;
+				}
+				return num + 6;
+			},
+		},
+		subSkill: {
+			clear: {
+				trigger: { player: "useCard1" },
+				filter(event, player) {
+					return player.hasMark("sgsxjxfzmnl_dccaixia_clear");
+				},
+				forced: true,
+				popup: false,
+				charlotte: true,
+				content() {
+					player.removeMark("sgsxjxfzmnl_dccaixia_clear", 1, false);
+				},
+				intro: {
+					name: "才瑕",
+					name2: "瑕",
+					content: "距离刷新技能还需使用&张牌",
+				},
+			},
+		},
+	},
 
 
+	//神张角
+	sgsxjxfzmnl_yizhao: {
+		audio: 'yizhao',
+		trigger: {
+			player: ["useCard", "respond"],
+		},
+		forced: true,
+		filter(event, player) {
+			const number = get.number(event.card);
+			return typeof number == "number" && number > 0;
+		},
+		marktext: "黄",
+		intro: {
+			name: "黄(异兆/肆军)",
+			name2: "黄",
+			content: "mark",
+			markcount(storage, player) {
+				return (player.storage.yizhao || 0).toString().slice(-2);
+			},
+		},
+		content() {
+			"step 0";
+			event.num = player.countMark("yizhao");
+			player.addMark("yizhao", get.number(trigger.card));
+			"step 1";
+			var num = Math.floor(num / 10) % 10,
+				num2 = Math.floor(player.countMark("yizhao") / 10) % 10;
+			if (num != num2) {
+				var card = get.cardPile(card => {
+					return get.number(card, false) == num2;
+				});
+				if (card) {
+					player.gain(card, "gain2");
+				}
+			}
+		},
+		mod: {
+			aiOrder(player, card, num) {
+				if (Math.floor((get.number(card) + (player.countMark("yizhao") % 10)) / 10) == 1) {
+					return num + 10;
+				}
+			},
+		},
+		ai: {
+			threaten: 1.5,
+			effect: {
+				target_use(card, player, target, current) {
+					if (get.type(card) == "equip" && !get.cardtag(card, "gifts")) {
+						return [1, 0.1];
+					}
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_sijun: {
+		audio: 'sijun',
+		trigger: { player: "phaseZhunbeiBegin" },
+		filter(event, player) {
+			return player.countMark("yizhao") > ui.cardPile.childNodes.length;
+		},
+		check(event, player) {
+			return ui.cardPile.childNodes.length;
+		},
+		content() {
+			"step 0";
+			player.removeMark("yizhao", player.countMark("yizhao"));
+			game.washCard();
+			"step 1";
+			var pile = Array.from(ui.cardPile.childNodes);
+			if (pile.length < 3) {
+				return;
+			}
+			var bool = false,
+				max = Math.pow(2, Math.min(100, pile.length)),
+				index;
+			for (var i = 0; i < max; i++) {
+				var num = 0;
+				index = i.toString(2);
+				while (index.length < pile.length) {
+					index = "0" + index;
+				}
+				for (var k = 0; k < index.length; k++) {
+					if (index[k] == "1") {
+						num += get.number(pile[k]);
+					}
+					if (num > 36) {
+						break;
+					}
+				}
+				if (num == 36) {
+					bool = true;
+					break;
+				}
+			}
+			if (bool) {
+				var cards = [];
+				for (var k = 0; k < index.length; k++) {
+					if (index[k] == "1") {
+						cards.push(pile[k]);
+					}
+				}
+				player.gain(cards, "gain2");
+			}
+			'step 2'
+			game.washCard();
+
+		},
+		ai: {
+			combo: "yizhao",
+		},
+	},
+	sgsxjxfzmnl_sanshou: {
+		audio: 'sanshou',
+		trigger: { player: "damageBegin4" },
+		check(event, player) {
+			return get.damageEffect(player, event.source, player, event.nature) <= 0;
+		},
+		content() {
+			"step 0";
+			var cards = game.cardsGotoOrdering(get.cards(3)).cards;
+			event.cards = cards;
+			player.showCards(cards, get.translation(player) + "发动了【三首】");
+			"step 1";
+			var types = [];
+			types.addArray(game.getGlobalHistory("useCard").map(evt => get.name(evt.card)));
+			if (cards.filter(card => !types.includes(get.name(card))).length) {
+				trigger.cancel();
+			}
+			game.delayx();
+		},
+		ai: {
+			effect: {
+				target(card, player, target) {
+					if (card.name == "shandian" || card.name == "fulei") {
+						return [0, 0.1];
+					}
+					if (!get.tag(card, "damage")) {
+						return;
+					}
+					var types = [],
+						bool = 0;
+					types.addArray(game.getGlobalHistory("useCard").map(evt => get.type2(evt.card)));
+					if (!types.includes(get.type2(card))) {
+						bool = 1;
+					}
+					if (types.length < 2) {
+						return Math.min(1, 0.4 + (types.length + bool) * 0.2);
+					}
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_tianjie: {
+		audio: 'tianjie',
+		trigger: { global: "phaseEnd" },
+		direct: true,
+		filter(event, player) {
+			return game.hasGlobalHistory("cardMove", evt => evt.washCard) && game.hasPlayer(current => current != player);
+		},
+		skillAnimation: true,
+		animationColor: "metal",
+		content() {
+			"step 0";
+			player.chooseTarget(get.prompt("tianjie"), "选择任意名其他角色，依次对这些角色造成X点雷电伤害（X为其手牌中【闪】的数量，至少为1）", [1, Infinity], lib.filter.notMe).set("ai", target => {
+				var player = _status.event.player;
+				return get.damageEffect(target, player, player, "thunder") * Math.sqrt(Math.max(1, target.countCards("h", "shan")));
+			});
+			"step 1";
+			if (result.bool) {
+				var targets = result.targets;
+				targets.sortBySeat();
+				player.logSkill("tianjie", targets);
+				for (var target of targets) {
+					var num = Math.max(1, target.countCards("h", "shan"));
+					target.damage(num, "thunder");
+				}
+			}
+		},
+	},
+
+	//戏志才
+	sgsxjxfzmnl_xianfu: {
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		locked: true,
+		filter(event, player) {
+			return game.hasPlayer(current => current != player) && (event.name != "phase" || game.phaseNumber == 0);
+		},
+		audio: 'xianfu',
+		async cost(event, trigger, player) {
+			event.result = await player
+				.chooseTarget("请选择【先辅】的目标", lib.translate.sgsxjxfzmnl_xianfu_info, true, function (card, player, target) {
+					return target != player && (!player.storage.xianfu2 || !player.storage.xianfu2.includes(target));
+				})
+				.set("ai", function (target) {
+					let att = get.attitude(_status.event.player, target);
+					if (att > 0) {
+						return att + 1;
+					}
+					if (att == 0) {
+						return Math.random();
+					}
+					return att;
+				})
+				.set("animate", false)
+				.forResult();
+		},
+		logAudio: () => 2,
+		logLine: false,
+		async content(event, trigger, player) {
+			let [target] = event.targets;
+			player.storage.xianfu2 ??= [];
+			player.storage.xianfu2.push(target);
+			player.addSkill("sgsxjxfzmnl_xianfu2");
+			const func = (player, target) => {
+				target.storage.xianfu_mark ??= [];
+				target.storage.xianfu_mark.add(player);
+				target.storage.xianfu_mark.sortBySeat();
+				target.markSkill("xianfu_mark", null, null, true);
+			};
+			if (event.isMine()) {
+				func(player, target);
+			} else if (player.isOnline2()) {
+				player.send(func, player, target);
+			}
+		},
+		group:'sgsxjxfzmnl_xianfu_use',
+		subSkill:{
+			use:{
+				trigger:{
+					player:["useCardToTarget"],
+				},
+				filter(event,player){
+					if(player.storage.xianfu2?.includes(event.target)){
+						return get.type(event.card)=='basic'
+					}
+				},
+				content(){
+					trigger.extraDamage++;
+				},
+			}
+		}
+	},
+	sgsxjxfzmnl_xianfu2: {
+		audio: "xianfu",
+		charlotte: true,
+		trigger: { global: ["damageEnd", "recoverEnd"] },
+		forced: true,
+		sourceSkill: "sgsxjxfzmnl_xianfu",
+		filter(event, player) {
+			if (event.player.isDead() || !player.storage.xianfu2 || !player.storage.xianfu2.includes(event.player) || event.num <= 0) {
+				return false;
+			}
+			if (event.name == "damage") {
+				return true;
+			}
+			return player.isDamaged();
+		},
+		logAudio(event, player) {
+			if (event.name == "damage") {
+				return ["xianfu5.mp3", "xianfu6.mp3"];
+			}
+			return ["xianfu3.mp3", "xianfu4.mp3"];
+		},
+		logTarget: "player",
+		content() {
+			"step 0";
+			var target = trigger.player;
+			if (!target.storage.xianfu_mark) {
+				target.storage.xianfu_mark = [];
+			}
+			target.storage.xianfu_mark.add(player);
+			target.storage.xianfu_mark.sortBySeat();
+			target.markSkill("xianfu_mark");
+			game.delayx();
+			"step 1";
+			player[trigger.name](trigger.num, "nosource");
+		},
+		onremove(player) {
+			if (!player.storage.xianfu2) {
+				return;
+			}
+			game.countPlayer(function (current) {
+				if (player.storage.xianfu2.includes(current) && current.storage.xianfu_mark) {
+					current.storage.xianfu_mark.remove(player);
+					if (!current.storage.xianfu_mark.length) {
+						current.unmarkSkill("xianfu_mark");
+					} else {
+						current.markSkill("xianfu_mark");
+					}
+				}
+			});
+			delete player.storage.xianfu2;
+		},
+		group: "sgsxjxfzmnl_xianfu3",
+	},
+	sgsxjxfzmnl_xianfu3: {
+		trigger: { global: "dieBegin" },
+		silent: true,
+		sourceSkill: "sgsxjxfzmnl_xianfu",
+		filter(event, player) {
+			return event.player == player || (player.storage.xianfu2 && player.storage.xianfu2.includes(event.player));
+		},
+		content() {
+			if (player == trigger.player) {
+				lib.skill.sgsxjxfzmnl_xianfu2.onremove(player);
+			} else {
+				player.storage.xianfu2.remove(event.player);
+			}
+		},
+	},
+	sgsxjxfzmnl_chouce: {
+		audio: 'chouce',
+		trigger: { player: "damageEnd" },
+		getIndex: event => event.num,
+		filter(event) {
+			return event.num > 0;
+		},
+		async content(event, trigger, player) {
+			const result = await player.judge().forResult();
+			const color = result?.color;
+			let result2;
+			switch (color) {
+				case "black":
+					if (game.hasPlayer(current => current.countDiscardableCards(player, "hej"))) {
+						result2 = await player
+							.chooseTarget(
+								"弃置一名角色区域内的一张牌",
+								(card, player, target) => {
+									return target.countDiscardableCards(player, "hej");
+								},
+								true
+							)
+							.set("ai", target => {
+								const player = get.player();
+								let att = get.attitude(player, target);
+								if (att < 0) {
+									att = -Math.sqrt(-att);
+								} else {
+									att = Math.sqrt(att);
+								}
+								return att * lib.card.guohe.ai.result.target(player, target);
+							})
+							.forResult();
+					}
+					break;
+
+				case "red": {
+					const next = player.chooseTarget("令一名角色摸一张牌");
+					if (player.storage.xianfu2?.length) {
+						next.set("prompt2", "（若目标为" + get.translation(player.storage.xianfu2) + "则改为摸两张牌）");
+					}
+					next.set("ai", target => {
+						const player = get.player();
+						let att = get.attitude(player, target) / Math.sqrt(1 + target.countCards("h"));
+						if (target.hasSkillTag("nogain")) {
+							att /= 10;
+						}
+						if (player.storage.xianfu2?.includes(target)) {
+							return att * 2;
+						}
+						return att;
+					});
+					result2 = await next.forResult();
+					break;
+				}
+
+				default:
+					break;
+			}
+			if (result2?.bool && result2?.targets?.length) {
+				const target = result2.targets[0];
+				player.line(target, "green");
+				if (color == "black") {
+					if (target.countDiscardableCards(player, "hej")) {
+						var resultx = await player.discardPlayerCard(target, "hej", true).forResult();
+						if(resultx){
+							if(resultx.cards)await player.gain(resultx.cards)
+						}
+					}
+				} else {
+					if (player.storage.xianfu2?.includes(target)) {
+						target.storage.xianfu_mark ??= [];
+						target.storage.xianfu_mark.add(player);
+						target.storage.xianfu_mark.sortBySeat();
+						target.markSkill("xianfu_mark");
+						await target.recover();
+						await target.draw(2);
+					} else {
+						await target.draw();
+					}
+				}
+			}
+		},
+		ai: {
+			maixie: true,
+			maixie_hp: true,
+			effect: {
+				target(card, player, target) {
+					if (get.tag(card, "damage")) {
+						if (player.hasSkillTag("jueqing", false, target)) {
+							return [1, -2];
+						}
+						if (!target.hasFriend()) {
+							return;
+						}
+						if (target.hp >= 4) {
+							return [1, get.tag(card, "damage") * 1.5];
+						}
+						if (target.hp == 3) {
+							return [1, get.tag(card, "damage") * 1];
+						}
+						if (target.hp == 2) {
+							return [1, get.tag(card, "damage") * 0.5];
+						}
+					}
+				},
+			},
+		},
+	},
 
 
+	//诸葛亮
+	sgsxjxfzmnl_sbhuoji: {
+		audio: 'sbhuoji',
+		dutySkill: true,
+		derivation: ["sgsxjxfzmnl_sbguanxing", "sgsxjxfzmnl_sbkongcheng"],
+		group: ["sgsxjxfzmnl_sbhuoji_fire", "sgsxjxfzmnl_sbhuoji_achieve", "sgsxjxfzmnl_sbhuoji_fail", "sgsxjxfzmnl_sbhuoji_mark"],
+		subSkill: {
+			fire: {
+				audio: "sbhuoji1.mp3",
+				enable: "phaseUse",
+				filterTarget: lib.filter.notMe,
+				prompt: "选择一名其他角色，对其与其势力相同的所有其他角色各造成1点火属性伤害",
+				usable: 1,
+				line: "fire",
+				content() {
+					"step 0";
+					target.damage("fire");
+					"step 1";
+					var targets = game.filterPlayer(current => {
+						if (current == player || current == target) {
+							return false;
+						}
+						return current.group == target.group;
+					});
+					if (targets.length) {
+						game.delayx();
+						player.line(targets, "fire");
+						targets.forEach(i => i.damage("fire"));
+					}
+				},
+				ai: {
+					order: 7,
+					fireAttack: true,
+					result: {
+						target(player, target) {
+							var att = get.attitude(player, target);
+							return (
+								get.sgn(att) *
+								game
+									.filterPlayer(current => {
+										if (current == player) {
+											return false;
+										}
+										return current.group == target.group;
+									})
+									.reduce((num, current) => num + get.damageEffect(current, player, player, "fire"), 0)
+							);
+						},
+					},
+				},
+			},
+			achieve: {
+				audio: "sbhuoji2.mp3",
+				trigger: { player: "phaseZhunbeiBegin" },
+				filter(event, player) {
+					return player.getAllHistory("sourceDamage", evt => evt.hasNature("fire") && evt.player != player).reduce((num, evt) => num + evt.num, 0) >= game.players.length + game.dead.length;
+				},
+				forced: true,
+				locked: false,
+				skillAnimation: true,
+				animationColor: "fire",
+				async content(event, trigger, player) {
+					player.awakenSkill("sgsxjxfzmnl_sbhuoji_achieve");
+					player.awakenSkill("sgsxjxfzmnl_sbhuoji_fail");
+					game.log(player, "成功完成使命");
+					player.changeSkin("sgsxjxfzmnl_sbhuoji", "sgsxjxfzmnl_sb_zhugeliang");
+					player.changeSkills(["sgsxjxfzmnl_sbguanxing", "sgsxjxfzmnl_sbkongcheng"]);
+				},
+			},
+			fail: {
+				audio: "sbhuoji3.mp3",
+				trigger: { player: "dying" },
+				forced: true,
+				locked: false,
+				content() {
+					player.awakenSkill("sgsxjxfzmnl_sbhuoji");
+					game.log(player, "使命失败");
+				},
+			},
+			mark: {
+				charlotte: true,
+				trigger: { source: "damage" },
+				filter(event, player) {
+					return event.hasNature("fire");
+				},
+				firstDo: true,
+				forced: true,
+				popup: false,
+				content() {
+					player.addTempSkill("sgsxjxfzmnl_sbhuoji_count", {
+						player: ["sgsxjxfzmnl_sbhuoji_achieveBegin", "sgsxjxfzmnl_sbhuoji_failBegin"],
+					});
+					player.storage.sgsxjxfzmnl_sbhuoji_count = player.getAllHistory("sourceDamage", evt => evt.hasNature("fire") && evt.player != player).reduce((num, evt) => num + evt.num, 0);
+					player.markSkill("sgsxjxfzmnl_sbhuoji_count");
+				},
+			},
+			count: {
+				charlotte: true,
+				intro: { content: "本局游戏已造成过#点火属性伤害" },
+			},
+		},
+	},
+	sgsxjxfzmnl_sbkanpo: {
+		init(player) {
+			if (!player.storage.sgsxjxfzmnl_sbkanpo) {
+				player.storage.sgsxjxfzmnl_sbkanpo = [get.mode() !== "identity" ? 2 : 4, [], []];
+				player.markSkill("sgsxjxfzmnl_sbkanpo");
+			}
+		},
+		audio: 'sbkanpo',
+		trigger: { global: "roundStart" },
+		filter(event, player) {
+			var storage = player.storage.sgsxjxfzmnl_sbkanpo;
+			return storage[0] || storage[1].length;
+		},
+		forced: true,
+		locked: false,
+		*content(event, map) {
+			var player = map.player,
+				storage = player.storage.sgsxjxfzmnl_sbkanpo;
+			// var sum = storage[0];
+			var num = Math.max(4, game.countPlayer())
+			var sum = num;
+			storage[1] = [];
+			player.markSkill("sgsxjxfzmnl_sbkanpo");
+			if (!sum) {
+				return;
+			}
+			const list = get.inpileVCardList(info => {
+				if (info[2] == "sha" && info[3]) {
+					return false;
+				}
+				// return info[0] != "equip";
+				return true;
+			});
+			const func = () => {
+				const event = get.event();
+				const controls = [
+					link => {
+						const evt = get.event();
+						if (evt.dialog && evt.dialog.buttons) {
+							for (let i = 0; i < evt.dialog.buttons.length; i++) {
+								const button = evt.dialog.buttons[i];
+								button.classList.remove("selectable");
+								button.classList.remove("selected");
+								const counterNode = button.querySelector(".caption");
+								if (counterNode) {
+									counterNode.childNodes[0].innerHTML = ``;
+								}
+							}
+							ui.selected.buttons.length = 0;
+							game.check();
+						}
+						return;
+					},
+				];
+				event.controls = [ui.create.control(controls.concat(["清除选择", "stayleft"]))];
+			};
+			if (event.isMine()) {
+				func();
+			} else if (event.isOnline()) {
+				event.player.send(func);
+			}
+			var result = yield player
+				.chooseButton(["看破：是否记录至多" + get.cnNumber(sum) + "个牌名？", [list, "vcard"]], [1, sum], false)
+				.set("ai", function (button) {
+					if (ui.selected.buttons.length >= Math.max(3, game.countPlayer() / 2)) {
+						return 0;
+					}
+					switch (button.link[2]) {
+						case "wuxie":
+							return 5 + Math.random();
+						case "sha":
+							return 5 + Math.random();
+						case "tao":
+							return 4 + Math.random();
+						case "jiu":
+							return 3 + Math.random();
+						case "lebu":
+							return 3 + Math.random();
+						case "shan":
+							return 4.5 + Math.random();
+						case "wuzhong":
+							return 4 + Math.random();
+						case "shunshou":
+							return 2.7 + Math.random();
+						case "nanman":
+							return 2 + Math.random();
+						case "wanjian":
+							return 1.6 + Math.random();
+						default:
+							return 1.5 + Math.random();
+					}
+				})
+				.set("filterButton", button => {
+					// return !_status.event.names.includes(button.link[2]);
+					return true;
+				})
+				.set("names", storage[2])
+				.set("custom", {
+					add: {
+						confirm(bool) {
+							if (bool != true) {
+								return;
+							}
+							const event = get.event().parent;
+							if (event.controls) {
+								event.controls.forEach(i => i.close());
+							}
+							if (ui.confirm) {
+								ui.confirm.close();
+							}
+							game.uncheck();
+						},
+						button() {
+							if (ui.selected.buttons.length) {
+								return;
+							}
+							const event = get.event();
+							if (event.dialog && event.dialog.buttons) {
+								for (let i = 0; i < event.dialog.buttons.length; i++) {
+									const button = event.dialog.buttons[i];
+									const counterNode = button.querySelector(".caption");
+									if (counterNode) {
+										counterNode.childNodes[0].innerHTML = ``;
+									}
+								}
+							}
+							if (!ui.selected.buttons.length) {
+								const evt = event.parent;
+								if (evt.controls) {
+									evt.controls[0].classList.add("disabled");
+								}
+							}
+						},
+					},
+					replace: {
+						button(button) {
+							const event = get.event(),
+								sum = event.sum;
+							if (!event.isMine()) {
+								return;
+							}
+							if (button.classList.contains("selectable") == false) {
+								return;
+							}
+							if (ui.selected.buttons.length >= sum) {
+								return false;
+							}
+							button.classList.add("selected");
+							ui.selected.buttons.push(button);
+							let counterNode = button.querySelector(".caption");
+							const count = ui.selected.buttons.filter(i => i == button).length;
+							if (counterNode) {
+								counterNode = counterNode.childNodes[0];
+								counterNode.innerHTML = `×${count}`;
+							} else {
+								counterNode = ui.create.caption(`<span style="font-size:24px; font-family:xinwei; text-shadow:#FFF 0 0 4px, #FFF 0 0 4px, rgba(74,29,1,1) 0 0 3px;">×${count}</span>`, button);
+								counterNode.style.right = "5px";
+								counterNode.style.bottom = "2px";
+							}
+							const evt = event.parent;
+							if (evt.controls) {
+								evt.controls[0].classList.remove("disabled");
+							}
+							game.check();
+						},
+					},
+				})
+				.set("sum", sum);
+			if (result.bool) {
+				var names = result.links.map(link => link[2]);
+				storage[0] -= names.length;
+				storage[1] = names;
+				storage[2] = names;
+			} else {
+				storage[2] = [];
+			}
+			player.markSkill("sgsxjxfzmnl_sbkanpo");
+		},
+		marktext: "破",
+		intro: {
+			markcount(storage) {
+				return storage[1].length;
+			},
+			mark(dialog, content, player) {
+				const storage = player.getStorage("sgsxjxfzmnl_sbkanpo");
+				// const sum = storage[0];
+				const names = storage[1];
+				// dialog.addText("剩余可记录" + sum + "次牌名");
+				if (player.isUnderControl(true) && names.length) {
+					dialog.addText("当前记录牌名：");
+					dialog.addSmall([names, "vcard"]);
+				}
+			},
+		},
+		group: "sgsxjxfzmnl_sbkanpo_kanpo",
+		subSkill: {
+			kanpo: {
+				audio: "sbkanpo",
+				trigger: { global: "useCard" },
+				filter(event, player) {
+					return event.player != player && player.storage.sgsxjxfzmnl_sbkanpo[1].includes(event.card.name);
+				},
+				prompt2(event, player) {
+					return "移除" + get.translation(event.card.name) + "的记录，令" + get.translation(event.card) + "无效";
+				},
+				check(event, player) {
+					var effect = 0;
+					if (event.card.name == "wuxie" || event.card.name == "shan") {
+						if (get.attitude(player, event.player) < -1) {
+							effect = -1;
+						}
+					} else if (event.targets && event.targets.length) {
+						for (var i = 0; i < event.targets.length; i++) {
+							effect += get.effect(event.targets[i], event.card, event.player, player);
+						}
+					}
+					if (effect < 0) {
+						if (event.card.name == "sha") {
+							var target = event.targets[0];
+							if (target == player) {
+								return !player.countCards("h", "shan");
+							} else {
+								return target.hp == 1 || (target.countCards("h") <= 2 && target.hp <= 2);
+							}
+						} else {
+							return true;
+						}
+					}
+					return false;
+				},
+				logTarget: "player",
+				content() {
+					player.storage.sgsxjxfzmnl_sbkanpo[1].remove(trigger.card.name);
+					player.markSkill("sgsxjxfzmnl_sbkanpo");
+					trigger.targets.length = 0;
+					trigger.all_excluded = true;
+					player.draw();
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_sbguanxing: {
+		audio: 'sbguanxing',
+		trigger: { player: ["phaseZhunbeiBegin", "phaseJieshuBegin"] },
+		filter(event, player) {
+			var bool = player.hasCard(card => card.hasGaintag("sbguanxing"), "s");
+			if (event.name == "phaseZhunbei") {
+				// return bool || 7 - lib.skill.sgsxjxfzmnl_sbguanxing.getNum * player.countMark("sgsxjxfzmnl_sbguanxingx") > 0;
+				return true;
+			}
+			return bool //&& player.hasSkill("sgsxjxfzmnl_sbguanxing_on");
+		},
+		forced: true,
+		locked: false,
+		content() {
+			"step 0";
+			if (trigger.name == "phaseJieshu") {
+				event.goto(2);
+				return;
+			}
+			// player.addMark("sgsxjxfzmnl_sbguanxingx", 1, false);
+			var cards = player.getCards("s", card => card.hasGaintag("sbguanxing"));
+			if (cards.length) {
+				player.loseToDiscardpile(cards);
+			}
+			event.num = Math.max(4,game.countPlayer());
+			// var num = player.countMark("sgsxjxfzmnl_sbguanxingx") - 1;
+			// event.num = Math.max(0, 7 - lib.skill.sgsxjxfzmnl_sbguanxing.getNum * num);
+			"step 1";
+			if (num) {
+				var cards2 = get.cards(num);
+				player.$gain2(cards2, false);
+				game.log(player, "将", cards2, "置于了武将牌上");
+				player.loseToSpecial(cards2, "sbguanxing").visible = true;
+				player.markSkill("sbguanxing");
+			}
+			"step 2";
+			var cards = player.getCards("s", card => card.hasGaintag("sbguanxing"));
+			if (cards.length) {
+				player
+					.chooseToMove("allowChooseAll")
+					.set("list", [["你的“星”", cards], ["牌堆顶"]])
+					.set("prompt", "观星：点击或拖动将牌移动到牌堆顶")
+					.set("processAI", function (list) {
+						var cards = list[0][1].slice(),
+							player = _status.event.player;
+						var name = _status.event.getTrigger().name;
+						var target = name == "phaseZhunbei" ? player : player.getNext();
+						var judges = target.getCards("j");
+						var top = [],
+							att = get.sgn(get.attitude(player, target));
+						if (judges.length && att != 0 && (target != player || !player.hasWuxie())) {
+							for (var i = 0; i < judges.length; i++) {
+								var judge = (card, num) => get.judge(card) * num;
+								cards.sort((a, b) => judge(b, att) - judge(a, att));
+								if (judge(cards[0], att) < 0) {
+									break;
+								} else {
+									top.unshift(cards.shift());
+								}
+							}
+						}
+						return [cards, top];
+					})
+					.set("filterOk", function (moved) {
+						return moved[1].length;
+					});
+			} else {
+				event._result = { bool: false };
+			}
+			"step 3";
+			if (result.bool) {
+				var cards = result.moved[1];
+				player.loseToDiscardpile(cards, ui.cardPile, "insert").log = false;
+				game.log(player, "将", cards, "置于了牌堆顶");
+			} else if (trigger.name == "phaseZhunbei") {
+				player.addTempSkill("sgsxjxfzmnl_sbguanxing_on");
+			}
+		},
+		// getNum: 3,
+		group: "sgsxjxfzmnl_sbguanxing_unmark",
+		subSkill: {
+			on: { charlotte: true },
+			unmark: {
+				trigger: { player: "loseAfter" },
+				filter(event, player) {
+					if (!event.ss || !event.ss.length) {
+						return false;
+					}
+					return !player.countCards("s", card => card.hasGaintag("sbguanxing"));
+				},
+				charlotte: true,
+				forced: true,
+				silent: true,
+				content() {
+					player.unmarkSkill("sbguanxing");
+				},
+			},
+		},
+		marktext: "星",
+		intro: {
+			mark(dialog, storage, player) {
+				var cards = player.getCards("s", card => card.hasGaintag("sbguanxing"));
+				if (!cards || !cards.length) {
+					return;
+				}
+				dialog.addAuto(cards);
+			},
+			markcount(storage, player) {
+				return player.countCards("s", card => card.hasGaintag("sbguanxing"));
+			},
+			onunmark(storage, player) {
+				var cards = player.getCards("s", card => card.hasGaintag("sbguanxing"));
+				if (cards.length) {
+					player.loseToDiscardpile(cards);
+				}
+			},
+		},
+		mod: {
+			aiOrder(player, card, num) {
+				var cards = player.getCards("s", card => card.hasGaintag("sbguanxing"));
+				if (get.itemtype(card) == "card" && card.hasGaintag("sbguanxing")) {
+					return num + (cards.length > 1 ? 0.5 : -0.0001);
+				}
+			},
+		},
+	},
+	sgsxjxfzmnl_sbkongcheng: {
+		audio: 'sbkongcheng',
+		trigger: { player: ["damageBegin4"] },
+		filter(event, player, name) {
+			if (!player.hasSkill("sgsxjxfzmnl_sbguanxing") && !player.hasSkill("jdguanxing") && !player.hasSkill("sbguanxing")) {
+				return false;
+			}
+			const num = player.countCards("s", card => card.hasGaintag("sbguanxing"));
+			if (name == "damageBegin3" && !num) {
+				return true;
+			}
+			if (name == "damageBegin4" && num) {
+				return true;
+			}
+			return false;
+		},
+		// forced: true,
+		content() {
+			"step 0";
+			var num = player.countCards("s", card => card.hasGaintag("sbguanxing"));
+			if (!num && event.triggername == "damageBegin3") {
+				trigger.increase("num");
+			} else if (num && event.triggername == "damageBegin4") {
+				player
+					.judge(function (result) {
+						if (get.number(result) <= get.player().countCards("s", card => card.hasGaintag("sbguanxing"))) {
+							return 2;
+						}
+						return -1;
+					})
+					.set("judge2", result => result.bool)
+					.set("callback", function () {
+						if (event.judgeResult.number <= player.countCards("s", card => card.hasGaintag("sbguanxing"))) {
+							event.getParent("sgsxjxfzmnl_sbkongcheng").getTrigger().decrease("num");
+						}
+					});
+			}
+		},
+		ai: {
+			combo: "sgsxjxfzmnl_sbguanxing",
+		},
+	},
 
 
+	//清河公主
+	sgsxjxfzmnl_dczhangji: {
+		audio: 'dczhangji',
+		trigger: { global: "useCardToTargeted" },
+		filter(event, player) {
+			if (!event.targets || event.targets.length <= 1) {
+				return false;
+			}
+			if (event.targets.length != event.getParent().triggeredTargets4.length) {
+				return false;
+			}
+			return event.targets.includes(player);
+		},
+		forced: true,
+		logTarget: "player",
+		async content(event, trigger, player) {
+			const evtx = trigger.getParent();
+			trigger.targets = [player, ...trigger.targets.remove(player)];
+			evtx.targets = [player, ...evtx.targets.remove(player)];
+			evtx.triggeredTargets4 = [player, ...evtx.triggeredTargets4.remove(player)];
+			await player.draw(evtx.targets.length);
+		},
+	},
+	sgsxjxfzmnl_dczengou: {
+		audio: 'dczengou',
+		enable: "phaseUse",
+		filter(event, player) {
+			return player.maxHp > 0 && player.countCards("he") > 0;
+		},
+		filterCard: true,
+		selectCard: () => [1, _status.event.player.maxHp],
+		position: "he",
+		filterTarget: lib.filter.notMe,
+		discard: false,
+		lose: false,
+		delay: false,
+		usable: 1,
+		check(card) {
+			if (card.name == "tao" || card.name == "jiu") {
+				return 0;
+			}
+			return 1 / (get.value(card) || 0.5);
+		},
+		async content(event, trigger, player) {
+			const next = player.give(event.cards, event.target);
+			next.gaintag.add("sgsxjxfzmnl_dczengou_debuff");
+			await next;
+			await player.draw(event.cards.length);
+			event.target.addSkill("sgsxjxfzmnl_dczengou_debuff");
+			event.target.addSkill("sgsxjxfzmnl_dczengou_debuff2");
+		},
+		ai: {
+			order: 10,
+			result: { target: -1 },
+		},
+		subSkill: {
+			debuff: {
+				charlotte: true,
+				mark: true,
+				intro: {
+					content: "下次体力值增加或使用牌结算完毕后展示所有手牌，然后失去手牌中“谮构”牌数的体力值",
+				},
+				trigger: { player: ["changeHp", "useCardAfter"] },
+				filter(event, player) {
+					return event.name == "useCard" || event.num > 0;
+				},
+				forced: true,
+				popup: false,
+				async content(event, trigger, player) {
+					await player.showHandcards();
+					const cards = player.getCards("h", card => card.hasGaintag(event.name));
+					player.removeSkill(event.name);
+					if (cards.length) {
+						await player.loseHp(cards.length);
+					}
+				},
+				// onremove(player, skill) {
+				// 	player.removeGaintag(skill);
+				// },
+				mod: {
+					aiValue(player, card, num) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							return -1;
+						}
+					},
+					aiUseful() {
+						return lib.skill.sgsxjxfzmnl_dczengou.subSkill.debuff.mod.aiValue.apply(this, arguments);
+					},
+					aiOrder(player, card, num) {
+						if (get.itemtype(card) == "card" && card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							const cards = player.getCards("h", card => card.hasGaintag("sgsxjxfzmnl_dczengou_debuff"));
+							if (cards.length == 1) {
+								return num + 10;
+							}
+							return 0;
+						}
+					},
+				},
+			},
+			debuff2:{
+				charlotte: true,
+				mod:{
+					cardDiscardable(card, player) {
+						if (card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							return false;
+						}
+					},
+					cardEnabled(card, player) {
+						if (card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							var hs = player.getCards("h"),
+								cards = [card];
+							if (Array.isArray(card.cards)) {
+								cards.addArray(card.cards);
+							}
+							for (var i of cards) {
+								if (hs.includes(i)) {
+									return false;
+								}
+							}
+						}
+					},
+					cardRespondable(card, player) {
+						if (card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							var hs = player.getCards("h"),
+								cards = [card];
+							if (Array.isArray(card.cards)) {
+								cards.addArray(card.cards);
+							}
+							for (var i of cards) {
+								if (hs.includes(i)) {
+									return false;
+								}
+							}
+						}
+					},
+					cardSavable(card, player) {
+						if (card.hasGaintag("sgsxjxfzmnl_dczengou_debuff")) {
+							var hs = player.getCards("h"),
+								cards = [card];
+							if (Array.isArray(card.cards)) {
+								cards.addArray(card.cards);
+							}
+							for (var i of cards) {
+								if (hs.includes(i)) {
+									return false;
+								}
+							}
+						}
+					},
+					
+				},
+			},
+		},
+	},
 
 
+	//卞喜
+	sgsxjxfzmnl_dunxi: {
+		audio: 'dunxi',
+		trigger: { player: "useCard" },
+		direct: true,
+		filter(event, player) {
+			// if (!get.tag(event.card, "damage")) {
+			// 	return false;
+			// }
+			// return event.targets.some(target => target != player && target.isIn());
+			return true;
+		},
+		content() {
+			"step 0";
+			// var targets = trigger.targets.filter(function (current) {
+			// 	return current != player && current.isIn();
+			// });
+			var targets = game.filterPlayer(function (current) {
+				return current != player && current.isIn()
+			})
+			if (targets.length == 1) {
+				event.target = targets[0];
+				player
+					.chooseBool(get.prompt("sgsxjxfzmnl_dunxi", event.target), "令" + get.translation(event.target) + "获得一枚“钝”标记")
+					.set("goon", get.attitude(player, event.target) < 0)
+					.set("ai", () => _status.event.goon);
+			} else {
+				player
+					.chooseTarget(get.prompt("sgsxjxfzmnl_dunxi"), "选择一名目标角色获得一枚“钝”标记", function (card, player, target) {
+						return target != player ;
+					})
+					.set("ai", function (target) {
+						var att = get.attitude(_status.event.player, target);
+						if (att >= 0) {
+							return 0;
+						}
+						return -att / (1 + target.hasMark("sgsxjxfzmnl_dunxi"));
+					});
+			}
+			"step 1";
+			if (result.bool) {
+				var target = event.target || result.targets[0];
+				player.logSkill("sgsxjxfzmnl_dunxi", target);
+				target.addMark("sgsxjxfzmnl_dunxi", 1);
+				game.delayx();
+			}
+		},
+		intro: { content: "mark", name2: "钝" },
+		group: "sgsxjxfzmnl_dunxi_random",
+		global: "sgsxjxfzmnl_dunxi_lose",
+		subSkill: {
+			random: {
+				audio: "dunxi",
+				trigger: { global: "useCard" },
+				forced: true,
+				locked: false,
+				filter(event, player) {
+					if (!event.player.hasMark("sgsxjxfzmnl_dunxi") || !event.targets.length|| event._dunxi /*|| _status.dying.length*/) {
+						return false;
+					}
+					return true;
+					// var type = get.type2(event.card, false);
+					// return type == "basic" || type == "trick";
+				},
+				logTarget: "player",
+				line: "fire",
+				async content(event, trigger, player) {
+					trigger._dunxi = true;
+					// trigger.player.removeMark("sgsxjxfzmnl_dunxi", 1);
+					const target = player;
+					// trigger.targets.remove(target);
+					trigger.targets=[];
+					await game.delayx();
+					let list;
+					if (get.type(trigger.card) != "delay") {
+						list = game.filterPlayer(function (current) {
+							return lib.filter.targetEnabled2(trigger.card, trigger.player, current);
+						});
+					} else {
+						list = game.filterPlayer(function (current) {
+							return lib.filter.judge(trigger.card, trigger.player, current);
+						});
+					}
+					if (list.length) {
+						const targetx = list.randomGet();
+						trigger.targets.push(targetx);
+						trigger.player.line(targetx, "fire");
+						game.log(trigger.card, "的目标被改为", targetx);
+						if (targetx != target) {
+							await trigger.player.loseHp();
+						}
+						else {
+							await player.draw();
+						}
+						const evt = trigger.getParent("phaseUse");
+						if (evt && evt.player == trigger.player) {
+							evt.skipped = true;
+						}
+					}
+				},
+			},
+			lose:{
+				trigger:{
+					player: "phaseEnd"
+				},
+				forced:true,
+				filter(event, player) {
+					return player.hasMark("sgsxjxfzmnl_dunxi");
+				},
+				content() {
+					player.removeMark("sgsxjxfzmnl_dunxi", 1);
+				},
+			},
+		},
+	},
+
+	//比原版更令人难以吐槽的神孙权
+	sgsxjxfzmnl_junkyuheng: {
+		audio: "yuheng",
+		trigger: { player: "phaseBegin" },
+		forced: true,
+		keepSkill: true,
+		filter(event, player) {
+			return player.hasCard(function (card) {
+				return lib.filter.cardDiscardable(card, player, "sgsxjxfzmnl_junkyuheng");
+			}, "he");
+		},
+		async content(event,trigger,player) {
+			const num = player.getCards("he").reduce((arr, card) => arr.add(get.suit(card, player)), []).length;
+			var result = player
+				.chooseToDiscard("he", true, [1, num], function (card, player) {
+					if (!ui.selected.cards.length) {
+						return true;
+					}
+					var suit = get.suit(card, player);
+					for (var i of ui.selected.cards) {
+						if (get.suit(i, player) == suit) {
+							return false;
+						}
+					}
+					return true;
+				})
+				.set("complexCard", true)
+				.set("ai", function (card) {
+					if (!player.hasValueTarget(card)) {
+						return 5;
+					}
+					return 5 - get.value(card);
+				}).forResult();
+			if (result.bool) {
+				// var skills = lib.skill.sgsxjxfzmnl_junkyuheng.derivation.randomGets(result.cards.length);
+				// player.addAdditionalSkills("sgsxjxfzmnl_junkyuheng", skills, true);
+				var result2 = await player.YB_fuhan(['wu',game.countPlayer(),result.cards.length,,,]).forResult();
+				if(result2.skills){
+					if(!player.storage.sgsxjxfzmnl_junkyuheng)player.storage.sgsxjxfzmnl_junkyuheng=[];
+					player.storage.sgsxjxfzmnl_junkyuheng.addArray(result2.skills);
+				}
+			}
+		},
+		group: "sgsxjxfzmnl_junkyuheng_remove",
+		// derivation: ["olbingyi", "shenxing", "xiashu", "old_anxu", "rezhiheng", "xinanguo", "lanjiang", "xinfu_guanwei", "dimeng", "xindiaodu", "xingxue", "jiexun", "olhongyuan", "xinfu_youdi", "bizheng"],
+		subSkill: {
+			remove: {
+				audio: "yuheng",
+				trigger: { player: "phaseEnd" },
+				forced: true,
+				filter(event, player) {
+					return player.storage.sgsxjxfzmnl_junkyuheng && player.storage.sgsxjxfzmnl_junkyuheng.length > 0;
+					// return player.additionalSkills.sgsxjxfzmnl_junkyuheng && player.additionalSkills.sgsxjxfzmnl_junkyuheng.length > 0;
+				},
+				async content(event, trigger, player) {
+					const num = player.storage.sgsxjxfzmnl_junkyuheng.length;
+					await player.removeSkill();
+					delete player.storage.sgsxjxfzmnl_junkyuheng;
+					// const skillslength = player.additionalSkills.sgsxjxfzmnl_junkyuheng.length;
+					// await player.removeAdditionalSkills("sgsxjxfzmnl_junkyuheng");
+					await player.draw(num);
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_junkdili: {
+		audio: "dili",
+		trigger: { player: "changeSkillsAfter" },
+		forced: true,
+		juexingji: true,
+		skillAnimation: true,
+		animationColor: "wood",
+		filter(event, player) {
+			if (!event.addSkill.length) {
+				return false;
+			}
+			var skills = player.getSkills(null, false, false).filter(function (i) {
+				var info = get.info(i);
+				return info && !info.charlotte;
+			});
+			return skills.length > game.countGroup();
+		},
+		content() {
+			"step 0";
+			player.awakenSkill(event.name);
+			player.gainMaxHp();
+			"step 1";
+			// var skills = player.getSkills(null, false, false).filter(function (i) {
+			// 	if (i == "sgsxjxfzmnl_junkdili") {
+			// 		return false;
+			// 	}
+			// 	var info = get.info(i);
+			// 	return info && !info.charlotte;
+			// });
+			// var next = player.chooseButton(["请选择失去任意个技能", [skills, "skill"]]);
+			// next.set("forced", true);
+			// next.set("selectButton", [1, skills.length]);
+			// next.set("ai", function (button) {
+			// 	var skill = button.link,
+			// 		skills = _status.event.skills.slice(0);
+			// 	skills.removeArray(["xinanguo", "lanjiang", "rezhiheng", "sgsxjxfzmnl_junkyuheng"]);
+			// 	switch (ui.selected.buttons.length) {
+			// 		case 0:
+			// 			if (skills.includes(skill)) {
+			// 				return 2;
+			// 			}
+			// 			if (skill == "sgsxjxfzmnl_junkyuheng") {
+			// 				return 1;
+			// 			}
+			// 			return Math.random();
+			// 		case 1:
+			// 			if (skills.length < 2) {
+			// 				return 0;
+			// 			}
+			// 			if (skills.includes(skill)) {
+			// 				return 2;
+			// 			}
+			// 			if (skill == "sgsxjxfzmnl_junkyuheng") {
+			// 				return 1;
+			// 			}
+			// 			return 0;
+			// 		case 2:
+			// 			if (skills.includes(skill)) {
+			// 				return 2;
+			// 			}
+			// 			if (skill == "sgsxjxfzmnl_junkyuheng") {
+			// 				return 1;
+			// 			}
+			// 			return 0;
+			// 		default:
+			// 			return 0;
+			// 	}
+			// });
+			// next.set("skills", skills);
+			// "step 2";
+			// if (result.bool) {
+			// 	var skills = result.links;
+			// 	player.removeSkills(skills.slice(0));
+			// }
+			var list = lib.skill.sgsxjxfzmnl_junkdili.derivation;
+			// list = list.slice(0, Math.min(skills.length, list.length));
+			player.addSkills(list);
+		},
+		ai: {
+			combo: "sgsxjxfzmnl_junkyuheng",
+		},
+		derivation: ["sgsxjxfzmnl_junkshengzhi", "sgsxjxfzmnl_junkquandao", "sgsxjxfzmnl_junkchigang"],
+	},
+	sgsxjxfzmnl_junkshengzhi: {
+		audio: "dili_shengzhi",
+		trigger: { player: ["logSkill", "useSkillAfter"] },
+		forced: true,
+		filter(event, player) {
+			if (event.type != "player") {
+				return false;
+			}
+			var skill = get.sourceSkillFor(event);
+			if (get.is.locked(skill)) {
+				return false;
+			}
+			var info = get.info(skill);
+			return !info.charlotte;
+		},
+		content() {
+			player.addTempSkill("sgsxjxfzmnl_junkshengzhi_effect");
+		},
+		subSkill: {
+			effect: {
+				mod: {
+					cardUsable: () => Infinity,
+					targetInRange: () => true,
+				},
+				trigger: { player: "useCard1" },
+				forced: true,
+				charlotte: true,
+				popup: false,
+				firstDo: true,
+				content() {
+					// player.removeSkill(event.name);
+					if (trigger.addCount !== false) {
+						trigger.addCount = false;
+						const stat = player.getStat().card,
+							name = trigger.card.name;
+						if (typeof stat[name] == "number") {
+							stat[name]--;
+						}
+					}
+				},
+				mark: true,
+				intro: { content: "本回合使用牌无距离和次数限制" },
+			},
+		},
+	},
+	sgsxjxfzmnl_junkquandao: {
+		audio: "dili_quandao",
+		trigger: { player: "useCard" },
+		forced: true,
+		filter(event, player) {
+			return get.type(event.card, null, false) == "basic" || get.type(event.card, null, false) == "trick";
+		},
+		async content(event, trigger, player) {
+			const cards1 = player.getCards("h", card => get.type(card) === "basic"),
+				cards2 = player.getCards("h", card => get.type(card) === "trick");
+			if (cards1.length !== cards2.length) {
+				const num = cards1.length - cards2.length,
+					cards = num > 0 ? cards1 : cards2;
+				let i = 0;
+				cards.forEach(card => {
+					if (i < Math.abs(num) && lib.filter.cardDiscardable(card, player, "sgsxjxfzmnl_junkquandao")) {
+						i++;
+					}
+				});
+				if (i > 0) {
+					await player.chooseToDiscard(i, true, `权道：请弃置${get.cnNumber(i)}张${num > 0 ? "杀" : "普通锦囊牌"}`, num > 0 ? card => get.name(card) === "sha" : card => get.type(card) === "trick");
+				}
+			}
+			await player.draw();
+		},
+	},
+	sgsxjxfzmnl_junkchigang: {
+		audio: "dili_chigang",
+		trigger: { player: "phaseChange" },
+		forced: true,
+		zhuanhuanji: true,
+		mark: true,
+		marktext: "☯",
+		filter(event, player) {
+			return event.phaseList[event.num].indexOf("phaseJudge") != -1;
+		},
+		content() {
+			player.changeZhuanhuanji(event.name);
+			let phase = player.storage.sgsxjxfzmnl_junkchigang ? "phaseDraw" : "phaseUse";
+			trigger.phaseList[trigger.num] = `${phase}|${event.name}`;
+			game.delayx();
+		},
+		ai: {
+			effect: {
+				target(card, player, target) {
+					if (get.type(card) == "delay") {
+						return "zeroplayertarget";
+					}
+				},
+			},
+		},
+		intro: {
+			content(storage) {
+				return "转换技，锁定技。判定阶段开始前，你取消此阶段。然后你获得一个额外的" + (storage ? "出牌阶段" : "摸牌阶段") + "。";
+			},
+		},
+	},
 
 
+	//潘淑
+	sgsxjxfzmnl_weiyi: {
+		audio: 'weiyi',
+		trigger: { global: "damageEnd" },
+		filter(event, player) {
+			if (player.getStorage("sgsxjxfzmnl_weiyi_mark").includes(event.player) || !event.player.isIn()) {
+				return false;
+			}
+			return event.player.hp >= player.hp || event.player.isDamaged();
+		},
+		direct: true,
+		content() {
+			"step 0";
+			var list = [];
+			if (trigger.player.hp >= player.hp) {
+				list.push("失去体力");
+			}
+			if (trigger.player.hp <= player.hp && trigger.player.isDamaged()) {
+				list.push("回复体力");
+			}
+			list.push("cancel2");
+			player
+				.chooseControl(list)
+				.set("prompt", get.prompt2("sgsxjxfzmnl_weiyi", trigger.player))
+				.set("ai", function () {
+					var player = _status.event.player,
+						target = _status.event.getTrigger().player;
+					var att = get.attitude(player, target),
+						eff = get.recoverEffect(target, player, player);
+					if (target.hp <= player.hp && target.isDamaged() && att > 2 && eff > 0) {
+						if (player == target) {
+							var storage = player.getStorage("sgsxjxfzmnl_weiyi_mark");
+							if (
+								player.hp >= 2 &&
+								game.hasPlayer(function (current) {
+									return current.hp == player.hp + 1 && !storage.includes(current) && get.attitude(player, current) < 0;
+								})
+							) {
+								return "cancel2";
+							}
+						}
+						return "回复体力";
+					}
+					if (target.hp >= player.hp && att < -2 && eff < 0) {
+						return "失去体力";
+					}
+					return "cancel2";
+				});
+			"step 1";
+			if (result.control != "cancel2") {
+				var target = trigger.player;
+				player.logSkill("sgsxjxfzmnl_weiyi", target);
+				player.addTempSkill("sgsxjxfzmnl_weiyi_mark");
+				player.markAuto("sgsxjxfzmnl_weiyi_mark", [target]);
+				target[result.control == "失去体力" ? "loseHp" : "recover"]();
+			}
+		},
+		onremove: true,
+		// intro: {
+		// 	content: "已令$对汝威服",
+		// },
+		subSkill:{
+			mark:{
+				charlotte:true,
+				onremove:true,
+				intro:{
+					content: "已令$对汝威服"
+				}
+			},
+		},
+	},
+	sgsxjxfzmnl_jinzhi: {
+		audio: 'jinzhi',
+		enable: ["chooseToUse", "chooseToRespond"],
+		hiddenCard(player, name) {
+			if (get.type(name) == "basic" && lib.inpile.includes(name) && player.countMark("sgsxjxfzmnl_jinzhi_used") <= player.countCards("he")) {
+				return true;
+			}
+		},
+		filter(event, player) {
+			if (event.responded || event.jinzhi || player.countMark("sgsxjxfzmnl_jinzhi_used") > player.countCards("he")) {
+				return false;
+			}
+			for (var i of lib.inpile) {
+				if (get.type(i) == "basic" && event.filterCard({ name: i, isCard: true }, player, event)) {
+					return true;
+				}
+			}
+			return false;
+		},
+		chooseButton: {
+			dialog(event, player) {
+				var list = [];
+				for (var i of lib.inpile) {
+					if (get.type(i) == "basic" && event.filterCard({ name: i, isCard: true }, player, event)) {
+						list.push(["基本", "", i]);
+						if (i == "sha") {
+							for (var j of lib.inpile_ature) {
+								list.push(["基本", "", "sha", j]);
+							}
+						}
+					}
+				}
+				return ui.create.dialog("锦织", [list, "vcard"], "hidden");
+			},
+			check(button) {
+				if (_status.event.getParent().type != "phase") {
+					return 1;
+				}
+				if (button.link[2] == "shan") {
+					return 3;
+				}
+				var player = _status.event.player;
+				if (button.link[2] == "jiu") {
+					if (player.getUseValue({ name: "jiu" }) <= 0) {
+						return 0;
+					}n
+					if (player.countCards("h", "sha")) {
+						return player.getUseValue({ name: "jiu" });
+					}
+				}
+				return player.getUseValue({ name: button.link[2], nature: button.link[3] }) / 4;
+			},
+			backup(links, player) {
+				return {
+					selectCard: player.countMark("sgsxjxfzmnl_jinzhi_used"),
+					filterCard(card, player) {
+						if (ui.selected.cards.length) {
+							if (get.color(card) != get.color(ui.selected.cards[0])) {
+								return false;
+							}
+						}
+						return lib.filter.cardDiscardable.apply(this, arguments);
+					},
+					complexCard: true,
+					viewAs: {
+						name: links[0][2],
+						nature: links[0][3],
+						suit: "none",
+						number: null,
+						isCard: true,
+					},
+					position: "he",
+					ignoreMod: true,
+					check(card) {
+						var player = _status.event.player,
+							color = get.color(card, player);
+						if (player.countCards("he", { color: color }) <= player.countMark("sgsxjxfzmnl_jinzhi_used") || (ui.selected.cards.length && get.color(ui.selected.cards[0], player) != color)) {
+							return -1;
+						}
+						if (
+							lib.skill.jinzhi_backup.viewAs.name == "jiu" &&
+							!player.countCards("h", function (cardx) {
+								return card != cardx && !ui.selected.cards.includes(cardx) && get.name(cardx, player) == "sha";
+							})
+						) {
+							return 0;
+						}
+						return Math.min(0.01, 6 - get.value(card));
+					},
+					log: false,
+					precontent() {
+						player.logSkill("sgsxjxfzmnl_jinzhi");
+						player.addTempSkill("sgsxjxfzmnl_jinzhi_used", "roundStart");
+						player.addMark("sgsxjxfzmnl_jinzhi_used", 1, false);
+						var cards = event.result.cards;
+						player.discard(cards);
+						player.draw();
+						event.result.card = {
+							name: event.result.card.name,
+							nature: event.result.card.nature,
+							isCard: true,
+						};
+						event.result.cards = [];
+						if (cards.length > 1) {
+							var color = get.color(cards[0], player);
+							for (var i = 1; i < cards.length; i++) {
+								if (get.color(cards[i], player) != color) {
+									var evt = event.getParent();
+									evt.set("sgsxjxfzmnl_jinzhi", true);
+									evt.goto(0);
+									return;
+								}
+							}
+						}
+					},
+				};
+			},
+			prompt(links, player) {
+				var name = links[0][2];
+				var nature = links[0][3];
+				return "弃置" + get.cnNumber(player.countMark("sgsxjxfzmnl_jinzhi_used")) + "张颜色相同的牌并摸一张牌，然后视为使用" + (get.translation(nature) || "") + get.translation(name);
+			},
+		},
+		ai: {
+			order(item, player) {
+				if (_status.event.type == "phase" && !player.countMark("sgsxjxfzmnl_jinzhi_used") && player.getUseValue({ name: "jiu" }, null, true) > 0 && player.countCards("h", "sha")) {
+					return get.order({ name: "jiu" }) + 1;
+				}
+				return 1;
+			},
+			respondShan: true,
+			respondSha: true,
+			skillTagFilter(player) {
+				if (player.countMark("sgsxjxfzmnl_jinzhi_used") >= player.countCards("he")) {
+					return false;
+				}
+			},
+			result: {
+				player(player) {
+					if (_status.event.dying) {
+						return get.attitude(player, _status.event.dying);
+					}
+					return 1;
+				},
+			},
+		},
+		subSkill: {
+			used: {
+				charlotte: true,
+				onremove: true,
+				intro: { content: "本轮已发动过#次" },
+			},
+		},
+	},
+
+	//郝昭
+	sgsxjxfzmnl_drlt_zhengu: {
+		audio: 'drlt_zhengu',
+		trigger: { player: "phaseJieshuBegin" },
+		async cost(event, trigger, player) {
+			event.result = await player
+				.chooseTarget(get.prompt2(event.skill), function (card, player, target) {
+					//if(target.storage.drlt_zhengu_mark&&target.storage.drlt_zhengu_mark.includes(player)) return false;
+					return target != player;
+				})
+				.set("ai", function (target) {
+					const player = _status.event.player;
+					//if(target.storage.drlt_zhengu_mark&&target.storage.drlt_zhengu_mark.includes(player)) return 0;
+					const num = Math.min(5, player.countCards("h")) - target.countCards("h");
+					const att = get.attitude(player, target);
+					return num * att;
+				})
+				.forResult();
+		},
+		async content(event, trigger, player) {
+			const target = event.targets[0];
+			player.addSkill("sgsxjxfzmnl_drlt_zhengu2");
+			target.addSkill("sgsxjxfzmnl_drlt_zhengu_mark");
+			const num = player.countCards("h");
+			if(!target.storage.drlt_zhengu_mark)target.storage.drlt_zhengu_mark;
+			target.storage.drlt_zhengu_mark[player.playerid]=num;
+			target.markSkill("sgsxjxfzmnl_drlt_zhengu_mark");
+			lib.skill.sgsxjxfzmnl_drlt_zhengu.sync(player, target,num);
+		},
+		sync(player, target,num) {
+			// const num = num;
+			const num2 = target.countCards("h");
+			if (num < num2) {
+				target.chooseToDiscard(num2 - num, true, "h", "allowChooseAll");
+			} else {
+				target.drawTo(Math.min(5, num));
+			}
+		},
+	},
+	sgsxjxfzmnl_drlt_zhengu2: {
+		audio: "drlt_zhengu",
+		trigger: {
+			global: "phaseEnd",
+		},
+		forced: true,
+		charlotte: true,
+		logTarget: "player",
+		sourceSkill: "sgsxjxfzmnl_drlt_zhengu",
+		filter(event, player) {
+			return event.player.storage.sgsxjxfzmnl_drlt_zhengu_mark && Object.keys(event.player.storage.sgsxjxfzmnl_drlt_zhengu_mark).includes(player.playerid);
+		},
+		async content(event, trigger, player) {
+			while (Object.keys(trigger.player.storage.sgsxjxfzmnl_drlt_zhengu_mark).includes(player.playerid)) {
+				const num = trigger.player.storage.sgsxjxfzmnl_drlt_zhengu_mark[player.playerid];
+			}
+			if(num){
+				if(!Object.keys(trigger.player.storage.sgsxjxfzmnl_drlt_zhengu_mark).length){
+					trigger.player.unmarkSkill("sgsxjxfzmnl_drlt_zhengu_mark");
+				}
+				lib.skill.sgsxjxfzmnl_drlt_zhengu.sync(player, trigger.player,num);
+				delete trigger.player.storage.sgsxjxfzmnl_drlt_zhengu_mark[player.playerid];
+
+			}
+		},
+	},
+	sgsxjxfzmnl_drlt_zhengu_mark: {
+		charlotte: true,
+		init(player, skill) {
+			if (!player.storage[skill]) {
+				player.storage[skill] = [];
+			}
+		},
+		marktext: "镇",
+		intro: {
+			name: "镇骨",
+			content: function(storage,player,skill){
+				var str = '';
+				if(Object.keys(storage).length){
+					var keys = Object.keys(storage);
+					for(var i=0;i<keys.length;i++){
+						str += get.translation(keys[i]) + '：' + storage[keys[i]] + '<br/>'
+					}
+				}
+				return str;
+			},
+		},
+	},
+	//魔曹丕
+	sgsxjxfzmnl_cpcuandi: {
+		audio: 'songwei',
+		zhuSkill: true,
+		trigger: { global: "damageSource" },
+		filter(event, player) {
+			if (player == event.source || !event.source || event.source.group != "wei") {
+				return false;
+			}
+			return player.hasZhuSkill("sgsxjxfzmnl_cpcuandi", event.source);
+		},
+		// getIndex: event => event.num,
+		logTarget: "source",
+		async content(event, trigger, player) {
+			await player.draw();
+		},
+	},
 
 
+	//傅佥
+	sgsxjxfzmnl_jueyong: {
+		audio: 'jueyong',
+		trigger: { target: "useCardToTarget" },
+		forced: true,
+		filter(event, player) {
+			return event.card.name != "jiu" && event.card.name != "tao" && event.targets.length == 1 && event.card.isCard && event.cards.length == 1 && event.getParent(2).name != "jueyong_timeout" && get.position(event.cards[0], true) == "o" && event.card.name == event.cards[0].name && (!player.storage.jueyong || player.storage.jueyong[0].length < player.getHp());
+		},
+		content() {
+			trigger.targets.remove(player);
+			trigger.getParent().triggeredTargets2.remove(player);
+			trigger.untrigger();
+			var card = trigger.cards[0];
+			player.addToExpansion(card, "gain2").gaintag.add("jueyong");
+			if (!player.storage.jueyong) {
+				player.storage.jueyong = [[], []];
+			}
+			player.storage.jueyong[0].push(card);
+			player.storage.jueyong[1].push(trigger.player);
+			game.delayx();
+		},
+		onremove(player, skill) {
+			var cards = player.getExpansions('jueyong');
+			if (cards.length) {
+				player.loseToDiscardpile('jueyong');
+			}
+			delete player.storage[skill];
+		},
+		intro: {
+			markcount(storage) {
+				if (!storage) {
+					return 0;
+				}
+				return storage[0].length;
+			},
+			mark(dialog, storage, player) {
+				if (!storage) {
+					return;
+				}
+				dialog.addAuto(storage[0]);
+				dialog.addText(get.translation(storage[1]));
+			},
+			onunmark(storage, player) {
+				player.storage.jueyong = [[], []];
+			},
+		},
+		ai: {
+			reverseEquip: true,
+			effect: {
+				target_use(card, player, target, current) {
+					if (get.type(card) == "equip" && !get.tag(card, "gifts") && target.storage.jueyong && target.storage.jueyong[1].length) {
+						var result1 = get.equipResult(player, target, card),
+							subtype = get.subtype(card);
+						for (var i of target.storage.jueyong[0]) {
+							if (get.subtype(i, false) == subtype && get.equipResult(target, target, i) >= result1) {
+								return "zerotarget";
+							}
+						}
+					}
+				},
+			},
+		},
+		group: "jueyong_timeout",
+		subSkill: {
+			timeout: {
+				audio: "jueyong",
+				trigger: { player: "phaseJieshuBegin" },
+				forced: true,
+				filter(event, player) {
+					return player.storage.jueyong && player.storage.jueyong[0].length > 0; //=Math.max(1,player.getDamagedHp());
+				},
+				content() {
+					var list = player.storage.jueyong,
+						card = list[0].shift(),
+						source = list[1].shift();
+					if (player.getExpansions("jueyong").includes(card)) {
+						if (source && source.isIn() && source.canUse(card, player, false)) {
+							source.useCard(card, player, false);
+						} else {
+							player.gain(card);
+						}
+					}
+					if (list[0].length) {
+						event.redo();
+					}
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_poxiang: {
+		audio: 'poxiang',
+		enable: "phaseUse",
+		usable: 1,
+		filter: (event, player) => player.countCards("he") > 0,
+		filterCard: true,
+		filterTarget: lib.filter.notMe,
+		position: "he",
+		discard: false,
+		lose: false,
+		delay: false,
+		check(card) {
+			var player = _status.event.player;
+			if (
+				!player.storage.jueyong ||
+				!player.storage.jueyong[0].length ||
+				(player.hp <= 1 &&
+					!player.storage.jueyong[0].some(function (card) {
+						return get.tag(card, "damage") > 0;
+					})) ||
+				!player.storage.jueyong[0].some(function (card) {
+					return get.effect(player, card, player.storage.jueyong[1][player.storage.jueyong[0].indexOf(card)], player) < 0;
+				})
+			) {
+				return -1;
+			}
+			return 20 - get.value(card);
+		},
+		content() {
+			"step 0";
+			player.give(cards, target);
+			player.draw(3).gaintag = ["sgsxjxfzmnl_poxiang"];
+			player.addTempSkill("sgsxjxfzmnl_poxiang_mark");
+			"step 1";
+			var cards = player.getExpansions("jueyong");
+			if (cards.length) {
+				player.loseToDiscardpile(cards);
+			}
+			player.unmarkSkill("jueyong");
+			// player.loseHp();
+			"step 2";
+			//player.skip('phaseDiscard');
+			game.delayx();
+		},
+		ai: {
+			order: 12,
+			result: {
+				player: 4,
+				target: 1,
+			},
+		},
+		subSkill: {
+			mark: {
+				charlotte: true,
+				onremove(player) {
+					player.removeGaintag("sgsxjxfzmnl_poxiang");
+				},
+				mod: {
+					ignoredHandcard(card, player) {
+						if (card.hasGaintag("sgsxjxfzmnl_poxiang")) {
+							return true;
+						}
+					},
+					cardDiscardable(card, player, name) {
+						if (name == "phaseDiscard" && card.hasGaintag("sgsxjxfzmnl_poxiang")) {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+
+	//曹仁
+	sgsxjxfzmnl_sbjushou: {
+		audio: 'sbjushou',
+		enable: "phaseUse",
+		usable: 1,
+		filter(event, player) {
+			return !player.isTurnedOver();
+		},
+		filterCard: true,
+		selectCard: [1, Infinity],
+		check(card) {
+			if (ui.selected.cards.length + _status.event.player.hujia >= 5) {
+				return 0;
+			}
+			return 6.5 - get.value(card);
+		},
+		position: "he",
+		logAudio: () => 1,
+		group: ["sgsxjxfzmnl_sbjushou_damage", "sgsxjxfzmnl_sbjushou_draw"],
+		content() {
+			player.turnOver();
+			player.changeHujia(cards.length, null, true);
+		},
+		ai: {
+			order: 5,
+			result: {
+				player: 1,
+			},
+		},
+		subSkill: {
+			damage: {
+				audio: "sbjushou2.mp3",
+				trigger: {
+					player: "damageEnd",
+				},
+				filter(event, player) {
+					return player.isTurnedOver();
+				},
+				direct: true,
+				content() {
+					"step 0";
+					player
+						.chooseControl("翻面", "获得1点护甲", "cancel2")
+						.set("ai", () => {
+							if (_status.event.player.hujia >= 3) {
+								return 0;
+							}
+							return 1;
+						})
+						.set("prompt", get.prompt("sgsxjxfzmnl_sbjushou"))
+						.set("prompt2", "选择一项");
+					"step 1";
+					if (result.control == "cancel2") {
+						event.finish();
+						return;
+					}
+					player.logSkill("sgsxjxfzmnl_sbjushou_damage");
+					if (result.control == "翻面") {
+						player.turnOver();
+					} else {
+						player.changeHujia(1, null, true);
+					}
+				},
+				ai: {
+					effect: {
+						target(card, player, target) {
+							if (!target.isTurnedOver()) {
+								return;
+							}
+							if (get.tag(card, "damage")) {
+								if (player.hasSkillTag("jueqing", false, target)) {
+									return [1, -2];
+								}
+								if (
+									(card.name == "sha" && !player.hasSkill("jiu")) ||
+									target.hasSkillTag("filterDamage", null, {
+										player: player,
+										card: card,
+									})
+								) {
+									return 0.1;
+								}
+							}
+						},
+					},
+				},
+			},
+			draw: {
+				audio: "sbjushou3.mp3",
+				trigger: { player: "turnOverAfter" },
+				forced: true,
+				locked: false,
+				filter(event, player) {
+					return !player.isTurnedOver() && player.hujia > 0;
+				},
+				content() {
+					player.draw(player.hujia);
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_sbjiewei: {
+		audio: 'sbjiewei',
+		enable: "phaseUse",
+		// usable: 1,
+		filter(event, player) {
+			return player.hujia > 0;
+		},
+		filterTarget(card, player, target) {
+			return target != player && target.countCards("h")&&(!player.storage.sgsxjxfzmnl_sbjiewei_mark||player.storage.sgsxjxfzmnl_sbjiewei_mark.includes(target));
+		},
+		content() {
+			player.changeHujia(-1);
+			player.YB_tempz('sgsxjxfzmnl_sbjiewei_mark',target)
+			player.gainPlayerCard(target, "visible", true, "h").set("ai", function (button) {
+				return get.value(button.link, _status.event.target);
+			});
+		},
+		ai: {
+			combo: "sgsxjxfzmnl_sbjushou",
+			order: 8,
+			result: {
+				player(player, target) {
+					return player.hujia - 3.6;
+				},
+				target: -1,
+			},
+		},
+	},
 
 
+	//乐祢衡
+	sgsxjxfzmnl_dcjigu: {
+		audio: 'dcjigu',
+		trigger: {
+			global: "phaseBefore",
+			player: "enterGame",
+		},
+		filter(event, player) {
+			return event.name != "phase" || game.phaseNumber == 0;
+		},
+		forced: true,
+		async content(event, trigger, player) {
+			const cards = player.getCards("h");
+			player.addGaintag(cards, "dcjigu");
+		},
+		mod: {
+			ignoredHandcard(card) {
+				if (card.hasGaintag("dcjigu")) {
+					return true;
+				}
+			},
+			cardDiscardable(card, _, name) {
+				if (name == "phaseDiscard" && card.hasGaintag("dcjigu")) {
+					return false;
+				}
+			},
+		},
+		group: "sgsxjxfzmnl_dcjigu_temp",
+		subSkill: {
+			used: {
+				charlotte: true,
+				onremove: true,
+			},
+			temp: {
+				audio: "dcjigu",
+				trigger: {
+					player: "damageEnd",
+					source: "damageSource",
+				},
+				filter(event, player) {
+					return player.countCards("e") == player.countCards("h", card => card.hasGaintag("dcjigu")&&get.type(card)=='equip');
+				},
+				forced: true,
+				prompt2(event, player) {
+					return (
+						"摸" +
+						get.cnNumber(
+							Array.from({ length: 5 })
+								.map((_, i) => i + 1)
+								.reduce((sum, i) => sum + player.countEmptySlot(i), 0)
+						) +
+						"张牌"
+					);
+				},
+				async content(event, trigger, player) {
+					// player.addTempSkill("sgsxjxfzmnl_dcjigu_used", { global: "roundStart" });
+					// player.addMark("sgsxjxfzmnl_dcjigu_used");
+					await player.draw(
+						Array.from({ length: 5 })
+							.map((_, i) => i + 1)
+							.reduce((sum, i) => sum + player.countEmptySlot(i), 0)
+					);
+					// let num1 = player.countMark("sgsxjxfzmnl_dcjigu_used");
+					// let num2 = game.countPlayer2(current => {
+					// 	return current.actionHistory.some(i => i.isMe && !i.isSkipped);
+					// });
+					// if (num1 >= num2) {
+					// 	player.tempBanSkill(event.name, "roundStart");
+					// }
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_dcsirui: {
+		audio: 'dcsirui',
+		mod: {
+			targetInRange(card) {
+				if (card.storage && card.storage.sgsxjxfzmnl_dcsirui) {
+					return true;
+				}
+			},
+			cardUsable(card, player, num) {
+				if (card.storage && card.storage.sgsxjxfzmnl_dcsirui) {
+					return Infinity;
+				}
+			},
+		},
+		enable: "phaseUse",
+		filter(event, player) {
+			if (!player.countCards("hes")) {
+				return false;
+			}
+			return get
+				.inpileVCardList(info => {
+					const name = info[2];
+					if (get.type(name) != "basic" && get.type(name) != "trick") {
+						return false;
+					}
+					return true;
+				})
+				.some(card => player.hasCard(cardx => get.cardNameLength(cardx) == get.cardNameLength(card[2]) && player.hasUseTarget(get.autoViewAs({ name: card[2], nature: card[3], storage: { dcsirui: true } }, [cardx]), false, false), "hes"));
+		},
+		usable(skill,player){
+			return Math.max(1,player.countCards("h", card => card.hasGaintag("dcjigu")));
+		},
+		locked: false,
+		chooseButton: {
+			dialog(event, player) {
+				const list = get
+					.inpileVCardList(info => {
+						const name = info[2];
+						if (get.type(name) != "basic" && get.type(name) != "trick") {
+							return false;
+						}
+						return true;
+					})
+					.filter(card => player.hasCard(cardx => get.cardNameLength(cardx) == get.cardNameLength(card[2]) && player.hasUseTarget(get.autoViewAs({ name: card[2], nature: card[3], storage: { dcsirui: true } }, [cardx]), false, false), "hes"));
+				return ui.create.dialog("思锐", [list, "vcard"]);
+			},
+			check(button) {
+				return get.event().player.getUseValue({
+					name: button.link[2],
+					nature: button.link[3],
+					storage: { dcsirui: true },
+				});
+			},
+			backup(links, player) {
+				return {
+					audio: "dcsirui",
+					filterCard(card, player) {
+						return get.cardNameLength(card) == get.cardNameLength(lib.skill.dcsirui_backup.viewAs.name);
+					},
+					popname: true,
+					viewAs: {
+						name: links[0][2],
+						nature: links[0][3],
+						storage: { dcsirui: true },
+					},
+					check(card) {
+						return 7 - get.value(card);
+					},
+					position: "hes",
+					precontent() {
+						event.getParent().addCount = false;
+					},
+				};
+			},
+			prompt(links, player) {
+				return "将一张字数为" + get.cardNameLength(links[0][2]) + "的牌当作" + get.translation(links[0][3] || "") + "【" + get.translation(links[0][2]) + "】使用";
+			},
+		},
+		ai: {
+			order(item, player) {
+				let list = get
+					.inpileVCardList(info => {
+						const name = info[2];
+						if (get.type(name) != "basic" && get.type(name) != "trick") {
+							return false;
+						}
+						return true;
+					})
+					.filter(card => player.hasCard(cardx => get.cardNameLength(cardx) == get.cardNameLength(card[2]) && player.hasUseTarget(get.autoViewAs({ name: card[2], nature: card[3] }, [cardx]), false, false), "hes"))
+					.map(card => {
+						return { name: card[2], nature: card[3] };
+					})
+					.filter(card => player.getUseValue(card, true, true) > 0);
+				if (!list.length) {
+					return 0;
+				}
+				list.sort((a, b) => (player.getUseValue(b, true, true) || 0) - (player.getUseValue(a, true, true) || 0));
+				return get.order(list[0], player) * 0.99;
+			},
+			result: { player: 1 },
+		},
+		subSkill: {
+			backup: { audio: "dcsirui" },
+		},
+	},
 
+	//朱建平
+	sgsxjxfzmnl_dcxiangmian: {
+		audio: 'dcxiangmian',
+		enable: "phaseUse",
+		usable: 1,
+		filter(event, player) {
+			return game.hasPlayer(current => lib.skill.sgsxjxfzmnl_dcxiangmian.filterTarget(null, player, current));
+		},
+		filterTarget(card, player, target) {
+			return player != target;
+		},
+		content() {
+			"step 0";
+			target.judge(card => -2 / Math.sqrt(get.number(card, false))).set("judge2", result => (result.bool === false ? true : false));
+			"step 1";
+			player.markAuto("sgsxjxfzmnl_dcxiangmian", [target]);
+			target.addSkill("sgsxjxfzmnl_dcxiangmian_countdown");
+			if (!target.storage["sgsxjxfzmnl_dcxiangmian_countdown"]) {
+				target.storage["sgsxjxfzmnl_dcxiangmian_countdown"] = [];
+			}
+			[player.playerid, result.color, result.number].forEach(i => target.storage["sgsxjxfzmnl_dcxiangmian_countdown"].push(i));
+			target.markSkill("sgsxjxfzmnl_dcxiangmian_countdown");
+		},
+		intro: { content: "已对$发动过技能" },
+		ai: {
+			expose: 0.3,
+			order: 10,
+			result: { target: -5 },
+		},
+		subSkill: {
+			countdown: {
+				trigger: { player: "useCardAfter" },
+				mark: true,
+				marktext: "💀",
+				silent: true,
+				forced: true,
+				charlotte: true,
+				intro: {
+					markcount(storage) {
+						if (storage) {
+							var list = storage.filter((_, i) => i % 3 == 2);
+							return Math.min.apply(null, list);
+						}
+					},
+					content(storage, player) {
+						if (!storage) {
+							return;
+						}
+						var str = "使用";
+						str +=
+							get.cnNumber(
+								Math.min.apply(
+									null,
+									storage.filter((_, i) => i % 3 == 2)
+								)
+							) + "张牌后，或使用一张";
+						for (var i = 0; i < storage.length / 3; i++) {
+							str += get.translation(storage[i * 3 + 1]) + "、";
+						}
+						str = str.slice(0, -1);
+						str += "后，<font color=red>死亡</font>";
+						return str;
+					},
+				},
+				filter(event, player) {
+					if (!player.getStorage("sgsxjxfzmnl_dcxiangmian_countdown").length) {
+						return false;
+					}
+					//return (player.getStorage('dcxiangmian_countdown').filter((_,i)=>i%3==1)).includes(get.suit(event.card,player));
+					return true;
+				},
+				content() {
+					"step 0";
+					var storage = player.getStorage("sgsxjxfzmnl_dcxiangmian_countdown");
+					for (var i = 0; i < storage.length / 3; i++) {
+						if (storage[i * 3 + 1] == get.color(trigger.card, player)) {
+							storage[i * 3 + 2] = 0;
+						} else {
+							storage[i * 3 + 2]--;
+						}
+					}
+					player.markSkill("sgsxjxfzmnl_dcxiangmian_countdown");
+					"step 1";
+					var storage = player.getStorage("sgsxjxfzmnl_dcxiangmian_countdown");
+					for (var i = 0; i < storage.length / 3; i++) {
+						if (storage[i * 3 + 2] <= 0) {
+							if (!event.isMine() && !event.isOnline()) {
+								game.delayx();
+							}
+							player.logSkill("sgsxjxfzmnl_dcxiangmian_countdown");
+							player.storage["sgsxjxfzmnl_dcxiangmian_countdown"].splice(i * 3, 3);
+							if (!player.getStorage("sgsxjxfzmnl_dcxiangmian_countdown").length) {
+								player.removeSkill("sgsxjxfzmnl_dcxiangmian_countdown");
+							}
+							if (player.hp > 0) {
+								player.die()
+							}
+							i--;
+						}
+					}
+				},
+				ai: {
+					effect: {
+						player_use(card, player, target) {
+							if (typeof card != "object") {
+								return;
+							}
+							var storage = player.getStorage("sgsxjxfzmnl_dcxiangmian_countdown");
+							for (var i = 0; i < storage.length / 3; i++) {
+								if (storage[i * 3 + 2] == 1 || get.color(card, player) == storage[i * 3 + 1]) {
+									// if (!player.canSave(player) && !get.tag(card, "save")) {
+									// 	return [0, -100, 0, 0];
+									// }
+									// return [1, -2 * player.hp, 1, 0];
+									return -Infinity;
+								}
+							}
+						},
+					},
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_dctianji: {
+		audio: 'dctianji',
+		trigger: { global: "cardsDiscardAfter" },
+		forced: true,
+		filter(event, player) {
+			var evt = event.getParent().relatedEvent;
+			return evt && evt.name == "judge" ;
+		},
+		content() {
+			var card = trigger.cards[0],
+				cards = [],
+				func = ["type2", "suit", "number"];
+			for (var fn of func) {
+				var cardx = get.cardPile2(cardxx => {
+					if (get[fn](card, player) == get[fn](cardxx, player) && !cards.includes(cardxx)) {
+						return true;
+					}
+				}, "random");
+				if (cardx) {
+					cards.push(cardx);
+				}
+			}
+			/*if(cards.length&&!player.isMaxHandcard(true)) player.draw();
+			else*/ if (cards.length) {
+				player.gain(cards, "gain2");
+			}
+		},
+	},
 
+	//神黄忠
+	sgsxjxfzmnl_new_dclieqiong: {
+		audio: "dclieqiong",
+		trigger: { source: "damageSource" },
+		filter(event, player) {
+			return event.player.isIn() && event.source != event.player;
+		},
+		derivation: ["sgsxjxfzmnl_dclieqiong_place1", "sgsxjxfzmnl_dclieqiong_place4", "sgsxjxfzmnl_dclieqiong_place5", "sgsxjxfzmnl_dclieqiong_place6", "sgsxjxfzmnl_dclieqiong_place7"],
+		positions: {
+			head: {
+				name: "天冲",
+				info: "令其<font color=red>死亡</font>，你增加1点体力上限<span class=yellowtext>并回复一点体力</span>。",
+				css_male: {
+					left: "50%",
+					top: "14%",
+				},
+				css_female: {
+					left: "45%",
+					top: "10%",
+				},
+				async content(event, trigger, player) {
+					const { target, position } = event;
+					game.log(player, "击伤了", target, "的", "#y天冲");
+					await player.say('枪枪爆头，好运连连')
+					await target.die();
+					await player.gainMaxHp();
+					await player.recover();
+				},
+			},
+			hand: {
+				name: "力烽",
+				info: "令其随机弃置一半手牌（向上取整）",
+				css_male: {
+					left: "28%",
+					top: "40%",
+				},
+				css_female: {
+					left: "72%",
+					top: "40%",
+				},
+				async content(event, trigger, player) {
+					const { target, position } = event;
+					game.log(player, "击伤了", target, "的", "#y力烽");
+					const cardx = target.getDiscardableCards(target, "h");
+					const num = Math.ceil(cardx.length / 2);
+					if (cardx.length) {
+						await target.discard(cardx.randomGets(num));
+					}
+				},
+			},
+			leg: {
+				name: "地机",
+				info: "令其<span class=firetext>接下来</span>受到的伤害+1<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+				css_male: {
+					left: "35%",
+					top: "80%",
+				},
+				css_female: {
+					left: "67%",
+					top: "80%",
+				},
+				async content(event, trigger, player) {
+					const { target, position } = event;
+					game.log(player, "击伤了", target, "的", "#y地机");
+					// if(!target.hasSkill('sgsxjxfzmnl_new_dclieqiong_leg'))target.addTip("sgsxjxfzmnl_new_dclieqiong_leg", "裂穹 地机");
+					target.addSkill('sgsxjxfzmnl_new_dclieqiong_leg')
+					// target.addMark('sgsxjxfzmnl_new_dclieqiong_leg',1,false);
+					// target
+					// 	.when({
+					// 		player: ["damageBegin3", "phaseEnd"],
+					// 	})
+					// 	.then(() => {
+					// 		player.removeTip("sgsxjxfzmnl_new_dclieqiong_leg");
+					// 		if (trigger.name == "damage") {
+					// 			trigger.num++;
+					// 		}
+					// 	});
+				},
+			},
+			chest: {
+				name: "中枢",
+				info: "令其<span class=firetext>每回合使用的第一张牌</span>无效<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+				css_male: {
+					left: "50%",
+					top: "30%",
+				},
+				css_female: {
+					left: "40%",
+					top: "25%",
+				},
+				async content(event, trigger, player) {
+					const { target, position } = event;
+					game.log(player, "击伤了", target, "的", "#y中枢");
+					// if(!target.hasSkill('sgsxjxfzmnl_new_dclieqiong_chest'))target.addTip("sgsxjxfzmnl_new_dclieqiong_chest", "裂穹 中枢");
+					target.addSkill('sgsxjxfzmnl_new_dclieqiong_chest')
+					// target.addMark('sgsxjxfzmnl_new_dclieqiong_chest',1,false);
+					// target
+					// 	.when({
+					// 		player: ["useCard", "phaseEnd"],
+					// 	})
+					// 	.then(() => {
+					// 		player.removeTip("sgsxjxfzmnl_new_dclieqiong_chest");
+					// 		if (trigger.name == "useCard") {
+					// 			trigger.targets.length = 0;
+					// 			trigger.all_excluded = true;
+					// 		}
+					// 	});
+				},
+			},
+			abdomen: {
+				name: "气海",
+				info: "令其不能使用或打出红桃牌<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+				css_male: {
+					left: "50%",
+					top: "42%",
+				},
+				css_female: {
+					left: "40%",
+					top: "35%",
+				},
+				async content(event, trigger, player) {
+					const { target, position } = event;
+					game.log(player, "击伤了", target, "的", "#y气海");
+					target.addSkill("sgsxjxfzmnl_new_dclieqiong_abdomen");
+				},
+			},
+		},
+		async cost(event, trigger, player) {
+			const target = trigger.player;
+			let list = Object.keys(lib.skill[event.skill].positions);
+			if (
+				!player.hasHistory("useSkill", evt => {
+					return evt.skill == event.skill && evt.targets?.includes(target);
+				})
+			) {
+				list.remove("head");
+			}
+			if (!list.length) {
+				event.result = { bool: false };
+				return;
+			}
+			const result = await player
+				.chooseButton([
+					[
+						dialog => {
+							dialog.forcebutton = true;
+							dialog.classList.add("forcebutton");
+							dialog.listen(() => {
+								let allpos = dialog.querySelectorAll(".position");
+								allpos.forEach(pos => pos.classList.remove("selected_cp"));
+							});
+							dialog.classList.add("sgsxjxfzmnl_dclieqiong", "fixed", "fullheight");
+							const { target, list } = get.event();
+							dialog.style.backgroundImage = `url(${lib.assetURL}image/card/yiwu_${target.hasSex("male") ? "male" : "female"}.png)`;
+							const title = ui.create.div(".title", dialog);
+							title.innerHTML = `裂穹：是否击伤${get.translation(target)}的一个部位？`;
+							//添加部位
+							for (let pos of list) {
+								let position = lib.skill.new_dclieqiong.positions[pos];
+								let div = ui.create.div(".position", dialog, e => {
+									e.stopPropagation();
+									let allPosDiv = Array.from(dialog.querySelectorAll(".position"));
+									allPosDiv.forEach(p => p.classList.remove("selected_cp"));
+									div.classList.add("selected_cp");
+									ui.selected.buttons = [div];
+									ui.create.confirm("oc");
+								});
+								div.link = pos;
+								let sex = target.hasSex("male") ? "male" : "female";
+								div.css(position[`css_${sex}`] || {});
+								div.setNodeIntro(position.name, position.info);
+								div.style.setProperty("--info", `"【${position.name}】:${position.info}"`);
+							}
+						},
+						"handle",
+					],
+				])
+				.set("target", target)
+				.set("list", list)
+				.set("processAI", () => {
+					const { player, target, list } = get.event();
+					if (get.attitude(player, target) > 0) {
+						return { bool: false };
+					} else {
+						return {
+							bool: true,
+							links: list.includes("head") ? ["head"] : ["abdomen"],
+						};
+					}
+				})
+				.set("switchToAuto", () => {
+					_status.event.result = "ai";
+					_status.event.dialog?.close();
+					ui.confirm?.close();
+				})
+				.forResult();
+			event.result = {
+				bool: result.bool,
+				targets: [target],
+				cost_data: result.links,
+			};
+		},
+		async content(event, trigger, player) {
+			const {
+				targets: [target],
+				cost_data: [position],
+			} = event;
+			game.broadcastAll(function (position) {
+				if (lib.config.background_speak) {
+					game.playAudio("skill", "sgsxjxfzmnl_dclieqiong_" + position);
+				}
+			}, position);
+			const positionObj = lib.skill[event.name].positions[position];
+			let next = game.createEvent(event.name + "_effect", false);
+			next.setContent(positionObj.content);
+			next.set("target", target);
+			next.set("player", player);
+			next.set("position", positionObj);
+			await next;
+		},
+		subSkill: {
+			leg:{
+				init(player, skill) {
+					player.addTip(skill, "裂穹 地机");
+				},
+				onremove(player, skill) {
+					player.removeTip(skill);
+				},
+				audio: "sgsxjxfzmnl_dclieqiong",
+				charlotte: true,
+				mark: true,
+				marktext: "伤",
+				intro: {
+					name: "中伤 - 地机",
+					content: (_, player) => "接下来受到的伤害+1",
+				},
+				trigger:{
+					player: ["damageBegin3"],
+				},
+				content(){
+					if (trigger.name == "damage") {
+						trigger.num++;
+					}
+				},
+			},
+			chest:{
+				init(player, skill) {
+					player.addTip(skill, "裂穹 中枢");
+				},
+				onremove(player, skill) {
+					player.removeTip(skill);
+				},
+				audio: "sgsxjxfzmnl_dclieqiong",
+				charlotte: true,
+				mark: true,
+				marktext: "伤",
+				intro: {
+					name: "中伤 - 中枢",
+					content: (_, player) => "每回合使用的第一张牌无效",
+				},
+				usable:1,
+				trigger:{
+					player: ["useCard"],
+				},
+				content(){
+					if (trigger.name == "useCard") {
+						trigger.targets.length = 0;
+						trigger.all_excluded = true;
+					}
+				},
+			},
+			abdomen: {
+				init(player, skill) {
+					player.addTip(skill, "裂穹 气海");
+				},
+				onremove(player, skill) {
+					player.removeTip(skill);
+				},
+				audio: "sgsxjxfzmnl_dclieqiong",
+				charlotte: true,
+				mark: true,
+				marktext: "伤",
+				intro: {
+					name: "中伤 - 气海",
+					content: (_, player) => "不能使用或打出红桃牌",
+				},
+				mod: {
+					cardEnabled(card) {
+						if (get.suit(card) == "heart") {
+							return false;
+						}
+					},
+					cardSavable(card) {
+						if (get.suit(card) == "heart") {
+							return false;
+						}
+					},
+					cardRespondable(card) {
+						if (get.suit(card) == "heart") {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+	sgsxjxfzmnl_dczhanjue: {
+		audio: 'dczhanjue',
+		trigger: {
+			player: "phaseUseBegin",
+		},
+		async cost(event, trigger, player) {
+			const hps = [player.getHp(), player.getDamagedHp()];
+			let list = [(hps[0] > 0 ? "摸" + get.cnNumber(hps[0]) + "张牌，" : "") + "此阶段使用的下一张伤害牌无距离限制且不能被响应。", (hps[1] > 0 ? "摸" + get.cnNumber(hps[1]) + "张牌，" : "") + "此阶段造成伤害后，回复等量体力。"];
+			let result = await player
+				.chooseControlList(list)
+				.set("ai", function () {
+					let player = get.event().player,
+						damaged = player.getDamagedHp();
+					if (damaged) {
+						damaged +=
+							0.6 *
+							(player.countCards("hs", card => {
+								if (card.name == "sha" || !get.tag(card, "damage")) {
+									return 0;
+								}
+								let info = get.info(card);
+								if (!info || info.type != "trick") {
+									return false;
+								}
+								if (info.notarget) {
+									return false;
+								}
+								if (info.selectTarget != undefined) {
+									if (Array.isArray(info.selectTarget)) {
+										if (info.selectTarget[1] == -2) {
+											return 1;
+										}
+										if (info.selectTarget[1] == -1) {
+											let func = info.filterTarget;
+											if (typeof func != "function") {
+												func = () => true;
+											}
+											return game.countPlayer(cur => {
+												return func(card, player, cur);
+											});
+										}
+										return Math.max(1, info.selectTarget[0], info.selectTarget[1]);
+									} else {
+										if (info.selectTarget == -2) {
+											return 1;
+										}
+										if (info.selectTarget == -1) {
+											let func = info.filterTarget;
+											if (typeof func != "function") {
+												func = () => true;
+											}
+											return game.countPlayer(cur => {
+												return func(card, player, cur);
+											});
+										}
+										return Math.max(1, info.selectTarget);
+									}
+								}
+								return 1;
+							}) +
+								Math.max(player.getCardUsable("sha"), player.countCards("hs", "sha")));
+					}
+					if (damaged > player.hp) {
+						return "选项二";
+					}
+					return "选项一";
+				})
+				.forResult();
+			event.result = {
+				bool: result.control != "cancel2",
+				cost_data: result.control,
+			};
+		},
+		async content(event, trigger, player) {
+			if (event.cost_data == "选项一") {
+				player.draw(player.getHp());
+				player.addTempSkill("sgsxjxfzmnl_dczhanjue_directHit", { player: "phaseUseEnd" });
+			} else {
+				player.draw(player.getDamagedHp());
+				player.addTempSkill("sgsxjxfzmnl_dczhanjue_recover", { player: "phaseUseEnd" });
+			}
+		},
+		subSkill: {
+			directHit: {
+				audio: "dczhanjue",
+				charlotte: true,
+				forced: true,
+				mod: {
+					targetInRange(card) {
+						// if (card.name == "sha") {
+						// 	return true;
+						// }
+						if(get.tag(card, "damage")){
+							return true;
+						}
+					},
+				},
+				trigger: {
+					player: "useCard",
+				},
+				filter(event, player) {
+					return get.tag(event.card, "damage")
+				},
+				async content(event, trigger, player) {
+					trigger.directHit.addArray(game.players);
+					game.log(trigger.card, "不可被响应");
+					player.removeSkill(event.name);
+				},
+			},
+			recover: {
+				audio: "dczhanjue",
+				trigger: {
+					source: "damageSource",
+				},
+				forced: true,
+				charlotte: true,
+				content: async function (event, trigger, player) {
+					if (player.isDamaged()) {
+						player.recover(trigger.num);
+					}
+					// player.removeSkill(event.name);
+				},
+			},
+		},
+	},
 
-
-
-
+	//滕芳兰
+	sgsxjxfzmnl_dcluochong: {
+		audio: 'dcluochong',
+		trigger: { global: "roundStart" },
+		filter(event, player) {
+			return game.hasPlayer(current => current.countDiscardableCards(player, "hej") > 0);
+		},
+		direct: true,
+		async content(event, trigger, player) {
+			if (_status.connectMode) {
+				game.broadcastAll(function () {
+					_status.noclearcountdown = true;
+				});
+			}
+			const lose_list = [];
+			let num = 4 - player.countMark("sgsxjxfzmnl_dcluochong");
+			let log = false;
+			// event.targets = game.filterPlayer();
+			event.targets = [];
+			while (event.targets.length<4) {
+				const result = await player
+					.chooseTarget(get.prompt("sgsxjxfzmnl_dcluochong"), `弃置任意名角色区域内的累计至多${num}张牌`, (card, player, target) => {
+						return target.hasCard(card => {
+							return lib.filter.canBeDiscarded(card, player, target, "dcluochong")&&!event.targets.includes(target);
+						}, "hej");
+					})
+					.set("ai", target => {
+						const player = _status.event.player,
+							discarded = _status.event.lose_list.find(item => item[0] == target);
+						if (discarded) {
+							if (target == player) {
+								return 0;
+							}
+							const num = discarded[1].length;
+							if (num > 1 && player.hp + player.hujia > 2) {
+								return 0;
+							}
+						}
+						if (target == player) {
+							if (ui.cardPile.childNodes.length > 80 && player.hasCard(card => get.value(card) < 8)) {
+								return 20;
+							}
+							return 0;
+						}
+						return get.effect(target, { name: "guohe_copy2" }, player, player);
+					})
+					.set("lose_list", lose_list)
+					.forResult();
+				if (result.bool) {
+					if (!log) {
+						player.logSkill("sgsxjxfzmnl_dcluochong");
+						log = true;
+					}
+					const target = result.targets[0];
+					const { cards } = await player
+						.choosePlayerCard(target, true, "hej", [1, Infinity], `选择弃置${get.translation(target)}区域内的牌`, "allowChooseAll")
+						.set("filterButton", button => {
+							const card = button.link,
+								target = _status.event.target,
+								player = get.player();
+							return lib.filter.canBeDiscarded(card, player, target, "sgsxjxfzmnl_dcluochong");
+						})
+						.set("lose_list", lose_list)
+						.set("ai", button => {
+							if (ui.selected.buttons.length > 0) {
+								return false;
+							}
+							var val = get.buttonValue(button);
+							if (get.attitude(_status.event.player, _status.event.target) > 0) {
+								return -val;
+							}
+							return val;
+						})
+						.forResult();
+					// num -= cards.length;
+					event.targets.push(target);
+					const index = lose_list.find(item => item[0] == target);
+					if (!index) {
+						lose_list.push([target, cards]);
+					} else {
+						index[1].addArray(cards);
+					}
+					await target.discard(cards, "notBySelf").set("discarder", player);
+				} else {
+					break;
+				}
+			}
+			if (_status.connectMode) {
+				game.broadcastAll(function () {
+					delete _status.noclearcountdown;
+					game.stopCountChoose();
+				});
+			}
+			// if (lose_list.length > 0 && lose_list.some(i => i[1].length > 2)) {
+			// 	game.log(player, "可弃置牌数", "#g-1");
+			// 	player.addMark("dcluochong", 1, false);
+			// }
+		},
+		ai: {
+			threaten: 2.5,
+			effect: {
+				target(card, player, target, current) {
+					if (get.type(card) == "delay" && current < 0) {
+						var current2 = _status.currentPhase;
+						if (current2 && current2.getSeatNum() > target.getSeatNum()) {
+							return 0.1;
+						}
+					}
+				},
+			},
+		},
+		group:['sgsxjxfzmnl_dcluochong_change'],
+		subSkill:{
+			change:{
+				firstDo:true,
+				charlotte:true,
+				direct:true,
+				locked:true,
+				trigger: {
+					global: ["loseAfter"],
+				},
+				filter(event, player, name) {
+					const evt = event.getParent(2);
+					if (evt.name == "sgsxjxfzmnl_dcluochong") {
+						return true;
+					}
+				},
+				content(){
+					var evt = trigger.getParent(2);
+					evt.name='dcluochong'
+				}
+			},
+		},
+	},
+	sgsxjxfzmnl_dcaichen: {
+		audio: 'dcaichen',
+		// init(player) {
+		// 	game.addGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// },
+		// onremove(player) {
+		// 	if (!game.hasPlayer(current => current.hasSkill("qmsgswkjsgj_re_dcaichen", null, null, false), true)) {
+		// 		game.removeGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// 	}
+		// },
+		trigger: {
+			player: ["loseAfter", "phaseDiscardBefore"],
+			// target: "useCardToTargeted",
+		},
+		filter(event, player, name) {
+			if (event.name == "phaseDiscard") {
+				// return ui.cardPile.childNodes.length > 40;
+				return true;
+			}
+			// if (name == "useCardToTargeted") {
+			// 	return ui.cardPile.childNodes.length < 40 && get.suit(event.card) == "spade";
+			// }
+			const evt = event.getParent(2);
+			if (evt.name != "dcluochong" || evt.player != player ) {
+				return false;
+			}
+			if (!event.getl(player).cards.length) {
+				return false;
+			}
+			// return ui.cardPile.childNodes.length > 80;
+			return true;
+		},
+		forced: true,
+		getIndex(event,player){
+			return event.getl(player).cards.length;
+		},
+		content() {
+			if (trigger.name.indexOf("lose") == 0) {
+				player.draw(2);
+			} else if (trigger.name == "phaseDiscard") {
+				trigger.cancel();
+				game.log(player, "跳过了弃牌阶段");
+			} else {
+				player.say('我是怎么进入这条分支的？')
+				// trigger.directHit.add(player);
+				// game.log(player, "不可响应", trigger.card);
+			}
+		},
+		// subSkill: {
+		// 	hit: {
+		// 		trigger: { player: "dieAfter" },
+		// 		filter(event, player) {
+		// 			return !game.hasPlayer(current => current.hasSkill("qmsgswkjsgj_re_dcaichen", null, null, false), true);
+		// 		},
+		// 		silent: true,
+		// 		forceDie: true,
+		// 		content() {
+		// 			game.removeGlobalSkill("qmsgswkjsgj_re_dcaichen_hit");
+		// 		},
+		// 		ai: {
+		// 			directHit_ai: true,
+		// 			skillTagFilter(player, tag, arg) {
+		// 				return arg && arg.card && arg.target && arg.target.hasSkill("qmsgswkjsgj_re_dcaichen") && ui.cardPile.childNodes.length < 40 && get.suit(arg.card) === "spade";
+		// 			},
+		// 		},
+		// 	},
+		// },
+	},
 
 
 

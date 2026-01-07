@@ -10,6 +10,13 @@ import { YBSL_ybtf } from './content/YB_08_ybtf.js'
 import { YBSL_ybgz } from './content/YB_09_ybgz.js'
 
 export async function content(config, pack) {
+	
+				// 强制返回 false，防止其他扩展手动开启兼容模式
+				// Object.defineProperty(lib.config, 'compatiblemode', {
+				// 	get() { return false },
+				// 	set() { },
+				// });//玛德，我看哪个扩展再给我手动开兼容
+
 	// if(lib.config.extension_夜白神略_ybsl_wujinshilian=='lc'){
 	// }
 	{
@@ -24,5 +31,21 @@ export async function content(config, pack) {
 		YBSL_ybgz();
 	}
 	
+	if(lib.config.extension_十周年UI_enable==true){
+		let cards = [];
+		game.getFileList('extension/夜白神略/image/card-skins/caise',(folders,files)=> {
+			var decoration = files;
+			decoration.forEach(function(image){ 
+				cards.push(image.slice(0,image.length-5));
+			});
+		});
+		// console.log(cards)
+		window.registerDecadeCardSkin({
+			extensionName:'夜白神略',
+			skinKey:'caise',
+			cardNames:cards,
+			extension:'webp',
+		})
+	}
 	
 }

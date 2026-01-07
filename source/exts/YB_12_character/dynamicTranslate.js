@@ -147,6 +147,12 @@ const dynamicTranslate = {//动态翻译
 
 
 
+	sgsxjxfzmnl_junkchigang(player) {
+		if (player.storage.junkchigang) {
+			return '转换技，锁定技。判定阶段开始前，你取消此阶段。然后你获得一个额外的：阳，摸牌阶段；<span class="bluetext">阴，出牌阶段。</span>';
+		}
+		return '转换技，锁定技。判定阶段开始前，你取消此阶段。然后你获得一个额外的：<span class="bluetext">阳，摸牌阶段</span>；阴，出牌阶段。';
+	},
 
 
 
