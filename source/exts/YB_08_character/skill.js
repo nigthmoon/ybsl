@@ -438,7 +438,7 @@ const skill = {
 				.choosePlayerCard(get.prompt("ybmjz_fankui", trigger.source), trigger.source, trigger.source != player ? "he" : "e")
 				.set("ai", button => {
 					let val = get.buttonValue(button);
-					if (get.event("att") > 0) return 1 - val;
+					if (get.event().att > 0) return 1 - val;
 					return val;
 				})
 				.set("att", get.attitude(player, trigger.source))
@@ -456,7 +456,7 @@ const skill = {
 					.choosePlayerCard(get.prompt("refankui", trigger.source), trigger.source, trigger.source != player ? "he" : "e")
 					.set("ai", button => {
 						let val = get.buttonValue(button);
-						if (get.event("att") > 0) return 1 - val;
+						if (get.event().att > 0) return 1 - val;
 						return val;
 					})
 					.set("att", get.attitude(player, trigger.source));
@@ -506,7 +506,7 @@ const skill = {
 				.choosePlayerCard(get.prompt("ybmjz_fankuix", target),true, target,"he")
 				.set("ai", button => {
 					let val = get.buttonValue(button);
-					if (get.event("att") > 0) return 1 - val;
+					if (get.event().att > 0) return 1 - val;
 					return val;
 				})
 				.set("att", get.attitude(player, target));

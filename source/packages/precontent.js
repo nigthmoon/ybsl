@@ -17,78 +17,81 @@ import { typeimage } from './function.js'
 import { cyyydsgs } from '../pile/cyyydsgs.js'
 export async function precontent() {
 	
-	let originalCompatibleMode = lib.config.compatiblemode;
-
-	// 检测兼容模式并弹窗询问
-	if (originalCompatibleMode === true&&lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗!=true) {
-		// 创建自定义弹窗
-		const dialog = document.createElement('div');
-		dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999999;display:flex;justify-content:center;align-items:center;';
+	if(false){
+		let originalCompatibleMode = lib.config.compatiblemode;
+	
+		// 检测兼容模式并弹窗询问
+		if (originalCompatibleMode === true&&lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗!=true) {
+			// 创建自定义弹窗
+			const dialog = document.createElement('div');
+			dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999999;display:flex;justify-content:center;align-items:center;';
+			
+			const content = document.createElement('div');
+			content.style.cssText = 'background:#fff;padding:30px;border-radius:10px;min-width:400px;min-height:400px;box-shadow:0 5px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
+			
+			const title = document.createElement('div');
+			title.textContent = '《夜白神略》提示';
+			title.style.cssText = 'font-size:20px;font-weight:bold;margin-bottom:15px;color:#333;top:84px;left: 35%;';
+			
+			const message = document.createElement('div');
+			message.innerHTML = `检测到兼容模式已开启。
+			<br><br>是否关闭兼容模式并重启游戏？
+			<br><br>点击"确定"将关闭兼容模式并重启
+			<br>点击"取消"将保留兼容模式（可能导致功能异常）
+			<br>点击"取消并不再提示"将不再提示（可前往扩展设置中开关）
+	
+			<br><br>开启兼容模式会导致：
+			<br>1.当你出现bug时，你不会收到任何报错，你只知道有技能没生效
+			<br>2.当游戏炸了的时候，你不知道为啥炸，你只知道游戏炸了
+			<br>3.当你开启兼容模式反馈bug时，你会被群友骂
+			`;
+			message.style.cssText = 'margin-bottom:25px;line-height:1.6;color:#f00;    top: 113px;';
+			
+			const buttons = document.createElement('div');
+			buttons.style.cssText = 'display:flex;gap:15px;justify-content:center;';
+			
+			const btnConfirm = document.createElement('button');
+			btnConfirm.textContent = '确定';
+			btnConfirm.style.cssText = 'padding:10px 25px;background:#4CAF50;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
+			btnConfirm.addEventListener('click', () => {
+				localStorage.setItem('config_compatiblemode', 'false');
+				dialog.remove();
+				setTimeout(() => {
+					game.saveConfig('compatiblemode',false);
+					if (game.download && typeof game.reload === 'function') {
+						game.reload();
+					} else {
+						location.reload();
+					}
+				}, 300);
+			});
+			
+			const btnCancel = document.createElement('button');
+			btnCancel.textContent = '取消';
+			btnCancel.style.cssText = 'padding:10px 25px;background:#f44336;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
+			btnCancel.addEventListener('click', () => {
+				dialog.remove();
+			});
+			
+			const btnNoPrompt = document.createElement('button');
+			btnNoPrompt.textContent = '取消并不再提示';
+			btnNoPrompt.style.cssText = 'padding:10px 25px;background:#9E9E9E;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
+			btnNoPrompt.addEventListener('click', () => {
+				game.saveConfig('extension_夜白神略_不再提示关闭兼容模式的弹窗', true);
+				dialog.remove();
+			});
+			
+			buttons.appendChild(btnConfirm);
+			buttons.appendChild(btnCancel);
+			buttons.appendChild(btnNoPrompt);
+			
+			content.appendChild(title);
+			content.appendChild(message);
+			content.appendChild(buttons);
+			dialog.appendChild(content);
+			document.body.appendChild(dialog);
+		}
 		
-		const content = document.createElement('div');
-		content.style.cssText = 'background:#fff;padding:30px;border-radius:10px;min-width:400px;min-height:400px;box-shadow:0 5px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
-		
-		const title = document.createElement('div');
-		title.textContent = '《夜白神略》提示';
-		title.style.cssText = 'font-size:20px;font-weight:bold;margin-bottom:15px;color:#333;top:84px;left: 35%;';
-		
-		const message = document.createElement('div');
-		message.innerHTML = `检测到兼容模式已开启。
-		<br><br>是否关闭兼容模式并重启游戏？
-		<br><br>点击"确定"将关闭兼容模式并重启
-		<br>点击"取消"将保留兼容模式（可能导致功能异常）
-		<br>点击"取消并不再提示"将不再提示（可前往扩展设置中开关）
-
-		<br><br>开启兼容模式会导致：
-		<br>1.当你出现bug时，你不会收到任何报错，你只知道有技能没生效
-		<br>2.当游戏炸了的时候，你不知道为啥炸，你只知道游戏炸了
-		<br>3.当你开启兼容模式反馈bug时，你会被群友骂
-		`;
-		message.style.cssText = 'margin-bottom:25px;line-height:1.6;color:#f00;    top: 113px;';
-		
-		const buttons = document.createElement('div');
-		buttons.style.cssText = 'display:flex;gap:15px;justify-content:center;';
-		
-		const btnConfirm = document.createElement('button');
-		btnConfirm.textContent = '确定';
-		btnConfirm.style.cssText = 'padding:10px 25px;background:#4CAF50;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-		btnConfirm.addEventListener('click', () => {
-			localStorage.setItem('config_compatiblemode', 'false');
-			dialog.remove();
-			setTimeout(() => {
-				game.saveConfig('compatiblemode',false);
-				if (game.download && typeof game.reload === 'function') {
-					game.reload();
-				} else {
-					location.reload();
-				}
-			}, 300);
-		});
-		
-		const btnCancel = document.createElement('button');
-		btnCancel.textContent = '取消';
-		btnCancel.style.cssText = 'padding:10px 25px;background:#f44336;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-		btnCancel.addEventListener('click', () => {
-			dialog.remove();
-		});
-		
-		const btnNoPrompt = document.createElement('button');
-		btnNoPrompt.textContent = '取消并不再提示';
-		btnNoPrompt.style.cssText = 'padding:10px 25px;background:#9E9E9E;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-		btnNoPrompt.addEventListener('click', () => {
-			game.saveConfig('extension_夜白神略_不再提示关闭兼容模式的弹窗', true);
-			dialog.remove();
-		});
-		
-		buttons.appendChild(btnConfirm);
-		buttons.appendChild(btnCancel);
-		buttons.appendChild(btnNoPrompt);
-		
-		content.appendChild(title);
-		content.appendChild(message);
-		content.appendChild(buttons);
-		dialog.appendChild(content);
-		document.body.appendChild(dialog);
 	}
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// let scriptPaths=[

@@ -3104,6 +3104,9 @@ const skill = {
 			.set('prompt',get.translation(trigger.player)+'对'+get.translation(trigger.target)+'使用了'+get.translation(trigger.card))
 			.set('prompt2',get.prompt('yb006_xueyan')+"<br>弃置一张同花色的牌，令此牌无效？<br>然后此牌原目标摸两张牌。")
 			.set("chooseonly", true).set('ai',function(card){
+				var trigger = _status.event.getTrigger();
+				var atk = get.effect(trigger.target,trigger.card,trigger.player,player);
+				if(atk>0) return false;
 				var att = get.attitude(_status.event.player,trigger.target);
 				if(att>5)return 6-get.value(card);
 			}).forResult();

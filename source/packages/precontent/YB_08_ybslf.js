@@ -218,10 +218,10 @@ const YBSL_ybslf = function () {
 						position: "he",
 						animate: false,
 						filterCard(card, player) {
-							// if(event.boolyb==true)return event.cards.includes(card)&&!get.event("list").some(listx => listx == card);
-							// return !get.event("list").some(listx => listx == card);
-							if (event.boolyb == true) return event.cards.includes(card) && !get.event("list").some(list => list[1] == card);
-							return !get.event("list").some(list => list[1] == card);
+							// if(event.boolyb==true)return event.cards.includes(card)&&!get.event().list.some(listx => listx == card);
+							// return !get.event().list.some(listx => listx == card);
+							if (event.boolyb == true) return event.cards.includes(card) && !get.event().list.some(list => list[1] == card);
+							return !get.event().list.some(list => list[1] == card);
 						},
 						// selectCard(){return max - listx.length},
 						filterTarget:function(card,player,target){
@@ -232,7 +232,7 @@ const YBSL_ybslf = function () {
 							return Math.random();
 						},
 						ai2(target) {
-							return get.attitude(get.event("player"), target);
+							return get.attitude(get.event().player, target);
 						},
 					})
 					.set("list", list)
@@ -1078,9 +1078,10 @@ const YBSL_ybslf = function () {
 			}
 			'step 2'
 			var map = event.result || result;
-			if (map && map.skills && map.skills.length) {
-				for (var i of map.skills) player.addSkillLog(i);
-			}
+			// if (map && map.skills && map.skills.length) {
+			// 	for (var i of map.skills) player.addSkillLog(i);
+			// }
+			player.addSkills(map.skills);
 			game.broadcastAll(function (list) {
 				game.expandSkills(list);
 				for (var i of list) {
@@ -1090,7 +1091,7 @@ const YBSL_ybslf = function () {
 					info.audioname2.old_yuanshu = 'weidi';
 				}
 			}, map.skills);
-			event._result = map;
+			event.result = map;
 			event.finish();
 			'step 3'
 			event.num = event.numa;
@@ -1150,7 +1151,7 @@ const YBSL_ybslf = function () {
 				_status.characterlist.add(event.numb);
 				_status.characterlist.remove(result.links[0]);
 			}
-			event._result = result;
+			event.result = result;
 			event.finish();
 			'step 5'
 			event.num = event.numa;
@@ -1203,7 +1204,7 @@ const YBSL_ybslf = function () {
 				player.flashAvatar(event.numb, name);
 				game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');
 				player.addSkill(lib.character[name][3])
-				event._result = result;
+				event.result = result;
 			}
 		}
 		//-------------逐个翻译

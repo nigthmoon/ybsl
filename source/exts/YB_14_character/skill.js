@@ -5726,7 +5726,7 @@ const skill = {
 				// next.set('addCount',false);
 				next._triggered = null;
 				next.backup(event.skillName);
-				next.set('chooseonly', true)
+				// next.set('chooseonly', true)
 			}
 			'step 3'
 			// if (result.bool) {
@@ -5739,14 +5739,14 @@ const skill = {
 				if (event.source.countGainableCards(event.target, "h"))
 					event.target.gainPlayerCard('h', event.source, true).set("target", event.source).set("complexSelect", false).set("ai", button => {
 						let val = get.buttonValue(button);
-						if (get.event("att") > 0) return 1 - val;
+						if (get.event().att > 0) return 1 - val;
 						return val;
 					}).set("att", get.attitude(event.target, event.source));
 				// event.target
 				// 	.choosePlayerCard(get.prompt("ybsl_rongjie", event.source),true, event.source,"he")
 				// 	.set("ai", button => {
 				// 		let val = get.buttonValue(button);
-				// 		if (get.event("att") > 0) return 1 - val;
+				// 		if (get.event().att > 0) return 1 - val;
 				// 		return val;
 				// 	})
 				// 	.set("att", get.attitude(event.target,  event.source));
@@ -7076,7 +7076,7 @@ const skill = {
 					// next.set('addCount',false);
 					next._triggered = null;
 					next.backup(event.skillname);
-					next.set('chooseonly', true)
+					// next.set('chooseonly', true)
 					const result = await next.forResult()
 					// if (!result.bool) return
 					if (!result.bool) {

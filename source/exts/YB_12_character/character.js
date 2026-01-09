@@ -620,7 +620,7 @@ const character = { //武将格式 :
 	},
 	sgsxjxfzmnl_mo_caopi: {
 		sex: "male",
-		group: "wei",
+		group: "devil",
 		hp: 3,
 		skills: ["xingshang", "fangzhu", "songwei", 'sgsxjxfzmnl_cpcuandi'],
 		isZhugong: true,
@@ -699,7 +699,29 @@ const character = { //武将格式 :
 		rankAdd: 'legend',
 		rankS: 's',
 	},
-
+	sgsxjxfzmnl_sb_diaochan: {
+		sex: "female",
+		group: "qun",
+		hp: 3,
+		skills: ["sgsxjxfzmnl_sblijian", "sgsxjxfzmnl_sbbiyue"],
+		names: "null|null",
+		YB_mjz: 'sb_diaochan',
+		linkTo: 'sb_diaochan',
+		tempname: ['sb_diaochan'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	sgsxjxfzmnl_re_zuoci: {
+		sex: "male",
+		group: "qun",
+		hp: 3,
+		skills: ["sgsxjxfzmnl_rehuashen", "sgsxjxfzmnl_rexinsheng"],
+		YB_mjz: 're_zuoci',
+		linkTo: 're_zuoci',
+		tempname: ['re_zuoci'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
 
 
 

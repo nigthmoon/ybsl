@@ -488,7 +488,7 @@ export async function cyyydsgs() {
 									.choosePlayerCard('其他角色移除“花粉”时，你可以获得其一张牌', target, 'he')
 									.set("ai", button => {
 										let val = get.buttonValue(button);
-										if (get.event("att") > 0) {
+										if (get.event().att > 0) {
 											return 1 - val;
 										}
 										return val;
@@ -1262,7 +1262,7 @@ export async function cyyydsgs() {
 									.choosePlayerCard('其他角色移除“花粉”时，你可以获得其一张牌', target, 'he')
 									.set("ai", button => {
 										let val = get.buttonValue(button);
-										if (get.event("att") > 0) {
+										if (get.event().att > 0) {
 											return 1 - val;
 										}
 										return val;

@@ -1382,7 +1382,7 @@ const translate = {
 	sgsxjxfzmnl_dczengou_info: "出牌阶段限一次，你可以将至多体力上限张牌称为“谮构”交给一名其他角色并摸等量张牌。若如此做，<span class=yellowtext>其无法使用、打出、或弃置你交给其的手牌，并且</span>其下次体力值增加或使用牌结算完毕后，其展示所有手牌，然后失去Y点体力（Y为其手牌中的“谮构”牌数）<span style=\"text-decoration: line-through;\">并移除“谮构”牌的标记</span>。",
 
 	sgsxjxfzmnl_bianxi: "阴间卞喜",
-	sgsxjxfzmnl_bianxi_prefix: "阴间卞喜",
+	sgsxjxfzmnl_bianxi_prefix: "阴间",
 	sgsxjxfzmnl_dunxi: "钝袭",
 	sgsxjxfzmnl_dunxi_info: "①当你使用<span style=\"text-decoration: line-through;\">具有伤害标签的</span>牌时，你可以令一名<span style=\"text-decoration: line-through;\">不为你的目标</span>角色获得一枚“钝”。②有“钝”的角色使用<span style=\"text-decoration: line-through;\">基本牌或锦囊</span>牌时，<span style=\"text-decoration: line-through;\">若此牌目标数为1且此时没有角色处于濒死状态，你令其移去一枚“钝”</span>。系统随机选择一名角色，并将此牌的目标改为该角色。<span class=firetext>若随机目标不为你，则其失去1点体力；若随机目标为你，则你摸一张牌。</span>若其正处于出牌阶段内，则结束此阶段。<span class=yellowtext>每次回合结束时移去1个“钝”。</span>",
 
@@ -1395,7 +1395,7 @@ const translate = {
 	sgsxjxfzmnl_junkshengzhi: "圣质",
 	sgsxjxfzmnl_junkshengzhi_info: "锁定技。当你发动非锁定技后，你令你本回合使用的<span style=\"text-decoration: line-through;\">下一张</span>牌无距离和次数限制。（三国杀仙界下凡怎么你了）",
 	sgsxjxfzmnl_junkquandao: "权道",
-	sgsxjxfzmnl_junkquandao_info: "锁定技。当你使用<span class=firetext>基本牌</span>或普通锦囊牌时，{若你手牌中的【杀】或普通锦囊牌的数量之差X不为0，则你弃置X张数量较多的一种牌}，然后你摸一张牌。（三国杀仙界下凡怎么你了）",
+	sgsxjxfzmnl_junkquandao_info: "锁定技。当你使用<span class=firetext>基本牌</span>或普通锦囊牌时，{若你手牌中的<span class=firetext>基本牌</span>或普通锦囊牌的数量之差X不为0，则你弃置X张数量较多的一种牌}，然后你摸一张牌。（三国杀仙界下凡怎么你了）",
 	sgsxjxfzmnl_junkchigang: "持纲",
 	sgsxjxfzmnl_junkchigang_info: "转换技，锁定技。判定阶段开始前，你取消此阶段。然后你获得一个额外的：阳，摸牌阶段；阴，出牌阶段。（三国杀仙界下凡怎么你了）",
 
