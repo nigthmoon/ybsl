@@ -2409,7 +2409,7 @@ const skill = {
 				return 5;
 			});
 			netx.judge2 = result => result.bool;
-			const { result } = await netx;
+			const result = await netx.forResult();
 			if (!result?.bool) target.damage("fire");
 		},
 	},

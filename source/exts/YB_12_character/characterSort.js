@@ -91,7 +91,7 @@ const characterSort = {
 			'sgsxjxfzmnl_ol_nanhualaoxian',
 			'sgsxjxfzmnl_dc_sb_zhouyu','sgsxjxfzmnl_dc_simashi',
 			'sgsxjxfzmnl_xuelingyun','sgsxjxfzmnl_yangbiao',
-			'sgsxjxfzmnl_simazhao','sgsxjxfzmnl_caoying',
+			'sgsxjxfzmnl_mb_simazhao','sgsxjxfzmnl_caoying',
 
 
 

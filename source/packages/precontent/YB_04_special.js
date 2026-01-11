@@ -424,11 +424,10 @@ const YBSL_special = function () {
 				// }
 				return false;
 			},
-			content: function*(event,map) {
-				let trigger=map.trigger,player=map.player;
+			content: async function(event, trigger, player) {
 				trigger.cancel();
 				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
-				var result = yield player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备');
+				var result = await player.chooseControl(event.list1).set('prompt', '请选择将小狐当做哪种装备').forResult();
 				
 				if (result.control) {
 					var num = result.index + 1;

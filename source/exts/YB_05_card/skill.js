@@ -894,13 +894,12 @@ const skill = {
 			if(!event.cards.length)return false;
 			if(event.getl(player).hs) return true;
 		},
-		content:function*(event,map){
-			let player=map.player,trigger=map.trigger;
+		content:async function(event, trigger, player) {
 			let num = trigger.cards.length;
-			var result =yield player.chooseTarget([1,num]).set('ai',function(target){
+			var result =await player.chooseTarget([1,num]).set('ai',function(target){
 				var player=_status.event.player;
 				return get.damageEffect(target,player,player,'fire');
-			}).set('prompt',`请选择至多${num}名角色，对这些角色各造成一点由这些牌造成的火焰伤害`);
+			}).set('prompt',`请选择至多${num}名角色，对这些角色各造成一点由这些牌造成的火焰伤害`).forResult();
 			if(result.bool){
 				var list=result.targets;
 				list.sortBySeat();

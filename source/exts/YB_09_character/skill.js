@@ -3656,19 +3656,6 @@ const skill = {
 				player:1,
 			}
 		},
-		// check:true,
-		// content:function*(event,map){
-		// 	let player=map.player,trigger=map.trigger;
-		// 	yield player.draw();
-		// 	var card1=get.bottomCards()[0];
-		// 	game.cardsGotoOrdering(card1);
-		// 	player.addToExpansion(card1,'gain2').gaintag.add('North_cxch_lingxi_yuping');
-		// 	if(get.color(card1)==get.color(trigger.card)){
-		// 		var card2=get.cards()[0];
-		// 		game.cardsGotoOrdering(card2);
-		// 		player.addToExpansion(card2,'gain2').gaintag.add('North_cxch_lingxi_tingniao');
-		// 	}
-		// },
 		content:function(){
 			'step 0'
 			player.draw();
@@ -3804,13 +3791,12 @@ const skill = {
 					var cards=player.getExpansions('North_cxch_lingxi_yuping');
 					return get.YB_suit(cards,'type2')&&get.YB_suit(cards,'type2').length>=3;
 				},
-				content:function*(event,map){
-					let player=map.player,trigger=map.trigger;
+				content:async function(event, trigger, player) {
 					var cards=event.player.getExpansions('North_cxch_lingxi_yuping');
-					var result=yield player.chooseTarget(1,true).set('prompt','将所有的“玉娉”交给1名角色').set('ai',function(target){
+					var result=await player.chooseTarget(1,true).set('prompt','将所有的“玉娉”交给1名角色').set('ai',function(target){
 						return get.attitude(_status.event.player,target);
-					});
-					yield result.targets[0].gain(cards,'gain2');
+					}).forResult();
+					await result.targets[0].gain(cards,'gain2');
 					game.log(player,'将',cards,'交给了',result.targets[0])
 				}
 			}
@@ -3841,8 +3827,7 @@ const skill = {
 			return false;
 		},
 		direct:true,
-		content:function*(event,map){
-			let player=map.player,trigger=map.trigger;
+		content:async function(event, trigger, player) {
 			var cards=event.player.getExpansions('North_cxch_lingxi_tingniao');
 			var str='选择弃置三张花色各不相同的“婷袅”，令此';
 			if(event.triggername!='useCard'){
@@ -3852,7 +3837,7 @@ const skill = {
 				str+='牌';
 			}
 			str+='无效';
-			var result=yield player.chooseCardButton(str,3,cards).set('filterButton',function(button){
+			var result=await player.chooseCardButton(str,3,cards).set('filterButton',function(button){
 				var suit=get.suit(button.link);
 				for(var i=0;i<ui.selected.buttons.length;i++){
 					if(get.suit(ui.selected.buttons[i].link)==suit){
@@ -3869,15 +3854,15 @@ const skill = {
 					var eff=get.damageEffect(trigger.source,trigger.player);
 					return att>0&&eff<0;
 				}
-			});
+			}).forResult();
 			if(result.links){
-				yield player.discard(result.links);
+				await player.discard(result.links);
 				if(event.triggername!='useCard'){
-					yield trigger.cancel();
+					trigger.cancel();
 				}
 				else{
-					// yield trigger.getParent().excluded.add(trigger.targets[0]);
-					yield trigger.targets.remove(trigger.targets[0]);
+					//  trigger.getParent().excluded.add(trigger.targets[0]);
+					trigger.targets.remove(trigger.targets[0]);
 				}
 			}
 		},
@@ -4253,11 +4238,10 @@ const skill = {
 					// player.storage.North_gz_gongshu_del=leng1;
 					return leng1 == leng2;
 				},
-				content:function*(event,map){
-					let trigger=map.trigger,player=map.player;
-					yield player.draw(2);
-					yield delete player.getStat('skill')['North_gz_shujian'];
-					// yield player.removeSkill('North_gz_shujian_used');
+				content:async function(event, trigger, player) {
+					await player.draw(2);
+					delete player.getStat('skill')['North_gz_shujian'];
+					// player.removeSkill('North_gz_shujian_used');
 				}
 			},
 			del:{
@@ -4605,12 +4589,11 @@ const skill = {
 			player.storage.North_lf_zhenzhi=[];
 		},
 		group:'North_lf_zhenzhi_buff',
-		content:function*(event,map){
-			let trigger=map.trigger,player=map.player;
-			if(!player.storage.North_lf_zhenzhi)yield player.storage.North_lf_zhenzhi=[];
+		content:async function(event, trigger, player) {
+			if(!player.storage.North_lf_zhenzhi) player.storage.North_lf_zhenzhi=[];
 			// var num = player.storage.North_lf_zhenzhi.length||0;
 			if(event.triggername=='phaseZhunbeiBegin'){
-				var result = yield player.chooseTarget([0,6]).set('filterTarget',function(card,player,target){
+				var result = await player.chooseTarget([0,6]).set('filterTarget',function(card,player,target){
 					return target.countCards('he')>0;
 				}).set('ai',function(target){
 					var player=_status.event.player;
@@ -4618,25 +4601,25 @@ const skill = {
 						return -get.attitude(player,target);
 					}
 					return false;
-				});
+				}).forResult();
 				if(result.bool){
 					player.logSkill('North_lf_zhenzhi');
 					let targets=result.targets;
 					for(var i of targets){
-						yield player.storage.North_lf_zhenzhi.push(i);
-						yield player.gainPlayerCard('he',i,true);
+						player.storage.North_lf_zhenzhi.push(i);
+						await player.gainPlayerCard('he',i,true);
 					}
 					for(var k of targets){
-						yield k.chooseToDiscard(2,true,'he');
+						await k.chooseToDiscard(2,true,'he');
 					}
 					var num = player.storage.North_lf_zhenzhi.length||0;
-					yield player.draw((6-num||6));
+					await player.draw((6-num||6));
 				}
 				
 			}
 			else{
 				var num = player.storage.North_lf_zhenzhi.length||0;
-				var result = yield player.chooseTarget([0,6-num]).set('filterTarget',function(card,player,target){
+				var result = await player.chooseTarget([0,6-num]).set('filterTarget',function(card,player,target){
 					// return target.countCards('he')>0;
 					return true;
 				}).set('ai',function(target){
@@ -4645,18 +4628,18 @@ const skill = {
 						return -get.attitude(player,target);
 					}
 					return false;
-				});
+				}).forResult();
 				if(result.bool){
 					player.logSkill('North_lf_zhenzhi');
 					let targets=result.targets;
 					for(var i of targets){
-						yield player.storage.North_lf_zhenzhi.push(i);
-						yield player.discardPlayerCard('he',i,true);
+						player.storage.North_lf_zhenzhi.push(i);
+						await player.discardPlayerCard('he',i,true);
 					}
 					for(var k of targets){
-						yield k.loseHp(2);
+						await k.loseHp(2);
 					}
-					yield player.draw(num);
+					await player.draw(num);
 				}
 				
 			}

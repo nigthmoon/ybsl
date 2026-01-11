@@ -791,23 +791,22 @@ const skill = {
 		async cost(event, trigger, player){
 			event.result=await player.chooseToDiscard('he').set('prompt2',get.prompt2('ybmjz_luoyi')).set("chooseonly", true).forResult();
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			yield player.discard(event.cards);
+		async content(event, trigger, player) {
+			await player.discard(event.cards);
 			var cardsx=[];
 			cardsx.push(event.cards[0]);
-			var relu = yield player.draw(2,"visible");
+			var relu = await player.draw(2,"visible");
 			for(var k of relu){
 				cardsx.push(k);
 			}
 			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
-				yield player.addTempSkill("yhky_cyluoyi_damage", { player: "phaseBefore" });
+				await player.addTempSkill("yhky_cyluoyi_damage", { player: "phaseBefore" });
 			}
 			if(cardsx.filter(card=>get.type2(card)=='trick').length>0){
-				yield player.addTempSkill("yhky_cyluoyi_use");
+				await player.addTempSkill("yhky_cyluoyi_use");
 			}
 			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
-				yield player.addTempSkill("yhky_cyluoyi_tag");
+				await player.addTempSkill("yhky_cyluoyi_tag");
 			}
 		},
 		subSkill:{
@@ -1109,9 +1108,7 @@ const skill = {
 		// 	}
 		// },
 		// *content(event, map) {
-		// 	const player = map.player,
-		// 		trigger = map.trigger,
-		// 		target = trigger.targets[0],
+		// 	const target = trigger.targets[0],
 		// 		card = event.card;
 		// 	yield (player.useCard(new lib.element.VCard({ name: card[2] }), target, false).oncard = () => {
 		// 		get.event().customArgs.default.customSource = {
@@ -1122,17 +1119,15 @@ const skill = {
 		// 		player.tempBanSkill("yhky_cyyinjun");
 		// 	}
 		// },
-		*content(event, map) {
-			const player = map.player,
-				trigger = map.trigger,
-				target = trigger.targets[0];
-			yield (player.useCard(new lib.element.VCard({ name: "sha" }), target, false).oncard = () => {
+		async content(event, trigger, player) {
+			const target = trigger.targets[0];
+			await player.useCard(new lib.element.VCard({ name: "sha" }), target, false).set("oncard", () => {
 				get.event().customArgs.default.customSource = {
 					isDead: () => true,
 				};
 			});
-			if (player.getHistory("useSkill", evt => evt.skill == "dcyinjun").length > player.getHp()) {
-				player.tempBanSkill("dcyinjun");
+			if (player.getHistory("useSkill", evt => evt.skill == "yhky_cyyinjun").length > player.getHp()) {
+				player.tempBanSkill("yhky_cyyinjun");
 			}
 		},
 
@@ -1304,7 +1299,7 @@ const skill = {
 				targets: [target],
 			} = event;
 			const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
-			const { result } = await player
+			const result = await player
 				.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
 				.set("ai", button => {
 					return get.event().choice.includes(button.link[2].slice(8));
@@ -1355,7 +1350,8 @@ const skill = {
 						}
 						return choice;
 					})()
-				);
+				)
+				.forResult();
 			if (!result?.bool) {
 				return;
 			}
@@ -1450,7 +1446,7 @@ const skill = {
 						targets: [target],
 					} = event;
 					const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
-					const { result } = await player
+					const result = await player
 						.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
 						.set("ai", button => {
 							return get.event().choice.includes(button.link[2].slice(8));
@@ -1501,7 +1497,8 @@ const skill = {
 								}
 								return choice;
 							})()
-						);
+						)
+						.forResult();
 					if (!result?.bool) {
 						return;
 					}
@@ -1576,7 +1573,7 @@ const skill = {
 					// 	targets: [target],
 					// } = event;
 					const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
-					const { result } = await player
+					const result = await player
 						.chooseButton(["凌人：猜测其有哪些类别的手牌", [list, "vcard"]], [0, 3], true)
 						.set("ai", button => {
 							return get.event().choice.includes(button.link[2].slice(8));
@@ -1627,7 +1624,8 @@ const skill = {
 								}
 								return choice;
 							})()
-						);
+						)
+						.forResult();
 					if (!result?.bool) {
 						return;
 					}
@@ -2397,7 +2395,7 @@ const skill = {
 					}
 					list.push("cancel2");
 					var str = get.translation(trigger.player)+(trigger.targets?'对'+get.translation(trigger.targets):'')+'使用了'+get.translation(trigger.card)+'，是否选择一项？'
-					const control = await player
+					const { control } = await player
 						.chooseControl(list)
 						.set("prompt", str)
 						.set("choiceList", choiceList)
@@ -2406,7 +2404,7 @@ const skill = {
 						.set("ai", () => {
 							return '摸牌';
 						})
-						.forResultControl();
+						.forResult();
 					event.result = {
 						bool:control != "cancel2",
 						cost_data:control

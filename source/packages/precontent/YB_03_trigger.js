@@ -463,10 +463,6 @@ const YBSL_trigger = function(){
 					var next = game.createEvent('YB_shenguicifu', false);
 					next.player=this;
 					next.k=k;
-					// next.setContent(function*(event,map){
-					// 	let trigger=map.trigger,player=map.player;
-
-					// });
 					next.setContent(function(){
 						'step 0'
 						var listx=['boss_xiaogui','boss_dagui','boss_yanluo','boss_xiongshou'];
@@ -576,24 +572,23 @@ const YBSL_trigger = function(){
 					},
 					direct:true,
 					forced:true,
-					*content(event,map){
-						let trigger=map.trigger,player=map.player;
+					async content(event, trigger, player) {
 						if(event.triggername=='die'){
 							var str;
 							if(trigger.source)str='你被'+get.translation(trigger.source)+'杀害';
 							else str = '你死于非命'
-							var result = yield player.chooseBool(str+'，这时地府鬼神向你伸出了手，是否接受鬼神赐福？').set('ai',function(){
+							var result = await player.chooseBool(str+'，这时地府鬼神向你伸出了手，是否接受鬼神赐福？').set('ai',function(){
 								return true;
-							});
+							}).forResult();
 							if(result.bool){
 								game.log(player,'获得了','#y鬼神赐福')
 								if (!lib.translate['commoner']) lib.translate['commoner'] = '民';
-								yield player.identity = 'commoner'
-								yield player.special_identity = 'identity_YB_canhun'
-								yield player.setIdentity('identity_YB_canhun_bg');
+								player.identity = 'commoner'
+								player.special_identity = 'identity_YB_canhun'
+								await player.setIdentity('identity_YB_canhun_bg');
 								if(trigger.source&&trigger.source.isIn()){
-									yield player.storage.identity_YB_canhun=trigger.source;
-									yield player.addSkill('YB_xiegui_chouhen');
+									player.storage.identity_YB_canhun=trigger.source;
+									await player.addSkill('YB_xiegui_chouhen');
 									player.ai.modAttitudeFrom = function (from, to) {
 										var player=from;
 										if(to==player.storage.identity_YB_canhun)return -20;
@@ -605,18 +600,18 @@ const YBSL_trigger = function(){
 										return get.attitude(from, to);
 									};
 								}
-								yield player.revive(player.maxHp);
-								yield player.draw(4);
-								yield player.YB_shenguicifu(3)
+								await player.revive(player.maxHp);
+								await player.draw(4);
+								await player.YB_shenguicifu(3)
 							}
 						}
 						else if (event.triggername=='phaseBegin'){
 							game.log(player,'获得了','#y鬼神赐福')
-							yield player.YB_shenguicifu(1)
+							await player.YB_shenguicifu(1)
 						}
 						else {
 							game.log(player,'获得了','#y鬼神赐福')
-							yield player.YB_shenguicifu(2)
+							await player.YB_shenguicifu(2)
 						}
 					},
 				}

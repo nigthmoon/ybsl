@@ -73,21 +73,17 @@ const YBSL_ybslf = function () {
 			if (!cards.length) return;
 			// event.goto -> do while
 			do {
-				const {
-					result: { bool, links },
-				} =
+				const { bool, links } =
 					cards.length == 1
-						? { result: { links: cards.slice(0), bool: true } }
+						? { links: cards.slice(0), bool: true }
 						: await player.chooseCardButton(str + "请选择要分配的牌。还可以分配" + (cards.length - num2) + "张牌", true, cards, [1, cards.length - num2]).set("ai", () => {
 							if (ui.selected.buttons.length == 0) return 1;
 							return 0;
-						});
+						}).forResult();
 				if (!bool) return;
 				cards.removeArray(links);
 				let togive = links.slice(0);
-				const {
-					result: { targets },
-				} = await player
+				const { targets } = await player
 					.chooseTarget("选择一名角色获得" + get.translation(links), true)
 					.set("filterTarget", (card, player, target) => {
 						if(fun)return fun(card, player, target);
@@ -103,7 +99,8 @@ const YBSL_ybslf = function () {
 							return att / 100;
 						}
 					})
-					.set("enemy", get.value(togive[0], player, "raw") < 0);
+					.set("enemy", get.value(togive[0], player, "raw") < 0)
+					.forResult();
 				if (targets.length) {
 					const id = targets[0].playerid,
 						map = given_map;
@@ -210,9 +207,7 @@ const YBSL_ybslf = function () {
 			let listx = [];
 			if (_status.connectMode) game.broadcastAll(() => (_status.noclearcountdown = true));
 			while (max - list.length > 0) {
-				const {
-					result: { bool, cards, targets },
-				} = await player
+				const { bool, cards, targets } = await player
 					.chooseCardTarget({
 						prompt: event.str + "：将" + get.cnNumber(min) + "至" + get.cnNumber(max) + "张牌分配给任意角色",
 						position: "he",
@@ -236,7 +231,8 @@ const YBSL_ybslf = function () {
 						},
 					})
 					.set("list", list)
-					.set("forced", min > list.length);
+					.set("forced", min > list.length)
+					.forResult();
 				if (bool) {
 					// let togive = cards.slice(0);
 					// var id = targets[0].playerid,
@@ -294,8 +290,7 @@ const YBSL_ybslf = function () {
 		// lib.element.content.YB_wugu = async function(event, trigger, player){
 
 		// }
-		lib.element.content.YB_wugu = function* (event, map) {//暂时作废
-			let trigger = map.trigger, player = map.player;
+		lib.element.content.YB_wugu = async function(event, trigger, player) {//暂时作废
 			var cards = event.cards;
 			var str = event.str;
 			var targets = event.targets;

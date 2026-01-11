@@ -85,28 +85,27 @@ const skill = {
 					return false;
 				},
 				check:()=>true,
-				content:function*(event,map){
-					let trigger=map.trigger,player=map.player;
+				content:async function(event, trigger, player) {
 					let cards = trigger.cards;
-					yield player.showCards(cards);
-					if(!player.storage.ybmjz_jianxiong_gaix)yield player.storage.ybmjz_jianxiong_gaix=[];
+					await player.showCards(cards);
+					if(!player.storage.ybmjz_jianxiong_gaix) player.storage.ybmjz_jianxiong_gaix=[];
 					for(var i of cards){
 						if(!player.storage.ybmjz_jianxiong_gaix.includes(get.number(i))){
-							yield player.markSkill('ybmjz_jianxiong_gaix');
-							yield player.storage.ybmjz_jianxiong_gaix.push(get.number(i));
+							await player.markSkill('ybmjz_jianxiong_gaix');
+							 player.storage.ybmjz_jianxiong_gaix.push(get.number(i));
 						}
 					}
 					if(player.storage.ybmjz_jianxiong_gaix.length>=9){
-						yield player.gainMaxHp();
+						await player.gainMaxHp();
 						let skills = player.getStockSkills(true, true).filter(skill => {
 							if (player.hasSkill(skill)) return false;
 							let info = get.info(skill);
 							return info && info.zhuSkill;
 						});
-						if (skills.length) yield player.addSkills(skills);
-						yield player.awakenSkill("ybmjz_jianxiong_gaix");
-						yield player.storage.ybmjz_jianxiong_gai=true;
-						// yield player.removeSkill("ybmjz_jianxiong_gai");
+						if (skills.length) await player.addSkills(skills);
+						await player.awakenSkill("ybmjz_jianxiong_gaix");
+						player.storage.ybmjz_jianxiong_gai=true;
+						// player.removeSkill("ybmjz_jianxiong_gai");
 						
 					}
 				},
@@ -146,7 +145,7 @@ const skill = {
 						next.set("skillwarn", "替" + get.translation(player) + "打出一张闪");
 						next.autochoose = lib.filter.autoRespondShan;
 						next.set("source", player);
-						bool = await next.forResultBool();
+						bool = (await next.forResult()).bool;
 					}
 				}
 				player.storage.hujiaing = false;
@@ -214,7 +213,7 @@ const skill = {
 					str+='的武将牌上';
 					if (list.length == 1) {
 						event.result = await player.chooseBool(str)
-							.set('ai', () => get.attitude2(get.event('target')) > 3)
+							.set('ai', () => get.attitude2(get.event().target) > 3)
 							.set('target', list[0])
 							.forResult()
 						event.result.targets = list
@@ -262,11 +261,10 @@ const skill = {
 						event.result.cards = event.result.links;
 					}
 				},
-				content: function *(event,map) {
-					let trigger=map.trigger,player=map.player;
+				content: async function(event, trigger, player) {
 					var cardx=event.cards;
-					yield player.give(cardx,trigger.player);
-					yield player.draw();
+					await player.give(cardx,trigger.player);
+					await player.draw();
 				},
 				
 			},
@@ -293,12 +291,11 @@ const skill = {
 					return event.player.group == "wei" && event.player.isIn()&&get.suit(cards2)&&suits.includes(get.suit(cards2));
 				},
 				direct:true,
-				content: function *(event,map) {
-					let trigger=map.trigger,player=map.player;
+				content: async function(event, trigger, player) {
 					var cards = Array.from(player.getExpansions("ybmjz_hujia_zhishuo"));
 					var cards2=trigger.card;
 					var cards3=cards.filter(z=>get.suit(z)==get.suit(cards2));
-					yield player.chooseUseTarget(
+					await player.chooseUseTarget(
 						cards3,
 						get.prompt('ybmjz_zhishuo_txgx'),
 						{
@@ -324,22 +321,21 @@ const skill = {
 					if(name=='damageEnd')return event.card&&event.card.YB_zhishuo&&event.source==player&&event.player.isIn();
 					else return event.card.YB_zhishuo;
 				},
-				*content(event,map){
-					let trigger=map.trigger,player=map.player;
+				async content(event, trigger, player) {
 					if(event.triggername=='useCard'){
-						yield trigger.baseDamage=trigger.cards.length;
-						yield player.logSkill('ybmjz_zhishuo_txgx');
+						trigger.baseDamage=trigger.cards.length;
+						await player.logSkill('ybmjz_zhishuo_txgx');
 					}
 					else {
-						var result = yield player.chooseControl('ok2','cancel2')
+						var result = await player.chooseControl('ok2','cancel2')
 							.set('ai',function(con){
 								if(get.attitude(player,trigger.player)>5)return con=='ok2';
 								return con=='cancel2';
 							})
-							.set('prompt','是否令'+get.translation(trigger.player)+'回复'+trigger.num+'点体力？');
+							.set('prompt','是否令'+get.translation(trigger.player)+'回复'+trigger.num+'点体力？').forResult();
 						if(result&&result.control=='ok2'){
-							yield trigger.player.recover(trigger.num);
-							yield player.logSkill('ybmjz_zhishuo_txgx');
+							await trigger.player.recover(trigger.num);
+							await player.logSkill('ybmjz_zhishuo_txgx');
 						}
 					}
 
@@ -448,19 +444,19 @@ const skill = {
 		getIndex(event, player) {
 			return event.num;
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			yield player.gain(event.cards, trigger.source, "giveAuto", "bySelf");
+		async content(event, trigger, player) {
+			await player.gain(event.cards, trigger.source, "giveAuto", "bySelf");
 			if(player.countCards('h')<trigger.source.countCards('h')&&trigger.source.countGainableCards(player, trigger.source != player ? "he" : "e")){
-				var relu=yield  player
+				var relu=await  player
 					.choosePlayerCard(get.prompt("refankui", trigger.source), trigger.source, trigger.source != player ? "he" : "e")
 					.set("ai", button => {
 						let val = get.buttonValue(button);
 						if (get.event().att > 0) return 1 - val;
 						return val;
 					})
-					.set("att", get.attitude(player, trigger.source));
-				if(relu.cards)yield player.gain(event.cards, trigger.source, "giveAuto", "bySelf");
+					.set("att", get.attitude(player, trigger.source))
+					.forResult();
+				if(relu.cards)await player.gain(event.cards, trigger.source, "giveAuto", "bySelf");
 			}
 		},
 		ai: {
@@ -499,19 +495,19 @@ const skill = {
 		getIndex(event, player) {
 			return event.num;
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
+		async content(event, trigger, player) {
 			let target = event.targets[0];
-			var result = yield player
+			var result = await player
 				.choosePlayerCard(get.prompt("ybmjz_fankuix", target),true, target,"he")
 				.set("ai", button => {
 					let val = get.buttonValue(button);
 					if (get.event().att > 0) return 1 - val;
 					return val;
 				})
-				.set("att", get.attitude(player, target));
+				.set("att", get.attitude(player, target))
+				.forResult();
 			if(result.cards){
-				yield player.gain(result.cards, target);
+				await player.gain(result.cards, target);
 				game.log(player,'获得了',target,'的一张牌');
 				if(trigger.source&&trigger.source!=target||!trigger.source){
 					player.chooseToDiscard('he');
@@ -709,40 +705,39 @@ const skill = {
 		getIndex(event, player) {
 			return event.num;
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			var result = yield player.judge(function (card) {
+		async content(event, trigger, player) {
+			var result = await player.judge(function (card) {
 				if (get.color(card) == "red") return 1;
 				return 0;
-			});
+			}).forResult();
 			switch (result.color) {
 				case "black":
 					if (trigger.source.countCards("he")) {
-						yield player.discardPlayerCard(trigger.source, "he", true);
-						var relu = yield player.chooseToDiscard('he',function(card){
+						await player.discardPlayerCard(trigger.source, "he", true);
+						var relu = await player.chooseToDiscard('he',function(card){
 							return get.color(card)=='black';
 						}).set('prompt','是否弃置一张黑色牌，然后再弃置其一张牌？').set('ai',function(card){
 							if(trigger.source.countCards("he")&&get.attitude(_status.event.player,trigger.source)<0){
 								return 10-get.value(card);
 							}
 							return 0;
-						});
-						if(relu.bool&&trigger.source.countCards("he"))yield player.discardPlayerCard(trigger.source, "he", true);
+						}).forResult();
+						if(relu.bool&&trigger.source.countCards("he"))await player.discardPlayerCard(trigger.source, "he", true);
 					}
 					break;
 
 				case "red":
 					if (trigger.source.isIn()) {
-						yield trigger.source.damage();
-						var relu = yield player.chooseToDiscard('he',function(card){
+						await trigger.source.damage();
+						var relu = await player.chooseToDiscard('he',function(card){
 							return get.color(card)=='red';
 						}).set('prompt','是否弃置一张红色牌，然后再对其造成一点伤害？').set('ai',function(card){
 							if(trigger.source.countCards("he")&&get.attitude(_status.event.player,trigger.source)<0){
 								return 10-get.value(card);
 							}
 							return 0;
-						});
-						if(relu.bool&&trigger.source.isIn())yield trigger.source.damage();
+						}).forResult();
+						if(relu.bool&&trigger.source.isIn())await trigger.source.damage();
 					}
 					break;
 				default:
@@ -784,32 +779,31 @@ const skill = {
 		getIndex(event, player) {
 			return event.num;
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			var result = yield player.judge(function (card) {
+		async content(event, trigger, player) {
+			var result = await player.judge(function (card) {
 				if (get.color(card) == "red") return 1;
 				return 0;
-			});
+			}).forResult();
 			switch (result.color) {
 				case "black":
 					if (trigger.source.countCards("he")) {
-						yield player.discardPlayerCard(trigger.source, "he", true);
+						await player.discardPlayerCard(trigger.source, "he", true);
 					}
 					break;
 				case "red":
 					if (trigger.source.isIn()) {
-						yield trigger.source.damage();
+						await trigger.source.damage();
 					}
 					break;
 				default:
 					break;
 			}
 			if(result.card){
-				var relu = yield player.chooseBool('是否将判定牌置于来源的武将牌上？').set('ai',function(){
+				var relu = await player.chooseBool('是否将判定牌置于来源的武将牌上？').set('ai',function(){
 					var att=get.attitude(_status.event.player,trigger.source);
 					if(att<0) return true;
 					else return false;
-				});
+				}).forResult();
 				if(relu.bool){
 					player.logSkill('ybmjz_gangliex')
 					trigger.source.addToExpansion(result.card, "giveAuto", trigger.source)
@@ -842,31 +836,30 @@ const skill = {
 					return event.player.isIn()&&cards.filter(c=>get.color(c)=='black').length>0
 				},
 				forced:true,
-				*content(event,map){
-					let player=map.player,trigger=map.trigger;
-					yield player.line(trigger.player)
+				async content(event, trigger, player) {
+					player.line(trigger.player)
 					var cards=trigger.player.getExpansions("ybmjz_ganglie_mark");
 					if(event.triggername=='loseAfter'){
 						var redcard=cards.filter(c=>get.color(c)=='red');
-						if(redcard.length<=1)yield trigger.player.discard(redcard);
+						if(redcard.length<=1)await trigger.player.discard(redcard);
 						else {
-							var relu = yield player.chooseCardButton(cards,true).set('filterButton',function(i){
+							var relu = await player.chooseCardButton(cards,true).set('filterButton',function(i){
 								return get.color(i)=='red'
-							})
-							if(relu.links)yield trigger.player.discard(relu.links[0]);
+							}).forResult()
+							if(relu.links)await trigger.player.discard(relu.links[0]);
 						}
-						yield trigger.player.damage();
+						await trigger.player.damage();
 					}
 					else {
 						var blackcard=cards.filter(c=>get.color(c)=='black');
-						if(blackcard.length<=1)yield trigger.player.discard(blackcard);
+						if(blackcard.length<=1)await trigger.player.discard(blackcard);
 						else {
-							var relu = yield player.chooseCardButton(cards,true).set('filterButton',function(i){
+							var relu = await player.chooseCardButton(cards,true).set('filterButton',function(i){
 								return get.color(i)=='black'
-							})
-							if(relu.links)yield trigger.player.discard(relu.links[0]);
+							}).forResult()
+							if(relu.links)await trigger.player.discard(relu.links[0]);
 						}
-						yield player.discardPlayerCard(trigger.player, "he", true);
+						await player.discardPlayerCard(trigger.player, "he", true);
 					}
 				}
 			},
@@ -886,51 +879,51 @@ const skill = {
 		getIndex(event, player) {
 			return event.num;
 		},
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			var result = yield player.judge(function (card) {
+		async content(event, trigger, player) {
+			var result = await player.judge(function (card) {
 				if (get.color(card) == "red") return 1;
 				return 0;
-			});
+			}).forResult();
 			switch (result.color) {
 				case "black":
 					if (trigger.source.countCards("he")) {
-						yield player.discardPlayerCard(trigger.source, "he", true);
+						await player.discardPlayerCard(trigger.source, "he", true);
 					}
 					break;
 				case "red":
 					if (trigger.source.isIn()) {
-						yield trigger.source.damage();
+						await trigger.source.damage();
 					}
 					break;
 				default:
 					break;
 			}
 			if(result.card){
-				var relu = yield player.chooseBool('是否将判定牌置于来源的武将牌上？').set('ai',function(){
+				var relu = await player.chooseBool('是否将判定牌置于来源的武将牌上？').set('ai',function(){
 					var att=get.attitude(_status.event.player,trigger.source);
 					if(att<0) return true;
 					else return false;
-				});
+				}).forResult();
 				if(relu.bool){
 					player.logSkill('ybmjz_gangliey')
-					yield trigger.source.addToExpansion(result.card, "giveAuto", trigger.source)
-						.gaintag.add("ybmjz_ganglie_mark")
+					const next = trigger.source.addToExpansion(result.card, "giveAuto", trigger.source)
+						next.gaintag.add("ybmjz_ganglie_mark")
+						await next;
 					
 					// trigger.trigger('ybmjz_ganglie_card')
 					// trigger.player=trigger.source;
 					var cards=trigger.source.getExpansions("ybmjz_ganglie_mark");
 					if(get.YB_suit(cards,'color').includes('black')&&get.YB_suit(cards,'color').includes('red')){
-						var relu = yield player.chooseCardButton(cards,2,true).set('filterButton',function(i){
+						var relu = await player.chooseCardButton(cards,2,true).set('filterButton',function(i){
 							if(!get.color(i))return false;
 							if(ui.selected.cards.length)return get.color(ui.selected.cards[0])!=get.color(i);
 							return true;
-						}).set('complexCard',true)
+						}).set('complexCard',true).forResult()
 						if(relu.links){
-							yield player.logSkill('ybmjz_gangliey_next');
-							// yield trigger.source.discard(relu.links);
-							yield player.gain(relu.links);
-							yield trigger.source.damage(2,player);
+							await player.logSkill('ybmjz_gangliey_next');
+							// await trigger.source.discard(relu.links);
+							await player.gain(relu.links);
+							await trigger.source.damage(2,player);
 						}
 					}
 				}
@@ -959,20 +952,19 @@ const skill = {
 				},
 				direct:true,
 				forced:true,
-				*content(event,map){
-					let player=map.player,trigger=map.trigger;
+				async content(event, trigger, player) {
 					/*if(event.triggername == 'ybmjz_ganglie_cardAfter')var tar = trigger.source;
 					else */var tar = trigger.player;
-					yield player.line(tar);
+					player.line(tar);
 					var cards=tar.getExpansions("ybmjz_ganglie_mark");
 					if(event.triggername=='phaseEnd'){
-						yield player.logSkill('ybmjz_gangliey_next');
-						// yield tar.discard(cards);
-						yield player.gain(cards);
+						await player.logSkill('ybmjz_gangliey_next');
+						// await tar.discard(cards);
+						await player.gain(cards);
 						var rcard=cards.filter(i=>get.color(i)=='red'),
 							bcard=cards.filter(i=>get.color(i)=='black');
-						if(rcard.length>0)yield player.recover(rcard.length);
-						if(bcard.length>0)yield player.draw(bcard.length);
+						if(rcard.length>0)await player.recover(rcard.length);
+						if(bcard.length>0)await player.draw(bcard.length);
 					}
 					// else {
 						
@@ -1012,14 +1004,14 @@ const skill = {
 				}
 			).forResult();
 		},
-		*content(event,map) {
-			let trigger=map.trigger,player=map.player,targets = event.targets;
+		async content(event, trigger, player) {
+			let targets = event.targets;
 			targets.sortBySeat();
 			var lose_list = [],
 				cards = [];
 			for(var i of targets){
 				if(i.isIn()){
-					var relu = yield player.choosePlayerCard('he',i,true).set('ai',function (button) {
+					var relu = await player.choosePlayerCard('he',i,true).set('ai',function (button) {
 						var trigger=_status.event;
 						if (get.attitude(_status.event.player,i) > 5) {
 							return -get.value(button.link);
@@ -1029,21 +1021,21 @@ const skill = {
 						return lib.filter.canBeDiscarded(button.link, player, i);
 					}).forResult();
 					if(relu){
-						yield lose_list.push([i, relu.cards]);
-						yield cards.push(relu.cards[0]);
+						lose_list.push([i, relu.cards]);
+						cards.push(relu.cards[0]);
 					}
 				}
 			}
-			yield game.loseAsync({
+			await game.loseAsync({
 				lose_list: lose_list,
 				discarder: player,
 			}).setContent("discardMultiple");
 			var cardlist=cards.filter(c=>get.position(c, true) == "d");
-			if(cardlist.length)var relu2 = yield player.chooseCardButton(cardlist,[1,Infinity],'突袭：是否获得其中任意张？').set("ai", function (button) {
+			if(cardlist.length)var relu2 = await player.chooseCardButton(cardlist,[1,Infinity],'突袭：是否获得其中任意张？').set("ai", function (button) {
 				return get.useful(button.link)>3;
-			});
+			}).forResult();
 			if(relu2&&relu2.bool){
-				yield player.gain(relu2.links,'gain2');
+				await player.gain(relu2.links,'gain2');
 				trigger.num-=relu2.links.length;
 			}
 		},
@@ -1072,23 +1064,22 @@ const skill = {
 		// 		}
 		// 	}
 		// },
-		*content(event,map){
-			let player=map.player,trigger=map.trigger;
-			yield player.discard(event.cards);
+		async content(event, trigger, player) {
+			await player.discard(event.cards);
 			var cardsx=[];
 			cardsx.push(event.cards[0]);
-			var relu = yield player.draw(2,"visible");
+			var relu = await player.draw(2,"visible");
 			for(var k of relu){
 				cardsx.push(k);
 			}
 			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
-				yield player.addTempSkill("ybmjz_luoyi_damage", { player: "phaseBefore" });
+				await player.addTempSkill("ybmjz_luoyi_damage", { player: "phaseBefore" });
 			}
 			if(cardsx.filter(card=>get.type2(card)=='trick').length>0){
-				yield player.addTempSkill("ybmjz_luoyi_use");
+				await player.addTempSkill("ybmjz_luoyi_use");
 			}
 			if(cardsx.filter(card=>get.type2(card)=='equip').length>0){
-				yield player.addTempSkill("ybmjz_luoyi_tag");
+				await player.addTempSkill("ybmjz_luoyi_tag");
 			}
 			// else player.addTempSkill("ybmjz_luoyi_max");
 		},
@@ -1345,18 +1336,18 @@ const skill = {
 					const evt = event.getParent(2);
 					const names = lib.inpile.filter(name => get.type(name) == "basic");
 					// 	cards = evt.clanshengmo_cards;
-					// const links = await player
+					// const { links } = await player
 					// 	.chooseButton(["剩墨：获得其中一张牌", cards], true)
 					// 	.set("ai", button => {
 					// 		return get.value(button.link);
 					// 	})
-					// 	.forResultLinks();
+					// 	.forResult();
 					// if (!links || !links.length) {
 					// 	return;
 					// }
-					const links = await player.chooseButton(["选择一张牌进行转化", _status.renku],true).set('ai', button => {
+					const { links } = await player.chooseButton(["选择一张牌进行转化", _status.renku],true).set('ai', button => {
 						return -get.value(button.link, player);
-					}).forResultLinks();
+					}).forResult();
 					if (!links || !links.length) {
 						return;
 					}
@@ -1381,12 +1372,12 @@ const skill = {
 					if (!list.length) {
 						return;
 					}
-					const links2 = await player
+					const { links: links2 } = await player
 						.chooseButton(["视为使用一张基本牌", [list, "vcard"]], true)
 						.set("ai", button => {
 							return get.player().getUseValue(button.link) + 1;
 						})
-						.forResultLinks();
+						.forResult();
 					const name = links2[0][2],
 						nature = links2[0][3];
 					game.broadcastAll(
@@ -1444,13 +1435,11 @@ const skill = {
 				prompt:function(event,player){
 					return '是否将'+get.translation(event.cards)+'分配给其他角色？';
 				},
-				*content(event,map) {
-					let trigger = map.trigger,
-						player = map.player;
+				async content(event, trigger, player) {
 					var cards = game.cardsGotoOrdering(trigger.cards);
-					var relu = yield player.YB_yiji(cards,trigger.cards.length,function(card, player, target){
+					var relu = await player.YB_yiji(cards,trigger.cards.length,function(card, player, target){
 						return target!=player;
-					});
+					}).forResult();
 					if(relu){
 						console.log(relu)
 						for(var k of relu){
@@ -1458,25 +1447,25 @@ const skill = {
 							if(k[0].isAlive()){
 								var i = k[0];
 								if(!player.storage.ybmjz_rende_yongdai||!player.storage.ybmjz_rende_yongdai.includes(i)){
-									var relu2 =yield i.chooseBool('是否“拥戴”'+get.translation(player)+'？').set('ai',function(){
+									var relu2 =await i.chooseBool('是否“拥戴”'+get.translation(player)+'？').set('ai',function(){
 										var i = _status.event.player;
 										var att = get.attitude(i,player);
 										return att>0;
-									});
+									}).forResult();
 									if(relu2&&relu2.bool){
 										if(!player.hasSkill('ybmjz_rende_yongdai'))player.addSkill('ybmjz_rende_yongdai');
 										if(!player.storage.ybmjz_rende_yongdai)player.storage.ybmjz_rende_yongdai = [];
-										yield player.storage.ybmjz_rende_yongdai.push(i);
+										player.storage.ybmjz_rende_yongdai.push(i);
 									}	
 								}
 								else {
-									var relu3 = yield i.chooseBool('是否令你回复一点体力'+get.translation(player)+'？').set('ai',function(){
+									var relu3 = await i.chooseBool('是否令你回复一点体力'+get.translation(player)+'？').set('ai',function(){
 										var i = _status.event.player;
 										var att = get.attitude(i,player);
 										return att>0&&get.recoverEffect(player,i)>0;
-									});
+									}).forResult();
 									if(relu3&&relu3.bool){
-										yield player.recover();
+										await player.recover();
 									}
 								}
 							}
@@ -1581,10 +1570,8 @@ const skill = {
 						}
 					}
 				},
-				content:function*(event,map){
-					let trigger = map.trigger,
-						player = map.player,
-						cards = trigger.card.cards;
+				content:async function(event, trigger, player) {
+					let cards = trigger.card.cards;
 					player.$gain2(cards, false);
 					game.cardsGotoSpecial(cards, "toRenku");
 					game.log(player, "将", cards, "置入了仁库");
@@ -1595,14 +1582,14 @@ const skill = {
 					});
 					for(var i of players){
 						if(player.group!='shu'){
-							var relu = yield i.chooseBool('是否令'+get.translation(player)+'改为蜀势力？').set('ai',function(){
+							var relu = await i.chooseBool('是否令'+get.translation(player)+'改为蜀势力？').set('ai',function(){
 								// var i = _status.event.player;
 								// var att = get.attitude(i,player);
 								// return att>5;
 								return true;
-							});
+							}).forResult();
 							if(relu&&relu.bool){
-								yield player.changeGroup('shu');
+								await player.changeGroup('shu');
 							}
 						}
 						else {
@@ -1630,7 +1617,7 @@ const skill = {
 								}
 			
 							});
-							yield ybnext;
+							await ybnext;
 							
 						}
 					}

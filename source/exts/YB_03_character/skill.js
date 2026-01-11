@@ -196,10 +196,9 @@ const skill = {
 		// 	}
 		// 	else{game.log(player,'，你好像已经学会了哦，'+get.translation(event.name)+'的'+get.translation(event.suit)+'变化')}
 		// },
-		content:function*(event,map){
-			let player=map.player,trigger=map.trigger;
+		content:async function(event, trigger, player) {
 			let name=trigger.card.name,suit=get.suit(trigger.cards[0]);
-			var result = yield player.chooseControl('学习','cancel2').set('prompt2','是否学习'+get.translation(event.name)+'的'+get.translation(event.suit)+'变化？');
+			var result = await player.chooseControl('学习','cancel2').set('prompt2','是否学习'+get.translation(event.name)+'的'+get.translation(event.suit)+'变化？').forResult();
 			if(result.control=='cancel2'){event.finish();}
 			else{
 				if(!player.storage.xhly_wuji_wuji.includes(name)){
