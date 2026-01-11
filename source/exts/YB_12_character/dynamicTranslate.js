@@ -154,6 +154,19 @@ const dynamicTranslate = {//动态翻译
 		return '转换技，锁定技。判定阶段开始前，你取消此阶段。然后你获得一个额外的：<span class="bluetext">阳，摸牌阶段</span>；阴，出牌阶段。';
 	},
 
+	sgsxjxfzmnl_dcsbquanmou(player) {
+		const bool = player.storage.sgsxjxfzmnl_dcsbquanmou;
+		let yang = "当你于本阶段内下次对其造成伤害时，取消之",
+			yin = "当你于本阶段内下次对其造成伤害后，你可以选择至多三名其他角色，对这些角色依次造成1点伤害";
+		if (bool) {
+			yin = `<span class='bluetext'>${yin}</span>`;
+		} else {
+			yang = `<span class='firetext'>${yang}</span>`;
+		}
+		let start = "转换技。①游戏开始时，你可以转换此技能状态；②出牌阶段每名角色限一次，你可以令一名其他角色交给你一张牌。",
+			end = "。";
+		return `${start}阳：${yang}；阴：${yin}${end}`;
+	},
 
 
 

@@ -158,6 +158,39 @@ const card = {
 			},
 		},
 	},
+	//大攻车
+	sgsxjxfzmnl_dagongche_attack: {
+		cardimage: "dagongche",
+		fullskin: true,
+		derivation: "sgsxjxfzmnl_mb_zhangfen",
+		type: "equip",
+		subtype: "equip1",
+		destroyLog: false,
+		distance: { attackFrom: -8 },
+		ai: {
+			equipValue: 10,
+			basic: {
+				equipValue: 10,
+			},
+		},
+		skills: ["sgsxjxfzmnl_dagongche_attack_skill", "sgsxjxfzmnl_mbquchong_effect"],
+	},
+	sgsxjxfzmnl_dagongche_defend: {
+		cardimage: "dagongche",
+		fullskin: true,
+		derivation: "sgsxjxfzmnl_mb_zhangfen",
+		type: "equip",
+		subtype: "equip1",
+		destroyLog: false,
+		distance: { attackFrom: -8 },
+		ai: {
+			equipValue: 10,
+			basic: {
+				equipValue: 10,
+			},
+		},
+		skills: ["sgsxjxfzmnl_dagongche_defend_skill", "sgsxjxfzmnl_mbquchong_effect"],
+	},
 
     qmsgswkjsgj_chuanguoyuxi:{
         audio: true,

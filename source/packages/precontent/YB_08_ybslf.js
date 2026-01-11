@@ -1397,6 +1397,50 @@ const YBSL_ybslf = function () {
 				game.log(player, '重置了技能', '#g' + str.slice(0, -1));
 			}
 		}
+		lib.element.player.YB_zhongliuSkills = function(skills){
+			var player = this;
+			if(typeof skills=='string')skills=[skills]
+			game.expandSkills(skills);
+			var resetSkills = [];
+			var suffixs = ['used', 'round', 'block', 'blocker'];
+			for (var skill of skills) {
+				var info = get.info(skill);
+				if (typeof info.usable == 'number') {
+					if (player.hasSkill('counttrigger') && player.storage.counttrigger[skill] && player.storage.counttrigger[skill] >= 1) {
+						delete player.storage.counttrigger[skill];
+						resetSkills.add(skill);
+					}
+					if (typeof get.skillCount(skill) == 'number' && get.skillCount(skill) >= 1) {
+						delete player.getStat('skill')[skill];
+						resetSkills.add(skill);
+					}
+				}
+				if (info.round && player.storage[skill + '_roundcount']) {
+					delete player.storage[skill + '_roundcount'];
+					resetSkills.add(skill);
+				}
+				if (player.storage[`temp_ban_${skill}`]) {
+					delete player.storage[`temp_ban_${skill}`];
+				}
+				if (player.awakenedSkills.contains(skill)) {
+					player.restoreSkill(skill);
+					resetSkills.add(skill);
+				}
+				for (var suffix of suffixs) {
+					if (player.hasSkill(skill + '_' + suffix)) {
+						player.removeSkill(skill + '_' + suffix);
+						resetSkills.add(skill);
+					}
+				}
+			}
+			if (resetSkills.length) {
+				var str = '';
+				for (var i of resetSkills) {
+					str += '【' + get.translation(i) + '】、';
+				}
+				game.log(player, '重置了技能', '#g' + str.slice(0, -1));
+			}
+		}
 		//-------------角色集合从主视角按座位排序
 		get.YB_1234 = function (list) {
 			var list2 = [];

@@ -36,8 +36,8 @@ window.cardPile=[
 	['club',6,'sha'],
 	['club',7,'nanman',null,['yingbian_fujia','yingbian_remove']],//应变新增应变
 	['club',8,'sha'],
-	['club',9,'sha',['thunder','YB_wind']],//应变替换杀--------☆
-	['club',10,'sha',['thunder','YB_wind']],//应变替换杀--------☆
+	['club',9,'sha','thunder|YB_wind'],//应变替换杀--------☆
+	['club',10,'sha','thunder|YB_wind'],//应变替换杀--------☆
 	['club',11,'sha'],
 	['club',12,'wuxie'],
 	['club',13,'wuxie',null,['yingbian_canqu','yingbian_draw']],//应变新增应变
@@ -51,7 +51,7 @@ window.cardPile=[
 	['diamond',7,'sha'],
 	['diamond',8,'sha',null,['yingbian_canqu','yingbian_hit']],//应变新增应变
 	['diamond',9,'sha'],
-	['diamond',10,'sha',['fire','YB_wind']],//应变替换杀--------☆
+	['diamond',10,'sha','fire|YB_wind'],//应变替换杀--------☆
 	['diamond',11,'shan'],
 	['diamond',12,'tao'],
 	['diamond',13,'sha'],

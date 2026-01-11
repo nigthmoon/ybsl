@@ -119,7 +119,13 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				["sgsxjxfzmnl_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
 			],
 			sgsxjxfzmnl_sb_sp_zhugeliang: [
-				["sgsxjxfzmnl_sb_zhugeliang", ['YB_mjz:sb_zhugeliang',"die:sb_sp_zhugeliang"]]
+				["sgsxjxfzmnl_sb_zhugeliang", ['YB_mjz:sb_zhugeliang','tempname:sb_zhugeliang',"die:sb_sp_zhugeliang"]]
+			],
+			sgsxjxfzmnl_dc_sb_simayi: [
+				["sgsxjxfzmnl_dc_sb_simayi_shadow", ['YB_mjz:dc_sb_simayi_shadow','tempname:dc_sb_simayi_shadow',"die:dc_sb_simayi"]]
+			],
+			sgsxjxfzmnl_dc_sb_zhouyu: [
+				["sgsxjxfzmnl_dc_sb_zhouyu_shadow", ['YB_mjz:dc_sb_zhouyu_shadow','tempname:dc_sb_zhouyu_shadow',"die:dc_sb_zhouyu"]]
 			],
 		},
 	}; 

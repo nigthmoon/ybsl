@@ -158,6 +158,7 @@ const characterTitle = {//称号
 	sgsxjxfzmnl_scs_duangui_dead:'<span class="sgsxjxfzmnl">祸乱纲常</span>',
 	sgsxjxfzmnl_scs_guosheng_dead:'<span class="sgsxjxfzmnl">祸乱纲常</span>',
 	sgsxjxfzmnl_scs_gaowang_dead:'<span class="sgsxjxfzmnl">祸乱纲常</span>',
+
 	sgsxjxfzmnl_yue_caiwenji:'<span class="sgsxjxfzmnl">胡笳十八拍</span>',
 	sgsxjxfzmnl_liuyan:'<span class="sgsxjxfzmnl">裂土之宗</span>',
 	sgsxjxfzmnl_shen_xunyu:'<span class="sgsxjxfzmnl">洞心先识</span>',
@@ -166,12 +167,25 @@ const characterTitle = {//称号
 	sgsxjxfzmnl_sb_caopi:'<span class="sgsxjxfzmnl">魏文帝</span>',
 	sgsxjxfzmnl_boss_zhaoyun:'<span class="sgsxjxfzmnl">天龙乘云</span>',
 	sgsxjxfzmnl_nanhualaoxian:'<span class="sgsxjxfzmnl">冯虚御风</span>',
+
 	sgsxjxfzmnl_zhangxuan:'<span class="sgsxjxfzmnl">玉宇嫁蔷</span>',
 	sgsxjxfzmnl_caojinyu:'<span class="sgsxjxfzmnl">金乡公主</span>',
 	sgsxjxfzmnl_shen_machao:'<span class="sgsxjxfzmnl">神威天将军</span>',
 	sgsxjxfzmnl_sunhanhua:'<span class="sgsxjxfzmnl">挣绽的青莲</span>',
 	sgsxjxfzmnl_xin_guozhao: '<span class="sgsxjxfzmnl">文德皇后</span>',
 	sgsxjxfzmnl_sb_guanyu: '<span class="sgsxjxfzmnl">关圣帝君</span>',
+
+	'sgsxjxfzmnl_sb_huanggai': '<span class="sgsxjxfzmnl">轻身为国</span>',
+	'sgsxjxfzmnl_dc_zhouxuān': '<span class="sgsxjxfzmnl">夜华青乌</span>',
+	'sgsxjxfzmnl_sunlingluan': '<span class="sgsxjxfzmnl">弦凤栖梧</span>',
+	'sgsxjxfzmnl_xushao': '<span class="sgsxjxfzmnl">识人读心</span>',
+	'sgsxjxfzmnl_sp_huaman': '<span class="sgsxjxfzmnl">数泽清影</span>',
+	'sgsxjxfzmnl_quyi': '<span class="sgsxjxfzmnl">名门的骁将</span>',
+	'sgsxjxfzmnl_shen_jiangwei': '<span class="sgsxjxfzmnl">怒麟布武</span>',
+	'sgsxjxfzmnl_dc_liuye': '<span class="sgsxjxfzmnl">佐世之才</span>',
+	'sgsxjxfzmnl_peixiu': '<span class="sgsxjxfzmnl">晋图开秘</span>',
+	'sgsxjxfzmnl_wu_luxun': '<span class="sgsxjxfzmnl">释武怀儒</span>', 
+
 	sgsxjxfzmnl_mb_caomao: '<span class="sgsxjxfzmnl">向死存魏</span>',
 	sgsxjxfzmnl_puyuan: '<span class="sgsxjxfzmnl">淬炼百兵</span>',
 	sgsxjxfzmnl_dc_shen_huatuo: '<span class="sgsxjxfzmnl">灵魂的医者</span>',
