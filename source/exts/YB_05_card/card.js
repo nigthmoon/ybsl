@@ -875,6 +875,10 @@ const card = {
 			}
 			return false;
 		},
+		filter(event,player){
+			return true;
+		},
+		complexTarget: true,
 		content:function (){
 			'step 0'
 			var list=_status.YB_jingxieList;

@@ -9215,15 +9215,15 @@ const skill = {
 		selectCard: () => [1, game.countPlayer()],
 		check(card) {
 			const player = get.player();
-			if (
-				ui.selected.cards.length >=
-				game.countPlayer(current => {
-					return get.attitude(player, current) > 0;
-				})
-			) {
-				return 0;
-			}
-			return 6 - get.value(card);
+			// if (
+			// 	ui.selected.cards.length >=
+			// 	game.countPlayer(current => {
+			// 		return get.attitude(player, current) > 0;
+			// 	})
+			// ) {
+			// 	return 0;
+			// }
+			return get.value(card);
 		},
 		usable: 1,
 		lose: false,
@@ -9259,16 +9259,19 @@ const skill = {
 		ai: {
 			order: 10,
 			result: {
-				target(player, target) {
-					var card = ui.selected.cards[ui.selected.targets.length];
-					if (!card) {
-						return 0;
-					}
-					if (get.value(card) < 0) {
-						return -1;
-					}
-					return Math.sqrt(5 - Math.min(4, target.countCards("h")));
-				},
+				// target(player, target) {
+				// 	var card = ui.selected.cards[ui.selected.targets.length];
+				// 	if (!card) {
+				// 		return 0;
+				// 	}
+				// 	if (get.value(card) < 0) {
+				// 		return -1;
+				// 	}
+				// 	return Math.sqrt(5 - Math.min(4, target.countCards("h")));
+				// },
+				player(player){
+					return 1;
+				}
 			},
 		},
 		subSkill: {
@@ -10589,9 +10592,9 @@ const skill = {
 		filter(event, player) {
 			return event.player != player && event.player.isIn() ;
 		},
-		direct: true,
+		// direct: true,
 		derivation: ["qmsgswkjsgj_mbzhixi"],
-		checkx(event, player) {
+		check(event, player) {
 			if (get.attitude(player, event.player) >= 0) {
 				return false;
 			}
@@ -10607,29 +10610,12 @@ const skill = {
 			return event.player.countCards("h") > event.player.hp;
 		},
 		content() {
-			"step 0";
-			var check = lib.skill.qmsgswkjsgj_mbmeibu.checkx(trigger, player);
-			player.chooseBool(get.prompt2("qmsgswkjsgj_mbmeibu", trigger.player)).set('ai',check).set("logSkill", ["qmsgswkjsgj_mbmeibu", trigger.player]);
-			// player
-			// 	.chooseToDiscard(get.prompt2("qmsgswkjsgj_mbmeibu", trigger.player), "he")
-			// 	.set("ai", function (card) {
-			// 		if (_status.event.check) {
-			// 			return 6 - get.value(card);
-			// 		}
-			// 		return 0;
-			// 	})
-			// 	.set("check", check)
-			// 	.set("logSkill", ["qmsgswkjsgj_mbmeibu", trigger.player]);
-			"step 1";
-			if (result.bool) {
-				var target = trigger.player;
-				var card = result.cards[0];
-				player.line(target, "green");
-				target.addTempSkills("qmsgswkjsgj_mbzhixi", "phaseUseAfter");
-				target.addTempSkill("qmsgswkjsgj_mbmeibu_range", "phaseUseAfter");
-				target.markAuto("qmsgswkjsgj_mbmeibu_range", player);
-				target.markSkillCharacter("qmsgswkjsgj_mbmeibu", player, "魅步", "锁定技。出牌阶段，你使用牌时需弃置一张手牌，若你于此阶段使用过的牌数不小于X，你不能使用牌（X为你的体力值）；当你使用锦囊牌时，你结束此阶段；你使用装备牌后，本回合手牌上限-1。");
-			}
+			var target = trigger.player;
+			player.line(target, "green");
+			target.addTempSkills("qmsgswkjsgj_mbzhixi", "phaseUseAfter");
+			target.addTempSkill("qmsgswkjsgj_mbmeibu_range", "phaseUseAfter");
+			target.markAuto("qmsgswkjsgj_mbmeibu_range", player);
+			target.markSkillCharacter("qmsgswkjsgj_mbmeibu", player, "魅步", "锁定技。出牌阶段，你使用牌时需弃置一张手牌，若你于此阶段使用过的牌数不小于X，你不能使用牌（X为你的体力值）；当你使用锦囊牌时，你结束此阶段；你使用装备牌后，本回合手牌上限-1。");
 		},
 		ai: {
 			expose: 0.2,
@@ -16167,11 +16153,11 @@ const skill = {
 					return eff > 0 ? 1 : 0;
 				},
 				target(player, target){
-					const att = get.attitude(player, current),
-						num = Math.abs(current.getHp(true) - 1);
-					const delt = Math.max(0, num + current.hujia - 5);
+					const att = get.attitude(player, target),
+						num = Math.abs(target.getHp(true) - 1);
+					const delt = Math.max(0, num + target.hujia - 5);
 					if(target.hasSkill('shangshi'))return 1;
-					else if(num + current.hujia - 5 <=0 )return -1;
+					else if(num + target.hujia - 5 <=0 )return -1;
 					else return 0;
 				},
 			},

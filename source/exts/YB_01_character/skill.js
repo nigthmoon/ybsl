@@ -3103,7 +3103,7 @@ const skill = {
 			})
 			.set('prompt',get.translation(trigger.player)+'对'+get.translation(trigger.target)+'使用了'+get.translation(trigger.card))
 			.set('prompt2',get.prompt('yb006_xueyan')+"<br>弃置一张同花色的牌，令此牌无效？<br>然后此牌原目标摸两张牌。")
-			.set("chooseonly", true).set('ai',function(card){
+			.set("logSkill", 'yb006_xueyan').set('ai',function(card){
 				var trigger = _status.event.getTrigger();
 				var atk = get.effect(trigger.target,trigger.card,trigger.player,player);
 				if(atk>0) return false;
@@ -3114,10 +3114,11 @@ const skill = {
 		logTarget(event,player){
 			return event.target;
 		},
+		popup:false,
 		content(){
 			'step 0'
 			event.target = trigger.target;
-			player.discard(event.cards);
+			// player.discard(event.cards);
 			'step 1'
 			game.log(player,'令'+get.translation(trigger.card)+'无效了。')
 			trigger.targets.length = 0;
@@ -7391,43 +7392,52 @@ const skill = {
 			return player!=target;
 		},
 		discard:false,
+		lose: false,
 		selectTarget:1,
 		content:async function (event,trigger,player){
 			await player.addTempSkill('yb019_zhiyu_ban');
 			if(!player.storage.yb019_zhiyu_ban)player.storage.yb019_zhiyu_ban=[];
 			await player.storage.yb019_zhiyu_ban.push(event.cards[0].name);
 			await player.showCards(event.cards);
-			await player.give(event.cards[0], event.target);
-			if(player.canUse(get.autoViewAs({
-				name:event.cards[0].name,
-				nature:event.cards[0].nature
-			}),event.target,false)){
+			await player.give(event.cards[0], event.target,true);
+			// if(player.canUse(get.autoViewAs({
+			// 	name:event.cards[0].name,
+			// 	nature:event.cards[0].nature
+			// }),event.target,false)){
 				await player.useCard({
 					name:event.cards[0].name,
 					nature:event.cards[0].nature
 				},event.target,false);
+			// }
+		},
+		check(card){
+			if(card.name=='ybsl_cu') return 2;
+			else if(card.name=='du') return 2;
+			else {
+				return 1;
 			}
 		},
 		ai:{
-			order:5,
+			order:11,
 			result:{
-				// player:function(player,target){
-					// var card = ui.selected.cards[0];
-					// if(card.name=='du') return -2;
-					// return 0;
-				// },
 				target:function(player,target){
 					var card = ui.selected.cards[0];
-					if(card.name=='cu') return -1;
-					else if(card.name=='du') return -2;
+					if(card.name=='ybsl_cu') return target.countCards('h')-10;
+					else if(card.name=='du') return -10;
 					else if(player.canUse(get.autoViewAs({
-						name:event.cards[0].name,
-						nature:event.cards[0].nature
-					}),event.target,false)){
+						name:card.name,
+						nature:card.nature,
+						isCard:true,
+					}),target,false)){
 						return get.effect(target,get.autoViewAs({
-							name:event.cards[0].name,
-							nature:event.cards[0].nature
-						}),player,target)+1;
+							name:card.name,
+							nature:card.nature,
+							isCard:true,
+						}),player,target)+get.value(get.autoViewAs({
+							name:card.name,
+							nature:card.nature,
+							isCard:true,
+						}));
 					}
 					else {
 						return 1;

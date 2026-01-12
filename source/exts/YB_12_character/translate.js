@@ -783,8 +783,13 @@ const translate = {
 	qmsgswkjsgj_re_dcjianguo_info: "出牌阶段各限一次。你可以选择一名角色并选择一项：1.令其弃置一半的手牌，若其弃置的牌数量小于你的体力值，你对其造成一点伤害；2.令其摸等同于手牌数一半的牌，若其摸牌数量大于等于你的体力值，你回复一点体力。（均向上取整）",
 	qmsgswkjsgj_re_dcdyqingshi: "倾势",
 	qmsgswkjsgj_re_dcdyqingshi_info: "当你于回合内使用牌后，若此牌为你本回合使用的第X张牌，你可以对一名角色造成1点伤害（X为你的手牌数）。",
-
-
+	
+	qmsgswkjsgj_re_star_caoren: "星曹仁",
+	qmsgswkjsgj_re_star_caoren_prefix: "星",
+	qmsgswkjsgj_re_starsujun: "肃军",
+	qmsgswkjsgj_re_starsujun_info: "游戏开始时或你手牌数变动后，若你手牌中的基本牌和非基本牌的牌数相等，你可以摸两张牌。",
+	qmsgswkjsgj_re_starlifeng: "砺锋",
+	qmsgswkjsgj_re_starlifeng_info: "你可以将一张本回合未有角色使用过的花色的手牌当做无次数限制且不计入次数的【杀】或【无懈可击】使用。",
 
 
 	//----------------神赐章节-----------------

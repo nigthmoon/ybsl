@@ -14,7 +14,7 @@ const translate = {
 	yhky_shlizhaoyi_prefix:'恒',
 
 	yhky_lzyjuekang:'珏抗',
-	yhky_lzyjuekang_info:`${get.poptip("rule_chihengji")}。①游戏开始时，你获得20枚“道心”标记。②当你得到牌后/受到1点伤害后/造成1点伤害后，你获得5/10/15枚“道心”（上限为99枚）。③若你的“道心”数不小于25/50/75/99，你视为拥有${get.poptip('yhky_lzyzhanjue')}/${get.poptip('yhky_lzyfengfo')}/${get.poptip('yhky_lzyfengjian')}/${get.poptip('yhky_lzyfenshen')}。`,
+	yhky_lzyjuekang_info:`${get.poptip("rule_chihengji")}。①游戏开始时，你获得20枚“道心”标记。②当你得到牌后/受到1点伤害后/造成1点伤害后，你获得5/10/15枚“道心”（上限为99枚）。③若你的“道心”数不小于25/50/75/99，你视为拥有${get.poptip('yhky_lzyzhanjue')}/${get.poptip('yhky_lzyfengpo')}/${get.poptip('yhky_lzyfengjian')}/${get.poptip('yhky_lzyfenshen')}。`,
 	yhky_lzyzhanjue:'战绝',//不具有“珏抗”标记的
 	yhky_lzyzhanjue_info:get.poptip("rule_chihengji")+'。出牌阶段，若你本阶段内因〖战绝〗得到过的牌数小于3，则你可以将所有手牌当做【决斗】使用。此【决斗】使用结算结束后，你摸一张牌。然后所有因此【决斗】受到过伤害的角色也各摸一张牌。',
 	yhky_lzyyanyu:'燕语',

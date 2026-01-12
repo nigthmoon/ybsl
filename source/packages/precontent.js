@@ -1437,4 +1437,21 @@ export async function precontent() {
 	// 	}	
 	// })
 	cyyydsgs();
+	
+	// if(lib.config.extension_十周年UI_enable==true){
+	// 	let cards = [];
+	// 	game.getFileList('extension/夜白神略/image/card-skins/caise',(folders,files)=> {
+	// 		var decoration = files;
+	// 		decoration.forEach(function(image){ 
+	// 			cards.push(image.slice(0,image.length-5));
+	// 		});
+	// 	});
+	// 	// console.log(cards)
+	// 	if(window.registerDecadeCardSkin)window.registerDecadeCardSkin({
+	// 		extensionName:'夜白神略',
+	// 		skinKey:'caise',
+	// 		cardNames:cards,
+	// 		extension:'webp',
+	// 	})
+	// }
 }

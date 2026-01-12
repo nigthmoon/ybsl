@@ -554,9 +554,6 @@ const translate = {
 
 
 
-
-
-
 	ybsl_lmms:'<span style=\'color:#e7ff00\'>冷门民杀搬运</span>',
 	'ybsl_sgsh':'<span class=yellowtext>上古神将</span>',
 	//-----------------------上古神话专题---------------------------//
@@ -884,4 +881,99 @@ const translate = {
 	//--------------------刑天
 	sgsk_fuchou:'复仇',
 	'sgsk_fuchou_info':'一名角色的回合结束后，若你此回合受到过其造成的伤害，你可以摸一张牌并视为对其使用一张【杀】。',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	//虚拟主播
+	bilibiliup:'虚拟主播',
+	bilibiliup_jiangali:'江阿鲤',//鲤成碑
+	bilibiliup_guanyueliuli:'观月琉璃Ruri',//鱼ai喵
+	bilibiliup_sunyuyou:'孙羽幽',//幽猫寎
+	bilibiliup_shianshan:'诗安杉nuyoah_',//杉Q
+	bilibiliup_roubaozi:'旺仔肉包',//香草包	//七星雨
+	bilibiliup_baitaosuyu:'白桃酥鱼Eidolora',//忧鱼症
+	bilibiliup_wanqinsin:'婉沁sin',//小婉兔
+	bilibiliup_xiyeqianzhi:'西野千枝ちえ',//枝士鼠
+	bilibiliup_lulinxikoi:'鹿临溪',//鸣于月	//麤初雪
+	bilibiliup_xilingna:'希昤娜Lina',//希欧気
+	bilibiliup_jiligulu:'ジリグ露-ruru',//超爱露
+	bilibiliup_maomaobaobao:'猫猫饱饱_',//钟意猫
+	bilibiliup_wenyuexu:'花梨咲夜',
+	bilibiliup_xueyuer:'雪羽er',//鳕喵鱼
+	bilibiliup_qingxiaozhi:'晴小栀-嘴毒版',//筱晴人	// bilibiliup_jiangyi:'江亦_k',//潘宏
+	bilibiliup_qinian:'Sin祁念-',//S七年
+	bilibiliup_menglingli:'梦菱鲤',//牢鲤氏
+	bilibiliup_xueyunshang:'雪云裳',//恋霓裳
+	bilibiliup_xingyao:'星瑶',
+	bilibiliup_zhezhi:'柘枝_不是这只ovo',//荔小吱
+	bilibiliup_xiazhisha:'夏织纱yarn',//纱纱仁
+	bilibiliup_qiyuan:'栖苑太困辽',//苑大头
+	bilibiliup_xinglisisi:'杏里丝丝',//忆丝丝
+	bilibiliup_rongxiaoxuan:'容小萱',//时之萱
+	bilibiliup_shimizai:'时弥崽',
+	bilibiliup_linnannanya:'琳喃喃吖',//喃小宝
+	bilibiliup_wanyue:'抱走小晩玥er',//遥挽玥
+	bilibiliup_taomoran:'桃末冉',
+	bilibiliup_xiaotaosheng:'小桃笙-',//桃笙笙
+	bilibiliup_suilin:'岁凛Lynn',//三百岁	//器灵岁川
+	bilibiliup_baozai:'捏捏饱崽',//汉饱阁
+	bilibiliup_mixieer:'小小音乐家米歇尔',//米MI团
+	bilibiliup_shishi:'小僵虱虱子',//恋虱癖
+	bilibiliup_qingling:'卿玲Lynn',//小仙翎
+	bilibiliup_xiaoaijiang:'小爱酱oi',//酱总裁
+	bilibiliup_xinqi:'心淇_古筝版',//顾山海
+	bilibiliup_lushi:'鹿实Tamiko',//启示鹿
+	bilibiliup_tutu:'是荼荼诶_挣钱吃药版',//没钱荼
+	bilibiliup_haitang:'海棠hinna',//棠棠咪
+	bilibiliup_shunhua:'瞬华_Iris',//流光词
+
+
+
+
+
+
+	//------------------已注销------------------------//
+	//诛九族
+	//D羲和
+	//忧baby
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
