@@ -6214,7 +6214,7 @@ const skill = {
 			["qmsgswkjsgj_scs_lisong", "qmsgswkjsgj_scskuiji"],
 			["qmsgswkjsgj_scs_duangui", "qmsgswkjsgj_scschihe"],
 			["qmsgswkjsgj_scs_guosheng", "qmsgswkjsgj_scsniqu"],
-			["qmsgswkjsgj_scs_gaowang", "qmsgswkjsgj_scsmiaoyu"],
+			["qmsgswkjsgj_scs_gaowang", "scsanruo"],
 		],
 		conflictMap(player) {
 			if (!_status.qmsgswkjsgj_changshiMap) {

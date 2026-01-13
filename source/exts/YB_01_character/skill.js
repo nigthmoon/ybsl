@@ -7421,6 +7421,7 @@ const skill = {
 			order:11,
 			result:{
 				target:function(player,target){
+					if(!ui.selected.cards.length) return 0;
 					var card = ui.selected.cards[0];
 					if(card.name=='ybsl_cu') return target.countCards('h')-10;
 					else if(card.name=='du') return -10;
@@ -8140,7 +8141,7 @@ const skill = {
 				var trigger = _status.event.getTrigger();
 				var att = get.attitude(_status.event.player,trigger.player);
 				if(att>0)return -get.value(button.link);
-				return get.value(button.link)&&!button.link.hasGaintag(yb023_fenghou);
+				return get.value(button.link)&&!button.link.hasGaintag('yb023_fenghou');
 			}).forResult();
 			if(result.bool){
 				await target.showCards(result.cards);
