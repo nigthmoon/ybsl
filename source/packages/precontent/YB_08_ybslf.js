@@ -2772,4 +2772,23 @@ const YBSL_ybslf = function () {
 			return next;
 		}
 	}
+	//--------获取指定武将的YB_mjz
+	{
+		get.YB_mjz = function(name){
+			// var mjz = lib.character[name][4];
+			if(lib.character[name].YB_mjz){
+				return lib.character[name].YB_mjz;
+			}
+			else {
+				var infox = lib.character[name][4];
+				for(var i in infox){
+					if(infox[i].startsWith('YB_mjz:')){
+						return infox[i].slice(7)
+					}
+				}
+				return false;
+			}
+			
+		}
+	}
 }

@@ -6394,11 +6394,14 @@ const skill = {
 	qmsgswkjsgj_mbmowang: {
 		audio: 'mbmowang',
 		trigger: {
-			player: ["dieBefore", "rest"],
+			player: ["dieBefore", "rest", "dieAfter"],
 		},
 		filter(event, player, name) {
 			if (name == "rest") {
 				return true;
+			}
+			if (name == "dieAfter") {
+				return event.reserveOut;
 			}
 			return event.getParent().name != "giveup" && player.maxHp > 0;
 		},
@@ -6416,13 +6419,15 @@ const skill = {
 						//player.classList.add("out");
 						if (list.includes(player.name1) || player.name1 == "qmsgswkjsgj_re_shichangshi") {
 							player.smoothAvatar(false);
-							player.skin.name = player.name1 + "_dead";
-							player.node.avatar.setBackground(player.name1 + "_dead", "character");
+							var name1 = get.YB_mjz(player.name1)||player.name1;
+							player.skin.name = name1 + "_dead";
+							player.node.avatar.setBackground(name1 + "_dead", "character");
 						}
 						if (list.includes(player.name2) || player.name2 == "qmsgswkjsgj_re_shichangshi") {
 							player.smoothAvatar(true);
-							player.skin.name2 = player.name2 + "_dead";
-							player.node.avatar2.setBackground(player.name2 + "_dead", "character");
+							var name2 = get.YB_mjz(player.name2)||player.name2;
+							player.skin.name2 = name2 + "_dead";
+							player.node.avatar2.setBackground(name2 + "_dead", "character");
 						}
 					},
 					player,
@@ -6430,10 +6435,21 @@ const skill = {
 				);
 				return;
 			}
-			if (_status._rest_return?.[player.playerid]) {
-				trigger.cancel();
-			} else {
+			else if (event.triggername == "dieAfter") {
 				if (player.getStorage("qmsgswkjsgj_mbdanggu").length) {
+					game.broadcastAll(function () {
+						if (lib.config.background_speak) {
+							game.playAudio("die", "shichangshiRest");
+						}
+					});
+					await player.rest({type: "round", count: 1});//, audio: "shichangshiRest"
+				}
+			}
+			else {
+				if (player.isRest()) {
+					trigger.cancel();
+				}
+				else if (player.getStorage("qmsgswkjsgj_mbdanggu").length) {
 					player.logSkill("qmsgswkjsgj_mbmowang");
 					/*game.broadcastAll(function () {
 						if (lib.config.background_speak) {
@@ -6441,14 +6457,15 @@ const skill = {
 						}
 					});*/
 					//煞笔十常侍
-					trigger.restMap = {
-						type: "round",
-						count: 1,
-						audio: "shichangshiRest",
-					};
+					// trigger.restMap = {
+					// 	type: "round",
+					// 	count: 1,
+					// 	audio: "shichangshiRest",
+					// };
 					trigger.excludeMark.add("qmsgswkjsgj_mbdanggu");
-					//trigger.noDieAudio = true;
-					trigger.includeOut = true;
+					trigger.noDieAudio = true;
+					//trigger.includeOut = true;
+					trigger.reserveOut = true;
 				} else {
 					player.changeSkin("qmsgswkjsgj_mbmowang", "qmsgswkjsgj_re_shichangshi_dead");
 				}
@@ -18619,11 +18636,14 @@ const skill = {
 	sgsxjxfzmnl_mbmowang: {
 		audio: 'mbmowang',
 		trigger: {
-			player: ["dieBefore", "rest"],
+			player: ["dieBefore", "rest", "dieAfter"],
 		},
 		filter(event, player, name) {
 			if (name == "rest") {
 				return true;
+			}
+			if (name == "dieAfter") {
+				return event.reserveOut;
 			}
 			return event.getParent().name != "giveup" && player.maxHp > 0;
 		},
@@ -18638,16 +18658,17 @@ const skill = {
 			if (event.triggername == "rest") {
 				game.broadcastAll(
 					function (player, list) {
-						//player.classList.add("out");
 						if (list.includes(player.name1) || player.name1 == "sgsxjxfzmnl_shichangshi") {
 							player.smoothAvatar(false);
-							player.skin.name = player.name1 + "_dead";
-							player.node.avatar.setBackground(player.name1 + "_dead", "character");
+							var name1 = get.YB_mjz(player.name1)||player.name1;
+							player.skin.name = name1 + "_dead";
+							player.node.avatar.setBackground(name1 + "_dead", "character");
 						}
 						if (list.includes(player.name2) || player.name2 == "sgsxjxfzmnl_shichangshi") {
 							player.smoothAvatar(true);
-							player.skin.name2 = player.name2 + "_dead";
-							player.node.avatar2.setBackground(player.name2 + "_dead", "character");
+							var name2 = get.YB_mjz(player.name2)||player.name2;
+							player.skin.name2 = name2 + "_dead";
+							player.node.avatar2.setBackground(name2 + "_dead", "character");
 						}
 					},
 					player,
@@ -18655,10 +18676,21 @@ const skill = {
 				);
 				return;
 			}
-			if (_status._rest_return?.[player.playerid]) {
-				trigger.cancel();
-			} else {
+			else if (event.triggername == "dieAfter") {
 				if (player.getStorage("sgsxjxfzmnl_mbdanggu").length) {
+					game.broadcastAll(function () {
+						if (lib.config.background_speak) {
+							game.playAudio("die", "shichangshiRest");
+						}
+					});
+					await player.rest({type: "round", count: 1});//, audio: "shichangshiRest"
+				}
+			}
+			else {
+				if (player.isRest()) {
+					trigger.cancel();
+				}
+				else if (player.getStorage("sgsxjxfzmnl_mbdanggu").length) {
 					player.logSkill("sgsxjxfzmnl_mbmowang");
 					/*game.broadcastAll(function () {
 						if (lib.config.background_speak) {
@@ -18666,14 +18698,15 @@ const skill = {
 						}
 					});*/
 					//煞笔十常侍
-					trigger.restMap = {
-						type: "round",
-						count: 1,
-						audio: "shichangshiRest",
-					};
+					// trigger.restMap = {
+					// 	type: "round",
+					// 	count: 1,
+					// 	audio: "shichangshiRest",
+					// };
 					trigger.excludeMark.add("sgsxjxfzmnl_mbdanggu");
-					//trigger.noDieAudio = true;
-					trigger.includeOut = true;
+					trigger.noDieAudio = true;
+					//trigger.includeOut = true;
+					trigger.reserveOut = true;
 				} else {
 					player.changeSkin("sgsxjxfzmnl_mbmowang", "sgsxjxfzmnl_shichangshi_dead");
 				}
