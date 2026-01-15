@@ -1068,7 +1068,7 @@ const skill = {
 			await player.discard(event.cards);
 			var cardsx=[];
 			cardsx.push(event.cards[0]);
-			var relu = await player.draw(2,"visible");
+			var relu = await player.draw(2,"visible").forResult();
 			for(var k of relu){
 				cardsx.push(k);
 			}

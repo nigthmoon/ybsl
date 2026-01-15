@@ -988,7 +988,7 @@ const translate = {
 	sgsxjxfzmnl_shen_ganning:'阴间神甘宁',
 	sgsxjxfzmnl_shen_ganning_prefix:'阴间神',
 	sgsxjxfzmnl_drltpoxi:'魄袭',
-	sgsxjxfzmnl_drltpoxi_info:'出牌阶段，你可以观看一名其他角色的手牌，然后你可以弃置你与其手牌中的四张花色不同的牌。若如此做，根据此次弃置你的牌的数量执行以下效果：零张，<span class=firetext>增加</span>1点体力上限；一张，<span class=yellowtext>摸一张牌</span>；三张，你回复1点体力；四张，摸四张牌。',
+	sgsxjxfzmnl_drltpoxi_info:'出牌阶段，你可以观看一名其他角色的手牌，然后你可以弃置你与其手牌中的四张花色不同的牌。若如此做，根据此次弃置你的牌的数量执行以下效果：零张，<span class=firetext>增加</span>1点体力上限；一张，<span class=yellowtext>摸一张牌</span>；三张，你回复1点体力；四张，摸四张牌。若你没有因此弃置目标的牌，你本回合不能再选择其为此技能目标。',
 	sgsxjxfzmnl_drltjieying:'劫营',
 	sgsxjxfzmnl_drltjieying_info:'回合开始时，若场上没有拥有“营”标记的角色，你获得1个“营”标记；结束阶段，你可以将你的一个“营”标记交给一名角色；有“营”标记的角色摸牌阶段多摸一张牌，出牌阶段使用【杀】的次数上限+1，手牌上限+1，<span class=yellowtext>此数值对你翻倍</span>。有“营”的其他角色回合结束时，其移去“营”标记，然后你获得其所有手牌。',
 	

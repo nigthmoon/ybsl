@@ -865,13 +865,22 @@ const card = {
 		fullskin:true,
 		enable:true,
 		type:'basic',
-		// toself:true,
+		toself:true,
 		selectTarget:1,
+		// filterTarget:function(card,player,target){
+		// 	var he=player.getCards('he');
+		// 	var list=_status.YB_jingxieList;
+		// 	for(var i=0;i<he.length;i++){
+		// 		if(list.includes(he[i].name)) return target==player;
+		// 	}
+		// 	return false;
+		// },
+		// selectTarget:-1,
 		filterTarget:function(card,player,target){
 			var he=player.getCards('he');
 			var list=_status.YB_jingxieList;
 			for(var i=0;i<he.length;i++){
-				if(list.includes(he[i].name)) return target==player;
+				if(list.includes(he[i].name)) return true;
 			}
 			return false;
 		},

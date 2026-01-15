@@ -1188,6 +1188,17 @@ export async function precontent() {
 			// 	// 'YB_one'
 			// ]
 			var packagesx = {
+				// 'ybslj':'ybsl001',
+				// 'ybart':'ybsl001',
+				// 'ybxh':'ybsl003',
+				// 'ybnew1':'ybsl004',
+				// 'ybmjz':'ybsl008',
+				// 'ybdd':'ybsl009',
+				// 'ybMagic':'ybsl010',
+				// 'yhky':'ybsl011',
+				// 'sgstrxs':'ybsl012',
+				// 'ybwhjx':'ybsl013',
+				// 'ybnew3':'ybsl004',
 				'ybslj':'ybsl001',
 				'ybart':'ybsl001',
 				'ybxh':'ybsl003',
@@ -1198,7 +1209,8 @@ export async function precontent() {
 				'yhky':'ybsl011',
 				'sgstrxs':'ybsl012',
 				'ybwhjx':'ybsl013',
-				'ybnew3':'ybsl004',
+				'cyyydsgs':'cyyydsgs',
+				'jhjx':'jhjx',
 			}
 			// var listxxxxx= [];
 			for(var i in packagesx){
@@ -1382,8 +1394,8 @@ export async function precontent() {
 
 	lib.arenaReady.push(function () {
 		if (lib.config.extension_云中守望_enable==true) {
-			lib.character['dzsl_014liutianyu'].isUnseen=true
-			lib.character['ybmjz_shen_caopi'].isUnseen=true
+			if(lib.character['dzsl_014liutianyu'])lib.character['dzsl_014liutianyu'].isUnseen=true
+			if(lib.character['ybmjz_shen_caopi'])lib.character['ybmjz_shen_caopi'].isUnseen=true
 		}
 	})
 	get.typeimage=typeimage;

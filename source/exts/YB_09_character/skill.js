@@ -5637,7 +5637,7 @@ const skill = {
 			var target=trigger.player;
 			'step 0'
 			var num=target.getHistory('useCard').length;
-			player.chooseToDisard(num,'he','是否弃置'+num+'张牌，然后弃置'+get.translation(target)+'等量的牌？<br>若因此弃置了不少于两张牌，你对'+get.translation(target)+'造成一点伤害').set('ai',function(card){
+			player.chooseToDiscard(num,'he','是否弃置'+num+'张牌，然后弃置'+get.translation(target)+'等量的牌？<br>若因此弃置了不少于两张牌，你对'+get.translation(target)+'造成一点伤害').set('ai',function(card){
 				var att=get.attitude(_status.event.player,target);
 				if(att<0){
 					if(target.countCards('he')>0){

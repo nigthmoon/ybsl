@@ -18140,6 +18140,7 @@ const skill = {
 		filterTarget(card, player, target) {
 			// return target != player && target.countCards("h") > 0;
 			// return target!=player;
+			if(player.storage.sgsxjxfzmnl_drltpoxi_ban&&player.storage.sgsxjxfzmnl_drltpoxi_ban.contains(target))return false;
 			return target != player && (target.countCards("h") > 0||player.countCards("h") > 0);
 		},
 		content() {
@@ -18217,6 +18218,9 @@ const skill = {
 					player.discard(event.list1);
 				}
 			}
+			// else {
+			// 	player.YB_tempz('sgsxjxfzmnl_drltpoxi_ban',target)
+			// }
 			"step 2";
 			if (event.list1.length + event.list2.length == 4) {
 				if (event.list1.length == 0) {
@@ -18231,6 +18235,9 @@ const skill = {
 				if (event.list1.length == 4) {
 					player.draw(4);
 				}
+			}
+			if(event.list2.length==0){
+				player.YB_tempz('sgsxjxfzmnl_drltpoxi_ban',target)
 			}
 		},
 		ai: {
@@ -33030,7 +33037,7 @@ const skill = {
 					// if(cards.length)
 					if(player.countCards('h')>0){
 						player.chooseCard('h',[0,player.maxHp]).set('ai',function(card){
-							if(cards.length>player.maxHp)return false;
+							if(cards2.length>player.maxHp)return false;
 							return get.value(card)
 						})
 					}

@@ -1137,6 +1137,7 @@ export async function cyyydsgs() {
 					async cost(event,trigger,player){
 						// let num = trigger.num;
 						event.result = {bool:false,cost_data:{draw_card:false,recover_hp:false}}
+						var result = null;
 						const controls = ["draw_card"];
 						if (player.isDamaged()) {
 							event.num2 = Math.min(event.num2, player.getDamagedHp());

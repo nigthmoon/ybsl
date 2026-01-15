@@ -7459,6 +7459,40 @@ const skill = {
 	//--------------贾雨桐
 	'yb020_shange':{
 		audio:'ext:夜白神略/audio/character:2',
+		enable:'phaseUse',
+		filter(event,player){
+			return player.countCards('he',function(card){
+				return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(card.color);
+			})
+		},
+		position:'he',
+		selectCard:[1,5],
+		complexCard: true,
+		filterCard(card,player){
+			if(ui.selected.cards.length==0)return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(card.color);
+			return card.color==ui.selected.cards[0].color;
+		},
+		
+		check:function(card){
+			return 6-get.value(card);
+		},
+
+		content:function(){
+			'step 0'
+			player.YB_tempz('yb020_shange_mark',event.cards[0].color)
+			'step 1'
+			event.cardsx = get.cards(event.cards.length);
+			game.cardsGotoOrdering(event.cardsx);
+			player.showCards(event.cardsx,1000);
+			'step 2'
+			event.cardsy = event.cardsx.filter(card=>card.color!=event.cards[0].color&&get.position(card,'o'))
+			player.gain(event.cardsy,'gain2')
+			'step 3'
+			if(event.cardsy.length<event.cards.length){
+				player.recover();
+				// player.chooseTarget('令自己回复一点体力或令一名其他角色失去一点体力').
+			}
+		},
 	},
 	'yb020_wanyue':{
 		inherit:'yb001_wanyue',
