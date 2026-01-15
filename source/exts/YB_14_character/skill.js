@@ -10125,7 +10125,7 @@ const skill = {
 						}
 					}
 					return [top, cards.removeArray(top)]
-				})
+				}).forResult();
 			var top = result.moved[0];
 			var bottom = result.moved[1];
 			top.reverse();
@@ -10181,7 +10181,7 @@ const skill = {
 						}
 					}
 					return [top, cards.removeArray(top)]
-				})
+				}).forResult();
 			var top = result.moved[0];
 			var bottom = result.moved[1];
 			top.reverse();
@@ -10246,7 +10246,7 @@ const skill = {
 						}
 					}
 					return [top, cards.removeArray(top)]
-				})
+				}).forResult();
 			var top = result.moved[0];
 			var bottom = result.moved[1];
 			top.reverse();
