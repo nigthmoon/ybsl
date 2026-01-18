@@ -863,31 +863,44 @@ const card = {
 	'ybsl_tianhuoduan':{
 		audio:'ext:夜白神略/audio/card:true',
 		fullskin:true,
-		enable:true,
+		// enable:true,
 		type:'basic',
 		toself:true,
-		selectTarget:1,
-		// filterTarget:function(card,player,target){
-		// 	var he=player.getCards('he');
-		// 	var list=_status.YB_jingxieList;
-		// 	for(var i=0;i<he.length;i++){
-		// 		if(list.includes(he[i].name)) return target==player;
-		// 	}
-		// 	return false;
-		// },
-		// selectTarget:-1,
-		filterTarget:function(card,player,target){
+		// selectTarget:1,
+		enable(card, player) {
 			var he=player.getCards('he');
 			var list=_status.YB_jingxieList;
 			for(var i=0;i<he.length;i++){
 				if(list.includes(he[i].name)) return true;
 			}
 			return false;
+			
 		},
+		selectTarget: -1,
+		// filterTarget(card, player, target) {
+		// 	return target === player && target.isDamaged();
+		// },
+		filterTarget:function(card,player,target){
+			var he=target.getCards('he');
+			var list=_status.YB_jingxieList;
+			for(var i=0;i<he.length;i++){
+				if(list.includes(he[i].name)) return target==player;
+			}
+			return false;
+		},
+		// selectTarget:-1,
+		// filterTarget:function(card,player,target){
+		// 	var he=player.getCards('he');
+		// 	var list=_status.YB_jingxieList;
+		// 	for(var i=0;i<he.length;i++){
+		// 		if(list.includes(he[i].name)) return true;
+		// 	}
+		// 	return false;
+		// },
 		filter(event,player){
 			return true;
 		},
-		complexTarget: true,
+		// complexTarget: true,
 		content:function (){
 			'step 0'
 			var list=_status.YB_jingxieList;

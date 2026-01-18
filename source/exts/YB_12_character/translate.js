@@ -784,12 +784,36 @@ const translate = {
 	qmsgswkjsgj_re_dcdyqingshi: "倾势",
 	qmsgswkjsgj_re_dcdyqingshi_info: "当你于回合内使用牌后，若此牌为你本回合使用的第X张牌，你可以对一名角色造成1点伤害（X为你的手牌数）。",
 	
-	qmsgswkjsgj_re_star_caoren: "星曹仁",
-	qmsgswkjsgj_re_star_caoren_prefix: "星",
+	qmsgswkjsgj_re_star_caoren: "星月界星曹仁",
+	qmsgswkjsgj_re_star_caoren_prefix: "星月界星",
 	qmsgswkjsgj_re_starsujun: "肃军",
 	qmsgswkjsgj_re_starsujun_info: "游戏开始时或你手牌数变动后，若你手牌中的基本牌和非基本牌的牌数相等，你可以摸两张牌。",
 	qmsgswkjsgj_re_starlifeng: "砺锋",
 	qmsgswkjsgj_re_starlifeng_info: "你可以将一张本回合未有角色使用过的花色的手牌当做无次数限制且不计入次数的【杀】或【无懈可击】使用。",
+
+	qmsgswkjsgj_re_dc_xiahouhui: "星月界新杀夏侯徽",
+	qmsgswkjsgj_re_dc_xiahouhui_prefix: "星月界新杀",
+	qmsgswkjsgj_re_dcdujun: "笃君",
+	qmsgswkjsgj_re_dcdujun_info: "游戏开始时，你选择一名其他角色，你不能响应其使用的牌。每回合限X次，你与其造成或受到1点伤害后，你可摸两张牌，然后（可以</小说里按照十周年描述写的，没加可以，这里应当可以>）将两牌交给其他角色（X为你的体力上限）。",
+	qmsgswkjsgj_re_dcjikun: "济困",
+	qmsgswkjsgj_re_dcjikun_info: "每当你累计失去五张牌后，你可令一名角色获得其他角色的一张牌。",
+
+	qmsgswkjsgj_re_panghong: "星月界庞宏",
+	qmsgswkjsgj_re_panghong_prefix: "星月界",
+	qmsgswkjsgj_re_dcpingzhi: "评骘",
+	qmsgswkjsgj_re_dcpingzhi_info: "转换技。出牌阶段限三次，你可观看一名角色的手牌并展示其中一张牌，阳：你弃置此牌，然后其视为对你使用一张【火攻】，若其未因此造成伤害则此技能视为未发动过；阴：然后你代替其使用此牌</据小说解释，本质上一就算是那个人使用这张牌，这是盻睇吗>，若此牌造成伤害则此技能视为未发动过。",
+	qmsgswkjsgj_re_dcgangjian: "刚简",
+	qmsgswkjsgj_re_dcgangjian_info: "锁定技。每个回合结束时，你摸X张牌（X为本回合展示过的牌数至多为5）</作者又开始了，把展示牌堆的牌也计入其内了。云玩家写小说是这样的>。",
+
+
+
+
+
+
+
+
+
+
 
 
 	//----------------神赐章节-----------------
@@ -882,6 +906,12 @@ const translate = {
 	qmsgswkjsgj_shenci_mbweitong_info:`${get.poptip("rule_chihengji")}，主公技。游戏开始时，若你有${get.poptip("qmsgswkjsgj_shenci_mbqianlong")}，你获得60点道心值；其他魏势力角色回复体力时，你可以摸一张牌（全民三国杀我开局神郭嘉的神赐曹髦）。`,
 
 
+	qmsgswkjsgj_shenci_pot_yuji: "星月神赐界势于吉",
+	qmsgswkjsgj_shenci_pot_yuji_prefix: "星月神赐界势",
+	qmsgswkjsgj_shenci_potfuji: "符济",
+	qmsgswkjsgj_shenci_potfuji_info: "每轮游戏开始时或出牌阶段限一次，你可以展示至多X张牌并交给任意角色，称为“符济”（X为场上角色数）。其角色使用“符济”牌时获得一张与“符济”牌花色相同的牌；然后若此牌为：【杀】，此牌造成的伤害+1；【闪】，结算完毕后其摸一张牌；【桃】，回复数值+1；【酒】，其可弃置场上一张牌。然后若你的手牌数为全场最低，则你摸一张牌，且直到下回合开始前，你使用的【杀】【闪】【桃】【酒】视为拥有对应效果（可叠加）。",
+	qmsgswkjsgj_shenci_potdaozhuan: "道转",
+	qmsgswkjsgj_shenci_potdaozhuan_info: "每回合限X次，你可以将你或者当前回合角色的一张牌置入弃牌堆，视为使用一张基本牌。若当前回合角色是你，则你摸一张牌。（X为你的体力上限）",
 
 
 
@@ -983,7 +1013,7 @@ const translate = {
 	sgsxjxfzmnl_rejianying:'渐营',
 	sgsxjxfzmnl_rejianying_info:'①当你于出牌阶段内使用与此阶段你使用的上一张牌点数或花色相同的牌时，你可以摸一张牌。②出牌阶段限<span class=firetext>两</span>次，你可以将一张牌当做任意基本牌使用。若你于此阶段内使用的上一张牌有花色，则此牌的花色视为上一张牌的花色',
 	sgsxjxfzmnl_reshibei:'矢北',
-	sgsxjxfzmnl_reshibei_info:'锁定技，当你受到伤害后，若此是你本回合<span class=firetext>奇数次</span>受到伤害，你回复1点体力<span style=\"text-decoration: line-through;\">；否则你失去1点体力</span>。',
+	sgsxjxfzmnl_reshibei_info:'锁定技，当你受到伤害后，若此是你本回合<span class=firetext>奇数次</span>受到伤害，你回复1点体力。',
 
 	sgsxjxfzmnl_shen_ganning:'阴间神甘宁',
 	sgsxjxfzmnl_shen_ganning_prefix:'阴间神',
@@ -1055,14 +1085,14 @@ const translate = {
 	sgsxjxfzmnl_yue_caiwenji_prefix: "阴间乐",
 	sgsxjxfzmnl_dcshuangjia: "霜笳",
 	// sgsxjxfzmnl_dcshuangjia_tag: "胡笳",//不必要
-	sgsxjxfzmnl_dcshuangjia_info: '锁定技。①游戏开始，你将初始手牌标记为“胡笳”。②你的“胡笳”牌不计入手牌上限。③其他角色至你的距离+X（X为你的“胡笳”数且<span style="text-decoration: line-through;">至多为5</span>无上限）④结束阶段，你可以将所有手牌标记为“胡笳”。',
+	sgsxjxfzmnl_dcshuangjia_info: '锁定技。①游戏开始，你将初始手牌标记为“胡笳”。②你的“胡笳”牌不计入手牌上限。③其他角色至你的距离+X（X为你的“胡笳”数且<span class=firetext>无上限</span>）④结束阶段，你可以将所有手牌标记为“胡笳”。',
 	sgsxjxfzmnl_dcbeifen: "悲愤",
 	sgsxjxfzmnl_dcbeifen_info: "锁定技。①当你失去牌后，若这些牌中有“胡笳”牌，你获得本次失去牌中“胡笳”牌花色均不同的每种花色的牌各一张。②若你手牌中有“胡笳”牌，你使用牌无距离和次数限制。",
 
 	sgsxjxfzmnl_liuyan:'阴间刘焉',
 	sgsxjxfzmnl_liuyan_prefix:'阴间',
 	sgsxjxfzmnl_tushe:'图射',
-	sgsxjxfzmnl_tushe_info:'当你使用<span style=\"text-decoration: line-through;\">非装备</span>牌指定目标后，若你没有基本牌，则你可以摸X张牌（X为此牌指定的目标数）',
+	sgsxjxfzmnl_tushe_info:'当你使用牌指定目标后，若你没有基本牌，则你可以摸X张牌（X为此牌指定的目标数）',
 	sgsxjxfzmnl_limu:'立牧',
 	sgsxjxfzmnl_limu_info:'出牌阶段，你可以将一张牌当【乐不思蜀】对<span class=firetext>任意角色</span>使用，然后恢复一点体力；你判定区有牌时，你对其他角色使用牌没有次数和距离限制。',
 
@@ -1071,9 +1101,9 @@ const translate = {
 	sgsxjxfzmnl_tianzuo: "天佐",//前述是描述原文，这是我的解释：在牌堆，弃牌堆，场上玩家手中的一张因此加入游戏的【奇正相生】
 	sgsxjxfzmnl_tianzuo_info: "锁定技。①游戏开始时，你将八张【奇正相生】加入牌堆；<span class=yellowtext>摸牌阶段开始时，你获得一张【奇正相生】（如武继般）。</span>②【奇正相生】对你无效。",
 	sgsxjxfzmnl_lingce: "灵策",
-	sgsxjxfzmnl_lingce_info: "锁定技。当有【奇正相生】或智囊或〖定汉①〗记录过的锦囊牌被使用时，<span style=\"text-decoration: line-through;\">若此牌不为转化牌且对应实体牌数量为1，则</span>你摸一张牌。",
+	sgsxjxfzmnl_lingce_info: "锁定技。当有【奇正相生】或智囊或〖定汉①〗记录过的锦囊牌被使用时，你摸一张牌。",
 	sgsxjxfzmnl_dinghan: "定汉",
-	sgsxjxfzmnl_dinghan_info: "①当你成为未记录过的普通锦囊牌的目标时，或有未记录过的延时锦囊牌进入你的判定区时，你<span style=\"text-decoration: line-through;\">记录此牌名并</span>取消之。②准备阶段，你可在〖定汉①〗的记录中添加或减少<span style=\"text-decoration: line-through;\">一种</span>锦囊牌的牌名。",
+	sgsxjxfzmnl_dinghan_info: "①当你成为未记录过的普通锦囊牌的目标时，或有未记录过的延时锦囊牌进入你的判定区时，你取消之。②准备阶段，你可在〖定汉①〗的记录中添加或减少锦囊牌的牌名。",
 
 	sgsxjxfzmnl_shen_zhangfei: "阴间神张飞",
 	sgsxjxfzmnl_shen_zhangfei_prefix: "阴间神",
@@ -1087,7 +1117,7 @@ const translate = {
 	sgsxjxfzmnl_dcjincui: "尽瘁",
 	sgsxjxfzmnl_dcjincui_info: "锁定技。①游戏开始时，你将手牌摸至七张。②准备阶段，你<span class=yellowtext>回满体力</span>。然后你观看牌堆顶X张牌，将这些牌以任意顺序置于牌堆顶或牌堆底（X为你的体力值）。",
 	sgsxjxfzmnl_dcqingshi: "情势",
-	sgsxjxfzmnl_dcqingshi_info: "当你于出牌阶段使用牌时，若你本回合未因此牌名的牌发动过该技能，你可以选择一项：1.令此牌对其中一个目标角色造成的<span class=yellowtext>伤害+X（X为其全场相同势力数）</span>；2.<span class=yellowtext>令任意名角色各摸Y张牌（Y为全场蜀势力数）</span>；3.<span class=yellowtext>摸七张牌</span><span style=\"text-decoration: line-through;\">，然后〖情势〗于本回合无效</span>。",
+	sgsxjxfzmnl_dcqingshi_info: "当你于出牌阶段使用牌时，若你本回合未因此牌名的牌发动过该技能，你可以选择一项：1.令此牌对其中一个目标角色造成的<span class=yellowtext>伤害+X（X为其全场相同势力数）</span>；2.<span class=yellowtext>令任意名角色各摸Y张牌（Y为全场蜀势力数）</span>；3.<span class=yellowtext>摸七张牌</span>。",
 	// sgsxjxfzmnl_dcqingshi_append:'（夜白哔哔：什么叫全场相同阵营？这是身份场能出现的吗？）（看了二项————原来这叫阵营……）',
 	sgsxjxfzmnl_dczhizhe: "智哲",
 	sgsxjxfzmnl_dczhizhe_clear: "invisible",
@@ -1096,7 +1126,7 @@ const translate = {
 	sgsxjxfzmnl_sb_caopi: "阴间谋曹丕",
 	sgsxjxfzmnl_sb_caopi_prefix: "阴间谋",
 	sgsxjxfzmnl_sbxingshang: "行殇",
-	sgsxjxfzmnl_sbxingshang_info: "①当一名角色受到伤害后<span style=\"text-decoration: line-through;\">（每回合限一次）</span>或死亡时，你获得2个“颂”标记<span style=\"text-decoration: line-through;\">（你至多拥有9个“颂”标记）</span>。②出牌阶段<span style=\"text-decoration: line-through;\">限两次</span>，你可以：1.移去2个“颂”标记，令一名角色复原武将牌;2.移去2个“颂”标记，令一名角色摸X张牌（X为本场已死亡角色数，至少为2）；3.移去5个“颂”标记，令一名角色回复X点体力，增加X点体力上限，随机恢复一个已废除的装备栏（X为本场已死亡角色数）（原文没写至少为2，我就不加了）；4.移去5个“颂”标记，获得一名阵亡角色武将牌上的所有技能，然后你失去〖行殇〗〖放逐〗〖颂威〗。",
+	sgsxjxfzmnl_sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段，你可以：1.移去2个“颂”标记，令一名角色复原武将牌;2.移去2个“颂”标记，令一名角色摸X张牌（X为本场已死亡角色数，至少为2）；3.移去5个“颂”标记，令一名角色回复X点体力，增加X点体力上限，随机恢复一个已废除的装备栏（X为本场已死亡角色数）（原文没写至少为2，我就不加了）；4.移去5个“颂”标记，获得一名阵亡角色武将牌上的所有技能，然后你失去〖行殇〗〖放逐〗〖颂威〗。",
 	sgsxjxfzmnl_sbfangzhu: "放逐",
 	sgsxjxfzmnl_sbfangzhu_info: "出牌阶段，<span class=yellowtext>若你拥有〖行殇〗</span>，你可以：1.移去1个“颂”标记，令一名其他角色于手牌中不能使用基本牌以外的牌直到其回合结束；2.移去2个“颂”标记，令一名其他角色于手牌中不能使用锦囊牌以外的牌直到其回合结束。3.移去3个“颂”标记，令一名其他角色于手牌中不能使用装备牌以外的牌直到其回合结束；4.移去2个“颂”标记，令一名其他角色的非Charlotte技能失效直到其回合结束；5.移去2个“颂”标记，令一名其他角色不能响应除其以外的角色使用的牌直到其回合结束；6.移去3个“颂”标记，令一名其他角色将武将牌翻面；",
 	sgsxjxfzmnl_sbfangzhu_append:'没有若为斗地主，若你拥有行殇是作者写的，作者咋描述我就咋写',
@@ -1147,11 +1177,11 @@ const translate = {
 	sgsxjxfzmnl_caojinyu:'阴间曹金玉',
 	sgsxjxfzmnl_caojinyu_prefix:'阴间',
 	sgsxjxfzmnl_yuqi:'隅泣',
-	sgsxjxfzmnl_yuqi_info:'锁定技，有角色受伤后，若你与其距离小于等于0，你可以观看牌堆顶3张牌，将其中至多1张交给受伤角色，至多1张自己获得，其余的牌放回牌堆顶。<span style=\"text-decoration: line-through;\">（所有具有颜色的数字至多为5）</span>',
+	sgsxjxfzmnl_yuqi_info:'锁定技，有角色受伤后，若你与其距离小于等于0，你可以观看牌堆顶3张牌，将其中至多1张交给受伤角色，至多1张自己获得，其余的牌放回牌堆顶。（三国杀仙界下凡怎么你了的曹金玉）',
 	sgsxjxfzmnl_shanshen:'善身',
-	sgsxjxfzmnl_shanshen_info:'有角色进入濒死时，你可令‘隅泣’中的一个数字+1；有角色死亡时，你可令‘隅泣’中的一个数字+2。（若你没有对死亡角色造成过伤害，你回复1点体力<span class=yellowtext>且‘隅泣’增加的数字X2</span>）',
+	sgsxjxfzmnl_shanshen_info:'有角色进入濒死时，你可令‘隅泣’中的一个数字+1；有角色死亡时，你可令‘隅泣’中的一个数字+2。（若你没有对死亡角色造成过伤害，你回复1点体力<span class=yellowtext>且‘隅泣’增加的数字X2</span>）（三国杀仙界下凡怎么你了的曹金玉）',
 	sgsxjxfzmnl_xianjing:'娴静',
-	sgsxjxfzmnl_xianjing_info:'准备阶段，你可令‘隅泣’中的一个数字+1。若你满体力，再令‘隅泣’中的一个数字+1。',
+	sgsxjxfzmnl_xianjing_info:'准备阶段，你可令‘隅泣’中的一个数字+1。若你满体力，再令‘隅泣’中的一个数字+1。（三国杀仙界下凡怎么你了的曹金玉）',
 
 	sgsxjxfzmnl_shen_machao:'阴间神马超',
 	sgsxjxfzmnl_shen_machao_prefix:'阴间神',
@@ -1183,7 +1213,7 @@ const translate = {
 	sgsxjxfzmnl_xin_guozhao: "阴间手杀郭照",
 	sgsxjxfzmnl_xin_guozhao_prefix: "阴间手杀",
 	sgsxjxfzmnl_yichong: "易宠",
-	sgsxjxfzmnl_yichong_info: "①准备阶段，你可以选择一名其他角色并选择一个<span class=yellowtext>颜色，然后你获得其所有此颜色的牌</span>，移除场上的所有“雀”标记，令其获得“雀”标记直到你的下个回合开始。②拥有“雀”标记的角色获得你最后一次发动〖易宠①〗选择的<span class=yellowtext>颜色</span>的牌后，你获得这些牌<span style=\"text-decoration: line-through;\">（你至多通过每个“雀”得到一张牌）</span>。",
+	sgsxjxfzmnl_yichong_info: "①准备阶段，你可以选择一名其他角色并选择一个<span class=yellowtext>颜色，然后你获得其所有此颜色的牌</span>，移除场上的所有“雀”标记，令其获得“雀”标记直到你的下个回合开始。②拥有“雀”标记的角色获得你最后一次发动〖易宠①〗选择的<span class=yellowtext>颜色</span>的牌后，你获得这些牌。",
 	sgsxjxfzmnl_wufei: "诬诽",
 	sgsxjxfzmnl_wufei_info: "若场上存在拥有“雀”标记的角色A，则：①当你使用【杀】或伤害类锦囊牌指定第一个目标后，你令A成为此牌伤害来源。②当你受到伤害后，若A的体力值大于<span class=yellowtext>你</span>，则你可以令A受到1点无来源伤害。",
 
@@ -1215,13 +1245,13 @@ const translate = {
 	sgsxjxfzmnl_dclingyue: "聆乐",
 	sgsxjxfzmnl_dclingyue_info: "锁定技。一名角色于一轮内首次造成伤害后，你摸一张牌。若此时是该角色回合外，则改为摸X张牌（X为本回合全场造成的伤害值）。",
 	sgsxjxfzmnl_dcpandi: "盻睇",
-	sgsxjxfzmnl_dcpandi_info: "出牌阶段，你可以选择一名<span style=\"text-decoration: line-through;\">本回合内未造成过伤害的</span>其他角色。你本阶段内使用的下一张牌改为以该角色为基准判断使用目标合法性，且使用者改为该角色。",
+	sgsxjxfzmnl_dcpandi_info: "出牌阶段，你可以选择一名其他角色。你本阶段内使用的下一张牌改为以该角色为基准判断使用目标合法性，且使用者改为该角色。",
 
 	sgsxjxfzmnl_xushao: "阴间许劭",
 	sgsxjxfzmnl_xushao_prefix: "阴间",
 	sgsxjxfzmnl_pingjian: "评荐",
 	sgsxjxfzmnl_pingjian_use: "评荐",
-	sgsxjxfzmnl_pingjian_info: "结束阶段开始时/当你受到伤害后/出牌阶段限<span class=yellowtext>X次（X为存活角色的势力数）</span>，你可以<span class=yellowtext>令系统从阴间将池中</span>随机检索出三张拥有发动时机为结束阶段开始时/当你受到伤害后/出牌阶段的技能的武将牌。然后你可以选择尝试发动其中一个技能。<span style=\"text-decoration: line-through;\">每个技能每局游戏只能选择一次。</span>",
+	sgsxjxfzmnl_pingjian_info: "结束阶段开始时/当你受到伤害后/出牌阶段限<span class=yellowtext>X次（X为存活角色的势力数）</span>，你可以<span class=yellowtext>令系统从阴间将池中</span>随机检索出三张拥有发动时机为结束阶段开始时/当你受到伤害后/出牌阶段的技能的武将牌。然后你可以选择尝试发动其中一个技能。",
 
 	sgsxjxfzmnl_sp_huaman: "阴间手杀花鬘",
 	sgsxjxfzmnl_sp_huaman_prefix: "阴间手杀",
@@ -1235,9 +1265,9 @@ const translate = {
 	sgsxjxfzmnl_quyi: "阴间麴义",
 	sgsxjxfzmnl_quyi_prefix: "阴间",
 	sgsxjxfzmnl_fuqi: "伏骑",
-	sgsxjxfzmnl_fuqi_info: "锁定技，<span style=\"text-decoration: line-through;\">所有与你距离为1的</span>其他角色不能响应你使用的牌。",
+	sgsxjxfzmnl_fuqi_info: "锁定技，其他角色不能响应你使用的牌。",
 	sgsxjxfzmnl_jiaozi: "骄恣",
-	sgsxjxfzmnl_jiaozi_info: "锁定技，你造成或受到伤害时，<span style=\"text-decoration: line-through;color: yellow;\">若你的手牌数为全场唯一最多，</span>此伤害+1，<span class=yellowtext>若你的手牌数为全场唯一最多，则在此基础上伤害值*2</span>",
+	sgsxjxfzmnl_jiaozi_info: "锁定技，你造成或受到伤害时，此伤害+1，<span class=yellowtext>若你的手牌数为全场唯一最多，则在此基础上伤害值*2</span>",
 	//依旧是最快传说
 
 	sgsxjxfzmnl_shen_jiangwei: "阴间神姜维",
@@ -1248,7 +1278,7 @@ const translate = {
 	sgsxjxfzmnl_jiufa_info: "当你声明使用牌后或打出牌时，你记录此牌的牌名。②当你使用或打出的牌结算结束后，若你的〖九伐〗记录中包含至少九种不同的牌名，则你可以亮出牌堆顶的九张牌，选择并获得其中任意张点数有重复的牌（每个点数限获得一张），清除所有的记录，将其余牌置入弃牌堆。<span class=yellowtext>你以此法获得的牌标记为“伐”，你使用“伐”无距离限制且无法被响应。</span>",
 	sgsxjxfzmnl_jiufa_tag: '伐',
 	sgsxjxfzmnl_pingxiang: "平襄",
-	sgsxjxfzmnl_pingxiang_info: "限定技。出牌阶段，你可减9点体力上限，视为使用至多<span class=firetext>9+X</span>张无距离限制的火【杀】，<span style=\"text-decoration: line-through;\">然后失去〖九伐〗，</span>并将手牌上限基数改为体力上限直到游戏结束。<span class=yellowtext>（X为场上魏势力角色数）</span>",
+	sgsxjxfzmnl_pingxiang_info: "限定技。出牌阶段，你可减9点体力上限，视为使用至多<span class=firetext>9+X</span>张无距离限制的火【杀】，并将手牌上限基数改为体力上限直到游戏结束。<span class=yellowtext>（X为场上魏势力角色数）</span>",
 	//剧情中，平襄时作者给角色换了个皮肤
 
 	sgsxjxfzmnl_dc_liuye: "阴间刘晔",
@@ -1273,7 +1303,7 @@ const translate = {
 	sgsxjxfzmnl_wu_luxun_prefix: "阴间武",
 	sgsxjxfzmnl_dcxiongmu: "雄幕",
 	sgsxjxfzmnl_dcxiongmu_tag: "雄幕（阴间）",
-	sgsxjxfzmnl_dcxiongmu_info: "①每轮开始时，你可以将手牌摸至体力上限（若手牌数不小于体力上限则跳过），然后将任意张牌随机置入牌堆，从牌堆或弃牌堆中获得等量的点数为8的牌，且这些牌<span style=\"text-decoration: line-through;\">本轮</span>不计入手牌上限。②当你于一回合首次受到伤害时，若你的手牌数不大于你的体力值，此伤害-1。",
+	sgsxjxfzmnl_dcxiongmu_info: "①每轮开始时，你可以将手牌摸至体力上限（若手牌数不小于体力上限则跳过），然后将任意张牌随机置入牌堆，从牌堆或弃牌堆中获得等量的点数为8的牌，且这些牌不计入手牌上限。②当你于一回合首次受到伤害时，若你的手牌数不大于你的体力值，此伤害-1。",
 	// sgsxjxfzmnl_dczhangcai: "彰才",
 	// sgsxjxfzmnl_dczhangcai_info: "当你使用或打出点数为8的牌时，你可以摸X张牌（X为你手牌区里点数为8的牌数且至少为1）。",
 	sgsxjxfzmnl_dcruxian: "儒贤",
@@ -1290,7 +1320,7 @@ const translate = {
 	sgsxjxfzmnl_mbcmjiushi: "酒诗",
 	sgsxjxfzmnl_mbcmjiushi_info: `${get.poptip("rule_chihengji")}。①当你需要使用【酒】时，若你的武将牌正面向上，你可以翻面，视为使用一张【酒】。②当你受到伤害后，若你武将牌背面朝上且未因此次伤害发动过〖酒诗〗，你可以翻面。③当你翻面后，你随机获得一张锦囊牌。（原文没说是不是从牌堆，暂且按照从牌堆来算）`,
 	sgsxjxfzmnl_mbcmfangzhu: "放逐",
-	sgsxjxfzmnl_mbcmfangzhu_info: `${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以选择一名<span style=\"text-decoration: line-through;\">不为你上个出牌阶段发动〖放逐〗的目标的</span>其他角色，选择一项：⒈令其不能使用手牌中的非锦囊牌直到其回合结束；⒉令其所有非Charlotte技能失效直到其回合结束。`,
+	sgsxjxfzmnl_mbcmfangzhu_info: `${get.poptip("rule_chihengji")}。出牌阶段限一次，你可以选择一名其他角色，选择一项：⒈令其不能使用手牌中的非锦囊牌直到其回合结束；⒉令其所有非Charlotte技能失效直到其回合结束。`,
 	sgsxjxfzmnl_mbjuejin: "决进",
 	sgsxjxfzmnl_mbjuejin_info: `${get.poptip("rule_chihengji")}，限定技。出牌阶段，你可以令所有角色依次将体力调整至1并获得X点护甲（X为一名角色以此法减少的体力值且你以此法获得的护甲数额外+2）。然后你将牌堆、弃牌堆、场上及所有角色手牌中的【闪】、【桃】和【酒】移出游戏且增加全局技能“${get.poptip({
 		id: "sgsxjxfzmnl_juejin_xiangsicunwei",
@@ -1313,16 +1343,16 @@ const translate = {
 	sgsxjxfzmnl_pyzhuren_destroy: "铸刃",
 	sgsxjxfzmnl_pyzhuren_heart: "魂缎枪",
 	// sgsxjxfzmnl_pyzhuren_heart: "红缎枪",
-	sgsxjxfzmnl_pyzhuren_heart_info: "<span style=\"text-decoration: line-through;\">每回合限一次，</span>当你使用【杀】造成伤害后，你可以进行判定，若结果为：红色，你回复1点体力；黑色：你摸两张牌。",
+	sgsxjxfzmnl_pyzhuren_heart_info: "当你使用【杀】造成伤害后，你可以进行判定，若结果为：红色，你回复1点体力；黑色：你摸两张牌。",
 	sgsxjxfzmnl_pyzhuren_diamond: "炼狱刀",
 	// sgsxjxfzmnl_pyzhuren_diamond: "烈淬刀",
-	sgsxjxfzmnl_pyzhuren_diamond_info: "<span style=\"text-decoration: line-through;\">每回合限两次，</span>当你使用【杀】对目标角色造成伤害时，你可以<span style=\"text-decoration: line-through;\">弃置一张牌，</span>令此伤害+1。你使用【杀】的次数上限+1。",
+	sgsxjxfzmnl_pyzhuren_diamond_info: "当你使用【杀】对目标角色造成伤害时，你可以<span style=\"text-decoration: line-through;\">弃置一张牌，</span>令此伤害+1。你使用【杀】的次数上限+1。",
 	sgsxjxfzmnl_pyzhuren_club: "逝波剑",
 	// sgsxjxfzmnl_pyzhuren_club: "水波剑",
-	sgsxjxfzmnl_pyzhuren_club_info: "<span style=\"text-decoration: line-through;\">每回合限两次，</span>当你使用普通锦囊牌或【杀】时，你可以为此牌增加一个目标。当你失去装备区里的【逝波剑】后，你回复1点体力。",
+	sgsxjxfzmnl_pyzhuren_club_info: "当你使用普通锦囊牌或【杀】时，你可以为此牌增加一个目标。当你失去装备区里的【逝波剑】后，你回复1点体力。",
 	sgsxjxfzmnl_pyzhuren_spade: "黄泉弯匕",//9
 	// sgsxjxfzmnl_pyzhuren_spade: "混毒弯匕",//9
-	sgsxjxfzmnl_pyzhuren_spade_info: "当你使用【杀】指定目标后，你可令其失去X点体力（X为此技能本回合内发动过的次数<span style=\"text-decoration: line-through;\">且至多为5</span>）。",
+	sgsxjxfzmnl_pyzhuren_spade_info: "当你使用【杀】指定目标后，你可令其失去X点体力（X为此技能本回合内发动过的次数）。",
 	sgsxjxfzmnl_pyzhuren_shandian: "天罚刃",//9
 	// sgsxjxfzmnl_pyzhuren_shandian: "天雷刃",
 	sgsxjxfzmnl_pyzhuren_shandian_info: "当你使用【杀】指定目标后，可令其进行判定，若结果为：黑桃，其受到3点雷属性伤害；梅花，其受到1点雷属性伤害，你回复1点体力并摸一张牌。",
@@ -1330,7 +1360,7 @@ const translate = {
 	sgsxjxfzmnl_dc_shen_huatuo: "阴间神华佗",
 	sgsxjxfzmnl_dc_shen_huatuo_prefix: "阴间神",
 	sgsxjxfzmnl_jingyu: "静域",
-	sgsxjxfzmnl_jingyu_info: "锁定技。<span style=\"text-decoration: line-through;\">每个技能每轮限一次，</span>当一名角色发动不为〖静域〗的技能时，你摸一张牌。",
+	sgsxjxfzmnl_jingyu_info: "锁定技。当一名角色发动不为〖静域〗的技能时，你摸一张牌。",
 	sgsxjxfzmnl_lvxin: "滤心",
 	sgsxjxfzmnl_lvxin_info: "出牌阶段限一次。你可以交给一名其他角色一张手牌并选择一项：⒈令其摸X张牌；⒉令其随机弃置X张手牌（<span class=firetext>X为本局势力数</span>）。然后若其以此法得到/弃置了与你交给其的牌牌名相同的牌，其于其下次发动技能时回复/失去1点体力。",
 	sgsxjxfzmnl_huandao: "寰道",
@@ -1382,14 +1412,14 @@ const translate = {
 	sgsxjxfzmnl_dc_qinghegongzhu: "阴间新杀清河公主",
 	sgsxjxfzmnl_dc_qinghegongzhu_prefix: "阴间新杀",
 	sgsxjxfzmnl_dczhangji: "长姬",
-	sgsxjxfzmnl_dczhangji_info: "锁定技，一名角色使用牌指定最后一个目标后，若此牌目标数大于1且你是此牌目标之一，则你先结算此牌的效果，然后你摸X张牌（X为此牌的<span style=\"text-decoration: line-through;\">其他</span>目标数）。",
+	sgsxjxfzmnl_dczhangji_info: "锁定技，一名角色使用牌指定最后一个目标后，若此牌目标数大于1且你是此牌目标之一，则你先结算此牌的效果，然后你摸X张牌（X为此牌的目标数）。",
 	sgsxjxfzmnl_dczengou: "谮构",
-	sgsxjxfzmnl_dczengou_info: "出牌阶段限一次，你可以将至多体力上限张牌称为“谮构”交给一名其他角色并摸等量张牌。若如此做，<span class=yellowtext>其无法使用、打出、或弃置你交给其的手牌，并且</span>其下次体力值增加或使用牌结算完毕后，其展示所有手牌，然后失去Y点体力（Y为其手牌中的“谮构”牌数）<span style=\"text-decoration: line-through;\">并移除“谮构”牌的标记</span>。",
+	sgsxjxfzmnl_dczengou_info: "出牌阶段限一次，你可以将至多体力上限张牌称为“谮构”交给一名其他角色并摸等量张牌。若如此做，<span class=yellowtext>其无法使用、打出、或弃置你交给其的手牌，并且</span>其下次体力值增加或使用牌结算完毕后，其展示所有手牌，然后失去Y点体力（Y为其手牌中的“谮构”牌数）。",
 
 	sgsxjxfzmnl_bianxi: "阴间卞喜",
 	sgsxjxfzmnl_bianxi_prefix: "阴间",
 	sgsxjxfzmnl_dunxi: "钝袭",
-	sgsxjxfzmnl_dunxi_info: "①当你使用<span style=\"text-decoration: line-through;\">具有伤害标签的</span>牌时，你可以令一名<span style=\"text-decoration: line-through;\">不为你的目标</span>角色获得一枚“钝”。②有“钝”的角色使用<span style=\"text-decoration: line-through;\">基本牌或锦囊</span>牌时，<span style=\"text-decoration: line-through;\">若此牌目标数为1且此时没有角色处于濒死状态，你令其移去一枚“钝”</span>。系统随机选择一名角色，并将此牌的目标改为该角色。<span class=firetext>若随机目标不为你，则其失去1点体力；若随机目标为你，则你摸一张牌。</span>若其正处于出牌阶段内，则结束此阶段。<span class=yellowtext>每次回合结束时移去1个“钝”。</span>",
+	sgsxjxfzmnl_dunxi_info: "①当你使用牌时，你可以令一名角色获得一枚“钝”。②有“钝”的角色使用牌时。系统随机选择一名角色，并将此牌的目标改为该角色。<span class=firetext>若随机目标不为你，则其失去1点体力；若随机目标为你，则你摸一张牌。</span>若其正处于出牌阶段内，则结束此阶段。<span class=yellowtext>每次回合结束时移去1个“钝”。</span>",
 
 	sgsxjxfzmnl_shen_sunquan: "阴间神孙权",
 	sgsxjxfzmnl_shen_sunquan_prefix: "阴间神",
@@ -1398,7 +1428,7 @@ const translate = {
 	sgsxjxfzmnl_junkdili: "帝力",
 	sgsxjxfzmnl_junkdili_info: `觉醒技。当你获得技能后，若你拥有的技能数大于<span class=firetext>场上势力数</span>，则你<span class=firetext>加</span>1点体力上限，<span style=\"text-decoration: line-through;\">选择失去任意个其他技能，</span>然后获得以下技能<span style=\"text-decoration: line-through;\">中的前等量个</span>：${get.poptip("sgsxjxfzmnl_junkshengzhi")}${get.poptip("sgsxjxfzmnl_junkquandao")}${get.poptip("sgsxjxfzmnl_junkchigang")}。（三国杀仙界下凡怎么你了）`,
 	sgsxjxfzmnl_junkshengzhi: "圣质",
-	sgsxjxfzmnl_junkshengzhi_info: "锁定技。当你发动非锁定技后，你令你本回合使用的<span style=\"text-decoration: line-through;\">下一张</span>牌无距离和次数限制。（三国杀仙界下凡怎么你了）",
+	sgsxjxfzmnl_junkshengzhi_info: "锁定技。当你发动非锁定技后，你令你本回合使用的牌无距离和次数限制。（三国杀仙界下凡怎么你了）",
 	sgsxjxfzmnl_junkquandao: "权道",
 	sgsxjxfzmnl_junkquandao_info: "锁定技。当你使用<span class=firetext>基本牌</span>或普通锦囊牌时，{若你手牌中的<span class=firetext>基本牌</span>或普通锦囊牌的数量之差X不为0，则你弃置X张数量较多的一种牌}，然后你摸一张牌。（三国杀仙界下凡怎么你了）",
 	sgsxjxfzmnl_junkchigang: "持纲",
@@ -1409,7 +1439,7 @@ const translate = {
 	sgsxjxfzmnl_weiyi: "威仪",
 	sgsxjxfzmnl_weiyi_info: "<span class=yellowtext>每回合</span>每名角色限一次。当有角色受到伤害后，你可选择：①若其体力值不小于你，则其失去1点体力。②若其体力值不大于你且其已受伤，则其回复1点体力。",
 	sgsxjxfzmnl_jinzhi: "锦织",
-	sgsxjxfzmnl_jinzhi_info: "当你需要使用或打出一张基本牌时，你可弃置X<span style=\"text-decoration: line-through;\">+1</span>张颜色相同的牌并摸一张牌，然后视为你使用或打出了此牌。（X为你于本轮内发动此技能的次数）",
+	sgsxjxfzmnl_jinzhi_info: "当你需要使用或打出一张基本牌时，你可弃置X张颜色相同的牌并摸一张牌，然后视为你使用或打出了此牌。（X为你于本轮内发动此技能的次数）",
 
 	sgsxjxfzmnl_haozhao: "阴间郝昭",
 	sgsxjxfzmnl_haozhao_prefix: "阴间",
@@ -1452,7 +1482,7 @@ const translate = {
 	sgsxjxfzmnl_yue_miheng: "阴间乐祢衡",
 	sgsxjxfzmnl_yue_miheng_prefix: "阴间乐",
 	sgsxjxfzmnl_dcjigu: "激鼓",
-	sgsxjxfzmnl_dcjigu_info: "锁定技。①游戏开始时，你将手牌标记为“激鼓”。②你的“激鼓”牌不计入手牌上限。③当你造成或受到伤害后，若你的“激鼓”<span class=yellowtext>装备</span>牌数等于你的装备区牌数，你摸X张牌（X为你的空缺装备栏数）。<span style=\"text-decoration: line-through;\">然后若你本轮〖激鼓〗发动次数不小于已进行过回合的角色数，此效果本轮失效。</span>",
+	sgsxjxfzmnl_dcjigu_info: "锁定技。①游戏开始时，你将手牌标记为“激鼓”。②你的“激鼓”牌不计入手牌上限。③当你造成或受到伤害后，若你的“激鼓”<span class=yellowtext>装备</span>牌数等于你的装备区牌数，你摸X张牌（X为你的空缺装备栏数）。",
 	sgsxjxfzmnl_dcsirui: "思锐",
 	sgsxjxfzmnl_dcsirui_info: "出牌阶段限<span class=firetext>X</span>次，你可以将一张牌当作与其字数相同的一张无距离和次数限制的基本牌<span class=firetext>或普通锦囊牌</span></能看懂的都是高手></尼玛，原文实战是转化成牌局中的点数相同的牌……>使用。<span class=firetext>（X为你手中“激鼓”牌数量，至少为1）</span><wcnmsb，对局内主角在用过一次思锐转化牌的情况下，在手牌中仅剩一张激鼓牌的时候还几把能用一次……合着nmd出牌阶段限X次是出牌阶段开始时直接定死的？>",
 	sgsxjxfzmnl_dcsirui_append:'原文实战：转化成牌局中的点数相同的牌，并且主角在用过一次思锐转化牌的情况下，在手牌中仅剩一张激鼓牌的时候还几把能用一次。我的评价是：该肘，不予理会',
@@ -1462,7 +1492,7 @@ const translate = {
 	// olddcxiangmian: "相面",
 	// olddcxiangmian_info: "其他角色的结束阶段，你可以判定。然后你不能再对其发动此技能，其获得以下效果：当其使用第X张结果的花色的牌后（X为结果的点数），其失去等同于其体力值的体力。",
 	sgsxjxfzmnl_dcxiangmian: "相面",
-	sgsxjxfzmnl_dcxiangmian_info: "出牌阶段限一次。你可以令一名其他角色判定，<span style=\"text-decoration: line-through;\">然后你不能再对其发动此技能，</span>其获得以下效果：当其使用结果的<span class=firetext>颜色</span>的牌后，或当其使用X张牌后（X为结果的点数），其<font color=red>死亡</font>。",
+	sgsxjxfzmnl_dcxiangmian_info: "出牌阶段限一次。你可以令一名其他角色判定，其获得以下效果：当其使用结果的<span class=firetext>颜色</span>的牌后，或当其使用X张牌后（X为结果的点数），其<font color=red>死亡</font>。",
 	sgsxjxfzmnl_dctianji: "天机",
 	sgsxjxfzmnl_dctianji_info: "锁定技。当判定牌<span class=firetext>生效后</span>，你从牌堆随机获得分别与该牌类型、花色和点数相同的牌各一张。",
 
@@ -1494,15 +1524,15 @@ const translate = {
 	sgsxjxfzmnl_dclieqiong_place4: "力烽",
 	sgsxjxfzmnl_dclieqiong_place4_info: "令其随机弃置一半手牌（向上取整）",
 	sgsxjxfzmnl_dclieqiong_place5: "地机",
-	sgsxjxfzmnl_dclieqiong_place5_info: "令其<span class=firetext>接下来</span>受到的伤害+1<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+	sgsxjxfzmnl_dclieqiong_place5_info: "令其<span class=firetext>接下来</span>受到的伤害+1",
 	sgsxjxfzmnl_dclieqiong_place6: "中枢",
-	sgsxjxfzmnl_dclieqiong_place6_info: "令其<span class=firetext>每回合使用的第一张牌</span>无效<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+	sgsxjxfzmnl_dclieqiong_place6_info: "令其<span class=firetext>每回合使用的第一张牌</span>无效",
 	sgsxjxfzmnl_dclieqiong_place7: "气海",
-	sgsxjxfzmnl_dclieqiong_place7_info: "令其不能使用或打出红桃牌<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>",
+	sgsxjxfzmnl_dclieqiong_place7_info: "令其不能使用或打出红桃牌",
 	// dclieqiong_place8: "玉泉",
 	// dclieqiong_place8_info: "令其将性别变为女性、将【女装】置入装备区且体力上限+1。",
 	sgsxjxfzmnl_dczhanjue: "斩决",
-	sgsxjxfzmnl_dczhanjue_info: "出牌阶段开始时，你可以选择一项：1.摸体力值张牌，此阶段使用的下一张<span class=firetext>伤害牌</span>无距离限制且不能被响应。2.摸已损失体力值张牌，此阶段<span style=\"text-decoration: line-through;\">下一次</span>造成伤害后，回复等量体力。",
+	sgsxjxfzmnl_dczhanjue_info: "出牌阶段开始时，你可以选择一项：1.摸体力值张牌，此阶段使用的下一张<span class=firetext>伤害牌</span>无距离限制且不能被响应。2.摸已损失体力值张牌，此阶段造成伤害后，回复等量体力。",
 
 	sgsxjxfzmnl_dc_tengfanglan: "阴间滕芳兰",
 	sgsxjxfzmnl_dc_tengfanglan_prefix: "阴间",
@@ -1516,7 +1546,7 @@ const translate = {
 	sgsxjxfzmnl_sblijian: "离间",
 	sgsxjxfzmnl_sblijian_info: "出牌阶段限一次。你可以选择至少两名其他角色并<span class=firetext>获得其一张手牌</span>。然后每名你选择的角色依次视为对这些角色中与其逆时针座次最近的另一名角色使用一张【决斗】。",
 	sgsxjxfzmnl_sbbiyue: "闭月",
-	sgsxjxfzmnl_sbbiyue_info: "锁定技。结束阶段，你摸Y张牌（Y为本回合包括已死亡角色在内受到过伤害的角色数+1<span style=\"text-decoration: line-through;\">且至多为4</span>）。",
+	sgsxjxfzmnl_sbbiyue_info: "锁定技。结束阶段，你摸Y张牌（Y为本回合包括已死亡角色在内受到过伤害的角色数+1）。",
 
 	sgsxjxfzmnl_re_zuoci: "阴间界左慈",
 	sgsxjxfzmnl_re_zuoci_prefix: "阴间界",
@@ -1528,14 +1558,14 @@ const translate = {
 	sgsxjxfzmnl_chengui: "阴间陈珪",
 	sgsxjxfzmnl_chengui_prefix: "阴间",
 	sgsxjxfzmnl_dcyingtu: "营图",
-	sgsxjxfzmnl_dcyingtu_info: "<span style=\"text-decoration: line-through;\">每回合限一次。</span>当<span class=firetext>除你以外的角色</span>于摸牌阶段外得到牌后，你可以获得其一张牌，然后将一张牌交给<span class=firetext>另一名其他角色</span>。若你给出的牌为装备牌，则其使用之。",
+	sgsxjxfzmnl_dcyingtu_info: "当<span class=firetext>除你以外的角色</span>于摸牌阶段外得到牌后，你可以获得其一张牌，然后将一张牌交给<span class=firetext>另一名其他角色</span>。若你给出的牌为装备牌，则其使用之。",
 	sgsxjxfzmnl_dccongshi: "从势",
-	sgsxjxfzmnl_dccongshi_info: "锁定技。一名角色使用的装备牌结算结束后，<span style=\"text-decoration: line-through;\">若其装备区内的牌数为全场最多，则</span>你摸一张牌。",
+	sgsxjxfzmnl_dccongshi_info: "锁定技。一名角色使用的装备牌结算结束后，你摸一张牌。",
 
 	sgsxjxfzmnl_dc_sunru: "阴间孙茹",
 	sgsxjxfzmnl_dc_sunru_prefix: "阴间",
 	sgsxjxfzmnl_xiecui: "撷翠",
-	sgsxjxfzmnl_xiecui_info: "当有角色于回合内<span style=\"text-decoration: line-through;\">第一次</span>因执行牌的效果而造成伤害时，你可以令此伤害+1。若其势力为吴，则该角色获得此伤害牌对应的实体牌，且其本回合的手牌上限+1<span class=yellowtext>，在其回合结束前你失去此技能</span>。",
+	sgsxjxfzmnl_xiecui_info: "当有角色于回合内因执行牌的效果而造成伤害时，你可以令此伤害+1。若其势力为吴，则该角色获得此伤害牌对应的实体牌，且其本回合的手牌上限+1<span class=yellowtext>，在其回合结束前你失去此技能</span>。",
 	sgsxjxfzmnl_youxu: "忧恤",
 	sgsxjxfzmnl_youxu_info: "一名角色A的回合结束时，若其手牌数大于体力值，则你可以展示A的一张手牌，然后将此牌交给另一名角色B，<span class=firetext>然后</span>B回复1点体力。",
 
@@ -1545,12 +1575,12 @@ const translate = {
 	sgsxjxfzmnl_dcqiqin_tag: "琴",
 	sgsxjxfzmnl_dcqiqin_info: "锁定技。①游戏开始时，你将手牌标记为“琴”。②你的“琴”牌不计入手牌上限。③准备阶段，你获得位于弃牌堆的所有“琴”。<span class=yellowtext>然后你可更改手牌中的“琴”标记，你的“琴”标记牌上限为X（X为你的体力值上线）</span>",//原文就写的上线，去殴打作者去，别怼咕我
 	sgsxjxfzmnl_dcweiwan: "媦婉",
-	sgsxjxfzmnl_dcweiwan_info: "出牌阶段限一次，你可以弃置一张“琴”并随机获得一名其他角色区域内花色与此牌不相同的牌<span style=\"text-decoration: line-through;\">各一张</span>，若你获得了：一张牌，其失去1点体力；两张牌，本回合你对其使用牌无距离和次数限制；三张牌，<span class=yellowtext>执行1，2项且</span><span class=firetext>你本回合对其造成的伤害+1</span>；<span class=yellowtext>四张牌或更多，执行3项且其本轮技能失效</span>。",
+	sgsxjxfzmnl_dcweiwan_info: "出牌阶段限一次，你可以弃置一张“琴”并随机获得一名其他角色区域内花色与此牌不相同的牌，若你获得了：一张牌，其失去1点体力；两张牌，本回合你对其使用牌无距离和次数限制；三张牌，<span class=yellowtext>执行1，2项且</span><span class=firetext>你本回合对其造成的伤害+1</span>；<span class=yellowtext>四张牌或更多，执行3项且其本轮技能失效</span>。",
 
 	sgsxjxfzmnl_dc_sb_simayi: "阴间新杀谋司马懿",
 	sgsxjxfzmnl_dc_sb_simayi_prefix: "阴间新杀谋",
 	sgsxjxfzmnl_dcsbquanmou: "权谋",
-	sgsxjxfzmnl_dcsbquanmou_info: "转换技。①游戏开始时，你可以转换此技能状态；②出牌阶段每名角色限一次，你可以令一名<span style=\"text-decoration: line-through;\">攻击范围内的</span>其他角色交给你一张牌。阳：当你于本阶段内下次对其造成伤害时，取消之；阴：当你于本阶段内下次对其造成伤害后，你可以选择<span style=\"text-decoration: line-through;\">除其外的</span>至多三名其他角色，对这些角色依次造成1点伤害。（三国杀仙界下凡怎么你了）",
+	sgsxjxfzmnl_dcsbquanmou_info: "转换技。①游戏开始时，你可以转换此技能状态；②出牌阶段每名角色限一次，你可以令一名<span style=\"text-decoration: line-through;\">攻击范围内的</span>其他角色交给你一张牌。阳：当你于本阶段内下次对其造成伤害时，取消之；阴：当你于本阶段内下次对其造成伤害后，你可以选择至多三名其他角色，对这些角色依次造成1点伤害。（三国杀仙界下凡怎么你了）",
 	sgsxjxfzmnl_dcsbpingliao: "平辽",
 	sgsxjxfzmnl_dcsbpingliao_info: "锁定技。当你声明使用【杀】时，你令此【杀】的目标对其他角色不可见，且你令攻击范围内的其他角色依次选择是否打出一张红色基本牌。所有角色选择完成后，此牌的目标角色中没有以此法打出牌的角色本回合内无法使用或打出手牌<span class=yellowtext>且受到的伤害+1</span>；若有不为此牌目标的角色以此法打出了牌，则<span class=yellowtext>每打出一张基本牌</span>你摸两张牌。<span class=firetext>你对拥有“权谋”标记的角色使用牌无距离和次数限制。</span>（三国杀仙界下凡怎么你了）（不支持其他版本的权谋）",
 
@@ -1575,20 +1605,20 @@ const translate = {
 	sgsxjxfzmnl_liuzan: "阴间手杀留赞",
 	sgsxjxfzmnl_liuzan_prefix: "阴间手杀",
 	sgsxjxfzmnl_fenyin: "奋音",
-	sgsxjxfzmnl_fenyin_info: "<span style=\"text-decoration: line-through;\">你的回合内，</span>当你使用牌时，若此牌与你使用的上一张牌的<span class=firetext>花色</span>不同，则你<span style=\"text-decoration: line-through;傻逼作者没写可以:true;\">可以</span>摸一张牌。",
+	sgsxjxfzmnl_fenyin_info: "当你使用牌时，若此牌与你使用的上一张牌的<span class=firetext>花色</span>不同，则你<span style=\"text-decoration: line-through;傻逼作者没写可以:true;\"></span>摸一张牌。",
 
 
 	sgsxjxfzmnl_xurong: "阴间徐荣",
 	sgsxjxfzmnl_xurong_prefix: "阴间",
 	sgsxjxfzmnl_xinfu_xionghuo: "凶镬",
-	sgsxjxfzmnl_xinfu_xionghuo_info: "游戏开始时，你获得<span class=firetext>X</span>个“暴戾”标记<span style=\"text-decoration: line-through;\">（标记上限为3）</span><span class=yellowtext>（X为本局人数）</span>。出牌阶段，你可以交给一名其他角色一个“暴戾”标记。<span class=firetext>拥有“暴戾”标记的其他角色受到的伤害+1，且无法响应你使用牌</span>。有“暴戾”标记的其他角色的出牌阶段开始时，其移去<span class=firetext>一枚</span>“暴戾”标记并随机执行一项：1.受到1点火焰伤害且本回合不能<span class=firetext>使用牌</span>；2.失去1点体力且本回合手牌上限<span class=firetext>为0</span>；3.你随机获得其<span class=firetext>Y</span>张牌<span class=firetext>（Y为其体力值）</span>。",
+	sgsxjxfzmnl_xinfu_xionghuo_info: "游戏开始时，你获得<span class=firetext>X</span>个“暴戾”标记<span class=yellowtext>（X为本局人数）</span>。出牌阶段，你可以交给一名其他角色一个“暴戾”标记。<span class=firetext>拥有“暴戾”标记的其他角色受到的伤害+1，且无法响应你使用牌</span>。有“暴戾”标记的其他角色的出牌阶段开始时，其移去<span class=firetext>一枚</span>“暴戾”标记并随机执行一项：1.受到1点火焰伤害且本回合不能<span class=firetext>使用牌</span>；2.失去1点体力且本回合手牌上限<span class=firetext>为0</span>；3.你随机获得其<span class=firetext>Y</span>张牌<span class=firetext>（Y为其体力值）</span>。",
 	sgsxjxfzmnl_xinfu_shajue: "杀绝",
 	sgsxjxfzmnl_xinfu_shajue_info: "锁定技，其他角色进入濒死状态时，你获得一个“暴戾”标记<span class=firetext>并</span>获得使其进入濒死状态的牌。",
 
 	sgsxjxfzmnl_dc_sb_huanggai: "阴间新杀谋黄盖",
 	sgsxjxfzmnl_dc_sb_huanggai_prefix: "阴间新杀谋",
 	sgsxjxfzmnl_dcsblieji: "烈计",
-	sgsxjxfzmnl_dcsblieji_info: "当你使用<span class=firetext>一张</span>牌后，你可以令手牌中所有伤害牌造成的伤害+1<span style=\"text-decoration: line-through;\">直到回合结束</span>。",
+	sgsxjxfzmnl_dcsblieji_info: "当你使用<span class=firetext>一张</span>牌后，你可以令手牌中所有伤害牌造成的伤害+1。",
 	sgsxjxfzmnl_dcsbquzhou: "趋舟",
 	sgsxjxfzmnl_dcsbquzhou_info: "出牌阶段限一次，<span class=firetext>你可以亮出牌堆顶X张牌，若其中有【杀】你使用之，并获得所有未使用的牌（X为本局游戏人数）</span>。",
 
@@ -1609,13 +1639,13 @@ const translate = {
 	sgsxjxfzmnl_ol_nanhualaoxian: "阴间OL南华老仙",
 	sgsxjxfzmnl_ol_nanhualaoxian_prefix: "阴间OL",
 	sgsxjxfzmnl_olhedao: "合道",
-	sgsxjxfzmnl_olhedao_info: `锁定技。①游戏开始时，你可至多拥有<span class=firetext>三</span>册${get.poptip("sgsxjxfzmnl_olhedao_faq")}。②<span class=firetext>每当有人进入濒死状态，你的${get.poptip("sgsxjxfzmnl_olhedao_faq")}上限+1</span>。`,
+	sgsxjxfzmnl_olhedao_info: `锁定技。①游戏开始时，你可至多拥有<span class=firetext>三</span>册${get.poptip("sgsxjxfzmnl_olhedao_faq")}。②<span class=firetext>每当有人进入濒死状态，你的${get.poptip("sgsxjxfzmnl_olhedao_faq")}上限+1</span>。（三国杀仙界下凡怎么你了）`,
 	sgsxjxfzmnl_olhedao_faq: "“天书”",
-	sgsxjxfzmnl_olhedao_faq_info: "关于“天书”：<br>" + ["“天书”为随机三个时机和三个效果中各选择一个组成的技能，且时机等级越高，效果等级越高", "“天书”初始为未翻开状态，发动一次后翻开此“天书”（未翻开的“天书”技能对其他角色不可见）", "<span style=\"text-decoration: line-through;\">“天书”至多可发动两次，交给其他角色后至多可发动一次，“天书”次数用尽后失去此“天书”</span>", "一名角色可至多拥有一册“天书”"].map(str => `<li>${str}`).join("<br>"),
+	sgsxjxfzmnl_olhedao_faq_info: "关于“天书”：<br>" + ["“天书”为随机三个时机和三个效果中各选择一个组成的技能，且时机等级越高，效果等级越高", "“天书”初始为未翻开状态，发动一次后翻开此“天书”（未翻开的“天书”技能对其他角色不可见）",  "一名角色可至多拥有一册“天书”"].map(str => `<li>${str}`).join("<br>"),
 	sgsxjxfzmnl_olqingshu: "青书",
-	sgsxjxfzmnl_olqingshu_info: `锁定技，游戏开始时/准备阶段/结束阶段，你书写一册${get.poptip("sgsxjxfzmnl_olhedao_faq")}。`,
+	sgsxjxfzmnl_olqingshu_info: `锁定技，游戏开始时/准备阶段/结束阶段，你书写一册${get.poptip("sgsxjxfzmnl_olhedao_faq")}。（三国杀仙界下凡怎么你了）`,
 	sgsxjxfzmnl_olshoushu: "授术",
-	sgsxjxfzmnl_olshoushu_info: `出牌阶段限一次，你可以将一册<span style=\"text-decoration: line-through;\">未翻开的</span>${get.poptip("sgsxjxfzmnl_olhedao_faq")}交给一名其他角色。`,
+	sgsxjxfzmnl_olshoushu_info: `出牌阶段限一次，你可以将一册${get.poptip("sgsxjxfzmnl_olhedao_faq")}交给一名其他角色。（三国杀仙界下凡怎么你了）`,
 
 	sgsxjxfzmnl_mo_guanyu:'魔关羽',//5
 	sgsxjxfzmnl_mo_guanyu_prefix:'魔',
@@ -1660,9 +1690,9 @@ const translate = {
 	sgsxjxfzmnl_dcsanshi_tag: "死士",
 	sgsxjxfzmnl_dcsanshi_info: "锁定技。①游戏开始时，你令系统将牌堆中每个点数的随机一张牌永久标记为“死士”（“死士”对你可见）。②一名角色的回合结束时，若本回合有“死士”不因你使用或打出而进入弃牌堆，你于弃牌堆中获得这些牌。③你使用“死士”<span class=yellowtext>无距离次数限制且</span>不能被响应。",
 	sgsxjxfzmnl_dczhenrao: "震扰",
-	sgsxjxfzmnl_dczhenrao_info: "每回合每名角色限一次。当你使用牌指定第一个目标后，若目标角色包含其他角色，或当其他角色使用牌指定你为目标后，你可以选择<span style=\"text-decoration: line-through;\">手牌数大于你的</span>其中一个目标或此牌的使用者，然后对其造成1点伤害。",
+	sgsxjxfzmnl_dczhenrao_info: "每回合每名角色限一次。当你使用牌指定第一个目标后，若目标角色包含其他角色，或当其他角色使用牌指定你为目标后，你可以选择其中一个目标或此牌的使用者，然后对其造成1点伤害。",
 	sgsxjxfzmnl_dcchenlve: "沉略",
-	sgsxjxfzmnl_dcchenlve_info: "限定技。出牌阶段，你可以将牌堆、弃牌堆、场上及其他角色的手牌区里的所有“死士”置入处理区，然后你获得这些牌。若如此做，你获得如下效果：<span class=firetext>此阶段结束时，你将这些牌移出游戏，并重新发动〖散士〗，标记“死士”牌</span><span style=\"text-decoration: line-through;\">；2.当你死亡时，你将所有以此法移出游戏的“死士”置入弃牌堆。</span>",
+	sgsxjxfzmnl_dcchenlve_info: "限定技。出牌阶段，你可以将牌堆、弃牌堆、场上及其他角色的手牌区里的所有“死士”置入处理区，然后你获得这些牌。若如此做，你获得如下效果：<span class=firetext>此阶段结束时，你将这些牌移出游戏，并重新发动〖散士〗，标记“死士”牌",
 
 	
 	sgsxjxfzmnl_xuelingyun: "阴间薛灵芸",
@@ -1670,7 +1700,7 @@ const translate = {
 	// sgsxjxfzmnl_dcxialei: "霞泪",//没变化！
 	// sgsxjxfzmnl_dcxialei_info: "当你的红色牌进入弃牌堆后，你可以观看牌堆顶的三张牌，获得其中的一张牌，且可以将其余牌置于牌堆底。然后你本回合以此法观看的牌数-1。",
 	sgsxjxfzmnl_dcanzhi: "暗织",
-	sgsxjxfzmnl_dcanzhi_info: "出牌阶段或当你受到伤害后，你可以判定，若结果为红色，你重置〖霞泪〗的观看牌数<span class=yellowtext>并摸一张牌</span>；若结果为黑色，然后你可以令一名<span style=\"text-decoration: line-through;\">非当前回合</span>角色获得本回合进入弃牌堆的两张牌。<span class=firetext>当黑色判定次数达到X时，此技能本回合失效（X为本局游戏人数）</span>",
+	sgsxjxfzmnl_dcanzhi_info: "出牌阶段或当你受到伤害后，你可以判定，若结果为红色，你重置〖霞泪〗的观看牌数<span class=yellowtext>并摸一张牌</span>；若结果为黑色，然后你可以令一名角色获得本回合进入弃牌堆的两张牌。<span class=firetext>当黑色判定次数达到X时，此技能本回合失效（X为本局游戏人数）</span>",
 
 
 	sgsxjxfzmnl_yangbiao: "阴间手杀杨彪",
@@ -1689,19 +1719,19 @@ const translate = {
 	// sgsxjxfzmnl_mbqiantun_tag: "invisible",
 	// sgsxjxfzmnl_mbqiantun_info: "魏势力技。出牌阶段限一次，你可以令一名其他角色展示至少一张手牌，然后与其拼点，其本次拼点只能从展示牌中选择。若你赢，你获得其展示的手牌；若你没赢，你获得其未展示的手牌。然后你展示手牌。",
 	sgsxjxfzmnl_mbxiezheng: "挟征",
-	sgsxjxfzmnl_mbxiezheng_info: "结束阶段，你可以令<span class=firetext>任意名</span>角色将随机一张手牌置于牌堆顶，然后你视为<span class=yellowtext>对任意名角色依次</span>使用一张【兵临城下】。<span style=\"text-decoration: line-through;\">然后若此牌若未造成伤害，你失去1点体力。</span>",
+	sgsxjxfzmnl_mbxiezheng_info: "结束阶段，你可以令<span class=firetext>任意名</span>角色将随机一张手牌置于牌堆顶，然后你视为<span class=yellowtext>对任意名角色依次</span>使用一张【兵临城下】。",
 	sgsxjxfzmnl_mbzhaoxiong: "昭凶",
 	sgsxjxfzmnl_mbzhaoxiong_info: `${get.poptip("rule_chihengji")}，限定技。准备阶段，若你已受伤，你可以变更势力为群，然后获得技能${get.poptip("sgsxjxfzmnl_mbdangyi")}。`,
 	sgsxjxfzmnl_mbweisi: "威肆",
 	sgsxjxfzmnl_mbweisi_info: "群势力技。出牌阶段限一次，你可以选择一名其他角色，令其将任意张手牌移出游戏直到回合结束，然后视为对其使用一张【决斗】；此牌对其造成伤害后，你获得其<span class=yellowtext>同势力角色的</span>所有手牌。",
 	sgsxjxfzmnl_mbdangyi: "荡异",
-	sgsxjxfzmnl_mbdangyi_info: `${get.poptip("rule_chihengji")}，主公技，<span style=\"text-decoration: line-through;\">每回合限一次，每局游戏限两次</span>。当你造成伤害时，你可以令此伤害+1。`,
+	sgsxjxfzmnl_mbdangyi_info: `${get.poptip("rule_chihengji")}，主公技，。当你造成伤害时，你可以令此伤害+1。`,
 
 
 	sgsxjxfzmnl_caoying: "阴间曹婴",
 	sgsxjxfzmnl_caoying_prefix: "阴间",
 	sgsxjxfzmnl_xinfu_lingren: "凌人",
-	sgsxjxfzmnl_xinfu_lingren_info: "<span style=\"text-decoration: line-through;\">每回合限一次。</span>当你使用带有伤害类基本牌或普通锦囊牌指定目标后，你可以猜测其中的一个目标的手牌中是否有基本牌，锦囊牌或装备牌。若你猜中的项目数：≥1，此牌对该角色的伤害+1<span class=yellowtext>且不可被响应</span>；≥2，你摸两张牌；≥3，你获得技能〖奸雄〗和〖行殇〗直到你的下回合开始。",
+	sgsxjxfzmnl_xinfu_lingren_info: "当你使用带有伤害类基本牌或普通锦囊牌指定目标后，你可以猜测其中的一个目标的手牌中是否有基本牌，锦囊牌或装备牌。若你猜中的项目数：≥1，此牌对该角色的伤害+1<span class=yellowtext>且不可被响应</span>；≥2，你摸两张牌；≥3，你获得技能〖奸雄〗和〖行殇〗直到你的下回合开始。",
 	sgsxjxfzmnl_fujian: "伏间",
 	sgsxjxfzmnl_fujian_info: "<span class=firetext>锁定技，准备阶段和结束阶段，你观看一名随机的其他角色的手牌。</span>",
 

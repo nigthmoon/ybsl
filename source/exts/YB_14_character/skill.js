@@ -428,10 +428,10 @@ const skill = {
 								save: true,
 								recover: 1,
 								effect: {
-									// player:function(player,target){
-									// 	// return get.damageEffect(target,player,'fire');
-									// 	return get.effect(target, { name: "tao" }, player,player);
-									// },
+									player:function(player,target){
+										// return get.damageEffect(target,player,'fire');
+										return get.effect(target, { name: "tao" }, player,player);
+									},
 									target: function (player, target) {
 										// return get.damageEffect(target,player,'fire');
 										return get.effect(target, { name: "tao" }, player, target);
@@ -455,8 +455,8 @@ const skill = {
 					result: {
 						player: function (player, target) {
 							// return get.damageEffect(target,player,'fire');
-							return get.effect(target, { name: "tao" }, player, player);
-							// return 1;
+							// return get.effect(target, { name: "tao" }, player, player);
+							return 1;
 						},
 						// target:function(player,target){
 						// 	// return get.damageEffect(target,player,'fire');

@@ -17,6 +17,7 @@ import { content } from './source/packages/content.js'
 export let type = 'extension'
 
 export default async function () {
+	/**@type {importExtensionConfig} */
 	let extension = {
 		name: "夜白神略",
 		editable: false,
