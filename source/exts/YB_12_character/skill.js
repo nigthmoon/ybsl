@@ -24797,7 +24797,7 @@ const skill = {
 										return 6-get.value(card)&&!lib.card[get.name(card)].ai.recover;
 									}).forResult();
 									if(result.cards){
-										await event.target1.give(result.cards,player);
+										await target.give(result.cards,player);
 									}
 									else{
 										await target.loseHp()
@@ -30525,7 +30525,7 @@ const skill = {
 				if (button.link[2] == "jiu") {
 					if (player.getUseValue({ name: "jiu" }) <= 0) {
 						return 0;
-					}n
+					}
 					if (player.countCards("h", "sha")) {
 						return player.getUseValue({ name: "jiu" });
 					}
