@@ -1,0 +1,95 @@
+import {} from '@/noname.js'
+
+declare module '@/noname.js' {
+  interface Library {
+    /**
+     * 版权信息
+     * 显示在武将介绍的最上方，支持三种写法：
+     *
+     * 写法1：数组格式（简写）
+     * @example
+     * ['武将包', '编号', '技能设计', '代码编写', '插图', '配音', '图标']
+     * sgsh_tiandi: ['上古神话', '001', '夜白', '夜白', '网图', '暂无', '♦︎']
+     *
+     * 写法2：字符串格式（自定义HTML）
+     * @example
+     * '<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方'
+     *
+     * 写法3：对象格式（完整）
+     * @example
+     * {
+     *   pack: '武将包',
+     *   num: '编号',
+     *   skill: '技能设计',
+     *   code: '代码编写',
+     *   image: '插图',
+     *   voice: '配音',
+     *   icon: '◈' // 图标，默认为'◈'
+     * }
+     *
+     * 编译逻辑：
+     * - 对象格式：自动组装为 pack-num-标题<br>icon技能设计：xxx<br>icon代码编写：xxx<br>icon插图：xxx<br>icon配音：xxx<br>
+     * - 字符串格式：直接使用，支持HTML标签
+     * - 数组格式：[pack, num, skill, code, image, voice, icon]，转换为对象格式后编译
+     */
+    characterCopyright?: SMap<
+      | string
+      | [string, string, string, string, string, string, string]
+      | {
+          /** 武将包名称 */
+          pack?: string
+          /** 武将编号 */
+          num?: string
+          /** 技能设计者 */
+          skill?: string
+          /** 代码编写者 */
+          code?: string
+          /** 插图来源 */
+          image?: string
+          /** 配音来源 */
+          voice?: string
+          /** 图标符号（默认：◈） */
+          icon?: string
+        }
+    >
+
+    /**
+     * 上引文
+     *
+     * 显示在武将介绍中,通常用于引用古诗词或其他文本
+     */
+    characterCitetext?: SMap<string>
+
+    /**
+     * 下引文
+     *
+     * 显示在武将介绍的底部或技能之后
+     */
+    characterUndertext?: SMap<string>
+
+    /**
+     * 附属将包
+     *
+     * 关联的附属武将包信息
+     */
+    accessoryPacket?: SMap<any>
+
+    /**
+     * 缘分信息(函数形式)
+     *
+     * 函数,用于判断和生成武将的缘分点亮信息
+     * @param name - 武将名称或玩家对象
+     * @returns 缘分信息数组
+     */
+    characterLightextParent?: SMap<(name: string | Player) => string[]>
+
+    /**
+     * 编译后的缘分信息
+     *
+     * 已经编译完成的缘分信息,用于显示在武将介绍中
+     * @param name - 武将名称或玩家对象
+     * @returns 缘分信息数组
+     */
+    characterLightext?: SMap<(name?: string | Player) => string[]>
+  }
+}
