@@ -111,6 +111,19 @@ const dynamicTranslate = {//动态翻译
 	},
 
 
+	qmsgswkjsgj_re_dcpingzhi(player) {
+		const bool = player.storage.qmsgswkjsgj_re_dcpingzhi;
+		let yang = "你弃置此牌，然后其视为对你使用一张【火攻】，若其未因此造成伤害则此技能视为未发动过",
+			yin = "然后你代替其使用此牌</据小说解释，本质上就算是那个人使用这张牌，这是盻睇吗>，若此牌造成伤害则此技能视为未发动过";
+		if (bool) {
+			yin = `<span class='bluetext'>${yin}</span>`;
+		} else {
+			yang = `<span class='firetext'>${yang}</span>`;
+		}
+		let start = "转换技。出牌阶段限三次，你可观看一名角色的手牌并展示其中一张牌，",
+			end = "。";
+		return `${start}阳：${yang}；阴：${yin}${end}`;
+	},
 
 
 

@@ -7,10 +7,54 @@
 declare interface importCharacterConfig {
     /**
      * 版权信息
+     * 显示在武将介绍的最上方，支持三种写法：
      *
-     * 显示在武将介绍的最上方
+     * 写法1：数组格式（简写）
+     * @example
+     * ['武将包', '编号', '技能设计', '代码编写', '插图', '配音', '图标']
+     * sgsh_tiandi: ['上古神话', '001', '夜白', '夜白', '网图', '暂无', '♦︎']
+     *
+     * 写法2：字符串格式（自定义HTML）
+     * @example
+     * '<font color=cyan>夜白名将传-编号暂无</font><br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：三国杀官方<br>❃配音：三国杀官方'
+     *
+     * 写法3：对象格式（完整）
+     * @example
+     * {
+     *   pack: '武将包',
+     *   num: '编号',
+     *   skill: '技能设计',
+     *   code: '代码编写',
+     *   image: '插图',
+     *   voice: '配音',
+     *   icon: '◈' // 图标，默认为'◈'
+     * }
+     *
+     * 编译逻辑：
+     * - 对象格式：自动组装为 pack-num-标题<br>icon技能设计：xxx<br>icon代码编写：xxx<br>icon插图：xxx<br>icon配音：xxx<br>
+     * - 字符串格式：直接使用，支持HTML标签
+     * - 数组格式：[pack, num, skill, code, image, voice, icon]，转换为对象格式后编译
      */
-    characterCopyright?: SMap<string>;
+    characterCopyright?: SMap<
+        | string
+        | [string, string, string, string, string, string, string]
+        | {
+            /** 武将包名称 */
+            pack?: string;
+            /** 武将编号 */
+            num?: string;
+            /** 技能设计者 */
+            skill?: string;
+            /** 代码编写者 */
+            code?: string;
+            /** 插图来源 */
+            image?: string;
+            /** 配音来源 */
+            voice?: string;
+            /** 图标符号（默认：◈） */
+            icon?: string;
+        }
+    >;
 
     /**
      * 上引文
@@ -92,3 +136,36 @@ declare interface importCharacterConfig {
     //     })
     // )[];
 }
+declare type Character = [Sex, string, number | string, string[], string[]] | [Sex, string, number | string, string[]] |import('../../../node_modules/@types/noname-typings/nonameModules/noname/library/element/character.d.ts').Character|{
+    
+        /**
+         * 用于读取输入值的对应的本体武将图片
+         * @example YB_mjz: 'puyuan'
+         */
+        YB_mjz?: string;
+
+        /**
+         * 关联武将
+         *
+         * 用于加入输入值的换将列表
+         * @example linkTo: 'puyuan'
+         */
+        linkTo?: string;
+
+        /**
+         * 武将稀有度
+         *
+         * 用于武将抽取系统的稀有度权重配置
+         * @example rankAdd: 'legend'
+         */
+        rankAdd?: 'legend' | 'epic' | 'rare' | 'junk';
+
+        /**
+         * 武将品质
+         *
+         * 武将的品质等级标识
+         * @example rankS: 's'
+         */
+        rankS?: 's' | 'ap' | 'a' | 'am' | 'bp' | 'b' | 'bm' | 'c' | 'd';
+
+};

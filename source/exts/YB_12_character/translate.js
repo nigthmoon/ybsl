@@ -240,7 +240,7 @@ const translate = {
 	qmsgswkjsgj_shen_guojia:'星月神郭嘉',
 	qmsgswkjsgj_shen_guojia_prefix:'星月神',
 	qmsgswkjsgj_reshuishi:'慧识',
-	qmsgswkjsgj_reshuishi_info: "出牌阶段限一次。若你的体力上限小于10，你可进行判定牌不置入弃牌堆的判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同且你的体力上限小于10，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。",
+	qmsgswkjsgj_reshuishi_info: "出牌阶段限一次。若你的体力上限小于10，你可进行判定。若判定结果与本次发动技能时的其他判定结果的花色均不相同且你的体力上限小于10，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。（全民三国杀我开局神郭嘉的慧识。据作者剧情实战，天妒回收后不计入已判定）",
 
 	qmsgswkjsgj_re_sp_duyu:'星月界杜预',
 	qmsgswkjsgj_re_sp_duyu_prefix:'星月界',
@@ -678,6 +678,19 @@ const translate = {
 	qmsgswkjsgj_shenhanzhan:'酣战',
 	qmsgswkjsgj_shenhanzhan_info:'①当你发起拼点时，或成为拼点的目标时，你可以令对方选择拼点牌的方式改为随机选择一张手牌。②当你拼点结束后，你可以获得本次拼点的拼点牌中点数最大的牌。',
 
+	qmsgswkjsgj_yanxiang: "星月界阎象",
+	qmsgswkjsgj_yanxiang_prefix:'星月界',
+	qmsgswkjsgj_kujian: "苦谏",
+	qmsgswkjsgj_kujian_info: "出牌阶段限一次，你可以将任意张手牌称为“谏”并交给一名其他角色，然后你获得以下效果：其他角色失去“谏”后，若为因使用或打出而失去，你与其各摸两张牌。“谏”牌不计入手牌上限。",
+	qmsgswkjsgj_ruilian: "睿敛",
+	qmsgswkjsgj_ruilian_info: "每轮开始时，你可以选择一名角色。你与其回合结束时，你可以选择一种类别，你与其各从弃牌堆中获得一张此类别的牌。",
+
+
+
+
+
+
+
 
 
 
@@ -794,22 +807,34 @@ const translate = {
 	qmsgswkjsgj_re_dc_xiahouhui: "星月界新杀夏侯徽",
 	qmsgswkjsgj_re_dc_xiahouhui_prefix: "星月界新杀",
 	qmsgswkjsgj_re_dcdujun: "笃君",
-	qmsgswkjsgj_re_dcdujun_info: "游戏开始时，你选择一名其他角色，你不能响应其使用的牌。每回合限X次，你与其造成或受到1点伤害后，你可摸两张牌，然后（可以</小说里按照十周年描述写的，没加可以，这里应当可以>）将两牌交给其他角色（X为你的体力上限）。",
+	qmsgswkjsgj_re_dcdujun_info: "游戏开始时，你选择一名其他角色，你不能响应其使用的牌。每回合限X次，你与其造成或受到1点伤害后，你可摸两张牌，然后（可以</小说里按照十周年描述写的，没加可以，这里应当可以>）将两张牌交给其他角色（X为你的体力上限）。",
 	qmsgswkjsgj_re_dcjikun: "济困",
 	qmsgswkjsgj_re_dcjikun_info: "每当你累计失去五张牌后，你可令一名角色获得其他角色的一张牌。",
 
 	qmsgswkjsgj_re_panghong: "星月界庞宏",
 	qmsgswkjsgj_re_panghong_prefix: "星月界",
 	qmsgswkjsgj_re_dcpingzhi: "评骘",
-	qmsgswkjsgj_re_dcpingzhi_info: "转换技。出牌阶段限三次，你可观看一名角色的手牌并展示其中一张牌，阳：你弃置此牌，然后其视为对你使用一张【火攻】，若其未因此造成伤害则此技能视为未发动过；阴：然后你代替其使用此牌</据小说解释，本质上一就算是那个人使用这张牌，这是盻睇吗>，若此牌造成伤害则此技能视为未发动过。",
+	qmsgswkjsgj_re_dcpingzhi_info: "转换技。出牌阶段限三次，你可观看一名角色的手牌并展示其中一张牌，阳：你弃置此牌，然后其视为对你使用一张【火攻】，若其未因此造成伤害则此技能视为未发动过；阴：然后你代替其使用此牌</据小说解释，本质上就算是那个人使用这张牌，这是盻睇吗>，若此牌造成伤害则此技能视为未发动过。",
 	qmsgswkjsgj_re_dcgangjian: "刚简",
 	qmsgswkjsgj_re_dcgangjian_info: "锁定技。每个回合结束时，你摸X张牌（X为本回合展示过的牌数至多为5）</作者又开始了，把展示牌堆的牌也计入其内了。云玩家写小说是这样的>。",
 
+	
+	qmsgswkjsgj_re_zhujianping: "星月界朱建平",
+	qmsgswkjsgj_re_zhujianping_prefix: "星月界",
+	qmsgswkjsgj_re_dcxiangmian: "相面",
+	qmsgswkjsgj_re_dcxiangmian_info: "出牌阶段限两次。你可以令一名其他角色判定，其获得以下效果：当其使用结果的花色的牌后，或当其使用X张牌后（X为结果的点数），其失去等同于其体力值的体力。",
+	qmsgswkjsgj_re_dctianji: "天机",
+	qmsgswkjsgj_re_dctianji_info: "锁定技。当判定牌生效后，你从牌堆或弃牌堆随机获得分别与该牌类型、花色和点数相同的牌各一张。",
 
 
-
-
-
+	qmsgswkjsgj_re_guotiying: "星月界郭缇萦",
+	qmsgswkjsgj_re_guotiying_prefix: "星月界",
+	qmsgswkjsgj_re_dckanyu: "堪舆",
+	qmsgswkjsgj_re_dckanyu_info: "一名角色进行判定或当你受到1点伤害后，你可观看牌堆顶与牌堆底各两张牌，然后可获得其中任意张牌，并将剩余牌以任意顺序放回。若你以此法获得牌，【闪电】对你的生效范围增加你所获得牌的花色点数组合。",
+	qmsgswkjsgj_re_dczhee: "谪厄",
+	qmsgswkjsgj_re_dczhee_info: "锁定技，游戏开始时/每回合结束时，你将牌堆/弃牌堆中的一张【闪电】置入一号位/当前回合角色的下家判定区。",
+	tiandu_qmsgswkjsgj_re_guotiying:'天妒',
+	tiandu_qmsgswkjsgj_re_guotiying_info:'星月界郭缇萦的语音',
 
 
 

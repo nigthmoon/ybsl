@@ -88,6 +88,12 @@ const characterTitle = {//称号
 	qmsgswkjsgj_re_wupu: '<span class = \'' + qmsgswkjsgj_span + '\'>健体养魄</span>',
 	qmsgswkjsgj_re_ruanyu: '<span class = \'' + qmsgswkjsgj_span + '\'>清谈高论</span>',
 	qmsgswkjsgj_re_dc_duyu: '<span class = \'' + qmsgswkjsgj_span + '\'>文成武德</span>',
+	qmsgswkjsgj_re_star_caoren: '<span class = \'' + qmsgswkjsgj_span + '\'>伏波四方</span>',
+	qmsgswkjsgj_re_dc_xiahouhui: '<span class = \'' + qmsgswkjsgj_span + '\'>雅有识度</span>',
+	qmsgswkjsgj_re_panghong: '<span class = \'' + qmsgswkjsgj_span + '\'>针砭时弊</span>',
+	qmsgswkjsgj_re_zhujianping: '<span class = \'' + qmsgswkjsgj_span + '\'>识面知秋</span>',
+	qmsgswkjsgj_re_guotiying: '<span class = \'' + qmsgswkjsgj_span + '\'>逆运定势</span>',
+
 
 
 
@@ -99,7 +105,7 @@ const characterTitle = {//称号
 	qmsgswkjsgj_shenci_re_sunhanhua:'<span class = \''+qmsgswkjsgj_shenci_span+'\'>威灵尽显</span>',
 	qmsgswkjsgj_shenci_dc_zhouxuān:'<span class = \''+qmsgswkjsgj_shenci_span+'\'>夜华青乌</span>',
 	qmsgswkjsgj_shenci_caomao:'<span class = \''+qmsgswkjsgj_shenci_span+'\'>霸业的终耀</span>',
-
+	qmsgswkjsgj_shenci_pot_yuji:'<span class = \''+qmsgswkjsgj_shenci_span+'\'>夙仙望道</span>',
 
 
 

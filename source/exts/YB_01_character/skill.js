@@ -6333,7 +6333,7 @@ const skill = {
 			if (event.getParent().result.bool && player.maxHp < 10) {
 				evt.suits.push(event.getParent().result.suit);
 				player.gainMaxHp();
-				player.chooseBool("是否继续发动【懿思】？").set("frequentSkill", "reshuishi");
+				player.chooseBool("是否继续发动【懿思】？").set("frequentSkill", "yb018_newisi");
 			} else event._result = { bool: false };
 			"step 1";
 			if (result.bool) event.getParent(2).redo();

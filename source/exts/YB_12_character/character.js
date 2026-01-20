@@ -267,7 +267,45 @@ const character = { //武将格式 :
 		rankAdd: 'legend',
 		rankS: 's',
 	},
+	qmsgswkjsgj_re_star_caoren: {
+		sex: "male",
+		group: "wei",
+		hp: 4,
+		skills: ["qmsgswkjsgj_re_starsujun", "qmsgswkjsgj_re_starlifeng"],
+		YB_mjz: 'star_caoren',
+		linkTo: 'star_caoren',
+		tempname: ['star_caoren'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	qmsgswkjsgj_re_dc_xiahouhui: {
+		sex: "female",
+		group: "wei",
+		hp: 3,
+		skills: ["qmsgswkjsgj_re_dcdujun", "qmsgswkjsgj_re_dcjikun"],
+		names: "夏侯|徽",
+		YB_mjz: 'dc_xiahouhui',
+		linkTo: 'dc_xiahouhui',
+		tempname: ['dc_xiahouhui'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	qmsgswkjsgj_re_panghong: {
+		sex: "male",
+		group: "shu",
+		hp: 3,
+		skills: ["qmsgswkjsgj_re_dcpingzhi", "qmsgswkjsgj_re_dcgangjian"],
+		YB_mjz: 'panghong',
+		linkTo: 'panghong',
+		tempname: ['panghong'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
 
+
+
+
+	
 
 	qmsgswkjsgj_mb_luyusheng:['female','wu',3,['qmsgswkjsgj_mbrunwei','qmsgswkjsgj_mbshuanghuai'],['rankAdd:legend','rankS:s','linkTo:mb_luyusheng','YB_mjz:mb_luyusheng','tempname:mb_luyusheng']],
 	qmsgswkjsgj_pot_weiyan:['male','shu',4,['qmsgswkjsgj_potzhongao','qmsgswkjsgj_potzhuangshi','qmsgswkjsgj_potyinzhan'],['rankAdd:legend','rankS:s','linkTo:pot_weiyan','YB_mjz:pot_weiyan','tempname:pot_weiyan']],

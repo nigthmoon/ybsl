@@ -2470,7 +2470,7 @@ const skill = {
 			if (event.getParent().result.bool) {
 				evt.suits.push(event.getParent().result.suit);
 				if(player.maxHp < 10)player.gainMaxHp();
-				player.chooseBool("是否继续发动【慧识】？").set("frequentSkill", "reshuishi");
+				player.chooseBool("是否继续发动【慧识】？").set("frequentSkill", "ybmjz_reshuishi");
 			} else event._result = { bool: false };
 			"step 1";
 			if (result.bool) event.getParent(2).redo();

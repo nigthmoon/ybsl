@@ -41,10 +41,16 @@ const characterSort = {
 			'qmsgswkjsgj_mb_sunluyu','qmsgswkjsgj_re_mb_zhangzhi',
 			'qmsgswkjsgj_shen_taishici',
 
+
+
 			'qmsgswkjsgj_re_zhangxuan','qmsgswkjsgj_re_chenshi',
 			'qmsgswkjsgj_re_dc_tengfanglan','qmsgswkjsgj_re_zhenghun',
 			'qmsgswkjsgj_re_re_liuzan','qmsgswkjsgj_re_wupu',
 			'qmsgswkjsgj_re_ruanyu','qmsgswkjsgj_re_dc_duyu',
+			'qmsgswkjsgj_re_star_caoren','qmsgswkjsgj_re_dc_xiahouhui',
+			'qmsgswkjsgj_re_panghong','qmsgswkjsgj_re_zhujianping',
+			'qmsgswkjsgj_re_guotiying',
+
 
 			'qmsgswkjsgj_mengpo',
 
@@ -52,7 +58,7 @@ const characterSort = {
 			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_re_duyu',
 			'qmsgswkjsgj_shenci_wu_luxun','qmsgswkjsgj_shenci_sb_caopi',
 			'qmsgswkjsgj_shenci_re_sunhanhua','qmsgswkjsgj_shenci_dc_zhouxuān',
-			'qmsgswkjsgj_shenci_caomao',
+			'qmsgswkjsgj_shenci_caomao','qmsgswkjsgj_shenci_pot_yuji',
 		],
 		sgsxjxfzmnl:[
 			'sgsxjxfzmnl_re_xusheng','sgsxjxfzmnl_sb_huangzhong',

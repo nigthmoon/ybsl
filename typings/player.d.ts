@@ -243,7 +243,11 @@ declare module "noname" {
 		 */
 		YB_updateMana(): void;
 		/**
-		 * 久岛鸥的扬帆技能处理函数
+		 * 久岛鸥【扬帆】技能处理函数
+		 * - 从手牌中选择4张牌分别标记为鹰(kamome_ybyangfan_ying)、燕(kamome_ybyangfan_yan)、隼(kamome_ybyangfan_sun)、雀(kamome_ybyangfan_que)四种标签
+		 * - 如果cards不指定，默认使用手牌
+		 * - 会自动检测并补全缺失的标签类型
+		 *
 		 * @param cards 要处理的手牌数组（可选，默认为所有手牌）
 		 *
 		 * @example
@@ -260,5 +264,54 @@ declare module "noname" {
 		 * - 熄灭卡组火焰
 		 */
 		YB_fire(list: Card[]): void;
+		
+		/**
+		 * 获取角色的宗族
+		 * @param unseen 是否包含隐藏武将
+		 * @returns 宗族数组
+		 *
+		 * @example
+		 * const clans = player.getClan();
+		 * console.log(clans); // ['吴郡陆氏']
+		 */
+		getClan(unseen?: boolean): string[];
+		
+		/**
+		 * 摸指定要求的牌
+		 * @returns 创建的事件对象
+		 *
+		 * @example
+		 * player.YB_drawCard();
+		 */
+		YB_drawCard(): GameEvent;
+		
+		/**
+		 * 特殊恢复函数
+		 * - 根据受到伤害的数值恢复体力，并增加对应体力上限
+		 * @param num 目标恢复数值
+		 * @returns 创建的事件对象
+		 *
+		 * @example
+		 * player.YB_recover(3);
+		 */
+		YB_recover(num: number): GameEvent;
+		
+		/**
+		 * 交换主副将函数
+		 * @returns 创建的事件对象
+		 *
+		 * @example
+		 * player.YB_exchange();
+		 */
+		YB_exchange(): GameEvent;
+		
+		/**
+		 * 五谷丰登函数（已作废）
+		 * @param cards 卡牌数组
+		 * @param str 提示信息
+		 * @param targets 目标角色
+		 * @returns 创建的事件对象
+		 */
+		YB_wugu(cards: Card[], str: string, targets: Player[]): GameEvent;
 	}
 }

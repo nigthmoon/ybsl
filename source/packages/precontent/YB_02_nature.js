@@ -252,6 +252,16 @@ const YBSL_nature = function(){
 			color:'#a4a4a4',
 			nature:'black',
 		})
+		lib.namePrefix.set('新版',{
+			  color: "#fefedc",
+			  nature: "metalmm",
+			  showName: "新"
+		})
+		lib.namePrefix.set('新版神',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('新版')}${get.prefixSpan('神')}`
+			},
+		})
 		lib.namePrefix.set('恒',{
 			showName:'恒',
 			color:'#ffff00',
@@ -496,7 +506,7 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('星月')}${get.prefixSpan('应天')}${get.prefixSpan('神')}`
 			},
 		})
-		lib.namePrefix.set('星月新杀界',{
+		lib.namePrefix.set('星月界新杀',{
 			getSpan:(prefix,name)=>{
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('新杀')}`
 			},

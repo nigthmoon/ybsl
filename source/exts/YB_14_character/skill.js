@@ -6649,7 +6649,7 @@ const skill = {
 			return player.countCards('h')<=1;
 		},
 		async content(event, trigger, player){
-			hs = player.getCards()
+			var hs = player.getCards('h')
 			if (hs.length) await player.showCards(hs)
 			await player.addCharge()
 			if (hs.length == 1 && get.type2(hs[0]) != 'trick') {

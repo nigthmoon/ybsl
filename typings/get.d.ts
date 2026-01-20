@@ -156,32 +156,32 @@ declare module "noname" {
 		YB_movevalue(player: Player): boolean;
 
 		/**
-		 * 获取久岛鸥扬帆卡片的映射类型
+		 * 获取久岛鸥【扬帆】卡片的标签类型
 		 * @param card 要检查的卡牌
-		 * @returns {string|false} - 返回扬帆类型或false
+		 * @returns {string|false} - 返回扬帆类型（'kamome_ybyangfan_ying'/'kamome_ybyangfan_yan'/'kamome_ybyangfan_sun'/'kamome_ybyangfan_que'）或false
 		 *
 		 * @example
 		 * const type = get.kamome_ybyangfan(card);
-		 * console.log(type);
+		 * console.log(type); // 'kamome_ybyangfan_ying' 或 false
 		 */
-		kamome_ybyangfan(card: Card): string | false;
+		kamome_ybyangfan(card: Card): 'kamome_ybyangfan_ying' | 'kamome_ybyangfan_yan' | 'kamome_ybyangfan_sun' | 'kamome_ybyangfan_que' | false;
 
 		/**
-		 * 获取久岛鸥扬帆卡片的映射
+		 * 获取久岛鸥【扬帆】卡片的标签类型（映射版本）
 		 * @param card 要检查的卡牌
-		 * @returns {string|false} - 返回扬帆映射或false
+		 * @returns {string|false} - 返回扬帆映射（'kamome_ybyangfan_ying'/'kamome_ybyangfan_yan'/'kamome_ybyangfan_sun'/'kamome_ybyangfan_que'）或false
 		 *
 		 * @example
 		 * const map = get.kamome_ybyangfan_map(card);
-		 * console.log(map);
+		 * console.log(map); // 'kamome_ybyangfan_ying' 或 false
 		 */
-		kamome_ybyangfan_map(card: Card): string | false;
+		kamome_ybyangfan_map(card: Card): 'kamome_ybyangfan_ying' | 'kamome_ybyangfan_yan' | 'kamome_ybyangfan_sun' | 'kamome_ybyangfan_que' | false;
 
 		/**
 		 * 获取神赐武陆逊的特定数字牌数量
 		 * @param player 要检查的角色
 		 * @param num 要检查的数字（可选）
-		 * @returns {number} - 返回符合条件的牌数量
+		 * @returns {number} - 返回符合条件的牌数量，最小为1
 		 *
 		 * @example
 		 * const count = get.ZC_playerCards(player, 3);
@@ -190,16 +190,20 @@ declare module "noname" {
 		ZC_playerCards(player: Player, num?: number): number;
 
 		/**
-		 * 获取角色缘分轻扩展文本
-		 * @param list 缘分列表
-		 * @param player 要检查的角色（可选）
-		 * @returns {Array} - 返回处理后的缘分文本数组
+		 * 处理武将的缘分点亮系统，返回格式化后的缘分文本
+		 * @param list 缘分数组，每个元素为 [缘分名称, {YB_filterOk: Function}]
+		 * @param player 当前角色（可选）
+		 * @returns {Array} - 返回处理后的缘分文本数组，满足条件的缘分会用特殊颜色显示
 		 *
 		 * @example
+		 * const list = [
+		 *   ['缘分1', {YB_filterOk: (p) => p.hp > 2}],
+		 *   ['缘分2', {YB_filterOk: (p) => p.maxHp > 3}]
+		 * ];
 		 * const text = get.characterLightext(list, player);
 		 * console.log(text);
 		 */
-		characterLightext(list: any[], player?: Player): any[];
+		characterLightext(list: [string, { YB_filterOk: (player: Player) => boolean }][], player?: Player): string[];
 
 		//夜白的神庞统专用
 		/**
@@ -229,5 +233,62 @@ declare module "noname" {
 		 * @returns
 		 */
 		YB_fire_num(num: number): number;
+		
+		/**
+		 * 获取重置技列表
+		 * @param player 角色
+		 * @param skill 技能名
+		 * @returns 重置技列表
+		 *
+		 * @example
+		 * const list = get.YB_chongzhijiList(player, 'skill_name');
+		 * console.log(list);
+		 */
+		YB_chongzhijiList(player: Player, skill: string): any[];
+		
+		/**
+		 * 获取重置列表
+		 * @param player 角色
+		 * @param skill 技能名
+		 * @returns 重置列表
+		 *
+		 * @example
+		 * const list = get.YB_chongzhiList(player, 'skill_name');
+		 * console.log(list);
+		 */
+		YB_chongzhiList(player: Player, skill: string): any[];
+		
+		/**
+		 * 判断该角色一次性失去多少张手牌会不再是手牌数最多
+		 * @param target 目标角色
+		 * @returns 可失去的手牌数量
+		 *
+		 * @example
+		 * const num = get.YB_cardMaxLose(player);
+		 * console.log(num);
+		 */
+		YB_cardMaxLose(target: Player): number;
+		
+		/**
+		 * 获取武将图片路径
+		 * @param character 武将名称
+		 * @returns 图片路径
+		 *
+		 * @example
+		 * const image = get.YB_characterImage('puyuan');
+		 * console.log(image); // 'image/character/puyuan.jpg'
+		 */
+		YB_characterImage(character: string): string;
+		
+		/**
+		 * 获取YB_mjz属性
+		 * @param name 武将名称
+		 * @returns YB_mjz值或false
+		 *
+		 * @example
+		 * const mjz = get.YB_mjz('character_name');
+		 * console.log(mjz);
+		 */
+		YB_mjz(name: string): string | false;
 	}
 }

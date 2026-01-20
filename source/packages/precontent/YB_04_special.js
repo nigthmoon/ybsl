@@ -102,48 +102,6 @@ const YBSL_special = function () {
 			// 	}
 			// }
 		})
-		// lib.skill._ybsl_tiandu_audio={
-		// 	direct:true,
-		// 	ruleSkill:true,
-		// 	trigger:{
-		// 		global:['phaseBefore','enterGame','gameStart','chooseButtonBefore'],
-		// 	},
-		// 	filter:function(event,player){
-		// 		return true;
-		// 	},
-		// 	characterlist:function(){
-		// 		return [
-		// 			'luxun','re_luxun','shen_luxun','diy_luxun','diy_lukang',
-		// 			'jsrg_luxun','luyusheng','ns_luyusheng','lukang','luji',
-		// 			'ol_lukai','lukai','wu_luxun'
-		// 		]
-		// 	},
-		// 	content:function(){
-		// 		'step 0'
-		// 		if(!lib.skill.tiandu.audioname2)lib.skill.tiandu.audioname2={};
-		// 		lib.skill.tiandu.audioname2.ybslclan_luyan='ybsl_lytiandu';
-		// 		if(!lib.skill.zhaxiang.audioname2)lib.skill.zhaxiang.audioname2={};
-		// 		lib.skill.zhaxiang.audioname2.ybsl_yinfan='ybsl_zhaxiang';
-		// 		// var listx=clan_list;
-		// 		for(var i in lib.character){
-		// 			// if(lib.character[i]['names'])
-		// 			if(get.characterSurname(i).randomGet()[0]=='陆'){
-		// 				// if(!lib.character[i].clans)lib.character[i][4].push('clan:吴郡陆氏')
-		// 				lib.character[i][4].push('clan:吴郡陆氏')
-		// 			}
-		// 		}
-		// 		// var list=lib.skill._ybsl_tiandu_audio.characterlist();
-		// 		// for(var i of list){
-		// 		// 	// lib.character[i].clans.push("吴郡陆氏")
-		// 		// 	if(lib.character[i]){
-		// 		// 		lib.character[i][4].push('clan:吴郡陆氏')
-		// 		// 	}
-		// 		// }
-
-		// 		'step 1'
-		// 		game.removeGlobalSkill('_ybsl_tiandu_audio');
-		// 	}
-		// }
 	}
 	{//-------令加入牌堆的言笑有用
 		lib.skill._ybsl_yanxiao = {//-----------言笑
@@ -486,8 +444,9 @@ const YBSL_special = function () {
 	lib.translate.ybsl_magicbook = '刻印';
 	{//缘分机智
 		var packages = [
-			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz','yhky','sgstrxs','ybMagic','ybnew2',
+			"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic',
 			'ybnew3',
+			'cyyydsgs','jhjx',
 			// 'YB_one'
 		]
 		lib.arenaReady.push(function () {

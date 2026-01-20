@@ -82,7 +82,10 @@ const YB_11_cardBrowser = function () {
 	}
 	if (false) {
 		var packages = [
-			"ybslj", "ybxh", "ybdd", "ybgod", "ybslc", "ybart", 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic','ybnew3'
+			"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic',
+			'ybnew3',
+			'cyyydsgs','jhjx',
+			// 'YB_one'
 		]
 		for (var pack of packages) {
 			for (var name in lib.characterPack[pack]) {

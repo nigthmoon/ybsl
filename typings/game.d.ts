@@ -33,5 +33,25 @@ declare module "noname" {
 		 * @param nature 需要加进去的属性
 		 */
 		YB_addNature(trigger: any, nature: string): void;
+
+		/**
+		 * 为指定的技能添加音频映射，支持多个角色使用同一个技能念不同的语音
+		 * @param objects 音频映射对象数组，每个元素为 [目标技能名, {源技能名: 音频名}]
+		 *
+		 * @example
+		 * game.YB_addAudio(
+		 *   ['retieji', {sgskjdbzjms_zhen_machao: 'shouli'}]
+		 * );
+		 */
+		YB_addAudio(...objects: [string, { [key: string]: string }][]): void;
+
+		/**
+		 * 复制技能的audioname和audioname2属性到另一个技能，实现音频共享
+		 * @param objects 音频名映射对象数组，每个元素为 [目标技能名, 源技能名]
+		 *
+		 * @example
+		 * game.YB_addAudioName(['ybmjz_tiandu', 'tiandu']);
+		 */
+		YB_addAudioName(...objects: [string, string][]): void;
 	}
 }
