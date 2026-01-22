@@ -991,43 +991,56 @@ const YBSL_special = function () {
 				},
 			},
 			trigger: {
-				global: ["loseAfter", "loseAsyncAfter",'equipAfter'],
-				player:['useCardAfter','respondAfter','YB_zhuanhuanCard']
+				player:['useCardAfter','respondAfter','YB_zhuanhuanCard','useCardBefore','respondBefore']
 			},
 			filter(event, player,name) {
 				if(name == 'YB_zhuanhuanCard'){
 					return event.card.name=='ybsl_hua'&&event.card.storage.zhuanhuanNum==event.card.storage.zhuanhuanList.length-1&&event.card.storage.zhuanhuanList.length<9;
 				}
+				else if(name=='useCardBefore'||name=='respondBefore'){
+					var card = event.card;
+					if(lib.card[card.cards[0].name]?.zhuanhuanList){
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
+							card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
+						}
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
+							card.cards[0].storage.zhuanhuanNum=0
+						}
+						var num = card.cards[0].storage.zhuanhuanNum||0;
+						if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name){
+							event.card.storage.zhuanhuanNum=num;
+						}
+					}
+				}
 				else if(name=='useCardAfter'||name=='respondAfter'){
 					var card = event.card;
-					if(event.cards.someInD()){
-						if(lib.card[card.cards[0].name]?.zhuanhuanList){
-							if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
-								card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
-							}
-							if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
-								card.cards[0].storage.zhuanhuanNum=0
-							}
-							var num = card.cards[0].storage.zhuanhuanNum||0;
-							if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name)return true;
+					if(lib.card[card.cards[0].name]?.zhuanhuanList){
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
+							card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
 						}
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
+							card.cards[0].storage.zhuanhuanNum=0
+						}
+						var num = card.cards[0].storage.zhuanhuanNum||0;
+						if(event.card.storage.zhuanhuanNum==num)return true;
+						// if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name)return true;
 					}
 				}
-				else if(name=='replaceEquipAfter'){
-					// var cards = event.cards;
-					console.log(event)
-					var card = event.result.cards[0];
-					if(lib.card[card.name]?.zhuanhuanList){
-						if(!card.storage||!card.storage.zhuanhuanList){
-							card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
-						}
-						if(!card.storage||!card.storage.zhuanhuanNum){
-							card.storage.zhuanhuanNum=0
-						}
-						var num = card.storage.zhuanhuanNum||0;
-						if(card.storage.zhuanhuanList[num]&&Vcard?.name&&card.storage.zhuanhuanList[num]==Vcard?.name)return true;
-					}
-				}
+				// else if(name=='replaceEquipAfter'){
+				// 	// var cards = event.cards;
+				// 	console.log(event)
+				// 	var card = event.result.cards[0];
+				// 	if(lib.card[card.name]?.zhuanhuanList){
+				// 		if(!card.storage||!card.storage.zhuanhuanList){
+				// 			card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+				// 		}
+				// 		if(!card.storage||!card.storage.zhuanhuanNum){
+				// 			card.storage.zhuanhuanNum=0
+				// 		}
+				// 		var num = card.storage.zhuanhuanNum||0;
+				// 		if(card.storage.zhuanhuanList[num]&&Vcard?.name&&card.storage.zhuanhuanList[num]==Vcard?.name)return true;
+				// 	}
+				// }
 				// else if(name=='equipAfter'){
 				// 	const evt = event.getl(player);
 				// 	evt.es.forEach(card => {
@@ -1049,34 +1062,34 @@ const YBSL_special = function () {
 				// 		}
 				// 	});
 				// }
-				else {
-					const evt = event.getl(player);
-					evt.es.forEach(card => {
-						const Vcard = evt.vcard_map.get(card);
-						if(lib.card[card.name]?.zhuanhuanList){
-							if(!card.storage||!card.storage.zhuanhuanList){
-								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
-							}
-							if(!card.storage||!card.storage.zhuanhuanNum){
-								card.storage.zhuanhuanNum=0
-							}
-							if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
-						}
-					});
-					evt.js.forEach(card => {
-						const Vcard = evt.vcard_map.get(card);
-						if(lib.card[card.name]?.zhuanhuanList){
-							if(!card.storage||!card.storage.zhuanhuanList){
-								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
-							}
-							if(!card.storage||!card.storage.zhuanhuanNum){
-								card.storage.zhuanhuanNum=0
-							}
-							// var num = card.storage.zhuanhuanNum||0;
-							if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
-						}
-					});
-				}
+				// else {
+				// 	const evt = event.getl(player);
+				// 	evt.es.forEach(card => {
+				// 		const Vcard = evt.vcard_map.get(card);
+				// 		if(lib.card[card.name]?.zhuanhuanList){
+				// 			if(!card.storage||!card.storage.zhuanhuanList){
+				// 				card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+				// 			}
+				// 			if(!card.storage||!card.storage.zhuanhuanNum){
+				// 				card.storage.zhuanhuanNum=0
+				// 			}
+				// 			if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
+				// 		}
+				// 	});
+				// 	evt.js.forEach(card => {
+				// 		const Vcard = evt.vcard_map.get(card);
+				// 		if(lib.card[card.name]?.zhuanhuanList){
+				// 			if(!card.storage||!card.storage.zhuanhuanList){
+				// 				card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+				// 			}
+				// 			if(!card.storage||!card.storage.zhuanhuanNum){
+				// 				card.storage.zhuanhuanNum=0
+				// 			}
+				// 			// var num = card.storage.zhuanhuanNum||0;
+				// 			if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
+				// 		}
+				// 	});
+				// }
 			},
 			// cost(){
 			// 	event.result = {bool:true}
@@ -1086,7 +1099,11 @@ const YBSL_special = function () {
 					var result = await player.chooseBool(`是否令${get.translation(trigger.card)}增加一项“任意牌”？`).forResult();
 					if(result.bool){
 						game.log(player,`令<span class = "yellowtext">${get.translation(trigger.card)}</span>增加一项<span class = "yellowtext">“任意牌”</span>`);
+						var list = trigger.card.storage.zhuanhuanList;
+						var num = trigger.card.storage.zhuanhuanNum;
+						var num2 = ((num+1)*(list.length+1)/list.length)-2;
 						trigger.card.storage.zhuanhuanList.push(null);
+						trigger.card.storage.zhuanhuanNum=num2;
 					}
 				}
 				else if(event.triggername == 'useCardAfter'||event.triggername == 'respondAfter'){

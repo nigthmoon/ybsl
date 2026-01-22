@@ -343,5 +343,7 @@ declare module "@/noname/library/element/player.js" {
      * @returns 创建的事件对象
      */
     YB_wugu(cards: Card[], str: string, targets: Player[]): GameEvent;
+    // TODO: 让夜白自己写吧
+    YB_zhuanhuanCard(card: Card): GameEvent
   }
 }

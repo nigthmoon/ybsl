@@ -79,7 +79,8 @@ const characterTitle = {//称号
 	qmsgswkjsgj_mb_sunluyu: '<span class = \'' + qmsgswkjsgj_span + '\'>舍身饲虎</span>',
 	qmsgswkjsgj_re_mb_zhangzhi: '<span class = \'' + qmsgswkjsgj_span + '\'></span>',
 	qmsgswkjsgj_shen_taishici: '<span class = \'' + qmsgswkjsgj_span + '\'>义信天武</span>',
-	
+	qmsgswkjsgj_yanxiang: '<span class = \'' + qmsgswkjsgj_span + '\'>明尚夙达</span>',
+
 	qmsgswkjsgj_re_zhangxuan: '<span class = \'' + qmsgswkjsgj_span + '\'>玉宇嫁蔷</span>',
 	qmsgswkjsgj_re_chenshi: '<span class = \'' + qmsgswkjsgj_span + '\'>裨将可期</span>',
 	qmsgswkjsgj_re_dc_tengfanglan: '<span class = \'' + qmsgswkjsgj_span + '\'>铃兰零落</span>',

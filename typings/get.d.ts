@@ -329,5 +329,7 @@ declare module "@/noname.js" {
     YB_nature(card: Card | string): string;
     /** 输出所有属性（按顺序排列） */
     YB_natureList(): string[];
+    // TODO: 让夜白自己写吧
+    zhuanhuanCard(card: Card): boolean | undefined | (string | null)[]
   }
 }

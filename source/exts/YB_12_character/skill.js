@@ -11501,6 +11501,216 @@ const skill = {
 		},
 	},
 
+
+	qmsgswkjsgj_kujian: {
+		enable: 'phaseUse',
+		filterCard: true,
+		selectCard: [1, Infinity],
+		usable: 1,
+		discard: false,
+		lose: false,
+		delay: false,
+		filterTarget: lib.filter.notMe,
+		global: 'qmsgswkjsgj_kujian_ai',
+		/**
+		 * @param {Card} card
+		 */
+		check(card) {
+			if (ui.selected.cards.length && ui.selected.cards[0].name == 'du') {
+				return 0
+			}
+			if (!ui.selected.cards.length && card.name == 'du') {
+				return 20
+			}
+			var player = get.owner(card)
+			if (ui.selected.cards.length >= Math.max(2, player.countCards('h') - player.hp)) {
+				return 0
+			}
+			if (player.hp == player.maxHp || player.storage.jsprende < 0 || player.countCards('h') <= 1) {
+				// @ts-expect-error 可选参文档注释里不加可选这一块
+				var players = game.filterPlayer()
+				for (var i = 0; i < players.length; i++) {
+					if (
+						players[i].hasSkill('haoshi') &&
+						!players[i].isTurnedOver() &&
+						!players[i].hasJudge('lebu') &&
+						get.attitude(player, players[i]) >= 3 &&
+						get.attitude(players[i], player) >= 3
+					) {
+						return 11 - get.value(card)
+					}
+				}
+				if (player.countCards('h') > player.hp) {
+					return 10 - get.value(card)
+				}
+				if (player.countCards('h') > 2) {
+					return 6 - get.value(card)
+				}
+				return -1
+			}
+			return 10 - get.value(card)
+		},
+		content() {
+			// @ts-expect-error
+			player.give(cards, target).gaintag.add('qmsgswkjsgj_kujian')
+			// @ts-expect-error
+			player.addSkill('qmsgswkjsgj_kujian_draw')
+			// @ts-expect-error
+			target.addSkill('qmsgswkjsgj_kujian_maxHand')
+		},
+		ai: {
+			expose: 0.2,
+			order: 7,
+			result: {
+				target(player, target) {
+					if (target.hasSkillTag('nogain')) {
+						return 0
+					}
+					if (ui.selected.cards.length && ui.selected.cards[0].name == 'du') {
+						if (target.hasSkillTag('nodu')) {
+							return 0
+						}
+						return -10
+					}
+					if (target.hasJudge('lebu')) {
+						return 0
+					}
+					var nh = target.countCards('h')
+					var np = player.countCards('h')
+					if (player.hp == player.maxHp || player.storage.jsprende < 0 || player.countCards('h') <= 1) {
+						if (nh >= np - 1 && np <= player.hp && !target.hasSkill('haoshi')) {
+							return 0
+						}
+					}
+					return Math.max(1, 5 - nh)
+				}
+			},
+			effect: {
+				/**
+				 *
+				 * @param {Card} card
+				 * @param {Player} player
+				 * @param {Player} target
+				 * @returns
+				 */
+				// @ts-ignore ...我不想说话了
+				target_use(card, player, target) {
+					if (player == target && get.type(card) == 'equip') {
+						if (
+							player.countCards('e', {
+								subtype: get.subtype(card)
+							})
+						) {
+							if (
+								game.hasPlayer(function (current) {
+									return current != player && get.attitude(player, current) > 0
+								})
+							) {
+								return 0
+							}
+						}
+					}
+				}
+			}
+		},
+		subSkill: {
+			draw: {
+				trigger: { global: ['useCardAfter', 'respondAfter'] },
+				forced: true,
+				logTarget: 'player',
+				charlotte: true,
+				filter(event, player) {
+					return player !== event.player
+				},
+				getIndex(event) {
+					let num = 0
+					event.player.getHistory(
+						'lose',
+						/**
+						 * @param {GameEvent & { relatedEvent: GameEvent; gaintag_map: { [x: string]: string[] } } } evt
+						 * 我没啥想说的,真的
+						 */
+						evt => {
+							const evtx = evt.relatedEvent || evt.getParent()
+							if (event != evtx) {
+								return false
+							}
+							for (let i in evt.gaintag_map) {
+								if (evt.gaintag_map[i].includes('qmsgswkjsgj_kujian')) {
+									num++
+								}
+							}
+						}
+					)
+					return num
+				},
+				async content(_event, trigger, player) {
+					await game.asyncDraw([player, trigger.player], 2)
+					await game.delayx()
+				}
+			},
+			maxHand: {
+				charlotte: true,
+				mod: {
+					ignoredHandcard(card) {
+						if (card.hasGaintag('qmsgswkjsgj_kujian')) return true
+					},
+					cardDiscardable(card, _player, name) {
+						if (name == 'phaseDiscard' && card.hasGaintag('qmsgswkjsgj_kujian')) return false
+					}
+				}
+			},
+			ai: {
+				charlotte: true,
+				ai: {
+					effect: {
+						/**
+						 * @param {VCard} card
+						 * @param {Player} player
+						 */
+						// @ts-expect-error 你知道的,我不喜欢说话
+						player_use(card, player) {
+							if (
+								card.cards &&
+								card.cards.some(i => i.hasGaintag('qmsgswkjsgj_kujian')) &&
+								game.hasPlayer(current => {
+									return get.attitude(player, current) > 0
+								})
+							) {
+								return [1, 1]
+							}
+						}
+					}
+				},
+				mod: {
+					aiOrder(player, card, num) {
+						if (
+							get.itemtype(card) == 'card' &&
+							card.hasGaintag('qmsgswkjsgj_kujian') &&
+							game.hasPlayer(current => {
+								return get.attitude(player, current) > 0
+							})
+						) {
+							return num + 0.5
+						}
+					},
+					aiValue(player, card, num) {
+						if (
+							get.itemtype(card) == 'card' &&
+							card.hasGaintag('qmsgswkjsgj_kujian') &&
+							game.hasPlayer(current => {
+								return get.attitude(player, current) > 0
+							})
+						) {
+							return num + 0.5
+						}
+					}
+				}
+			}
+		}
+	},
+
+
 	//界张嫙
 	qmsgswkjsgj_re_shezang: {
 		audio: 'shezang',
