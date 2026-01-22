@@ -42,10 +42,25 @@ const YBSL_cardpile = function(){
 				lib.init.js(lib.assetURL+'extension/夜白神略/source/pile',lib.config.ybsl_cardPileReplace,function(){
 					if(lib&&window.extracardPile){
 						lib.card.list.splice(0,lib.card.list.length);
-						if(typeof window.minicardPile=='function'){
+						if(typeof window.extracardPile=='function'){
 							window.extracardPile=window.extracardPile();
 						}
 						lib.card.list.addArray(window.extracardPile);
+						lib.card.list.randomSort();
+						game.ybsl_cardPile_on=true;
+					}
+				})
+			})
+		}
+		else if(lib.config.ybsl_cardPileReplace=='zhuanhuanCardPile'){
+			lib.arenaReady.push(function(){
+				lib.init.js(lib.assetURL+'extension/夜白神略/source/pile',lib.config.ybsl_cardPileReplace,function(){
+					if(lib&&window.zhuanhuanCardPile){
+						lib.card.list.splice(0,lib.card.list.length);
+						if(typeof window.zhuanhuanCardPile=='function'){
+							window.zhuanhuanCardPile=window.zhuanhuanCardPile();
+						}
+						lib.card.list.addArray(window.zhuanhuanCardPile);
 						lib.card.list.randomSort();
 						game.ybsl_cardPile_on=true;
 					}

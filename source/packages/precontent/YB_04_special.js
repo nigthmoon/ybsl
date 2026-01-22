@@ -965,4 +965,330 @@ const YBSL_special = function () {
 		})
 
 	}
+	//转换卡牌
+	{
+
+		lib.skill._zhuanhuanCard_skill={
+			direct:true,
+			// popup:false,
+			mod: {
+				cardname(card, player) {
+					// console.log(card)
+					if(lib.card[card.name]?.zhuanhuanList){
+						if(!card.storage||!card.storage.zhuanhuanList){
+							card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+						}
+						
+						if(!card.storage||!card.storage.zhuanhuanNum){
+							card.storage.zhuanhuanNum=0
+						}
+						var num = card.storage.zhuanhuanNum||0;
+						if(card.storage.zhuanhuanList[num]&&card.storage.zhuanhuanList[num]!=null){
+							return card.storage.zhuanhuanList[num];
+						}
+
+					}
+				},
+			},
+			trigger: {
+				global: ["loseAfter", "loseAsyncAfter",'equipAfter'],
+				player:['useCardAfter','respondAfter','YB_zhuanhuanCard']
+			},
+			filter(event, player,name) {
+				if(name == 'YB_zhuanhuanCard'){
+					return event.card.name=='ybsl_hua'&&event.card.storage.zhuanhuanNum==event.card.storage.zhuanhuanList.length-1&&event.card.storage.zhuanhuanList.length<9;
+				}
+				else if(name=='useCardAfter'||name=='respondAfter'){
+					var card = event.card;
+					if(event.cards.someInD()){
+						if(lib.card[card.cards[0].name]?.zhuanhuanList){
+							if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
+								card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
+							}
+							if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
+								card.cards[0].storage.zhuanhuanNum=0
+							}
+							var num = card.cards[0].storage.zhuanhuanNum||0;
+							if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name)return true;
+						}
+					}
+				}
+				else if(name=='replaceEquipAfter'){
+					// var cards = event.cards;
+					console.log(event)
+					var card = event.result.cards[0];
+					if(lib.card[card.name]?.zhuanhuanList){
+						if(!card.storage||!card.storage.zhuanhuanList){
+							card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+						}
+						if(!card.storage||!card.storage.zhuanhuanNum){
+							card.storage.zhuanhuanNum=0
+						}
+						var num = card.storage.zhuanhuanNum||0;
+						if(card.storage.zhuanhuanList[num]&&Vcard?.name&&card.storage.zhuanhuanList[num]==Vcard?.name)return true;
+					}
+				}
+				// else if(name=='equipAfter'){
+				// 	const evt = event.getl(player);
+				// 	evt.es.forEach(card => {
+				// 		const Vcard = evt.vcard_map.get(card);
+				// 		// if (VEquip?.name === "baiyin") {
+				// 		// 	lostCards.add(VEquip);
+				// 		// }
+				// 		console.log(card)
+				// 		console.log(Vcard)
+				// 		if(lib.card[card.name]?.zhuanhuanList){
+				// 			if(!card.storage||!card.storage.zhuanhuanList){
+				// 				card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+				// 			}
+				// 			if(!card.storage||!card.storage.zhuanhuanNum){
+				// 				card.storage.zhuanhuanNum=0
+				// 			}
+				// 			var num = card.storage.zhuanhuanNum||0;
+				// 			if(card.storage.zhuanhuanList[num]&&Vcard?.name&&card.storage.zhuanhuanList[num]==Vcard?.name)return true;
+				// 		}
+				// 	});
+				// }
+				else {
+					const evt = event.getl(player);
+					evt.es.forEach(card => {
+						const Vcard = evt.vcard_map.get(card);
+						if(lib.card[card.name]?.zhuanhuanList){
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
+						}
+					});
+					evt.js.forEach(card => {
+						const Vcard = evt.vcard_map.get(card);
+						if(lib.card[card.name]?.zhuanhuanList){
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							// var num = card.storage.zhuanhuanNum||0;
+							if(card.storage.zhuanhuanList[card?.storage?.zhuanhuanNum]==Vcard?.name)return true;
+						}
+					});
+				}
+			},
+			// cost(){
+			// 	event.result = {bool:true}
+			// },
+			async content(event,trigger,player){
+				if(event.triggername=='YB_zhuanhuanCard'){
+					var result = await player.chooseBool(`是否令${get.translation(trigger.card)}增加一项“任意牌”？`).forResult();
+					if(result.bool){
+						game.log(player,`令<span class = "yellowtext">${get.translation(trigger.card)}</span>增加一项<span class = "yellowtext">“任意牌”</span>`);
+						trigger.card.storage.zhuanhuanList.push(null);
+					}
+				}
+				else if(event.triggername == 'useCardAfter'||event.triggername == 'respondAfter'){
+					var card = trigger.card;
+					if(lib.card[card.cards[0].name]?.zhuanhuanList){
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
+							card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card.cards[0])
+						}
+						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
+							card.cards[0].storage.zhuanhuanNum=0
+						}
+						var num = card.cards[0].storage.zhuanhuanNum||0;
+						if(card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name){
+							await player.YB_zhuanhuanCard(card.cards[0]);
+						}
+					}
+				}
+				else if(event.triggername == 'loseAfter'||event.triggername == 'loseAsyncAfter'||event.triggername == 'equipAfter'){
+					console.log(666)
+					const evt = trigger.getl(player);
+					evt.es.forEach(card => {
+						const Vcard = evt.vcard_map.get(card);
+						console.log('card',card)
+						console.log('Vcard',Vcard)
+						// if (VEquip?.name === "baiyin") {
+						// 	lostCards.add(VEquip);
+						// }
+						if(lib.card[card.name]?.zhuanhuanList){
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							// var num = card.storage.zhuanhuanNum||0;
+							if(card.storage.zhuanhuanList[card.storage.zhuanhuanNum]==Vcard?.name){
+								player.YB_zhuanhuanCard(card);
+							}
+						}
+					});
+					evt.js.forEach(card => {
+						const Vcard = evt.vcard_map.get(card);
+						if(lib.card[card.name]?.zhuanhuanList){
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							var num = card.storage.zhuanhuanNum||0;
+							if(card.storage.zhuanhuanList[card.storage.zhuanhuanNum]==Vcard?.name){
+								player.YB_zhuanhuanCard(card);
+							}
+						}
+					});
+				}
+			},
+		}
+		lib.skill._zhuanhuanCard_skill_1={
+			enable: ["chooseToUse",'chooseToRespond'],
+			filter(event,player){
+				var cards = player.getCards("hs");
+				for (var card of cards) {
+					// console.log(card)
+					// var name = get.name(card);
+					if (lib.card[card.name]?.zhuanhuanList) {
+						if(!card.storage||!card.storage.zhuanhuanList){
+							card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+						}
+						
+						if(!card.storage||!card.storage.zhuanhuanNum){
+							card.storage.zhuanhuanNum=0
+						}
+						var num = card.storage.zhuanhuanNum||0;
+						if(card?.storage?.zhuanhuanList[num]==null){
+							// for(var i of lib.inpile){
+							// 	if(
+							// 		event.filterCard(
+							// 			{
+							// 				name: i,
+							// 				isCard: true,
+							// 				cards: [card],
+							// 			},
+							// 			player,
+							// 			event
+							// 		) 
+							// 	)return true;
+							// }
+							return true;
+						}
+						
+					}
+				}
+				return false;
+			},
+			chooseButton: {
+				dialog(event, player) {
+					var list = [];
+					for(var i of lib.inpile){
+						list.push([get.translation(get.type(i)), "", i]);
+					}
+					return ui.create.dialog("转换卡", [list, "vcard"], "hidden");
+				},
+				filter(button, player) {
+					var name = button.link[2];
+					// var rawname = name == "wanjian" || name == "taoyuan" ? "gongshoujianbei" : "jintuiziru";
+					var cards = player.getCards("hs");
+					var evt = _status.event.getParent();
+					for (var i of cards) {
+						var name2 = get.name(i);
+						var num = i.storage.zhuanhuanNum||0;
+						if (
+							lib.card[i.name]?.zhuanhuanList &&
+							i.storage?.zhuanhuanList[num]==null&&
+							evt.filterCard(
+								{
+									name: name,
+									isCard: true,
+									cards: [i],
+								},
+								player,
+								evt
+							)
+						) {
+							return true;
+						}
+					}
+					return false;
+				},
+				check(button) {
+					return _status.event.player.getUseValue({ name: button.link[2], isCard: true });
+				},
+				backup(links) {
+					var name = links[0][2];
+					// var rawname = name == "wanjian" || name == "taoyuan" ? "gongshoujianbei" : "jintuiziru";
+					return {
+						popname: true,
+						viewAs: { name: name, isCard: true },
+						ai1: () => 1,
+						filterCard: function(card) {
+							var name2 = get.name(card);
+							
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							var num = card.storage.zhuanhuanNum||0;
+							if (
+								lib.card[name2]?.zhuanhuanList &&
+								card.storage?.zhuanhuanList[num]==null
+							)return true
+						},
+						precontent:function(){
+							var card = event.result.cards[0];
+							
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							var num = card.storage.zhuanhuanNum||0;
+							if (
+								lib.card[get.name(card)]?.zhuanhuanList &&
+								card.storage?.zhuanhuanList[num]==null
+							){
+								card.storage.zhuanhuanList[num] = event.result.card.name;
+								game.log(player,`令<span class = "yellowtext">${get.translation(card)}</span>的第${get.cnNumber(num+1)}项坍缩成了<span class = "yellowtext">${get.translation(event.result.card.name)}</span>`)
+							}
+						},
+					};
+				},
+				prompt(links) {
+					var name = links[0][2];
+					return "将一张当前形态未坍缩的转化卡当做" + get.translation(name) + "使用";
+				},
+			},
+			hiddenCard(player,name){
+				var cards = player.getCards("hs");
+				for (var card of cards) {
+					// console.log(card)
+					// var name = get.name(card);
+					if (lib.card[card.name]?.zhuanhuanList) {
+						if(!card.storage||!card.storage.zhuanhuanList){
+							card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+						}
+						
+						if(!card.storage||!card.storage.zhuanhuanNum){
+							card.storage.zhuanhuanNum=0
+						}
+						var num = card.storage.zhuanhuanNum||0;
+						if(card?.storage?.zhuanhuanList[num]==null){
+							return true;
+						}
+						
+					}
+				}
+				return false;
+			},
+			ai:{
+				order:10,
+				result:{
+					player:1,
+				}
+			}
+		}
+		lib.translate._zhuanhuanCard_skill_1='转换'
+	}
 }

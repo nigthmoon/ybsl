@@ -544,4 +544,228 @@ const card = {
 			},
 		},
 	},
+
+	ybsl_ji:{
+		fullskin: true,
+		type: "basic",
+		// global: "zhuanhuanCard_skill",
+		zhuanhuanList:function(card){
+			if(!card.storage||!card.storage.zhuanhuanList){
+				card.storage.zhuanhuanList = [null];
+			}
+			return card.storage.zhuanhuanList;
+		},
+		cardPrompt(card){
+			if (!card.storage ||!card.storage.zhuanhuanList) {
+				return lib.translate["ybsl_ji_info"];
+			}
+			
+			if(!card.storage||!card.storage.zhuanhuanNum){
+				card.storage.zhuanhuanNum=0
+			}
+			var num = card.storage.zhuanhuanNum||0;
+			var list = lib.card.ybsl_ji.zhuanhuanList(card);
+			var str = '转换卡，此牌视为：';
+			var list2 = ['极'];
+			for (let i = 0; i < list.length; i++) {
+				var str2 = '';
+				str2 += list2[i];
+				str2 += '：'
+				str2 += list[i]==null?'任意牌':get.translation(list[i]);
+				if (i === list.length - 1) {
+					str2 += '。';
+				} else {
+					str2 += '；';
+				}
+				if(num==i){
+					str2 = `<span class="thundertext">${str2}</span>`;
+				}
+				str+=str2;
+			}
+			return str;
+		},
+	},
+	ybsl_yi:{
+		fullskin: true,
+		type: "basic",
+		// global: "zhuanhuanCard_skill",
+		zhuanhuanList:function(card){
+			if(!card.storage||!card.storage.zhuanhuanList){
+				card.storage.zhuanhuanList = [null,null];
+			}
+			return card.storage.zhuanhuanList;
+		},
+		cardPrompt(card){
+			if (!card.storage ||!card.storage.zhuanhuanList) {
+				return lib.translate["ybsl_yi_info"];
+			}
+			
+			if(!card.storage||!card.storage.zhuanhuanNum){
+				card.storage.zhuanhuanNum=0
+			}
+			var num = card.storage.zhuanhuanNum||0;
+			var list = lib.card.ybsl_yi.zhuanhuanList(card);
+			var str = '转换卡，此牌视为：';
+			var list2 = ['阳','阴'];
+			for (let i = 0; i < list.length; i++) {
+				var str2 = '';
+				str2 += list2[i];
+				str2 += '：'
+				str2 += list[i]==null?'任意牌':get.translation(list[i]);
+				if (i === list.length - 1) {
+					str2 += '。';
+				} else {
+					str2 += '；';
+				}
+				if(num==i){
+					str2 = `<span class="thundertext">${str2}</span>`;
+				}
+				str+=str2;
+			}
+			return str;
+		},
+	},
+	ybsl_cai:{
+		fullskin: true,
+		type: "basic",
+		// global: "zhuanhuanCard_skill",
+		zhuanhuanList:function(card){
+			if(!card.storage||!card.storage.zhuanhuanList){
+				card.storage.zhuanhuanList = [null,null,null];
+			}
+			return card.storage.zhuanhuanList;
+		},
+		cardPrompt(card){
+			if (!card.storage ||!card.storage.zhuanhuanList) {
+				return lib.translate["ybsl_cai_info"];
+			}
+			
+			if(!card.storage||!card.storage.zhuanhuanNum){
+				card.storage.zhuanhuanNum=0
+			}
+			var num = card.storage.zhuanhuanNum||0;
+			var list = lib.card.ybsl_cai.zhuanhuanList(card);
+			var str = '转换卡，此牌视为：';
+			var list2 = ['天','地','人'];
+			for (let i = 0; i < list.length; i++) {
+				var str2 = '';
+				str2 += list2[i];
+				str2 += '：'
+				str2 += list[i]==null?'任意牌':get.translation(list[i]);
+				if (i === list.length - 1) {
+					str2 += '。';
+				} else {
+					str2 += '；';
+				}
+				if(num==i){
+					str2 = `<span class="thundertext">${str2}</span>`;
+				}
+				str+=str2;
+			}
+			return str;
+		},
+	},
+	ybsl_xiang:{
+		fullskin: true,
+		type: "basic",
+		// global: "zhuanhuanCard_skill",
+		zhuanhuanList:function(card){
+			if(!card.storage||!card.storage.zhuanhuanList){
+				card.storage.zhuanhuanList = [null,null,null,null];
+			}
+			return card.storage.zhuanhuanList;
+		},
+		cardPrompt(card){
+			if (!card.storage ||!card.storage.zhuanhuanList) {
+				return lib.translate["ybsl_xiang_info"];
+			}
+			
+			if(!card.storage||!card.storage.zhuanhuanNum){
+				card.storage.zhuanhuanNum=0
+			}
+			var num = card.storage.zhuanhuanNum||0;
+			var list = lib.card.ybsl_xiang.zhuanhuanList(card);
+			var str = '转换卡，此牌视为：';
+			var list2 = ['春','夏','秋','冬'];
+			for (let i = 0; i < list.length; i++) {
+				var str2 = '';
+				str2 += list2[i];
+				str2 += '：'
+				str2 += list[i]==null?'任意牌':get.translation(list[i]);
+				if (i === list.length - 1) {
+					str2 += '。';
+				} else {
+					str2 += '；';
+				}
+				if(num==i){
+					str2 = `<span class="thundertext">${str2}</span>`;
+				}
+				str+=str2;
+			}
+			return str;
+		},
+	},
+	ybsl_hua:{
+		fullskin: true,
+		type: "basic",
+		// global: "zhuanhuanCard_skill",
+		zhuanhuanList:function(card){
+			if(!card.storage||!card.storage.zhuanhuanList){
+				card.storage.zhuanhuanList = [null];
+			}
+			return card.storage.zhuanhuanList;
+		},
+		cardPrompt(card){
+			if (!card.storage ||!card.storage.zhuanhuanList) {
+				return lib.translate["ybsl_hua_info"];
+			}
+			
+			if(!card.storage||!card.storage.zhuanhuanNum){
+				card.storage.zhuanhuanNum=0
+			}
+			var num = card.storage.zhuanhuanNum||0;
+			var list = lib.card.ybsl_hua.zhuanhuanList(card);
+			var str = '转换卡，此牌视为：';
+			// var list2 = ['极'];
+			for (let i = 0; i < list.length; i++) {
+				var str2 = '';
+				str2 += get.cnNumber(i+1,true);
+				str2 += '：'
+				str2 += list[i]==null?'任意牌':get.translation(list[i]);
+				if (i === list.length - 1) {
+					str2 += '。';
+				} else {
+					str2 += '；';
+				}
+				if(num==i){
+					str2 = `<span class="thundertext">${str2}</span>`;
+				}
+				str+=str2;
+			}
+			str += '此牌转换时，若此时为最后一项，失去者可以增加一项任意牌。（同一张化至多九项）'
+			return str;
+		},
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

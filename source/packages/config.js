@@ -206,6 +206,7 @@ export const config = {
 			"ybslminiCardPile":"夜白迷你牌堆（约4副扑克）",
 			//又爽又耐玩
 			"ybslExtraCardPile":'标准军争牌堆',
+			"zhuanhuanCardPile":'转换卡测试牌堆',
 			"close":"关闭",
 		},
 		onclick:function(item){

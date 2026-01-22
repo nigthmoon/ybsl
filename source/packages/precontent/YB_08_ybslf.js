@@ -2791,4 +2791,33 @@ const YBSL_ybslf = function () {
 			
 		}
 	}
+	//-----------转换卡牌
+	{
+		lib.element.player.YB_zhuanhuanCard = function(card){
+			var next = game.createEvent('YB_zhuanhuanCard');
+			next.player = this;
+			next.card = card;
+			next.setContent(function () {
+				'step 0'
+				event.trigger('YB_zhuanhuanCard');
+				'step 1'
+				if(!card.storage||!card.storage.zhuanhuanNum){
+					card.storage.zhuanhuanNum=0
+				}
+				var num = card.storage.zhuanhuanNum||0;
+				if(card.storage.zhuanhuanList[num]){
+					game.log(player,'转换了',card);
+					card.storage.zhuanhuanNum==card.storage.zhuanhuanList.length-1?card.storage.zhuanhuanNum=0:card.storage.zhuanhuanNum++;
+				}
+			});
+		}
+		get.zhuanhuanCard=function(card){
+			if(card.storage.zhuanhuanList&&card.storage.zhuanhuanList.length>0){
+				return true;
+			}
+			else {
+				return lib.card[card.name].zhuanhuanList;
+			}
+		}
+	}
 }
