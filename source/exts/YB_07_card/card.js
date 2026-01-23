@@ -563,7 +563,7 @@ const card = {
 			if(!card.storage||!card.storage.zhuanhuanNum){
 				card.storage.zhuanhuanNum=0
 			}
-			var num = card.storage.zhuanhuanNum||0;
+			var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_ji.zhuanhuanList(card);
 			var str = '转换卡，此牌视为：';
 			var list2 = ['极'];
@@ -584,6 +584,13 @@ const card = {
 			}
 			return str;
 		},
+		ai:{
+			basic: {
+				order: 7.3,
+				// useful: 1.2,
+				value: 1000,
+			},
+		},
 	},
 	ybsl_yi:{
 		fullskin: true,
@@ -603,7 +610,7 @@ const card = {
 			if(!card.storage||!card.storage.zhuanhuanNum){
 				card.storage.zhuanhuanNum=0
 			}
-			var num = card.storage.zhuanhuanNum||0;
+			var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_yi.zhuanhuanList(card);
 			var str = '转换卡，此牌视为：';
 			var list2 = ['阳','阴'];
@@ -624,6 +631,13 @@ const card = {
 			}
 			return str;
 		},
+		ai:{
+			basic: {
+				order: 7.3,
+				// useful: 1.2,
+				value: 1000,
+			},
+		},
 	},
 	ybsl_cai:{
 		fullskin: true,
@@ -643,7 +657,7 @@ const card = {
 			if(!card.storage||!card.storage.zhuanhuanNum){
 				card.storage.zhuanhuanNum=0
 			}
-			var num = card.storage.zhuanhuanNum||0;
+			var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_cai.zhuanhuanList(card);
 			var str = '转换卡，此牌视为：';
 			var list2 = ['天','地','人'];
@@ -664,6 +678,13 @@ const card = {
 			}
 			return str;
 		},
+		ai:{
+			basic: {
+				order: 7.3,
+				// useful: 1.2,
+				value: 1000,
+			},
+		},
 	},
 	ybsl_xiang:{
 		fullskin: true,
@@ -683,7 +704,7 @@ const card = {
 			if(!card.storage||!card.storage.zhuanhuanNum){
 				card.storage.zhuanhuanNum=0
 			}
-			var num = card.storage.zhuanhuanNum||0;
+			var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_xiang.zhuanhuanList(card);
 			var str = '转换卡，此牌视为：';
 			var list2 = ['春','夏','秋','冬'];
@@ -704,6 +725,13 @@ const card = {
 			}
 			return str;
 		},
+		ai:{
+			basic: {
+				order: 7.3,
+				// useful: 1.2,
+				value: 1000,
+			},
+		},
 	},
 	ybsl_hua:{
 		fullskin: true,
@@ -723,7 +751,7 @@ const card = {
 			if(!card.storage||!card.storage.zhuanhuanNum){
 				card.storage.zhuanhuanNum=0
 			}
-			var num = card.storage.zhuanhuanNum||0;
+			var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_hua.zhuanhuanList(card);
 			var str = '转换卡，此牌视为：';
 			// var list2 = ['极'];
@@ -744,6 +772,13 @@ const card = {
 			}
 			str += '此牌转换时，若此时为最后一项，使用者可以增加一项任意牌。（同一张化至多九项）'
 			return str;
+		},
+		ai:{
+			basic: {
+				order: 7.3,
+				// useful: 1.2,
+				value: 1000,
+			},
 		},
 	},
 

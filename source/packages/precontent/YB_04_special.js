@@ -982,7 +982,7 @@ const YBSL_special = function () {
 						if(!card.storage||!card.storage.zhuanhuanNum){
 							card.storage.zhuanhuanNum=0
 						}
-						var num = card.storage.zhuanhuanNum||0;
+						var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 						if(card.storage.zhuanhuanList[num]&&card.storage.zhuanhuanList[num]!=null){
 							return card.storage.zhuanhuanList[num];
 						}
@@ -999,29 +999,31 @@ const YBSL_special = function () {
 				}
 				else if(name=='useCardBefore'||name=='respondBefore'){
 					var card = event.card;
-					if(lib.card[card.cards[0].name]?.zhuanhuanList){
+					if(card?.cards[0]?.name&&lib.card[card.cards[0].name]?.zhuanhuanList){
 						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
 							card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
 						}
 						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
 							card.cards[0].storage.zhuanhuanNum=0
 						}
-						var num = card.cards[0].storage.zhuanhuanNum||0;
-						if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name){
-							event.card.storage.zhuanhuanNum=num;
+						var num = card.cards[0].storage.zhuanhuanNum%card.cards[0].storage.zhuanhuanList.length;
+						if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]
+							&&card.cards[0].storage.zhuanhuanList[num]!=null
+							&&card.cards[0].storage.zhuanhuanList[num]==card.name){
+							event.card.storage.zhuanhuanNum=card.cards[0].storage.zhuanhuanNum;
 						}
 					}
 				}
 				else if(name=='useCardAfter'||name=='respondAfter'){
 					var card = event.card;
-					if(lib.card[card.cards[0].name]?.zhuanhuanList){
+					if(card?.cards[0]?.name&&lib.card[card.cards[0].name]?.zhuanhuanList){
 						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanList){
 							card.cards[0].storage.zhuanhuanList=lib.card[card.cards[0].name]?.zhuanhuanList(card)
 						}
 						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
 							card.cards[0].storage.zhuanhuanNum=0
 						}
-						var num = card.cards[0].storage.zhuanhuanNum||0;
+						var num = card.cards[0].storage.zhuanhuanNum;
 						if(event.card.storage.zhuanhuanNum==num)return true;
 						// if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name)return true;
 					}
@@ -1115,7 +1117,7 @@ const YBSL_special = function () {
 						if(!card.cards[0].storage||!card.cards[0].storage.zhuanhuanNum){
 							card.cards[0].storage.zhuanhuanNum=0
 						}
-						var num = card.cards[0].storage.zhuanhuanNum||0;
+						var num = card.cards[0].storage.zhuanhuanNum%card.cards[0].storage.zhuanhuanList.length;
 						if(card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name){
 							await player.YB_zhuanhuanCard(card.cards[0]);
 						}
@@ -1177,7 +1179,8 @@ const YBSL_special = function () {
 						if(!card.storage||!card.storage.zhuanhuanNum){
 							card.storage.zhuanhuanNum=0
 						}
-						var num = card.storage.zhuanhuanNum||0;
+						// var num = card.storage.zhuanhuanNum||0;
+						var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 						if(card?.storage?.zhuanhuanList[num]==null){
 							// for(var i of lib.inpile){
 							// 	if(
@@ -1214,27 +1217,40 @@ const YBSL_special = function () {
 					var evt = _status.event.getParent();
 					for (var i of cards) {
 						var name2 = get.name(i);
-						var num = i.storage.zhuanhuanNum||0;
-						if (
-							lib.card[i.name]?.zhuanhuanList &&
-							i.storage?.zhuanhuanList[num]==null&&
-							evt.filterCard(
-								{
-									name: name,
-									isCard: true,
-									cards: [i],
-								},
-								player,
-								evt
-							)
-						) {
-							return true;
+						if(lib.card[i.name]?.zhuanhuanList){
+							if(!i.storage||!i.storage.zhuanhuanList){
+								i.storage.zhuanhuanList=lib.card[i.name]?.zhuanhuanList(i)
+							}
+							if(!i.storage||!i.storage.zhuanhuanNum){
+								i.storage.zhuanhuanNum=0
+							}
+							var num = i.storage.zhuanhuanNum%i.storage.zhuanhuanList.length;
+							if (
+								i.storage?.zhuanhuanList[num]==null&&
+								evt.filterCard(
+									{
+										name: name,
+										isCard: true,
+										cards: [i],
+									},
+									player,
+									evt
+								)
+							) {
+								return true;
+							}
+
 						}
 					}
 					return false;
 				},
 				check(button) {
-					return _status.event.player.getUseValue({ name: button.link[2], isCard: true });
+					if(_status.event.getParent().type!='phase') return 1;
+					var player=_status.event.player;
+					return player.getUseValue({
+						name:button.link[2],
+						isCard: true,
+					});
 				},
 				backup(links) {
 					var name = links[0][2];
@@ -1245,23 +1261,30 @@ const YBSL_special = function () {
 						ai1: () => 1,
 						filterCard: function(card) {
 							var name2 = get.name(card);
-							
-							if(!card.storage||!card.storage.zhuanhuanNum){
-								card.storage.zhuanhuanNum=0
+							if(lib.card[card.name]?.zhuanhuanList){
+								if(!card.storage||!card.storage.zhuanhuanList){
+									card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+								}
+								if(!card.storage||!card.storage.zhuanhuanNum){
+									card.storage.zhuanhuanNum=0
+								}
+								var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
+								if (
+									lib.card[name2]?.zhuanhuanList &&
+									card.storage?.zhuanhuanList[num]==null
+								)return true
 							}
-							var num = card.storage.zhuanhuanNum||0;
-							if (
-								lib.card[name2]?.zhuanhuanList &&
-								card.storage?.zhuanhuanList[num]==null
-							)return true
 						},
 						precontent:function(){
 							var card = event.result.cards[0];
 							
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
 							if(!card.storage||!card.storage.zhuanhuanNum){
 								card.storage.zhuanhuanNum=0
 							}
-							var num = card.storage.zhuanhuanNum||0;
+							var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 							if (
 								lib.card[get.name(card)]?.zhuanhuanList &&
 								card.storage?.zhuanhuanList[num]==null
@@ -1290,7 +1313,7 @@ const YBSL_special = function () {
 						if(!card.storage||!card.storage.zhuanhuanNum){
 							card.storage.zhuanhuanNum=0
 						}
-						var num = card.storage.zhuanhuanNum||0;
+						var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
 						if(card?.storage?.zhuanhuanList[num]==null){
 							return true;
 						}
@@ -1300,6 +1323,27 @@ const YBSL_special = function () {
 				return false;
 			},
 			ai:{
+				fireAttack:true,
+				respondSha:true,
+				respondShan:true,
+				skillTagFilter:function (player){
+					var cards = player.getCards("hs");
+					for (var card of cards) {
+						if (lib.card[card.name]?.zhuanhuanList) {
+							if(!card.storage||!card.storage.zhuanhuanList){
+								card.storage.zhuanhuanList=lib.card[card.name]?.zhuanhuanList(card)
+							}
+							if(!card.storage||!card.storage.zhuanhuanNum){
+								card.storage.zhuanhuanNum=0
+							}
+							var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
+							if(card?.storage?.zhuanhuanList[num]==null){
+								return true;
+							}
+						}
+					}
+					return false;
+				},
 				order:10,
 				result:{
 					player:1,
