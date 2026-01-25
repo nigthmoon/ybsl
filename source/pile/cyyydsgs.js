@@ -1,3 +1,5 @@
+"use strict";
+
 import { lib, game, ui, get, ai, _status } from '../../../../noname.js'
 import { typeimage } from '../packages/function.js'
 export async function cyyydsgs() {
@@ -1005,6 +1007,7 @@ export async function cyyydsgs() {
 		// game.import('character',cyyydsgs);
 	}
 	//导入 新版将魂觉醒
+	
 	{
 		var buff_jhjx_huafen = get.poptip({
 			id: "buff2_jhjx_huafen",
@@ -1021,7 +1024,7 @@ export async function cyyydsgs() {
 		/** @type { importCharacterConfig } */
 		var jhjx = {
 			name: "jhjx",
-			connect:false,//该武将包是否可以联机（必填） 
+			connect:true,//该武将包是否可以联机（必填） 
 			characterSort:{
 				jhjx:{
 					jhjx_miwusenlin:[

@@ -109,6 +109,10 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				["qmsgswkjsgj_shenci_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
 				["qmsgswkjsgj_shenci_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
 			],
+			qmsgswkjsgj_shenci_pot_yuji: [
+				["qmsgswkjsgj_shenci_pot_yuji_shadow", ['YB_mjz:pot_yuji_shadow',"die:pot_yuji"]]
+			],
+
 
 			sgsxjxfzmnl_shen_jiangwei: [
 				["sgsxjxfzmnl_shen_jiangwei_shadow", ["die:shen_jiangwei"]],

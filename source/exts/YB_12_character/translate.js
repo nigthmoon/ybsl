@@ -833,8 +833,8 @@ const translate = {
 	qmsgswkjsgj_re_dckanyu_info: "一名角色进行判定或当你受到1点伤害后，你可观看牌堆顶与牌堆底各两张牌，然后可获得其中任意张牌，并将剩余牌以任意顺序放回。若你以此法获得牌，【闪电】对你的生效范围增加你所获得牌的花色点数组合。",
 	qmsgswkjsgj_re_dczhee: "谪厄",
 	qmsgswkjsgj_re_dczhee_info: "锁定技，游戏开始时/每回合结束时，你将牌堆/弃牌堆中的一张【闪电】置入一号位/当前回合角色的下家判定区。",
-	tiandu_qmsgswkjsgj_re_guotiying:'天妒',
-	tiandu_qmsgswkjsgj_re_guotiying_info:'星月界郭缇萦的语音',
+	// tiandu_qmsgswkjsgj_re_guotiying:'天妒',
+	// tiandu_qmsgswkjsgj_re_guotiying_info:'星月界郭缇萦的语音',
 
 
 
@@ -934,7 +934,7 @@ const translate = {
 	qmsgswkjsgj_shenci_pot_yuji: "星月神赐界势于吉",
 	qmsgswkjsgj_shenci_pot_yuji_prefix: "星月神赐界势",
 	qmsgswkjsgj_shenci_potfuji: "符济",
-	qmsgswkjsgj_shenci_potfuji_info: "每轮游戏开始时或出牌阶段限一次，你可以展示至多X张牌并交给任意角色，称为“符济”（X为场上角色数）。其角色使用“符济”牌时获得一张与“符济”牌花色相同的牌；然后若此牌为：【杀】，此牌造成的伤害+1；【闪】，结算完毕后其摸一张牌；【桃】，回复数值+1；【酒】，其可弃置场上一张牌。然后若你的手牌数为全场最低，则你摸一张牌，且直到下回合开始前，你使用的【杀】【闪】【桃】【酒】视为拥有对应效果（可叠加）。",
+	qmsgswkjsgj_shenci_potfuji_info: "每轮游戏开始时或出牌阶段限一次，你可以展示至多X张牌并交给任意角色，称为“符济”（X为场上角色数）。其角色使用“符济”牌时获得一张与“符济”牌花色相同的牌；然后若此牌为：【杀】，此牌造成的伤害+1；【闪】，结算完毕后其摸一张牌；【桃】，回复数值+1；【酒】，其可弃置场上一张牌。然后你摸一张牌，且直到下回合开始前，你使用的【杀】【闪】【桃】【酒】视为拥有对应效果（可叠加）。",
 	qmsgswkjsgj_shenci_potdaozhuan: "道转",
 	qmsgswkjsgj_shenci_potdaozhuan_info: "每回合限X次，你可以将你或者当前回合角色的一张牌置入弃牌堆，视为使用一张基本牌。若当前回合角色是你，则你摸一张牌。（X为你的体力上限）",
 

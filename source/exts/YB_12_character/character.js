@@ -176,6 +176,18 @@ const character = { //武将格式 :
 		rankAdd: 'legend',
 		rankS: 's',
 	},
+	qmsgswkjsgj_yanxiang: {
+		sex: "male",
+		group: "qun",
+		hp: 3,
+		skills: ["qmsgswkjsgj_kujian", "qmsgswkjsgj_ruilian"],
+		dieAudios: ["tw_yanxiang"],
+		YB_mjz: 'yanxiang',
+		linkTo: 'yanxiang',
+		tempname: ['yanxiang'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
 	
 	qmsgswkjsgj_re_zhangxuan: {
 		sex: "female",
@@ -301,6 +313,28 @@ const character = { //武将格式 :
 		rankAdd: 'legend',
 		rankS: 's',
 	},
+	qmsgswkjsgj_re_zhujianping: {
+		sex: "male",
+		group: "qun",
+		hp: 3,
+		skills: ["qmsgswkjsgj_re_dcxiangmian", "qmsgswkjsgj_re_dctianji"],
+		YB_mjz: 'zhujianping',
+		linkTo: 'zhujianping',
+		tempname: ['zhujianping'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	qmsgswkjsgj_re_guotiying: {
+		sex: "female",
+		group: "wei",
+		hp: 3,
+		skills: ["qmsgswkjsgj_re_dckanyu", "qmsgswkjsgj_re_dczhee",'tiandu'],
+		YB_mjz: 'guotiying',
+		linkTo: 'guotiying',
+		tempname: ['guotiying'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
 
 
 
@@ -325,7 +359,7 @@ const character = { //武将格式 :
 	qmsgswkjsgj_shenci_re_sunhanhua:['female','wu',3,['qmsgswkjsgj_shenci_chongxu','qmsgswkjsgj_shenci_miaojian','qmsgswkjsgj_shenci_shhlianhua'],['rankAdd:legend','rankS:s','linkTo:sunhanhua','YB_mjz:sunhanhua','tempname:sunhanhua']],
 	qmsgswkjsgj_shenci_dc_zhouxuān:['male','wei',3,['qmsgswkjsgj_shenci_dcwumei','qmsgswkjsgj_shenci_dczhanmeng'],['rankAdd:legend','rankS:s','linkTo:dc_zhouxuān','YB_mjz:dc_zhouxuān','tempname:dc_zhouxuān']],
 	qmsgswkjsgj_shenci_caomao:['male','wei',3,['qmsgswkjsgj_shenci_mbqianlong','qmsgswkjsgj_shenci_mbweitong'],['zhu','rankAdd:legend','rankS:s','linkTo:mb_caomao','YB_mjz:mb_caomao','tempname:mb_caomao']],
-
+	qmsgswkjsgj_shenci_pot_yuji:['male','qun',3,["qmsgswkjsgj_shenci_potfuji", "qmsgswkjsgj_shenci_potdaozhuan"],['rankAdd:legend','rankS:s','linkTo:pot_yuji','YB_mjz:pot_yuji','tempname:pot_yuji']],
 
 
 

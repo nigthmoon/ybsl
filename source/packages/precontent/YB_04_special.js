@@ -1352,4 +1352,13 @@ const YBSL_special = function () {
 		}
 		lib.translate._zhuanhuanCard_skill_1='转换'
 	}
+	{//郭嘉之女
+		
+		lib.arenaReady.push(function(){
+			game.YB_addAudio(
+				['tiandu',{guotiying:'tiandu_qmsgswkjsgj_re_guotiying'}],
+			)
+
+		})
+	}
 }

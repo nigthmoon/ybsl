@@ -7462,30 +7462,29 @@ const skill = {
 		enable:'phaseUse',
 		filter(event,player){
 			return player.countCards('he',function(card){
-				return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(card.color);
+				return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(get.color(card));
 			})
 		},
 		position:'he',
 		selectCard:[1,5],
 		complexCard: true,
 		filterCard(card,player){
-			if(ui.selected.cards.length==0)return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(card.color);
-			return card.color==ui.selected.cards[0].color;
+			if(ui.selected.cards.length==0)return !player.storage.yb020_shange_mark||!player.storage.yb020_shange_mark.includes(get.color(card));
+			return get.color(card)==get.color(ui.selected.cards[0]);
 		},
-		
 		check:function(card){
 			return 6-get.value(card);
 		},
-
 		content:function(){
 			'step 0'
-			player.YB_tempz('yb020_shange_mark',event.cards[0].color)
+			player.YB_tempz('yb020_shange_mark',get.color(event.cards[0]))
 			'step 1'
-			event.cardsx = get.cards(event.cards.length);
+			var num = event.cards.length;
+			event.cardsx = get.cards(num*2);
 			game.cardsGotoOrdering(event.cardsx);
-			player.showCards(event.cardsx,1000);
+			player.showCards(event.cardsx);
 			'step 2'
-			event.cardsy = event.cardsx.filter(card=>card.color!=event.cards[0].color&&get.position(card,'o'))
+			event.cardsy = event.cardsx.filter(card=>get.color(card)!=get.color(event.cards[0])&&get.position(card,'o'))
 			player.gain(event.cardsy,'gain2')
 			'step 3'
 			if(event.cardsy.length<event.cards.length){
@@ -11292,9 +11291,10 @@ const skill = {
 							return -2;
 						},
 						tag:{
-							damage:function(card){
-								return 1;
-							},
+							// damage:function(card){
+							// 	return 1;
+							// },
+							damage:true,
 							natureDamage:function(card){
 								if(lib.card[card].damagenature) return 1;
 							},
