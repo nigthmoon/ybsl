@@ -13878,15 +13878,21 @@ const skill = {
 			return event.num;
 		},
 		async content(event, trigger, player) {
+			// 获取牌堆顶和牌堆底的牌各两张
+			const pileTop = Array.from(ui.cardPile.childNodes).slice(0, 2);
+			const pileBottom = Array.from(ui.cardPile.childNodes).slice(-2).reverse();
 			const {
-				cards: [top, bottom],
-			} = await game.cardsGotoOrdering([...get.cards(2), ...get.bottomCards(2)]);
+				cards,
+			} = await game.cardsGotoOrdering([...pileTop, ...pileBottom]);
+			const [top1, top2, bottom1, bottom2] = cards;
+			const top = [top1, top2].filter(c => c);
+			const bottom = [bottom1, bottom2].filter(c => c);
 			const next = player.chooseToMove_new(get.translation(event.name), true);
 			next.set("list", [
 				["获得", []],
 				[
-					["牌堆顶", [top]],
-					["牌堆底", [bottom]],
+					["牌堆顶", top],
+					["牌堆底", bottom],
 				],
 			]);
 			next.set("processAI", list => {
