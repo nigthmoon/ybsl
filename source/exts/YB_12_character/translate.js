@@ -836,6 +836,35 @@ const translate = {
 	// tiandu_qmsgswkjsgj_re_guotiying:'天妒',
 	// tiandu_qmsgswkjsgj_re_guotiying_info:'星月界郭缇萦的语音',
 
+	qmsgswkjsgj_re_caofang: "星月界曹芳",
+	qmsgswkjsgj_re_caofang_prefix: "星月界",
+	qmsgswkjsgj_re_dczhimin: "置民",
+	qmsgswkjsgj_re_dczhimin_tag: "民",
+	qmsgswkjsgj_re_dczhimin_info: "锁定技。①每轮开始时或回合内限一次，你选择至多X名其他角色（X为你的体力上限），获得这些角色各自手牌中的随机一张点数最小的牌。②当你于你的回合外得到牌后，你将这些牌标记为“民”。③当你失去“民”后，你将手牌补至体力上限。",
+	qmsgswkjsgj_re_dczhimin_append:'尚未实战，盲猜是每回合限一次，出牌阶段……',
+	qmsgswkjsgj_re_dcjujian: "拒谏",
+	qmsgswkjsgj_re_dcjujian_info: "主公技。出牌阶段每名角色限一次，你可以令一名其他魏势力角色1：摸一张牌；2：本轮内其使用的普通锦囊牌对你无效。",
+
+	qmsgswkjsgj_re_guozhao: "星月界郭照",
+	qmsgswkjsgj_re_guozhao_prefix: "星月界",
+	qmsgswkjsgj_re_pianchong: "偏宠",
+	qmsgswkjsgj_re_pianchong_info: "每轮开始时或摸牌阶段开始时选择一项：1.你没失去一张红色牌时摸一张黑色牌，2.你每失去一张黑色牌时摸一张红色牌。摸牌阶段，你可以改为从牌堆获得红牌和黑牌各一张。",
+	qmsgswkjsgj_re_zunwei: "尊位",
+	qmsgswkjsgj_re_zunwei_backup: "尊位",
+	qmsgswkjsgj_re_zunwei_info: "出牌阶段限一次，你可选择一项：①若你已受伤，则你可以选择一名体力值大于你的其他角色，你将体力值回复至X（X为你的体力上限与其体力值中的较小值）②选择一名手牌数大于你的其他角色，你将手牌数摸至与其相同（至多摸五张）③选择一名装备区内牌数大于你的其他角色。你令X=1。若你装备区内的('equip'+X)栏为空，则你使用牌堆中的一张副类别为('equip'+X)，且能对自己使用的装备牌。你令X+1。若X不大于5，且你装备区内的牌数仍小于目标角色，则你重复此流程。",
+	qmsgswkjsgj_re_zunwei_append:'实际描述是先选目标再选效果。不过距离效果大差不差，就这么地了',
+
+	qmsgswkjsgj_re_caomao: "星月界曹髦",
+	qmsgswkjsgj_re_caomao_prefix: "星月界",
+	qmsgswkjsgj_re_qianlong: "潜龙",
+	qmsgswkjsgj_re_qianlong_info: "当你受到伤害后，你可以亮出牌堆顶你的体力上限数张牌并获得其中的至多X张牌（X为你已损失的体力值）<小说主角特有的傲骨，不设下限>，然后将剩余的牌置于牌堆底。",
+	// qmsgswkjsgj_re_fensi: "忿肆",
+	// qmsgswkjsgj_re_fensi_info: "锁定技。准备阶段，你须选择一名体力值不小于你的角色并对其造成1点伤害，然后若你选择的角色不为你自己，则其视为对你使用一张【杀】。",
+	qmsgswkjsgj_re_juetao: "决讨",
+	qmsgswkjsgj_re_juetao_info: "出牌阶段开始时，若你的体力值为1，则你可以选择一名其他角色。你亮出牌堆底的一张牌，若此牌能被你使用，则你使用此牌并重复此流程直到出现不可使用的牌或其死亡（你与其以外的角色不是此牌的合法目标）。",
+	qmsgswkjsgj_re_zhushi: "助势",
+	qmsgswkjsgj_re_zhushi_info: "主公技。其他魏势力角色回复体力时，你可以摸一张牌。",
+
 
 
 

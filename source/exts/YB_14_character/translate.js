@@ -898,58 +898,62 @@ const translate = {
 
 
 	
-	//虚拟主播
-	bilibiliup:'虚拟主播',
-	bilibiliup_jiangali:'江阿鲤',//鲤成碑
-	bilibiliup_guanyueliuli:'观月琉璃Ruri',//鱼ai喵
-	bilibiliup_sunyuyou:'孙羽幽',//幽猫寎
-	bilibiliup_shianshan:'诗安杉nuyoah_',//杉Q
-	bilibiliup_roubaozi:'旺仔肉包',//香草包	//七星雨
-	bilibiliup_baitaosuyu:'白桃酥鱼Eidolora',//忧鱼症
-	bilibiliup_wanqinsin:'婉沁sin',//小婉兔
-	bilibiliup_xiyeqianzhi:'西野千枝ちえ',//枝士鼠
-	bilibiliup_lulinxikoi:'鹿临溪',//鸣于月	//麤初雪
-	bilibiliup_xilingna:'希昤娜Lina',//希欧気
-	bilibiliup_jiligulu:'ジリグ露-ruru',//超爱露
-	bilibiliup_maomaobaobao:'猫猫饱饱_',//钟意猫
-	bilibiliup_wenyuexu:'花梨咲夜',
-	bilibiliup_xueyuer:'雪羽er',//鳕喵鱼
-	bilibiliup_qingxiaozhi:'晴小栀-嘴毒版',//筱晴人	// bilibiliup_jiangyi:'江亦_k',//潘宏
-	bilibiliup_qinian:'Sin祁念-',//S七年
-	bilibiliup_menglingli:'梦菱鲤',//牢鲤氏
-	bilibiliup_xueyunshang:'雪云裳',//恋霓裳
-	bilibiliup_xingyao:'星瑶',
-	bilibiliup_zhezhi:'柘枝_不是这只ovo',//荔小吱
-	bilibiliup_xiazhisha:'夏织纱yarn',//纱纱仁
-	bilibiliup_qiyuan:'栖苑太困辽',//苑大头
-	bilibiliup_xinglisisi:'杏里丝丝',//忆丝丝
-	bilibiliup_rongxiaoxuan:'容小萱',//时之萱
-	bilibiliup_shimizai:'时弥崽',
-	bilibiliup_linnannanya:'琳喃喃吖',//喃小宝
-	bilibiliup_wanyue:'抱走小晩玥er',//遥挽玥
-	bilibiliup_taomoran:'桃末冉',
-	bilibiliup_xiaotaosheng:'小桃笙-',//桃笙笙
-	bilibiliup_suilin:'岁凛Lynn',//三百岁	//器灵岁川
-	bilibiliup_baozai:'捏捏饱崽',//汉饱阁
-	bilibiliup_mixieer:'小小音乐家米歇尔',//米MI团
-	bilibiliup_shishi:'小僵虱虱子',//恋虱癖
-	bilibiliup_qingling:'卿玲Lynn',//小仙翎
-	bilibiliup_xiaoaijiang:'小爱酱oi',//酱总裁
-	bilibiliup_xinqi:'心淇_古筝版',//顾山海
-	bilibiliup_lushi:'鹿实Tamiko',//启示鹿
-	bilibiliup_tutu:'是荼荼诶_挣钱吃药版',//没钱荼
-	bilibiliup_haitang:'海棠hinna',//棠棠咪
-	bilibiliup_shunhua:'瞬华_Iris',//流光词
+	//\u865a\u62df\u4e3b\u64ad
+	bilibiliup:'\u865a\u62df\u4e3b\u64ad',
+	bilibiliup_jiangali:'\u6c5f\u963f\u9cb4',//\u9cb4\u6210\u7891
+	bilibiliup_guanyueliuli:'\u89c2\u6708\u7409\u7483Ruri',//\u9c7cai\u55b5
+	bilibiliup_sunyuyou:'\u5b59\u7fbd\u5e7d',//\u5e7d\u732b\u5b7e
+	bilibiliup_shianshan:'\u8bd7\u5b89\u6749nuyoah_',//\u6749Q
+	bilibiliup_roubaozi:'\u65fa\u4ed4\u8089\u5305',//\u9999\u8349\u5305	//\u4e03\u661f\u96e8
+	bilibiliup_baitaosuyu:'\u767d\u6843\u9165\u9c7cEidolora',//\u5fe7\u9c7c\u75c7
+	bilibiliup_wanqinsin:'\u5a49\u6c81sin',//\u5c0f\u5a49\u5154
+	bilibiliup_xiyeqianzhi:'\u897f\u91ce\u5343\u679d\u3061\u3048',//\u679d\u58eb\u9f20
+	bilibiliup_lulinxikoi:'\u9e7f\u4e34\u6eaa',//\u9e23\u4e8e\u6708	//\u9e24\u521d\u96ea
+	bilibiliup_xilingna:'\u5e0c\u6674\u5a1cLina',//\u5e0c\u6b27\u6c17
+	bilibiliup_jiligulu:'\u30b8\u30ea\u30b0\u9732-ruru',//\u8d85\u7231\u9732
+	bilibiliup_maomaobaobao:'\u732b\u732b\u9971\u9971_',//\u949f\u610f\u732b
+	bilibiliup_wenyuexu:'\u82b1\u68a8\u5480\u591c',
+	bilibiliup_xueyuer:'\u96ea\u7feder',//\u9eb5\u55b5\u9c7c
+	bilibiliup_qingxiaozhi:'\u6674\u5c0f\u6842-\u5634\u6bd2\u7248',//\u7b71\u6674\u4eba	// bilibiliup_jiangyi:'\u6c5f\u4ea6_k',//\u6f58\u5b8f
+	bilibiliup_qinian:'Sin\u7941\u5ff5-',//S\u4e03\u5e74
+	bilibiliup_menglingli:'\u68a6\u83f1\u9cb4',//\u7262\u9cb4\u6c0f
+	bilibiliup_xueyunshang:'\u96ea\u4e91\u88f3',//\u604b\u970e\u888d
+	bilibiliup_xingyao:'\u661f\u7476',
+	bilibiliup_zhezhi:'\u67d8\u679d_\u4e0d\u662f\u8fd9\u53e3ovo',//\u8354\u5c0f\u560f
+	bilibiliup_xiazhisha:'\u590f\u7ec7\u717ayarn',//\u7eb1\u7eb1\u4ec1
+	bilibiliup_qiyuan:'\u6816\u82d1\u592a\u56f0\u8fbd',//\u82d1\u5927\u5934
+	bilibiliup_xinglisisi:'\u674f\u91cc\u4e1d\u4e1d',//\u5fc6\u4e1d\u4e1d
+	bilibiliup_rongxiaoxuan:'\u5bb9\u5c0f\u8431',//\u65f6\u4e4b\u8431
+	bilibiliup_shimizai:'\u65f6\u5f25\u5e7c',
+	bilibiliup_linnannanya:'\u7435\u5583\u5583\u5436',//\u5583\u5c0f\u5b9d
+	bilibiliup_wanyue:'\u62b1\u8d70\u5c0f\u665aler',//\u9065\u633d\u7441
+	bilibiliup_taomoran:'\u6843\u672b\u5189',
+	bilibiliup_xiaotaosheng:'\u5c0f\u6843\u7b19-',//\u6843\u7b19\u7b19
+	bilibiliup_suilin:'\u5c81\u51dcLynn',//\u4e09\u767e\u5c81	//\u5668\u7075\u5c81\u5ddd
+	bilibiliup_baozai:'\u634f\u634f\u9971\u5e7c',//\u6c49\u9971\u9601
+	bilibiliup_mixieer:'\u5c0f\u5c0f\u97f3\u4e50\u5bb6\u7c73\u6b47\u5c14',//\u7c73MI\u56e2
+	bilibiliup_shishi:'\u5c0f\u50a5\u8774\u8774\u5b50',//\u604b\u8774\u7656
+	bilibiliup_qingling:'\u537f\u73b2Lynn',//\u5c0f\u4ed9\u7fe0
+	bilibiliup_xiaoaijiang:'\u5c0f\u7231\u9171oi',//\u9171\u603b\u88c1
+	bilibiliup_xinqi:'\u5fc3\u6dc7_\u53e4\u7b5b\u7248',//\u987e\u5c71\u6d77
+	bilibiliup_lushi:'\u9e7f\u5b9eTamiko',//\u542f\u793a\u9e7f
+	bilibiliup_tutu:'\u662f\u837c\u837c\u8bc6_\u6323\u94b1\u5403\u836f\u7248',//\u6ca1\u94b1\u837c
+	bilibiliup_haitang:'\u6d77\u6a07hinna',//\u68d2\u68d2\u5475
+	bilibiliup_shunhua:'\u77ac\u534e_Iris',//\u6d41\u5149\u8bcd
 
 
 
 
 
 
-	//------------------已注销------------------------//
-	//诛九族
-	//D羲和
-	//忧baby
+
+
+
+
+	//------------------\u5df2\u6ce8\u9500------------------------//
+	//\u8bdb\u4e5d\u65cf
+	//D\u7fb2\u548c
+	//\u5fe7baby
 
 
 
