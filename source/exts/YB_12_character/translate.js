@@ -871,8 +871,8 @@ const translate = {
 
 
 	//----------------神赐章节-----------------
-	qmsgswkjsgj_shenci_wu_zhugeliang:'神赐武诸葛亮',
-	qmsgswkjsgj_shenci_wu_zhugeliang_prefix:'神赐武',
+	qmsgswkjsgj_shenci_wu_zhugeliang:'星月神赐武诸葛亮',
+	qmsgswkjsgj_shenci_wu_zhugeliang_prefix:'星月神赐武',
 	qmsgswkjsgj_shenci_dcjincui: "尽瘁",
 	qmsgswkjsgj_shenci_dcjincui_info: "锁定技。①游戏开始时，你将手牌摸至七张。②准备阶段，你将体力值回复或失去至等同于牌堆和弃牌堆中点数为7的牌数（你的体力值最低因此调整至1）。然后你观看牌堆顶X张牌，将这些牌以任意顺序置于牌堆顶或牌堆底（X为你的体力值）。",
 	qmsgswkjsgj_shenci_dcqingshi: "情势",
@@ -881,8 +881,8 @@ const translate = {
 	qmsgswkjsgj_shenci_dczhizhe_clear: "invisible",
 	qmsgswkjsgj_shenci_dczhizhe_info: "限定技。出牌阶段，你可以选择一张手牌并复制之。此牌进入弃牌堆时，你获得之，然后你本回合不能再使用或打出此牌。",
 
-	qmsgswkjsgj_shenci_re_duyu:'神赐界杜预',
-	qmsgswkjsgj_shenci_re_duyu_prefix:'神赐界',
+	qmsgswkjsgj_shenci_re_duyu:'星月神赐界杜预',
+	qmsgswkjsgj_shenci_re_duyu_prefix:'星月神赐界',
 	qmsgswkjsgj_shenci_spwuku: "武库",
 	qmsgswkjsgj_shenci_spwuku_info: "锁定技，当有角色使用装备牌时，则你获得一个“武库”。你使用装备时，额外获得一个“武库”。",
 	qmsgswkjsgj_shenci_spsanchen: "三陈",
@@ -890,8 +890,8 @@ const translate = {
 	qmsgswkjsgj_shenci_spmiewu: "灭吴",
 	qmsgswkjsgj_shenci_spmiewu_info: "你可弃置一枚“武库”并将一张牌当做任意基本牌或锦囊牌使用，然后摸一张牌。",
 
-	qmsgswkjsgj_shenci_wu_luxun:'神赐武陆逊',
-	qmsgswkjsgj_shenci_wu_luxun_prefix:'神赐武',
+	qmsgswkjsgj_shenci_wu_luxun:'星月神赐武陆逊',
+	qmsgswkjsgj_shenci_wu_luxun_prefix:'星月神赐武',
 	qmsgswkjsgj_shenci_dcxiongmu: "雄幕",
 	qmsgswkjsgj_shenci_dcxiongmu_tag: "雄幕",
 	qmsgswkjsgj_shenci_dcxiongmu_info: "①每轮开始时，你可以摸体力上限数张牌，然后将任意张牌随机置入牌堆，从牌堆或弃牌堆中获得等量的点数为8的牌。玩家点数为8的牌不计入手牌上限。②玩家每回合受到第一次伤害时，免疫此伤害。。",
@@ -900,8 +900,8 @@ const translate = {
 	qmsgswkjsgj_shenci_dcruxian: "儒贤",
 	qmsgswkjsgj_shenci_dcruxian_info: "限定技。出牌阶段，你可以令你〖彰才〗的点数限制取消，且摸牌数改为等同于你手牌区内与此牌点数相同的牌数且至少为1，直到你的下回合结束。",
 	
-	qmsgswkjsgj_shenci_sb_caopi:'神赐谋曹丕',
-	qmsgswkjsgj_shenci_sb_caopi_prefix:'神赐谋',
+	qmsgswkjsgj_shenci_sb_caopi:'星月神赐谋曹丕',
+	qmsgswkjsgj_shenci_sb_caopi_prefix:'星月神赐谋',
 	qmsgswkjsgj_shenci_sbxingshang: "行殇",
 	qmsgswkjsgj_shenci_sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段限两次，你可以：选择一名角色，移去任意数量的“颂”令其执行对应的一个操作：1个，复原武将牌；2个，摸X张牌（X为本局已死亡角色数，至少为3）；3个，增加1点体力上限并回复一点体力，然后恢复被废除的装备栏（体力上限不大于12方可选择）；4个，追思一名未被追思过的已阵亡角色的武将牌上的技能，然后你失去“行殇”。",
 	// sbxingshang_info: "①当一名角色受到伤害后或死亡时，你获得2个“颂”标记。②出牌阶段限两次，你可以：" + ["移去2个“颂”标记，令一名角色复原武将牌", "移去2个“颂”标记，令一名角色摸三张牌", "移去3个“颂”标记，令一名体力上限小于10的角色回复1点体力，增加1点体力上限，随机恢复一个已废除的装备栏", "移去4个“颂”标记，获得一名阵亡角色武将牌上的所有技能，然后你失去〖行殇〗〖放逐〗〖颂威〗"].map((str, index) => `${index + 1}.${str}`).join("；") + "。",
@@ -912,8 +912,8 @@ const translate = {
 	qmsgswkjsgj_shenci_sbsongwei: "颂威",
 	qmsgswkjsgj_shenci_sbsongwei_info: "主公技，出牌阶段开始时，你获得Y个“颂”标记（Y为本局游戏魏势力角色数的两倍）。每局游戏限一次，你可以于出牌阶段令一名其他魏势力角色失去其武将牌上的所有技能。",
 
-	qmsgswkjsgj_shenci_re_sunhanhua:'神赐界孙寒华',
-	qmsgswkjsgj_shenci_re_sunhanhua_prefix:'神赐界',
+	qmsgswkjsgj_shenci_re_sunhanhua:'星月神赐界孙寒华',
+	qmsgswkjsgj_shenci_re_sunhanhua_prefix:'星月神赐界',
 	qmsgswkjsgj_shenci_chongxu:'冲虚',
 	qmsgswkjsgj_shenci_chongxu_info:'出牌阶段限一次，你可以集灵（至多七分），并根据分数：你可以修改〖妙剑〗或〖莲华〗（消耗2分），并使用剩余的分数进行摸牌（每张1分）。',
 	qmsgswkjsgj_shenci_miaojian:'妙剑',
@@ -930,15 +930,15 @@ const translate = {
 	qmsgswkjsgj_shenci_shhlianhua2_info:'你成为其他角色牌的目标后，你可以摸一张牌，除非该角色弃置一张牌，否则取消之，然后进行一次判定，若结果不为红桃，则取消之。',
 	//由于剧情里，孙寒华在对局中被神赐，已升级的技能仍然延续神赐之前的等级，因此这里以及界孙寒华尽量也要和本体孙寒华互通
 
-	qmsgswkjsgj_shenci_dc_zhouxuān: "神赐周宣",
-	qmsgswkjsgj_shenci_dc_zhouxuān_prefix: "神赐",
+	qmsgswkjsgj_shenci_dc_zhouxuān: "星月神赐周宣",
+	qmsgswkjsgj_shenci_dc_zhouxuān_prefix: "星月神赐",
 	qmsgswkjsgj_shenci_dcwumei: "寤寐",
 	qmsgswkjsgj_shenci_dcwumei_info: "每轮限一次。回合开始前，你可以令一名角色执行一个额外回合，此回合内，其造成的所有伤害+1。以此法进行的回合结束时，将场上所有角色的体力值改为此回合开始时的数值。",
 	qmsgswkjsgj_shenci_dczhanmeng: "占梦",
 	qmsgswkjsgj_shenci_dczhanmeng_info: "当你使用或打出牌时，你可以选择一项：1.上一回合内，若没有同名牌被使用过，你获得一张非伤害牌；2.下一回合内，当同名牌被使用后，你获得一张伤害牌；3.弃置一名其他角色两张牌，对其造成1点火焰伤害。",
 
-	qmsgswkjsgj_shenci_caomao:'神赐曹髦',
-	qmsgswkjsgj_shenci_caomao_prefix:'神赐',
+	qmsgswkjsgj_shenci_caomao:'星月神赐曹髦',
+	qmsgswkjsgj_shenci_caomao_prefix:'星月神赐',
 	qmsgswkjsgj_shenci_mbqianlong:'潜龙',
 	qmsgswkjsgj_shenci_mbqianlong_info:`${get.poptip("rule_chihengji")}。①游戏开始时，你获得30枚“道心”标记。②当你得到牌后/受到1点伤害后/造成1点伤害后，你获得10/20/20枚“道心”（上限为99枚）。③若你的“道心”数不小于20/40/60/80/99，你视为拥有${get.poptip("qmsgswkjsgj_shenci_mbcmqingzheng")}/${get.poptip("qmsgswkjsgj_shenci_mbcmjiushi")}/${get.poptip("qmsgswkjsgj_shenci_mbcmfangzhu")}/${get.poptip("qmsgswkjsgj_shenci_cmhuituo")}/${get.poptip("qmsgswkjsgj_shenci_mbjuejin")}。`,
 	qmsgswkjsgj_shenci_mbcmqingzheng: "清正",
