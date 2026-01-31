@@ -59,7 +59,7 @@ window.ybslb_update={
 			'qmsgswkjsgj_shen_lusu','qmsgswkjsgj_re_sunquan','qmsgswkjsgj_shen_zhouyu',
 			'qmsgswkjsgj_shen_xunyu','qmsgswkjsgj_shen_caocao','qmsgswkjsgj_shen_luxun',
 			'qmsgswkjsgj_shen_lvbu','qmsgswkjsgj_re_caopi','qmsgswkjsgj_re_shamoke',
-			'qmsgswkjsgj_re_shichangshi','qmsgswkjsgj_shen_huatuo','qmsgswkjsgj_re_caomao','qmsgswkjsgj_re_sunhanhua',
+			'qmsgswkjsgj_re_shichangshi','qmsgswkjsgj_shen_huatuo','qmsgswkjsgj_re_mb_caomao','qmsgswkjsgj_re_sunhanhua',
 			'qmsgswkjsgj_mb_luyusheng','qmsgswkjsgj_pot_weiyan',
 			'qmsgswkjsgj_pot_taishici','qmsgswkjsgj_pot_yuji',
 			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_wu_luxun',

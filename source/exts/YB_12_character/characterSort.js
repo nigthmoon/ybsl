@@ -36,7 +36,7 @@ const characterSort = {
 			'qmsgswkjsgj_re_caopi','qmsgswkjsgj_re_shamoke',
 			'qmsgswkjsgj_re_peixiu','qmsgswkjsgj_re_shichangshi',
 			'qmsgswkjsgj_re_jushou','qmsgswkjsgj_shen_huatuo',
-			'qmsgswkjsgj_pot_yuji','qmsgswkjsgj_re_caomao',
+			'qmsgswkjsgj_pot_yuji','qmsgswkjsgj_re_mb_caomao',
 			'qmsgswkjsgj_shen_sunce',
 			'qmsgswkjsgj_mb_sunluyu','qmsgswkjsgj_re_mb_zhangzhi',
 			'qmsgswkjsgj_shen_taishici',
@@ -49,7 +49,8 @@ const characterSort = {
 			'qmsgswkjsgj_re_ruanyu','qmsgswkjsgj_re_dc_duyu',
 			'qmsgswkjsgj_re_star_caoren','qmsgswkjsgj_re_dc_xiahouhui',
 			'qmsgswkjsgj_re_panghong','qmsgswkjsgj_re_zhujianping',
-			'qmsgswkjsgj_re_guotiying',
+			'qmsgswkjsgj_re_guotiying','qmsgswkjsgj_re_caofang',
+			'qmsgswkjsgj_re_guozhao','qmsgswkjsgj_re_caomao',
 
 
 			'qmsgswkjsgj_mengpo',

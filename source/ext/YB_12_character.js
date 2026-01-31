@@ -101,9 +101,9 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			],
 
 			
-			qmsgswkjsgj_re_caomao: [
-				["qmsgswkjsgj_re_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
-				["qmsgswkjsgj_re_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
+			qmsgswkjsgj_re_mb_caomao: [
+				["qmsgswkjsgj_re_mb_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],
+				["qmsgswkjsgj_re_mb_caomao_dead", ['YB_mjz:mb_caomao_dead',"die:mb_caomao"]],
 			],
 			qmsgswkjsgj_shenci_caomao: [
 				["qmsgswkjsgj_shenci_caomao_shadow", ['YB_mjz:mb_caomao_shadow',"die:mb_caomao"]],

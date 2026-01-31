@@ -72,7 +72,7 @@ const characterTitle = {//称号
 	qmsgswkjsgj_re_jushou:'<span class = \''+qmsgswkjsgj_span+'\'>监军谋国</span>',
 	qmsgswkjsgj_shen_huatuo:'<span class = \''+qmsgswkjsgj_span+'\'>悬壶济世</span>',
 	qmsgswkjsgj_pot_yuji:'<span class = \''+qmsgswkjsgj_span+'\'>夙仙望道</span>',
-	qmsgswkjsgj_re_caomao:'<span class = \''+qmsgswkjsgj_span+'\'>向死存魏</span>',
+	qmsgswkjsgj_re_mb_caomao:'<span class = \''+qmsgswkjsgj_span+'\'>向死存魏</span>',
 	qmsgswkjsgj_mengpo: '<span class = \'' + qmsgswkjsgj_span + '\'>忘川难断</span>',
 	qmsgswkjsgj_shen_sunce: '<span class = \'' + qmsgswkjsgj_span + '\'>踞江鬼雄</span>',
 	
@@ -94,6 +94,10 @@ const characterTitle = {//称号
 	qmsgswkjsgj_re_panghong: '<span class = \'' + qmsgswkjsgj_span + '\'>针砭时弊</span>',
 	qmsgswkjsgj_re_zhujianping: '<span class = \'' + qmsgswkjsgj_span + '\'>识面知秋</span>',
 	qmsgswkjsgj_re_guotiying: '<span class = \'' + qmsgswkjsgj_span + '\'>逆运定势</span>',
+	qmsgswkjsgj_re_caofang: '<span class = \'' + qmsgswkjsgj_span + '\'>迷瞑终觉</span>',
+	qmsgswkjsgj_re_guozhao: '<span class = \'' + qmsgswkjsgj_span + '\'>碧海青天</span>',
+	qmsgswkjsgj_re_caomao: '<span class = \'' + qmsgswkjsgj_span + '\'>霸业的终耀</span>',
+
 
 
 
