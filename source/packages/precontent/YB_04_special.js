@@ -1100,12 +1100,16 @@ const YBSL_special = function () {
 				if(event.triggername=='YB_zhuanhuanCard'){
 					var result = await player.chooseBool(`是否令${get.translation(trigger.card)}增加一项“任意牌”？`).forResult();
 					if(result.bool){
-						game.log(player,`令<span class = "yellowtext">${get.translation(trigger.card)}</span>增加一项<span class = "yellowtext">“任意牌”</span>`);
-						var list = trigger.card.storage.zhuanhuanList;
-						var num = trigger.card.storage.zhuanhuanNum;
-						var num2 = ((num+1)*(list.length+1)/list.length)-2;
-						trigger.card.storage.zhuanhuanList.push(null);
-						trigger.card.storage.zhuanhuanNum=num2;
+						
+						game.broadcastAll(function(trigger,player){
+							game.log(player,`令<span class = "yellowtext">${get.translation(trigger.card)}</span>增加一项<span class = "yellowtext">“任意牌”</span>`);
+							var list = trigger.card.storage.zhuanhuanList;
+							var num = trigger.card.storage.zhuanhuanNum;
+							var num2 = ((num+1)*(list.length+1)/list.length)-2;
+							trigger.card.storage.zhuanhuanList.push(null);
+							trigger.card.storage.zhuanhuanNum=num2;
+						},trigger,player)
+						
 					}
 				}
 				else if(event.triggername == 'useCardAfter'||event.triggername == 'respondAfter'){
@@ -1289,8 +1293,10 @@ const YBSL_special = function () {
 								lib.card[get.name(card)]?.zhuanhuanList &&
 								card.storage?.zhuanhuanList[num]==null
 							){
-								card.storage.zhuanhuanList[num] = event.result.card.name;
-								game.log(player,`令<span class = "yellowtext">${get.translation(card)}</span>的第${get.cnNumber(num+1)}项坍缩成了<span class = "yellowtext">${get.translation(event.result.card.name)}</span>`)
+								game.broadcastAll(function(event,card,player){
+									card.storage.zhuanhuanList[num] = event.result.card.name;
+									game.log(player,`令<span class = "yellowtext">${get.translation(card)}</span>的第${get.cnNumber(num+1)}项坍缩成了<span class = "yellowtext">${get.translation(event.result.card.name)}</span>`)
+								},event,card,player)
 							}
 						},
 					};

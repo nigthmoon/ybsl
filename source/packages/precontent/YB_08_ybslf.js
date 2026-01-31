@@ -2801,15 +2801,18 @@ const YBSL_ybslf = function () {
 				'step 0'
 				event.trigger('YB_zhuanhuanCard');
 				'step 1'
-				if(!card.storage||!card.storage.zhuanhuanNum){
-					card.storage.zhuanhuanNum=0
-				}
-				var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
-				if(card.storage.zhuanhuanList[num]){
-					game.log(player,'转换了',card);
-					// card.storage.zhuanhuanNum==card.storage.zhuanhuanList.length-1?card.storage.zhuanhuanNum=0:card.storage.zhuanhuanNum++;
-					card.storage.zhuanhuanNum++
-				}
+				
+				game.broadcastAll(function(card,player){
+					if(!card.storage||!card.storage.zhuanhuanNum){
+						card.storage.zhuanhuanNum=0
+					}
+					var num = card.storage.zhuanhuanNum%card.storage.zhuanhuanList.length;
+					if(card.storage.zhuanhuanList[num]){
+						game.log(player,'转换了',card);
+						// card.storage.zhuanhuanNum==card.storage.zhuanhuanList.length-1?card.storage.zhuanhuanNum=0:card.storage.zhuanhuanNum++;
+						card.storage.zhuanhuanNum++
+					}
+				},card,player)
 			});
 		}
 		get.zhuanhuanCard=function(card){
