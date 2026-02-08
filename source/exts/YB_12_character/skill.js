@@ -26870,7 +26870,7 @@ const skill = {
 				player.storage.sgsxjxfzmnl_sbwusheng_max[target.playerid] = target.hp;
 			}
 		},
-		group: "sbwusheng_wusheng",
+		group: "sgsxjxfzmnl_sbwusheng_wusheng",
 		subSkill: {
 			wusheng: {
 				audio: "sgsxjxfzmnl_sbwusheng",
@@ -27013,6 +27013,11 @@ const skill = {
 				},
 			},
 			max:{
+				init(player) {
+					if (!player.storage.sgsxjxfzmnl_sbwusheng_max) {
+						player.storage.sgsxjxfzmnl_sbwusheng_max = {};
+					}
+				},
 				charlotte:true,
 				onremove:true,
 			},

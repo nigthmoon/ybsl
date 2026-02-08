@@ -47,9 +47,9 @@ const skill = {
 			}
 		},
 		filter:function(event,player){
-			// if(!lib.config.characters.includes('ybart')){
+			if(!lib.configOL?.characterPack.includes('ybart')){
 				if(!player.hasSkillTag('sixartSkill'))return false;
-			// }
+			}
 			var max=6;
 			return player.countCards('h')>0&&player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})<max;
 		},

@@ -1011,3 +1011,5 @@ dts翻修，扩充新的提示信息
 
 2026.02.03
 六艺改成有六艺技才能发动
+
+画饼，有空给摸牌事件的ai改成get.effect(target, { name: "draw" }, player, player)
