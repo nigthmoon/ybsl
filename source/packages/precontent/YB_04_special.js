@@ -1208,8 +1208,18 @@ const YBSL_special = function () {
 			},
 			chooseButton: {
 				dialog(event, player) {
+					var evt = _status.event;
 					var list = [];
 					for(var i of lib.inpile){
+						if(evt.filterCard(
+							{
+								name: i,
+								isCard: true,
+								cards: [i],
+							},
+							player,
+							evt
+						))
 						list.push([get.translation(get.type(i)), "", i]);
 					}
 					return ui.create.dialog("转换卡", [list, "vcard"], "hidden");
