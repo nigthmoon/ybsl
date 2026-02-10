@@ -771,8 +771,11 @@ const skill = {
 		ai: {
 			order: function (item, player) {
 				// if(_status.event.type=='phase'&&!player.countMark('jinzhi2')&&player.getUseValue({name:'jiu'},null,true)>0&&player.countCards('h','sha')) return get.order({name:'jiu'})+1;
-				var num = player.countCards('h');
-				return Math.max(6 - num, 1);
+				if (player && _status.event.type == "phase"){
+					var num = player.countCards('h');
+					return Math.max(6 - num, 1);
+				}
+				return 1;
 			},
 			respondShan: true,
 			respondSha: true,
@@ -10971,5 +10974,61 @@ const skill = {
 			player.useCard({ name: 'sha', isCard: false }, trigger.player, 'sgsk_fuchou');
 		},
 	},
+
+	bilibiliup_miaomiao:{
+		audio:'ext:夜白神略/audio/character:2',
+		trigger:{
+			player:'useCard',
+		},
+		filter(event, player) {
+			var num = player.getAllHistory("useCard").length + player.getAllHistory("respond").length;
+			var num2 = Math.max(1, player.hp);
+
+			return num % num2 == 0;
+		},
+		content(){
+			var num2 = Math.max(1, player.hp);
+			player.draw(num2);
+		},
+		init(player){
+			player.markSkill('bilibiliup_miaomiao')
+		},
+		check:function(event,player){
+			return true;
+		},
+		frequent:true,
+		mark:true,
+		marktext:'喵',
+		intro: {
+			// name:'喵',
+			markcount:function(storage,player){
+				var num = player.getAllHistory("useCard").length + player.getAllHistory("respond").length;
+				return num;
+			},
+			content:function(storage,player){
+				var num = player.getAllHistory("useCard").length + player.getAllHistory("respond").length;
+				var num2 = Math.max(1, player.hp);
+				var str = "<li>距离下次摸牌：";
+				str += (num % num2+'/'+num2);
+				return str;
+
+			}
+		},
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

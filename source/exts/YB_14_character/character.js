@@ -186,5 +186,21 @@ const character = { //武将格式 :
 	ybslclan_luyan:['male','wu',3,['ybsl_lyyaoe','tiandu','ybsl_lykangming','ybsl_clanxingzu'],['rankAdd:epic','clan:吴郡陆氏','name:陆|延']], //族陆延
 	//一将成名
 
+	bilibiliup_sunyuyou:{
+		group : 'qun',
+		sex : 'female',
+		hp : 1,
+		maxHp : 4,
+		hujia:3,
+		skills : ['bilibiliup_miaomiao'],
+		rankAdd:'epic',
+		rankS:'a',
+	},
+
+
+
+
+
+
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 }

@@ -105,4 +105,9 @@ const characterCopyright = {
 	ybslclan_luyan:['夜白自设-吴郡陆氏','编号暂无','夜白','夜白','无','无','◈'],
 	//一将成名
 	ybslshen_pangtong:['三国杀十周年-重在参与','编号暂无','夜白','夜白','三国杀十周年','无','◈'],
+
+
+
+
+	bilibiliup_sunyuyou:['\u865a\u62df\u4e3b\u64ad','编号暂无','夜白','夜白','\u865a\u62df\u4e3b\u64ad','\u865a\u62df\u4e3b\u64ad','♪']
 }

@@ -903,6 +903,8 @@ const translate = {
 	bilibiliup_jiangali:'\u6c5f\u963f\u9cb4',//\u9cb4\u6210\u7891
 	bilibiliup_guanyueliuli:'\u89c2\u6708\u7409\u7483Ruri',//\u9c7cai\u55b5
 	bilibiliup_sunyuyou:'\u5b59\u7fbd\u5e7d',//\u5e7d\u732b\u5b7e
+	bilibiliup_miaomiao:'喵喵',
+	bilibiliup_miaomiao_info:'当你使用或打出牌时，若此牌为你使用或打出的第nX张牌，你可以摸X张牌，X为你的体力值至少为1。',
 	bilibiliup_shianshan:'\u8bd7\u5b89\u6749nuyoah_',//\u6749Q
 	bilibiliup_roubaozi:'\u65fa\u4ed4\u8089\u5305',//\u9999\u8349\u5305	//\u4e03\u661f\u96e8
 	bilibiliup_baitaosuyu:'\u767d\u6843\u9165\u9c7cEidolora',//\u5fe7\u9c7c\u75c7

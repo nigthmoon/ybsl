@@ -1273,7 +1273,7 @@ const skill = {
 			if(event.triggername=='useCardToTargeted'){
 				event.result = await player.chooseBool(get.prompt('yhky_cylingren'),'猜测'+get.translation(trigger.player)+'的手牌构成？')
 					.set("ai", target => {
-						return 2 - get.attitude(get.player(), target);
+						return 2 - get.attitude(player, target);
 					})
 					.forResult();
 				if(event.result.bool)event.result = {
@@ -1288,7 +1288,7 @@ const skill = {
 						return _status.event.targets.includes(target);
 					})
 					.set("ai", target => {
-						return 2 - get.attitude(get.player(), target);
+						return 2 - get.attitude(player, target);
 					})
 					.set("targets", trigger.targets)
 					.forResult();
