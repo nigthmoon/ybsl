@@ -106,4 +106,47 @@ const characterTitle = {//称号
 	ybslclan_luyan:'',
 	//一将成名
 	ybslshen_pangtong:'',
+
+	
+	bilibiliup_jiangali:'\u9ca4\u6210\u7891',//
+	bilibiliup_guanyueliuli:'\u9c7cai\u55b5',//
+	bilibiliup_sunyuyou:'\u5e7d\u732b\u5bce',//
+	bilibiliup_shianshan:'\u6749Q',//
+	bilibiliup_roubaozi:'\u9999\u8349\u5305	',//
+	bilibiliup_baitaosuyu:'\u5fe7\u9c7c\u75c7',//
+	bilibiliup_wanqinsin:'\u5c0f\u5a49\u5154',//
+	bilibiliup_xiyeqianzhi:'\u679d\u58eb\u9f20',//
+	bilibiliup_lulinxikoi:'\u9e23\u4e8e\u6708',//	//\u9e7f\u521d\u96ea
+	bilibiliup_xilingna:'\u5e0c\u6b27\u6c17',//
+	bilibiliup_jiligulu:'\u8d85\u7231\u9732',//
+	bilibiliup_maomaobaobao:'\u949f\u610f\u732b',//
+	bilibiliup_wenyuexu:'\u54b2\u5bb5\u591c',//
+	bilibiliup_xueyuer:'\u9cd5\u55b5\u9c7c',//
+	bilibiliup_qingxiaozhi:'\u7b71\u6674\u4eba',//
+	bilibiliup_qinian:'S\u4e03\u5e74',//
+	bilibiliup_menglingli:'\u7262\u9ca4\u6c0f',//
+	bilibiliup_xueyunshang:'\u604b\u9713\u88f3',//
+	bilibiliup_xingyao:'',
+	bilibiliup_zhezhi:'\u8354\u5c0f\u5431',//	
+	bilibiliup_xiazhisha:'\u7eb1\u7eb1\u4ec1',//
+	bilibiliup_qiyuan:'\u82d1\u5927\u5934',//
+	bilibiliup_xinglisisi:'\u5fc6\u4e1d\u4e1d',//
+	bilibiliup_rongxiaoxuan:'\u65f6\u4e4b\u8431',//
+	bilibiliup_shimizai:'\u65f6\u5f25\u5d3d',
+	bilibiliup_linnannanya:'\u5583\u5c0f\u5b9d',//
+	bilibiliup_wanyue:'\u9065\u633d\u73a5',//
+	bilibiliup_taomoran:'',
+	bilibiliup_xiaotaosheng:'\u6843\u7b19\u7b19',//
+	bilibiliup_suilin:'\u4e09\u767e\u5c81',//	
+	bilibiliup_baozai:'\u6c49\u9971\u9601',//
+	bilibiliup_mixieer:'\u7c73MI\u56e2',//
+	bilibiliup_shishi:'\u604b\u8671\u7656',//
+	bilibiliup_qingling:'\u5c0f\u4ed9\u7fce',//
+	bilibiliup_xiaoaijiang:'\u9171\u603b\u88c1',//
+	bilibiliup_xinqi:'\u987e\u5c71\u6d77',//
+	bilibiliup_lushi:'\u542f\u793a\u9e7f',//
+	bilibiliup_tutu:'\u6ca1\u94b1\u837c',//
+	bilibiliup_haitang:'\u68e0\u68e0\u54aa',//
+	bilibiliup_shunhua:'\u6d41\u5149\u8bcd',//
+
 }

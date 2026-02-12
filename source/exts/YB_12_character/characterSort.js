@@ -39,7 +39,7 @@ const characterSort = {
 			'qmsgswkjsgj_pot_yuji','qmsgswkjsgj_re_mb_caomao',
 			'qmsgswkjsgj_shen_sunce',
 			'qmsgswkjsgj_mb_sunluyu','qmsgswkjsgj_re_mb_zhangzhi',
-			'qmsgswkjsgj_shen_taishici',
+			'qmsgswkjsgj_shen_taishici','qmsgswkjsgj_yanxiang',
 
 
 

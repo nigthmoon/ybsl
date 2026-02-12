@@ -7360,6 +7360,7 @@ const skill = {
 		prompt: "选择一名角色，向其传授“五禽戏”",
 		group: "qmsgswkjsgj_wuling_die",
 		content() {
+			var target = target||event.targets[0]
 			"step 0";
 			target.addAdditionalSkill(`qmsgswkjsgj_wuling_${player.playerid}`, "qmsgswkjsgj_wuling_wuqinxi");
 			var next = player.chooseToMove(`五灵：调整向${get.translation(target)}传授的“五禽戏”顺序`);

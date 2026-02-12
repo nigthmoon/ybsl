@@ -11018,7 +11018,71 @@ const skill = {
 	},
 
 
-
+	/*
+	
+	
+	bilibiliup_quanji:'全寄',
+	bilibiliup_quanji_info:'限定技，出牌阶段，你可以积蓄1点能量（弃置一张牌），然后此后每个出牌阶段开始时，你需选择：继续积蓄1点能量或释放能量（移去全部能量，然后对全场所有角色各造成释放能量点伤害。）。当你积蓄能量后，若能量不少于3，你可以立即释放。',
+	bilibiliup_paiyi:'拍翼',
+	bilibiliup_paiyi_info:'当你受到伤害后，你可以积蓄1点能量（弃置一张牌）；摸牌阶段，你额外摸X张牌（X为能量点数，至多为3）',
+	*/
+	// bilibiliup_quanji:{
+	// 	audio:'ext:夜白神略/audio/character:2',
+	// 	limited:true,
+	// 	trigger:{
+	// 		player:'phaseUseBegin',
+	// 	},
+	// 	enable:'phaseUse',
+	// 	filter(event,player,name){
+	// 		if(name&&name=='phaseUseBegin'){
+	// 			return player.storage.bilibiliup_quanji_open;
+	// 		}
+	// 		else return !player.storage.bilibiliup_quanji_open&&player.countDiscardableCards(player,'he');
+	// 	},
+	// 	init(player,skill){
+	// 		// player.storage.bilibiliup_quanji=0;
+	// 		player.markSkill('bilibiliup_quanji')
+	// 	},
+	// 	marktext:'能',
+	// 	intro:{
+			
+	// 	},
+	// },
+	// bilibiliup_paiyi:{
+	// 	audio: 'ext:夜白神略/audio/character:2',
+	// 	trigger: {
+	// 		player: 'damaged',
+	// 	},
+	// 	filter: function(event, player) {
+	// 		return player.countCards('he') > 0;
+	// 	},
+	// 	async cost(event, trigger, player) {
+	// 		event.result = await player.chooseCard('he').forResult();
+	// 	},
+	// 	content: function() {
+	// 		player.discard(event.cards);
+	// 		if (!player.storage.bilibiliup_paiyi) {
+	// 			player.storage.bilibiliup_paiyi = 0;
+	// 		}
+	// 		player.storage.bilibiliup_paiyi++;
+	// 	},
+	// 	mod: {
+	// 		drawNum: function(num, player) {
+	// 			if (!player.storage.bilibiliup_paiyi) return num;
+	// 			return num + Math.min(3, player.storage.bilibiliup_paiyi);
+	// 		}
+	// 	},
+	// 	init(player) {
+	// 		player.markSkill('bilibiliup_paiyi');
+	// 	},
+	// 	marktext: '翼',
+	// 	intro: {
+	// 		content: function(storage, player) {
+	// 			var energy = player.storage.bilibiliup_paiyi || 0;
+	// 			return '<li>当前能量：' + energy + '</li>';
+	// 		}
+	// 	}
+	// },
 
 
 
