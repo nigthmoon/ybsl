@@ -8282,7 +8282,7 @@ const skill = {
 					if(player.hp-num>1) return true;
 					else return false;
 				}).set('prompt','是否失去'+num+'点体力，然后再摸'+num+'张牌').forResult();
-				if(result.control=='是'){
+				if(result.bool==true){
 					await player.loseHp(num);
 					await player.draw(num);
 				}

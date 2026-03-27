@@ -31,6 +31,8 @@ const character = { //武将格式 :
 	'ybsl_011gaoyuhang':['female','YB_memory',3,['yb011_lijian','yb011_jueleng'],['rankAdd:epic','rankS:a','name:高|宇航']],//高宇航二版
 	'ybsl_012zhengjiayi':['female','YB_memory',3,['yb012_bianqian','yb012_xibei','yb012_suotu'],['rankAdd:epic','rankS:a','name:郑|佳怡']],//郑佳怡
 	
+	'ybsl_013yinji':['female','YB_memory',3,[],['unseen']],
+	'ybsl_014liutianyu':['male','YB_memory',3,[],['unseen']],
 	
 	
 	'ybsl_015wanghairu':['female','YB_memory',3,['yb015_liangquan','yb015_bixin'],['rankAdd:epic','rankS:a','name:王|海茹']],//王海茹
@@ -195,4 +197,7 @@ const character = { //武将格式 :
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
 	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
 	
+	// yblc_shengjiaoxintu:['male','YB_memory',4,['boss_leiji','guidao'],['forbidai']],
+	// yblc_shengjiaoxiunv:['female','YB_memory',4,['olbeige'],['forbidai']],
+
 }

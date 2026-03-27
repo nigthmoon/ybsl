@@ -906,7 +906,9 @@ const translate = {
 	bilibiliup_guanyueliuli_ab:'\u89c2\u6708\u7409\u7483',
 	bilibiliup_sunyuyou:'\u5b59\u7fbd\u5e7d',//\u5e7d\u732b\u5bce
 	bilibiliup_miaomiao:'喵喵',
-	bilibiliup_miaomiao_info:'当你使用或打出牌时，若此牌为你使用或打出的第nX张牌，你可以摸X张牌，X为你的体力值至少为1。',
+	bilibiliup_miaomiao_info:'当你使用或打出你使用或打出的第nX张牌时，你可以摸X张牌（X为你的体力值至少为1）。',
+	bilibiliup_jieran:'竭燃',
+	bilibiliup_jieran_info:'锁定技，当你第nY次摸牌时（Y为你的体力上限至多为5），你失去一点体力，视为使用一张【桃】，然后失去此技能的第一句（此技能仅剩此句时，将此句加入至〖喵喵〗）',
 	bilibiliup_shianshan:'\u8bd7\u5b89\u6749nuyoah_',//\u6749Q
 	bilibiliup_shianshan_ab:'\u8bd7\u5b89\u6749',
 	bilibiliup_roubaozi:'\u65fa\u4ed4\u8089\u5305',//\u9999\u8349\u5305	//\u4e03\u661f\u96e8

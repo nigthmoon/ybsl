@@ -300,7 +300,7 @@ const skill = {
 						get.prompt('ybmjz_zhishuo_txgx'),
 						{
 							name:'sha',
-							nature:null,
+							nature:'',
 							isCard:true,
 							YB_zhishuo:true,
 							card:cards3,
@@ -1069,8 +1069,11 @@ const skill = {
 			var cardsx=[];
 			cardsx.push(event.cards[0]);
 			var relu = await player.draw(2,"visible").forResult();
-			for(var k of relu){
-				cardsx.push(k);
+			if(relu.cards){
+				var cardsy = relu.cards;
+				for(var k of cardsy){
+					cardsx.push(k);
+				}
 			}
 			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
 				await player.addTempSkill("ybmjz_luoyi_damage", { player: "phaseBefore" });

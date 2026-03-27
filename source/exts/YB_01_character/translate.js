@@ -1415,4 +1415,6 @@ const translate = {
 
 	
 	
+	// yblc_shengjiaoxintu:'圣教信徒',
+	// yblc_shengjiaoxiunv:'圣教修女',
 }

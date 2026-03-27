@@ -3,14 +3,9 @@ export { characterTitle }
 
 const characterTitle = {//称号
 	//---------------------------------//上古神话
-	'sgsh_huaxu':'',//华胥
-	'sgsh_taizichangqin':'',//太子长琴
-	'sgsh_nvba':'',//女魃
-	'sgsh_luohou':'',//罗睺
-	'sgsh_dongwanggong':'',//东王公
 	//---------------------------------//名将改写
-	'dzsl_luxun':'万钧神弩',//陆逊
-	'ybsl_zhouyuxiaoqiao':'乔心瑾悦',//周瑜小乔
+	// 'dzsl_luxun':'万钧神弩',//陆逊
+	// 'ybsl_zhouyuxiaoqiao':'乔心瑾悦',//周瑜小乔
 	//---------------------------------//忆包武将
 	'ybsl_001sunlisong':'<font color=cyan>似水流年</font>',
 	'ybsl_002chenailin':'<font color=cyan>凄愁哀婉</font>',

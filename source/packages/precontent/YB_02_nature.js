@@ -521,6 +521,11 @@ const YBSL_nature = function(){
 				return `${get.prefixSpan('星月神赐界')}${get.prefixSpan('势')}`
 			},
 		})
+		lib.namePrefix.set('星月界乐',{
+			getSpan:(prefix,name)=>{
+				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('乐')}`
+			},
+		})
 		
 
 		

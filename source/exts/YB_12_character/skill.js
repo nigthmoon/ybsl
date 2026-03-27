@@ -31363,7 +31363,7 @@ const skill = {
 			let cards2 = [];
 			const makeDraw = result.index === 0;
 			if (makeDraw) {
-				cards2 = await target.draw(round).forResult();
+				cards2 = await target.draw(round).forResult().cards;
 			} else {
 				const cards = target.getCards("h", card => {
 					return lib.filter.cardDiscardable(card, target, "lvxin");
@@ -39363,7 +39363,8 @@ const skill = {
 					}
 					const result = await player
 						.chooseTarget("暗织：是否令一名<span style=\"text-decoration: line-through;\">非当前回合</span>角色获得本回合进入弃牌堆的两张牌？", (card, player, target) => {
-							return target != _status.currentPhase;
+							// return target != _status.currentPhase;
+							return true;
 						})
 						.set("ai", target => {
 							const player = get.player();

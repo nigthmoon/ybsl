@@ -795,9 +795,15 @@ const skill = {
 			await player.discard(event.cards);
 			var cardsx=[];
 			cardsx.push(event.cards[0]);
-			var relu = await player.draw(2,"visible");
-			for(var k of relu){
-				cardsx.push(k);
+			var relu = await player.draw(2,"visible").forResult();
+			// for(var k of relu){
+			// 	cardsx.push(k);
+			// }
+			if(relu.cards){
+				var cardsy = relu.cards;
+				for(var k of cardsy){
+					cardsx.push(k);
+				}
 			}
 			if(cardsx.filter(card=>get.type2(card)=='basic').length>0){
 				await player.addTempSkill("yhky_cyluoyi_damage", { player: "phaseBefore" });

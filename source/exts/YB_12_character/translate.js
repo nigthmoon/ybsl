@@ -865,8 +865,42 @@ const translate = {
 	qmsgswkjsgj_re_zhushi: "助势",
 	qmsgswkjsgj_re_zhushi_info: "主公技。其他魏势力角色回复体力时，你可以摸一张牌。",
 
+	
+	qmsgswkjsgj_shen_pangtong: "星月神庞统",
+	qmsgswkjsgj_shen_pangtong_prefix: "星月神",
+	// luansuo: "鸾锁",
+	// luansuo_info: "锁定技。①你的回合内，所有角色不能弃置手牌。②回合开始时，所有角色的当前手牌视为【铁索连环】直到有与此牌对应花色的牌进入弃牌堆或回合结束。",
+	// fengliao: "凤燎",
+	// fengliao_info: "锁定技，转换技，你使用牌指定唯一目标后，阳：你令其摸一张牌；阴：你对其造成1点火焰伤害。",
+	qmsgswkjsgj_kunyu: "鹍浴",
+	qmsgswkjsgj_kunyu_info: "锁定技。②你死亡时，你将牌堆中的一张火属性伤害牌移出游戏，然后防止死亡并将体力回复至1点。",
+	
+	qmsgswkjsgj_re_yue_caiwenji: "星月界乐蔡琰",
+	qmsgswkjsgj_re_yue_caiwenji_prefix: "星月界乐",
+	qmsgswkjsgj_re_dcshuangjia: "霜笳",
+	// qmsgswkjsgj_re_dcshuangjia_tag: "胡笳",
+	qmsgswkjsgj_re_dcshuangjia_info: "锁定技。①每轮开始时，你的手牌增加“胡笳”标记。③其他角色至你的距离+X（X为你的“胡笳”数且至多为5）。",
+	qmsgswkjsgj_re_dcbeifen: "悲愤",
+	qmsgswkjsgj_re_dcbeifen_info: "锁定技。①当你失去牌后，若这些牌中有“胡笳”牌，你获得与该牌花色均不同的每种花色的牌各一张。②若你手牌中“胡笳”牌数小于不为“胡笳”牌的牌数，你使用牌无距离和次数限制。",
 
-
+	qmsgswkjsgj_re_dc_liuba: "星月界刘巴",
+	qmsgswkjsgj_re_dc_liuba_prefix: "星月界",
+	qmsgswkjsgj_re_dczhubi: "铸币",
+	qmsgswkjsgj_re_dczhubi_info: "当有♦牌因弃置而进入弃牌堆后，你可以令一名角色从牌堆或弃牌堆获得一张【无中生有】，然后其可以将【无中生有】置于牌堆顶。",
+	qmsgswkjsgj_re_dcliuzhuan: "流转",
+	// qmsgswkjsgj_re_dcliuzhuan_tag: "转",
+	qmsgswkjsgj_re_dcliuzhuan_info: "锁定技，其他角色的回合内获得的牌无法对你使用，这些牌本回合进入弃牌堆后，你获得之<按照作者的解释，只是本回合不能对自己用，下回合是可以的。评价为：继承了新杀的描述含糊不清和云玩家的口胡>。",
+	
+	
+	qmsgswkjsgj_re_zhugejin: "星月界诸葛瑾",
+	qmsgswkjsgj_re_zhugejin_prefix: "星月界",
+	qmsgswkjsgj_re_huanshi: "缓释",
+	qmsgswkjsgj_re_huanshi_info: "一名角色的判定牌生效前，你可令其观看你的手牌。若如此做，你打出一张牌代替之。",
+	qmsgswkjsgj_re_hongyuan: "弘援",
+	qmsgswkjsgj_re_hongyuan_info: "摸牌阶段，你可以少摸一张牌并指定至多两名其他角色。若如此做，这些角色各摸两张牌。",
+	qmsgswkjsgj_re_mingzhe: "明哲",
+	qmsgswkjsgj_re_mingzhe_info: "当你于回合外一张红色牌后，你可以摸两张牌。",
+	//魔炎
 
 
 
