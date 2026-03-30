@@ -3199,6 +3199,7 @@ const skill = {
 		},
 		ai:{
 			order(item,player) {
+				var player=player||_status.event.player;
 				var history = player.getAllHistory('useCard')
 				if (!history.length) return false
 				var evt = history.lastItem
