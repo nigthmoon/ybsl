@@ -507,7 +507,10 @@ const skill = {
 				return;
 			}
 			event.num = num;
-			player.chooseControl().set("choiceList", ["摸" + num + "张牌", "令" + get.translation(trigger.card) + "的伤害值基数+" + num]);
+			player.chooseControl()
+			.set("choiceList", ["摸" + num + "张牌", "令" + get.translation(trigger.card) + "的伤害值基数+" + num]).set("ai", function() {
+				return 0;
+			});
 			"step 2";
 			if (result.index == 0) player.draw(num);
 			else trigger.getParent().baseDamage += num;

@@ -31069,7 +31069,7 @@ const skill = {
 				}) &&
 				get.damageEffect(trigger.player, player, player, get.natureList(trigger)) > 0
 			if (goon) {
-				return 30 / (1 + target.hp) - get.value(card);
+				return 30 / (1 + target.hp);
 			}
 			return -1;
 		},
