@@ -7,21 +7,21 @@ const YBSL_trigger = function(){
     
 	{//夜白创建时机
 		//---------------卡牌伤害时机
-		lib.skill._YB_cardDamage={
-			trigger:{
-				player:['damage','damageBefore','damageBegin','damageBegin1','damageBegin2','damageBegin3','damageBegin4','damageEnd','damageAfter','die','dying','dieAfter','dieAfter2'],
-				source:['damageSource'],
-			},
-			filter:function(event){
-				return event.card&&lib.card[event.card.name];
-			},
-			popup:false,
-			forced:true,
-			content:function(){
-				var str=event.triggername;
-				trigger.trigger("YBcard_"+str);
-			},
-		};
+		// lib.skill._YB_cardDamage={
+		// 	trigger:{
+		// 		player:['damage','damageBefore','damageBegin','damageBegin1','damageBegin2','damageBegin3','damageBegin4','damageEnd','damageAfter','die','dying','dieAfter','dieAfter2'],
+		// 		source:['damageSource'],
+		// 	},
+		// 	filter:function(event){
+		// 		return event.card&&lib.card[event.card.name];
+		// 	},
+		// 	popup:false,
+		// 	forced:true,
+		// 	content:function(){
+		// 		var str=event.triggername;
+		// 		trigger.trigger("YBcard_"+str);
+		// 	},
+		// };
 		//---------------每阶段时机
 		lib.skill._YB_any={
 			trigger:{
