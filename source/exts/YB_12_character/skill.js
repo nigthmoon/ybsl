@@ -18958,185 +18958,185 @@ const skill = {
 
 
 
-	qmsgswkjsgj_zhenshen:{
-		//我可不什么都惯着这作者
-		//顶破天给你一个免疫横置翻面等
-		charlotte:true,
-		forced:true,
-		trigger:{
-			player:['linkBefore','turnOverBefore']
-		},
-		filter(event,player,name){
-			console.log(name,':',event);
-		}
-	},
-	qmsgswkjsgj_shenxing:{
-		charlotte:true,
-		trigger:{
-			player:'roundStart',
-		},
-		filter(event,player){
-			if (!lib.inpile.includes("mb_qingnangshu")) {
-				return true;
-			}
-			return get.cardPile(card => card.name == "mb_qingnangshu");
-		},
-		content(event,player){
-			var card = game.YB_createCard('mb_qingnangshu',null,null);
-			player.storage.qmsgswkjsgj_shenxing_card = card;
-			player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
-				const evt = event.getl(player);
-				if (evt && evt.player === player && evt.es) {
-					if(player.storage.qmsgswkjsgj_shenxing_card){
-						return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing_card);
-					}
-				}
-			}).then(function(){
-				let cardx = player.storage.qmsgswkjsgj_shenxing_card;
-				if(cardx){
-					cardx.fix();
-					cardx.remove();
-					cardx.destroyed = true;
-					game.log(cardx, "被销毁了");
-					delete player.storage.qmsgswkjsgj_shenxing_card;
-				}
-			})
-			player.gain(card,'gain2');
-			player.useCard(card,false,false);
-		},
-		init(player){
-			player.expandEquip(5);
-		},
-		onremove:function(player){
-			player.disableEquip(5);
-		},
-	},
-	qmsgswkjsgj_shenxing2:{
-		charlotte:true,
-		trigger:{
-			player:'roundStart',
-		},
-		filter(event,player){
-			if (!lib.inpile.includes("qmsgswkjsgj_chuanguoyuxi")) {
-				return true;
-			}
-			return get.cardPile(card => card.name == "qmsgswkjsgj_chuanguoyuxi");
-		},
-		content(event,player){
-			var card = game.YB_createCard('qmsgswkjsgj_chuanguoyuxi',null,null);
-			player.storage.qmsgswkjsgj_shenxing2_card = card;
-			player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
-				const evt = event.getl(player);
-				if (evt && evt.player === player && evt.es) {
-					if(player.storage.qmsgswkjsgj_shenxing2_card){
-						return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing2_card);
-					}
-				}
-			}).then(function(){
-				let cardx = player.storage.qmsgswkjsgj_shenxing2_card;
-				if(cardx){
-					cardx.fix();
-					cardx.remove();
-					cardx.destroyed = true;
-					game.log(cardx, "被销毁了");
-					delete player.storage.qmsgswkjsgj_shenxing2_card;
-				}
-			})
-			player.gain(card,'gain2');
-			player.useCard(card,false,false);
-		},
-		init(player){
-			player.expandEquip(5);
-		},
-		onremove:function(player){
-			player.disableEquip(5);
-		},
-	},
-	qmsgswkjsgj_shenxing3:{
-		charlotte:true,
-		trigger:{
-			player:'roundStart',
-		},
-		filter(event,player){
-			if (!lib.inpile.includes("muniu")) {
-				return true;
-			}
-			return get.cardPile(card => card.name == "muniu");
-		},
-		content(event,player){
-			var card = game.YB_createCard('muniu',null,null);
-			player.storage.qmsgswkjsgj_shenxing3_card = card;
-			player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
-				const evt = event.getl(player);
-				if (evt && evt.player === player && evt.es) {
-					if(player.storage.qmsgswkjsgj_shenxing3_card){
-						return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing3_card);
-					}
-				}
-			}).then(function(){
-				let cardx = player.storage.qmsgswkjsgj_shenxing3_card;
-				if(cardx){
-					cardx.fix();
-					cardx.remove();
-					cardx.destroyed = true;
-					game.log(cardx, "被销毁了");
-					delete player.storage.qmsgswkjsgj_shenxing3_card;
-				}
-			})
-			player.gain(card,'gain2');
-			player.useCard(card,false,false);
-		},
-		init(player){
-			player.expandEquip(5);
-		},
-		onremove:function(player){
-			player.disableEquip(5);
-		},
-	},
-	qmsgswkjsgj_chuanguoyuxi_skill:{
-		equipSkill: true,
-		audio: "weidi",
-		audioname2: {
-			shen_simayi: "lianpo1.mp3",
-			xin_simayi: "lianpo1.mp3",
-			new_simayi: "lianpo1.mp3",
-		},
-		trigger: { player: "phaseDiscardBegin" },
-		getIndex(event, player) {
-			const cards = player.getVCards("e", card => card.name == "qmsgswkjsgj_chuanguoyuxi_skill");
-			return cards.length ? cards : 1;
-		},
-		forced: true,
-		async content(event, trigger, player) {
-			/*player.flashAvatar(event.name, "yuanshu");*/
-			await player.draw();
-			player.addSkill(event.name + "_add");
-			player.addMark(event.name + "_add", 2, false);
-			game.log(player, "的手牌上限", "#y+2");
-			let str = "受命于天，既寿永昌！";
-			if (!player.isZhu2()) {
-				// await player.loseHp();
-				str = ["你们都得听我的号令！", "我才是皇帝！"].randomGet();
-			}
-			player.chat(str);
-		},
-		subSkill: {
-			add: {
-				charlotte: true,
-				onremove: true,
-				mark: true,
-				markimage: "image/card/handcard.png",
-				intro: {
-					content: "手牌上限+#",
-				},
-				mod: {
-					maxHandcard(player, num) {
-						return num + player.countMark("qmsgswkjsgj_chuanguoyuxi_skill_add");
-					},
-				},
-			},
-		},
-	},
+	// qmsgswkjsgj_zhenshen:{
+	// 	//我可不什么都惯着这作者
+	// 	//顶破天给你一个免疫横置翻面等
+	// 	charlotte:true,
+	// 	forced:true,
+	// 	trigger:{
+	// 		player:['linkBefore','turnOverBefore']
+	// 	},
+	// 	filter(event,player,name){
+	// 		console.log(name,':',event);
+	// 	}
+	// },
+	// qmsgswkjsgj_shenxing:{
+	// 	charlotte:true,
+	// 	trigger:{
+	// 		player:'roundStart',
+	// 	},
+	// 	filter(event,player){
+	// 		if (!lib.inpile.includes("mb_qingnangshu")) {
+	// 			return true;
+	// 		}
+	// 		return get.cardPile(card => card.name == "mb_qingnangshu");
+	// 	},
+	// 	content(event,player){
+	// 		var card = game.YB_createCard('mb_qingnangshu',null,null);
+	// 		player.storage.qmsgswkjsgj_shenxing_card = card;
+	// 		player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
+	// 			const evt = event.getl(player);
+	// 			if (evt && evt.player === player && evt.es) {
+	// 				if(player.storage.qmsgswkjsgj_shenxing_card){
+	// 					return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing_card);
+	// 				}
+	// 			}
+	// 		}).then(function(){
+	// 			let cardx = player.storage.qmsgswkjsgj_shenxing_card;
+	// 			if(cardx){
+	// 				cardx.fix();
+	// 				cardx.remove();
+	// 				cardx.destroyed = true;
+	// 				game.log(cardx, "被销毁了");
+	// 				delete player.storage.qmsgswkjsgj_shenxing_card;
+	// 			}
+	// 		})
+	// 		player.gain(card,'gain2');
+	// 		player.useCard(card,false,false);
+	// 	},
+	// 	init(player){
+	// 		player.expandEquip(5);
+	// 	},
+	// 	onremove:function(player){
+	// 		player.disableEquip(5);
+	// 	},
+	// },
+	// qmsgswkjsgj_shenxing2:{
+	// 	charlotte:true,
+	// 	trigger:{
+	// 		player:'roundStart',
+	// 	},
+	// 	filter(event,player){
+	// 		if (!lib.inpile.includes("qmsgswkjsgj_chuanguoyuxi")) {
+	// 			return true;
+	// 		}
+	// 		return get.cardPile(card => card.name == "qmsgswkjsgj_chuanguoyuxi");
+	// 	},
+	// 	content(event,player){
+	// 		var card = game.YB_createCard('qmsgswkjsgj_chuanguoyuxi',null,null);
+	// 		player.storage.qmsgswkjsgj_shenxing2_card = card;
+	// 		player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
+	// 			const evt = event.getl(player);
+	// 			if (evt && evt.player === player && evt.es) {
+	// 				if(player.storage.qmsgswkjsgj_shenxing2_card){
+	// 					return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing2_card);
+	// 				}
+	// 			}
+	// 		}).then(function(){
+	// 			let cardx = player.storage.qmsgswkjsgj_shenxing2_card;
+	// 			if(cardx){
+	// 				cardx.fix();
+	// 				cardx.remove();
+	// 				cardx.destroyed = true;
+	// 				game.log(cardx, "被销毁了");
+	// 				delete player.storage.qmsgswkjsgj_shenxing2_card;
+	// 			}
+	// 		})
+	// 		player.gain(card,'gain2');
+	// 		player.useCard(card,false,false);
+	// 	},
+	// 	init(player){
+	// 		player.expandEquip(5);
+	// 	},
+	// 	onremove:function(player){
+	// 		player.disableEquip(5);
+	// 	},
+	// },
+	// qmsgswkjsgj_shenxing3:{
+	// 	charlotte:true,
+	// 	trigger:{
+	// 		player:'roundStart',
+	// 	},
+	// 	filter(event,player){
+	// 		if (!lib.inpile.includes("muniu")) {
+	// 			return true;
+	// 		}
+	// 		return get.cardPile(card => card.name == "muniu");
+	// 	},
+	// 	content(event,player){
+	// 		var card = game.YB_createCard('muniu',null,null);
+	// 		player.storage.qmsgswkjsgj_shenxing3_card = card;
+	// 		player.when({player:'loseAfter',global:'loseAsyncAfter',}).filter(function(event,player){
+	// 			const evt = event.getl(player);
+	// 			if (evt && evt.player === player && evt.es) {
+	// 				if(player.storage.qmsgswkjsgj_shenxing3_card){
+	// 					return evt.es.length&&evt.es.includes(player.storage.qmsgswkjsgj_shenxing3_card);
+	// 				}
+	// 			}
+	// 		}).then(function(){
+	// 			let cardx = player.storage.qmsgswkjsgj_shenxing3_card;
+	// 			if(cardx){
+	// 				cardx.fix();
+	// 				cardx.remove();
+	// 				cardx.destroyed = true;
+	// 				game.log(cardx, "被销毁了");
+	// 				delete player.storage.qmsgswkjsgj_shenxing3_card;
+	// 			}
+	// 		})
+	// 		player.gain(card,'gain2');
+	// 		player.useCard(card,false,false);
+	// 	},
+	// 	init(player){
+	// 		player.expandEquip(5);
+	// 	},
+	// 	onremove:function(player){
+	// 		player.disableEquip(5);
+	// 	},
+	// },
+	// qmsgswkjsgj_chuanguoyuxi_skill:{
+	// 	equipSkill: true,
+	// 	audio: "weidi",
+	// 	audioname2: {
+	// 		shen_simayi: "lianpo1.mp3",
+	// 		xin_simayi: "lianpo1.mp3",
+	// 		new_simayi: "lianpo1.mp3",
+	// 	},
+	// 	trigger: { player: "phaseDiscardBegin" },
+	// 	getIndex(event, player) {
+	// 		const cards = player.getVCards("e", card => card.name == "qmsgswkjsgj_chuanguoyuxi_skill");
+	// 		return cards.length ? cards : 1;
+	// 	},
+	// 	forced: true,
+	// 	async content(event, trigger, player) {
+	// 		/*player.flashAvatar(event.name, "yuanshu");*/
+	// 		await player.draw();
+	// 		player.addSkill(event.name + "_add");
+	// 		player.addMark(event.name + "_add", 2, false);
+	// 		game.log(player, "的手牌上限", "#y+2");
+	// 		let str = "受命于天，既寿永昌！";
+	// 		if (!player.isZhu2()) {
+	// 			// await player.loseHp();
+	// 			str = ["你们都得听我的号令！", "我才是皇帝！"].randomGet();
+	// 		}
+	// 		player.chat(str);
+	// 	},
+	// 	subSkill: {
+	// 		add: {
+	// 			charlotte: true,
+	// 			onremove: true,
+	// 			mark: true,
+	// 			markimage: "image/card/handcard.png",
+	// 			intro: {
+	// 				content: "手牌上限+#",
+	// 			},
+	// 			mod: {
+	// 				maxHandcard(player, num) {
+	// 					return num + player.countMark("qmsgswkjsgj_chuanguoyuxi_skill_add");
+	// 				},
+	// 			},
+	// 		},
+	// 	},
+	// },
 
 
 

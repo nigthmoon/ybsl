@@ -192,18 +192,18 @@ const card = {
 		skills: ["sgsxjxfzmnl_dagongche_defend_skill", "sgsxjxfzmnl_mbquchong_effect"],
 	},
 
-    qmsgswkjsgj_chuanguoyuxi:{
-        audio: true,
-        fullskin: true,
-        type: "equip",
-        subtype: "equip5",
-        bingzhu: ["刘宏", "袁术", "司马炎"],
-        skills: ["qmsgswkjsgj_chuanguoyuxi_skill"],
-        ai: {
-            equipValue: 9,
-        },
+    // qmsgswkjsgj_chuanguoyuxi:{
+    //     audio: true,
+    //     fullskin: true,
+    //     type: "equip",
+    //     subtype: "equip5",
+    //     bingzhu: ["刘宏", "袁术", "司马炎"],
+    //     skills: ["qmsgswkjsgj_chuanguoyuxi_skill"],
+    //     ai: {
+    //         equipValue: 9,
+    //     },
 
-    },
+    // },
 	//神肘不疑的五灵卡牌
 	qmsgswkjsgj_wuqinxi_hu: {
 		fullskin: true,
