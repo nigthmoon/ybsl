@@ -2533,7 +2533,7 @@ const YBSL_ybslf = function () {
 				'step 0'
 				game.log(player,'交换了主副将')
 				if(player.name2==undefined){
-					player.changeCharacter(player.name1);
+					player.changeCharacter([player.name1]);
 				}
 				else{
 					player.changeCharacter([player.name2, player.name1]);

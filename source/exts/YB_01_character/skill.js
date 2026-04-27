@@ -11820,7 +11820,7 @@ const skill = {
 				var nature=null;
 				for(var i=0;i<lib.inpile.length;i++){
 					if(get.type(lib.inpile[i])=='basic'){
-						list.push(['基本','',lib.inpile[i],null]);
+						list.push(['基本','',lib.inpile[i]]);
 						if(lib.inpile[i]=='sha'){
 							for(var k of get.YB_natureList()){
 								k=get.YB_nature(k);

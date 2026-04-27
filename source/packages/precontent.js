@@ -14,6 +14,7 @@ import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
 // import { characterIntro,nodeintro } from './function.js';
 import { typeimage } from './function.js'
 // import { sgstrxs } from '../sgstrxs.js';
+import { sgczk } from '../sgczk/mode.js';
 import { cyyydsgs } from '../pile/cyyydsgs.js'
 export async function precontent() {
 	
@@ -1466,4 +1467,5 @@ export async function precontent() {
 	// 		extension:'webp',
 	// 	})
 	// }
+	// sgczk();
 }
