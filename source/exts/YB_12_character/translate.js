@@ -1924,6 +1924,10 @@ const translate = {
 
 	zzrsqlkjygzz_shen_luxun:'氪神陆逊',
 	zzrsqlkjygzz_shen_luxun_prefix:'氪神',
+	zzrsqlkjygzz_junlue:'军略',
+	zzrsqlkjygzz_junlue_info:'锁定技，场上所有人体力值每减少1点，你获得1枚“军略”。',
+	zzrsqlkjygzz_cuike:'摧克',
+	zzrsqlkjygzz_cuike_info:'每个回合开始时，你可以横置1名角色并对1名角色造成1点火焰伤害。每个回合结束时，若“军略”数量超过5个，你可以弃全部“军略”并使本技能所有数字加一。',
 
 	zzrsqlkjygzz_yi_sunce:'异孙策',
 	zzrsqlkjygzz_yi_sunce_prefix:'异',
@@ -1935,14 +1939,14 @@ const translate = {
 	zzrsqlkjygzz_shen_sunce:'氪神孙策',
 	zzrsqlkjygzz_shen_sunce_prefix:'氪神',
 	zzrsqlkjygzz_yingba:'英霸',
-	zzrsqlkjygzz_yingba_info:'待填写',
+	zzrsqlkjygzz_yingba_info:'每轮开始时，你可减1点体力上限。你对有“平定”的角色使用牌无距离限制。',
 	zzrsqlkjygzz_pinghe:'冯河',
-	zzrsqlkjygzz_pinghe_info:'待填写',
+	zzrsqlkjygzz_pinghe_info:'锁定技，你的手牌上限等于体力上限。当你受到伤害或体力流失后，你减少等量体力上限并使体力值变为1点；每当你减少体力上限时，其他角色减1点体力上限且获得1没平定标记。',
 
 	zzrsqlkjygzz_yao_zhoutai:'氪妖周泰',
 	zzrsqlkjygzz_yao_zhoutai_prefix:'氪妖',
 	zzrsqlkjygzz_Юbuqu:'不屈',
-	zzrsqlkjygzz_Юbuqu_info:'待填写',
+	zzrsqlkjygzz_Юbuqu_info:'锁定技，你不能成为【杀】的目标。当你处于濒死状态时，你将牌堆顶的一张牌至于你的武将牌上，称为“创”，若此牌的点数与已有的“创”点数均不同，则你将体力回复至1点，否则将其置入弃牌堆。当“创”的数量大于6时，你的“创”可以当手牌打出。',
 	
 
 

@@ -18210,7 +18210,7 @@ const skill = {
 		// audio:'ybsl_sanmeng',
 		mainSkill:true,
 		available:function (mode){
-			if(['guozhan'].includes(mode)) return true;
+			if(['guozhan','taixuhuanjing'].includes(mode)) return true;
 			return false;
 		},
 		trigger:{player:['showCharacterAfter']},
