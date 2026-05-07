@@ -814,6 +814,7 @@ const card = {
 		fullskin:true,
 	},
 	ybsl_107xiaohu1: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip1',
@@ -833,6 +834,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu2: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip2',
@@ -849,6 +851,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu3: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip3',
@@ -868,6 +871,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu4: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip4',
@@ -887,6 +891,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu5: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip5',
@@ -903,6 +908,7 @@ const card = {
 		},
 	},
 	ybsl_107xiaohu6: {
+		derivation:'ybsl_107tushanshuili',
 		fullskin: true,
 		type: 'equip',
 		subtype: 'equip6',
@@ -964,5 +970,17 @@ const card = {
 	},
 	group_YB_dream:{fullskin:true},
 	group_YB_memory:{fullskin:true},
-	
+
+	ybsl_048liuzhiguan:{
+		// bingzhu:['吴爽'],
+		derivation:'ybsl_048wushuang',
+		fullskin: true,
+		type: 'equip',
+		subtype: 'equip5',
+		skills: ['ybsl_048liuzhiguan'],
+		ai: {
+			equipValue: 9
+		},
+	}
+
 }

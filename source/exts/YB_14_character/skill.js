@@ -9651,7 +9651,7 @@ const skill = {
 		},
 		// nopop:true,
 		async cost(event, trigger, player) {
-			event.result = await player.chooseToDiscard('he').forResult();
+			event.result = await player.chooseToDiscard('he').set('prompt',get.prompt('sgsk_zhisheng')).forResult();
 		},
 		content: function () {
 			// 'step 0'
@@ -10974,6 +10974,20 @@ const skill = {
 			player.useCard({ name: 'sha', isCard: false }, trigger.player, 'sgsk_fuchou');
 		},
 	},
+	//----------------------bilibiliup系列
+	bilibiliup_MANA:{
+		marktext:'能',
+		intro:{
+			markcount:function(storage,player){
+				return player.storage.bilibiliup_MANA||0;
+			},
+			content: function(storage, player) {
+				var energy = player.storage.bilibiliup_MANA || 0;
+				return '<li>当前能量：' + energy + '</li>';
+			}
+		},
+
+	},
 
 	bilibiliup_miaomiao:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -11026,63 +11040,112 @@ const skill = {
 	bilibiliup_paiyi:'拍翼',
 	bilibiliup_paiyi_info:'当你受到伤害后，你可以积蓄1点能量（弃置一张牌）；摸牌阶段，你额外摸X张牌（X为能量点数，至多为3）',
 	*/
-	// bilibiliup_quanji:{
-	// 	audio:'ext:夜白神略/audio/character:2',
-	// 	limited:true,
-	// 	trigger:{
-	// 		player:'phaseUseBegin',
-	// 	},
-	// 	enable:'phaseUse',
-	// 	filter(event,player,name){
-	// 		if(name&&name=='phaseUseBegin'){
-	// 			return player.storage.bilibiliup_quanji_open;
-	// 		}
-	// 		else return !player.storage.bilibiliup_quanji_open&&player.countDiscardableCards(player,'he');
-	// 	},
-	// 	init(player,skill){
-	// 		// player.storage.bilibiliup_quanji=0;
-	// 		player.markSkill('bilibiliup_quanji')
-	// 	},
-	// 	marktext:'能',
-	// 	intro:{
-			
-	// 	},
-	// },
-	// bilibiliup_paiyi:{
-	// 	audio: 'ext:夜白神略/audio/character:2',
-	// 	trigger: {
-	// 		player: 'damaged',
-	// 	},
-	// 	filter: function(event, player) {
-	// 		return player.countCards('he') > 0;
-	// 	},
-	// 	async cost(event, trigger, player) {
-	// 		event.result = await player.chooseCard('he').forResult();
-	// 	},
-	// 	content: function() {
-	// 		player.discard(event.cards);
-	// 		if (!player.storage.bilibiliup_paiyi) {
-	// 			player.storage.bilibiliup_paiyi = 0;
-	// 		}
-	// 		player.storage.bilibiliup_paiyi++;
-	// 	},
-	// 	mod: {
-	// 		drawNum: function(num, player) {
-	// 			if (!player.storage.bilibiliup_paiyi) return num;
-	// 			return num + Math.min(3, player.storage.bilibiliup_paiyi);
-	// 		}
-	// 	},
-	// 	init(player) {
-	// 		player.markSkill('bilibiliup_paiyi');
-	// 	},
-	// 	marktext: '翼',
-	// 	intro: {
-	// 		content: function(storage, player) {
-	// 			var energy = player.storage.bilibiliup_paiyi || 0;
-	// 			return '<li>当前能量：' + energy + '</li>';
-	// 		}
-	// 	}
-	// },
+	bilibiliup_quanji:{
+		audio:'ext:夜白神略/audio/character:2',
+		limited:true,
+		trigger:{
+			player:'phaseUseBegin',
+		},
+		enable:'phaseUse',
+		filter(event,player,name){
+			if(name&&name=='phaseUseBegin'){
+				return player.storage.bilibiliup_quanji_open;
+			}
+			else return !player.storage.bilibiliup_quanji_open&&player.countDiscardableCards(player,'he');
+		},
+		init(player,skill){
+			// player.storage.bilibiliup_quanji=0;
+			player.markSkill('bilibiliup_MANA')
+		},
+		async cost(event,trigger,player){
+			event.result = {bool:true,}
+		},
+		subSkill:{
+			zhuangdiqiu:{
+				animationColor: 'thunder',
+				skillAnimation: true,
+			},
+		},
+		selectCard:1,
+		filterCard: true,
+		discard:true,
+		async content(event,trigger,player){
+			if(event.triggername&&event.triggername=='phaseUseBegin'){
+				var resultBefore = await player.chooseToDiscard('he').set('ai',function(card){
+					if(player.countMark('bilibiliup_MANA')>=3)return get.unuseful(card)-player.countMark('bilibiliup_MANA');
+					return get.unuseful(card);
+				}).forResult();
+				if(resultBefore){
+					await huimieguxuli();
+				}
+				else {
+					await huimiegubaozha();
+					return;
+				}
+			}
+			else {
+				player.storage.bilibiliup_quanji_open=true;
+				await huimieguxuli();
+			}
+			async function huimiegubaozha(){
+				await player.awakenSkill('bilibiliup_quanji');
+				let num = player.countMark('bilibiliup_MANA');
+				await player.removeMark('bilibiliup_MANA',num);
+				var targets = game.filterPlayer(function(current){
+					return current!=player;
+				});
+				player.logSkill("bilibiliup_quanji", targets);
+				for(var i of targets){
+					await i.damage(num);
+				}
+			}
+			async function huimieguxuli(){
+				await player.addMark('bilibiliup_MANA',1);
+				if(player.countMark('bilibiliup_MANA')>=3){
+					var result = await player.chooseBool('是否立即释放能量？').forResult();
+					if(result.bool==true){
+						await huimiegubaozha();
+						return;
+					}
+				}
+			}
+		},
+		onremove:function(player){
+			player.storage.bilibiliup_quanji_open=false;
+		}
+	},
+	bilibiliup_paiyi:{
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'damaged',
+		},
+		filter: function(event, player) {
+			return player.countCards('he') > 0;
+		},
+		async cost(event, trigger, player) {
+			event.result = await player.chooseToDiscard('he').set('chooseonly',true).set('ai',function(card){
+				if(player.countMark('bilibiliup_MANA')>=3)return false;
+				return get.unuseful(card);
+			}).forResult();
+		},
+		content: function() {
+			player.discard(event.cards);
+			// if (!player.storage.bilibiliup_MANA) {
+			// 	player.storage.bilibiliup_MANA = 0;
+			// }
+			// player.storage.bilibiliup_MANA++;
+			player.addMard('bilibiliup_MANA',1);
+		},
+		mod: {
+			drawNum: function(num, player) {
+				if (!player.storage.bilibiliup_MANA) return num;
+				return num + Math.min(3, player.storage.bilibiliup_MANA);
+			}
+		},
+		init(player) {
+			player.markSkill('bilibiliup_MANA');
+		},
+	},
 
 
 

@@ -1948,9 +1948,19 @@ const translate = {
 	zzrsqlkjygzz_Юbuqu:'不屈',
 	zzrsqlkjygzz_Юbuqu_info:'锁定技，你不能成为【杀】的目标。当你处于濒死状态时，你将牌堆顶的一张牌至于你的武将牌上，称为“创”，若此牌的点数与已有的“创”点数均不同，则你将体力回复至1点，否则将其置入弃牌堆。当“创”的数量大于6时，你的“创”可以当手牌打出。',
 	
-
-
-
+	zzrsqlkjygzz_boss_lvbu:'氪虎牢神吕布',
+	zzrsqlkjygzz_boss_lvbu_prefix:'氪虎牢神',
+	zzrsqlkjygzz_jiwu:'极武',
+	zzrsqlkjygzz_jiwu_info:`出牌阶段，你可以弃置一张牌，然后本回合获得下列技能中的一个：〖${get.poptip("minireqiangxi")}〗、〖${get.poptip("minisbtieji")}〗、〖${get.poptip("decadexuanfeng")}〗、〖${get.poptip("minirewansha")}〗。`,
+	//对你没看错，是手牌。原文这么写的
+	minireqiangxi: '强袭',
+    minireqiangxi_info: '出牌阶段对每名其他角色限一次，你可以失去1点体力并摸一张牌，对你攻击范围内的一名其他角色造成1点伤害；其他角色受到伤害时，你可以弃置一张装备牌并令伤害值+1。',
+	minisbtieji: '铁骑',
+    minisbtieji_info: '①当你使用【杀】指定其他角色为目标后，你可以令目标角色不能响应此【杀】，且其所有非锁定技失效直到回合结束。然后你与其进行谋弈。若你赢，且你选择的选项为：“直取敌营”，则你获得其一张牌；“扰阵疲敌”，你摸两张牌。②当你谋弈成功后，你本回合使用【杀】的次数上限+1，然后你可以弃置一张牌并从牌堆或弃牌堆获得一张【杀】。',
+	// zzrsqlkjygzz_xuanfeng:'旋风',
+	// zzrsqlkjygzz_xuanfeng_info:'。',
+	minirewansha: '完杀',
+	minirewansha_info: '锁定技，你的回合内，只有你可以使用【桃】；出牌阶段开始时，你可令一名体力值大于1的其他角色失去1点体力，本阶段结束时，其回复1点体力。',
 
 
 

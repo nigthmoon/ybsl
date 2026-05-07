@@ -900,6 +900,7 @@ const translate = {
 	
 	//\u865a\u62df\u4e3b\u64ad
 	bilibiliup:'\u865a\u62df\u4e3b\u64ad',
+	bilibiliup_MANA:'能量',
 
 	bilibiliup_jiangali:'\u6c5f\u963f\u9ca4',//\u9ca4\u6210\u7891
 	bilibiliup_guanyueliuli:'\u89c2\u6708\u7409\u7483Ruri',//\u9c7cai\u55b5
@@ -930,6 +931,8 @@ const translate = {
 	bilibiliup_wenyuexu:'\u82b1\u68a8\u54b2\u591c',//\u54b2\u5bb5\u591c
 	bilibiliup_xueyuer:'\u96ea\u7fbder',//\u9cd5\u55b5\u9c7c
 	bilibiliup_xueyuer_ab:'\u96ea\u7fbd\u513f',
+	bilibiliup_lipo:'罹迫',
+	bilibiliup_lipo_info:'锁定技，每轮开始时，你需选择：①失去你六大阶段的最后一个阶段，然后摸五张牌并移去所有“罹”；②获得一枚“罹”，然后若“罹”大于你因此失去的阶段数，你死亡。每个阶段每轮限一次，当其他角色执行你失去过的阶段后，你可以执行之。',
 	bilibiliup_qingxiaozhi:'\u6674\u5c0f\u6800-\u5634\u6bd2\u7248',//\u7b71\u6674\u4eba	// bilibiliup_jiangyi:'\u6c5f\u4ea6_k',//\u6f58\u5b8f
 	bilibiliup_qingxiaozhi_ab:'\u6674\u5c0f\u6800',
 	bilibiliup_qinian:'Sin\u7941\u5ff5-',//S\u4e03\u5e74
@@ -943,7 +946,7 @@ const translate = {
 	bilibiliup_xiazhisha_ab:'\u590f\u7ec7\u7eb1',
 	bilibiliup_qiyuan:'\u6816\u82d1\u592a\u56f0\u8fbd',//\u82d1\u5927\u5934
 	bilibiliup_quanji:'全寄',
-	bilibiliup_quanji_info:'限定技，出牌阶段，你可以积蓄1点能量（弃置一张牌），然后此后每个出牌阶段开始时，你需选择：继续积蓄1点能量或释放能量（移去全部能量，然后对全场所有角色各造成释放能量点伤害。）。当你积蓄能量后，若能量不少于3，你可以立即释放。',
+	bilibiliup_quanji_info:'限定技，出牌阶段，你可以积蓄1点能量（弃置一张牌），然后此后每个出牌阶段开始时，你需选择：继续积蓄1点能量或释放能量（移去全部能量，然后对全场所有其他角色各造成释放能量点伤害。）。当你积蓄能量后，若能量不少于3，你可以立即释放。',
 	bilibiliup_paiyi:'拍翼',
 	bilibiliup_paiyi_info:'当你受到伤害后，你可以积蓄1点能量（弃置一张牌）；摸牌阶段，你额外摸X张牌（X为能量点数，至多为3）',
 	bilibiliup_xinglisisi:'\u674f\u91cc\u4e1d\u4e1d',//\u5fc6\u4e1d\u4e1d
@@ -957,6 +960,15 @@ const translate = {
 	bilibiliup_xiaotaosheng_ab:'\u5c0f\u6843\u7b19',
 	bilibiliup_suilin:'\u5c81\u51dbLynn',//\u4e09\u767e\u5c81	//\u5668\u7075\u5c81\u5ddd
 	bilibiliup_suilin_ab:'\u5c81\u5ddd',
+	bilibiliup_hualing:'化灵',
+	bilibiliup_hualing_info:'锁定技，你始终废除装备栏，且不能成为装备牌的目标。游戏开始时，你获得空的【结缘之琴】（置于武将牌上，如拥有装备技能般拥有【结缘之琴】技能。）',
+	bilibiliup_yuanding:'缘定',
+	bilibiliup_yuanding_info:'每轮开始时，你选择一种装备，获得该装备技能。每轮结束时，若你本轮未成为过牌的目标，或你本轮使用本轮获得的装备技能3次及以上，你将该装备技能撰录在【结缘之琴】上。否则你失去此技能。',
+	bilibiliup_hundang:'魂荡',
+	bilibiliup_hundang_info:'锁定技，每轮结束时，若你连续3轮没有成为过牌或技能的目标，你离场，并将你的【结缘之琴】加入牌堆。（手牌中有你的【结缘之琴】的角色可以将之置于武将牌上，如拥有装备技能般拥有【结缘之琴】技能。）',
+	bilibiliup_jieyuanzhiqin:'结缘之琴',
+	bilibiliup_jieyuanzhiqin_bg:'缘',
+	bilibiliup_jieyuanzhiqin_info:'',
 	bilibiliup_baozai:'\u634f\u634f\u9971\u5d3d',//\u6c49\u9971\u9601
 	bilibiliup_baozai_ab:'\u9971\u5d3d',
 	bilibiliup_mixieer:'\u5c0f\u5c0f\u97f3\u4e50\u5bb6\u7c73\u6b47\u5c14',//\u7c73MI\u56e2
@@ -977,11 +989,184 @@ const translate = {
 	bilibiliup_haitang_ab:'\u6d77\u68e0',
 	bilibiliup_shunhua:'\u77ac\u534e_Iris',//\u6d41\u5149\u8bcd
 	bilibiliup_shunhua_ab:'\u77ac\u534e',
+	bilibiliup_luoxinye:'\u6d1b\u6b46\u53f6',//\u6b46\u4e0a\u8bd7
+	bilibiliup_anxia:'\u5b89\u590fCharila',
+	bilibiliup_anxia_ab:'\u5b89\u590f',
+
+	bilibiliup_luoti:'\u6d1b\u7f07YUI',
+	bilibiliup_luoti_ab:'\u6d1b\u7f07',
+    bilibiliup_linyoujiang:'\u51db\u67da\u9171ovo',
+    bilibiliup_linyoujiang_ab:'\u51db\u67da\u9171',
+    bilibiliup_shiyouzai:'\u91ca\u5fe7\u5d3d',
+	bilibiliup_mili:'\u7c73\u7c92Yuki',
+    bilibiliup_mili_ab:'\u7c73\u7c92',
+	bilibiliup_shijue:'\u8bc6\u599c',
+	bilibiliup_bingjiang:'\u997c\u9171',
+	bilibiliup_nanshu:'\u662f\u5357\u6e86\u5416OvO',
+	bilibiliup_nanshu_ab:'\u5357\u6e86',
+	bilibiliup_tangtang:'\u7cd6\u7cd6\u5403\u80d6\u4e86',
+	bilibiliup_tangtang_ab:'\u7cd6\u7cd6',
+	bilibiliup_maoyouyou:'\u732b\u53c8\u53c8\u662f\u5927\u8033\u6735\u602a\u53eb\u9a74',
+	bilibiliup_maoyouyou_ab:'\u732b\u53c8\u53c8',
+	bilibiliup_ruanruan:'\u8f6f\u8f6friu',
+	bilibiliup_ruanruan_ab:'\u8f6f\u8f6f',
+	bilibiliup_baibai:'\u767d\u767d_BaiBai_',
+	bilibiliup_baibai_ab:'\u767d\u82b7',
+	bilibiliup_baobaolucky:'\u9971\u9971-Lucky',
+	bilibiliup_baibaolucky_ab:'\u9971\u9971',
+	bilibiliup_shuangshuang:'\u971c\u971cHazel-',
+	bilibiliup_shuangshuang_ab:'\u971c\u971c',
+	bilibiliup_guziyun:'\u987e\u5b50\u97f5_w',
+	bilibiliup_guziyun_ab:'\u987e\u5b50\u97f5',
 
 
+	bilibiliup_feiyanlira:'\u7eef\u989cLira', //\u517b\u989c
+	bilibiliup_feiyanlira_ab:'\u7eef\u989c',
 
+	bilibiliup_yingzi:'\u6a31\u5b50-\u706b\u9e21\u9762\u68a6\u5973', //\u8426\u5624\u7f28
+	bilibiliup_yingzi_ab:'\u6a31\u5b50',
 
+	bilibiliup_yuanqing:'\u9e22\u6674\u8338\u8338Chororo', //\u6709\u9e22\u6674
+	bilibiliup_yuanqing_ab:'\u9e22\u6674',
 
+	bilibiliup_galiyang:'\u5496\u55b1\u7f8a_Kari', //\u7f8a\u8089\u5bf3
+	bilibiliup_galiyang_ab:'\u5496\u55b1\u7f8a',
+
+	bilibiliup_tangdemao:'\u7528\u62371752971587654', //\u5802\u7684\u732b
+
+	bilibiliup_bohetangowo:'\u8584\u8377\u7cd6owo', //\u7cd6\u6027\u604b
+	bilibiliup_bohetangowo_ab:'\u8584\u8377\u7cd6',
+
+	bilibiliup_xueyuEira:'\u96ea\u7fbdEira\u8d2a\u8d22\u597d\u8272', //\u96ea\u9335\u7cd5
+	bilibiliup_xueyuEira_ab:'\u96ea\u7fbd\u8bf6',
+
+	bilibiliup_miaonai:'\u309a\u55b5\u5948', //\u54fa\u732b\u4eba
+
+	bilibiliup_yunyiAria:'\u5141\u9038Aria',//Aria
+	bilibiliup_yunyiAria_ab:'\u5141\u9038',
+
+	bilibiliup_yuyuyumi:'\u94b0\u94b0Yumi', //\u5c0f\u94b0\u8ff7
+	bilibiliup_yuyuyumi_ab:'\u94b0\u94b0',
+
+	bilibiliup_wanwanneko:'\u5a49\u5a49Neko', //\u5a49\u5c81\u723a
+	bilibiliup_wanwanneko_ab:'\u5a49\u5a49',
+
+	bilibiliup_chachadawang:'\u8336\u8336\u5927\u738b\u4e36', //\u5de1\u8336\u4f7f
+	bilibiliup_chachadawang_ab:'\u8336\u8336',
+
+	bilibiliup_jingyimumu:'\u4e95\u4f0a\u6728\u6728', //\u4e95\u4f0a\u5473
+
+	bilibiliup_liliz:'\u674e\u674e\u674e\u674e\u5b50zi', //\u6ca1\u674e\u6bdb
+	bilibiliup_liliz_ab:'\u674e\u674e',
+
+	bilibiliup_cangjia:'\u82cd\u846dCynthia', //\u846d\u7279\u7075
+	bilibiliup_cangjia_ab:'\u82cd\u846d',
+
+	bilibiliup_tangyuansishui:'\u6c64\u5706\u56db\u6c34', //\u5403\u5706\u5706
+
+	bilibiliup_yimengNami:'\u6f2a\u68a6Nami_\u662f\u7231\u7b11\u7684\u5fa1\u59d0', //\u68a6\u5619\u6c64
+	bilibiliup_yimengNami_ab:'\u6f2a\u68a6', //\u68a6\u5619\u6c64
+
+	bilibiliup_zheyuanlulu:'\u6298\u539f\u9732\u9732', //\u81ea\u9e82\u4eba
+
+	bilibiliup_muman:'\u6c90\u66fc-mua', //\u6c90\u6c90ma
+	bilibiliup_muman_ab:'\u6c90\u66fc',
+	//\u6708\u5149\u70db
+	bilibiliup_zhubao:'\u70db\u5b9d\u54d2', //\u6708\u5149\u70db
+	bilibiliup_zhubao_ab:'\u70db\u5b9d',
+	//\u5c0f\u72d7\u62b1
+	bilibiliup_gulugululu:'\u5495\u565c\u547c\u565c\u565clu', //\u5c0f\u72d7\u62b1
+	bilibiliup_gulugululu_ab:'\u5495\u565c',
+	//\u68c9\u7ef5\u5154
+	bilibiliup_chunyuanxiaotu:'\u693f\u82d1\u5c0f\u5154', //\u68c9\u7ef5\u5154
+	//\u5927\u68a8\u6811
+	// bilibiliup_zhanghaoyizx:'\u8d26\u53f7\u5df2\u6ce8\u9500', //\u5927\u68a8\u6811
+	//\u5495\u7483\u591a
+	bilibiliup_aligu:'\u963f\u7483\u5495_aligu', //\u5495\u7483\u591a
+	bilibiliup_aligu_ab:'\u963f\u7483\u5495',
+	//\u53ea\u5c41\u706f
+	bilibiliup_liuyingBliss:'\u6d41\u8424_Bliss', //\u53ea\u5c41\u706f
+	bilibiliup_liuyingBliss_ab:'\u6d41\u8424',
+	//\u5728\u6021\u8d77
+	bilibiliup_yizaic:'\u6021\u5d3d\u662f\u5976\u51f6\u66b4\u9f99', //\u5728\u6021\u8d77
+	bilibiliup_yizaic_ab:'\u6021\u5d3d',
+	//\u4f5f\u9523\u6e7e
+	bilibiliup_goubuli:'\u72d7\u4e0d\u7406\u4f5f', //\u4f5f\u9523\u6e7e
+	bilibiliup_goubuli_ab:'\u4f5f\u4f5f',
+	//\u671b\u7ca5\u77e5
+	bilibiliup_zhouzhou:'\u7ca5\u7ca5\u71ac\u4e0d\u52a8', //\u671b\u7ca5\u77e5
+	bilibiliup_zhouzhou_ab:'\u7ca5\u7ca5',
+	//\u54b2\u5bb5\u591c
+	// bilibiliup_hualixiaoye:'\u82b1\u68a8\u54b2\u591c', //\u54b2\u5bb5\u591c
+	//\u82cf\u54d2\u7c89
+	bilibiliup_susuyaer:'\u9165\u9165\u96c5\u513f-\u597d\u8fd0\u964d\u4e34', //\u82cf\u54d2\u7c89
+	bilibiliup_susuyaer_ab:'\u9165\u9165\u96c5\u513f',
+	//\u8c03\u9152\u4f8d
+	bilibiliup_yaoyaojiu:'YaoYao\u9152', //\u8c03\u9152\u4f8d
+	bilibiliup_yaoyaojiu_ab:'\u9152',
+	//\u661f\u8336\u95e8
+	bilibiliup_xingyaoxyao:'\u661f\u7476Xyao', //\u661f\u8336\u95e8
+	bilibiliup_xingyaoxyao_ab:'\u661f\u7476',
+	//\u7c89\u4e1d\u56e2
+	// bilibiliup_tutxy:'TuT-xy', //\u7c89\u4e1d\u56e2
+	//\u839c\u732b\u997c
+	bilibiliup_youna:'\u839c\u5a1cYuna', //\u839c\u732b\u997c
+	bilibiliup_youna_ab:'\u839c\u5a1c',
+	//\u8c79\u5fc6\u4e1d
+	bilibiliup_baobao:'\u62b1\u62b1\u53c8\u56f0\u4e86', //\u8c79\u5fc6\u4e1d
+	//\u7eaflove
+	bilibiliup_jiangyichun:'\u6c5f\u58f9\u7eaf', //\u7eaflove
+	//\u55b5\u795e\u795e
+	bilibiliup_xiaomiao:'\u5c0f\u732b\u795emiko', //\u55b5\u795e\u795e
+	bilibiliup_xiaomiao_ab:'\u5c0f\u732b\u795e',
+	//\u517b\u9e45\u738b
+	bilibiliup_jizhitian:'\u673a\u667a\u5929\u5929\u9e45', //\u517b\u9e45\u738b
+	//\u7535\u6ce2\u7ebf
+	bilibiliup_yuzhongneo:'\u96e8\u4e2dNeo', //\u7535\u6ce2\u7ebf
+	bilibiliup_yuzhongneo_ab:'\u96e8\u4e2d',
+	//\u4f69\u5b9d\u5b9d
+	bilibiliup_apeipe:'\u963f\u4f69\u4f69\u4e0d\u60f3\u4e0b\u996d', //\u4f69\u5b9d\u5b9d
+	bilibiliup_apeipe_ab:'\u963f\u4f69\u4f69',
+	//\u5b89\u5854
+	bilibiliup_mifara:'\u7c73\u6cd5\u62c9Mifara', //\u5b89\u5854
+	bilibiliup_mifara_ab:'\u7c73\u6cd5\u62c9',
+	//\u6d77\u6817\u997c
+	bilibiliup_fulian:'\u8299\u6817\u5b89Frian', //\u6d77\u6817\u997c
+	bilibiliup_fulian_ab:'\u8299\u6817\u5b89',
+	//\u5154\u4e43\u4e43
+	bilibiliup_yizhitu:'\u4e00\u53ea\u5154\u5976\u5305', //\u5154\u4e43\u4e43
+	//\u5b88\u72d0\u94c3
+	bilibiliup_xiayelingling:'\u590f\u91ce\u94c3\u94c3', //\u5b88\u72d0\u94c3
+	//\u4e0a\u8336\u4ebf
+	bilibiliup_zhuMay:'\u7af9\u9ebb\u4e9a\u8336Chya_', //\u4e0a\u8336\u4ebf
+	bilibiliup_zhuMay_ab:'\u7af9\u9ebb\u4e9a\u8336',
+	//\u7eb1\u5948\u5948
+	// bilibiliup_zhanghaoyizx2:'\u8d26\u53f7\u5df2\u6ce8\u9500', //\u7eb1\u5948\u5948
+	//\u60a0\u7f8a\u7fa4
+	bilibiliup_yangyou:'\u7f8a\u60a0\u60a0-', //\u60a0\u7f8a\u7fa4
+	bilibiliup_yangyou_ab:'\u7f8a\u60a0\u60a0',
+	//\u9500\u9500\u697d
+	bilibiliup_zhanghao:'\u8cec\u865f\u5df2\u6ce8\u9500_', //\u9500\u9500\u697d
+	bilibiliup_zhanghao_ab:'\u8cec\u865f\u5df2\u6ce8\u9500',
+	//\u4e07\u7a57\u723a
+	bilibiliup_asui:'\u963f\u7a57\u5728\u6b64', //\u4e07\u7a57\u723a
+	bilibiliup_asui_ab:'\u963f\u7a57',
+	//\u8981\u68a8\u7ba1
+	bilibiliup_liwo:'\u68a8\u6da1_Nasiko', //\u8981\u68a8\u7ba1
+	bilibiliup_liwo_ab:'\u68a8\u6da1',
+	//\u8fbe\u4f36
+	bilibiliup_chinailin:'\u6c60\u5948\u4f36rei', //\u8fbe\u4f36
+	bilibiliup_chinailin_ab:'\u6c60\u5948\u4f36',
+	//\u97f3\u6ce2\u7cd6
+	bilibiliup_shiqiyin:'\u5341\u4e03\u97f3Sebun', //\u97f3\u6ce2\u7cd6
+	bilibiliup_shiqiyin_ab:'\u5341\u4e03\u97f3',
+	//\u56fd\u5c9aV
+	bilibiliup_zilan:'\u4e4b\u5c9a_Lan', //\u56fd\u5c9aV
+	bilibiliup_zilan_ab:'\u4e4b\u5c9a',
+	//\u9e7f\u996e\u6eaa
+	bilibiliup_jiuselu:'\u9e7f\u996e\u6eaaruru',//\u6c3f\u6da9\u9e7f
+	bilibiliup_jiuselu_ab:'\u9e7f\u996e\u6eaa',
+	
 
 
 
@@ -993,6 +1178,7 @@ const translate = {
 	//\u5fe7baby
 
 
+	//狐妹子
 
 
 

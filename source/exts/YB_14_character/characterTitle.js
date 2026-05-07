@@ -148,5 +148,128 @@ const characterTitle = {//称号
 	bilibiliup_tutu:'\u6ca1\u94b1\u837c',//
 	bilibiliup_haitang:'\u68e0\u68e0\u54aa',//
 	bilibiliup_shunhua:'\u6d41\u5149\u8bcd',//
+	bilibiliup_luoxinye:'\u6b46\u4e0a\u8bd7',//
+	bilibiliup_anxia:'\u590f\u4e09\u9e7f',
+	bilibiliup_luoti:'\u5b88\u7f07\u661f',
+    bilibiliup_linyoujiang:'\u62bd\u8d1d\u8d1d',
+    bilibiliup_shiyouzai:'\u5fe7baby',
+	bilibiliup_mili:'\u7c73\u7acb\u4e86',
+	bilibiliup_shijue:'\u7231\u8bc6\u599c',
+	bilibiliup_bingjiang:'\u4f0a\u53ea\u997c',
+	bilibiliup_nanshu:'\u6e86\u59d1\u5a18',
+	bilibiliup_tangtang:'\u7cca\u7cd6',
+	bilibiliup_maoyouyou:'ab\u8fd8\u94b1',
+	bilibiliup_ruanruan:'\u8f6f\u996d\u5154',
+	bilibiliup_baibai:'\u767d\u5b9d\u7a25',
+	bilibiliup_baobaolucky:'\u9971\u513f\u55dd',
+	bilibiliup_shuangshuang:'\u971c\u5c0f\u602a',
+	bilibiliup_guziyun:'yuunnn',
 
+	bilibiliup_feiyanlira:'\u517b\u989c',
+
+	bilibiliup_yingzi:'\u8426\u5624\u7f28',
+
+	bilibiliup_yuanqing:'\u6709\u9e22\u6674',
+
+	bilibiliup_galiyang:'\u7f8a\u8089\u5bf3',
+
+	bilibiliup_tangdemao:'\u5802\u7684\u732b',
+
+	bilibiliup_bohetangowo:'\u7cd6\u6027\u604b',
+
+	bilibiliup_xueyuEira:'\u96ea\u9335\u7cd5',
+
+	bilibiliup_miaonai:'\u54fa\u732b\u4eba',
+
+	bilibiliup_yunyiAria:'Aria',
+
+	bilibiliup_yuyuyumi:'\u5c0f\u94b0\u8ff7',
+
+	bilibiliup_wanwanneko:'\u5a49\u5c81\u723a',
+
+	bilibiliup_chachadawang:'\u5de1\u8336\u4f7f',
+
+	bilibiliup_jingyimumu:'\u4e95\u4f0a\u5473',
+
+	bilibiliup_liliz:'\u6ca1\u674e\u6bdb',
+
+	bilibiliup_cangjia:'\u846d\u7279\u7075',
+
+	bilibiliup_tangyuansishui:'\u5403\u5706\u5706', //\u5403\u5706\u5706
+
+	bilibiliup_yimengNami:'\u68a6\u5619\u6c64',
+
+	bilibiliup_zheyuanlulu:'\u81ea\u9e82\u4eba',
+
+	bilibiliup_muman:'\u6c90\u6c90ma',
+	//\u6708\u5149\u70db
+	bilibiliup_zhubao:'\u6708\u5149\u70db',
+	//\u5c0f\u72d7\u62b1
+	bilibiliup_gulugululu:'\u5c0f\u72d7\u62b1',
+	//\u68c9\u7ef5\u5154
+	bilibiliup_chunyuanxiaotu:'\u68c9\u7ef5\u5154',
+	//\u5927\u68a8\u6811
+	// bilibiliup_zhanghaoyizx:'\u5927\u68a8\u6811',
+	//\u5495\u7483\u591a
+	bilibiliup_aligu:'\u5495\u7483\u591a',
+	//\u53ea\u5c41\u706f
+	bilibiliup_liuyingBliss:'\u53ea\u5c41\u706f',
+	//\u5728\u6021\u8d77
+	bilibiliup_yizaic:'\u5728\u6021\u8d77',
+	//\u4f5f\u9523\u6e7e
+	bilibiliup_goubuli:'\u4f5f\u9523\u6e7e',
+	//\u671b\u7ca5\u77e5
+	bilibiliup_zhouzhou:'\u671b\u7ca5\u77e5',
+	//\u54b2\u5bb5\u591c
+	// bilibiliup_hualixiaoye:'\u82b1\u68a8\u54b2\u591c', //\u54b2\u5bb5\u591c
+	//\u82cf\u54d2\u7c89
+	bilibiliup_susuyaer:'\u82cf\u54d2\u7c89',
+	//\u8c03\u9152\u4f8d
+	bilibiliup_yaoyaojiu:'\u8c03\u9152\u4f8d',
+	//\u661f\u8336\u95e8
+	bilibiliup_xingyaoxyao:'\u661f\u8336\u95e8',
+	//\u7c89\u4e1d\u56e2
+	// bilibiliup_tutxy:'TuT-xy', //\u7c89\u4e1d\u56e2
+	//\u839c\u732b\u997c
+	bilibiliup_youna:'\u839c\u732b\u997c',
+	//\u8c79\u5fc6\u4e1d
+	bilibiliup_baobao:'\u8c79\u5fc6\u4e1d',
+	//\u7eaflove
+	bilibiliup_jiangyichun:'\u7eaflove',
+	//\u55b5\u795e\u795e
+	bilibiliup_xiaomiao:'\u55b5\u795e\u795e',
+	//\u517b\u9e45\u738b
+	bilibiliup_jizhitian:'\u517b\u9e45\u738b',
+	//\u7535\u6ce2\u7ebf
+	bilibiliup_yuzhongneo:'\u7535\u6ce2\u7ebf',
+	//\u4f69\u5b9d\u5b9d
+	bilibiliup_apeipe:'\u4f69\u5b9d\u5b9d',
+	//\u5b89\u5854
+	bilibiliup_mifara:'\u5b89\u5854',
+	//\u6d77\u6817\u997c
+	bilibiliup_fulian:'\u6d77\u6817\u997c',
+	//\u5154\u4e43\u4e43
+	bilibiliup_yizhitu:'\u5154\u4e43\u4e43',
+	//\u5b88\u72d0\u94c3
+	bilibiliup_xiayelingling:'\u5b88\u72d0\u94c3',
+	//\u4e0a\u8336\u4ebf
+	bilibiliup_zhuMay:'\u4e0a\u8336\u4ebf',
+	//\u7eb1\u5948\u5948
+	// bilibiliup_zhanghaoyizx2:'\u7eb1\u5948\u5948',
+	//\u60a0\u7f8a\u7fa4
+	bilibiliup_yangyou:'\u60a0\u7f8a\u7fa4',
+	//\u9500\u9500\u697d
+	bilibiliup_zhanghao:'\u9500\u9500\u697d',
+	//\u4e07\u7a57\u723a
+	bilibiliup_asui:'\u4e07\u7a57\u723a',
+	//\u8981\u68a8\u7ba1
+	bilibiliup_liwo:'\u8981\u68a8\u7ba1',
+	//\u8fbe\u4f36
+	bilibiliup_chinailin:'\u8fbe\u4f36',
+	//\u97f3\u6ce2\u7cd6
+	bilibiliup_shiqiyin:'\u97f3\u6ce2\u7cd6',
+	//\u56fd\u5c9aV
+	bilibiliup_zilan:'\u56fd\u5c9aV',
+	//\u9e7f\u996e\u6eaa
+	bilibiliup_jiuselu:'\u6c3f\u6da9\u9e7f',
 }

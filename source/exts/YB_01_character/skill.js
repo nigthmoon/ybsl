@@ -12522,6 +12522,12 @@ const skill = {
 			}
 		}
 	},
+	// ybsl_048liuzhiguan:{
+	// 	equipSkill:true,
+	// 	trigger:{
+	// 		player:'damageAfter',
+	// 	},
+	// },
 	//--------------------王婉儿049
 	yb049_rongxiao:{
 		audio:'ext:夜白神略/audio/character:2',

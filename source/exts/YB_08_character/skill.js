@@ -1644,7 +1644,189 @@ const skill = {
 	// 其可以将位于弃牌堆的此牌置入仁库，然后若其不为蜀势力，
 	// 你可令其改为蜀势力，否则你可以发动〖技一〗的第一句。',
 
-
+	//关羽
+	ybmjz_yijue:{
+		audio:'yijue',
+		trigger: { player: "useCardToTargeted" },
+		forced:true,
+		filter(event, player){
+			if(event.card.name=='sha'&&event.targets&&event.targets.length==1){
+				return true;
+			}
+		},
+		content: async function (event,trigger,player) {
+			var result = await player.chooseControl().set('choiceList', ['令此【杀】效果改为恢复，若此【杀】未命中，你摸两张牌，然后你对其使用牌无次数限制、其不能使用或打出手牌且非锁定技失效直到回合结束','此【杀】伤害+1']).set('prompt', '义绝：清选择一项').forResult();
+			if(result.index == 0){
+				trigger.card.ybmjz_yijue_recover=true;
+				player.addTempSkill('ybmjz_yijue_recover');
+			}
+			else {
+				trigger.getParent().baseDamage++;
+			}
+		},
+		subSkill:{
+			recover:{
+				forced:true,
+				charlotte:true,
+				audio:'yijue',
+				trigger:{source:'damageBegin4',player:'shaMiss'},
+				filter(event, player){
+					if(event.card&&event.card.ybmjz_yijue_recover){
+						return true;
+					}
+				},
+				async content(event,trigger,player){
+					if(event.triggername=='damageBegin4'){
+						trigger.cancel();
+						trigger.player.recover(trigger.num);
+					}
+					else {
+						await player.draw(2);
+						if(trigger.targets?.length>0){
+							for(var i of trigger.targets){
+								if (!i.hasSkill("fengyin")) {
+									i.addTempSkill("fengyin");
+								}
+								i.YB_tempy('ybmjz_yijue_kill');
+							}
+						}
+					}
+					
+				},
+			},
+			kill:{
+				charlotte:true,
+				onremove:true,
+				mod:{
+					cardEnabled2(card) {
+						if (get.position(card) == "h") {
+							return false;
+						}
+					},
+				},
+				mark:true,
+				marktext:'义绝',
+				intro:{
+					content:function(storage,player){
+						return '本回合不能使用或打出手牌';
+					}
+				},
+			}
+		},
+		mod:{
+			cardUsableTarget(card, player, target) {
+				if (target.hasSkill("ybmjz_yijue_kill")) {
+					return true;
+				}
+			},
+		}
+	},
+	ybmjz_yijuex:{
+		audio:'yijue',
+		trigger: { player: "useCardToTargeted" },
+		forced:true,
+		filter(event, player){
+			if(event.card.name=='sha'&&event.targets&&event.targets.length==1){
+				return true;
+			}
+		},
+		content: async function (event,trigger,player) {
+			var list1 = ['选项一','选项二'];
+			var result = await player.chooseControl(list1).set('choiceList', ['令此【杀】效果改为恢复','此【杀】伤害+1']).set('ai',function(event, player){
+				const choices = _status.event.controls.slice().remove("cancel2"),
+					evt = _status.event.getTrigger();
+				if(!player.storage.ybmjz_yijuex_kill||!player.storage.ybmjz_yijuex_kill.includes(evt.target))return _status.event.controls.slice().randomGet();
+				else {
+					if(get.recoverEffect(evt.target,player))return '选项一'
+					else if(get.attitude(player,evt.target)<0&&get.damageEffect(evt.target,player,player)<5)return '选项一';
+					return '选项二';
+				}
+			}).set('prompt', '义绝：请选择一项').forResult();
+			const con1 = result.control;
+			if(result.control == '选项一'){
+				trigger.card.ybmjz_yijuex_recover=true;
+				player.addTempSkill('ybmjz_yijuex_recover');
+			}
+			else {
+				trigger.getParent().baseDamage++;
+			}
+			var list2 = [];
+			var bool = (player.hasSkill('ybmjz_yijuex_kill')&&player.storage.ybmjz_yijuex_kill&&player.storage.ybmjz_yijuex_kill.includes(trigger.target));
+			var player2 = bool?player:trigger.target;
+			var str1 = bool?'令其交给你一张手牌令此杀无效':'交给'+get.translation(player)+'一张手牌令此杀无效';
+			if(!trigger.target.countCards('h')){
+				str1 = '<span style="opacity:0.5">'+str1+'</span>';
+			}
+			else{
+				list2.push('选项一');
+			}
+			list2.push('选项二');
+			var result2 = await player2.chooseControl(list2).set('choiceList', [str1,'此【杀】不可响应']).set('prompt', '义绝：请选择如何应对').set('ai',function(event, player){
+				const choices = _status.event.controls.slice().remove("cancel2"),
+					evt = _status.event.getTrigger();
+				if(choices.length == 1)return choices[0];
+				else if(event.bool){
+					if(get.recoverEffect(evt.target,player))return '选项一'
+					else {
+						if(get.attitude(player,evt.target)<0&&get.damageEffect(evt.target,player,player)<5)return '选项一';
+						else return '选项二';
+					}
+				}
+				return _status.event.controls.slice().randomGet();
+			}).set('bool',bool).forResult();
+			const con2 = result2.control;
+			if(result2.control == '选项一'){
+				game.log(trigger.target, "选择上贡");
+				var result3 = await trigger.target.chooseCard("h", "将一张手牌交给" + get.translation(player), true).forResult();
+				if(result3.bool){
+					trigger.target.give(result3.cards,player,'give');
+				}
+				trigger.getParent().excluded.add(trigger.target);
+			}
+			else{
+				game.log(trigger.target, "选择不可响应", trigger.card);
+				trigger.set("directHit", true);
+			}
+			if(con1==con2){
+				const stat = player.getStat().card,
+					name = trigger.card.name;
+				if (typeof stat[name] === "number") {
+					stat[name]--;
+				}
+				player.YB_tempz('ybmjz_yijuex_kill',[trigger.target])
+			}
+		},
+		subSkill:{
+			recover:{
+				forced:true,
+				charlotte:true,
+				audio:'yijue',
+				trigger:{source:'damageBegin4'},
+				filter(event, player){
+					if(event.card&&event.card.ybmjz_yijuex_recover){
+						return true;
+					}
+				},
+				async content(event,trigger,player){
+					if(event.triggername=='damageBegin4'){
+						trigger.cancel();
+						trigger.player.recover(trigger.num);
+					}
+				}
+			},
+			kill:{
+				charlotte:true,
+				onremove:true,
+				mark:true,
+				marktext:'义绝',
+				intro:{
+					content:function(storage,player){
+						return '本回合'+get.translation(storage)+'应对义绝由你决定。';
+					}
+				},
+			}
+		},
+	},
 
 
 	//黄月英

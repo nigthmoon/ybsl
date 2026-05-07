@@ -101,7 +101,8 @@ const character = { //武将格式 :
 		hp : 3,
 		skills : ['Fe2O3_guanji', 'Fe2O3_weixuan'],
 		names : '诸葛|亮',
-		linkTo:'zhugeliang'
+		linkTo:'zhugeliang',
+		YB_mjz: 're_zhugeliang',
 	},//诸葛亮
 	Fe2O3_zhaoyun : {
 		group : 'shu',
@@ -115,7 +116,8 @@ const character = { //武将格式 :
 		sex : 'male',
 		hp : 4,
 		linkTo:'dengai',
-		skills : ['ddddssssbbbb_chouxuan']
+		skills : ['ddddssssbbbb_chouxuan'],
+		YB_mjz: 'bigsb_dengai',
 	},//邓艾
 	zxunnamed_gongsunyuan : {
 		sex : 'male',
@@ -131,7 +133,7 @@ const character = { //武将格式 :
 		hp : 3,
 		skills : ['FeO3_dafei', 'FeO3_zhengjie', 'FeO3_jinqi'],
 		names : '诸葛|亮',
-		linkTo : 'zhugeliang'
+		linkTo : 'zhugeliang',
 	},//诸葛亮
 	Fe3O4_zhugeliang : {
 		group : 'shu',
@@ -139,7 +141,8 @@ const character = { //武将格式 :
 		hp : 3,
 		skills : ['Fe3O4_chichi', 'Fe2O3_chichi'],
 		names : '诸葛|亮',
-		linkTo : 'zhugeliang'
+		linkTo : 'zhugeliang',
+		YB_mjz: 'ns_zhugeliang',
 	},//到底还有多少诸葛亮
 	
 	
@@ -207,7 +210,7 @@ const character = { //武将格式 :
 	// bilibiliup_xingyao: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
 	// bilibiliup_zhezhi: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
 	// bilibiliup_xiazhisha: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
-	// bilibiliup_qiyuan: ['female', 'qun', 0, ['bilibiliup_quanji','bilibiliup_paiyi'], ['rankAdd:epic', 'rankS:a']],
+	bilibiliup_qiyuan: ['female', 'qun', 4, ['bilibiliup_quanji','bilibiliup_paiyi'], ['rankAdd:epic', 'rankS:a']],
 	// bilibiliup_xinglisisi: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
 	// bilibiliup_rongxiaoxuan: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
 	// bilibiliup_shimizai: ['female', 'qun', 0, [], ['rankAdd:epic', 'rankS:a']],
