@@ -196,6 +196,18 @@ export const config = {
 		'init': true,
 		'intro': '<font color=\'#ADEAEA\'>开启后将自动检测并导入图片素材',
 	},
+	"夜白神略美化卡牌手动覆盖":{
+		'name':'<b>美化卡牌手动覆盖<b>',
+		'intro':'由于素材有更改，所以需要手动覆盖。',
+		"item":{
+			'old':'旧版素材',
+			'new':'新版素材',
+		},
+		onclick:function(item){
+			game.shoudongdaorusucai(item);
+		}
+
+	},
 	"ybsl_cardPile":{
 		"name":"<b>牌堆选取</b>",
 		"intro":"使用夜白神略的专属牌堆替换当前牌堆（必须开启夜白卡包和boss搬运卡包才会生效）（会与其他牌堆替换冲突）（为了便于测试，特地在标准军争牌堆加了两张煽风点火）",

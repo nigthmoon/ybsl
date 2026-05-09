@@ -65,7 +65,7 @@ const dynamicTranslate = {//动态翻译
         return '转换技，阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；<span class="bluetext">阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。</span>每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
 	},
 	zxunnamed_lingbo : (player, skill) => `转换技，出牌阶段，<span class=${player.storage[skill] ? '' : 'bluetext'}>阳：你可以将一名角色装备区内的牌当做【无中生有】对其使用</span><span class=${player.storage[skill] ? 'bluetext' : ''}>阴：你可以令一名角色将你装备区内的牌当做【杀】使用</span>。`,
-	ddddssssbbbb_chouxuan : (player, skill) => player.storage[skill].translate || lib.translate[skill + '_info'],
+	ddddssssbbbb_chouxuan : (player, skill) => player.storage[skill]?.translate || lib.translate[skill + '_info'],
 
     ybsl_kanxiao(player){
         var num = player.getStorage("ybsl_kanxiao")-0+1;

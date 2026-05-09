@@ -1176,6 +1176,34 @@ export async function precontent() {
 				return "###" + str + "###" + '<br>'+lib.translate[skill + "_info"];
 			}
 		}
+		{//get.type改写
+			lib.type = {
+				'delay':'trick',
+				'law':'trick',
+				'flower':'basic',
+			}
+			get.type = function (obj, method, player) {
+				if (typeof obj == "string") {
+					obj = { name: obj };
+				}
+				if (typeof obj != "object") {
+					return;
+				}
+				var name2 = get.name(obj, player);
+				if (!lib.card[name2]) {
+					if (!name2?.startsWith("sha_")) {
+						return;
+					}
+					if (name2.slice(4).split("_").every((n) => lib.nature.has(n))) {
+						return lib.card["sha"].type;
+					}
+				}
+				if (method == "trick" && lib.card[name2].type && lib.type[lib.card[name2].type]) {
+					return lib.type[lib.card[name2].type];
+				}
+				return lib.card[name2].type;
+			}
+		}
 		{// 千幻换肤相关
 			if(!lib.qhlypkg){
 				lib.qhlypkg=[];

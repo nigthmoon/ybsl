@@ -188,6 +188,7 @@ const YBSL_rank = function(){
 	lib.translate['yhky'+'_charactersInfo']='永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将'
 	lib.translate['ybllyz'+'_charactersInfo']='连招宇宙，以夜白自己设计的连招技框架构成'
 	lib.translate['sgstrxs'+'_charactersInfo']=sgstrxsstr
+	lib.translate['YB_one'+'_charactersInfo']='本包本来是我接的单。因金主失联疑似逃单，因此将这组技能代码兼并至此，以期复用。'
 	// lib.translate['ybwhjx'+'_charactersInfo']=whjxstr
 	lib.translate['ybslc'+'_cardsInfo']=`
 		夜白神略主体卡牌包<br>

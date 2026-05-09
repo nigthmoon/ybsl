@@ -15,7 +15,7 @@ const card = {
 		},
 		skills: ["ybsl_qingfengshan"],
 	},
-	ybsl_zhongkai:{
+	ybsl_fengshendun:{
 		// bingzhu: [""],
 		fullskin: true,
 		type: "equip",
@@ -25,7 +25,7 @@ const card = {
 				equipValue: 2,
 			},
 		},
-		skills: ["ybsl_zhongkai_1","ybsl_zhongkai_2"],
+		skills: ["ybsl_fengshendun_1","ybsl_fengshendun_2"],
 	},
 	ybsl_jinyinrukai:{
 		bingzhu: ["孙权"],

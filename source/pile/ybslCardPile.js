@@ -681,7 +681,7 @@ window.cardPile=[
 	// ['club','9','caochuan',null,['gifts']],//达成
 	//-----------------------风包
 	['spade', 1, 'ybsl_feijingsanjian'],
-	['spade', 2, 'ybsl_zhongkai'],
+	['spade', 2, 'ybsl_fengshendun'],
 	['spade', 3, 'sha','YB_wind|thunder'],
 	['spade', 4, 'shunshou'],
 	['spade', 5, 'shuiyanqijunx'],

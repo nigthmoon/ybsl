@@ -64,19 +64,19 @@ const card = {
 	},
 
 	ybsl_ptchiling1:{
-		cardimage:'ybsl_fengqiuhuang',
+		// cardimage:'ybsl_ptchiling3',
 		ai:{
 			value:1,
 		}
 	},
 	ybsl_ptchiling2:{
-		cardimage:'ybsl_fengqiuhuang',
+		cardimage:'ybsl_ptchiling1',
 		ai:{
 			value:3,
 		}
 	},
 	ybsl_ptchiling3:{
-		cardimage:'ybsl_fengqiuhuang',
+		cardimage:'ybsl_ptchiling1',
 		ai:{
 			value:5,
 		}

@@ -68,9 +68,9 @@ const skill = {
 			}
 		},
 	},
-	ybsl_zhongkai_1:{
+	ybsl_fengshendun_1:{
 		equipSkill: true,
-		// audio: "ybsl_zhongkai",
+		// audio: "ybsl_fengshendun",
 		trigger: { 
 			target: "shaBefore" 
 		},
@@ -115,7 +115,7 @@ const skill = {
 			},
 		},
 	},
-	ybsl_zhongkai_2:{
+	ybsl_fengshendun_2:{
 		equipSkill: true,
 		trigger: { player: "damageBegin3" },
 		filter(event, player) {
