@@ -945,6 +945,7 @@ const translate = {
 	bilibiliup_xiazhisha:'\u590f\u7ec7\u7eb1yarn',//\u7eb1\u7eb1\u4ec1
 	bilibiliup_xiazhisha_ab:'\u590f\u7ec7\u7eb1',
 	bilibiliup_qiyuan:'\u6816\u82d1\u592a\u56f0\u8fbd',//\u82d1\u5927\u5934
+	bilibiliup_qiyuan_ab:'\u6816\u82d1',//\u82d1\u5927\u5934
 	bilibiliup_quanji:'全寄',
 	bilibiliup_quanji_info:'限定技，出牌阶段，你可以积蓄1点能量（弃置一张牌），然后此后每个出牌阶段开始时，你需选择：继续积蓄1点能量或释放能量（移去全部能量，然后对全场所有其他角色各造成释放能量点伤害。）。当你积蓄能量后，若能量不少于3，你可以立即释放。',
 	bilibiliup_paiyi:'拍翼',
