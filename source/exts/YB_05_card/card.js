@@ -1725,7 +1725,7 @@ const card = {
 				equipValue:7,
 			}
 		},
-		skills:['rewrite_huxinjing','rewrite_huxinjing2'],
+		skills:['rewrite_huxinjing'],
 		enable:true,
 		// selectTarget:-1,
 		// filterTarget:function (card,player,target){

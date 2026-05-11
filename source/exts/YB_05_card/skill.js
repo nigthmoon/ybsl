@@ -175,6 +175,14 @@ const skill = {
 		// frequent:true,
 		filter:function (event,player){
 			if(player.hasSkillTag('unequip2')) return false;
+			if (
+				event.source.hasSkillTag("unequip", false, {
+					name: event.card ? event.card.name : null,
+					target: player,
+					card: event.card,
+				})
+			)
+				return false;
 			if(_status.currentPhase==player||event.source==player)return false;
 			return !player.inRange(event.source);
 		},
@@ -200,6 +208,15 @@ const skill = {
 		forced:true,
 		// frequent:true,
 		filter:function (event,player){
+			if(player.hasSkillTag('unequip2')) return false;
+			if (
+				event.player.hasSkillTag("unequip", false, {
+					name: event.card ? event.card.name : null,
+					target: player,
+					card: event.card,
+				})
+			)
+				return false;
 			if(get.type2(event.card)!='trick') return false;
 			// if(event.getParent().triggeredTargets3.length>1) return false;
 			return event.targets.length>0;
@@ -683,67 +700,126 @@ const skill = {
 			if(result.bool) player.recover();
 		},
 	},
-	//-------------白虎镜
-	'rewrite_huxinjing':{
-		audio:'huxinjing',
-		equipSkill:true,
-		trigger:{player:'damageBegin4'},
-		direct:true,
-		filter:function(event,player){
-			if(player.hasSkillTag('unequip2')) return false;
-			if(event.source&&event.source.hasSkillTag('unequip',false,{
-				name:event.card?event.card.name:null,
-				target:player,
-				card:event.card
-			})) return false;
-			var cards=player.getEquips('rewrite_huxinjing');
-			if(!cards.length) return false;
-			if(player.hasMark('rewrite_huxinjing2'))return true;
-			if(get.mode()!='guozhan'&&event.num>1) return true;
-			return event.num>=player.hp;
+	//--------------------------护心铠
+	rewrite_huxinjing: {
+		equipSkill: true,
+		trigger: { player: "damageBegin4" },
+		// forced:true,
+		filter(event, player) {
+			if (event.num < player.hp && (get.mode() == "guozhan" || event.num <= 1)) {
+				return false;
+			}
+			let cards = player.getEquips("rewrite_huxinjing");
+			if (!cards.length) {
+				return false;
+			}
+			// if (player.hasSkillTag("unequip2")) {
+			// 	return false;
+			// }
+			// if (
+			// 	event.source &&
+			// 	event.source.hasSkillTag("unequip", false, {
+			// 		name: event.card ? event.card.name : null,
+			// 		target: player,
+			// 		card: event.card,
+			// 	})
+			// ) {
+			// 	return false;
+			// }
+			return true;
 		},
-		content:function(){
-			'step 0'
-			if(player.hasMark('rewrite_huxinjing2')&&player.getEquips('rewrite_huxinjing').length){
-				var e2=player.getEquips('rewrite_huxinjing');
-				if(e2.length){
-					player.discard(e2);
+		content() {
+			trigger.cancel();
+			var e2 = player.getEquips("rewrite_huxinjing");
+			var bool=(get.position(card)=='e');
+			if (e2.length) {
+				// player.discard(e2);
+				for(var i of e2){
+					game.broadcastAll(function(card,bool){
+						card.YB_init([card.suit,card.number,card.name.slice(7),card.nature/*,tag*/]);
+						//
+						if (bool && card.card && player.vcardsMap?.equips) {
+							const cardx = game.YB_createCard(card.card.name.slice(7), card.card.suit, card.card.number);
+							player.vcardsMap.equips[player.vcardsMap.equips.indexOf(card.card)] = cardx;
+							card.card = cardx;
+						}
+						//
+					},card,bool);//bool
+					if (bool) player.addEquipTrigger(card.card || card);
 				}
-				// player.removeSkill('rewrite_huxinjing');
-				player.removeSkill('rewrite_huxinjing2');
-				event.finish();
 			}
-			else{
-				player.chooseBool(get.prompt('rewrite_huxinjing',player),lib.translate.rewrite_huxinjing_info);
-			}
-			'step 1'
-			if(result.bool){
-				player.logSkill('rewrite_huxinjing');
-				trigger.cancel();
-				player.addMark('rewrite_huxinjing2')
-			}
+			// player.removeSkill("rewrite_huxinjing");
+		},
+		mod:{
+			
+			canBeDiscarded(card, player, target) {
+				if (card.name == "rewrite_huxinjing" && get.position(card) == "e") {
+					return false;
+				}
+			},
 		}
 	},
-	'rewrite_huxinjing2':{
-		audio:'baiyin',
-		equipSkill:true,
-		trigger:{source:'damageBegin2'},
-		forced:true,
-		marktext:'虎',
-		intro:{
-			content:'下次造成的伤害+1，若你在此状态再次受到伤害，则失去此效果，同时弃置白虎镜',
-		},
-		filter:function(event,player){
-			if(player.hasSkillTag('unequip2')) return false;
-			var cards=player.getEquips('rewrite_huxinjing');
-			if(!cards.length) return false;
-			return player.hasMark('rewrite_huxinjing2');
-		},
-		content:function(){
-			player.removeMark('rewrite_huxinjing2');
-			trigger.num++;
-		}
-	},
+	//-------------护心铠
+	// 'rewrite_huxinjing':{
+	// 	audio:'huxinjing',
+	// 	equipSkill:true,
+	// 	trigger:{player:'damageBegin4'},
+	// 	direct:true,
+	// 	filter:function(event,player){
+	// 		if(player.hasSkillTag('unequip2')) return false;
+	// 		if(event.source&&event.source.hasSkillTag('unequip',false,{
+	// 			name:event.card?event.card.name:null,
+	// 			target:player,
+	// 			card:event.card
+	// 		})) return false;
+	// 		var cards=player.getEquips('rewrite_huxinjing');
+	// 		if(!cards.length) return false;
+	// 		if(player.hasMark('rewrite_huxinjing2'))return true;
+	// 		if(get.mode()!='guozhan'&&event.num>1) return true;
+	// 		return event.num>=player.hp;
+	// 	},
+	// 	content:function(){
+	// 		'step 0'
+	// 		if(player.hasMark('rewrite_huxinjing2')&&player.getEquips('rewrite_huxinjing').length){
+	// 			var e2=player.getEquips('rewrite_huxinjing');
+	// 			if(e2.length){
+	// 				player.discard(e2);
+	// 			}
+	// 			// player.removeSkill('rewrite_huxinjing');
+	// 			player.removeSkill('rewrite_huxinjing2');
+	// 			event.finish();
+	// 		}
+	// 		else{
+	// 			player.chooseBool(get.prompt('rewrite_huxinjing',player),lib.translate.rewrite_huxinjing_info);
+	// 		}
+	// 		'step 1'
+	// 		if(result.bool){
+	// 			player.logSkill('rewrite_huxinjing');
+	// 			trigger.cancel();
+	// 			player.addMark('rewrite_huxinjing2')
+	// 		}
+	// 	}
+	// },
+	// 'rewrite_huxinjing2':{
+	// 	audio:'baiyin',
+	// 	equipSkill:true,
+	// 	trigger:{source:'damageBegin2'},
+	// 	forced:true,
+	// 	marktext:'虎',
+	// 	intro:{
+	// 		content:'下次造成的伤害+1，若你在此状态再次受到伤害，则失去此效果，同时弃置护心铠',
+	// 	},
+	// 	filter:function(event,player){
+	// 		if(player.hasSkillTag('unequip2')) return false;
+	// 		var cards=player.getEquips('rewrite_huxinjing');
+	// 		if(!cards.length) return false;
+	// 		return player.hasMark('rewrite_huxinjing2');
+	// 	},
+	// 	content:function(){
+	// 		player.removeMark('rewrite_huxinjing2');
+	// 		trigger.num++;
+	// 	}
+	// },
 	//-------------原版铜雀
 	rewrite_tongque:{
 		// trigger:{player:'useCard1'},
@@ -919,6 +995,19 @@ const skill = {
 		},
 		audio:'ext:夜白神略/audio/card:true',
 		filter:function (event,player,name){
+			if (player.hasSkillTag("unequip2")) {
+				return false;
+			}
+			if (
+				event.player &&
+				event.player.hasSkillTag("unequip", false, {
+					name: event.card ? event.card.name : null,
+					target: player,
+					card: event.card,
+				})
+			) {
+				return false;
+			}
 			if(!(event.card.name=='juedou'||event.card.name=='sha')) return false;
 			if(!player.hasSkill('wushuang')&&name=='useCardToPlayered')return false;
 			return player==event.target||event.getParent().triggeredTargets3.length==1;
@@ -1716,44 +1805,44 @@ const skill = {
 	// 	}
 	// },
 	/*
-	_ybsl_nature:{
-		trigger:{
-			global:['phaseBefore','enterGame','gameStart'],
-			player:'enterGame',
-		},
-		limited:true,
-		ruleSkill:true,
-		filter:function (event,player){
-			return (event.name!='phase'||game.phaseNumber==0);
-		},
-		direct:true,
-		content:()=>{
-			//-------------改杀描述
-			// var NorthShaPrompt=lib.card.sha.cardPrompt;
-			// lib.card.sha.cardPrompt=function(card){
-				// if(card.name=='sha'&&card.nature=='YB_blood') 
-					// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
-				// return NorthShaPrompt.apply(this,arguments);
-			// };
-			// lib.card.sha.nature.add('YB_blood');
-			// lib.card.sha.nature.add('YB_snow');
-			// lib.card.sha.cardPrompt=function(card){
-				// if(card.nature=='stab') 
-					// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，且在此之后需弃置一张手牌（没有则不弃）。否则你对其造成1点伤害。';
-				// if(card.nature=='YB_blood') 
-					// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
-				// if(lib.linked.contains(card.nature)) 
-					// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点'+get.translation(card.nature)+'属性伤害。';
-				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点伤害。';
-			// }
-			lib.card.yanxiao_card.image='ext:夜白神略/image/card/yanxiao_card.png'
-			lib.card.goujiangdesidai.image='ext:夜白神略/image/card/goujiangdesidai.png'
-			delete lib.card.goujiangdesidai.modeimage;
-			lib.card.shenzhixiunvfu.image='ext:夜白神略/image/card/shenzhixiunvfu.png'
-			delete lib.card.shenzhixiunvfu.modeimage;
-		},
+	// _ybsl_nature:{
+	// 	trigger:{
+	// 		global:['phaseBefore','enterGame','gameStart'],
+	// 		player:'enterGame',
+	// 	},
+	// 	limited:true,
+	// 	ruleSkill:true,
+	// 	filter:function (event,player){
+	// 		return (event.name!='phase'||game.phaseNumber==0);
+	// 	},
+	// 	direct:true,
+	// 	content:()=>{
+	// 		//-------------改杀描述
+	// 		// var NorthShaPrompt=lib.card.sha.cardPrompt;
+	// 		// lib.card.sha.cardPrompt=function(card){
+	// 			// if(card.name=='sha'&&card.nature=='YB_blood') 
+	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
+	// 			// return NorthShaPrompt.apply(this,arguments);
+	// 		// };
+	// 		// lib.card.sha.nature.add('YB_blood');
+	// 		// lib.card.sha.nature.add('YB_snow');
+	// 		// lib.card.sha.cardPrompt=function(card){
+	// 			// if(card.nature=='stab') 
+	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，且在此之后需弃置一张手牌（没有则不弃）。否则你对其造成1点伤害。';
+	// 			// if(card.nature=='YB_blood') 
+	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
+	// 			// if(lib.linked.contains(card.nature)) 
+	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点'+get.translation(card.nature)+'属性伤害。';
+	// 			// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点伤害。';
+	// 		// }
+	// 		lib.card.yanxiao_card.image='ext:夜白神略/image/card/yanxiao_card.png'
+	// 		lib.card.goujiangdesidai.image='ext:夜白神略/image/card/goujiangdesidai.png'
+	// 		delete lib.card.goujiangdesidai.modeimage;
+	// 		lib.card.shenzhixiunvfu.image='ext:夜白神略/image/card/shenzhixiunvfu.png'
+	// 		delete lib.card.shenzhixiunvfu.modeimage;
+	// 	},
 
-	}
+	// }
 	*/
 
 }

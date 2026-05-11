@@ -4,135 +4,136 @@ export { skill }
 /** @type { importCharacterConfig['skill'] } */
 const skill = {
 	//---------------六艺篇
-	'_ybsl_sixart':{
-		enable:'phaseUse',
-		usable:1,
-		filterCard:true,
-		check:function(card){
-			if(card.name=='du') return 20;
-			var player=_status.event.player;
-			var nh=player.countCards('h');
-			if(!player.needsToDiscard()){
-				if(nh<3) return 0;
-				if(nh==3) return 5-get.value(card);
-				return 7-get.value(card);
-			}
-			return 10-get.useful(card);
-		},
-		discard:false,
-		lose:false,
-		delay:false,
-		selectCard:function(){
-			var player=_status.event.player;
-			if(!player.hasSkillTag('sixartSkill'))return 1;
-			var max=6;
-			var num=max-player.countCards('s',function(card){
-				return card.hasGaintag('_ybsl_sixart')
-			});
-			if(num>3){num=3};
-			return [1,num];
-		},
-		prompt:function (player){
-			var player=_status.event.player;
-			var max=6;
-			var num=max-player.countCards('s',function(card){
-				return card.hasGaintag('_ybsl_sixart')
-			});
-			if(num>3){num=3};
-			if(!player.hasSkillTag('sixartSkill')||num==1){
-				return '是否将一张牌置入六艺区';
-			}
-			else{
-				return '是否将一至'+get.cnNumber(num)+'张牌置入六艺区';
-			}
-		},
-		filter:function(event,player){
-			if(lib.configOL?.characterPack){
-				if(!lib.configOL?.characterPack?.includes('ybart')){
-					if(!player.hasSkillTag('sixartSkill'))return false;
-				}
-			}
-			var max=6;
-			return player.countCards('h')>0&&player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})<max;
-		},
-		content:function(){
-			'step 0'
-			player.loseToSpecial(cards,'_ybsl_sixart').gaintag=['_ybsl_sixart'];
-			//player.storage._ybsl_artlist.push(cards);失败的写法
-			game.log(player,'将',get.cnNumber(cards.length),'张牌置入了六艺区');
-			player.addMark('_ybsl_sixart',cards.length);
-			player.updateMarks();
-			'step 1'
-			if(player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})>2){
-				player.addTempSkill('ybsl_master',{player:'phaseBeginStart'});
-			}
-		},
-		ai:{
-			order:function(){
-				var player=_status.event.player;
-				if(player.hasSkillTag('sixartSkill'))return 8;
-				return 2;
-			},
-			expose:0.1,
-			result:{
-				player:1,
-			}
-		},
-		ruleSkill:true,
-		mark:true,
-		marktext:'艺',
-		intro:{
-			name:'六艺',
-			content:function(storage,player,skill){
-				var str='共有';
-				//str+=player.storage._ybsl_sixart;
-				str+=player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')});
-				str+='/';
-				str+='6';
-				str+='张六艺牌';
-				return str;
-			}
-		},
-	},
-	'_ybsl_sixart2':{
-		trigger:{
-			player:['loseAfter','useCard','respond','equipEnd','loseAsyncAfter','cardsDiscardAfter'],
-		},
-		direct:true,
-		ruleSkill:true,
-		filter:function(event,player){
-			return player.getHistory('lose',function(evt){
-				if(evt.getParent()!=event) return false;
-				for(var i in evt.gaintag_map){
-					if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
-				}
-				return false;
-			}).length>0;
+	// '_ybsl_sixart':{
+	// 	enable:'phaseUse',
+	// 	usable:1,
+	// 	filterCard:true,
+	// 	check:function(card){
+	// 		if(card.name=='du') return 20;
+	// 		var player=_status.event.player;
+	// 		var nh=player.countCards('h');
+	// 		if(!player.needsToDiscard()){
+	// 			if(nh<3) return 0;
+	// 			if(nh==3) return 5-get.value(card);
+	// 			return 7-get.value(card);
+	// 		}
+	// 		return 10-get.useful(card);
+	// 	},
+	// 	discard:false,
+	// 	lose:false,
+	// 	delay:false,
+	// 	selectCard:function(){
+	// 		var player=_status.event.player;
+	// 		if(!player.hasSkillTag('sixartSkill'))return 1;
+	// 		var max=6;
+	// 		var num=max-player.countCards('s',function(card){
+	// 			return card.hasGaintag('_ybsl_sixart')
+	// 		});
+	// 		if(num>3){num=3};
+	// 		return [1,num];
+	// 	},
+	// 	prompt:function (player){
+	// 		var player=_status.event.player;
+	// 		var max=6;
+	// 		var num=max-player.countCards('s',function(card){
+	// 			return card.hasGaintag('_ybsl_sixart')
+	// 		});
+	// 		if(num>3){num=3};
+	// 		if(!player.hasSkillTag('sixartSkill')||num==1){
+	// 			return '是否将一张牌置入六艺区';
+	// 		}
+	// 		else{
+	// 			return '是否将一至'+get.cnNumber(num)+'张牌置入六艺区';
+	// 		}
+	// 	},
+	// 	filter:function(event,player){
+	// 		if(lib.configOL?.characterPack){
+	// 			if(!lib.configOL?.characterPack?.includes('ybart')){
+	// 				if(!player.hasSkillTag('sixartSkill'))return false;
+	// 			}
+	// 		}
+	// 		var max=6;
+	// 		return player.countCards('h')>0&&player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})<max;
+	// 	},
+	// 	content:function(){
+	// 		'step 0'
+	// 		player.loseToSpecial(cards,'_ybsl_sixart').gaintag=['_ybsl_sixart'];
+	// 		//player.storage._ybsl_artlist.push(cards);失败的写法
+	// 		game.log(player,'将',get.cnNumber(cards.length),'张牌置入了六艺区');
+	// 		player.addMark('_ybsl_sixart',cards.length);
+	// 		player.updateMarks();
+	// 		'step 1'
+	// 		if(player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})>2){
+	// 			player.addTempSkill('ybsl_master',{player:'phaseBeginStart'});
+	// 		}
+	// 	},
+	// 	ai:{
+	// 		order:function(){
+	// 			var player=_status.event.player;
+	// 			if(player.hasSkillTag('sixartSkill'))return 8;
+	// 			return 2;
+	// 		},
+	// 		expose:0.1,
+	// 		result:{
+	// 			player:1,
+	// 		}
+	// 	},
+	// 	ruleSkill:true,
+	// 	mark:true,
+	// 	marktext:'艺',
+	// 	intro:{
+	// 		name:'六艺',
+	// 		content:function(storage,player,skill){
+	// 			var str='共有';
+	// 			//str+=player.storage._ybsl_sixart;
+	// 			str+=player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')});
+	// 			str+='/';
+	// 			str+='6';
+	// 			str+='张六艺牌';
+	// 			return str;
+	// 		}
+	// 	},
+	// },
+	// '_ybsl_sixart2':{
+	// 	trigger:{
+	// 		player:['loseAfter','useCard','respond','equipEnd','loseAsyncAfter','cardsDiscardAfter'],
+	// 	},
+	// 	direct:true,
+	// 	ruleSkill:true,
+	// 	filter:function(event,player){
+	// 		return player.getHistory('lose',function(evt){
+	// 			if(evt.getParent()!=event) return false;
+	// 			for(var i in evt.gaintag_map){
+	// 				if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
+	// 			}
+	// 			return false;
+	// 		}).length>0;
 			
-			//var evt=event.getl(player);
-			//return evt&&evt.player==player&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')})&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')}).length>0;
-		},
-		content:function(){
-			'step 0'
-			var cards=trigger.cards.filter(function(card){
-				return player.getHistory('lose',function(evt){
-					if(evt.getParent()!=event) return false;
-					for(var i in evt.gaintag_map){
-						if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
-					}
-					return false;
-				});
-			});
-			//player.storage._ybsl_artlist.remove(cards);
-			player.removeMark('_ybsl_sixart',cards.length);
-			player.updateMarks();
-			if(player.hasSkill('ybsl_master')){
-				game.log('调试1',cards.length);
-				player.draw(cards.length);
-			}
-		},
-	},
-	'ybsl_master':{charlotte:true,},
+	// 		//var evt=event.getl(player);
+	// 		//return evt&&evt.player==player&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')})&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')}).length>0;
+	// 	},
+	// 	content:function(){
+	// 		'step 0'
+	// 		var cards=trigger.cards.filter(function(card){
+	// 			return player.getHistory('lose',function(evt){
+	// 				if(evt.getParent()!=event) return false;
+	// 				for(var i in evt.gaintag_map){
+	// 					if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
+	// 				}
+	// 				return false;
+	// 			});
+	// 		});
+	// 		//player.storage._ybsl_artlist.remove(cards);
+	// 		player.removeMark('_ybsl_sixart',cards.length);
+	// 		player.updateMarks();
+	// 		if(player.hasSkill('ybsl_master')){
+	// 			game.log('调试1',cards.length);
+	// 			player.draw(cards.length);
+	// 		}
+	// 	},
+	// },
+	// 'ybsl_master':{charlotte:true,},
+	
 	//-----------------六艺应用
 	yb013_shanwu:{
 		inherit:'yb017_shanwu',

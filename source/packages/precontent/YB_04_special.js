@@ -22,6 +22,7 @@ export { YBSL_special }
  * 泛用的令某牌视为某牌
  * 应变
  * 批量将一些技能加入界雷击禁止名单
+ * 六艺
  */
 const YBSL_special = function () {
 	_status.YB_jingxieList=[
@@ -1376,5 +1377,91 @@ const YBSL_special = function () {
 			)
 
 		})
+	}
+	{//六艺
+		lib.skill._ybsl_sixart={
+			enable:'phaseUse',
+			usable:1,
+			filterCard:true,
+			check:function(card){
+				if(card.name=='du') return 20;
+				var player=_status.event.player;
+				var nh=player.countCards('h');
+				if(!player.needsToDiscard()){
+					if(nh<3) return 0;
+					if(nh==3) return 5-get.value(card);
+					return 7-get.value(card);
+				}
+				return 10-get.useful(card);
+			},
+			discard:false,
+			lose:false,
+			delay:false,
+			selectCard:function(){
+				var player=_status.event.player;
+				if(!player.hasSkillTag('sixartSkill'))return false;
+				var max=6;
+				var num=max-player.countCards('s',function(card){
+					return card.hasGaintag('_ybsl_sixart')
+				});
+				if(num>3){num=3};
+				return [1,num];
+			},
+			prompt:function (player){
+				var player=_status.event.player;
+				var max=6;
+				var num=max-player.countCards('s',function(card){
+					return card.hasGaintag('_ybsl_sixart')
+				});
+				if(num>3){num=3};
+				if(!player.hasSkillTag('sixartSkill')||num==1){
+					return '是否将一张牌置入六艺区';
+				}
+				else{
+					return '是否将一至'+get.cnNumber(num)+'张牌置入六艺区';
+				}
+			},
+			filter:function(event,player){
+				if(!player.hasSkillTag('sixartSkill'))return false;
+				var max=6;
+				return player.countCards('h')>0&&player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})<max;
+			},
+			content:function(){
+				player.loseToSpecial(cards,'_ybsl_sixart').gaintag=['_ybsl_sixart'];
+				//player.storage._ybsl_artlist.push(cards);失败的写法
+				game.log(player,'将',get.cnNumber(cards.length),'张牌置入了六艺区');
+				player.addMark('_ybsl_sixart',cards.length);
+				player.updateMarks();
+			},
+			ai:{
+				order:function(){
+					var player=_status.event.player;
+					if(player.hasSkillTag('sixartSkill'))return 8;
+					return 2;
+				},
+				expose:0.1,
+				result:{
+					player:1,
+				}
+			},
+			ruleSkill:true,
+			mark:true,
+			marktext:'艺',
+			intro:{
+				name:'六艺',
+				content:function(storage,player,skill){
+					var str='共有';
+					//str+=player.storage._ybsl_sixart;
+					str+=player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')});
+					str+='/';
+					str+='6';
+					str+='张六艺牌';
+					return str;
+				}
+			},
+	
+		}
+		lib.translate._ybsl_sixart='六艺'
+		lib.translate._ybsl_sixart_info='限拥有六艺技的角色使用。出牌阶段限一次，你可以将至多三张手牌置入你的六艺区。你可以将你六艺区的牌如手牌般使用或打出。六艺区的牌数至多以此法补充至六。'
 	}
 }

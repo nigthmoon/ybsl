@@ -9042,7 +9042,7 @@ const skill = {
 			return true;
 		},
 		cost(){
-			event.result = player.chooseToDiscard('he').set("chooseonly", true).forResult();
+			event.result = player.chooseToDiscard('he').set('prompt',get.prompt('sgsk_yuhan')).set("chooseonly", true).forResult();
 		},
 		content(){
 			'step 0'
@@ -11043,6 +11043,7 @@ const skill = {
 	bilibiliup_quanji:{
 		audio:'ext:夜白神略/audio/character:2',
 		limited:true,
+		skillAnimation:false,
 		trigger:{
 			player:'phaseUseBegin',
 		},
@@ -11062,16 +11063,17 @@ const skill = {
 		},
 		subSkill:{
 			zhuangdiqiu:{
-				animationColor: 'thunder',
+				animationColor: 'key',
 				skillAnimation: true,
 			},
 		},
 		selectCard:1,
 		filterCard: true,
 		discard:true,
+		position:'he',
 		async content(event,trigger,player){
 			if(event.triggername&&event.triggername=='phaseUseBegin'){
-				var resultBefore = await player.chooseToDiscard('he').set('ai',function(card){
+				var resultBefore = await player.chooseToDiscard('he',get.prompt('bilibiliup_quanji')).set('ai',function(card){
 					if(player.countMark('bilibiliup_MANA')>=3)return get.unuseful(card)-player.countMark('bilibiliup_MANA');
 					return get.unuseful(card);
 				}).forResult();
@@ -11094,7 +11096,7 @@ const skill = {
 				var targets = game.filterPlayer(function(current){
 					return current!=player;
 				});
-				player.logSkill("bilibiliup_quanji", targets);
+				player.logSkill("bilibiliup_quanji_zhuangdiqiu", targets);
 				for(var i of targets){
 					await i.damage(num);
 				}
@@ -11117,31 +11119,41 @@ const skill = {
 	bilibiliup_paiyi:{
 		audio: 'ext:夜白神略/audio/character:2',
 		trigger: {
-			player: 'damaged',
+			player: ['damageAfter','phaseDrawBegin']
 		},
-		filter: function(event, player) {
+		filter: function(event, player,name) {
+			if(name=='phaseDrawBegin')return player.countMark('bilibiliup_MANA');
 			return player.countCards('he') > 0;
 		},
 		async cost(event, trigger, player) {
-			event.result = await player.chooseToDiscard('he').set('chooseonly',true).set('ai',function(card){
-				if(player.countMark('bilibiliup_MANA')>=3)return false;
-				return get.unuseful(card);
-			}).forResult();
-		},
-		content: function() {
-			player.discard(event.cards);
-			// if (!player.storage.bilibiliup_MANA) {
-			// 	player.storage.bilibiliup_MANA = 0;
-			// }
-			// player.storage.bilibiliup_MANA++;
-			player.addMard('bilibiliup_MANA',1);
-		},
-		mod: {
-			drawNum: function(num, player) {
-				if (!player.storage.bilibiliup_MANA) return num;
-				return num + Math.min(3, player.storage.bilibiliup_MANA);
+			if(event.triggername=='phaseDrawBegin')event.result = {bool:true,};
+			else {
+				event.result = await player.chooseToDiscard('he').set('chooseonly',true).set('ai',function(card){
+					if(player.countMark('bilibiliup_MANA')>=3)return false;
+					return get.unuseful(card);
+				}).set('prompt',get.prompt('bilibiliup_paiyi')).forResult();
+
 			}
 		},
+		content: function() {
+			if(event.triggername=='phaseDrawBegin'){
+				trigger.num+=(Math.min(3,player.countMark('bilibiliup_MANA')));
+			}
+			else{
+				player.discard(event.cards);
+				// if (!player.storage.bilibiliup_MANA) {
+				// 	player.storage.bilibiliup_MANA = 0;
+				// }
+				// player.storage.bilibiliup_MANA++;
+				player.addMark('bilibiliup_MANA',1);
+			}
+		},
+		// mod: {
+		// 	drawNum: function(num, player) {
+		// 		if (!player.storage.bilibiliup_MANA) return num;
+		// 		return num + Math.min(3, player.storage.bilibiliup_MANA);
+		// 	}
+		// },
 		init(player) {
 			player.markSkill('bilibiliup_MANA');
 		},

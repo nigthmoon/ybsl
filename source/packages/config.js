@@ -44,7 +44,7 @@ export const config = {
 				"· <span class=firetext>青龙刀</span>可锻造为<span class=yellowtext>锁龙偃月刀</span>，",
 				"· <span class=firetext>方天画戟</span>和<span class=firetext>乌铁锁链</span>可锻造为<span class=yellowtext>方天锁链鞭</span>。",
 				"· <span class=firetext>铜雀</span>可锻造为<span class=yellowtext>界铜雀</span>。",
-				"· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>白虎镜</span>。"
+				"· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>护心铠</span>。"
 				];
 				
 				var more=ui.create.div('.help','<div style="border:2px solid gray"><P align=left>'+log.join('<br>')+'</P>');

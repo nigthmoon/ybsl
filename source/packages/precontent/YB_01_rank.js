@@ -209,7 +209,7 @@ const YBSL_rank = function(){
 		※朱雀羽扇、五行鹤翎扇=>北斗七星扇，<br>
 		※青龙偃月刀=>锁龙偃月刀，<br>
 		※方天画戟、乌铁锁链=>方天锁链鞭，<br>
-		※护心镜=>白虎镜，<br>
+		※护心镜=>护心铠，<br>
 	`
 	lib.translate['ybgod'+'_cardsInfo']='boss模式卡牌搬运'
 	lib.translate['ybnew2'+'_cardsInfo']=`

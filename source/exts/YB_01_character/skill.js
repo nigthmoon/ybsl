@@ -11346,7 +11346,10 @@ const skill = {
 		charlotte:true,
 		forced:true,
 	},
-	
+	yb041_fuxin:{
+		
+	},
+	yb041_qiancheng:{},
 	//--------------------蘋姉042
 	'yb042_sizhi':{
 		audio:'ext:夜白神略/audio/character:2',
