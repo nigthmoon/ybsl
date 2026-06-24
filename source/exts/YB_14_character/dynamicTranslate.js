@@ -2,7 +2,7 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export { dynamicTranslate }
 
 const dynamicTranslate = {//动态翻译
-    
+
 	ybsl_xianyin:function(player){//弦音
 		var str0=`转换技，（括号内的阴阳为${get.poptip('ybsl_luanming')}的形态）<br/>`;
 		var str1='阳（阳）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；';
@@ -57,7 +57,7 @@ const dynamicTranslate = {//动态翻译
 		if(player.storage.ybsl_luanming==true) return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次</span>。';
 		return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
 	},
-    
+
 	ybsl_benzhan:function(player){
         if (player.storage.ybsl_benzhan==true){
             return '转换技，<span class="bluetext">阳：你可以将一张【杀】当伤害锦囊牌使用，或将一张伤害锦囊牌当【杀】使用；</span>阴：你可以将一张【闪】当非伤害锦囊牌使用，或将一张非伤害锦囊牌当【闪】使用。每回合限X次，当你使用此技能时，此技能不转换，X为你已损体力值。';
@@ -83,6 +83,16 @@ const dynamicTranslate = {//动态翻译
             return '转换技，当你使用非虚拟或转化的非装备牌后，你需选择是否：<span class="bluetext">阳：将此牌置入装备区一个空栏；</span>阴：选择装备区一张同类型的牌，然后弃置之并摸X张牌或将之当作触发此技能的牌使用（X为弃置的牌与触发技能使用的牌[花色，点数，牌名字数]相同的项数），以此法使用的牌不计入次数且无次数限制。<br>此技能选是不转，选否才转。'
         }
     },
+
+	ybsl_youyou(player){
+		if (player.storage.ybsl_youyou==true){
+			return '转换技，每名角色出牌阶段限一次，其可以：①弃置两张手牌（不足不能用），然后令你恢复一点体力上限；<span class="bluetext">②恢复一点体力，然后令你弃置两张手牌（不足全弃）</span>。若不为该角色首次对你发动，则恢复改为失去。'
+		}
+		else {
+			return '转换技，每名角色出牌阶段限一次，其可以：<span class="bluetext">①弃置两张手牌（不足不能用），然后令你恢复一点体力上限</span>；②恢复一点体力，然后令你弃置两张手牌（不足全弃）。若不为该角色首次对你发动，则恢复改为失去。'
+		}
+	},
+
     zxunnamed_huaiyi(player, skill) {
 		const storage = player.storage[skill]
 		const items = player.storage.zxunnamed_huaiyi_items

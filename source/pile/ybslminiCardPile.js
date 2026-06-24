@@ -41,7 +41,7 @@ window.minicardPile=[
 	['spade',13,'wuxie',null,['yingbian_kongchao','yingbian_draw']],
 	['spade',13,'ybsl_disarm','stab',['yingbian_fujia','yingbian_remove']],
 	['spade',13,'dawan'],
-	
+
 	['heart',1,'taoyuan',null,['yingbian_fujia','yingbian_remove']],
 	['heart',1,'ybsl_meteor','fire',['yingbian_fujia','yingbian_remove']],
 	['heart',1,'wuxie'],
@@ -82,7 +82,7 @@ window.minicardPile=[
 	['heart',13,'wuxie',null,['yingbian_kongchao','yingbian_gain']],
 	['heart',13,'shan'],
 	['heart',13,'zhuahuang'],
-	
+
 	['club',1,'juedou'],
 	['club',1,'rewrite_zhuge'],
 	['club',1,'rewrite_baiyin'],
@@ -123,7 +123,7 @@ window.minicardPile=[
 	['club',13,'wuxie',null,['yingbian_canqu','yingbian_draw']],
 	['club',13,'rewrite_tongque'],
 	['club',13,'tiesuo'],
-	
+
 	['diamond',1,'juedou'],
 	['diamond',1,'rewrite_zhuge'],
 	['diamond',1,'rewrite_zhuque'],
@@ -164,7 +164,7 @@ window.minicardPile=[
 	['diamond',13,'sha'],
 	['diamond',13,'ybsl_yulanbailongju'],
 	['diamond',13,'hualiu'],
-	
+
 	['spade',1,'zengbin'],
 	['spade',2,'ybsl_dafeng',null,['yingbian_zhuzhan','yingbian_add']],
 	['spade',3,'shunshou',null,['gifts']],
@@ -178,7 +178,7 @@ window.minicardPile=[
 	['spade',11,'wuxie'],
 	['spade',12,'ybsl_dafeng',null,['yingbian_zhuzhan','yingbian_add']],
 	['spade',13,'ybsl_dafeng',null,['yingbian_zhuzhan','yingbian_add']],
-	
+
 	['heart',1,'ybsl_qisihuisheng'],
 	['heart',2,'shan',null,['gifts']],
 	['heart',3,'wugu',null,['gifts']],
@@ -192,8 +192,8 @@ window.minicardPile=[
 	['heart',11,'sha',null,['gifts']],
 	['heart',12,'ybsl_tongguiyujin',null,['yingbian_canqu','yingbian_add']],
 	['heart',13,'ybsl_zhaoyeyushi',null,['gifts']],
-	
-	['club',1,'huxinjing',null,['gifts']],
+
+	['club',1,'rewrite_huxinjing',null,['gifts']],
 	['club',2,'ybsl_anduchencang'],
 	['club',3,'ybsl_zhijizhibi'],
 	['club',4,'du'],
@@ -206,7 +206,7 @@ window.minicardPile=[
 	['club',11,'wuxie'],
 	['club',12,'wuxie'],
 	['club',13,'rewrite_ybsl_wangzhui',null,['gifts']],
-	
+
 	['diamond',1,'ybsl_luolei','thunder',['yingbian_zhuzhan','yingbian_add']],
 	['diamond',2,'shan'],
 	['diamond',3,'kaihua',null,['gifts']],

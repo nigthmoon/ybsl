@@ -16,16 +16,16 @@ import { translate } from '../exts/YB_14_character/translate.js'
 import { dynamicTranslate } from '../exts/YB_14_character/dynamicTranslate.js'
 // import { YB_characterIntro } from '../packages/function.js';
 import { typeimage } from '../packages/function.js'
-game.import('character',function(lib, game, ui, get, ai, _status){ 
+game.import('character',function(lib, game, ui, get, ai, _status){
 
 	/** @type { importCharacterConfig } */
-	var ybnew3={ 
-		name:'ybnew3',//武将包命名（必填） 
-		connect:true,//该武将包是否可以联机（必填） 
+	var ybnew3={
+		name:'ybnew3',//武将包命名（必填）
+		connect:true,//该武将包是否可以联机（必填）
 		connectBanned:[],
 		characterSort:characterSort,
-		character:character,//武将（必填） 
-		// characterIntro:YB_characterIntro(characterCopyright,characterCitetext,characterUndertext,characterIntro),//武将介绍（选填） 
+		character:character,//武将（必填）
+		// characterIntro:YB_characterIntro(characterCopyright,characterCitetext,characterUndertext,characterIntro),//武将介绍（选填）
 		characterIntro:characterIntro,
 		characterCopyright:characterCopyright,
 		characterCitetext:characterCitetext,
@@ -62,21 +62,21 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		characterFilter:{//禁用
 			//傀夜白和傀儡在国战禁用
 		},//武将使用条件
-		characterTitle:characterTitle,//武将标题（用于写称号或注释）（选填） 
+		characterTitle:characterTitle,//武将标题（用于写称号或注释）（选填）
 		skill:skill,//技能（必填） ……………………！…！！！【…？。！！？？？？…………
 		card:card,
-		translate:translate,//翻译（必填） 
+		translate:translate,//翻译（必填）
 		dynamicTranslate:dynamicTranslate,
 
 		characterSubstitute: {
 		},
-		
+
 	};
 	typeimage(ybnew3,'ybsl004')
 	for(var i in ybnew3.card){
 		if(!ybnew3.card[i].image) ybnew3.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 	}
-	lib.config.all.characters.add('ybnew3');
+	// lib.config.all.characters.add('ybnew3');
 	lib.translate['ybnew3_character_config'] = '<span style=\'color:#28e3ce\'>夜白杂设新包</span>';
-	return ybnew3; 
-}); 
+	return ybnew3;
+});

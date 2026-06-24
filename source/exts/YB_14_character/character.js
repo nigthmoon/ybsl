@@ -4,9 +4,9 @@ export { character }
 /**
  * @type { importCharacterConfig['character'] }
  */
-const character = { //武将格式 : 
+const character = { //武将格式 :
 	//'ybsl_hejiezhe':['female','YB_memory',3,['ybsl_hejie'],['forbidai']],//
-	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
+	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容
 	sgsh_tiandi:['male','shen',4,['sgsk_zhizunx'],['rankAdd:legend','rankS:s','name:null|null']],//天帝
 	sgsh_shennong:['male','shen',3,['sgsk_wugu','sgsk_changcaox'],['rankAdd:rare','name:null|null']],//神农
 	sgsh_xuanyuan:['male','shen',4,['sgsk_xiudexy','sgsk_wending'],['rankAdd:legend','rankS:s','name:null|null']],//轩辕
@@ -28,7 +28,7 @@ const character = { //武将格式 :
 	sgsh_goumang:['male','shen',3,['sgsk_fusang','sgsk_mangtong','sgsk_mushen'],['rankAdd:legend','rankS:s','name:null|null']],//句芒
 	sgsh_houtu:['male','shen',3,['sgsk_yutu','sgsk_shengtu'],['rankAdd:legend','rankS:s','name:null|null']],//后土
 	'sgsh_yuqiang':['male','shen',4,['sgsk_zhihai','sgsk_xuanming'],['rankAdd:junk','name:null|null']],//禺强√
-	
+
 	sgsh_fuxi:['male','shen',4,['sgsk_yuhan','sgsk_jiabian'],['rankAdd:legend','rankS:s','name:null|null']],//伏羲
 	sgsh_xiangliu:['male','shen',4,['sgsk_jiushou'],['rankAdd:legend','rankS:s','name:null|null']],//相柳
 	sgsh_houyi:['male','shen',4,['sgsk_sheri'],['rankAdd:legend','rankS:s','name:null|null']],//后羿
@@ -39,7 +39,7 @@ const character = { //武将格式 :
 	sgsh_qibo:['male','shen',3,['sgsk_suwen','sgsk_lingjiu'],['rankAdd:legend','rankS:s','name:null|null']],//岐伯
 	'sgsh_taizichangqin':['male','shen',3,['sgsk_yuefeng','sgsk_zhisheng'],['rankAdd:legend','rankS:s','name:null|null']],//太子长琴√
 	sgsh_yeming:['male','shen',3,['sgsk_cunyin','sgsk_sanqiuy'],['rankAdd:legend','rankS:s','name:null|null']],//噎鸣
-	
+
 	'sgsh_yinglong':['male','shen',4,['sgsk_zongshui'],['rankAdd:epic','name:null|null']],//应龙√
 	// 'sgsh_nvba':['female','shen',3,['sgsk_buyu','sgsk_hanshenx'],['rankAdd:epic','name:null|null']],//女魃√
 	sgsh_nvba:{
@@ -144,27 +144,27 @@ const character = { //武将格式 :
 		linkTo : 'zhugeliang',
 		YB_mjz: 'ns_zhugeliang',
 	},//到底还有多少诸葛亮
-	
-	
-	
-	
+
+
+
+
 	//key
 	yb_key_hina:['female','shen',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen','rankAdd:legend','rankS:s','name:佐藤|雏','linkTo:db_key_hina','YB_mjz:db_key_hina','tempname:db_key_hina']],//佐藤雏
 	yb_key_kotori:['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],['rankAdd:legend','rankS:s','name:神户|小鸟','linkTo:key_kotori','YB_mjz:key_kotori','tempname:key_kotori']],//神户小鸟
 	yb_key_kagari:["female","shen",3,["kagari_ybzongsi"],['rankAdd:legend','rankS:s','name:null|null','linkTo:key_kagari','YB_mjz:key_kagari','tempname:key_kagari']],//篝
-	
+
 	ybsl_youta:['male','key',4,['youta_fengshen','youta_yingshen','youta_huanshen'],['rankAdd:legend','rankS:s','linkTo:key_youta','YB_mjz:key_youta','tempname:key_youta']],
 	ybsl_kamome:["female","key",3,["kamome_ybyangfan",'kamome_huanmeng','kamome_jieban'],['rankAdd:legend','rankS:s','name:null|鸥','linkTo:key_kamome']],//鸥
 	ybsl_hairi:['male','key',1,['hairi_shangshi','hairi_zheyi','hairi_zhongxia'],['rankAdd:epic','rankS:a','name:鹰原|羽依里']],
-	
+
 	sp_key_umi:['female','key',3,['caiyi','guili'],['rankAdd:epic','rankS:a','name:加藤|うみ','linkTo:key_umi']],
-	
+
 	//---------------------名将改写
 	// 'dzsl_luxun':['male','wu',3,['dzsl_shenhuo','dzsl_buxi','dzsl_shennu'],['forbidai','rankAdd:junk','rankS:d','name:陆|逊']],//陆逊
 	'ybsl_zhouyuxiaoqiao':['double','wu',4,['ybsl_xianyin','ybsl_luanming'],['rankAdd:epic','rankS:a','name:周|瑜-小|乔']],//周瑜小乔
 	// 'ybnb_guanyinping':['female','shu',4,['ybsl_kuwangxx','ybsl_xueji'],['rankAdd:legend','rankS:s','name:关|银屏']],//关银屏
 
-	
+
 	ybslshen_pangtong:['male','shen',3,['ybsl_ptchiling','ybsl_ptqiwu'],['rankAdd:epic','name:庞|统','linkTo:shen_pangtong']],
 	//冷门民杀搬运
 	ybslshen_zhenji:['female','shen',3,['ybsl_zjzilian','ybsl_zjsqiyuan','ybsl_zjsshixiang'],['wei','rankAdd:legend','rankS:s','name:甄|宓','linkTo:shen_zhenji']],
@@ -182,6 +182,7 @@ const character = { //武将格式 :
 	ybsl_wangpou:['male','wei',3,['ybsl_zhelei','ybsl_xunxiao','ybsl_wanbie'],['rankAdd:rare',"border:jin"]],//王裒
 	ybsl_yangxu:['male','qun',3,['ybsl_kanxiao','ybsl_shipin'],['rankAdd:epic']],//羊续
 	ybsl_shichong:['male','jin',3,['ybsl_shehao','ybsl_jiegu','ybsl_daixin'],['rankAdd:legend']],//石崇
+	ybsl_simayou:['male','jin',3,['ybsl_youyou',"ybsl_shangli"],['rankAdd:epic']],//司马攸
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji:['male','wu',3,['ybsl_ljfumin','ybsl_ljguihang','ybsl_clanxingzu'],['rankAdd:epic','clan:吴郡陆氏','name:陆|绩','linkTo:luji']], //族陆绩
@@ -233,5 +234,5 @@ const character = { //武将格式 :
 
 
 
-	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
+	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容
 }

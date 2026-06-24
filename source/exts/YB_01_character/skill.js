@@ -3,7 +3,7 @@ export { skill }
 
 /** @type { importCharacterConfig['skill'] } */
 const skill = {
-			
+
 	//---------------------------鬼神易的足迹
 	//---------------------------尹姬
 	'dz013_qingling':{
@@ -373,7 +373,7 @@ const skill = {
 				},
 				sub:true,
 				'=':{
-					
+
 				},
 			},
 		},
@@ -1921,7 +1921,7 @@ const skill = {
 					else{list.push(get.suit(i));}
 				}
 				return player.getExpansions('yb001_minglun')&&player.getExpansions('yb001_minglun').length>=4;
-			} 
+			}
 			else return !player.getExpansions('yb001_minglun')||player.getExpansions('yb001_minglun').length<4;
 		},
 		content:function(){
@@ -2695,7 +2695,7 @@ const skill = {
 		},
 		content:function(){
 			'step 0'
-			
+
 			// if(event.bool){
 				player.judge('天祈',function(card){
 					if(player.storage.yb004_shangyuan){
@@ -2821,7 +2821,7 @@ const skill = {
 	黑色：若目标或来源手牌数不大于你则令此伤害-1或+1
 
 	殇怨：觉醒技
-	当你对其他角色造成＞1的伤害而令其陷入濒死状态时，你修改 天祈 
+	当你对其他角色造成＞1的伤害而令其陷入濒死状态时，你修改 天祈
 	获得技能：玉洁
 
 	玉洁：同调
@@ -3388,7 +3388,7 @@ const skill = {
 		content:function (){
 			'step 0'
 			player.loseHp(1);
-			'step 1' 
+			'step 1'
 			player.draw(2);
 			game.log(player,'：后土所鉴，贞心一片！');
 		},
@@ -3478,7 +3478,7 @@ const skill = {
 			maixie_hp:true,
 			/*
 			maixie_defend:function{
-				
+
 			},
 			*/
 			result:{
@@ -3677,7 +3677,7 @@ const skill = {
 				var cards = trigger.cards;
 				// player.addToExpansion(cards,player,'giveAuto').gaintag.add('sczs_qiangxi');
 				if(!player.hasSkill('yb011_lhen'))player.addSkill('yb011_lhen');
-				
+
 				if(!player.storage.yb011_lhen)player.storage.yb011_lhen=[];
 				await player.storage.yb011_lhen.push(card);
 				cards.forEach(cardx => {
@@ -3690,7 +3690,7 @@ const skill = {
 				await player.disableEquip(subtype);
 				var info=lib.card[card.name].skills;
 				if(info&&info.length) await player.addAdditionalSkill('yb011_lhen',info,true);
-				
+
 				if (Array.isArray(info)) {
 					for (var i of info) {
 						var infox = lib.skill[i];
@@ -4086,7 +4086,7 @@ const skill = {
 	// 'yb012_bianqian':'便签',
 	// 'yb012_bianqian_info':'出牌阶段限一次，你可以将一张手牌盖在武将牌上称为“小抄”；
 	// 你可以在合适的时机选择一张“小抄”，然后①使用此“小抄”，并弃置其余小抄②弃置此“小抄”，并将一张手牌当此”小抄”使用。',
-	
+
 	// 'yb012_xibei':'习备',
 	// 'yb012_xibei_info':'场上其他角色使用非转化即时牌后，若此牌存在于弃牌堆中，你可以将之充入“小抄”。',
 	// 'yb012_suotu':'索图',
@@ -4462,7 +4462,7 @@ const skill = {
 		// 		for(var i = 0;i<lib.skill.yb014_xuyuan.chongzhiList.length;i++){
 		// 			player.storage.yb014_xuyuan.add(lib.skill.yb014_xuyuan.chongzhiList[i]);
 		// 		}
-		// 	} 
+		// 	}
 		// 	return player.storage.yb014_xuyuan;
 		// },
 		mark:true,
@@ -4631,7 +4631,7 @@ const skill = {
 				if (card.suit == "spade") return 1;
 			},
 		},
-		
+
 		forced:true,
 		group: "yb015_bixin_number",
 		subSkill: {
@@ -5703,7 +5703,7 @@ const skill = {
 				},
 				sub:true,
 				'audioname2':{
-					
+
 				},
 			},
 		},
@@ -5714,7 +5714,7 @@ const skill = {
 			global:'useCard',
 		},
 		forced:true,
-		filter:function (event,player){		
+		filter:function (event,player){
 			return (event.card.name=='ybsl_lumingqianzhuan'||get.zhinangs().includes(event.card.name)||player.getStorage('yb017_zhenshi').includes(event.card.name))&&event.card.isCard&&event.cards.length==1;
 		},
 		content:function (){player.draw()},
@@ -5785,7 +5785,7 @@ const skill = {
 				},
 				sub:true,
 				'audioname2':{
-					
+
 				},
 			},
 		},
@@ -5874,7 +5874,7 @@ const skill = {
 		trigger:{
 			player:['phaseZhunbeiBegin','phaseJieshuAfter'],
 		},
-		filter:function(event,player){ 
+		filter:function(event,player){
 			if(player.hasSkill('yb018_minxing_buff'))return player.countMark('yb018_huaimeng')>=2;
 			return true;
 		},
@@ -5888,7 +5888,7 @@ const skill = {
 			if(player.hasMark('yb018_huaimeng')&&player.countMark('yb018_huaimeng')>=2) list.push('两枚');
 			if(player.hasMark('yb018_huaimeng')&&player.countMark('yb018_huaimeng')>=1) list.push('一枚');
 			list.push('不移除');
-			player.chooseControl(list).set('choiceList',['移除两枚梦，然后摸五放五','移除一枚梦，然后摸四放四','不移除梦，然后摸三放三']).set('prompt','请选择');					
+			player.chooseControl(list).set('choiceList',['移除两枚梦，然后摸五放五','移除一枚梦，然后摸四放四','不移除梦，然后摸三放三']).set('prompt','请选择');
 			'step 2'
 			if(result.control=='两枚'){
 				var nuk=2;
@@ -5951,8 +5951,8 @@ const skill = {
 				if(player.countMark('yb018_huaimeng')>=2){
 					var number={
 						"club":0,
-						"spade":0, 
-						"diamond":0, 
+						"spade":0,
+						"diamond":0,
 						"heart":0,
 					}
 					//定义一个花色对象
@@ -6073,7 +6073,7 @@ const skill = {
 				player.gain(event.y,'gain2');
 			}
 			// 'step 9'
-			// 	player.addTempSkill('yb018_minxing_add');					
+			// 	player.addTempSkill('yb018_minxing_add');
 		},
 		subSkill:{
 			add:{
@@ -6959,7 +6959,7 @@ const skill = {
 								card.style.position = 'absolute'
 								card.style.opacity = 0
 								card.addEventListener(lib.config.touchscreen ? 'touchstart' : 'mousedown', click)
-								
+
 								dialog.contentContainer.appendChild(card)
 								card.style.transitionDuration = '0.05s'
 								xs.push(card)
@@ -7302,7 +7302,7 @@ const skill = {
 	// 'yb019_zhiyu':'掷郁',
 	// 'yb019_zhiyu_info':'每回合每种牌名（限实体牌名）限一次。出牌阶段，你可以展示一张手牌并交给一名其他角色，然后视为你对其使用此牌（不计入次数，不受距离限制）。',还没开写呢，懒
 	// yb019_zhiyu:{
-		
+
 	// },
 	ybsl_cu_discard:{
 		trigger: {
@@ -7620,7 +7620,7 @@ const skill = {
 					}
 				},
 			},
-		}				
+		}
 	},
 	yb020_zhuangrongx:{
 		audio:'yb020_zhuangrong',
@@ -7923,7 +7923,7 @@ const skill = {
 				}
 				return true;
 			});
-			
+
 			'step 2'
 			game.broadcastAll("closeDialog", event.videoId);
 			if(result.links){
@@ -8008,7 +8008,7 @@ const skill = {
 			if(num1>0)list.push([2,'令'+get.translation(source)+'将手牌弃'+(num1)+'张']);
 			if(num2<0)list.push([3,'令'+get.translation(target)+'将手牌摸'+(-num2)+'张']);
 			if(num2>0)list.push([4,'令'+get.translation(target)+'将手牌弃'+(num2)+'张']);
-			
+
 			event.videoId = lib.status.videoId++;
 			if (event.isMine()) {
 				event.dialog = ui.create.dialog('<font size=6><b>断想</b></font><br>是否选择一项',[list,'tdnodes']);
@@ -8252,7 +8252,7 @@ const skill = {
 		}
 	},
 	//--------------025
-	
+
 	// //-----------------------史庆宇（待写）
 	// 'yb025_shiyuan':'释元',
 	// 'yb025_shiyuan_info':'出牌阶段限一次，你可以弃置任意张手牌，然后摸等量牌，然后你可以失去等量体力再摸等量牌。',
@@ -8310,7 +8310,7 @@ const skill = {
 		},
 		content:async function(event, trigger, player) {
 			await player.loseMaxHp(3);
-			await player.draw(3);					
+			await player.draw(3);
 		},
 	},
 	yb025_chengyin:{
@@ -8349,7 +8349,7 @@ const skill = {
 			var target=event.targets[0];
 			await target.changeHujia(trigger.num)
 		},
-		
+
 	},
 	// yb025_chengyin:'成荫',
 	// yb025_chengyin_info:'当你失去体力上限后，你可以令一名其他角色增加等量护甲。',
@@ -8387,7 +8387,7 @@ const skill = {
 			trigger.getParent().targets = trigger.getParent().targets.concat(list);
 			trigger.getParent().triggeredTargets4 = trigger.getParent().triggeredTargets4.concat(list);
 		},
-		
+
 	},
 
 	// //-----------------------史庆宇王贺（）
@@ -8529,7 +8529,7 @@ const skill = {
 			// 	for(var k of lista){
 			// 		if(cardsx[k]==card)	return {card:card,style:'glow'};
 			// 		else return card;
-					
+
 			// 	}
 			// 	// if(cardlist.includes(card)){
 			// 	// 	// return {card:card,prompt:'已点亮'};
@@ -8716,7 +8716,7 @@ const skill = {
 					}
 				},
 			},
-		
+
 		},
 	},
 	//-------------------蚕
@@ -9324,7 +9324,7 @@ const skill = {
 	<br>防御马：水剑元，当你成为其他角色使用【杀】的目标时，你可以选择至多两项①弃置一张牌，将此杀【流离】出去；
 							②移除水剑元，然后与一名可成为【流离】目标的其它角色互换座位。
 	<br>宝物栏：木剑元，当你失去最后的手牌时，你可以摸一张牌，然后你可以移除木剑元并摸等同体力上限的牌数。',
-	
+
 	*/
 	'yb028_sheshen':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -9368,7 +9368,7 @@ const skill = {
 	'（初稿待定）锁定技，当你装备栏被废除时，你令一名角色摸两张牌并回复1点体力，然后你减1点体力上限；
 	你的手牌上限额外增加被废除装备栏的数量；
 	当你体力上限不大于1时，你无法扣减体力上限。',
-	
+
 	*/
 	'yb028_sanmeng':{
 		audio:'ext:夜白神略/audio/character:2',
@@ -9717,7 +9717,7 @@ const skill = {
 			var list=lib.skill.yb033_yuqi.getInfo(player);
 			let min = list[0], index = 0;
 			for (let i = 1; i < list.length; ++i) {
-				if (list[i] < min) { 
+				if (list[i] < min) {
 					min = list[i];
 					index = i;
 				}
@@ -9731,7 +9731,7 @@ const skill = {
 				// return i;//夜白专用邪修写法
 				let min = list[0], index = 0;
 				for (let i = 1; i < list.length; ++i) {
-					if (list[i] < min) { 
+					if (list[i] < min) {
 						min = list[i];
 						index = i;
 					}
@@ -9852,7 +9852,7 @@ const skill = {
 				player.damage();
 				event.finish();
 			}
-			
+
 			'step 2'
 			if(result.index = 2&&!result.cards){
 				event.not2=true;
@@ -9868,7 +9868,7 @@ const skill = {
 		// 			})
 		// 	},
 		// 	async function(event,trigger,player){
-				
+
 		// 	}
 		// ],
 		init(player){
@@ -10076,7 +10076,7 @@ const skill = {
 					if(!player.storage.yb033_qijue_da)lib.skill.yb033_qijue.init(player);
 					// if(!player.storage.yb033_qijue_damage){
 						player.storage.yb033_qijue_damage=true;
-					
+
 					'step 1'
 						var storage = player.storage.yb033_qijue_da;
 						player.when({player:storage[0][1]}).filter(function(event,player){
@@ -10846,7 +10846,7 @@ const skill = {
 						if(get.equipValue(card)<=8) return 0;
 					}
 					if(target.getEquip(2)) return;
-					
+
 				}
 			}
 		},
@@ -11126,7 +11126,7 @@ const skill = {
 		audio:'ext:夜白神略/audio/character:2',
 		inherit:'ybsl_sanmeng',
 	},
-	
+
 	//------------卞秋雯
 	yb038_youhun:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -11347,7 +11347,7 @@ const skill = {
 		forced:true,
 	},
 	yb041_fuxin:{
-		
+
 	},
 	yb041_qiancheng:{},
 	//--------------------蘋姉042
@@ -11358,7 +11358,7 @@ const skill = {
 	'yb042_mingtui':{
 		audio:'ext:夜白神略/audio/character:2',
 		trigger:{
-			target:'useCardToTargeted',
+			target:'useCardToTarget',
 		},
 		filter:function(event,player){
 			if(event.card.number)return true;
@@ -11830,7 +11830,7 @@ const skill = {
 								list.push(['基本','',lib.inpile[i],k]);
 							}
 						}
-					} 
+					}
 				}
 				return ui.create.dialog('雪舞',[list,'vcard']);
 			},
@@ -11986,7 +11986,7 @@ const skill = {
 							for(var j of get.YB_natureList()){
 								j=get.YB_nature(j);
 								list.push([type,'',name,j]);
-							} 
+							}
 						}
 					}
 				}
@@ -12947,7 +12947,7 @@ const skill = {
 			player.gain(cardxx,'gain2');
 			player.chooseUseTarget(cardxx);
 			// 'step 1'
-			
+
 		},
 	},
 	//失去牌的效果被我放主文件里了，防止出现特殊情况，引用了主技能而没开本将包导致无法触发效果
@@ -13142,7 +13142,7 @@ const skill = {
 						if(evt.gaintag_map[i].includes("yb054_qiangzhi_top"))return true;
 					}
 					return false;
-					
+
 				},
 				mark:true,
 
@@ -13158,7 +13158,7 @@ const skill = {
 						target.damage();
 					}
 				}
-				
+
 			}
 		},
 	},
@@ -13273,7 +13273,7 @@ const skill = {
 				}
 			}
 		},
-		
+
 	},
 	yb055_zangxin:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -13290,7 +13290,7 @@ const skill = {
 			return event.card.name == "tao" && get.suit(event.card) == "heart";
 		},
 		content() {
-			
+
 		},
 
 	},
@@ -13567,7 +13567,7 @@ const skill = {
 		// 		for(var i = 0;i<lib.skill.yb014_xuyuan.chongzhiList.length;i++){
 		// 			player.storage.yb014_xuyuan.add(lib.skill.yb014_xuyuan.chongzhiList[i]);
 		// 		}
-		// 	} 
+		// 	}
 		// 	return player.storage.yb014_xuyuan;
 		// },
 		mark:true,
@@ -13993,7 +13993,7 @@ const skill = {
 				target:function(player,target){//注意，和effect里的参数不一样
 					return 1;//血越多收益越高,1血不发动
 				},
-			},					
+			},
 			threaten:2.4,//嘲讽值
 		},
 	},
@@ -15101,7 +15101,7 @@ const skill = {
 				return '<span class=YB_snowtext>黑桃新增'+list2[0]+'可转化；</span><span class=yellowtext>红桃新增'+list2[1]+'可转化；</span><br><span class=YB_darktext>梅花新增'+list2[2]+'可转化；</span><span class=firetext>方块新增'+list2[3]+'可转化。</span><br>请不要为黑桃赋予无懈，为红桃赋予桃，为梅花赋予闪，为方块赋予杀，不仅是无事发生，而是会出大问题。';
 				}],
 				['操作方法：从下方选择你想要的目标牌，然后替换你要赋予的花色。操作结算时，会根据你选择的牌名对该花色进行添加。<br>此操作本质上是读取此格内牌名的序列，按照黑桃，红桃，梅花，方块的顺序依次读取，故而想要不为这个花色赋予时，可以把自带的花色图案放在那里卡位，那玩意不会被读取。<br><span style=\'color:#fff600\'>请勿在此界面托管，否则ai不会进行任何操作，并直接确认</span><br>——感谢Angel大佬撰写的ai框架，并顺手让这个框只能替换而不能移动',[list66,'vcard']
-				
+
 				]
 			]);
 			next.set('filterMove',function(from,to){
@@ -15254,7 +15254,7 @@ const skill = {
 				//这是最后的结果
 			}
 			/*
-			
+
 			*/
 			event.list=list;
 			// event.list2=list2;
@@ -15280,7 +15280,7 @@ const skill = {
 					if(j!=3) str+='/';
 				}
 				game.log(player,'#g【淬星】','各花色依次新增',str);
-				
+
 			}
 		},
 		subSkill:{
@@ -15682,7 +15682,7 @@ const skill = {
 				};
 				if(result.control=='摸一'){player.draw()};
 			}
-			
+
 		}
 	},
 	'ybsl_xinghui2':{onremove:true,},
@@ -15723,7 +15723,7 @@ const skill = {
 			next.setContent(lib.skill.ybsl_cuixing.upc);
 		},
 		derivation:'ybsl_cuixing_change',
-		
+
 	},
 	//-------------------苏令燚
 	'yb072_ezhao':{
@@ -16461,7 +16461,7 @@ const skill = {
 			player.loseMaxHp();
 			'step 1'
 			player.addToExpansion(event.cost_data.card, 'gain2').gaintag.add('yb079_xiuxin');
-			
+
 			var evt = trigger.getl(player);
 			event.cost_data.card.storage.source = trigger.player;
 		},
@@ -16472,7 +16472,7 @@ const skill = {
 				if(player.getExpansions('yb079_xiuxin')){
 					dialog.addSmall([player.getExpansions('yb079_xiuxin'),'card']);
 				}
-				
+
 			},
 		}
 	},
@@ -17295,7 +17295,7 @@ const skill = {
 					event.result = trigger.player.chooseBool('是否出售这些牌？<br>'+get.translation(trigger.cards)).set('ai',function(){
 						return true;
 					}).forResult();
-					
+
 				},
 				content(){
 					var cards = event.triggername?trigger.cards:event.cards;
@@ -17518,8 +17518,8 @@ const skill = {
 	// yb086_jieyin_info:`使命技，出牌阶段限一次，若你没有结姻角色，你邀请一名其他异性角色是否结姻。若其选择是，则开始筹办婚礼。筹办婚礼：对方出牌阶段，其可以出售一张手牌（移出游戏，并根据其字数获得资金）；你和对方因弃置而失去牌时，失去牌的人可以改为出售之。成功：筹办婚礼后三轮内，若资金达到18或更多，你和对方获得技能${get.poptip('yb086_zuiyuan')}。失败：筹办婚礼三轮后，若资金未达到18，则你选择：①移去所有资金，赎回出售的牌（获得因此移出游戏的牌）②重置此技能，移去所有资金，因此出售的牌进入弃牌堆。`,
 	// yb086_zuiyuan:'醉缘',
 	// yb086_zuiyuan_info:'出牌阶段限一次，你可以弃置两张牌，并指定一名其他角色进行交合（其回复一点体力，然后你摸其体力值数张牌，因此摸的牌存在手牌中时，无法发动〖醉缘〗），若目标拥有〖醉缘〗，其可以与你交合。',
-	
-	
+
+
 	//-------------------田璐
 	yb087_qiujiao:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -17528,7 +17528,7 @@ const skill = {
 	//-------------------
 	//-------------------
 	//-------------------
-	
+
 	//--------------玉蝶心
 	yb092_biyue:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -17853,7 +17853,7 @@ const skill = {
 	<span style="text-decoration: line-through;">杀</span>字体划掉
 
 	*/
-	
+
 	yb100_dianzhan:{
 		audio:'ext:夜白神略/audio/character:2',
 		chongzhiji:true,
@@ -18214,7 +18214,7 @@ const skill = {
 	// yb100_huanyin_info:'锁定技，当你进入濒死状态时，
 	// 你将技能二列表未执行且刷新列表存在的一项中移至技能一刷新列表，或将技能一列表未执行且刷新列表存在的一项中移至技能二刷新列表，
 	// 然后将手牌调整至与已发动选项数相同，然后你展示手牌，若花色各不相同，你回复体力至1。（已发动选项数，即刷新列表存在，但现存列表没有的选项）',
-	
+
 	ybsl_rumeng:{
 		// audio:'ybsl_sanmeng',
 		mainSkill:true,
@@ -18569,7 +18569,7 @@ const skill = {
 					// },
 				};
 			},
-			
+
 		},
 		*/
 		chooseButton: {
@@ -18586,7 +18586,7 @@ const skill = {
 								j=get.YB_nature(j);
 								list.push([type,'',name,j]);
 								// list.push(["基本", "", "sha", j]);
-							} 
+							}
 						}
 					}
 
@@ -18813,7 +18813,7 @@ const skill = {
 							ui.cardPile.insertBefore(event.cards[0], ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length - 1)])
 						}
 					},
-	
+
 				};
 			},
 			check: function (button, player) {
@@ -18971,7 +18971,7 @@ const skill = {
 			}
 		},
 	},
-	
+
 	// ybsl_107xiaohu1:'小狐',
 	// ybsl_107xiaohu2:'小狐',
 	// ybsl_107xiaohu3:'小狐',
@@ -18984,17 +18984,17 @@ const skill = {
 	/*
 	水璃  巡梦归途
 	梦，3血，女
-	
+
 	寻狐
 	游戏开始时（选将后，发牌前），在牌堆中插入一张【小狐】。当以此法添加的【小狐】进入你的手牌区时，改为移出游戏，然后获得【小狐】的技能。
-	
+
 	踏野
 	当你使用一张牌后，你可以从弃牌堆中选择至多[1]张与此牌类型相同的其他牌，将这些牌置于牌堆底，然后展示牌堆顶等量张牌。然后将与触发技能的牌类型不同的置入弃牌堆，其余牌由你依次分配给场上角色。
 	当有牌不因使用而进入弃牌堆时，你令下次发动此技能时，方括号内的数字+1，至多加至5。
-	
+
 	妖异
 	你可以将【小狐】或装备区一张牌或判定区一张牌当做一张基本牌使用或打出。然后若以此法使用或打出的牌为【小狐】，则在结算完成后插入牌堆随机位置。
-	
+
 	【小狐】
 	装备牌——万能装备牌
 	（此牌可置入任意装备格。进入武器区时，范围为2；进入坐骑区时，攻击距离-1或防御距离+1。）
@@ -19169,7 +19169,7 @@ const skill = {
 			targetEnabled:function(card,player,target,now){
 				if(!get.tag(card,'damage')) return false;
 			},
-			
+
 			cardDiscardable(card, player) {
 				return false;
 			},
@@ -19524,7 +19524,7 @@ const skill = {
 				}
 			}
 		},
-		
+
 	},
 	//---------------------属性杀遗址
 
@@ -19535,5 +19535,5 @@ const skill = {
 
 
 
-	
+
 }

@@ -16,41 +16,42 @@ import { typeimage } from './function.js'
 // import { sgstrxs } from '../sgstrxs.js';
 import { sgczk } from '../sgczk/mode.js';
 import { cyyydsgs } from '../pile/cyyydsgs.js'
+// import {ybrpg}from '../ybrpg/mode.js'
 export async function precontent() {
-	
+
 	if(false){
 		let originalCompatibleMode = lib.config.compatiblemode;
-	
+
 		// 检测兼容模式并弹窗询问
 		if (originalCompatibleMode === true&&lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗!=true) {
 			// 创建自定义弹窗
 			const dialog = document.createElement('div');
 			dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999999;display:flex;justify-content:center;align-items:center;';
-			
+
 			const content = document.createElement('div');
 			content.style.cssText = 'background:#fff;padding:30px;border-radius:10px;min-width:400px;min-height:400px;box-shadow:0 5px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
-			
+
 			const title = document.createElement('div');
 			title.textContent = '《夜白神略》提示';
 			title.style.cssText = 'font-size:20px;font-weight:bold;margin-bottom:15px;color:#333;top:84px;left: 35%;';
-			
+
 			const message = document.createElement('div');
 			message.innerHTML = `检测到兼容模式已开启。
 			<br><br>是否关闭兼容模式并重启游戏？
 			<br><br>点击"确定"将关闭兼容模式并重启
 			<br>点击"取消"将保留兼容模式（可能导致功能异常）
 			<br>点击"取消并不再提示"将不再提示（可前往扩展设置中开关）
-	
+
 			<br><br>开启兼容模式会导致：
 			<br>1.当你出现bug时，你不会收到任何报错，你只知道有技能没生效
 			<br>2.当游戏炸了的时候，你不知道为啥炸，你只知道游戏炸了
 			<br>3.当你开启兼容模式反馈bug时，你会被群友骂
 			`;
 			message.style.cssText = 'margin-bottom:25px;line-height:1.6;color:#f00;    top: 113px;';
-			
+
 			const buttons = document.createElement('div');
 			buttons.style.cssText = 'display:flex;gap:15px;justify-content:center;';
-			
+
 			const btnConfirm = document.createElement('button');
 			btnConfirm.textContent = '确定';
 			btnConfirm.style.cssText = 'padding:10px 25px;background:#4CAF50;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
@@ -66,14 +67,14 @@ export async function precontent() {
 					}
 				}, 300);
 			});
-			
+
 			const btnCancel = document.createElement('button');
 			btnCancel.textContent = '取消';
 			btnCancel.style.cssText = 'padding:10px 25px;background:#f44336;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
 			btnCancel.addEventListener('click', () => {
 				dialog.remove();
 			});
-			
+
 			const btnNoPrompt = document.createElement('button');
 			btnNoPrompt.textContent = '取消并不再提示';
 			btnNoPrompt.style.cssText = 'padding:10px 25px;background:#9E9E9E;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
@@ -81,18 +82,18 @@ export async function precontent() {
 				game.saveConfig('extension_夜白神略_不再提示关闭兼容模式的弹窗', true);
 				dialog.remove();
 			});
-			
+
 			buttons.appendChild(btnConfirm);
 			buttons.appendChild(btnCancel);
 			buttons.appendChild(btnNoPrompt);
-			
+
 			content.appendChild(title);
 			content.appendChild(message);
 			content.appendChild(buttons);
 			dialog.appendChild(content);
 			document.body.appendChild(dialog);
 		}
-		
+
 	}
 	game.getFileList('extension/夜白神略/source/ext', (folders,files) => {
 		// let scriptPaths=[
@@ -105,7 +106,7 @@ export async function precontent() {
 		Promise.all(
 			scriptPaths.map(path => import('../ext/' + path))
 		).then(modules => {
-			
+
 		}).catch(error => {
 			alert('error '+error+'导入失败 !')
 			console.error(error.message);
@@ -118,13 +119,13 @@ export async function precontent() {
 	// 			lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/character',path.slice(0,-3));
 	// 		})
 	// 	).then(modules => {
-			
+
 	// 	}).catch(error => {
 	// 		alert('error '+error+'导入失败 !')
 	// 		console.error(error.message);
 	// 	});
 	// })
-	
+
 	game.getFileList('extension/夜白神略/source/ontology/card', (folders,files) => {
 		let scriptPaths = files;
 		Promise.all(
@@ -132,7 +133,7 @@ export async function precontent() {
 				lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/card',path.slice(0,-3))
 			})
 		).then(modules => {
-			
+
 		}).catch(error => {
 			alert('error '+error+'导入失败 !')
 			console.error(error.message);
@@ -340,12 +341,12 @@ export async function precontent() {
 					str += '<br>';
 				}
 				if(lib.accessoryPacket[name]&&lib.accessoryPacket[name].character){
-					
+
 					var buttonsx = ui.create.div('.buttons')
 					buttonsx.classList.add("smallzoom");
 					let buttons = ui.create.buttons(lib.accessoryPacket[name]['character'], "character",buttonsx, "character")
-					
-					
+
+
 					const arr = []
 					for (const i of buttons) {
 						(_status.YB_582267 ??= {})[i.link] = i
@@ -367,7 +368,7 @@ export async function precontent() {
 				}
 				return str += YB_characterIntro.apply(this,arguments);
 			}
-			
+
 		}
 		{//nodeintro修复
 			var YB_nodeIntro = get.nodeintro;
@@ -389,7 +390,7 @@ export async function precontent() {
 					const group = node.group;
 					if (group && group != "unknown" && lib.config.show_group) capt += `&nbsp;&nbsp;${get.translation(group)}`;
 					YB_intro.add(capt);
-			
+
 					if (lib.characterTitle[node.name]) {
 						YB_intro.addText(get.colorspan(lib.characterTitle[node.name]));
 					}
@@ -405,7 +406,7 @@ export async function precontent() {
 					// if (lib.characterLightext[node.name1]) {
 					// 	YB_intro.addText(get.colorspan(lib.characterLightext[node.name1]()[lib.characterLightext[node.name1].length]));
 					// }
-					
+
 					if (lib.config.show_sortPack) {
 						for (let packname in lib.characterPack) {
 						  if (node.name in lib.characterPack[packname]) {
@@ -438,7 +439,7 @@ export async function precontent() {
 							YB_intro.addText(str);
 						}
 					}
-			
+
 					if (!node.noclick) {
 						const allShown = node.isUnderControl() || (!game.observe && game.me && game.me.hasSkillTag("viewHandcard", null, node, true));
 						const shownHs = node.getShownCards();
@@ -461,7 +462,7 @@ export async function precontent() {
 							}
 						}
 					}
-			
+
 					var skills = node.getSkills(null, false, false).slice(0);
 					var skills2 = game.filterSkills(skills, node);
 					if (node == game.me && node.hiddenSkills.length) {
@@ -480,7 +481,7 @@ export async function precontent() {
 								translation = get.translation(skills[i]);
 								if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
 							}
-			
+
 							if (node.forbiddenSkills[skills[i]]) {
 								var forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + "</div><div>";
 								if (node.forbiddenSkills[skills[i]].length) {
@@ -585,7 +586,7 @@ export async function precontent() {
 					if (lib.characterUndertext[node.name]) {
 						YB_intro.addText(get.colorspan(lib.characterUndertext[node.name]));
 					}
-			
+
 					if (lib.config.right_range && _status.gameStarted) {
 						YB_intro.add(ui.create.div(".placeholder"));
 						var table, tr, td;
@@ -604,7 +605,7 @@ export async function precontent() {
 						td = document.createElement("td");
 						td.innerHTML = "伤害";
 						tr.appendChild(td);
-			
+
 						tr = document.createElement("tr");
 						table.appendChild(tr);
 						td = document.createElement("td");
@@ -628,7 +629,7 @@ export async function precontent() {
 						td.innerHTML = node.phaseNumber;
 						tr.appendChild(td);
 						td = document.createElement("td");
-			
+
 						(function () {
 							num = 0;
 							for (var j = 0; j < node.stat.length; j++) {
@@ -639,7 +640,7 @@ export async function precontent() {
 						tr.appendChild(td);
 						table.style.width = "calc(100% - 20px)";
 						table.style.marginLeft = "10px";
-			
+
 						YB_intro.content.appendChild(table);
 						if (!lib.config.show_favourite) {
 							table.style.paddingBottom = "5px";
@@ -652,7 +653,7 @@ export async function precontent() {
 							var str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + "_info"];
 							YB_intro.add('<div><div class="skill">' + es[i].outerHTML + "</div><div>" + str + "</div></div>");
 							YB_intro.content.lastChild.querySelector(".skill>.card").style.transform = "";
-			
+
 							if (lib.translate[es[i].name + "_append"]) {
 								YB_intro.add('<div class="text">' + lib.translate[es[i].name + "_append"] + "</div>");
 							}
@@ -878,7 +879,7 @@ export async function precontent() {
 						// 		});
 						// 	}
 						// }
-						
+
 						let viewInfo = ui.create.div(".text.center.pointerdiv");
 						viewInfo.link = node;
 						viewInfo.innerHTML = "查看资料";
@@ -889,7 +890,7 @@ export async function precontent() {
 						});
 						YB_intro.add(viewInfo);
 					}
-			
+
 					YB_intro.add(ui.create.div(".placeholder.slim"));
 				} else if (node.classList.contains("character")&&(lib.characterTitle[node.link]||lib.characterCitetext[node.link]||(lib.characterLightext[node.link]&&lib.characterLightext[node.link](node.link))||lib.characterUndertext[node.link])) {
 					const character = node.link,
@@ -906,7 +907,7 @@ export async function precontent() {
 						}
 					}
 					YB_intro.add(capt);
-			
+
 					if (lib.characterTitle[node.link]) {
 						YB_intro.addText(get.colorspan(lib.characterTitle[node.link]));
 					}
@@ -941,7 +942,7 @@ export async function precontent() {
 						}
 					  }
 					}
-			
+
 					if (get.characterInitFilter(node.link)) {
 						const initFilters = get.characterInitFilter(node.link).filter(tag => {
 							if (!lib.characterInitFilter[node.link]) return true;
@@ -952,7 +953,7 @@ export async function precontent() {
 							YB_intro.addText(str);
 						}
 					}
-			
+
 					if (node._banning) {
 						var clickBanned = function () {
 							var banned = lib.config[this.bannedname] || [];
@@ -1051,9 +1052,9 @@ export async function precontent() {
 									translation = get.translation(skills[i]);
 									if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
 								}
-			
+
 								YB_intro.add('<div><div class="skill">' + translation + "</div><div>" + get.skillInfoTranslation(skills[i],null, false) + "</div></div>");
-			
+
 								if (lib.translate[skills[i] + "_append"]) {
 									YB_intro._place_text = YB_intro.add('<div class="text">' + lib.translate[skills[i] + "_append"] + "</div>");
 								}
@@ -1161,12 +1162,12 @@ export async function precontent() {
 				else {
 					YB_intro = YB_nodeIntro.apply(this,arguments)
 				}
-				YB_intro.style.width = '358px'
+				// YB_intro.style.width = '358px'
 				return YB_intro;
 			};
 		}
 		{//YB_promot
-			
+
 			get.YB_prompt2=function (skill, target, player) {
 				var str = get.prompt.apply(this, arguments);
 				if (!lib.translate[skill + "_info"]&&!lib.translate[skill + "_info"]) {
@@ -1265,7 +1266,7 @@ export async function precontent() {
 					},
 					audioOrigin:'extension/夜白神略/audio/character/',//原技能配音位置
 					audio:'extension/夜白神略/skin/audio/',//切换皮肤后的技能配音位置
-	
+
 				});
 			}
 			// lib.qhlypkg.push({
@@ -1279,7 +1280,7 @@ export async function precontent() {
 			// 		// for(var i=0;i<qianzhui.length;i++){
 			// 		// 	if(name.indexOf(qianzhui[i])==0) return true;
 			// 		// }
-					
+
 			// 		//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
 			// 		//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。
 			// 	},
@@ -1397,7 +1398,7 @@ export async function precontent() {
 							mana_jindutiao.style.height = `${100 * v}%`;
 							mana_jindutiao.innerHTML = '<span style="font-size:19px;color: black;text-shadow:0px 0px 5px #ff0;">'+player.getMaxCharge()+'<br>/<br>'+player.countMark('charge')+'</span>';
 						}
-						
+
 					},
 					player
 				)
@@ -1415,7 +1416,7 @@ export async function precontent() {
 					},
 				},
 			}
-			
+
 		}
 	})
 
@@ -1464,8 +1465,8 @@ export async function precontent() {
 	// 					// pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
 	// 				}
 	// 			}
-	// 		} 
-			
+	// 		}
+
 	// 	}
 	// })
 	// lib.arenaReady.push(function () {
@@ -1475,15 +1476,15 @@ export async function precontent() {
 	// 			mode:'versus',
 
 	// 		}
-	// 	}	
+	// 	}
 	// })
 	cyyydsgs();
-	
+	// ybrpg();
 	// if(lib.config.extension_十周年UI_enable==true){
 	// 	let cards = [];
 	// 	game.getFileList('extension/夜白神略/image/card-skins/caise',(folders,files)=> {
 	// 		var decoration = files;
-	// 		decoration.forEach(function(image){ 
+	// 		decoration.forEach(function(image){
 	// 			cards.push(image.slice(0,image.length-5));
 	// 		});
 	// 	});

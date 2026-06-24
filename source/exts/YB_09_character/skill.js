@@ -3,6 +3,85 @@ export { skill }
 
 /** @type { importCharacterConfig['skill'] } */
 const skill = {
+	YB_wannaw_bingdong:{
+		trigger:{
+			player:['useCard','respond'],
+		},
+		filter:function(event,player){
+			return event.card?.name=='sha'&&game.countPlayer(c=>c!=player&&c.countDiscardableCards(player,'he'));
+		},
+		cost(){
+			event.result = player.chooseTarget(1).set('filterTarget',function(card,player,target){
+				return target!=player&&target.countDiscardableCards(player,'he');
+			}).set('ai',function(target){
+				var player = player||_status.event.player;
+				let att = get.attitude(player, target);
+				if (att < 0) {
+					att = -Math.sqrt(-att);
+				} else {
+					att = Math.sqrt(att);
+				}
+				return att * lib.card.guohe.ai.result.target(player, target);
+			}).set('prompt',get.prompt2('YB_wannaw_bingdong')).forResult();
+			//如果你要改技能的id，上边的get.prompt('YB_wannaw_bingdong')里的id也要一起改
+		},
+		content:async function(event,trigger,player){
+			let target = event.targets[0];
+			var count = 2;
+			var forced = true;
+			let cards = [];
+			while(count){
+				var result = await player.discardPlayerCard('he',target,[1,count],forced).set('prompt2',`弃置${get.translation(target)}至多${count}张牌？`).forResult();
+				if(result.cards){
+					cards.push(...result.cards);
+					forced = false;
+					count-=result.cards.length;
+				}
+				else break;
+			}
+			if(cards.length&&cards.length>1){
+				function quchong(arr){
+					let i = 0;
+					for(let j = 1;j<arr.length;j++){
+						if(arr[i]!==arr[j]){
+							i++;
+							arr[i] = arr[j];
+						}
+					}
+					arr.length = i+1;
+					return arr;
+				}
+				var types = quchong(cards.map(card=>get.type2(card,target))).length==1
+				var suits = quchong(cards.map(card=>get.suit(card,target))).length==1
+				var namenums = quchong(cards.map(card=>get.cardNameLength(card,target))).length==1
+				var numbers = quchong(cards.map(card=>get.number(card,target))).length==1
+				if(types){
+					await player.gain(cards,'gain2');
+				}
+				if(suits){
+					await player.recover();
+				}
+				if(namenums){
+					await player.draw(namenums[0]);
+				}
+				if(numbers){
+					await target.loseHp(target.hp);
+				}
+				if(!types&&!suits&&!namenums&&!numbers){
+					// await player.damage('fire','nosource')
+					await player.loseHp();
+				}
+			}
+		},
+		// ai:{
+		// 	result:{
+		// 		target:function(card,player,target){
+		// 			return -1;
+		// 		}
+		// 	}
+		// }
+	},
+	// 冰冻：当你使用或打出杀时，你可弃置一名角色最多两张牌。若这两张牌类别/花色/牌名字数/点数相同，则你获得这两张牌/回复1点体力/摸X张牌/令其失去所有体力（X为其中一张牌的牌名字数）；若皆不同，则你受到1点无来源的火焰伤害。（虚拟杀，转化杀都可以触发）
 	North_qiangxi:{
 		enable:'phaseUse',
 		usable:1,

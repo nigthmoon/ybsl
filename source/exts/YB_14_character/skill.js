@@ -3,7 +3,7 @@ export { skill }
 
 /** @type { importCharacterConfig['skill'] } */
 const skill = {
-			
+
 
 
 
@@ -910,7 +910,7 @@ const skill = {
 										event.kamome_ybyangfan_sun_suit=c.suit;
 									}
 								})
-								// event.kamome_ybyangfan.suit = 
+								// event.kamome_ybyangfan.suit =
 							}
 							if(evt.gaintag_map[i].includes("kamome_ybyangfan_que"))list.push('kamome_ybyangfan_que');
 						}
@@ -1042,7 +1042,7 @@ const skill = {
 					await next;
 					// lib.skill.kamome_ybyangfan.init(player);
 				}
-			} 
+			}
 			if((trigger.name == "phase" && game.phaseNumber == 0)||trigger.name=='enterGame'){
 				await player.equip(game.createCard2("kamome_suitcase", "spade", 1));
 				player.kamome_ybyangfan();
@@ -1281,7 +1281,7 @@ const skill = {
 		// 	// trigger.getParent().zhuzhanresult=player;
 		// 	// trigger.getParent().zhuzhanresult.YB_exchange();
 		// }
-		
+
 	},
 	youta_huanshen:{
 		audio:'ext:夜白神略/audio/character:2',
@@ -1346,7 +1346,7 @@ const skill = {
 				.set('prompt', '示刀：清选择一项').set('ai', function () {
 					return 0;
 					// if(get.color(event.cards[0])=='red'){
-					// 	return 
+					// 	return
 					// }
 				}).forResult();
 			if (relu.index == 0) {
@@ -1600,7 +1600,7 @@ const skill = {
 			'step 8'
 
 			//-----------此处设置此牌的视为牌名
-			
+
 			var list55 = [];
 			for (var yb of lib.inpile) {
 				// for(var yb in lib.card){
@@ -1619,7 +1619,7 @@ const skill = {
 						// 	case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
 						// 	case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
 						// 	case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
-						// 	default: 
+						// 	default:
 						// }
 
 					}
@@ -1839,7 +1839,7 @@ const skill = {
 						// 	case 'kami': list55.add([get.type2(yb), '', 'sha', 'kami']); break;
 						// 	case 'ice': list55.add([get.type2(yb), '', 'sha', 'ice']); break;
 						// 	case 'stab': list55.add([get.type2(yb), '', 'sha', 'stab']); break;
-						// 	default: 
+						// 	default:
 						// }
 
 					}
@@ -3374,7 +3374,7 @@ const skill = {
 			event.numx = 0;
 			for(var i of event.cards){
 				if(get.number(i))event.numx+=get.number(i);
-			} 
+			}
 			game.log(player, "本次观看牌的点数和为", event.numx, "。")
 			if(!player.storage.niya_youbo)player.storage.niya_youbo=0;
 			player.storage.niya_youbo+=event.numx;
@@ -3538,7 +3538,7 @@ const skill = {
 			event.numx = 0;
 			for(var i of event.cards){
 				if(get.number(i))event.numx+=get.number(i);
-			} 
+			}
 			game.log(player, "本次弃置牌的点数和为", event.numx, "。")
 			'step 2'
 			var numb = Math.log(event.numx);
@@ -4511,14 +4511,14 @@ const skill = {
 			const choices = [], cw = [], ccw = []
 			const card = get.autoViewAs({ name: 'guohe_copy2' })
 			if (targetx == right2)
-				for (const i of right) 
+				for (const i of right)
 					if (i.countDiscardableCards(player, 'he')) {
 						cw.add(i)
 						right_eff += get.effect(i, card, player)
 					}
-			
+
 			if (targetx == left2)
-				for (const i of left) 
+				for (const i of left)
 					if (i.countDiscardableCards(player, 'he')) {
 						ccw.add(i)
 						left_eff += get.effect(i, card, player)
@@ -4603,7 +4603,7 @@ const skill = {
 							if (get.attitude(player, target) > 0) links.add(buttons[0].link)
 							else links.add(buttons.lastItem.link)
 						}
-					else 
+					else
 						for (const target of cw) {
 							const buttons = dialogs[target.playerid].buttons.slice()
 							buttons.sort((a, b) => get.buttonValue(a) - get.buttonValue(b))
@@ -5663,7 +5663,7 @@ const skill = {
 	// ybsl_ranxin_info:'每个回合结束时，若为你的回合，或本回合有阶段被跳过或有伤害被防止，你可令当前回合角色回复1点体力或摸两张牌，然后视为对其使用一张伤害+1的火【杀】。',
 	// ybsl_fuju:'付炬',
 	// ybsl_fuju_info:'锁定技，其他角色获得你的牌/对你造成伤害时，你改为弃置之/失去1点体力。然后你依次执行：①若其体力值大于你，你对其造成1点伤害；②若其手牌数大于你，你弃置其一张牌。',
-	
+
 
 	ybsl_rongjie: {
 		audio: 'mbganjue',
@@ -5959,7 +5959,7 @@ const skill = {
 		async content(event,trigger,player){
 			player.awakenSkill('ybsl_xijian');
 			player.storage.ybsl_xijian=true;
-			await trigger.player.loseHp(trigger.player.hp);			
+			await trigger.player.loseHp(trigger.player.hp);
 		},
 	},
 	ybsl_shilu:{
@@ -6115,7 +6115,7 @@ const skill = {
 		},
 	},
 
-	
+
 	// ybsl_xijian:'悉谏',
 	// ybsl_xijian_info:'限定技，当有角色脱离濒死状态时，你可令该角色失去全部体力。',
 	// ybsl_yedun:'夜遁',
@@ -6126,7 +6126,7 @@ const skill = {
 	// ybsl_shilu_info:'锁定技。当你受到伤害后，你摸X张牌（X为你的体力值且至多为5）。然后你展示攻击范围内一名角色的一张手牌并令此牌视为无属性【杀】。',
 	// ybsl_qingguo:'倾国',
 	// ybsl_qingguo_info:'你可以将一张黑色牌当做【闪】使用或打出。',
-	
+
 	//蒋子文
 	ybsl_fengci:{
 		audio: 'ext:夜白神略/audio/character:2',
@@ -6153,7 +6153,7 @@ const skill = {
 									cardst.push(i.link);
 								}
 							}
-							if(cardst)return !get.YB_suit(cardst,'suit').includes(get.suit(button.link)); 
+							if(cardst)return !get.YB_suit(cardst,'suit').includes(get.suit(button.link));
 							return true;
 						}).forResult();
 					}
@@ -6296,19 +6296,19 @@ const skill = {
 			player.draw();
 		}
 	},
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * 索靖
 	 */
@@ -6401,7 +6401,7 @@ const skill = {
 							if(links[0][2]=='shan') return get.type2(card)=='trick'&&!get.tag(card,'damage');
 							return get.name(card)=='shan';
 						}
-						
+
 					},
 					selectCard:1,
 					viewAs:{name:links[0][2]},
@@ -6708,7 +6708,7 @@ const skill = {
 				return true;
 			}
 			return false;
-			
+
 		},
 		async content(event, trigger, player) {
 			if(!player.storage.ybsl_shehao){
@@ -6933,6 +6933,95 @@ const skill = {
 		}
 	},
 
+	//司马攸
+	ybsl_youyou:{
+		audio: 'ext:夜白神略/audio/character:2',
+		zhuanhuanji:true,
+		mark:true,
+		intro:{
+			content:function(storage,player){
+				if (player.storage.ybsl_youyou==true){
+					return '转换技，每名角色出牌阶段限一次，其可以：①弃置两张手牌（不足不能用），然后令你恢复一点体力上限；<span class="bluetext">②恢复一点体力，然后令你弃置两张手牌（不足全弃）</span>。若不为该角色首次对你发动，则恢复改为失去。'
+				}
+				else {
+					return '转换技，每名角色出牌阶段限一次，其可以：<span class="bluetext">①弃置两张手牌（不足不能用），然后令你恢复一点体力上限</span>；②恢复一点体力，然后令你弃置两张手牌（不足全弃）。若不为该角色首次对你发动，则恢复改为失去。'
+				}
+			}
+		},
+		global:'ybsl_youyou_global',
+		// filter(event,player){
+
+		// },
+		subSkill:{
+			global:{
+				audio:'ybsl_youyou',
+				enable:'phaseUse',
+				filter(event,player){
+					return !player.storage.ybsl_youyou_used||game.filterPlayer(current=>{
+						return current.hasSkill('ybsl_youyou')&&!player.storage.ybsl_youyou_used.includes(current);
+					});
+				},
+				selectTarget:1,
+				filterTarget(card,player,target){
+					if(target.hasSkill('ybsl_youyou')||player.storage.ybsl_youyou_used.includes(target))return false;
+					else{
+						if(target.storage.ybsl_youyou==true){
+							return true;
+						}
+						else {
+							return player.countDiscardableCards(player,'h')>=2;
+						}
+					}
+				},
+				selectCard:function(){
+					if(!ui.selected.targets.length)return false;
+					var target=ui.selected.targets[0];
+					if(target.storage.ybsl_youyou==true){
+						return 0
+					}
+					else{
+						return 2
+					}
+				},
+				position:'h',
+				async content(event,trigger,player){
+					var target = event.targets[0];
+					if(!target.storage.ybsl_youyou_vv){
+						target.storage.ybsl_youyou_vv = [];
+					}
+					var cards = event.cards;
+					const func = target.storage.ybsl_youyou_vv.includes(player) ? 'lose' : 'recover';
+					const func2 = target.storage.ybsl_youyou_vv.includes(player) ? 'lose' : 'gain';
+					target.storage.ybsl_youyou_vv.push(player);
+					await target.changeZhuanhuanji('ybsl_youyou');
+					if(!cards){
+						await player[func]();
+						await target.chooseToDiscard(2,'h',true);
+					}
+					else{
+						await target[func+'MaxHp']();
+					}
+				}
+			}
+		}
+	},
+	ybsl_shangli:{
+		audio: 'ext:夜白神略/audio/character:2',
+		// group:['ybsl_shangli_1','ybsl_shangli_2'],
+		// subSkill:{
+		// 	1:{
+		// 		audio:'ybsl_shangli',
+		// 		trigger: {
+		// 			player: ["loseAfter"],
+		// 			global: ["equipAfter", "addJudgeAfter", "gainAfter", "loseAsyncAfter", "addToExpansionAfter"],
+		// 		},
+		// 		usable: 1,
+
+		// 	},
+		// 	2:{},
+		// },
+
+	},
 
 
 
@@ -7349,7 +7438,7 @@ const skill = {
 		}
 	},
 	/*
-	
+
 	ybslclan_luyan:'族陆延',
 	ybslclan_luyan_prefix:'族',
 	ybsl_lyyaoe:'夭厄',
@@ -7391,7 +7480,7 @@ const skill = {
 				player.getStat('skill')['ybsl_ljfumin'] = 0;
 			// if(player.getStat('skill')['ybsl_ljfumin']&&player.getStat('skill')['ybsl_ljfumin']>0) player.getStat('skill')['ybsl_ljfumin']--;
 
-			// 
+			//
 			else if (player.countCards('h') < target.countCards('h')) player.draw(2);
 			else target.draw(2);
 			// 'step 2'
@@ -8016,7 +8105,7 @@ const skill = {
 			return false;
 		},
 		direct:true,
-		
+
 		content() {
 			player.when('phaseJieshuBegin').then(function () {
 				player.chooseBool().set('ai', function () { return true })
@@ -8250,7 +8339,7 @@ const skill = {
 			if(player.countDiscardableCards(player, 'h')>0) listx.push('手牌区');
 			if(player.countDiscardableCards(player, 'e')>0) listx.push('装备区');
 			if(player.countDiscardableCards(player, 'j')>0) listx.push('判定区');
-			
+
 			if(listx.length>=1){
 				var cont = await player
 					.chooseControl(listx, "cancel2")
@@ -8263,7 +8352,7 @@ const skill = {
 				event.result.bool = typeof cont.control === "string" && cont.control !== "cancel2";
 				event.result.cost_data.control = cont.control;
 			}
-			
+
 		},
 		content:async function(event, trigger, player) {
 			const result = event.cost_data;
@@ -8573,8 +8662,8 @@ const skill = {
 				},
 				cost(){
 					event.result = player.chooseTarget()
-					.set('ai', function (target) { 
-						return (get.attitude(_status.event.player,target)-5)*target.getDamagedHp(true); 
+					.set('ai', function (target) {
+						return (get.attitude(_status.event.player,target)-5)*target.getDamagedHp(true);
 					})
 					.set('prompt2', '是否令一名男性角色回复1点体力？')
 					.set('filterTarget',function(card,player,target){
@@ -9130,7 +9219,7 @@ const skill = {
 				}
 			}
 		},
-	
+
 	},
 	//---------相柳
 	sgsk_jiushou: {
@@ -9411,7 +9500,7 @@ const skill = {
 						await player.equip(card);
 					}
 				},
-				
+
 			}
 		},
 	},
@@ -10603,7 +10692,7 @@ const skill = {
 				return "将一张黑色牌当作" + get.translation(links[0][3] || "") + get.translation(links[0][2])+'使用';
 			},
 		},
-	
+
 	},
 	//---------力牧
 	sgsk_qianjun: {
@@ -10758,7 +10847,7 @@ const skill = {
 			}
 			trigger.getParent().sgsk_wuxing = []
 			trigger.getParent().sgsk_wuxing.add(player);
-			
+
 		},
 		group: 'sgsk_wuxing_1',
 		subSkill: {
@@ -10833,7 +10922,7 @@ const skill = {
 				var att = get.attitude(_status.event.player,target);
 				// if(att>0){
 				// 	if(!target.isDamaged())return -1;
-				// 	else  
+				// 	else
 				// }
 				if(att<0) return get.damageEffect(target,event.target1,_status.event.player);
 				return target.getDamagedHp()
@@ -11033,8 +11122,8 @@ const skill = {
 
 
 	/*
-	
-	
+
+
 	bilibiliup_quanji:'全寄',
 	bilibiliup_quanji_info:'限定技，出牌阶段，你可以积蓄1点能量（弃置一张牌），然后此后每个出牌阶段开始时，你需选择：继续积蓄1点能量或释放能量（移去全部能量，然后对全场所有角色各造成释放能量点伤害。）。当你积蓄能量后，若能量不少于3，你可以立即释放。',
 	bilibiliup_paiyi:'拍翼',

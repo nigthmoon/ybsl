@@ -7,9 +7,9 @@ export async function cyyydsgs() {
 		//技能等级的必要代码（后续可能没用了
 		{//等级
 			/**
-			 * 
-			 * @param {*} skill 
-			 * @param {*} player 
+			 *
+			 * @param {*} skill
+			 * @param {*} player
 			 * @returns 获取技能的等级
 			 */
 			get.YB_skill_lv = function(skill,player){
@@ -21,8 +21,8 @@ export async function cyyydsgs() {
 			//	 return target.name
 			// }
 			/**
-			 * 
-			 * @param {*} name 
+			 *
+			 * @param {*} name
 			 * @returns 获取武将的等阶
 			 */
 			get.YB_character_lv = function(name){
@@ -49,9 +49,9 @@ export async function cyyydsgs() {
 				}
 			}
 			/**
-			 * 
-			 * @param {*} mark 
-			 * @param {*} num 
+			 *
+			 * @param {*} mark
+			 * @param {*} num
 			 * @returns 增加标记
 			 */
 			lib.element.player.YB_addMark = function(mark,num,type){
@@ -77,9 +77,9 @@ export async function cyyydsgs() {
 				// trigger.trigger('YB_addMark_'+event.mark);
 			}
 			/**
-			 * 
-			 * @param {*} mark 
-			 * @param {*} num 
+			 *
+			 * @param {*} mark
+			 * @param {*} num
 			 * @returns 失去标记
 			 */
 			lib.element.player.YB_removeMark = function(mark,num,type){
@@ -177,7 +177,7 @@ export async function cyyydsgs() {
 		/** @type { importCharacterConfig } */
 		var cyyydsgs = {
 			name: "cyyydsgs",
-			connect:false,//该武将包是否可以联机（必填） 
+			connect:false,//该武将包是否可以联机（必填）
 			characterSort:{
 				cyyydsgs:{
 					miwusenlin:[
@@ -220,9 +220,9 @@ export async function cyyydsgs() {
 			characterIntro:{},
 			characterFilter:{},
 			characterTitle:{},
-	
-	
-	
+
+
+
 			skill:{
 				cyyydsgs_leishan:{
 					cyyydsgs:true,
@@ -358,7 +358,7 @@ export async function cyyydsgs() {
 									next.set('prompt2',get.YB_prompt2('cyyydsgs_jilei',null,player))
 									result = await next.forResult();
 								}
-								
+
 								if (result?.control != "cancel2") {
 									event.result.bool=true;
 									event.result.cost_data[result.control]=true;
@@ -623,7 +623,7 @@ export async function cyyydsgs() {
 						}
 					},
 					// subSkill:{
-	
+
 					// },
 				},
 				cyyydsgs_xuanfeng:{
@@ -648,7 +648,7 @@ export async function cyyydsgs() {
 					// },
 					// content(){
 					// 	'step 0'
-	
+
 					// },
 					// content(){
 					// 	'step 0'
@@ -682,7 +682,7 @@ export async function cyyydsgs() {
 					// 		if(num==4)str+='每次发动此技能限一次。'
 					// 		player.chooseBool(str)
 					// 	}
-						
+
 					// 	// event.result = await player.chooseTarget([1,2],get.YB_prompt2('cyyydsgs_xuanfeng',null,player),true).set('filterTarget',function(card,player,target){
 					// 	// 	return target.countCards("he") > 0&&target!=player&&target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), "he");
 					// 	// }).set('ai',function(target){
@@ -710,7 +710,7 @@ export async function cyyydsgs() {
 						else {
 							return num>=3&&event.YB_type=='buff_cyyydsgs_damage';
 						}
-						
+
 					},
 					async cost(event,trigger,player){
 						var num = get.YB_skill_lv('cyyydsgs_xuanfeng',player);
@@ -761,9 +761,9 @@ export async function cyyydsgs() {
 								}
 							},
 							prompt2(){
-	
+
 								return '移除一枚“风盾”，令此事件附着风属性';
-	
+
 							},
 							content(){
 								'step 0'
@@ -779,7 +779,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, (nature==null?'YB_wind':natures+'|YB_wind'));
-								
+
 								var next = game.createEvent("cyyydsgs_xuanfeng_nowind");
 								event.next.remove(next);
 								trigger.after.push(next);
@@ -790,10 +790,10 @@ export async function cyyydsgs() {
 						},
 					},
 				},
-	
+
 				//磐石龟
-				
-	
+
+
 			},
 			card:{},
 			translate:{
@@ -813,7 +813,7 @@ export async function cyyydsgs() {
 				lv3_cyyydsgs_leimoyingwang:'三阶雷魔鹰王',
 				lv4_cyyydsgs_leimoyingwang:'四阶雷魔鹰王',
 				lv5_cyyydsgs_leimoyingwang:'五阶雷魔鹰王',
-	
+
 				cyyydsgs_leishan:'雷闪',
 				cyyydsgs_leishan_info:'出牌阶段限一次，你可以弃置一张牌，对一名其他角色造成一点雷电伤害。',
 				cyyydsgs_leishan_info_1:'出牌阶段限一次，你可以弃置一张牌，对一名其他角色造成一点雷电伤害。',
@@ -821,7 +821,7 @@ export async function cyyydsgs() {
 				cyyydsgs_leishan_info_3:'出牌阶段限一次，你可以弃置一至两张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
 				cyyydsgs_leishan_info_4:'出牌阶段限一次，你可以弃置一至三张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
 				cyyydsgs_leishan_info_5:'出牌阶段限两次，你可以弃置一至三张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
-	
+
 				cyyydsgs_jilei:'汲雷',
 				cyyydsgs_jilei_info:'当你造成雷属性伤害后，你可以恢复一点体力。',
 				cyyydsgs_jilei_info_1:'当你造成雷属性伤害后，你可以恢复一点体力。',
@@ -832,7 +832,7 @@ export async function cyyydsgs() {
 				//魇魔藤和魇魔花
 				cyyydsgs_yanmoteng:'魇魔藤',
 				cyyydsgs_yanmohua:'魇魔花',
-	
+
 				cyyydsgs_shengzhang:'生长',
 				cyyydsgs_shengzhang_info:'锁定技，准备阶段，你恢复一点体力。',
 				cyyydsgs_shengzhang_info_1:'锁定技，准备阶段，你恢复一点体力。',
@@ -840,7 +840,7 @@ export async function cyyydsgs() {
 				cyyydsgs_shengzhang_info_3:'锁定技，准备阶段，你恢复一点体力并摸两张牌。',
 				cyyydsgs_shengzhang_info_4:'锁定技，准备阶段或结束阶段，你恢复一点体力并摸两张牌。',
 				cyyydsgs_shengzhang_info_5:'锁定技，准备阶段或场上角色的结束阶段，你恢复一点体力并摸两张牌。',
-	
+
 				cyyydsgs_huakai:'花开',
 				cyyydsgs_huakai_info:'出牌阶段限一次，你可以令一名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）。',
 				cyyydsgs_huakai_info_1:'出牌阶段限一次，你可以令一名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）。',
@@ -848,10 +848,10 @@ export async function cyyydsgs() {
 				cyyydsgs_huakai_info_3:'出牌阶段限一次，你可以令一至两名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
 				cyyydsgs_huakai_info_4:'出牌阶段限一次，你可以令一至两名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；其他角色移除“花粉”时，你可以获得其一张牌；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
 				cyyydsgs_huakai_info_5:'出牌阶段限一次，你可以令一至三名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；其他角色移除“花粉”时，你可以获得其一张牌；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
-				
+
 				buff_cyyydsgs_huafen:'花粉',
 				buff_cyyydsgs_huafen_info:'锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
-				
+
 				//风魔狼和风魔狼王
 				cyyydsgs_fengmolang:'风魔狼',
 				cyyydsgs_fengmolangwang:'风魔狼王',
@@ -862,10 +862,10 @@ export async function cyyydsgs() {
 				cyyydsgs_fengxing_info_3:'锁定技，摸牌阶段，你多摸两张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）。',
 				cyyydsgs_fengxing_info_4:'锁定技，摸牌阶段，你多摸三张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）。',
 				cyyydsgs_fengxing_info_5:'锁定技，摸牌阶段，你多摸三张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）；当你因溢出而移除“风盾”时，你摸两张牌。',
-	
+
 				buff_cyyydsgs_fengdun:'风盾',
 				buff_cyyydsgs_fengdun_info:'锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
-	
+
 				cyyydsgs_xuanfeng:'旋风',
 				cyyydsgs_xuanfeng_info:'弃牌阶段结束时，若你本阶段弃置过牌，你可以对至多两名其他角色各造成一点风属性伤害。',
 				cyyydsgs_xuanfeng_info_1:'弃牌阶段结束时，若你本阶段弃置过牌，你可以对至多两名其他角色各造成一点风属性伤害。',
@@ -880,11 +880,11 @@ export async function cyyydsgs() {
 				// cyyydsgs_xuanfeng_info_3:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害，然后放弃后续执行。',
 				// cyyydsgs_xuanfeng_info_4:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害，每次发动此技能限一次。',
 				// cyyydsgs_xuanfeng_info_5:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害。',
-	
+
 				//乱石荒原副本
 				//磐石龟
 				cyyydsgs_panshigui:'磐石龟',
-	
+
 				cyyydsgs_jianshi:'坚石',
 				cyyydsgs_jianshi_info:'锁定技，结束阶段，你获得一点护甲（至多为5）。',
 				cyyydsgs_jianshi_info_1:'锁定技，结束阶段，你获得一点护甲（至多为5）。',
@@ -892,11 +892,11 @@ export async function cyyydsgs() {
 				cyyydsgs_jianshi_info_3:'锁定技，结束阶段，你获得一点护甲（至多为5）并摸一张牌；当你失去护甲后，你摸一张牌。',
 				cyyydsgs_jianshi_info_4:'锁定技，结束阶段，你获得一点护甲（至多为5）并摸两张牌；当你失去护甲后，你摸一张牌。',
 				cyyydsgs_jianshi_info_5:'锁定技，结束阶段，你获得两点护甲（至多为5）并摸两张牌；当你失去护甲后，你摸一张牌。',
-	
+
 				//岩刺蛇和岩刺蛇王
 				cyyydsgs_yancishan:'岩刺蛇',
 				cyyydsgs_yancishanwang:'岩刺蛇王',
-	
+
 				cyyydsgs_yanbeng:'岩崩',
 				cyyydsgs_yanbeng_info:'出牌阶段限一次，你可以翻面，并对一名其他角色造成一点岩属性伤害（若你存在“蛇绞”对象，此技能不能发动）。',
 				cyyydsgs_yanbeng_info_1:'出牌阶段限一次，你可以翻面，并对一名其他角色造成一点岩属性伤害（若你存在“蛇绞”对象，此技能不能发动）。',
@@ -904,7 +904,7 @@ export async function cyyydsgs() {
 				cyyydsgs_yanbeng_info_3:'出牌阶段限一次，你可以翻面，并对一至两名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后若其被“蛇绞”，你弃置其一张牌。',
 				cyyydsgs_yanbeng_info_4:'出牌阶段限一次，你可以翻面，并对一至三名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后若其被“蛇绞”，你弃置其一张牌。',
 				cyyydsgs_yanbeng_info_5:'出牌阶段限一次，你可以翻面，并对一至三名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后你弃置其一张牌。',
-				
+
 				cyyydsgs_shejiao:'蛇绞',
 				cyyydsgs_shejiao_info:'出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）。',
 				cyyydsgs_shejiao_info_1:'出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）。',
@@ -912,16 +912,16 @@ export async function cyyydsgs() {
 				cyyydsgs_shejiao_info_3:'出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
 				cyyydsgs_shejiao_info_4:'出牌阶段限一次，你可以指定一名其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色受到的伤害均附加岩属性；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
 				cyyydsgs_shejiao_info_5:'出牌阶段限一次，你可以指定一至三名其他角色（若包含多名角色，这些角色需体力值均小于你），令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色受到的伤害均附加岩属性；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-	
+
 				//风蚀鹫
 				//一技能也是风行的说
-	
+
 			},
 			dynamicTranslate:{
 				// cyyydsgs_leishan:function(){},
 			},
-	
-	
+
+
 			perfectPair:{},
 			//夜白自创的一些小功能）
 			characterCitetext:{},
@@ -929,7 +929,7 @@ export async function cyyydsgs() {
 			accessoryPacket:{},//附属将包
 			characterLightextParent:{},
 			characterLightext:{},
-	
+
 		}
 		for(var i in cyyydsgs.skill){
 			if(cyyydsgs.skill[i].cyyydsgs){
@@ -940,7 +940,7 @@ export async function cyyydsgs() {
 							element.dataset.num = 1;
 						} else {
 							element.dataset.num = lib.translate['${i}' + '_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
-							
+
 						}
 						var text = lib.translate['${i}' + '_info_' + element.dataset.num];
 						element.textContent = get.cnNumber(element.dataset.num) + '阶：' + text;
@@ -950,7 +950,7 @@ export async function cyyydsgs() {
 							element.dataset.num = 1;
 						} else {
 							element.dataset.num = lib.translate['${i}' + '_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
-							
+
 						}
 						var text = lib.translate['${i}' + '_info_' + element.dataset.num];
 						element.textContent = get.cnNumber(element.dataset.num) + '阶：' + text;
@@ -975,7 +975,7 @@ export async function cyyydsgs() {
 					let node = cyyydsgs.skill[i];
 					node.mark = cyyydsgs.translate[i].charAt(0);
 					node.intro = {
-						
+
 					};
 					node.intro.markcount = function(iVal){
 						return function(storage,player,iVal){
@@ -1001,13 +1001,13 @@ export async function cyyydsgs() {
 		for(var i in cyyydsgs.card){
 			if(!cyyydsgs.card[i].image) cyyydsgs.card[i].image='ext:夜白神略/image/card/'+i+'.png'
 		}
-	
-		lib.config.all.characters.add('cyyydsgs');
+
+		// lib.config.all.characters.add('cyyydsgs');
 		lib.translate['cyyydsgs_character_config'] = '<span class="yellowtext">武将觉醒</span>';
 		// game.import('character',cyyydsgs);
 	}
 	//导入 新版将魂觉醒
-	
+
 	{
 		var buff_jhjx_huafen = get.poptip({
 			id: "buff2_jhjx_huafen",
@@ -1024,7 +1024,7 @@ export async function cyyydsgs() {
 		/** @type { importCharacterConfig } */
 		var jhjx = {
 			name: "jhjx",
-			connect:true,//该武将包是否可以联机（必填） 
+			connect:true,//该武将包是否可以联机（必填）
 			characterSort:{
 				jhjx:{
 					jhjx_miwusenlin:[
@@ -1061,9 +1061,9 @@ export async function cyyydsgs() {
 			characterIntro:{},
 			characterFilter:{},
 			characterTitle:{},
-	
-	
-	
+
+
+
 			skill:{
 				//迷雾森林
 				//雷魔鹰
@@ -1180,12 +1180,12 @@ export async function cyyydsgs() {
 							next.set('prompt2',get.YB_prompt2('jhjx_jilei',null,player))
 							result = await next.forResult();
 						}
-						
+
 						if (result?.control != "cancel2") {
 							event.result.bool=true;
 							event.result.cost_data[result.control]=true;
 						}
-					
+
 					},
 					async content(event,trigger,player){
 						if(event.cost_data.recover_hp)await player.recover();
@@ -1426,7 +1426,7 @@ export async function cyyydsgs() {
 						else {
 							return event.YB_type=='buff_jhjx_damage';
 						}
-						
+
 					},
 					async cost(event,trigger,player){
 						event.result = await player.chooseTarget([1,2],get.YB_prompt2('jhjx_xuanfeng',null,player),true).set('filterTarget',function(card,player,target){
@@ -1470,9 +1470,9 @@ export async function cyyydsgs() {
 								}
 							},
 							prompt2(){
-	
+
 								return '移除一枚“风盾”，令此事件附着风属性';
-	
+
 							},
 							content(){
 								'step 0'
@@ -1488,7 +1488,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, (nature==null?'YB_wind':natures+'|YB_wind'));
-								
+
 								var next = game.createEvent("jhjx_xuanfeng_nowind");
 								event.next.remove(next);
 								trigger.after.push(next);
@@ -1592,7 +1592,7 @@ export async function cyyydsgs() {
 						var str = []
 						if(player.storage.jhjx_shejiao&&player.storage.jhjx_shejiao.length){
 							if(!player.storage.jhjx_shejiao.includes(target))return false;
-							else str.push('蛇绞') 
+							else str.push('蛇绞')
 							// else target.prompt('蛇绞');
 						}
 						else if(ui.selected.targets.length){
@@ -1961,7 +1961,7 @@ export async function cyyydsgs() {
 									'step 0'
 									if(cards.length&&get.position(cards[0],true)=='o'){
 										event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
-										player.chooseControl(event.list1).set('prompt', '请选择将【'+get.translation(event.skill)+'】当做哪种装备');										
+										player.chooseControl(event.list1).set('prompt', '请选择将【'+get.translation(event.skill)+'】当做哪种装备');
 									}
 									else event,finish();
 									'step 1'
@@ -1972,7 +1972,7 @@ export async function cyyydsgs() {
 										cards[0].YB_init([cards[0].suit, cards[0].number, name, cards[0].nature ,tag]);
 										player.equip(cards[0]);
 									}
-						
+
 								},
 								toself: true,
 								ai: {},
@@ -2304,20 +2304,20 @@ export async function cyyydsgs() {
 				jhjx_luanshihuangyuan:'乱石荒原',
 				//磐石龟
 				jhjx_panshigui:'磐石龟',
-	
+
 				jhjx_jianshi:'坚石',
 				jhjx_jianshi_info:'锁定技，结束阶段，你获得一点护甲（至多为5）并摸一张牌；当你失去护甲后，你摸一张牌。',
 				jhjx_zhendang:'震荡',
 				jhjx_zhendang_info:'出牌阶段限一次，你可以对自己造成一点伤害，并弃置至多两名角色区域内各一张牌。',
 				//岩刺蛇
 				jhjx_yancishan:'岩刺蛇',
-	
+
 				jhjx_yanbeng:'岩崩',
 				jhjx_yanbeng_info:'出牌阶段限一次，你可以翻面，并对一至两名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对全体蛇绞对象发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”，然后你弃置其一张牌）。',
-				
+
 				jhjx_shejiao:'蛇绞',
 				jhjx_shejiao_info:'出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，“蛇绞”你的角色的回合内，你不能使用或打出手牌。）；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-	
+
 				//风蚀鹫
 				jhjx_fengshijiu:'风蚀鹫',
 				//一技能也是风行的说
@@ -2362,8 +2362,8 @@ export async function cyyydsgs() {
 			dynamicTranslate:{
 				// cyyydsgs_leishan:function(){},
 			},
-	
-	
+
+
 			perfectPair:{},
 			//夜白自创的一些小功能）
 			characterCitetext:{},
@@ -2371,9 +2371,9 @@ export async function cyyydsgs() {
 			accessoryPacket:{},//附属将包
 			characterLightextParent:{},
 			characterLightext:{},
-	
-		
-			
+
+
+
 		}
 		typeimage(jhjx,'jhjx')
 		for(var i in jhjx.card){

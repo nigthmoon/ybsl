@@ -2,7 +2,7 @@ import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 export {translate}
 
 const translate = {
-	
+
 	//将包分类
 	ybsl_yjcm:'<span class=yellowtext>一将成名</span>',
 	ybsl_yjcm_info:'夜白在三国杀十周年服投的稿。',
@@ -74,45 +74,45 @@ const translate = {
 	Fe2O3_huishi_info:'锁定技，每回合结束时，你将所有手牌以任意顺序置于牌堆顶。',
 	Fe2O3_xingchen:'星谶',
 	Fe2O3_xingchen_info:'当你成为牌的目标后，你可以从牌堆底摸三张牌，然后弃置X张牌（X为本回合此技能发动次数）。',
-	
+
 	zxunnamed_zhenji : '甄宓',
 	zxunnamed_qinglan : '轻澜',
 	zxunnamed_qinglan_info : '锁定技，每回合每项限一次，你使用牌指定其他角色为唯一目标后，其选择一项：1.弃置一张牌并视为使用一张【酒】，2.将牌堆顶的牌当做【折戟】对自己使用并回复1点体力，3.与你各摸一张牌。',
 	zxunnamed_lingbo : '凌波',
 	zxunnamed_lingbo_info : '转换技，出牌阶段，阳：你可以将一名角色装备区内的牌当做【无中生有】对其使用 阴：你可以令一名角色将你装备区内的牌当做【杀】使用。',
-	
+
 	Fe2O3_zixu : '紫虚',
 	Fe2O3_shuding : '数定',
 	Fe2O3_shuding_info : '锁定技，一名角色于你的回合内使用牌时，若本回合弃牌堆没有与之花色相同的牌，你摸一张牌并令其选择一项：1.重铸两张与之颜色相同的牌，2.失去1点体力。',
 	Fe2O3_titi : '折折',
 	Fe2O3_titi_info : '锁定技，出牌阶段结束时，本回合失去过牌的角色可以获得本回合进入弃牌堆的一张牌，未因此获得牌的角色可以使用一张牌。',
-	
+
 	Fe3O4_guanyu : '关羽',
 	Fe3O4_jinxiao : '矜骁',
 	Fe3O4_jinxiao_info : '当你使用【杀】指定唯一目标后或成为【杀】的唯一目标后，使用者可以依次执行任意项：1.弃置一张牌，若为红色此【杀】伤害+1；2.弃置目标角色一张牌，若为红色你摸一张牌且此【杀】不可被响应。',
 	Fe3O4_danji : '单骑',
 	Fe3O4_danji_info : '限定技，结束阶段，你可以与下家交换座次并视为对其使用一张【杀】，若其因此死亡，你重置此技能。',
-	
+
 	Fe2O3_zhugeliang : '诸葛亮',
 	Fe2O3_guanji : '观己',
 	Fe2O3_guanji_info : '每回合限一次，当你的手牌数或体力值变化至相等后，你可以摸两张牌。',
 	Fe2O3_weixuan : '危悬',
 	Fe2O3_weixuan_info : '你可以将一张红/黑色装备牌当做【桃】/【增兵减灶】对一名体力值/手牌数不大于1的角色使用。',
-	
+
 	Fe2O3_zhaoyun : '赵云',
 	Fe2O3_bayun : '拔云',
 	Fe2O3_bayun_info : `你可以摸一张牌或获得对方一张牌以发动${get.poptip('ollongdan')}或令此技能本回合失效。`,
-	
+
 	ddddssssbbbb_dengai : '邓艾',
 	ddddssssbbbb_chouxuan : '筹旋',
-	ddddssssbbbb_chouxuan_info : '锁定技，当你使用一张牌时，若此牌与你上上家使用的上上张牌牌名相同，你选择两项：1.弃置一张牌并选择两项，2.弃置一张牌并令此牌额外结算一次，3.删除“删除一个重复字符串”，摸X张牌，4.删除一个重复字符串，摸X张牌，摸X张牌。（X为已删除的字数/10 + 1）', 
-	
+	ddddssssbbbb_chouxuan_info : '锁定技，当你使用一张牌时，若此牌与你上上家使用的上上张牌牌名相同，你选择两项：1.弃置一张牌并选择两项，2.弃置一张牌并令此牌额外结算一次，3.删除“删除一个重复字符串”，摸X张牌，4.删除一个重复字符串，摸X张牌，摸X张牌。（X为已删除的字数/10 + 1）',
+
 	zxunnamed_gongsunyuan : '公孙渊',
 	zxunnamed_huaiyi : '怀异',
 	zxunnamed_huaiyi_info : `转换技，出牌阶段限一次，你可以1.弃置两张牌并获得或重置${get.poptip('zxunnamed_shixian')}。`,
 	zxunnamed_shixian : '恃险',
 	zxunnamed_shixian_info : '锁定技，每个时机限一次，结束阶段或当你造成或受到伤害后，你选择一项：1.摸两张牌，2.弃置当前回合角色一张牌，3.失去此技能并执行所有项；然后将此项移动到〖怀异〗末尾。',
-	
+
 	FeO3_zhugeliang : '诸葛亮',
 	FeO3_dafei : '大飞',
 	FeO3_dafei_info : '当你连续使用牌指定唯一目标后，你可以同时弃置其之间角色一张牌。',
@@ -121,7 +121,7 @@ const translate = {
 	diaohulishan_info : '出牌阶段，对一至两名其他角色使用。目标角色于此回合内体力值不会改变，不计入距离和座次的计算，不能使用牌且不能成为牌的目标。',
 	FeO3_jinqi : '紧气',
 	FeO3_jinqi_info : '一名角色死亡后，你可以获得本回合弃牌堆不同花色的牌各一张，然后结束当前阶段与当前回合。',
-	
+
 	Fe3O4_zhugeliang : '诸葛亮', //怎么全是诸葛亮
 	Fe3O4_chichi : '持持',
 	Fe3O4_chichi_info : '转换技，你可以以阳：明置阴：重铸方式使用手牌。',
@@ -194,7 +194,7 @@ const translate = {
 	ybsl_lykangming: '抗命',
 	ybsl_lykangming_info: `出牌阶段限一次，你可以进行一次判定。然后你可以弃置一张花色与判定结果相同的牌。若如此做，本回合${get.poptip('ybsl_lyyaoe')}失效。若弃置牌点数也与之相同，则你减1点体力上限。`,
 	//出牌阶段限一次，你可以进行一次判定。然后你可以弃置一张花色或点数与判定结果相同的牌。若弃置牌与判定结果：花色相同，本回合夭厄一效果失效；点数相同，本回合夭厄二效果失效；花色和点数均相同，本回合夭厄两效果均失效，然后你减一点体力上限。
-	
+
 	ybslclan_luji:'族陆绩',
 	ybslclan_luji_prefix:'族',
 	ybsl_ljfumin:'福民',
@@ -214,7 +214,7 @@ const translate = {
 // 兴族：
 // 宗族技，当你每回合首次使用一种类型的牌后，若你本回合未造成伤害，你可以令一名同族角色发动一个出牌阶段限一次的技能（不计入次数）。
 	/*
-	
+
 	*/
 
 	ybsl_bqbs: '<span class=firetext>别群比赛</span>',
@@ -251,7 +251,7 @@ const translate = {
 	// ybsl_ranxin_info:'有阶段被跳过或有伤害被防止的回合结束时，你可令当前回合角色回复1点体力，然后视为对其使用一张伤害+1的火【杀】。',
 	ybsl_fuju: '付炬',
 	ybsl_fuju_info: '锁定技，其他角色获得你的牌/对你造成伤害时，你改为弃置之/失去1点体力。然后你依次执行：①若其体力值大于你，你对其造成1点伤害；②若其手牌数大于你，你弃置其一张牌。',
-	
+
 	ybsl_sunsháo:'孙韶',//第12届小白杯 预赛第二轮落榜作品
 	ybsl_rongjie:'戎戒',
 	ybsl_rongjie_info:'每回合限一次，当你使用伤害牌指定其他角色为唯一目标或成为其他角色使用伤害牌的目标时，你可以令你和对方依次选择发动一个“出牌阶段限一次”的主动技能（不计入发动次数），不如此做（或无法如此做）者令对方获得自己一张手牌。若双方均如此做，此牌对目标无效。',
@@ -335,6 +335,11 @@ const translate = {
 	ybsl_daixin:'代薪',
 	ybsl_daixin_info:'当你使用非虚拟或转化的非装备牌时，你可以用一张装备牌替换之作为实体牌，每种牌名每回合限一次。',
 
+	ybsl_simayou:'司马攸',
+	ybsl_youyou:'攸攸',
+	ybsl_youyou_info:'转换技，每名角色出牌阶段限一次，其可以：①弃置两张手牌（不足不能用），然后令你恢复一点体力上限；②恢复一点体力，然后令你弃置两张手牌（不足全弃）。若不为该角色首次对你发动，则恢复改为失去。',
+	ybsl_shangli:'殇离',
+	ybsl_shangli_info:'每回合各限一次：当你的手牌数减少时，你可以将手牌数调整至已损体力值数；当你的已损体力值减少时，你可以将你的已损体力值调整至你的手牌数（可以选择令体力上限增加或者当前体力减少的方式）。',
 
 
 
@@ -366,7 +371,7 @@ const translate = {
 	kamome_jieban_ybsl_kamome_info:'此技能仅提供一条语音。',
 	// ybsl_youta:'成神阳太',
 
-	
+
 	yb_key_hina:'界佐藤雏',
 	yb_key_hina_prefix:'界',
 	yb_key_kotori:'界神户小鸟',
@@ -429,7 +434,7 @@ const translate = {
 	// 4
 	// 示刀
 	// 其他角色出牌阶段开始时，你可以展示一张手牌或指示装备区内一张牌，令其选择：①其本阶段使用此颜色牌无次数限制，②其本阶段可以将此颜色牌当杀使用且不可被闪避。若你选择的牌是装备牌，则其本阶段视为拥有此装备的技能。
-	
+
 	// 渡魂
 	// 当其他角色阵亡时，你可令其选择一名非击杀其的角色，令其选择的角色回复一点体力并摸三张牌。
 
@@ -454,7 +459,7 @@ const translate = {
 
 	//-------------------------------周瑜小乔
 	'ybsl_zhouyuxiaoqiao':'周瑜小乔',//√
-	
+
 	'ybsl_xianyin':'弦音',
 	'ybsl_xianyin_info':`转换技，（括号内的阴阳为${get.poptip('ybsl_luanming')}的形态）<br/>阳（阳）：当你因弃置而失去一张黑桃牌时，你可令一名角色下个摸牌阶段额外摸一张牌；（若你没有〖鸾鸣〗或〖鸾鸣〗已使用则改为黑色牌）<br/>阳（阴）：当你因弃置而失去一张梅花牌时，你可令一名角色回复1点体力；（若你没有〖鸾鸣〗或〖鸾鸣〗已使用则改为黑色牌）<br/>阴（阳）：当你因弃置而失去一张红桃牌时，你可令一名角色失去1点体力；（若你没有〖鸾鸣〗或〖鸾鸣〗已使用则改为红色牌）<br/>阴（阴）：当你因弃置而失去一张方块牌时，你可令一名角色下个摸牌阶段少摸一张牌。（若你没有〖鸾鸣〗或〖鸾鸣〗已使用则改为红色牌）`,
 	'ybsl_luanming':'鸾鸣',
@@ -897,7 +902,7 @@ const translate = {
 
 
 
-	
+
 	//\u865a\u62df\u4e3b\u64ad
 	bilibiliup:'\u865a\u62df\u4e3b\u64ad',
 	bilibiliup_MANA:'能量',
@@ -1167,7 +1172,7 @@ const translate = {
 	//\u9e7f\u996e\u6eaa
 	bilibiliup_jiuselu:'\u9e7f\u996e\u6eaaruru',//\u6c3f\u6da9\u9e7f
 	bilibiliup_jiuselu_ab:'\u9e7f\u996e\u6eaa',
-	
+
 
 
 

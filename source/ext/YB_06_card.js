@@ -13,9 +13,9 @@ game.import('card',function(lib, game, ui, get, ai, _status){
 		card:card,//卡牌
 		skill:skill,//技能
 		translate:translate,//卡牌翻译
-		list:list,//牌堆添加		
+		list:list,//牌堆添加
 	}
-	lib.config.all.cards.push('ybgod');
+	// lib.config.all.cards.push('ybgod');
 	lib.translate['ybgod_card_config']='<span style=\'color:#e1ff00\'>BOSS搬运</span>';
-	return ybgod;	
+	return ybgod;
 });

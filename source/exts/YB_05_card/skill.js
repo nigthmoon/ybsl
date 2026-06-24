@@ -176,7 +176,7 @@ const skill = {
 		filter:function (event,player){
 			if(player.hasSkillTag('unequip2')) return false;
 			if (
-				event.source.hasSkillTag("unequip", false, {
+				event.source&&event.source.hasSkillTag("unequip", false, {
 					name: event.card ? event.card.name : null,
 					target: player,
 					card: event.card,
@@ -612,7 +612,7 @@ const skill = {
 				dialog.content.appendChild(table2);
 				dialog.add('　　');
 				event.dialog.open();
-				
+
 				event.switchToAuto=function(){
 					event._result={
 						bool:true,
@@ -653,7 +653,7 @@ const skill = {
 			else{
 				switchToAuto();
 			}
-			
+
 			'step 3'
 			var map=event.result||result;
 			if(map.bool){
@@ -665,7 +665,7 @@ const skill = {
 				trigger.player.storage.rewrite_zhuque2=[trigger.card,map.nature];
 				player.popup(get.translation(map.suit+2)+get.translation(map.nature),'thunder');
 			}
-		}	
+		}
 	},
 	'rewrite_zhuque2':{
 		charlotte:true,
@@ -703,55 +703,44 @@ const skill = {
 	//--------------------------护心铠
 	rewrite_huxinjing: {
 		equipSkill: true,
+		inherit: "huxinjing",
 		trigger: { player: "damageBegin4" },
 		// forced:true,
 		filter(event, player) {
 			if (event.num < player.hp && (get.mode() == "guozhan" || event.num <= 1)) {
 				return false;
 			}
-			let cards = player.getEquips("rewrite_huxinjing");
+			let cards = player.getEquips("rewrite_huxinjing").filter(i => i.name != "huxinjing");
 			if (!cards.length) {
 				return false;
 			}
-			// if (player.hasSkillTag("unequip2")) {
-			// 	return false;
-			// }
-			// if (
-			// 	event.source &&
-			// 	event.source.hasSkillTag("unequip", false, {
-			// 		name: event.card ? event.card.name : null,
-			// 		target: player,
-			// 		card: event.card,
-			// 	})
-			// ) {
-			// 	return false;
-			// }
 			return true;
 		},
 		content() {
 			trigger.cancel();
-			var e2 = player.getEquips("rewrite_huxinjing");
-			var bool=(get.position(card)=='e');
+			var e2 = player.getEquips("rewrite_huxinjing").filter(i => i.name == "rewrite_huxinjing");
 			if (e2.length) {
-				// player.discard(e2);
-				for(var i of e2){
-					game.broadcastAll(function(card,bool){
-						card.YB_init([card.suit,card.number,card.name.slice(7),card.nature/*,tag*/]);
+				for(var i =0;i<e2.length;i++){
+					game.broadcastAll(function(card,player){
+						player.removeEquipTrigger(card.card || card);
+						card.init([card.suit,card.number,'huxinjing',card.nature/*,tag*/]);
+						let vcard = card[card.cardSymbol];
 						//
-						if (bool && card.card && player.vcardsMap?.equips) {
-							const cardx = game.YB_createCard(card.card.name.slice(7), card.card.suit, card.card.number);
-							player.vcardsMap.equips[player.vcardsMap.equips.indexOf(card.card)] = cardx;
-							card.card = cardx;
+						if (vcard && player.vcardsMap?.equips) {
+							// const cardx = game.YB_createCard('huxinjing', card.card.suit, card.card.number);
+							// player.vcardsMap.equips[player.vcards]
+							const cardx = get.autoViewAs(card, void 0, false);
+							player.vcardsMap.equips[player.vcardsMap.equips.indexOf(vcard)] = cardx;
+							card[card.cardSymbol] = cardx;
 						}
-						//
-					},card,bool);//bool
-					if (bool) player.addEquipTrigger(card.card || card);
+						player.addEquipTrigger(card.card || card);
+					},e2[i],player)
 				}
 			}
 			// player.removeSkill("rewrite_huxinjing");
 		},
 		mod:{
-			
+
 			canBeDiscarded(card, player, target) {
 				if (card.name == "rewrite_huxinjing" && get.position(card) == "e") {
 					return false;
@@ -1167,7 +1156,7 @@ const skill = {
 			delete player.storage.ybsl_zidian3;
 		},
 	},
-	
+
 	ybsl_zidian4:{
 		trigger:{player:'useCard1'},
 		filter:function(event){
@@ -1191,11 +1180,11 @@ const skill = {
 		silent:true,
 		popup:false,
 		nopop:true,
-		
+
 		ai:{
 			damageBonus:true
 		},
-		
+
 	},
 	ybsl_bixie:{
 		shaRelated:true,
@@ -1294,7 +1283,7 @@ const skill = {
 				target.damage(event.suits,'nocard');
 			}
 		},
-		
+
 	},
 	ybsl_baili_give:{
 		audio:'ext:夜白神略/audio/card:true',
@@ -1820,18 +1809,18 @@ const skill = {
 	// 		//-------------改杀描述
 	// 		// var NorthShaPrompt=lib.card.sha.cardPrompt;
 	// 		// lib.card.sha.cardPrompt=function(card){
-	// 			// if(card.name=='sha'&&card.nature=='YB_blood') 
+	// 			// if(card.name=='sha'&&card.nature=='YB_blood')
 	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
 	// 			// return NorthShaPrompt.apply(this,arguments);
 	// 		// };
 	// 		// lib.card.sha.nature.add('YB_blood');
 	// 		// lib.card.sha.nature.add('YB_snow');
 	// 		// lib.card.sha.cardPrompt=function(card){
-	// 			// if(card.nature=='stab') 
+	// 			// if(card.nature=='stab')
 	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，且在此之后需弃置一张手牌（没有则不弃）。否则你对其造成1点伤害。';
-	// 			// if(card.nature=='YB_blood') 
+	// 			// if(card.nature=='YB_blood')
 	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】。否则你对其造成1点血属性伤害（造成伤害后，你恢复等同伤害值的生命值。）';
-	// 			// if(lib.linked.contains(card.nature)) 
+	// 			// if(lib.linked.contains(card.nature))
 	// 				// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点'+get.translation(card.nature)+'属性伤害。';
 	// 			// return '出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点伤害。';
 	// 		// }

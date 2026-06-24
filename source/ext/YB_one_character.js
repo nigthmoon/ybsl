@@ -1,19 +1,19 @@
 "use strict";
 const extname = '夜白神略';
-game.import('character',function(lib, game, ui, get, ai, _status){ 
-	var YB_one={ 
-		name:'YB_one',//武将包命名（必填） 
-		connect:true,//该武将包是否可以联机（必填） 
+game.import('character',function(lib, game, ui, get, ai, _status){
+	var YB_one={
+		name:'YB_one',//武将包命名（必填）
+		connect:true,//该武将包是否可以联机（必填）
 		connectBanned:[],//联机禁用
 		characterSort:{
 			YB_one:{
 				one_01:[
 
 				],
-			}	
+			}
 		},
 		character:{
-			//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
+			//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容
 			//最后的括号可以不加内容，但不能没有！已经有呆宝宝犯过错了
 			yb_wan_wujiangceshi:['female','qun',4,[
 				'yb_wan_xueyi','yb_wan_jianli',
@@ -42,10 +42,10 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 
 			],['forbidai','name:null|null']]
 
-		},//武将（必填） 
+		},//武将（必填）
 		characterIntro:{
-			
-		},//武将介绍（选填） 
+
+		},//武将介绍（选填）
 		perfectPair:{
 
 		},//珠联璧合武将（选填）
@@ -54,7 +54,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 		},//武将使用条件
 		characterTitle:{
 
-		},//武将标题（用于写称号或注释）（选填） 
+		},//武将标题（用于写称号或注释）（选填）
 		skill:{
 			yb_wan_qingzhu:{//请诛换了个写法，没bug了，就是有点艹淡
 				audio:'ext:无名扩展/audio/character:2',
@@ -89,14 +89,14 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 					else {
 						while(target2.isIn()&&target1.isIn()&&cards.filter(card=>target1.canUse(card,target2,false)&&player.getCards('h').includes(card)).length>0){
 							var relu2 = await target1.chooseButton(['请诛：选择要对'+get.translation(target2)+'用的牌',cards],1,true)
-								
+
 								.set('filterButton',function(button){
 									var cardxx=button.link;
 									if(target1.canUse(cardxx,target2,false)&&player.getCards('h').includes(cardxx))return lib.filter.filterCard.apply(this,arguments);
-									
+
 									return false;
 								}).forResult();
-								
+
 							if(relu2.bool){
 								var cardyx=relu2.links[0];
                                 await cards.remove(cardyx);
@@ -118,11 +118,11 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 						intro: {
 							content: "不能使用或打出手牌",
 						},
-						
+
 					}
 				}
 			},
-				
+
 
 			// 	// yb_wan_qingzhu:'请诛',
 			// 	// yb_wan_qingzhu_info:'你可令一名其他角色观看你的手牌，其选择一项：
@@ -199,7 +199,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 						intro: {
 							content: "不能使用或打出手牌",
 						},
-						
+
 					}
 				}
 			},
@@ -410,7 +410,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 							// 	player.chooseCard([1,Infinity]).set('prompt','需任意选择自己手牌（最少一张）点数相加等于牌堆顶这张牌点数，否则跳过下个出牌阶段。').set('ai',function(card){
 							// 		return 6-get.value(card);
 							// 	}).set('filterCard',function(cardx){
-									
+
 							// 	});
 							// }
 							// else event._result = false;
@@ -852,7 +852,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 					player.awakenSkill("yb_wan_suyi");
 					'step 1'
 					player.loseMaxHp();
-					
+
 					'step 2'
 					// player.removeSkill('yb_wan_xueyii');
 					player.addSkill('yb_wan_qiangyi');
@@ -861,7 +861,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 				init:function(player){
 					player.storage.yb_wan_suyi=false;
 				},
-				
+
 			},
 			yb_wan_qiangyi:{//枪意
 				audio:'ext:无名扩展/audio/character:2',
@@ -1004,7 +1004,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 						},
 					},
 				},
-			
+
 
 			},
 			yb_wan_shuangqiang:{//双枪
@@ -1742,14 +1742,14 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 						game.filterPlayer(function(i){
 							if(i.maxHp>numb)numb=i.maxHp;
 						});
-						return numb; 
+						return numb;
 					},
 					// maxHandcard:function(player,num){
 					// 	var numb=0;
 					// 	game.filterPlayer(function(i){
 					// 		if(i.maxHp>numb)numb=i.maxHp;
 					// 	});
-					// 	return numb; 
+					// 	return numb;
 					// }
 				}
 			},
@@ -1997,9 +1997,9 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			},
 			yb_wan_digong:{//地公
 				audio:'ext:无名扩展/audio/character:2',
-				trigger: { 
+				trigger: {
 					// target: 'rewriteGainResult',
-					player: "loseEnd" 
+					player: "loseEnd"
 				},
 				locked:true,
 				usable:1,
@@ -2719,7 +2719,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 					if (!player.storage.yb_wan_linzuo) player.storage.yb_wan_linzuo = [];
 					player.storage.yb_wan_linzuo.push(target);
 					// player.addSkill("yb_wan_linzuo_");
-		
+
 					const func = (player, target) => {
 						if (!target.storage.yb_wan_linzuo_mark) target.storage.yb_wan_linzuo_mark = [];
 						target.storage.yb_wan_linzuo_mark.add(player);
@@ -3372,13 +3372,13 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 					event.cards=get.cards(num1);
 					game.cardsGotoOrdering(event.cards);
 					player.chooseCardButton(event.cards,true,num2,'窥天：获得其中'+num2+'张牌');
-					
+
 					"step 2"
 					if (result.bool) {
 						player.gain(result.links,'gain2');
 					}
 					var cards2=event.cards.filter(i=>!result.links.includes(i));
-					
+
 					while(cards2.length){
 						ui.cardPile.insertBefore(cards2.pop(),ui.cardPile.firstChild);
 					}
@@ -3660,7 +3660,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			"yb_wan_xueyi_info": "锁定技，你的摸牌阶段改为展示牌堆顶四张牌，你可随意排列顺序，然后你摸三张牌。",
 			yb_wan_jianli:'坚利',//√
 			yb_wan_jianli_info:'出牌阶段限一次，你可以展示所有手牌，若颜色均一致，你可对一名角色造成一点伤害。',
-			
+
 			yb_wan_linglong:'玲珑',//√
 			yb_wan_linglong_info:'你的方片牌无出杀次数限制且不计入出杀次数，你的方片牌可以当做杀或闪使用或打出。',
 			yb_wan_yaoji:'邀计',//√
@@ -3687,7 +3687,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			yb_wan_zeishi:'贼势',//√
 			yb_wan_zeishi_info:'当你受到伤害时弃置等同伤害值数量的牌减免该伤害，然后本回合下次受到伤害增加这个值。',
 			// 先率：当你回合内第一次打出杀，若造成伤害则你可增加一体力上限然后恢复一体力，若没造成伤害则你摸两张牌。
-			
+
 			// 贼势：每轮限一次，当你受到一点伤害后你可弃置一张牌令此伤害减一，该回合你再受到伤害时伤害加一。
 			yb_wan_fushui:'符水',//√
 			yb_wan_fushui_info:'出牌阶段，你可弃置一张手牌令一名角色回复一点体力，然后其获得一个“徒”标记，一名角色最多有一个“徒”标记，你的手牌上限+x（x为场上徒标记数）',
@@ -3727,7 +3727,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			yb_wan_digong_info:'每回合限一次，当你的最后一张手牌被别人获得时你可摸一张牌。你可获得你的黑色判定牌。',
 			yb_wan_rengong:'人公',//√
 			yb_wan_rengong_info:'锁定技，每当场上一名角色回复一点体力你可摸一张牌。一张判定牌即将生效时你可打出一张牌视为判定牌。你的摸牌数改为场上存活角色的一半，向下取整。',
-			
+
 			yb_wan_yinmou:'隐谋',
 			yb_wan_yinmou_info:'锁定技，你的出牌阶段开始时你可观看一名角色所有手牌，并秘密选择其中一张手牌为“隐”，你的准备阶段开始时，若场上角色手中每有一张“隐”你加一点体力上限并回复一点体力，你的摸牌数+x（x为隐的数量），每当场上失去一张隐，你选择失去一体力上限或受到一点伤害，当你因此受到5点伤害后你失去隐谋。',
 			// 隐谋：锁定技，你的出牌阶段开始时你可观看一名角色所有手牌，
@@ -3786,7 +3786,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			yb_wan_gongxun:'功勋',//√
 			yb_wan_gongxun_info:'你可将勋如此使用：1、当一名角色即将受到伤害时你可移去一张勋防止此伤害。2、你可移去一张勋对一名角色造成一点伤害。3、你可移去一张勋令一名角色摸两张牌。',
 			yb_wan_gongxun_append:'因代码水平受限（懒），ai不会出牌阶段主动发动该技能。',
-			// 功勋：你可将勋如此使用： 
+			// 功勋：你可将勋如此使用：
 			// 1、当一名角色即将受到伤害时你可移去一张勋防止此伤害。
 			// 2、出牌阶段以及其他角色结束阶段，你可移去一张勋对一名角色造成一点伤害。
 			// 3、出牌阶段以及其他角色准备阶段，你可移去一张勋令一名角色摸两张牌。
@@ -3802,7 +3802,7 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			yb_wan_yewang:'野妄',//√
 			yb_wan_yewang_info:'每当你造成一点伤害，你可摸一张牌再将一张手牌置于武将牌上称为“寂”。 你手牌上限加寂的数量。',
 			// 野妄：每当你造成一点伤害，
-			// 你可摸一张牌再将一张手牌置于武将牌上称为“寂”。 
+			// 你可摸一张牌再将一张手牌置于武将牌上称为“寂”。
 			// 你手牌上限加寂的数量。
 			yb_wan_kuitian_backup:'窥天',
 			yb_wan_kuitian:'窥天',//√
@@ -3846,25 +3846,25 @@ game.import('character',function(lib, game, ui, get, ai, _status){
 			// 沧泪槊：攻击距离2，当你闪避一张杀时可视为对对方打出一张杀，你打出或使用杀可令对方无法响应。
 			// 潮汐矛：攻击距离4，当你使用或打出一张基本牌时你摸一张牌。
 			// 藏黛刺：攻击距离1，你对一名角色出杀时可令其非锁定技失效，能将杀当闪使用或打出。
-		},//翻译（必填） 
+		},//翻译（必填）
 		dynamicTranslate:{
 
 		},
-		
+
 	};
 	// const extensionName = extensionName;
 	for(var i in YB_one.character){
 		if(YB_one.character[i][4])YB_one.character[i][4].push(`ext:${extname}/image/character/${i}.jpg`);
 		else YB_one.character[i].img=`extension/${extname}/image/character/${i}.jpg`;
-		
-	} 
+
+	}
 	for(var i in YB_one.character){
 		if(YB_one.character[i][4])YB_one.character[i][4].push(`die:${extname}/audio/die/${i}.mp3`);
 	}
 	for(var i in YB_one.card){
 		if(!YB_one.card[i].image) YB_one.card[i].image=`ext:${extname}/image/card/${i}.png`
 	}
-	lib.config.all.characters.add('YB_one');
+	// lib.config.all.characters.add('YB_one');
 	lib.translate['YB_one_character_config'] = '<span style=\'color:#e328b7\'>无名将包</span>';
-	return YB_one; 
-}); 
+	return YB_one;
+});
