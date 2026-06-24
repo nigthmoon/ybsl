@@ -1,8 +1,9 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { character }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { character };
 
 /** @type { importCharacterConfig['character'] } */
-const character = { //武将格式 : 
+const character = {
+	//武将格式 :
 	//------------------------上古神话
 	// sgsh_huaxu:{
 	// 	sex: "female",
@@ -23,11 +24,8 @@ const character = { //武将格式 :
 	// 'sgsh_xiwangmu':['female','shen',3,['sgsk_kunlun','sgsk_huasheng'],['rankAdd:legend','rankS:s','name:null|null']],//西王母
 	// 'sgsh_yuqiang':['male','shen',4,['sgsk_zhihai','sgsk_xuanming'],['rankAdd:junk','name:null|null']],//禺强
 	// 'sgsh_dayu':['male','shen',4,['sgsk_zhishui'],['rankAdd:epic','name:null|null']],//大禹
-
 	// 'sgsh_limu':['male','shen',4,['sgsk_qianjun'],['rankAdd:rare','name:null|null']],//力牧
 	// 'sgsh_chiyou':['male','shen',16,['sgsk_shizhan'],['rankAdd:legend','rankS:s','name:null|null']],//蚩尤
 	// 'sgsh_jingwei':['female','shen',3,['sgsk_xianmu','sgsk_tianhai'],['rankAdd:legend','rankS:s','name:null|null']],//精卫
-	
-
-	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容 
-}
+	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容
+};

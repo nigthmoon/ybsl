@@ -1,57 +1,20 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export {perfectPair}
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { perfectPair };
 
-const perfectPair = {//珠联璧合
-	'014liutianyu':[
-		'002chenailin',
-		'008wuyuxin','009liyushan','010zhouyue',
-		'015wanghairu','016manchengqi','017xiaohong','018zhangqing',
-		'025shiqingyu',
-		'038tengwu','047shan','038bianqiuwen',
-		'067snake','027rain','079xiaoxin','121tujing',
-		'123xuelang','085DGY','086GJ',
-	],
-	'017xiaohong':[
-		'016manchengqi',
-		'019shengyan','015wanghairu',
-		'018zhangqing','122wangbingyu',
-	],
-	'015wanghairu':[
-		'016manchengqi',
-		'018zhangqing',
-		'033xiaohui',
-	],
-	'001sunlisong':[
-		'002chenailin',
-	],
-	'006wanghanzhen':[
-		'001sunlisong','002chenailin'
-	],
-	'018zhangqing':[
-		'018huanqing',
-	],
-	'056dongjianchao':[
-		'057sunmeiqi',
-	],
-	'010zhouyue':[
-		'009liyushan','008wuyuxin','011gaoyuhang',
-	],
-	'008wuyuxin':[
-		'009liyushan','011gaoyuhang',
-	],
-	'009liyushan':[
-		'ybsl_011gaoyuhang',
-	],
-	'004zhangyujie':[
-		'048wushuang',
-	],
-	'047zhangmi':[
-		'047shan',
-	],
-	'047shan':[
-		'038tengwu','025shiwang','ybsl_025shiqingyu',
-	],
-	'sgsh_yinglong':[
-		'sgsh_nvba',
-	],
-}
+const perfectPair = {
+	//珠联璧合
+	'014liutianyu': ['002chenailin', '008wuyuxin', '009liyushan', '010zhouyue', '015wanghairu', '016manchengqi', '017xiaohong', '018zhangqing', '025shiqingyu', '038tengwu', '047shan', '038bianqiuwen', '067snake', '027rain', '079xiaoxin', '121tujing', '123xuelang', '085DGY', '086GJ'],
+	'017xiaohong': ['016manchengqi', '019shengyan', '015wanghairu', '018zhangqing', '122wangbingyu'],
+	'015wanghairu': ['016manchengqi', '018zhangqing', '033xiaohui'],
+	'001sunlisong': ['002chenailin'],
+	'006wanghanzhen': ['001sunlisong', '002chenailin'],
+	'018zhangqing': ['018huanqing'],
+	'056dongjianchao': ['057sunmeiqi'],
+	'010zhouyue': ['009liyushan', '008wuyuxin', '011gaoyuhang'],
+	'008wuyuxin': ['009liyushan', '011gaoyuhang'],
+	'009liyushan': ['ybsl_011gaoyuhang'],
+	'004zhangyujie': ['048wushuang'],
+	'047zhangmi': ['047shan'],
+	'047shan': ['038tengwu', '025shiwang', 'ybsl_025shiqingyu'],
+	sgsh_yinglong: ['sgsh_nvba'],
+};

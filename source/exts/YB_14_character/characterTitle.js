@@ -1,90 +1,86 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterTitle }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterTitle };
 
-const characterTitle = {//称号
+const characterTitle = {
+	//称号
 	//---------------------------------//上古神话
 
 	//-----------------------上古神话专题---------------------------//
 
-	sgsh_tiandi:'<span class=yellowtext>天庭主宰</span>',
-	sgsh_shennong:'<span class=yellowtext>炎帝</span>',
-	sgsh_xuanyuan:'<span class=yellowtext>黄帝</span>',
-	sgsh_shaohao:'<span class=yellowtext>华夏首领</span>',
-	sgsh_zhuanxu:'<span class=yellowtext>玄帝</span>',
-	sgsh_qinglong:'<span class=yellowtext>神兽</span>',
-	sgsh_baihu:'<span class=yellowtext>神兽</span>',
-	sgsh_zhuque:'<span class=yellowtext>神兽</span>',
-	sgsh_xuanwu:'<span class=yellowtext>神兽</span>',
-	sgsh_qilin:'<span class=yellowtext>神兽</span>',
-	sgsh_dongwanggong:'<span class=yellowtext>东华帝君</span>',
-	sgsh_xiwangmu:'<span class=yellowtext>金母</span>',
-	sgsh_huaxu:'<span class=yellowtext>伏羲之母</span>',
-	sgsh_yaoji:'<span class=yellowtext>巫山神女</span>',
-	sgsh_hongjunlaozu:'<span class=yellowtext>大道之显化</span>',
-	sgsh_gonggong:'<span class=yellowtext>水神</span>',
-	sgsh_zhurong:'<span class=yellowtext>火神</span>',
-	sgsh_goumang:'<span class=yellowtext>木神</span>',
-	sgsh_houtu:'<span class=yellowtext>土神</span>',
-	sgsh_yuqiang:'<span class=yellowtext>海神</span>',
-	sgsh_fuxi:'<span class=yellowtext>牺皇</span>',
-	sgsh_xiangliu:'<span class=yellowtext>九首凶神</span>',
-	sgsh_houyi:'<span class=yellowtext>弓神</span>',
-	sgsh_dayu:'<span class=yellowtext>夏后氏首领</span>',
-	sgsh_kuafu:'<span class=yellowtext>洪荒之力</span>',
-	sgsh_tubo:'<span class=yellowtext>鬼帝</span>',
-	sgsh_jingwei:'<span class=yellowtext>炎帝之少女</span>',
-	sgsh_qibo:'<span class=yellowtext>古之神医</span>',
-	sgsh_taizichangqin:'<span class=yellowtext>乐神</span>',
-	sgsh_yeming:'<span class=yellowtext>时间之神</span>',
-	sgsh_yinglong:'<span class=yellowtext>纵水龙将</span>',
-	sgsh_nvba:'<span class=yellowtext>不雨旱神</span>',
-	sgsh_chiyou:'<span class=yellowtext>九黎部首领</span>',
-	sgsh_fenghou:'<span class=yellowtext>开辟丞相</span>',
-	sgsh_jiutianxuannv:'<span class=yellowtext>九天娘娘</span>',
-	sgsh_luozu:'<span class=yellowtext>黄帝之正妃</span>',
-	sgsh_cangjie:'<span class=yellowtext>创字圣人</span>',
-	sgsh_limu:'<span class=yellowtext>异力神将</span>',
-	sgsh_changxian:'<span class=yellowtext>士气的掌控者</span>',
-	sgsh_guiyuqu:'<span class=yellowtext>帝之占星师</span>',
-	sgsh_shijiamouni:'<span class=yellowtext>阿弥陀佛</span>',
-	sgsh_luohou:'<span class=yellowtext>流星之王</span>',
-	sgsh_xingtian:'<span class=yellowtext>与天争辉</span>',
-
-
+	sgsh_tiandi: '<span class=yellowtext>天庭主宰</span>',
+	sgsh_shennong: '<span class=yellowtext>炎帝</span>',
+	sgsh_xuanyuan: '<span class=yellowtext>黄帝</span>',
+	sgsh_shaohao: '<span class=yellowtext>华夏首领</span>',
+	sgsh_zhuanxu: '<span class=yellowtext>玄帝</span>',
+	sgsh_qinglong: '<span class=yellowtext>神兽</span>',
+	sgsh_baihu: '<span class=yellowtext>神兽</span>',
+	sgsh_zhuque: '<span class=yellowtext>神兽</span>',
+	sgsh_xuanwu: '<span class=yellowtext>神兽</span>',
+	sgsh_qilin: '<span class=yellowtext>神兽</span>',
+	sgsh_dongwanggong: '<span class=yellowtext>东华帝君</span>',
+	sgsh_xiwangmu: '<span class=yellowtext>金母</span>',
+	sgsh_huaxu: '<span class=yellowtext>伏羲之母</span>',
+	sgsh_yaoji: '<span class=yellowtext>巫山神女</span>',
+	sgsh_hongjunlaozu: '<span class=yellowtext>大道之显化</span>',
+	sgsh_gonggong: '<span class=yellowtext>水神</span>',
+	sgsh_zhurong: '<span class=yellowtext>火神</span>',
+	sgsh_goumang: '<span class=yellowtext>木神</span>',
+	sgsh_houtu: '<span class=yellowtext>土神</span>',
+	sgsh_yuqiang: '<span class=yellowtext>海神</span>',
+	sgsh_fuxi: '<span class=yellowtext>牺皇</span>',
+	sgsh_xiangliu: '<span class=yellowtext>九首凶神</span>',
+	sgsh_houyi: '<span class=yellowtext>弓神</span>',
+	sgsh_dayu: '<span class=yellowtext>夏后氏首领</span>',
+	sgsh_kuafu: '<span class=yellowtext>洪荒之力</span>',
+	sgsh_tubo: '<span class=yellowtext>鬼帝</span>',
+	sgsh_jingwei: '<span class=yellowtext>炎帝之少女</span>',
+	sgsh_qibo: '<span class=yellowtext>古之神医</span>',
+	sgsh_taizichangqin: '<span class=yellowtext>乐神</span>',
+	sgsh_yeming: '<span class=yellowtext>时间之神</span>',
+	sgsh_yinglong: '<span class=yellowtext>纵水龙将</span>',
+	sgsh_nvba: '<span class=yellowtext>不雨旱神</span>',
+	sgsh_chiyou: '<span class=yellowtext>九黎部首领</span>',
+	sgsh_fenghou: '<span class=yellowtext>开辟丞相</span>',
+	sgsh_jiutianxuannv: '<span class=yellowtext>九天娘娘</span>',
+	sgsh_luozu: '<span class=yellowtext>黄帝之正妃</span>',
+	sgsh_cangjie: '<span class=yellowtext>创字圣人</span>',
+	sgsh_limu: '<span class=yellowtext>异力神将</span>',
+	sgsh_changxian: '<span class=yellowtext>士气的掌控者</span>',
+	sgsh_guiyuqu: '<span class=yellowtext>帝之占星师</span>',
+	sgsh_shijiamouni: '<span class=yellowtext>阿弥陀佛</span>',
+	sgsh_luohou: '<span class=yellowtext>流星之王</span>',
+	sgsh_xingtian: '<span class=yellowtext>与天争辉</span>',
 
 	//--------------群友共创---------------------//
 
 	ybsl_xuyou: '夜白设计',
 	ybsl_pujing: '夜白设计',
 
-	niya_re_liuyan:'裂土之宗',
-	niya_caowei:'',
-	Fe2O3_duqiong:'蜀之球琳',
-	zxunnamed_zhenji:'',
-	Fe2O3_zixu:'',
-	Fe3O4_guanyu:'',
-	Fe2O3_zhugeliang:'',
-	Fe2O3_zhaoyun:'',
-	ddddssssbbbb_dengai:'',
-	zxunnamed_gongsunyuan:'',
-	FeO3_zhugeliang:'',
-	Fe343_zhugeliang:'',
-
-
+	niya_re_liuyan: '裂土之宗',
+	niya_caowei: '',
+	Fe2O3_duqiong: '蜀之球琳',
+	zxunnamed_zhenji: '',
+	Fe2O3_zixu: '',
+	Fe3O4_guanyu: '',
+	Fe2O3_zhugeliang: '',
+	Fe2O3_zhaoyun: '',
+	ddddssssbbbb_dengai: '',
+	zxunnamed_gongsunyuan: '',
+	FeO3_zhugeliang: '',
+	Fe343_zhugeliang: '',
 
 	//冷门民杀搬运
-	ybslshen_zhenji:'',
+	ybslshen_zhenji: '',
 	//夜白杂设
 
-	ybsl_kamome:'',
-	ybsl_hairi:'',
-	sp_key_umi:'',
+	ybsl_kamome: '',
+	ybsl_hairi: '',
+	sp_key_umi: '',
 
-	yb_key_hina:'',
-	ybsl_youta:'',
-	yb_key_kotori:'',
-	yb_key_kagari:'',
-
+	yb_key_hina: '',
+	ybsl_youta: '',
+	yb_key_kotori: '',
+	yb_key_kagari: '',
 
 	//别群比赛
 	ybsl_lvyi: '汉尚书令',
@@ -93,184 +89,183 @@ const characterTitle = {//称号
 	ybsl_sunsháo: '知而后动',
 	ybsl_wangbi: '倾厦之梁',
 	ybnb_wangbi: '倾厦之梁',
-	ybsl_jiangziwen:'骨清为神',
+	ybsl_jiangziwen: '骨清为神',
 	ybsl_suojing: '铜驼荆棘',
-	ybsl_wangpou:'闻雷泣墓',
-	ybsl_yangxu:'悬鱼太守',
-	ybsl_shichong:'蜡炬作炊',
-	ybsl_simayou:'德望其殇',
+	ybsl_wangpou: '闻雷泣墓',
+	ybsl_yangxu: '悬鱼太守',
+	ybsl_shichong: '蜡炬作炊',
+	ybsl_simayou: '德望其殇',
 
 	//宗族武将
 	//吴郡陆氏
-	ybslclan_luji:'',
-	ybslclan_luxun:'',
-	ybslclan_luyan:'',
+	ybslclan_luji: '',
+	ybslclan_luxun: '',
+	ybslclan_luyan: '',
 	//一将成名
-	ybslshen_pangtong:'',
+	ybslshen_pangtong: '',
 
+	bilibiliup_jiangali: '\u9ca4\u6210\u7891', //
+	bilibiliup_guanyueliuli: '\u9c7cai\u55b5', //
+	bilibiliup_sunyuyou: '\u5e7d\u732b\u5bce', //
+	bilibiliup_shianshan: '\u6749Q', //
+	bilibiliup_roubaozi: '\u9999\u8349\u5305	', //
+	bilibiliup_baitaosuyu: '\u5fe7\u9c7c\u75c7', //
+	bilibiliup_wanqinsin: '\u5c0f\u5a49\u5154', //
+	bilibiliup_xiyeqianzhi: '\u679d\u58eb\u9f20', //
+	bilibiliup_lulinxikoi: '\u9e23\u4e8e\u6708', //	//\u9e7f\u521d\u96ea
+	bilibiliup_xilingna: '\u5e0c\u6b27\u6c17', //
+	bilibiliup_jiligulu: '\u8d85\u7231\u9732', //
+	bilibiliup_maomaobaobao: '\u949f\u610f\u732b', //
+	bilibiliup_wenyuexu: '\u54b2\u5bb5\u591c', //
+	bilibiliup_xueyuer: '\u9cd5\u55b5\u9c7c', //
+	bilibiliup_qingxiaozhi: '\u7b71\u6674\u4eba', //
+	bilibiliup_qinian: 'S\u4e03\u5e74', //
+	bilibiliup_menglingli: '\u7262\u9ca4\u6c0f', //
+	bilibiliup_xueyunshang: '\u604b\u9713\u88f3', //
+	bilibiliup_xingyao: '',
+	bilibiliup_zhezhi: '\u8354\u5c0f\u5431', //
+	bilibiliup_xiazhisha: '\u7eb1\u7eb1\u4ec1', //
+	bilibiliup_qiyuan: '\u82d1\u5927\u5934', //
+	bilibiliup_xinglisisi: '\u5fc6\u4e1d\u4e1d', //
+	bilibiliup_rongxiaoxuan: '\u65f6\u4e4b\u8431', //
+	bilibiliup_shimizai: '\u65f6\u5f25\u5d3d',
+	bilibiliup_linnannanya: '\u5583\u5c0f\u5b9d', //
+	bilibiliup_wanyue: '\u9065\u633d\u73a5', //
+	bilibiliup_taomoran: '',
+	bilibiliup_xiaotaosheng: '\u6843\u7b19\u7b19', //
+	bilibiliup_suilin: '\u4e09\u767e\u5c81', //
+	bilibiliup_baozai: '\u6c49\u9971\u9601', //
+	bilibiliup_mixieer: '\u7c73MI\u56e2', //
+	bilibiliup_shishi: '\u604b\u8671\u7656', //
+	bilibiliup_qingling: '\u5c0f\u4ed9\u7fce', //
+	bilibiliup_xiaoaijiang: '\u9171\u603b\u88c1', //
+	bilibiliup_xinqi: '\u987e\u5c71\u6d77', //
+	bilibiliup_lushi: '\u542f\u793a\u9e7f', //
+	bilibiliup_tutu: '\u6ca1\u94b1\u837c', //
+	bilibiliup_haitang: '\u68e0\u68e0\u54aa', //
+	bilibiliup_shunhua: '\u6d41\u5149\u8bcd', //
+	bilibiliup_luoxinye: '\u6b46\u4e0a\u8bd7', //
+	bilibiliup_anxia: '\u590f\u4e09\u9e7f',
+	bilibiliup_luoti: '\u5b88\u7f07\u661f',
+	bilibiliup_linyoujiang: '\u62bd\u8d1d\u8d1d',
+	bilibiliup_shiyouzai: '\u5fe7baby',
+	bilibiliup_mili: '\u7c73\u7acb\u4e86',
+	bilibiliup_shijue: '\u7231\u8bc6\u599c',
+	bilibiliup_bingjiang: '\u4f0a\u53ea\u997c',
+	bilibiliup_nanshu: '\u6e86\u59d1\u5a18',
+	bilibiliup_tangtang: '\u7cca\u7cd6',
+	bilibiliup_maoyouyou: 'ab\u8fd8\u94b1',
+	bilibiliup_ruanruan: '\u8f6f\u996d\u5154',
+	bilibiliup_baibai: '\u767d\u5b9d\u7a25',
+	bilibiliup_baobaolucky: '\u9971\u513f\u55dd',
+	bilibiliup_shuangshuang: '\u971c\u5c0f\u602a',
+	bilibiliup_guziyun: 'yuunnn',
 
-	bilibiliup_jiangali:'\u9ca4\u6210\u7891',//
-	bilibiliup_guanyueliuli:'\u9c7cai\u55b5',//
-	bilibiliup_sunyuyou:'\u5e7d\u732b\u5bce',//
-	bilibiliup_shianshan:'\u6749Q',//
-	bilibiliup_roubaozi:'\u9999\u8349\u5305	',//
-	bilibiliup_baitaosuyu:'\u5fe7\u9c7c\u75c7',//
-	bilibiliup_wanqinsin:'\u5c0f\u5a49\u5154',//
-	bilibiliup_xiyeqianzhi:'\u679d\u58eb\u9f20',//
-	bilibiliup_lulinxikoi:'\u9e23\u4e8e\u6708',//	//\u9e7f\u521d\u96ea
-	bilibiliup_xilingna:'\u5e0c\u6b27\u6c17',//
-	bilibiliup_jiligulu:'\u8d85\u7231\u9732',//
-	bilibiliup_maomaobaobao:'\u949f\u610f\u732b',//
-	bilibiliup_wenyuexu:'\u54b2\u5bb5\u591c',//
-	bilibiliup_xueyuer:'\u9cd5\u55b5\u9c7c',//
-	bilibiliup_qingxiaozhi:'\u7b71\u6674\u4eba',//
-	bilibiliup_qinian:'S\u4e03\u5e74',//
-	bilibiliup_menglingli:'\u7262\u9ca4\u6c0f',//
-	bilibiliup_xueyunshang:'\u604b\u9713\u88f3',//
-	bilibiliup_xingyao:'',
-	bilibiliup_zhezhi:'\u8354\u5c0f\u5431',//
-	bilibiliup_xiazhisha:'\u7eb1\u7eb1\u4ec1',//
-	bilibiliup_qiyuan:'\u82d1\u5927\u5934',//
-	bilibiliup_xinglisisi:'\u5fc6\u4e1d\u4e1d',//
-	bilibiliup_rongxiaoxuan:'\u65f6\u4e4b\u8431',//
-	bilibiliup_shimizai:'\u65f6\u5f25\u5d3d',
-	bilibiliup_linnannanya:'\u5583\u5c0f\u5b9d',//
-	bilibiliup_wanyue:'\u9065\u633d\u73a5',//
-	bilibiliup_taomoran:'',
-	bilibiliup_xiaotaosheng:'\u6843\u7b19\u7b19',//
-	bilibiliup_suilin:'\u4e09\u767e\u5c81',//
-	bilibiliup_baozai:'\u6c49\u9971\u9601',//
-	bilibiliup_mixieer:'\u7c73MI\u56e2',//
-	bilibiliup_shishi:'\u604b\u8671\u7656',//
-	bilibiliup_qingling:'\u5c0f\u4ed9\u7fce',//
-	bilibiliup_xiaoaijiang:'\u9171\u603b\u88c1',//
-	bilibiliup_xinqi:'\u987e\u5c71\u6d77',//
-	bilibiliup_lushi:'\u542f\u793a\u9e7f',//
-	bilibiliup_tutu:'\u6ca1\u94b1\u837c',//
-	bilibiliup_haitang:'\u68e0\u68e0\u54aa',//
-	bilibiliup_shunhua:'\u6d41\u5149\u8bcd',//
-	bilibiliup_luoxinye:'\u6b46\u4e0a\u8bd7',//
-	bilibiliup_anxia:'\u590f\u4e09\u9e7f',
-	bilibiliup_luoti:'\u5b88\u7f07\u661f',
-    bilibiliup_linyoujiang:'\u62bd\u8d1d\u8d1d',
-    bilibiliup_shiyouzai:'\u5fe7baby',
-	bilibiliup_mili:'\u7c73\u7acb\u4e86',
-	bilibiliup_shijue:'\u7231\u8bc6\u599c',
-	bilibiliup_bingjiang:'\u4f0a\u53ea\u997c',
-	bilibiliup_nanshu:'\u6e86\u59d1\u5a18',
-	bilibiliup_tangtang:'\u7cca\u7cd6',
-	bilibiliup_maoyouyou:'ab\u8fd8\u94b1',
-	bilibiliup_ruanruan:'\u8f6f\u996d\u5154',
-	bilibiliup_baibai:'\u767d\u5b9d\u7a25',
-	bilibiliup_baobaolucky:'\u9971\u513f\u55dd',
-	bilibiliup_shuangshuang:'\u971c\u5c0f\u602a',
-	bilibiliup_guziyun:'yuunnn',
+	bilibiliup_feiyanlira: '\u517b\u989c',
 
-	bilibiliup_feiyanlira:'\u517b\u989c',
+	bilibiliup_yingzi: '\u8426\u5624\u7f28',
 
-	bilibiliup_yingzi:'\u8426\u5624\u7f28',
+	bilibiliup_yuanqing: '\u6709\u9e22\u6674',
 
-	bilibiliup_yuanqing:'\u6709\u9e22\u6674',
+	bilibiliup_galiyang: '\u7f8a\u8089\u5bf3',
 
-	bilibiliup_galiyang:'\u7f8a\u8089\u5bf3',
+	bilibiliup_tangdemao: '\u5802\u7684\u732b',
 
-	bilibiliup_tangdemao:'\u5802\u7684\u732b',
+	bilibiliup_bohetangowo: '\u7cd6\u6027\u604b',
 
-	bilibiliup_bohetangowo:'\u7cd6\u6027\u604b',
+	bilibiliup_xueyuEira: '\u96ea\u9335\u7cd5',
 
-	bilibiliup_xueyuEira:'\u96ea\u9335\u7cd5',
+	bilibiliup_miaonai: '\u54fa\u732b\u4eba',
 
-	bilibiliup_miaonai:'\u54fa\u732b\u4eba',
+	bilibiliup_yunyiAria: 'Aria',
 
-	bilibiliup_yunyiAria:'Aria',
+	bilibiliup_yuyuyumi: '\u5c0f\u94b0\u8ff7',
 
-	bilibiliup_yuyuyumi:'\u5c0f\u94b0\u8ff7',
+	bilibiliup_wanwanneko: '\u5a49\u5c81\u723a',
 
-	bilibiliup_wanwanneko:'\u5a49\u5c81\u723a',
+	bilibiliup_chachadawang: '\u5de1\u8336\u4f7f',
 
-	bilibiliup_chachadawang:'\u5de1\u8336\u4f7f',
+	bilibiliup_jingyimumu: '\u4e95\u4f0a\u5473',
 
-	bilibiliup_jingyimumu:'\u4e95\u4f0a\u5473',
+	bilibiliup_liliz: '\u6ca1\u674e\u6bdb',
 
-	bilibiliup_liliz:'\u6ca1\u674e\u6bdb',
+	bilibiliup_cangjia: '\u846d\u7279\u7075',
 
-	bilibiliup_cangjia:'\u846d\u7279\u7075',
+	bilibiliup_tangyuansishui: '\u5403\u5706\u5706', //\u5403\u5706\u5706
 
-	bilibiliup_tangyuansishui:'\u5403\u5706\u5706', //\u5403\u5706\u5706
+	bilibiliup_yimengNami: '\u68a6\u5619\u6c64',
 
-	bilibiliup_yimengNami:'\u68a6\u5619\u6c64',
+	bilibiliup_zheyuanlulu: '\u81ea\u9e82\u4eba',
 
-	bilibiliup_zheyuanlulu:'\u81ea\u9e82\u4eba',
-
-	bilibiliup_muman:'\u6c90\u6c90ma',
+	bilibiliup_muman: '\u6c90\u6c90ma',
 	//\u6708\u5149\u70db
-	bilibiliup_zhubao:'\u6708\u5149\u70db',
+	bilibiliup_zhubao: '\u6708\u5149\u70db',
 	//\u5c0f\u72d7\u62b1
-	bilibiliup_gulugululu:'\u5c0f\u72d7\u62b1',
+	bilibiliup_gulugululu: '\u5c0f\u72d7\u62b1',
 	//\u68c9\u7ef5\u5154
-	bilibiliup_chunyuanxiaotu:'\u68c9\u7ef5\u5154',
+	bilibiliup_chunyuanxiaotu: '\u68c9\u7ef5\u5154',
 	//\u5927\u68a8\u6811
 	// bilibiliup_zhanghaoyizx:'\u5927\u68a8\u6811',
 	//\u5495\u7483\u591a
-	bilibiliup_aligu:'\u5495\u7483\u591a',
+	bilibiliup_aligu: '\u5495\u7483\u591a',
 	//\u53ea\u5c41\u706f
-	bilibiliup_liuyingBliss:'\u53ea\u5c41\u706f',
+	bilibiliup_liuyingBliss: '\u53ea\u5c41\u706f',
 	//\u5728\u6021\u8d77
-	bilibiliup_yizaic:'\u5728\u6021\u8d77',
+	bilibiliup_yizaic: '\u5728\u6021\u8d77',
 	//\u4f5f\u9523\u6e7e
-	bilibiliup_goubuli:'\u4f5f\u9523\u6e7e',
+	bilibiliup_goubuli: '\u4f5f\u9523\u6e7e',
 	//\u671b\u7ca5\u77e5
-	bilibiliup_zhouzhou:'\u671b\u7ca5\u77e5',
+	bilibiliup_zhouzhou: '\u671b\u7ca5\u77e5',
 	//\u54b2\u5bb5\u591c
 	// bilibiliup_hualixiaoye:'\u82b1\u68a8\u54b2\u591c', //\u54b2\u5bb5\u591c
 	//\u82cf\u54d2\u7c89
-	bilibiliup_susuyaer:'\u82cf\u54d2\u7c89',
+	bilibiliup_susuyaer: '\u82cf\u54d2\u7c89',
 	//\u8c03\u9152\u4f8d
-	bilibiliup_yaoyaojiu:'\u8c03\u9152\u4f8d',
+	bilibiliup_yaoyaojiu: '\u8c03\u9152\u4f8d',
 	//\u661f\u8336\u95e8
-	bilibiliup_xingyaoxyao:'\u661f\u8336\u95e8',
+	bilibiliup_xingyaoxyao: '\u661f\u8336\u95e8',
 	//\u7c89\u4e1d\u56e2
 	// bilibiliup_tutxy:'TuT-xy', //\u7c89\u4e1d\u56e2
 	//\u839c\u732b\u997c
-	bilibiliup_youna:'\u839c\u732b\u997c',
+	bilibiliup_youna: '\u839c\u732b\u997c',
 	//\u8c79\u5fc6\u4e1d
-	bilibiliup_baobao:'\u8c79\u5fc6\u4e1d',
+	bilibiliup_baobao: '\u8c79\u5fc6\u4e1d',
 	//\u7eaflove
-	bilibiliup_jiangyichun:'\u7eaflove',
+	bilibiliup_jiangyichun: '\u7eaflove',
 	//\u55b5\u795e\u795e
-	bilibiliup_xiaomiao:'\u55b5\u795e\u795e',
+	bilibiliup_xiaomiao: '\u55b5\u795e\u795e',
 	//\u517b\u9e45\u738b
-	bilibiliup_jizhitian:'\u517b\u9e45\u738b',
+	bilibiliup_jizhitian: '\u517b\u9e45\u738b',
 	//\u7535\u6ce2\u7ebf
-	bilibiliup_yuzhongneo:'\u7535\u6ce2\u7ebf',
+	bilibiliup_yuzhongneo: '\u7535\u6ce2\u7ebf',
 	//\u4f69\u5b9d\u5b9d
-	bilibiliup_apeipe:'\u4f69\u5b9d\u5b9d',
+	bilibiliup_apeipe: '\u4f69\u5b9d\u5b9d',
 	//\u5b89\u5854
-	bilibiliup_mifara:'\u5b89\u5854',
+	bilibiliup_mifara: '\u5b89\u5854',
 	//\u6d77\u6817\u997c
-	bilibiliup_fulian:'\u6d77\u6817\u997c',
+	bilibiliup_fulian: '\u6d77\u6817\u997c',
 	//\u5154\u4e43\u4e43
-	bilibiliup_yizhitu:'\u5154\u4e43\u4e43',
+	bilibiliup_yizhitu: '\u5154\u4e43\u4e43',
 	//\u5b88\u72d0\u94c3
-	bilibiliup_xiayelingling:'\u5b88\u72d0\u94c3',
+	bilibiliup_xiayelingling: '\u5b88\u72d0\u94c3',
 	//\u4e0a\u8336\u4ebf
-	bilibiliup_zhuMay:'\u4e0a\u8336\u4ebf',
+	bilibiliup_zhuMay: '\u4e0a\u8336\u4ebf',
 	//\u7eb1\u5948\u5948
 	// bilibiliup_zhanghaoyizx2:'\u7eb1\u5948\u5948',
 	//\u60a0\u7f8a\u7fa4
-	bilibiliup_yangyou:'\u60a0\u7f8a\u7fa4',
+	bilibiliup_yangyou: '\u60a0\u7f8a\u7fa4',
 	//\u9500\u9500\u697d
-	bilibiliup_zhanghao:'\u9500\u9500\u697d',
+	bilibiliup_zhanghao: '\u9500\u9500\u697d',
 	//\u4e07\u7a57\u723a
-	bilibiliup_asui:'\u4e07\u7a57\u723a',
+	bilibiliup_asui: '\u4e07\u7a57\u723a',
 	//\u8981\u68a8\u7ba1
-	bilibiliup_liwo:'\u8981\u68a8\u7ba1',
+	bilibiliup_liwo: '\u8981\u68a8\u7ba1',
 	//\u8fbe\u4f36
-	bilibiliup_chinailin:'\u8fbe\u4f36',
+	bilibiliup_chinailin: '\u8fbe\u4f36',
 	//\u97f3\u6ce2\u7cd6
-	bilibiliup_shiqiyin:'\u97f3\u6ce2\u7cd6',
+	bilibiliup_shiqiyin: '\u97f3\u6ce2\u7cd6',
 	//\u56fd\u5c9aV
-	bilibiliup_zilan:'\u56fd\u5c9aV',
+	bilibiliup_zilan: '\u56fd\u5c9aV',
 	//\u9e7f\u996e\u6eaa
-	bilibiliup_jiuselu:'\u6c3f\u6da9\u9e7f',
-}
+	bilibiliup_jiuselu: '\u6c3f\u6da9\u9e7f',
+};

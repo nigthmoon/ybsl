@@ -1,8 +1,7 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterLightext ,characterLightextParent}
-const characterLightextParent = {
-}
-const characterLightext={}
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterLightext, characterLightextParent };
+const characterLightextParent = {};
+const characterLightext = {};
 // const characterLightext = {
 // 	ybsl_020jiayutong:function(player){
 // 		var list=[['副将搭配房佳瑜，手牌上限+1',{

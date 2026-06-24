@@ -1,11 +1,11 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-import { config } from '../config.js'
-export { YBSL_rewrite }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { config } from '../config.js';
+export { YBSL_rewrite };
 /**
  * 本体技能加强按钮
  * 没用了，已经套给了名将传
  */
-const YBSL_rewrite = function(){
+const YBSL_rewrite = function () {
 	//这里用来测试无名获得晖光不能用的bug
 	/*
 	lib.skill.dcchushan={
@@ -70,13 +70,13 @@ const YBSL_rewrite = function(){
 	*/
 
 	//-----------------------------------//
-	if(config.ybsl_skillstrengthen==true){
+	if (config.ybsl_skillstrengthen == true) {
 		//--------------------佐藤雏
 		// lib.character['db_key_hina']=['female','key',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen']]
 
 		//-------------神户小鸟
 		// lib.character['key_kotori']=['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],[]]
-		
+
 		/*
 		<span style=\'color:#28e3ce\'>忆</span>
 		<span style=\'color:#e328b7\'>梦</span>
@@ -155,7 +155,7 @@ const YBSL_rewrite = function(){
 			// }
 			// lib.translate.xinfu_jingxie1_info='出牌阶段，你可以展示一张未强化过的【诸葛连弩】或标准包/军争包/SP包中的防具牌，<span class=yellowtext>赤兔，王追，闪电及其变种牌，洪水，火山，朱雀扇及其变种牌，倚天剑，毒，青龙刀，铜雀，护心镜</span>，然后对其进行强化。当你处于濒死状态时，你可以重铸一张防具牌，然后将体力回复至1点。'
 		}
-		
+
 		//----------------------曹金玉
 		{
 			// lib.skill.yuqi={
@@ -225,7 +225,6 @@ const YBSL_rewrite = function(){
 			// 				animate:'gain2',
 			// 			}).setContent('gaincardMultiple');
 			// 		}
-					
 			// 	},
 			// 	mark:true,
 			// 	intro:{
@@ -345,7 +344,7 @@ const YBSL_rewrite = function(){
 			// 		}
 			// 	},
 			// }
-			// lib.translate.yuqi_info='每回合限<span class=yellowtext>三</span>次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>0</span>，则你可以观看牌堆顶的<span class=firetext>3</span>张牌。你将其中至多<span class=greentext>1</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>1</span>张牌，并将其余牌以原顺序放回牌堆顶。<span class=yellowtext>（红色的数字至多为10，其余的数字至多为5）</span>'				
+			// lib.translate.yuqi_info='每回合限<span class=yellowtext>三</span>次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>0</span>，则你可以观看牌堆顶的<span class=firetext>3</span>张牌。你将其中至多<span class=greentext>1</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>1</span>张牌，并将其余牌以原顺序放回牌堆顶。<span class=yellowtext>（红色的数字至多为10，其余的数字至多为5）</span>'
 			// lib.dynamicTranslate.yuqi=function(player){
 			// 	var info=lib.skill.yuqi.getInfo(player);
 			// 	return '每回合限<span class=yellowtext>三</span>次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>'+info[0]+'</span>，则你可以观看牌堆顶的<span class=firetext>'+info[1]+'</span>张牌。你将其中至多<span class=greentext>'+info[2]+'</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>'+info[3]+'</span>张牌，并将其余牌以原顺序放回牌堆顶。<span class=yellowtext>（红色的数字至多为10，其余的数字至多为5）</span>';
@@ -372,7 +371,7 @@ const YBSL_rewrite = function(){
 		// 	},
 		// }
 		// lib.translate.qixing_info='游戏开始时，你将牌堆顶的七张牌置于你的武将牌上，称之为“星”。然后你可用任意数量的手牌等量交换这些“星”；<span class=yellowtext>摸牌阶段结束后，你可以获得武将牌上所有星，然后选择至多七张手牌置于武将牌上称为星。</span>'
-		
+
 		// lib.skill.kuangfeng={
 		// 	unique:true,
 		// 	audio:2,
@@ -464,6 +463,5 @@ const YBSL_rewrite = function(){
 		lib.translate.tongque_info='锁定技，你使用的带有【应变】效果的牌无视条件直接生效。'
 		*/
 		//-------------------------------卡牌修改
-		
 	}
-}
+};

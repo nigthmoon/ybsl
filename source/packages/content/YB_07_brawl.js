@@ -1,438 +1,483 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-import { YB_yebailvcheng } from '../../../yblc/YBLC_1.js'
-import { YB_xnqbd } from '../../../yblc/YBLC_2.js'
-export { YBSL_brawl }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { YB_yebailvcheng } from '../../../yblc/YBLC_1.js';
+import { YB_xnqbd } from '../../../yblc/YBLC_2.js';
+export { YBSL_brawl };
 /**
- * 
+ *
  * 乱斗模式夜白旅程
  */
-const YBSL_brawl = function(){
-	if (lib.config.mode == "brawl") {
+const YBSL_brawl = function () {
+	if (lib.config.mode == 'brawl') {
 		if (!lib.storage.stage) lib.storage.stage = {};
-		
-		if(lib.config.extension_夜白神略_ybsl_wujinshilian=='lc'){
-			if(YB_yebailvcheng)YB_yebailvcheng();
+
+		if (lib.config.extension_夜白神略_ybsl_wujinshilian == 'lc') {
+			if (YB_yebailvcheng) YB_yebailvcheng();
+		} else if (lib.config.extension_夜白神略_ybsl_wujinshilian == 'qbd') {
+			if (YB_xnqbd) YB_xnqbd();
 		}
-		else if(lib.config.extension_夜白神略_ybsl_wujinshilian=='qbd'){
-			if(YB_xnqbd)YB_xnqbd();
-		}
-		if (!lib.storage.stage["夜白旅程（二）"]) {
-			lib.storage.stage["夜白旅程（二）"] = {
-				name: "夜白旅程（二）",
-				intro: "夜白旅程的新型演绎形式",
-				scenes: [{
-					"name": "第一关",
-					"intro": "夜白旅程第一关",
-					"players": [{
-						"name": "ybsl_012zhengjiayi",
-						"name2": "none",
-						"identity": "fan",
-						"position": 8,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第二关",
-					"intro": "夜白旅程第二关",
-					"players": [{
-						"name": "ybsl_011gaoyuhang",
-						"name2": "none",
-						"identity": "fan",
-						"position": 6,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_012zhengjiayi",
-						"name2": "none",
-						"identity": "zhong",
-						"position": 3,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第三关",
-					"intro": "夜白旅程第三关",
-					"players": [{
-						"name": "ybsl_009liyushan",
-						"name2": "none",
-						"identity": "fan",
-						"position": 6,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_012zhengjiayi",
-						"name2": "none",
-						"identity": "zhong",
-						"position": 3,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第四关",
-					"intro": "夜白旅程第四关（近似）",
-					"players": [{
-						"name": "ybsl_008wuyuxin",
-						"name2": "ybsl_009liyushan",
-						"identity": "fan",
-						"position": 6,
-						"hp": 4,
-						"maxHp": 4,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_012zhengjiayi",
-						"name2": "none",
-						"identity": "zhong",
-						"position": 3,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第五关",
-					"intro": "夜白旅程第五关（近似）",
-					"players": [{
-						"name": "ybsl_012zhengjiayi",
-						"name2": "none",
-						"identity": "zhong",
-						"position": 3,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_010zhouyue",
-						"name2": "ybsl_008wuyuxin",
-						"identity": "fan",
-						"position": 6,
-						"hp": 4,
-						"maxHp": 4,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第六关",
-					"intro": "夜白旅程第六关（近似）",
-					"players": [{
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_012zhengjiayi",
-						"name2": "ybsl_016manchengqi",
-						"identity": "fan",
-						"position": 6,
-						"hp": 5,
-						"maxHp": 5,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第七关",
-					"intro": "夜白旅程第七关（近似）",
-					"players": [{
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_002chenailin",
-						"name2": "ybsl_001sunlisong",
-						"identity": "fan",
-						"position": 6,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第八关",
-					"intro": "夜白旅程第八关（近似）",
-					"players": [{
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsp_002chenailin",
-						"name2": "ybsl_001sunlisong",
-						"identity": "fan",
-						"position": 6,
-						"hp": 6,
-						"maxHp": 6,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第九关",
-					"intro": "夜白旅程第九关（近似）",
-					"players": [{
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsp_001sunlisong",
-						"name2": "ybsl_001sunlisong",
-						"identity": "fan",
-						"position": 6,
-						"hp": 6,
-						"maxHp": 6,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}, {
-					"name": "第十关",
-					"intro": "夜白旅程第十关（近似）",
-					"players": [{
-						"name": "random",
-						"name2": "none",
-						"identity": "zhu",
-						"position": 1,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": true,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_022salt",
-						"name2": "ybsl_004zhangyujie",
-						"identity": "fan",
-						"position": 6,
-						"hp": 6,
-						"maxHp": 6,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}, {
-						"name": "ybsl_002chenailin",
-						"name2": "none",
-						"identity": "zhong",
-						"position": 3,
-						"hp": null,
-						"maxHp": null,
-						"linked": false,
-						"turnedover": false,
-						"playercontrol": false,
-						"handcards": [],
-						"equips": [],
-						"judges": []
-					}],
-					"cardPileTop": [],
-					"cardPileBottom": [],
-					"discardPile": [],
-					"gameDraw": true
-				}],
-				mode: "free",
+		if (!lib.storage.stage['夜白旅程（二）']) {
+			lib.storage.stage['夜白旅程（二）'] = {
+				name: '夜白旅程（二）',
+				intro: '夜白旅程的新型演绎形式',
+				scenes: [
+					{
+						name: '第一关',
+						intro: '夜白旅程第一关',
+						players: [
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'none',
+								identity: 'fan',
+								position: 8,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第二关',
+						intro: '夜白旅程第二关',
+						players: [
+							{
+								name: 'ybsl_011gaoyuhang',
+								name2: 'none',
+								identity: 'fan',
+								position: 6,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'none',
+								identity: 'zhong',
+								position: 3,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第三关',
+						intro: '夜白旅程第三关',
+						players: [
+							{
+								name: 'ybsl_009liyushan',
+								name2: 'none',
+								identity: 'fan',
+								position: 6,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'none',
+								identity: 'zhong',
+								position: 3,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第四关',
+						intro: '夜白旅程第四关（近似）',
+						players: [
+							{
+								name: 'ybsl_008wuyuxin',
+								name2: 'ybsl_009liyushan',
+								identity: 'fan',
+								position: 6,
+								hp: 4,
+								maxHp: 4,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'none',
+								identity: 'zhong',
+								position: 3,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第五关',
+						intro: '夜白旅程第五关（近似）',
+						players: [
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'none',
+								identity: 'zhong',
+								position: 3,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_010zhouyue',
+								name2: 'ybsl_008wuyuxin',
+								identity: 'fan',
+								position: 6,
+								hp: 4,
+								maxHp: 4,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第六关',
+						intro: '夜白旅程第六关（近似）',
+						players: [
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_012zhengjiayi',
+								name2: 'ybsl_016manchengqi',
+								identity: 'fan',
+								position: 6,
+								hp: 5,
+								maxHp: 5,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第七关',
+						intro: '夜白旅程第七关（近似）',
+						players: [
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_002chenailin',
+								name2: 'ybsl_001sunlisong',
+								identity: 'fan',
+								position: 6,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第八关',
+						intro: '夜白旅程第八关（近似）',
+						players: [
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsp_002chenailin',
+								name2: 'ybsl_001sunlisong',
+								identity: 'fan',
+								position: 6,
+								hp: 6,
+								maxHp: 6,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第九关',
+						intro: '夜白旅程第九关（近似）',
+						players: [
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsp_001sunlisong',
+								name2: 'ybsl_001sunlisong',
+								identity: 'fan',
+								position: 6,
+								hp: 6,
+								maxHp: 6,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+					{
+						name: '第十关',
+						intro: '夜白旅程第十关（近似）',
+						players: [
+							{
+								name: 'random',
+								name2: 'none',
+								identity: 'zhu',
+								position: 1,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: true,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_022salt',
+								name2: 'ybsl_004zhangyujie',
+								identity: 'fan',
+								position: 6,
+								hp: 6,
+								maxHp: 6,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+							{
+								name: 'ybsl_002chenailin',
+								name2: 'none',
+								identity: 'zhong',
+								position: 3,
+								hp: null,
+								maxHp: null,
+								linked: false,
+								turnedover: false,
+								playercontrol: false,
+								handcards: [],
+								equips: [],
+								judges: [],
+							},
+						],
+						cardPileTop: [],
+						cardPileBottom: [],
+						discardPile: [],
+						gameDraw: true,
+					},
+				],
+				mode: 'free',
 				level: 0,
 			};
 			_status.extensionstage = true;
 		}
 		if (!_status.extensionmade) _status.extensionmade = [];
-		_status.extensionmade.push("夜白旅程（二）");
+		_status.extensionmade.push('夜白旅程（二）');
 		// lib.brawl.YB_寻你千百度={
 		// 	name: "寻你千百度",
 		// 	mode:'identity',
@@ -487,7 +532,7 @@ const YBSL_brawl = function(){
 		// 			ui.refresh(player2);
 		// 			player2.style.opacity=1;
 		// 			player2.style.transform='scale(0.5)';
-						
+
 		// 			setTimeout(function(){
 		// 				if(!player2) return;
 		// 				game.linexy([//线条
@@ -504,12 +549,12 @@ const YBSL_brawl = function(){
 		// 					ui.refresh(popup1);
 		// 					popup1.classList.add('damageadded');
 		// 					popup1.listenTransition(function(){
-								
+
 		// 						setTimeout(function(){
 		// 							popup1.delete();
 		// 						},300);//player1身上字体持续时间
 		// 					});
-							
+
 		// 					setTimeout(function(){
 		// 						game.linexy([
 		// 							player1.getLeft()+player1.offsetWidth/2,
@@ -531,7 +576,7 @@ const YBSL_brawl = function(){
 		// 					},900)//（两个动作之间的延迟）
 		// 				},250)//陈爱琳状态执行延迟
 		// 			},600);//决定从何时开始
-					
+
 		// 			setTimeout(function(){
 		// 				if(!player2) return;
 		// 				player2.style.transition='all 0.5s';//player2受伤动画
@@ -555,7 +600,7 @@ const YBSL_brawl = function(){
 		// 				ybsl_tiaoguan3:'起始关卡：3',
 		// 			},
 		// 			skill:{
-						
+
 		// 			},
 		// 		};
 		// 		for(var i in pack){
@@ -598,7 +643,7 @@ const YBSL_brawl = function(){
 		// 					// }
 		// 					dialog.setCaption('选择剧情节点（推荐从1开始玩）');
 		// 					game.me.chooseButton(dialog,true);
-							
+
 		// 					'step 0'
 		// 					'step 0'
 		// 					ui.arena.classList.add('choose-character');
@@ -790,4 +835,4 @@ const YBSL_brawl = function(){
 
 		// }
 	}
-}
+};

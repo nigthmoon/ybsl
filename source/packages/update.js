@@ -1,11 +1,10 @@
-
-export { ybslb_update }
-window.ybslb_update={
+export { ybslb_update };
+window.ybslb_update = {
 	//这是从金庸里抄来的更新公告格式，不过我仿佛不会用……
 	//感谢狂神对于这种写法的帮助，
-	version:'5.7.0-3.0',
-	'5.7.0-3.0':{
-		changeLog:[
+	version: '5.7.0-3.0',
+	'5.7.0-3.0': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机，建议搭配1.11.3本体使用',
 			'当前版本：5.7.0-2.0',
@@ -17,8 +16,8 @@ window.ybslb_update={
 			'- 新卡牌：极，仪，才，象，化。',
 			//，紫虚，甄宓，关羽，诸葛亮，赵云
 			'- 新武将：三国杀同人小说一堆武将。',
-			'- 全民三国杀，我开局神郭嘉：缝神孙策，星月手杀界孙鲁育，等……',//星月界张嫙，星月界陈式，星月手杀界孙鲁育，星月神太史慈，星月界张嫙，星月界陈式，星月界滕芳兰，星月界郑浑，星月界留赞，星月界吴普，星月界阮瑀，星月界杜预
-			'- 三国杀仙界下凡怎么你了：阴间手杀郭照，谋关羽，等……',//谋黄盖，周宣，孙翎鸾，许劭，阴间手杀花鬘，阴间麴义，阴间神姜维，阴间刘晔，阴间手杀裴秀，阴间武陆逊，阴间手杀曹髦，阴间蒲元，阴间神华佗，阴间许靖，阴间神张角，阴间戏志才，阴间谋诸葛亮，阴间新杀清河公主，阴间卞喜，阴间神孙权，阴间OL潘淑，阴间郝昭，魔曹丕，阴间傅佥，阴间谋曹仁，阴间乐祢衡
+			'- 全民三国杀，我开局神郭嘉：缝神孙策，星月手杀界孙鲁育，等……', //星月界张嫙，星月界陈式，星月手杀界孙鲁育，星月神太史慈，星月界张嫙，星月界陈式，星月界滕芳兰，星月界郑浑，星月界留赞，星月界吴普，星月界阮瑀，星月界杜预
+			'- 三国杀仙界下凡怎么你了：阴间手杀郭照，谋关羽，等……', //谋黄盖，周宣，孙翎鸾，许劭，阴间手杀花鬘，阴间麴义，阴间神姜维，阴间刘晔，阴间手杀裴秀，阴间武陆逊，阴间手杀曹髦，阴间蒲元，阴间神华佗，阴间许靖，阴间神张角，阴间戏志才，阴间谋诸葛亮，阴间新杀清河公主，阴间卞喜，阴间神孙权，阴间OL潘淑，阴间郝昭，魔曹丕，阴间傅佥，阴间谋曹仁，阴间乐祢衡
 			'------------修复相关------------',
 			'- 优化大量代码，详情请在日志3文件从2026.12.08晚开始查看',
 			'- 修改张玉洁天祈，不再移出界雷击禁止名单',
@@ -79,19 +78,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_069xiangzi','bilibiliup_sunyuyou','bilibiliup_qiyuan',
-			'yhky_diaochan','ybmjz_guanyu',
-		],
-		cards:[
-			'ybsl_ji','ybsl_yi','ybsl_cai','ybsl_xiang','ybsl_hua'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_069xiangzi', 'bilibiliup_sunyuyou', 'bilibiliup_qiyuan', 'yhky_diaochan', 'ybmjz_guanyu'],
+		cards: ['ybsl_ji', 'ybsl_yi', 'ybsl_cai', 'ybsl_xiang', 'ybsl_hua'],
+		files: [],
 	},
-	'5.7.0-2.0':{
-		changeLog:[
+	'5.7.0-2.0': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机，建议搭配1.11.0本体使用',
 			'当前版本：5.7.0-2.0',
@@ -137,31 +129,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_019shengyan','ybsl_036bright','ybsl_086GJ','ybsl_049waner',
-			'ybsl_054yueer','ybsl_122wangbingyu','ybsl_123xuelang','ybsp_079xiaoxin',
-			'ybsl_zhouyuxiaoqiao',
-			'qmsgswkjsgj_shen_lusu','qmsgswkjsgj_re_sunquan','qmsgswkjsgj_shen_zhouyu',
-			'qmsgswkjsgj_shen_xunyu','qmsgswkjsgj_shen_caocao','qmsgswkjsgj_shen_luxun',
-			'qmsgswkjsgj_shen_lvbu','qmsgswkjsgj_re_caopi','qmsgswkjsgj_re_shamoke',
-			'qmsgswkjsgj_re_shichangshi','qmsgswkjsgj_shen_huatuo','qmsgswkjsgj_re_mb_caomao','qmsgswkjsgj_re_sunhanhua',
-			'qmsgswkjsgj_mb_luyusheng','qmsgswkjsgj_pot_weiyan',
-			'qmsgswkjsgj_pot_taishici','qmsgswkjsgj_pot_yuji',
-			'qmsgswkjsgj_shenci_wu_zhugeliang','qmsgswkjsgj_shenci_wu_luxun',
-			'qmsgswkjsgj_shenci_re_duyu','qmsgswkjsgj_shenci_sb_caopi',
-			'qmsgswkjsgj_shenci_re_sunhanhua','qmsgswkjsgj_shenci_dc_zhouxuān',
-			'qmsgswkjsgj_shenci_caomao',
-			
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['ybsl_019shengyan', 'ybsl_036bright', 'ybsl_086GJ', 'ybsl_049waner', 'ybsl_054yueer', 'ybsl_122wangbingyu', 'ybsl_123xuelang', 'ybsp_079xiaoxin', 'ybsl_zhouyuxiaoqiao', 'qmsgswkjsgj_shen_lusu', 'qmsgswkjsgj_re_sunquan', 'qmsgswkjsgj_shen_zhouyu', 'qmsgswkjsgj_shen_xunyu', 'qmsgswkjsgj_shen_caocao', 'qmsgswkjsgj_shen_luxun', 'qmsgswkjsgj_shen_lvbu', 'qmsgswkjsgj_re_caopi', 'qmsgswkjsgj_re_shamoke', 'qmsgswkjsgj_re_shichangshi', 'qmsgswkjsgj_shen_huatuo', 'qmsgswkjsgj_re_mb_caomao', 'qmsgswkjsgj_re_sunhanhua', 'qmsgswkjsgj_mb_luyusheng', 'qmsgswkjsgj_pot_weiyan', 'qmsgswkjsgj_pot_taishici', 'qmsgswkjsgj_pot_yuji', 'qmsgswkjsgj_shenci_wu_zhugeliang', 'qmsgswkjsgj_shenci_wu_luxun', 'qmsgswkjsgj_shenci_re_duyu', 'qmsgswkjsgj_shenci_sb_caopi', 'qmsgswkjsgj_shenci_re_sunhanhua', 'qmsgswkjsgj_shenci_dc_zhouxuān', 'qmsgswkjsgj_shenci_caomao'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.12':{
-		changeLog:[
+	'5.7.0-1.12': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.12',
@@ -215,29 +188,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsp_018zhangqing',
-			'ybsl_wangpou','ybsl_yangxu','ybsl_suojing','ybsl_shichong',
-			'ybmjz_sunluyu','ybmjz_liubei','ybmjz_huangyueying',
-			'qmsgswkjsgj_re_lusu','qmsgswkjsgj_re_caorui','qmsgswkjsgj_re_caiwenji',
-			'qmsgswkjsgj_re_zhangxiu','qmsgswkjsgj_re_fuhuanghou','qmsgswkjsgj_shen_ganning','qmsgswkjsgj_re_sunhanhua',
-			'qmsgswkjsgj_yingtian_simayi','qmsgswkjsgj_re_shen_zhaoyun',
-			'sgsxjxfzmnl_shichangshi','sgsxjxfzmnl_yue_caiwenji','sgsxjxfzmnl_liuyan',
-			'sgsxjxfzmnl_shen_xunyu','sgsxjxfzmnl_shen_zhangfei','sgsxjxfzmnl_wu_zhugeliang',
-			'sgsxjxfzmnl_sb_caopi','sgsxjxfzmnl_boss_zhaoyun','sgsxjxfzmnl_nanhualaoxian',
-			'sgsxjxfzmnl_mo_lvbu','sgsxjxfzmnl_zhangxuan','sgsxjxfzmnl_caojinyu',
-			'sgsxjxfzmnl_shen_machao','sgsxjxfzmnl_sunhanhua',
-			
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['ybsp_018zhangqing', 'ybsl_wangpou', 'ybsl_yangxu', 'ybsl_suojing', 'ybsl_shichong', 'ybmjz_sunluyu', 'ybmjz_liubei', 'ybmjz_huangyueying', 'qmsgswkjsgj_re_lusu', 'qmsgswkjsgj_re_caorui', 'qmsgswkjsgj_re_caiwenji', 'qmsgswkjsgj_re_zhangxiu', 'qmsgswkjsgj_re_fuhuanghou', 'qmsgswkjsgj_shen_ganning', 'qmsgswkjsgj_re_sunhanhua', 'qmsgswkjsgj_yingtian_simayi', 'qmsgswkjsgj_re_shen_zhaoyun', 'sgsxjxfzmnl_shichangshi', 'sgsxjxfzmnl_yue_caiwenji', 'sgsxjxfzmnl_liuyan', 'sgsxjxfzmnl_shen_xunyu', 'sgsxjxfzmnl_shen_zhangfei', 'sgsxjxfzmnl_wu_zhugeliang', 'sgsxjxfzmnl_sb_caopi', 'sgsxjxfzmnl_boss_zhaoyun', 'sgsxjxfzmnl_nanhualaoxian', 'sgsxjxfzmnl_mo_lvbu', 'sgsxjxfzmnl_zhangxuan', 'sgsxjxfzmnl_caojinyu', 'sgsxjxfzmnl_shen_machao', 'sgsxjxfzmnl_sunhanhua'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.11':{
-		changeLog:[
+	'5.7.0-1.11': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.11',
@@ -279,25 +235,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_023sunlixin','ybsl_035stamp','ybsl_jiangziwen','ybsl_kamome',
-			'sgsh_cangjie','sgsh_jiutianxuannv','sgsh_luozu','sgsh_changxian','sgsh_guiyuqu',
-			'ybmjz_guojia','ybmjz_zhangliao','ybmjz_xuzhu',
-			'qmsgswkjsgj_gui_liubei','qmsgswkjsgj_gui_re_zhouyu','qmsgswkjsgj_shen_zhugeliang',
-			'qmsgswkjsgj_sb_huangzhong','qmsgswkjsgj_re_yangbiao','qmsgswkjsgj_re_luotong','qmsgswkjsgj_re_liuyan',
-			'sgsxjxfzmnl_wangyuanji','sgsxjxfzmnl_shen_guojia','sgsxjxfzmnl_wenyang',
-			'sgsxjxfzmnl_re_jushou','sgsxjxfzmnl_shen_ganning'
-			
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['ybsl_023sunlixin', 'ybsl_035stamp', 'ybsl_jiangziwen', 'ybsl_kamome', 'sgsh_cangjie', 'sgsh_jiutianxuannv', 'sgsh_luozu', 'sgsh_changxian', 'sgsh_guiyuqu', 'ybmjz_guojia', 'ybmjz_zhangliao', 'ybmjz_xuzhu', 'qmsgswkjsgj_gui_liubei', 'qmsgswkjsgj_gui_re_zhouyu', 'qmsgswkjsgj_shen_zhugeliang', 'qmsgswkjsgj_sb_huangzhong', 'qmsgswkjsgj_re_yangbiao', 'qmsgswkjsgj_re_luotong', 'qmsgswkjsgj_re_liuyan', 'sgsxjxfzmnl_wangyuanji', 'sgsxjxfzmnl_shen_guojia', 'sgsxjxfzmnl_wenyang', 'sgsxjxfzmnl_re_jushou', 'sgsxjxfzmnl_shen_ganning'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.10':{
-		changeLog:[
+	'5.7.0-1.10': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.10',
@@ -343,22 +286,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'sgskjdbzjms_mo_zhoutai','sgskjdbzjms_shen_zhugeliang','sgskjdbzjms_leizhenzi','sgskjdbzjms_xian_zhugeguo',
-			'sgskjdbzjms_zhen_zhangfei','sgskjdbzjms_zhen_guanyu','sgskjdbzjms_shen_liubei','sgskjdbzjms_zhen_machao','sgskjdbzjms_zhen_liubei',
-			'qmsgswkjsgj_re_xizhicai','qmsgswkjsgj_re_liuxie',
-			'qmsgswkjsgj_shen_zhaoyun','qmsgswkjsgj_gui_xuyou','qmsgswkjsgj_gui_zhaoyun','qmsgswkjsgj_gui_sunquan',
-			
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['sgskjdbzjms_mo_zhoutai', 'sgskjdbzjms_shen_zhugeliang', 'sgskjdbzjms_leizhenzi', 'sgskjdbzjms_xian_zhugeguo', 'sgskjdbzjms_zhen_zhangfei', 'sgskjdbzjms_zhen_guanyu', 'sgskjdbzjms_shen_liubei', 'sgskjdbzjms_zhen_machao', 'sgskjdbzjms_zhen_liubei', 'qmsgswkjsgj_re_xizhicai', 'qmsgswkjsgj_re_liuxie', 'qmsgswkjsgj_shen_zhaoyun', 'qmsgswkjsgj_gui_xuyou', 'qmsgswkjsgj_gui_zhaoyun', 'qmsgswkjsgj_gui_sunquan'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.9':{
-		changeLog:[
+	'5.7.0-1.9': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.9',
@@ -408,31 +341,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'sgsh_tiandi','sgsh_shennong','sgsh_xuanyuan','sgsh_shaohao',
-			'sgsh_qinglong','sgsh_baihu','sgsh_zhuque','sgsh_xuanwu','sgsh_qilin',
-			'sgsh_yaoji','sgsh_hongjunlaozu',
-			'sgsh_gonggong','sgsh_zhurong','sgsh_goumang','sgsh_houtu',
-			'sgsh_fuxi','sgsh_xiangliu','sgsh_houyi','sgsh_kuafu',
-			'sgsh_tubo','sgsh_jingwei','sgsh_qibo','sgsh_yeming',
-			'sgsh_chiyou','sgsh_fenghou',
-			'ybmjz_caocao','ybmjz_simayi','ybmjz_xiahoudun','ybmjz_xuzhu','ybsl_youta',
-			'ybsl_sunsháo','ybsl_020jiayutong','ybsl_052trees','ybsp_016manchengqi','ybsl_121tujing',
-			'ybsl_015wanghairu','ybsp_033xiaohui','ybsp_006wanghanzhen',
-			
-			'yhky_shlizhaoyi',
-
-			'ybsl_092handan',
-		],
-		cards:[
-			'ybsl_tang','ybsl_cu','ybsl_107xiaohu0','ybsl_mixianshenshu'
-		],
-		files:[
-			
-		],
+		players: ['sgsh_tiandi', 'sgsh_shennong', 'sgsh_xuanyuan', 'sgsh_shaohao', 'sgsh_qinglong', 'sgsh_baihu', 'sgsh_zhuque', 'sgsh_xuanwu', 'sgsh_qilin', 'sgsh_yaoji', 'sgsh_hongjunlaozu', 'sgsh_gonggong', 'sgsh_zhurong', 'sgsh_goumang', 'sgsh_houtu', 'sgsh_fuxi', 'sgsh_xiangliu', 'sgsh_houyi', 'sgsh_kuafu', 'sgsh_tubo', 'sgsh_jingwei', 'sgsh_qibo', 'sgsh_yeming', 'sgsh_chiyou', 'sgsh_fenghou', 'ybmjz_caocao', 'ybmjz_simayi', 'ybmjz_xiahoudun', 'ybmjz_xuzhu', 'ybsl_youta', 'ybsl_sunsháo', 'ybsl_020jiayutong', 'ybsl_052trees', 'ybsp_016manchengqi', 'ybsl_121tujing', 'ybsl_015wanghairu', 'ybsp_033xiaohui', 'ybsp_006wanghanzhen', 'yhky_shlizhaoyi', 'ybsl_092handan'],
+		cards: ['ybsl_tang', 'ybsl_cu', 'ybsl_107xiaohu0', 'ybsl_mixianshenshu'],
+		files: [],
 	},
-	'5.7.0-1.8':{
-		changeLog:[
+	'5.7.0-1.8': {
+		changeLog: [
 			//----------------5.7.0-1.8--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.8',
@@ -467,18 +381,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_043fangjiayu','ybsl_046jiangxuewu','ybsl_092handan'
-		],
-		cards:[
-			'ybsl_hsbwp','ybsl_duboom'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_043fangjiayu', 'ybsl_046jiangxuewu', 'ybsl_092handan'],
+		cards: ['ybsl_hsbwp', 'ybsl_duboom'],
+		files: [],
 	},
-	'5.7.0-1.7':{
-		changeLog:[
+	'5.7.0-1.7': {
+		changeLog: [
 			//----------------5.7.0-1.7--------------//
 			'理论上可联机',
 			'当前版本：5.7.0-1.7',
@@ -510,18 +418,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_yinfan','ybsl_shlizhaoyi','ybslclan_luji','ybsl_043fangjiayu','ybsl_025shiqingyu','ybsl_025shiwang'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybsl_yinfan', 'ybsl_shlizhaoyi', 'ybslclan_luji', 'ybsl_043fangjiayu', 'ybsl_025shiqingyu', 'ybsl_025shiwang'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.6':{
-		changeLog:[
+	'5.7.0-1.6': {
+		changeLog: [
 			//----------------5.7.0-1.6--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.6',
@@ -551,18 +453,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_107tushanshuili','ybsp_002chenailin'
-		],
-		cards:[
-			'ybsl_107xiaohu0'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_107tushanshuili', 'ybsp_002chenailin'],
+		cards: ['ybsl_107xiaohu0'],
+		files: [],
 	},
-	'5.7.0-1.5':{
-		changeLog:[
+	'5.7.0-1.5': {
+		changeLog: [
 			//----------------5.7.0-1.5--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.5',
@@ -590,18 +486,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybslclan_luxun','ybsl_012zhengjiayi','ybsl_047zhangmi','ybsb_047zhangmi'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybslclan_luxun', 'ybsl_012zhengjiayi', 'ybsl_047zhangmi', 'ybsb_047zhangmi'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.4':{
-		changeLog:[
+	'5.7.0-1.4': {
+		changeLog: [
 			//----------------5.7.0-1.4--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.4',
@@ -629,18 +519,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybslclan_luxun'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybslclan_luxun'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.3':{
-		changeLog:[
+	'5.7.0-1.3': {
+		changeLog: [
 			//----------------5.7.0-1.3--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.3',
@@ -667,18 +551,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_085DGY'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybsl_085DGY'],
+		cards: [],
+		files: [],
 	},
-	'5.7.0-1.2':{
-		changeLog:[
+	'5.7.0-1.2': {
+		changeLog: [
 			//----------------5.7.0-1.2--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.2',
@@ -706,18 +584,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybslclan_luyan'
-		],
-		cards:[
-			'rewrite_goujiangdesidai'
-		],
-		files:[
-			
-		],
+		players: ['ybslclan_luyan'],
+		cards: ['rewrite_goujiangdesidai'],
+		files: [],
 	},
-	'5.7.0-1.1':{
-		changeLog:[
+	'5.7.0-1.1': {
+		changeLog: [
 			//----------------5.7.0-1.1--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.1',
@@ -745,18 +617,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_lvyi'
-		],
-		cards:[
-			'rewrite_goujiangdesidai'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_lvyi'],
+		cards: ['rewrite_goujiangdesidai'],
+		files: [],
 	},
-	'5.7.0-1.0':{
-		changeLog:[
+	'5.7.0-1.0': {
+		changeLog: [
 			//----------------5.7.0-1.0--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0-1.0',
@@ -783,18 +649,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_xuyou'
-		],
-		cards:[
-			'ybsl_zhaosanmusi'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_xuyou'],
+		cards: ['ybsl_zhaosanmusi'],
+		files: [],
 	},
-	'5.7.0':{
-		changeLog:[
+	'5.7.0': {
+		changeLog: [
 			//----------------5.7.0--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.7.0',
@@ -823,18 +683,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'5.6.0':{
-		changeLog:[
+	'5.6.0': {
+		changeLog: [
 			//----------------5.6.0--------------//
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.6.0',
@@ -863,19 +717,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybslshen_100Cosette','ybsl_059starsFall','ybsl_liubei','ybsl_lingcao','ybsl_xiahoushi','ybsl_hairi',
-			'ybsl_059starsFall1','ybsl_059starsFall2','ybsl_059starsFall3','ybsl_059starsFall4',
-		],
-		cards:[
-			'ybsl_shanfengdianhuo',
-		],
-		files:[
-			
-		],
+		players: ['ybslshen_100Cosette', 'ybsl_059starsFall', 'ybsl_liubei', 'ybsl_lingcao', 'ybsl_xiahoushi', 'ybsl_hairi', 'ybsl_059starsFall1', 'ybsl_059starsFall2', 'ybsl_059starsFall3', 'ybsl_059starsFall4'],
+		cards: ['ybsl_shanfengdianhuo'],
+		files: [],
 	},
-	'5.5.0':{
-		changeLog:[
+	'5.5.0': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.5.0',
 			'更新日期：2023-11-21（23:55）',
@@ -902,18 +749,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ybsl_daqiao','ybsl_xiaoqiao','ybsl_xinxianying','ybhao_xinxianying',
-		],
-		cards:[
-			'ybsl_fuxizhenhunqin',
-		],
-		files:[
-			
-		],
+		players: ['ybsl_daqiao', 'ybsl_xiaoqiao', 'ybsl_xinxianying', 'ybhao_xinxianying'],
+		cards: ['ybsl_fuxizhenhunqin'],
+		files: [],
 	},
-	'5.4.0':{
-		changeLog:[
+	'5.4.0': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.4.0',
 			'更新日期：2023-10-31（凌晨1点）',
@@ -941,18 +782,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 铝宝就是天使！。',
 		],
-		players:[
-			'ssj_ybxh_zhanglongliyao','ybsl_078zhuyahai',
-		],
-		cards:[
-			'ybsl_qinglinkui',
-		],
-		files:[
-			
-		],
+		players: ['ssj_ybxh_zhanglongliyao', 'ybsl_078zhuyahai'],
+		cards: ['ybsl_qinglinkui'],
+		files: [],
 	},
-	'5.3.2':{
-		changeLog:[
+	'5.3.2': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.3.2',
 			'更新日期：2023-09-30（晚上8点）',
@@ -980,19 +815,12 @@ window.ybslb_update={
 			//为什么用黄色？因为这些是我花钱搞的=w=
 			'- 特别感谢铝宝为我开辟了☆夜白神略子频道，以及一直以来的帮助，指导和支持。',
 		],
-		players:[
-			'ybsl_dengai','ybsl_zhonghui','ybsl_jiangwei','ybsl_chengyu',
-			'ybsl_zhangliao','ybsl_dianwei','ybmo_huanggai',
-		],
-		cards:[
-			'ybsl_guoshishengpao','ybsl_milu','ybsl_yangtuo','ybsl_qixingdao'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_dengai', 'ybsl_zhonghui', 'ybsl_jiangwei', 'ybsl_chengyu', 'ybsl_zhangliao', 'ybsl_dianwei', 'ybmo_huanggai'],
+		cards: ['ybsl_guoshishengpao', 'ybsl_milu', 'ybsl_yangtuo', 'ybsl_qixingdao'],
+		files: [],
 	},
-	'5.3.1':{
-		changeLog:[
+	'5.3.1': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.3.1',
 			'更新日期：2023-09-21（中午12点20）',
@@ -1015,18 +843,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_hairi'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybsl_hairi'],
+		cards: [],
+		files: [],
 	},
-	'5.3.0':{
-		changeLog:[
+	'5.3.0': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.3.0',
 			'更新日期：2023-09-19（上午10点30）',
@@ -1055,18 +877,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_054yueer','ybart_014liutianyu','ybsl_007wugege'
-		],
-		cards:[
-			'rewrite_huxinjing','ybsl_zhiziyugui','ybsl_nodouble'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_054yueer', 'ybart_014liutianyu', 'ybsl_007wugege'],
+		cards: ['rewrite_huxinjing', 'ybsl_zhiziyugui', 'ybsl_nodouble'],
+		files: [],
 	},
-	'5.2.0':{
-		changeLog:[
+	'5.2.0': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.2.0',
 			'更新日期：2023-09-07（凌晨0点43）',
@@ -1096,18 +912,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_080phoenix','ybsl_016manchengqi'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['ybsl_080phoenix', 'ybsl_016manchengqi'],
+		cards: [],
+		files: [],
 	},
-	'5.1.0':{
-		changeLog:[
+	'5.1.0': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.1.0',
 			'更新日期：2023-09-01（半夜23点45分）',
@@ -1137,19 +947,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'sgsh_xiwangmu','sgsh_dayu','sgsh_yuqiang','sgsh_xingtian',
-			'ybsl_048wushuang','ybsl_039zhafu','ybsl_040ether','ybsl_017xiaohong','ybsl_033xiaohui'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['sgsh_xiwangmu', 'sgsh_dayu', 'sgsh_yuqiang', 'sgsh_xingtian', 'ybsl_048wushuang', 'ybsl_039zhafu', 'ybsl_040ether', 'ybsl_017xiaohong', 'ybsl_033xiaohui'],
+		cards: [],
+		files: [],
 	},
-	'5.0.3':{
-		changeLog:[
+	'5.0.3': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.0.3',
 			'更新日期：2023-08-11（半夜23点45分）',
@@ -1174,18 +977,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_022salt','ybslshen_001sunlisong'
-		],
-		cards:[
-			'ybsl_kaicangzhenliang','ybsl_anduchencang'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_022salt', 'ybslshen_001sunlisong'],
+		cards: ['ybsl_kaicangzhenliang', 'ybsl_anduchencang'],
+		files: [],
 	},
-	'5.0.2':{
-		changeLog:[
+	'5.0.2': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.0.2',
 			'更新日期：2023-07-28（凌晨0点半）',
@@ -1211,18 +1008,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_yuejin','ybsl_huanggai','ybsl_liaohua','ybsl_guanyinping','ybnb_guanyinping'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybsl_yuejin', 'ybsl_huanggai', 'ybsl_liaohua', 'ybsl_guanyinping', 'ybnb_guanyinping'],
+		cards: [],
+		files: [],
 	},
-	'5.0.1':{
-		changeLog:[
+	'5.0.1': {
+		changeLog: [
 			'理论上可联机（需一劳永逸）',
 			'当前版本：5.0.1',
 			'更新日期：2023-07-25（凌晨1点）',
@@ -1246,325 +1037,72 @@ window.ybslb_update={
 			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//为什么用黄色？因为这些是我花钱搞的=w=
 		],
-		players:[
-			'ybsl_068qingyue','ybsl_077yangqixu','ybsl_038bianqiuwen'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+		players: ['ybsl_068qingyue', 'ybsl_077yangqixu', 'ybsl_038bianqiuwen'],
+		cards: [],
+		files: [],
 	},
-	'5.0.0':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：5.0.0',
-			'更新日期：2023-07-09（23点）',
-			'- 画了若干大饼。',
-			'- 新增武将一大堆，同时整合了朝拾的三国杀传奇，暂时屏蔽了马超，等待重做',
-			'- 朝拾设计的武将：马良，黄盖，sp关索，sp严白虎，周瑜，神赵云，曹植',
-			'- 本人设计的武将：张郃，华雄，魔马超，魔张飞，魔夏侯惇，魔貂蝉，魔董卓，魔贾诩，魔黄盖，魔凌统，魔张角',
-			'- 三传武将的简介均采用原三传武将的简介（部分武将原著没有单独设计简介）',
-			'- 优化隅泣函数，在主页上新增所有夜白自制函数的引用教程。',
-			'- 晶的水剑元交换位置部分有点bug，无法发动，还望体谅',
-			'- 修复晶的水火剑元搞反了的问题，以及其它不记得的bug',
-			'- 鉴于上次更新的4.2.2阴某些失误故障导致大家仿佛都没下到，我在这里把4.2.2的更新内容也摆出罢。',
-			'- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿，不过没有角色介绍',
-			'- 新增卡牌（填坑）起死回生，流星火矢，铁骑兵锋，方天锁链鞭，知己知彼',
-			'- 其中，起死回生，为群友霸天投稿，外加本人微调',
-			'- 新增一组牌堆，200余张牌',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- <span class=yellowtext>$感谢Angle为本扩展的想去远方撰写ai。<br>',
-			'- <span class=yellowtext>$感谢周子鱼为本扩展制作的十周年美化卡牌。<br>',
-			'- <span class=yellowtext>$感谢鬼神易早期为本扩展撰写的几个武将。<br>',
-		],
-		players:[
-			'ybsl_maliang','ybsl_huanggai','ybsp_guansuo','ybsp_yanbaihu',
-			'ybsl_zhouyu','ybslshen_zhaoyun','ybsl_caozhi','ybsl_zhanghe','ybsl_huaxiong',
-			'ybmo_machao','ybmo_zhangfei','ybmo_xiahoudun','ybmo_diaochan','ybmo_dongzhuo',
-			'ybmo_jiaxu','ybmo_huanggai','ybmo_lingtong','ybmo_zhangjiao',
-			'ybsb_047zhangmi','ybsl_047zhangmi','ybsl_034zhoulianyuan','ybnb_034zhoulianyuan',
-			'ybsl_021liuyufeng','ybsl_053qiuer'
-		],
-		cards:[
-			'ybsl_qisihuisheng','ybsl_meteor','ybsl_disarm','rewrite_fangtian','ybsl_zhijizhibi'
-		],
-		files:[
-			
-		],
+	'5.0.0': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：5.0.0', '更新日期：2023-07-09（23点）', '- 画了若干大饼。', '- 新增武将一大堆，同时整合了朝拾的三国杀传奇，暂时屏蔽了马超，等待重做', '- 朝拾设计的武将：马良，黄盖，sp关索，sp严白虎，周瑜，神赵云，曹植', '- 本人设计的武将：张郃，华雄，魔马超，魔张飞，魔夏侯惇，魔貂蝉，魔董卓，魔贾诩，魔黄盖，魔凌统，魔张角', '- 三传武将的简介均采用原三传武将的简介（部分武将原著没有单独设计简介）', '- 优化隅泣函数，在主页上新增所有夜白自制函数的引用教程。', '- 晶的水剑元交换位置部分有点bug，无法发动，还望体谅', '- 修复晶的水火剑元搞反了的问题，以及其它不记得的bug', '- 鉴于上次更新的4.2.2阴某些失误故障导致大家仿佛都没下到，我在这里把4.2.2的更新内容也摆出罢。', '- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿，不过没有角色介绍', '- 新增卡牌（填坑）起死回生，流星火矢，铁骑兵锋，方天锁链鞭，知己知彼', '- 其中，起死回生，为群友霸天投稿，外加本人微调', '- 新增一组牌堆，200余张牌', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- <span class=yellowtext>$感谢Angle为本扩展的想去远方撰写ai。<br>', '- <span class=yellowtext>$感谢周子鱼为本扩展制作的十周年美化卡牌。<br>', '- <span class=yellowtext>$感谢鬼神易早期为本扩展撰写的几个武将。<br>'],
+		players: ['ybsl_maliang', 'ybsl_huanggai', 'ybsp_guansuo', 'ybsp_yanbaihu', 'ybsl_zhouyu', 'ybslshen_zhaoyun', 'ybsl_caozhi', 'ybsl_zhanghe', 'ybsl_huaxiong', 'ybmo_machao', 'ybmo_zhangfei', 'ybmo_xiahoudun', 'ybmo_diaochan', 'ybmo_dongzhuo', 'ybmo_jiaxu', 'ybmo_huanggai', 'ybmo_lingtong', 'ybmo_zhangjiao', 'ybsb_047zhangmi', 'ybsl_047zhangmi', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_021liuyufeng', 'ybsl_053qiuer'],
+		cards: ['ybsl_qisihuisheng', 'ybsl_meteor', 'ybsl_disarm', 'rewrite_fangtian', 'ybsl_zhijizhibi'],
+		files: [],
 	},
-	'4.2.2':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.2',
-			'更新日期：2023-06-21（23点）',
-			'- 画了若干大饼。',
-			'- 新增武将做了个弱化的张汨，然后加强了张汨……',
-			'- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿，不过没有角色介绍',
-			'- 新增卡牌（填坑）起死回生，流星火矢，铁骑兵锋，方天锁链鞭，知己知彼',
-			'- 其中，起死回生，为群友霸天投稿，外加本人微调',
-			'- 新增一组牌堆，200余张牌',
-			'- 接下来若有通渠行动，大概率会采用原将标界，做个非界版本',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsb_047zhangmi','ybsl_047zhangmi','ybsl_034zhoulianyuan','ybnb_034zhoulianyuan',
-			'ybsl_021liuyufeng','ybsl_053qiuer'
-		],
-		cards:[
-			'ybsl_qisihuisheng','ybsl_meteor','ybsl_disarm','rewrite_fangtian','ybsl_zhijizhibi'
-		],
-		files:[
-			
-		],
+	'4.2.2': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.2', '更新日期：2023-06-21（23点）', '- 画了若干大饼。', '- 新增武将做了个弱化的张汨，然后加强了张汨……', '- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿，不过没有角色介绍', '- 新增卡牌（填坑）起死回生，流星火矢，铁骑兵锋，方天锁链鞭，知己知彼', '- 其中，起死回生，为群友霸天投稿，外加本人微调', '- 新增一组牌堆，200余张牌', '- 接下来若有通渠行动，大概率会采用原将标界，做个非界版本', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsb_047zhangmi', 'ybsl_047zhangmi', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_021liuyufeng', 'ybsl_053qiuer'],
+		cards: ['ybsl_qisihuisheng', 'ybsl_meteor', 'ybsl_disarm', 'rewrite_fangtian', 'ybsl_zhijizhibi'],
+		files: [],
 	},
-	'4.2.1.9':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1.9',
-			'更新日期：2023-06-20（整点）',
-			'- 画了若干大饼。',
-			'- 新增武将做了个弱化的张汨，然后加强了张汨……',
-			'- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿',
-			'- 接下来若有通渠行动，大概率会采用原将标界，做个非界版本',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsb_047zhangmi','ybsl_047zhangmi','ybsl_034zhoulianyuan','ybnb_034zhoulianyuan',
-			'ybsl_021liuyufeng','ybsl_053qiuer'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1.9': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1.9', '更新日期：2023-06-20（整点）', '- 画了若干大饼。', '- 新增武将做了个弱化的张汨，然后加强了张汨……', '- 新增武将（填坑）周怜渊，界周怜渊，刘域枫，秋儿', '- 接下来若有通渠行动，大概率会采用原将标界，做个非界版本', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsb_047zhangmi', 'ybsl_047zhangmi', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_021liuyufeng', 'ybsl_053qiuer'],
+		cards: [],
+		files: [],
 	},
-	'4.2.1.5':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1.5',
-			'更新日期：2023-06-？？',
-			'- 青史未留名的测试版。',
-			'- 做出了刘域枫',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsl_021liuyufeng'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1.5': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1.5', '更新日期：2023-06-？？', '- 青史未留名的测试版。', '- 做出了刘域枫', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsl_021liuyufeng'],
+		cards: [],
+		files: [],
 	},
-	'4.2.1.4':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1.4',
-			'更新日期：2023-06-？？',
-			'- 青史未留名的测试版。',
-			'- 新增武将做了个弱化的张汨，然后加强了张汨……',
-			'- 做出了周怜渊以及界周怜渊',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsl_034zhoulianyuan','ybnb_034zhoulianyuan'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1.4': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1.4', '更新日期：2023-06-？？', '- 青史未留名的测试版。', '- 新增武将做了个弱化的张汨，然后加强了张汨……', '- 做出了周怜渊以及界周怜渊', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan'],
+		cards: [],
+		files: [],
 	},
-	'4.2.1.2':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1.2',
-			'更新日期：2023-06-？？',
-			'- 画了若干大饼。',
-			'- 新增武将做了个弱化的张汨，然后加强了张汨……',
-			'- 最终决定放弃通渠强将',
-			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsb_zhangmi','ybsl_047zhangmi'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1.2': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1.2', '更新日期：2023-06-？？', '- 画了若干大饼。', '- 新增武将做了个弱化的张汨，然后加强了张汨……', '- 最终决定放弃通渠强将', '- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsb_zhangmi', 'ybsl_047zhangmi'],
+		cards: [],
+		files: [],
 	},
-	'4.2.1.1':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1.1',
-			'更新日期：2023-06-14（半夜零点）',
-			'- 画了若干大饼。',
-			'- 新增武将吕艳秋',
-			'- 征求吕艳秋，张汨，吴爽的削弱意见',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，无需告知',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsl_048wushuang','ybsl_047zhangmi','ybsl_070lvyanqiu'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1.1': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1.1', '更新日期：2023-06-14（半夜零点）', '- 画了若干大饼。', '- 新增武将吕艳秋', '- 征求吕艳秋，张汨，吴爽的削弱意见', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，无需告知', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsl_048wushuang', 'ybsl_047zhangmi', 'ybsl_070lvyanqiu'],
+		cards: [],
+		files: [],
 	},
-	'4.2.1':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.1',
-			'更新日期：2023-06-12（半夜一点）',
-			'- 画了若干大饼。',
-			'- 新增武将张汨和吴爽，简介待填',
-			'- 新增若干函数，优化国战相关，现在梦势力角色选将时会直接变为忆势力（本质上是枚举）但是现在依旧只有自由国战才能玩到我的将，',
-			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，无需告知',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- <span class=yellowtext>$感谢Angle为本扩展的想去远方撰写ai。</span>',
-			'- <span class=yellowtext>$感谢周子鱼为本扩展制作的十周年美化卡牌。</span>',
-			'- <span class=yellowtext>$感谢鬼神易早期为本扩展撰写的几个武将。</span>',
-		],
-		players:[
-			'ybsl_048wushuang','ybsl_047zhangmi'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.1': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.1', '更新日期：2023-06-12（半夜一点）', '- 画了若干大饼。', '- 新增武将张汨和吴爽，简介待填', '- 新增若干函数，优化国战相关，现在梦势力角色选将时会直接变为忆势力（本质上是枚举）但是现在依旧只有自由国战才能玩到我的将，', '- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，无需告知', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- <span class=yellowtext>$感谢Angle为本扩展的想去远方撰写ai。</span>', '- <span class=yellowtext>$感谢周子鱼为本扩展制作的十周年美化卡牌。</span>', '- <span class=yellowtext>$感谢鬼神易早期为本扩展撰写的几个武将。</span>'],
+		players: ['ybsl_048wushuang', 'ybsl_047zhangmi'],
+		cards: [],
+		files: [],
 	},
-	'4.2.0.1':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.0.1',
-			'更新日期：2023-06-07（半夜一点）',
-			'- 画了若干大饼。',
-			'- 新增了自动导入十周年的卡牌素材（仅部分，且素材可能陈旧）',
-			'- 千幻可以显示自定义势力（仅限部分）',
-			'- 内置一个按钮，可以快捷使用作者自用的牌堆',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.0.1': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.0.1', '更新日期：2023-06-07（半夜一点）', '- 画了若干大饼。', '- 新增了自动导入十周年的卡牌素材（仅部分，且素材可能陈旧）', '- 千幻可以显示自定义势力（仅限部分）', '- 内置一个按钮，可以快捷使用作者自用的牌堆', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'4.2.0':{
-		changeLog:[
-			'理论上可联机（需一劳永逸）',
-			'当前版本：4.2.0',
-			'更新日期：2023-06-05（半夜一点）',
-			'- 画了若干大饼。',
-			'- 新武将晶。',
-			'- 优化属性杀相关，新增桃子的应变，新增杀的应变，新增火攻的应变',
-			'- 别的更改的内容我不记得了……',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
-			'- 感谢Angle为本扩展的想去远方撰写ai。',
-			'- 感谢周子鱼为本扩展制作的十周年美化卡牌。',
-			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
-		],
-		players:[
-			'ybsl_028crystal'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+	'4.2.0': {
+		changeLog: ['理论上可联机（需一劳永逸）', '当前版本：4.2.0', '更新日期：2023-06-05（半夜一点）', '- 画了若干大饼。', '- 新武将晶。', '- 优化属性杀相关，新增桃子的应变，新增杀的应变，新增火攻的应变', '- 别的更改的内容我不记得了……', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等', '- 感谢Angle为本扩展的想去远方撰写ai。', '- 感谢周子鱼为本扩展制作的十周年美化卡牌。', '- 感谢鬼神易早期为本扩展撰写的几个武将。'],
+		players: ['ybsl_028crystal'],
+		cards: [],
+		files: [],
 	},
-	'4.1.9':{
-		changeLog:[
+	'4.1.9': {
+		changeLog: [
 			'理论上可联机',
 			'当前版本：4.1.9',
 			'更新日期：2023-05-23',
@@ -1582,18 +1120,12 @@ window.ybslb_update={
 			'- <span class=yellowtext>$感谢鬼神易早期为本扩展撰写的几个武将。</span>',
 			//'- <span style="text-decoration: line-through;">广告位招商</span>。',
 		],
-		players:[
-			'ybsl_076zhujun','ybsl_047shan','ybsl_zhouyuxiaoqiao'
-		],
-		cards:[
-
-		],
-		files:[
-			
-		],
+		players: ['ybsl_076zhujun', 'ybsl_047shan', 'ybsl_zhouyuxiaoqiao'],
+		cards: [],
+		files: [],
 	},
-	'4.1.8':{
-		changeLog:[
+	'4.1.8': {
+		changeLog: [
 			'理论上可联机',
 			'当前版本：4.1.8',
 			'更新日期：2023-05-09',
@@ -1611,18 +1143,12 @@ window.ybslb_update={
 			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
 			//'- <span style="text-decoration: line-through;">广告位招商</span>。',
 		],
-		players:[
-			'ybsl_004zhangyujie','ybsl_071faraway'
-		],
-		cards:[
-			'ybsl_baihong','ybsl_zidian','ybsl_bixie','ybsl_liuxing','ybsl_qingming','ybsl_baili'
-		],
-		files:[
-			
-		],
+		players: ['ybsl_004zhangyujie', 'ybsl_071faraway'],
+		cards: ['ybsl_baihong', 'ybsl_zidian', 'ybsl_bixie', 'ybsl_liuxing', 'ybsl_qingming', 'ybsl_baili'],
+		files: [],
 	},
-	'4.1.7':{
-		changeLog:[
+	'4.1.7': {
+		changeLog: [
 			'理论上可联机',
 			'当前版本：4.1.7',
 			'更新日期：2023-05-03',
@@ -1640,18 +1166,12 @@ window.ybslb_update={
 			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
 			//'- <span style="text-decoration: line-through;">广告位招商</span>。',
 		],
-		players:[
-			
-		],
-		cards:[
-			'ybsl_baihong','ybsl_zidian','ybsl_bixie','ybsl_liuxing','ybsl_qingming','ybsl_baili','ybsl_tianhuoduan','ybsl_piaoxueruyi','ybsl_fengqiuhuang','ybsl_dafeng'
-		],
-		files:[
-			
-		],
+		players: [],
+		cards: ['ybsl_baihong', 'ybsl_zidian', 'ybsl_bixie', 'ybsl_liuxing', 'ybsl_qingming', 'ybsl_baili', 'ybsl_tianhuoduan', 'ybsl_piaoxueruyi', 'ybsl_fengqiuhuang', 'ybsl_dafeng'],
+		files: [],
 	},
-	'4.1.6':{
-		changeLog:[
+	'4.1.6': {
+		changeLog: [
 			'理论上可联机',
 			'当前版本：4.1.6',
 			'更新日期：2023-05-02',
@@ -1668,649 +1188,243 @@ window.ybslb_update={
 			'- 感谢鬼神易早期为本扩展撰写的几个武将。',
 			//'- <span style="text-decoration: line-through;">广告位招商</span>。',
 		],
-		players:[
-			
-		],
-		cards:[
-			'ybsl_lvchenqiang','ybsl_taoyao','rewrite_qinglong','rewrite_tongque'
-		],
-		files:[
-			
-		],
+		players: [],
+		cards: ['ybsl_lvchenqiang', 'ybsl_taoyao', 'rewrite_qinglong', 'rewrite_tongque'],
+		files: [],
 	},
-	'4.1.5':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.1.5',
-			'更新日期：2023-04-19',
-			'- 画了若干大饼。',
-			'- 新增部分武将。',
-			'- 林逸。',
-			'- 我也忘记还有没有别的了。',
-			'- 水。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ssj_ybxh_linyi'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.1.5': {
+		changeLog: ['理论上可联机', '当前版本：4.1.5', '更新日期：2023-04-19', '- 画了若干大饼。', '- 新增部分武将。', '- 林逸。', '- 我也忘记还有没有别的了。', '- 水。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ssj_ybxh_linyi'],
+		cards: [],
+		files: [],
 	},
-	'4.1.3':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.1.3',
-			'更新日期：2023-04-09',
-			'- 画了若干大饼。',
-			'- 新增部分武将。',
-			'- SP陈爱琳，蘋姉，<span style="text-decoration: line-through;">SP孙丽松</span>。',
-			'- 上面划掉的有机会再整。',
-			'- 为本次及上次更新的武将设置了强度等级。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybsp_002chenailin','ybsp_001_sunlisong','ybsl_042pingzi'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.1.3': {
+		changeLog: ['理论上可联机', '当前版本：4.1.3', '更新日期：2023-04-09', '- 画了若干大饼。', '- 新增部分武将。', '- SP陈爱琳，蘋姉，<span style="text-decoration: line-through;">SP孙丽松</span>。', '- 上面划掉的有机会再整。', '- 为本次及上次更新的武将设置了强度等级。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybsp_002chenailin', 'ybsp_001_sunlisong', 'ybsl_042pingzi'],
+		cards: [],
+		files: [],
 	},
-	'4.1.1':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.1.1',
-			'更新日期：2023-03-//',
-			'- 画了若干大饼。',
-			'- 新增部分武将。',
-			'- 清月姑娘，香紫姑娘，朱焌，羊祈絮，朱涯海，苟卡。',
-			'- 画了若干大饼。',
-			'- 画了若干大饼。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybsl_068qingyue','ybsl_069xiangzi','ybsl_076zhujun','ybsl_077yangqixu','ybsl_078zhuyahai','ybsl_075dogcard'
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.1.1': {
+		changeLog: ['理论上可联机', '当前版本：4.1.1', '更新日期：2023-03-//', '- 画了若干大饼。', '- 新增部分武将。', '- 清月姑娘，香紫姑娘，朱焌，羊祈絮，朱涯海，苟卡。', '- 画了若干大饼。', '- 画了若干大饼。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybsl_068qingyue', 'ybsl_069xiangzi', 'ybsl_076zhujun', 'ybsl_077yangqixu', 'ybsl_078zhuyahai', 'ybsl_075dogcard'],
+		cards: [],
+		files: [],
 	},
-	'4.1.0':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.1.0',
-			'更新日期：2023-03-12',
-			'- 画了若干大饼。',
-			'- 夜白旅程增加了几个固定BOSS，分别在第5关之第30关之间的5的倍数处。',
-			'- 夜白旅程增加了加点系统，初始一点，以后每过五关加一点，于回合开始时加点，敌人的总点数与玩家相同。',
-			'- 优化了文件夹，方便查看和整理。',
-			'- 画了若干大饼。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybsl_029dawn','ybsl_026can',
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.1.0': {
+		changeLog: ['理论上可联机', '当前版本：4.1.0', '更新日期：2023-03-12', '- 画了若干大饼。', '- 夜白旅程增加了几个固定BOSS，分别在第5关之第30关之间的5的倍数处。', '- 夜白旅程增加了加点系统，初始一点，以后每过五关加一点，于回合开始时加点，敌人的总点数与玩家相同。', '- 优化了文件夹，方便查看和整理。', '- 画了若干大饼。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybsl_029dawn', 'ybsl_026can'],
+		cards: [],
+		files: [],
 	},
-	'4.0.5':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.0.5',
-			'更新日期：2023-03-09',
-			'- 加入了一名新武将：黎。',
-			'- 蚕的技能调整至理想形态。',
-			'- 优化部分技能流程及ai。',
-			'- 绘制更多大饼。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybsl_029dawn','ybsl_026can',
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.0.5': {
+		changeLog: ['理论上可联机', '当前版本：4.0.5', '更新日期：2023-03-09', '- 加入了一名新武将：黎。', '- 蚕的技能调整至理想形态。', '- 优化部分技能流程及ai。', '- 绘制更多大饼。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybsl_029dawn', 'ybsl_026can'],
+		cards: [],
+		files: [],
 	},
-	'4.0.4':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.0.4',
-			'更新日期：2023-03-07',
-			'- 更新了三个新武将，分别是：。',
-			'- 高宇航，吴雨欣，周玥。',
-			'- 高无理周四人组终于集齐了。',
-			'- 这四个人互相构成珠联璧合，且除高宇航外其他人都和夜白构成珠联璧合。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybsl_008wuyuxin','ybsl_010zhouyue','ybsl_011gaoyuhang',
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'4.0.4': {
+		changeLog: ['理论上可联机', '当前版本：4.0.4', '更新日期：2023-03-07', '- 更新了三个新武将，分别是：。', '- 高宇航，吴雨欣，周玥。', '- 高无理周四人组终于集齐了。', '- 这四个人互相构成珠联璧合，且除高宇航外其他人都和夜白构成珠联璧合。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybsl_008wuyuxin', 'ybsl_010zhouyue', 'ybsl_011gaoyuhang'],
+		cards: [],
+		files: [],
 	},
-	'4.0.3':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.0.3',
-			'更新日期：2023-03-05',
-			'- 将花朵从基本牌里移除。',
-			'- 新开辟了一个牌的类型，称为花朵牌，暂时用于花朵牌的归类。',
-			'- 一个新武将，铝。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 感谢一直以来各位游玩者的关注与支持。',
-			'- <span style="text-decoration: line-through;">广告位招商</span>。',
-		],
-		players:[
-			'ybslshen_073Al',
-		],
-		cards:[
-			'ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua',
-		],
-		files:[
-			
-		],
+	'4.0.3': {
+		changeLog: ['理论上可联机', '当前版本：4.0.3', '更新日期：2023-03-05', '- 将花朵从基本牌里移除。', '- 新开辟了一个牌的类型，称为花朵牌，暂时用于花朵牌的归类。', '- 一个新武将，铝。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 感谢一直以来各位游玩者的关注与支持。', '- <span style="text-decoration: line-through;">广告位招商</span>。'],
+		players: ['ybslshen_073Al'],
+		cards: ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'],
+		files: [],
 	},
-	'4.0.1':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.0.1',
-			'更新日期：2023-02-02',
-			'- 将花朵加毒的设定取消了，以后再改。',
-			'- 一个新武将测试过程中bug层出不穷，导致本次更新鸽了很久。',
-			'- 苏令燚投江没写成，以后找外包或者慢慢学。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 从此版本开始，扩展包进入有史以来。',
-		],
-		players:[
-			'ybsp_072sulingyi',
-		],
-		cards:[
-			'ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua',
-		],
-		files:[
+	'4.0.1': {
+		changeLog: ['理论上可联机', '当前版本：4.0.1', '更新日期：2023-02-02', '- 将花朵加毒的设定取消了，以后再改。', '- 一个新武将测试过程中bug层出不穷，导致本次更新鸽了很久。', '- 苏令燚投江没写成，以后找外包或者慢慢学。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 从此版本开始，扩展包进入有史以来。'],
+		players: ['ybsp_072sulingyi'],
+		cards: ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
-	'4.0.0':{
-		changeLog:[
-			'理论上可联机',
-			'当前版本：4.0.0',
-			'更新日期：2023-01-26',
-			'- 将花朵加毒的设定取消了，以后再改。',
-			'- 更了一个新武将，作用崭新的设定。',
-			'- 制作仓促，有bug烦请加群反馈。',
-			'- 进群答案稍微玩一下扩展包就会知道。',
-			'- 交流QQ群：369015096。',
-			'- 从此版本开始，扩展包进入有史以来。',
-		],
-		players:[
-			'ybsl_014liutianyu',
-		],
-		cards:[
-			'ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua',
-		],
-		files:[
+	'4.0.0': {
+		changeLog: ['理论上可联机', '当前版本：4.0.0', '更新日期：2023-01-26', '- 将花朵加毒的设定取消了，以后再改。', '- 更了一个新武将，作用崭新的设定。', '- 制作仓促，有bug烦请加群反馈。', '- 进群答案稍微玩一下扩展包就会知道。', '- 交流QQ群：369015096。', '- 从此版本开始，扩展包进入有史以来。'],
+		players: ['ybsl_014liutianyu'],
+		cards: ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
-	'3.14.10.12.2':{
-		changeLog:[
-			'2023年1月20日',
-			'本次更新大幅度削弱了花中四君子，现在不论几人吃花，均会销毁，并且还会附带产毒。',
-			'修复已知和未知的若干bug',
-			'移除了本地界面的那四个无用武将，并设置了指引。'
-		],
-		players:[
-			
-		],
-		cards:[
-			'ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua',
-		],
-		files:[
+	'3.14.10.12.2': {
+		changeLog: ['2023年1月20日', '本次更新大幅度削弱了花中四君子，现在不论几人吃花，均会销毁，并且还会附带产毒。', '修复已知和未知的若干bug', '移除了本地界面的那四个无用武将，并设置了指引。'],
+		players: [],
+		cards: ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
-	'3.14.10.12.1':{
-		changeLog:[
-			'2023年1月19日',
-			'本次更新削弱了想去远方',
-			'修复已知和未知的若干bug',
-		],
-		players:[
-			'ybslshen_071faraway',
-		],
-		cards:[
-			
-		],
-		files:[
+	'3.14.10.12.1': {
+		changeLog: ['2023年1月19日', '本次更新削弱了想去远方', '修复已知和未知的若干bug'],
+		players: ['ybslshen_071faraway'],
+		cards: [],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
-	'3.14.10.12':{
-		changeLog:[
-			'2023年1月17日',
-			'本次更新新武将，想去远方',
-			'敬请期待',
-		],
-		players:[
-			'ybslshen_071faraway',
-		],
-		cards:[
-			
-		],
-		files:[
+	'3.14.10.12': {
+		changeLog: ['2023年1月17日', '本次更新新武将，想去远方', '敬请期待'],
+		players: ['ybslshen_071faraway'],
+		cards: [],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
 	//根据频道记录追记
-	'3.14.10.11.1':{
-		changeLog:[
-			'2022年12月30日',
-			'蛇妃',
-		],
-		players:[
-			
-		],
-		cards:[
-			
-		],
-		files:[
+	'3.14.10.11.1': {
+		changeLog: ['2022年12月30日', '蛇妃'],
+		players: [],
+		cards: [],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
 
 	//以上
 
-	'3.14.10.10.2':{
-		changeLog:[
-			'2022年12月29日',
-			'往期没有记录',
-			'蛇妃',
-		],
-		players:[
-			'db_ybsl_067snake',
-		],
-		cards:[
-			
-		],
-		files:[
+	'3.14.10.10.2': {
+		changeLog: ['2022年12月29日', '往期没有记录', '蛇妃'],
+		players: ['db_ybsl_067snake'],
+		cards: [],
+		files: [
 			//'extension/boss/extension.js',
 		],
 	},
 
 	//此处向下为历史追记，根据频道的发布记录追记
 
-	'3.14.10.10.1':{
-		changeLog:[
-			'2022年12月27日 23点',
-			'不知道干啥了，备注为水',
-			'错写为3.14.10.1',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-			
-		],
+	'3.14.10.10.1': {
+		changeLog: ['2022年12月27日 23点', '不知道干啥了，备注为水', '错写为3.14.10.1'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.10':{
-		changeLog:[
-			'2022年12月27日 凌晨1点',
-			'不知道干啥了，备注为水',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.10': {
+		changeLog: ['2022年12月27日 凌晨1点', '不知道干啥了，备注为水'],
+		players: [],
+		cards: [],
+		files: [],
 	},
 
-	'3.14.10.8.4':{
-		changeLog:[
-			'2022年12月26日 15:12',
-			'没有备注',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.8.4': {
+		changeLog: ['2022年12月26日 15:12', '没有备注'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.9':{
-		changeLog:[
-			'2022年12月25日 21:21',
-			'魔改千里单骑',
-			'我也不知道为什么这个会在3.14.10.8.4之前……',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.9': {
+		changeLog: ['2022年12月25日 21:21', '魔改千里单骑', '我也不知道为什么这个会在3.14.10.8.4之前……'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.8':{
-		changeLog:[
-			'2022年12月24日 19:58',
-			'修复了一些bug',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.8': {
+		changeLog: ['2022年12月24日 19:58', '修复了一些bug'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.7':{
-		changeLog:[
-			'2022年12月24日 00:40',
-			'啥也没写',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.7': {
+		changeLog: ['2022年12月24日 00:40', '啥也没写'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.5':{
-		changeLog:[
-			'2022年12月23日 22:58',
-			'啥也没写',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.5': {
+		changeLog: ['2022年12月23日 22:58', '啥也没写'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.4':{
-		changeLog:[
-			'2022年12月21日 20:21',
-			'注意事项：建议先删除旧包再装入，以避免无用文件杂乱。',
-			'本次基本没更新啥，主要是画了一张巨大的蓝图（大饼），此后更新基本都会在蓝图的基础上补充',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.4': {
+		changeLog: ['2022年12月21日 20:21', '注意事项：建议先删除旧包再装入，以避免无用文件杂乱。', '本次基本没更新啥，主要是画了一张巨大的蓝图（大饼），此后更新基本都会在蓝图的基础上补充'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.1':{
-		changeLog:[
-			'2022年12月01日 23:49',
-			'根据上下聊天记录，推测为新版六艺小红的更新',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.1': {
+		changeLog: ['2022年12月01日 23:49', '根据上下聊天记录，推测为新版六艺小红的更新'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.10.0':{
-		changeLog:[
-			'2022年11月30日 15:48',
-			'根据上下聊天记录，推测为旧版六艺小红的更新',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.10.0': {
+		changeLog: ['2022年11月30日 15:48', '根据上下聊天记录，推测为旧版六艺小红的更新'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.9.9':{
-		changeLog:[
-			'2022年11月30日 00:00',
-			'根据上下聊天记录，推测为六艺篇的开创',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.9.9': {
+		changeLog: ['2022年11月30日 00:00', '根据上下聊天记录，推测为六艺篇的开创'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.9.7':{
-		changeLog:[
-			'2022年11月27日 16:34',
-			'加了几个无关紧要的锦囊，优化了天雷玉璧系列的描述',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.9.7': {
+		changeLog: ['2022年11月27日 16:34', '加了几个无关紧要的锦囊，优化了天雷玉璧系列的描述'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.9.4':{
-		changeLog:[
-			'2022年11月26日 23:37',
-			'本次更新了文件的读取路径，以求扩展包内较为整洁，顺便增加了几个更强大（鸡肋）的升级装备',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.9.4': {
+		changeLog: ['2022年11月26日 23:37', '本次更新了文件的读取路径，以求扩展包内较为整洁，顺便增加了几个更强大（鸡肋）的升级装备'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.9.2':{
-		changeLog:[
-			'2022年11月25日 23:19',
-			'把五颜六色的标签扣了[表情]这回UI大概能过关了',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.9.2': {
+		changeLog: ['2022年11月25日 23:19', '把五颜六色的标签扣了[表情]这回UI大概能过关了'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.9.1':{
-		changeLog:[
-			'2022年11月25日 21:52',
-			'增加了朱雀扇和五行扇的升级',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.9.1': {
+		changeLog: ['2022年11月25日 21:52', '增加了朱雀扇和五行扇的升级'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.8.4':{
-		changeLog:[
-			'2022年11月24日 22:18',
-			'牌堆加入4张天火煅，可替代马均升级装备',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.8.4': {
+		changeLog: ['2022年11月24日 22:18', '牌堆加入4张天火煅，可替代马均升级装备'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.8.3':{
-		changeLog:[
-			'2022年11月24日 22:27',
-			'更新了一大堆牌堆和花里胡哨，没加入牌堆的别私自加入，没写呢',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.8.3': {
+		changeLog: ['2022年11月24日 22:27', '更新了一大堆牌堆和花里胡哨，没加入牌堆的别私自加入，没写呢'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.8.1':{
-		changeLog:[
-			'2022年11月19日 08:17',
-			'空',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.8.1': {
+		changeLog: ['2022年11月19日 08:17', '空'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.8.0':{
-		changeLog:[
-			'2022年11月17日 17:12',
-			'空',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.8.0': {
+		changeLog: ['2022年11月17日 17:12', '空'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.7.1':{
-		changeLog:[
-			'2022年11月16日 11:01',
-			'修复了刚发现的bug',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.7.1': {
+		changeLog: ['2022年11月16日 11:01', '修复了刚发现的bug'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-	'3.14.7.0':{
-		changeLog:[
-			'2022年11月14日 16:33',
-			'结合上下文，疑似更新了滕武',
-		],
-		players:[
-
-		],
-		cards:[
-			
-		],
-		files:[
-
-		],
+	'3.14.7.0': {
+		changeLog: ['2022年11月14日 16:33', '结合上下文，疑似更新了滕武'],
+		players: [],
+		cards: [],
+		files: [],
 	},
-
-
-
-}
+};
 // const num = window.ybslb_update.version
 // const text = window.ybslb_update[num]['changeLog']
-const ybslb_update = window.ybslb_update
+const ybslb_update = window.ybslb_update;

@@ -1,9 +1,9 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export {card};
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { card };
 
 /** @type { importCharacterConfig['card'] } */
 const card = {
-	'ybsl_zhaosanmusi': {
+	ybsl_zhaosanmusi: {
 		audio: 'ext:夜白神略/audio/card:true',
 		fullskin: true,
 		type: 'trick',
@@ -11,40 +11,43 @@ const card = {
 		selectTarget: -1,
 		// cardcolor:'red',
 		toself: true,
-		filterTarget: function(card, player, target) {
+		filterTarget: function (card, player, target) {
 			return target == player;
 		},
 		modTarget: true,
-		content: function() {
-			'step 0'
+		content: function () {
+			'step 0';
 			var list = ['摸三弃四', '弃三摸四'];
-			target.chooseControl(list).set('prompt', '请选择摸三弃四，还是弃三摸四').set('ai', function(control) {
-				if (target.countCards('h') > 6) return 0;
-				else return 1;
-			});
-			'step 1'
+			target
+				.chooseControl(list)
+				.set('prompt', '请选择摸三弃四，还是弃三摸四')
+				.set('ai', function (control) {
+					if (target.countCards('h') > 6) return 0;
+					else return 1;
+				});
+			('step 1');
 			if (result.control == '摸三弃四') {
 				event.goto(6);
 			}
-			'step 2'
-			'step 3'
-			target.chooseCard('h', 3).set('ai', function(card) {
+			('step 2');
+			('step 3');
+			target.chooseCard('h', 3).set('ai', function (card) {
 				if (target.isPhaseUsing()) return -get.useful(card);
 				else return -get.value(card);
-			})
-			'step 4'
+			});
+			('step 4');
 			if (result.cards) target.discard(result.cards);
-			'step 5'
+			('step 5');
 			target.draw(4);
 			event.finish();
-			'step 6'
+			('step 6');
 			target.draw(3);
-			'step 7'
-			target.chooseCard('h', 4).set('ai', function(card) {
+			('step 7');
+			target.chooseCard('h', 4).set('ai', function (card) {
 				if (target.isPhaseUsing()) return -get.useful(card);
 				else return -get.value(card);
-			})
-			'step 8'
+			});
+			('step 8');
 			if (result.cards) target.discard(result.cards);
 		},
 		ai: {
@@ -63,47 +66,47 @@ const card = {
 		},
 	},
 
-	ybsl_ptchiling1:{
+	ybsl_ptchiling1: {
 		// cardimage:'ybsl_ptchiling3',
-		ai:{
-			value:1,
-		}
+		ai: {
+			value: 1,
+		},
 	},
-	ybsl_ptchiling2:{
-		cardimage:'ybsl_ptchiling1',
-		ai:{
-			value:3,
-		}
+	ybsl_ptchiling2: {
+		cardimage: 'ybsl_ptchiling1',
+		ai: {
+			value: 3,
+		},
 	},
-	ybsl_ptchiling3:{
-		cardimage:'ybsl_ptchiling1',
-		ai:{
-			value:5,
-		}
+	ybsl_ptchiling3: {
+		cardimage: 'ybsl_ptchiling1',
+		ai: {
+			value: 5,
+		},
 	},
-	ybsl_ptqiwu1:{
-		cardimage:'tao',
-		ai:{
-			value:2,
-		}
+	ybsl_ptqiwu1: {
+		cardimage: 'tao',
+		ai: {
+			value: 2,
+		},
 	},
-	ybsl_ptqiwu2:{
-		cardimage:'tao',
-		ai:{
-			value:4,
-		}
+	ybsl_ptqiwu2: {
+		cardimage: 'tao',
+		ai: {
+			value: 4,
+		},
 	},
-	ybsl_ptqiwu3:{
-		cardimage:'tao',
-		ai:{
-			value:6,
-		}
+	ybsl_ptqiwu3: {
+		cardimage: 'tao',
+		ai: {
+			value: 6,
+		},
 	},
-	niya_wangmeizhike:{
+	niya_wangmeizhike: {
 		audio: true,
 		fullskin: true,
-		type: "delay",
-		cardnature: "wood",
+		type: 'delay',
+		cardnature: 'wood',
 		modTarget(card, player, target) {
 			return lib.filter.judge(card, player, target);
 		},
@@ -116,7 +119,7 @@ const card = {
 		selectTarget: [-1, -1],
 		toself: true,
 		judge(card) {
-			if (get.suit(card) == "diamond") {
+			if (get.suit(card) == 'diamond') {
 				return 0;
 			}
 			return 2;
@@ -129,7 +132,7 @@ const card = {
 		},
 		effect() {
 			if (result.bool == true) {
-				player.chooseDrawRecover(2,true);
+				player.chooseDrawRecover(2, true);
 			}
 		},
 		ai: {
@@ -144,7 +147,5 @@ const card = {
 				},
 			},
 		},
-	
-
 	},
-}
+};

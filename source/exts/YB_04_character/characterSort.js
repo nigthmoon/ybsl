@@ -1,8 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterSort }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterSort };
 
 const characterSort = {
-	ybnew1: {
-		
-	},
-}
+	ybnew1: {},
+};

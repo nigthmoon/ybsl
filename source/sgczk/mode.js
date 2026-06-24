@@ -1,5 +1,5 @@
-import { lib, game, ui, get, ai, _status } from "../../../../noname.js";
-export { sgczk }
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
+export { sgczk };
 // export const type = "mode";
 // /**
 //  * @type { () => importModeConfig }
@@ -14,17 +14,15 @@ export { sgczk }
 // }
 var sgczk = function () {
 	game.addMode(
-		"sgczk",
+		'sgczk',
 		{
-			name: "sgczk",
-            start:function(){
-                
-            },
+			name: 'sgczk',
+			start: function () {},
 		},
 		{
-			translate: "三国策战卡",
-			extension: "三国策战卡",
-		}
+			translate: '三国策战卡',
+			extension: '三国策战卡',
+		},
 	);
 };
 // export default sgczk;

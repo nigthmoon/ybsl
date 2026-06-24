@@ -1,19 +1,19 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export {card};
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { card };
 /** @type { importCharacterConfig['card'] } */
 const card = {
-	yzdel_mera:{
+	yzdel_mera: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:2,
+		manaCost: 2,
 		content: function () {
-			target.damage(1, "fire");
+			target.damage(1, 'fire');
 		},
 		ai: {
 			basic: {
@@ -22,28 +22,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -2;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
-	yzdel_merami:{
+	yzdel_merami: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:6,
+		manaCost: 6,
 		content: function () {
-			target.damage(3, "fire");
+			target.damage(3, 'fire');
 		},
 		ai: {
 			basic: {
@@ -52,28 +52,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -6;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
-	yzdel_merazolma:{
+	yzdel_merazolma: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:15,
+		manaCost: 15,
 		content: function () {
-			target.damage(6, "fire");
+			target.damage(6, 'fire');
 		},
 		ai: {
 			basic: {
@@ -82,29 +82,29 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -12;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
 
-	yzdel_gira:{
+	yzdel_gira: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,2],
+		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:4,
+		manaCost: 4,
 		content: function () {
-			target.damage(1, "fire");
+			target.damage(1, 'fire');
 		},
 		ai: {
 			basic: {
@@ -113,28 +113,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -2;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
-	yzdel_begirama:{
+	yzdel_begirama: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:6,
+		manaCost: 6,
 		content: function () {
-			target.damage(2, "fire");
+			target.damage(2, 'fire');
 		},
 		ai: {
 			basic: {
@@ -143,28 +143,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -4;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
-	yzdel_begiragon:{
+	yzdel_begiragon: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:12,
+		manaCost: 12,
 		content: function () {
-			target.damage(4, "fire");
+			target.damage(4, 'fire');
 		},
 		ai: {
 			basic: {
@@ -173,27 +173,27 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -8;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
 
-	yzdel_io:{
+	yzdel_io: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:5,
+		manaCost: 5,
 		content: function () {
 			target.damage(1);
 		},
@@ -204,7 +204,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -2;
 				},
 			},
@@ -213,16 +213,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_iora:{
+	yzdel_iora: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:10,
+		manaCost: 10,
 		content: function () {
 			target.damage(3);
 		},
@@ -233,7 +233,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -6;
 				},
 			},
@@ -242,16 +242,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_ionazun:{
+	yzdel_ionazun: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:15,
+		manaCost: 15,
 		content: function () {
 			target.damage(5);
 		},
@@ -262,29 +262,29 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -10;
 				},
 			},
 			tag: {
 				damage: true,
-				fireDamage:true,
+				fireDamage: true,
 			},
 		},
 	},
 
-	yzdel_hiyado:{
+	yzdel_hiyado: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:3,
+		manaCost: 3,
 		content: function () {
-			target.damage(1, "ice");
+			target.damage(1, 'ice');
 		},
 		ai: {
 			basic: {
@@ -293,28 +293,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -2;
 				},
 			},
 			tag: {
 				damage: true,
-				iceDamage:true,
+				iceDamage: true,
 			},
 		},
 	},
-	yzdel_hiyadaruko:{
+	yzdel_hiyadaruko: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:8,
+		manaCost: 8,
 		content: function () {
-			target.damage(2, "ice");
+			target.damage(2, 'ice');
 		},
 		ai: {
 			basic: {
@@ -323,28 +323,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -4;
 				},
 			},
 			tag: {
 				damage: true,
-				iceDamage:true,
+				iceDamage: true,
 			},
 		},
 	},
-	yzdel_hiyadain:{
+	yzdel_hiyadain: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:13,
+		manaCost: 13,
 		content: function () {
-			target.damage(3, "ice");
+			target.damage(3, 'ice');
 		},
 		ai: {
 			basic: {
@@ -353,28 +353,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -8;
 				},
 			},
 			tag: {
 				damage: true,
-				iceDamage:true,
+				iceDamage: true,
 			},
 		},
 	},
-	yzdel_mahiyado:{
+	yzdel_mahiyado: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:15,
+		manaCost: 15,
 		content: function () {
-			target.damage(4, "ice");
+			target.damage(4, 'ice');
 		},
 		ai: {
 			basic: {
@@ -383,29 +383,29 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -8;
 				},
 			},
 			tag: {
 				damage: true,
-				iceDamage:true,
+				iceDamage: true,
 			},
 		},
 	},
 
-	yzdel_raidein:{
+	yzdel_raidein: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,2],
+		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:8,
+		manaCost: 8,
 		content: function () {
-			target.damage(2, "thunder");
+			target.damage(2, 'thunder');
 		},
 		ai: {
 			basic: {
@@ -414,28 +414,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -4;
 				},
 			},
 			tag: {
 				damage: true,
-				thunderDamage:true,
+				thunderDamage: true,
 			},
 		},
 	},
-	yzdel_gigadein:{
+	yzdel_gigadein: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:8,
+		manaCost: 8,
 		content: function () {
-			target.damage(3, "thunder");
+			target.damage(3, 'thunder');
 		},
 		ai: {
 			basic: {
@@ -444,28 +444,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -6;
 				},
 			},
 			tag: {
 				damage: true,
-				thunderDamage:true,
+				thunderDamage: true,
 			},
 		},
 	},
-	yzdel_bagikerosu:{
+	yzdel_bagikerosu: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:15,
+		manaCost: 15,
 		content: function () {
-			target.damage(8, "thunder");
+			target.damage(8, 'thunder');
 		},
 		ai: {
 			basic: {
@@ -474,17 +474,17 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -20;
 				},
 			},
 			tag: {
 				damage: true,
-				thunderDamage:true,
+				thunderDamage: true,
 			},
 		},
 	},
-	
+
 	YB_windDamage: {
 		ai: {
 			result: {
@@ -497,18 +497,18 @@ const card = {
 			},
 		},
 	},
-	yzdel_bagi:{
+	yzdel_bagi: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,2],
+		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:3,
+		manaCost: 3,
 		content: function () {
-			target.damage(1, "YB_wind");
+			target.damage(1, 'YB_wind');
 		},
 		ai: {
 			basic: {
@@ -517,28 +517,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -2;
 				},
 			},
 			tag: {
 				damage: true,
-				YB_windDamage:true,
+				YB_windDamage: true,
 			},
 		},
 	},
-	yzdel_bagima:{
+	yzdel_bagima: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target != player;
 		},
-		manaCost:8,
+		manaCost: 8,
 		content: function () {
-			target.damage(3, "YB_wind");
+			target.damage(3, 'YB_wind');
 		},
 		ai: {
 			basic: {
@@ -547,28 +547,28 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -6;
 				},
 			},
 			tag: {
 				damage: true,
-				YB_windDamage:true,
+				YB_windDamage: true,
 			},
 		},
 	},
-	yzdel_bagikerosu:{
+	yzdel_bagikerosu: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			return player.isEnemyOf(target);
 		},
-		manaCost:15,
+		manaCost: 15,
 		content: function () {
-			target.damage(5, "YB_wind");
+			target.damage(5, 'YB_wind');
 		},
 		ai: {
 			basic: {
@@ -577,27 +577,27 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return -10;
 				},
 			},
 			tag: {
 				damage: true,
-				YB_windDamage:true,
+				YB_windDamage: true,
 			},
 		},
 	},
-	
-	yzdel_hoimi:{
+
+	yzdel_hoimi: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target.isDamaged();
 		},
-		manaCost:2,
+		manaCost: 2,
 		content: function () {
 			target.recover(1);
 		},
@@ -608,7 +608,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return 2;
 				},
 			},
@@ -618,16 +618,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_behoimi:{
+	yzdel_behoimi: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target.isDamaged();
 		},
-		manaCost:6,
+		manaCost: 6,
 		content: function () {
 			target.recover(3);
 		},
@@ -638,7 +638,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return 6;
 				},
 			},
@@ -648,16 +648,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_behoma:{
+	yzdel_behoma: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
 			return target.isDamaged();
 		},
-		manaCost:9,
+		manaCost: 9,
 		content: function () {
 			target.recover(target.maxHp - target.hp);
 		},
@@ -668,7 +668,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return target.maxHp - target.hp;
 				},
 			},
@@ -678,16 +678,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_behomaral:{
+	yzdel_behomaral: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target.isDamaged();
 		},
-		manaCost:12,
+		manaCost: 12,
 		content: function () {
 			target.recover(3);
 		},
@@ -698,7 +698,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return 6;
 				},
 			},
@@ -708,16 +708,16 @@ const card = {
 			},
 		},
 	},
-	yzdel_behomazun:{
+	yzdel_behomazun: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
-		selectTarget: [1,3],
+		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
 			return target.isDamaged();
 		},
-		manaCost:20,
+		manaCost: 20,
 		content: function () {
 			target.recover(target.maxHp - target.hp);
 		},
@@ -728,7 +728,7 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
+				target: function (player, target) {
 					return target.maxHp - target.hp;
 				},
 			},
@@ -739,10 +739,10 @@ const card = {
 		},
 	},
 
-	yzdel_zaoraru:{
+	yzdel_zaoraru: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		deadTarget: true,
 		savable: true,
@@ -752,11 +752,11 @@ const card = {
 		},
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
-			return target.isDead()
+			return target.isDead();
 		},
-		manaCost:10,
+		manaCost: 10,
 		content: function () {
-			target.revive(Math.ceil(target.maxHp/2),true)
+			target.revive(Math.ceil(target.maxHp / 2), true);
 		},
 		ai: {
 			basic: {
@@ -765,8 +765,8 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
-					return Math.ceil(target.maxHp/2)+10;
+				target: function (player, target) {
+					return Math.ceil(target.maxHp / 2) + 10;
 				},
 			},
 			tag: {
@@ -775,10 +775,10 @@ const card = {
 			},
 		},
 	},
-	yzdel_zaoriku:{
+	yzdel_zaoriku: {
 		audio: true,
 		enable: true,
-		type: "ybsl_magicSkill",
+		type: 'ybsl_magicSkill',
 		fullskin: true,
 		deadTarget: true,
 		savable: true,
@@ -788,11 +788,11 @@ const card = {
 		},
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
-			return target.isDead()
+			return target.isDead();
 		},
-		manaCost:20,
+		manaCost: 20,
 		content: function () {
-			target.revive(target.maxHp,true)
+			target.revive(target.maxHp, true);
 		},
 		ai: {
 			basic: {
@@ -801,8 +801,8 @@ const card = {
 				value: 8,
 			},
 			result: {
-				target:function(player,target){
-					return target.maxHp+10;
+				target: function (player, target) {
+					return target.maxHp + 10;
 				},
 			},
 			tag: {

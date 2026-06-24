@@ -1,7 +1,8 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { dynamicTranslate }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { dynamicTranslate };
 
-const dynamicTranslate = {//动态翻译
+const dynamicTranslate = {
+	//动态翻译
 	// sgskjdbzjms_fenglei:function(player){
 	// 	var storage = player.storage.sgskjdbzjms_fenglei;
 	// 	var str = '永续转换技';
@@ -17,4 +18,4 @@ const dynamicTranslate = {//动态翻译
 	// 		return str+str2+'<span class=thundertext>'+strwind+'</span>'+'；'+strthunder+'。';
 	// 	}
 	// }
-}
+};

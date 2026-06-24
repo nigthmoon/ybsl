@@ -1,6 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterCitetext }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterCitetext };
 
-const characterCitetext = {
-	
-}
+const characterCitetext = {};

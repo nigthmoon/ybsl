@@ -1,7 +1,8 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterTitle }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterTitle };
 
-const characterTitle = { //称号
+const characterTitle = {
+	//称号
 	// ybsl_xuyou: '夜白设计',
 	// ybsl_pujing: '夜白设计',
 	// ybsl_lvyi: '汉尚书令',
@@ -15,6 +16,5 @@ const characterTitle = { //称号
 	// ybsl_wangpou:'闻雷泣墓',
 	// ybsl_yangxu:'悬鱼太守',
 	// ybsl_shichong:'蜡炬作炊',
-
 	// Fe2O3_duqiong:'蜀之球琳',
-}
+};

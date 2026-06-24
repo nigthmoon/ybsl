@@ -1,4 +1,2 @@
-export {YB_tujian}
-const YB_tujian = {
-    
-}
+export { YB_tujian };
+const YB_tujian = {};

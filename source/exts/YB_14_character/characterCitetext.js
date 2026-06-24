@@ -1,8 +1,7 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterCitetext }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterCitetext };
 
 const characterCitetext = {
-		
 	ybsl_shlizhaoyi: '“我不能二三屈辱！”', //第11届小白杯 突围赛第4轮  重在参与的设计
 	//---------------------------------//上古神话
 	// 'sgsh_huaxu':'引文待填写。',//华胥
@@ -15,11 +14,11 @@ const characterCitetext = {
 	// 'sgsh_xiwangmu':'引文待填写。',//西王母
 	// 'sgsh_yuqiang':'引文待填写。',//禺强
 	// 'sgsh_dayu':'引文待填写。',//大禹
-		
+
 	//---------------------------------//名将改写
 	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
 	//---------------------------------//忆包武将
-		
+
 	/*快捷复制：
 	<span class=yellowtext>文字</span>暗亮双色
 	<span class=thundertext>文字</span>
@@ -33,7 +32,7 @@ const characterCitetext = {
 	<span style="text-decoration: line-through;">杀</span>字体划掉
 	黑桃♠︎️ 红桃♥︎️ 梅花♣︎️ 方块♦︎ 虚无◈ 日○ 月☽ 星☆ 山△ 禁※
 	空桃♤ 空心♡ 空梅♧ 空钻♢ 空无◎
-	花❀ 毒❈ 衡❃ 雪❁ 血ღ 实日☀ 漆星★ 暗花✿ 细雪❅❉ 天牢§ 
+	花❀ 毒❈ 衡❃ 雪❁ 血ღ 实日☀ 漆星★ 暗花✿ 细雪❅❉ 天牢§
 	骰子 一⚀ 二⚁ 三⚂ 四⚃ 五⚄ 六⚅
 	男♂ 女♀
 	白羊♈ 金牛♉ 双子♊ 巨蟹♋ 双鱼♓ 狮子♌ 天秤♎ 射手♐ 摩羯♑ 室女♏ 水瓶♒ 天蝎♍
@@ -54,5 +53,5 @@ const characterCitetext = {
 	//空无  <br>◎技能设计：夜白<br>◎代码撰写者：夜白<br>◎插图：暂无<br>◎配音：暂无
 	//细雪  <br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：暂无<br>❅配音：暂无
 	*/
-	niya_caowei:'一技能有点问题，以后再修，反正你看到这个将的时候一定会看困进而没兴趣玩',
-}
+	niya_caowei: '一技能有点问题，以后再修，反正你看到这个将的时候一定会看困进而没兴趣玩',
+};

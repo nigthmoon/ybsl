@@ -1,5 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
-export { characterCopyright }
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+export { characterCopyright };
 
 const characterCopyright = {
 	/*快捷复制：
@@ -15,7 +15,7 @@ const characterCopyright = {
 	<span style="text-decoration: line-through;">杀</span>字体划掉
 	黑桃♠︎️ 红桃♥︎️ 梅花♣︎️ 方块♦︎ 虚无◈ 日○ 月☽ 星☆ 山△ 禁※
 	空桃♤ 空心♡ 空梅♧ 空钻♢ 空无◎
-	花❀ 毒❈ 衡❃ 雪❁ 血ღ 实日☀ 漆星★ 暗花✿ 细雪❅❉ 天牢§ 
+	花❀ 毒❈ 衡❃ 雪❁ 血ღ 实日☀ 漆星★ 暗花✿ 细雪❅❉ 天牢§
 	骰子 一⚀ 二⚁ 三⚂ 四⚃ 五⚄ 六⚅
 	男♂ 女♀
 	白羊♈ 金牛♉ 双子♊ 巨蟹♋ 双鱼♓ 狮子♌ 天秤♎ 射手♐ 摩羯♑ 室女♏ 水瓶♒ 天蝎♍
@@ -37,11 +37,8 @@ const characterCopyright = {
 	//细雪  <br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：暂无<br>❅配音：暂无
 	*/
 
-	yhky_shlizhaoyi:['永恒刻印','001','夜白','夜白、无名杀本体','暂无','暂无','◈'],
-	yhky_caoying:['永恒刻印','002','玛微卡（喵曹金玉）','夜白、无名杀本体','p站','暂无','◈'],
+	yhky_shlizhaoyi: ['永恒刻印', '001', '夜白', '夜白、无名杀本体', '暂无', '暂无', '◈'],
+	yhky_caoying: ['永恒刻印', '002', '玛微卡（喵曹金玉）', '夜白、无名杀本体', 'p站', '暂无', '◈'],
 
-	yhky_diaochan:['永恒刻印','003','夜白','夜白、无名杀本体','三国杀官方','三国杀官方','◈'],
-
-
-	
-}
+	yhky_diaochan: ['永恒刻印', '003', '夜白', '夜白、无名杀本体', '三国杀官方', '三国杀官方', '◈'],
+};
