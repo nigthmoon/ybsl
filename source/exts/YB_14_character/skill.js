@@ -1196,7 +1196,7 @@ const skill = {
 										return ai - get.value(cardx);
 									} else if (get.attitude(player, source) <= 0) return 0;
 									return 5 - get.value(cardx);
-								},
+							  },
 				});
 				if (!game.online) return;
 				_status.event._resultid = id;
@@ -7053,7 +7053,7 @@ const skill = {
 			// event.result.cards = event.result.links;
 		},
 		async content(event, trigger, player) {
-			(player.addTempSkill('ybsl_daixin_used'), (player.storage.ybsl_daixin_used = player.storage.ybsl_daixin_used || []));
+			player.addTempSkill('ybsl_daixin_used'), (player.storage.ybsl_daixin_used = player.storage.ybsl_daixin_used || []);
 			player.storage.ybsl_daixin_used.push(trigger.card.name);
 			var card = [];
 			var subtype = null;
@@ -7104,6 +7104,9 @@ const skill = {
 				}
 			},
 		},
+		init(player) {
+			player.storage.ybsl_youyou = false;
+		},
 		global: 'ybsl_youyou_global',
 		// filter(event,player){
 
@@ -7122,40 +7125,58 @@ const skill = {
 				},
 				selectTarget: 1,
 				filterTarget(card, player, target) {
-					if (target.hasSkill('ybsl_youyou') || player.storage.ybsl_youyou_used.includes(target)) return false;
-					else {
-						if (target.storage.ybsl_youyou == true) {
-							return true;
-						} else {
-							return player.countDiscardableCards(player, 'h') >= 2;
-						}
-					}
-				},
-				selectCard: function () {
-					if (!ui.selected.targets.length) return false;
-					var target = ui.selected.targets[0];
-					if (target.storage.ybsl_youyou == true) {
-						return 0;
+					if (!target.hasSkill('ybsl_youyou') || player.storage.ybsl_youyou_used?.includes(target)) {
+						target.prompt('');
+						return false;
 					} else {
-						return 2;
+						if (target.storage.ybsl_youyou === false) {
+							if (!target.storage.ybsl_youyou_vv || !target.storage.ybsl_youyou_vv.includes(player)) {
+								target.prompt('你弃置两张牌，<br>令其恢复一点体力上限');
+							} else {
+								target.prompt('你弃置两张牌，<br>令其失去一点体力上限');
+							}
+							return ui.selected.cards.length === 2;
+						}
+						if (target.storage.ybsl_youyou === true) {
+							if (!target.storage.ybsl_youyou_vv || !target.storage.ybsl_youyou_vv.includes(player)) {
+								target.prompt('你恢复一点体力，<br>令其弃置两张牌');
+							} else {
+								target.prompt('你失去一点体力，<br>令其弃置两张牌');
+							}
+							return !ui.selected.cards || ui.selected.cards.length === 0;
+						}
+
+						return false;
 					}
 				},
+				prompt: function (event, player) {
+					return '即将发动【攸攸】，请根据可选目标身上的提示来决策';
+				},
+				filterCard: lib.filter.cardDiscardable,
+				selectCard: [0, 2],
+				discard: true,
+				// complexCard: true,
 				position: 'h',
 				async content(event, trigger, player) {
 					var target = event.targets[0];
+					// if(!player.storage.ybsl_youyou_used){
+					// 	player.storage.ybsl_youyou_used = [];
+					// }
+					// player.storage.ybsl_youyou_used.push(target);
+					player.YB_tempz('ybsl_youyou_used', target);
 					if (!target.storage.ybsl_youyou_vv) {
 						target.storage.ybsl_youyou_vv = [];
 					}
 					var cards = event.cards;
-					const func = target.storage.ybsl_youyou_vv.includes(player) ? 'lose' : 'recover';
-					const func2 = target.storage.ybsl_youyou_vv.includes(player) ? 'lose' : 'gain';
+					const func = target.storage.ybsl_youyou_vv.includes(player) ? 'loseHp' : 'recover';
+					const func2 = target.storage.ybsl_youyou_vv.includes(player) ? 'loseMaxHp' : 'gainMaxHp';
 					target.storage.ybsl_youyou_vv.push(player);
 					await target.changeZhuanhuanji('ybsl_youyou');
-					if (!cards) {
+					if (!cards || !cards.length) {
 						await player[func]();
 						await target.chooseToDiscard(2, 'h', true);
 					} else {
-						await target[func + 'MaxHp']();
+						await target[func2]();
 					}
 				},
 			},
@@ -7163,19 +7184,104 @@ const skill = {
 	},
 	ybsl_shangli: {
 		audio: 'ext:夜白神略/audio/character:2',
-		// group:['ybsl_shangli_1','ybsl_shangli_2'],
-		// subSkill:{
-		// 	1:{
-		// 		audio:'ybsl_shangli',
-		// 		trigger: {
-		// 			player: ["loseAfter"],
-		// 			global: ["equipAfter", "addJudgeAfter", "gainAfter", "loseAsyncAfter", "addToExpansionAfter"],
-		// 		},
-		// 		usable: 1,
-
-		// 	},
-		// 	2:{},
-		// },
+		group: ['ybsl_shangli_1', 'ybsl_shangli_2'],
+		subSkill: {
+			1: {
+				audio: 'ybsl_shangli',
+				trigger: {
+					player: ['loseAfter'],
+					global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+				},
+				usable: 1,
+				filter(event, player) {
+					return event.getl?.(player)?.hs?.length && player.countCards('h') != player.getDamagedHp(true);
+				},
+				prompt2: function (event, player) {
+					var str = '';
+					if (player.countCards('h') > player.getDamagedHp(true)) {
+						str += '你将弃置' + get.cnNumber(player.countCards('h') - player.getDamagedHp(true)) + '张手牌';
+					} else {
+						str += '你将摸' + get.cnNumber(player.getDamagedHp(true) - player.countCards('h')) + '张牌';
+					}
+					return str;
+				},
+				async content(event, trigger, player) {
+					var num = player.getDamagedHp(true);
+					var num22 = player.countCards('h');
+					if (num22 > num) {
+						const next = player.chooseToDiscard('h', num22 - num, true);
+						next._triggered = null;
+						await next;
+					} else if (num22 < num) {
+						const next = player.draw(num - num22);
+						next._triggered = null;
+						await next;
+					}
+				},
+			},
+			2: {
+				audio: 'ybsl_shangli',
+				trigger: {
+					player: ['changeHpEnd', 'loseMaxHpEnd'],
+				},
+				usable: 1,
+				filter(event, player, name) {
+					if (player.countCards('h') == player.getDamagedHp(true)) {
+						return false;
+					} else {
+						console.log('event', event);
+						if (name == 'changeHpEnd') {
+							return event.changedHp > 0;
+						} else {
+							return event.num < 0;
+						}
+					}
+				},
+				prompt: function (event, player) {
+					var str = '';
+					if (player.getDamagedHp(true) < player.countCards('h')) {
+						str += '你将增加' + (player.countCards('h') - player.getDamagedHp(true)) + '点体力上限或减少' + (player.countCards('h') - player.getDamagedHp(true)) + '点体力';
+					} else {
+						str += '你将减少' + (player.getDamagedHp(true) - player.countCards('h')) + '点体力上限或增加' + (player.getDamagedHp(true) - player.countCards('h')) + '点体力';
+					}
+				},
+				async cost(event, trigger, player) {
+					event.result = { bool: false, cost_data: { index: 0 } };
+					var list = ['变动体力上限', '变动体力', 'cancel2'];
+					if (player.getDamagedHp(true) < player.countCards('h')) {
+						list[0] = '<span class="yellowtext">↑' + list[0] + '↑</span>';
+						list[1] = '<span class="firetext">↓' + list[1] + '↓</span>';
+					} else {
+						list[0] = '<span class="firetext">↓' + list[0] + '↓</span>';
+						list[1] = '<span class="yellowtext">↑' + list[1] + '↑</span>';
+					}
+					const { control, index } = await player.chooseControl().set('prompt2', get.prompt('ybsl_shangli_2')).set('choiceList', list).forResult();
+					event.result = {
+						bool: control != 'cancel2',
+						cost_data: index,
+					};
+				},
+				async content(event, trigger, player) {
+					var index = event.cost_data;
+					var delt = player.getDamagedHp(true) - player.countCards('h');
+					if (index == 0) {
+						if (player.getDamagedHp(true) < player.countCards('h')) {
+							const next = player.gainMaxHp(-delt);
+							next._triggered = null;
+							await next;
+						} else {
+							const next = player.loseMaxHp(delt);
+							next._triggered = null;
+							await next;
+						}
+					} else {
+						const next = player.changeHp(delt);
+						next._triggered = null;
+						await next;
+					}
+				},
+			},
+		},
 	},
 
 	//宗族武将
