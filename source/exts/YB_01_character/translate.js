@@ -1402,6 +1402,45 @@ const translate = {
 	yb123_zouhe_info: '出牌阶段限一次，你可以与一名其他角色拼点，然后胜者可以使用其的拼点牌。然后没有因此使用牌的角色收回其拼点牌并回复一点体力。',
 	yb123_bixin: '比心',
 	yb123_bixin_info: '此技能仅提供一条语音。',
+
+	//---------------夜苍---------------//
+	ybsl_124yecang: '夜苍',
+	yb124_xianqing: '陷情',
+	yb124_xianqing_info: '锁定技，当你受到伤害后，若此伤害有牌，你记录此牌花色；当你造成伤害后，你移去所有记录并摸等量牌；你的原本花色为记录的花色的牌均视为红桃花色。',
+	yb124_jiekun: '解困',
+	yb124_jiekun_info: '转换技，阳：你可以将红桃牌当桃使用；阴：你可以将非红桃牌当无懈可击使用。',
+	yb124_sanmeng: '散梦',
+	yb124_sanmeng_info: '此技能仅提供一条语音。',
+	//---------------雪依--------------//
+	ybsl_125xueyi: '雪依',
+	yb125_tunxue: '吞雪',
+	// yb125_tunxue_info: '能量：[5/20]。准备阶段或当你受到伤害后，获得3能量；出牌阶段限一次，你可以发动一个冰属性魔法。',
+	yb125_tunxue_info: '能量：[5/20]。准备阶段或当你受到伤害后，获得3能量；出牌阶段限一次，你可以发动一个冰属性魔法。',
+	/*
+ybsl_magicSkill
+
+	yzdel_hiyado: 'ヒヤド',
+	yzdel_hiyado_info: '对一名其他角色造成1点冰冷伤害',
+	yzdel_hiyadaruko: 'ヒヤダルコ',
+	yzdel_hiyadaruko_info: '对一至三名其他角色造成2点冰冷伤害',
+	yzdel_hiyadain: 'ヒヤダイン',
+	yzdel_hiyadain_info: '对所有敌方角色造成3点冰冷伤害',
+	yzdel_mahiyado: 'マヒヤド',
+	yzdel_mahiyado_info: '对一至四名其他角色造成4点冰冷伤害',
+
+
+	 */
+	yb125_sanmeng: '散梦',
+	yb125_sanmeng_info: '此技能仅提供一条语音。',
+
+	//---------------雪桢--------------//
+	ybsl_126xuezhen: '雪帧',
+	yb126_xilei: '昔泪',
+	yb126_xilei_info: '。',
+	yb126_shuyun: '舒云',
+	yb126_shuyun_info: '。',
+	yb126_sanmeng: '散梦',
+	yb126_sanmeng_info: '此技能仅提供一条语音。',
 	//---------------------分割线
 	ybsl_rumeng: '入梦',
 	ybsl_rumeng_info_guozhan: '主将技，锁定技，当你明置此武将牌时，你将表象势力改为梦（不会影响阵营判断）。',

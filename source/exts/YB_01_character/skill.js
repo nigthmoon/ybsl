@@ -4749,7 +4749,7 @@ const skill = {
 			'step 0';
 			player.chooseToCompare(trigger.player);
 			('step 1');
-			((event.winer = []), (event.loser = []));
+			(event.winer = []), (event.loser = []);
 			if (!result.tie) {
 				if (result.bool) {
 					event.loser.push(trigger.player);
@@ -5994,10 +5994,10 @@ const skill = {
 				content: function () {
 					'step 0';
 					var dialog = [get.prompt('yb017_zhenshi')];
-					((list1 = player.getStorage('yb017_zhenshi')),
+					(list1 = player.getStorage('yb017_zhenshi')),
 						(list2 = lib.inpile.filter(function (i) {
 							return get.type2(i, false) == 'trick' && !list1.includes(i);
-						})));
+						}));
 					if (list1.length) {
 						dialog.push('<div class="text center">已记录</div>');
 						dialog.push([list1, 'vcard']);
@@ -7244,7 +7244,7 @@ const skill = {
 								: () => {
 										dialog.matchAfter = true;
 										game.resume();
-									},
+								  },
 							delay * 1000,
 						);
 						dialog.ice = false;
@@ -8956,29 +8956,8 @@ const skill = {
 		filter: function (event, player) {
 			return player.group == 'YB_dream';
 		},
-		audioname: ['ybsl_014liutianyu', 'ybsl_026can', 'ybsl_027rain', 'ybsp_027rain', 'ybsl_029dawn', 'ybsl_018huanqing', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_036bright', 'ybsl_037diamondqueen', 'ybsl_038tengwu', 'db_ybsp_038tengwu', 'ybsl_039zhafu', 'db_ybsl_067snake', 'ybsl_069xiangzi', 'ybsl_076zhujun', 'ybsl_077yangqixu', 'ybsb_077yangqixu', 'ybsl_078zhuyahai', 'ybsl_083xiaozhu', 'ybsl_122wangbingyu'],
-		// audioname2:{
-		// 	'ybslshen_014liutianyu':'yb014_sanmeng',
-		// 	'ybsl_026can':'yb026_sanmeng',
-		// 	'ybsl_027rain':'yb027_sanmeng',
-		// 	'ybsp_027rain':'yb027_sanmeng',
-		// 	'ybsl_029dawn':'yb029_sanmeng',
-		// 	'ybsl_018huanqing':'yb018_sanmeng',
-		// 	'ybsl_034zhoulianyuan':'yb034_sanmeng',
-		// 	'ybnb_034zhoulianyuan':'yb034_sanmeng',
-		// 	'ybsl_036bright':'yb036_sanmeng',
-		// 	'ybsl_037diamondqueen':'yb037_sanmeng',
-		// 	'db_ybsl_038tengwu':'yb038_sanmeng',
-		// 	'db_ybsp_038tengwu':'yb038_sanmeng',
-		// 	'ybsl_039zhafu':'yb039_sanmeng',
-		// 	'db_ybsl_067snake':'yb067_sanmeng',
-		// 	'ybsl_069xiangzi':'yb069_sanmeng',
-		// 	'ybsl_076zhujun':'yb076_sanmeng',
-		// 	'ybsl_077yangqixu':'yb077_sanmeng',
-		// 	'ybsb_077yangqixu':'yb077_sanmeng',
-		// 	'ybsl_078zhuyahai':'yb078_sanmeng',
-		// 	'ybsl_083xiaozhu':'yb083_sanmeng',
-		// },
+		audioname: ['ybsl_014liutianyu', 'ybsl_026can', 'ybsl_027rain', 'ybsp_027rain', 'ybsl_029dawn', 'ybsl_018huanqing', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_036bright', 'ybsl_037diamondqueen', 'ybsl_038tengwu', 'db_ybsp_038tengwu', 'ybsl_039zhafu', 'db_ybsl_067snake', 'ybsl_069xiangzi', 'ybsl_076zhujun', 'ybsl_077yangqixu', 'ybsb_077yangqixu', 'ybsl_078zhuyahai', 'ybsl_083xiaozhu', 'ybsl_122wangbingyu', 'ybsl_124yecang', 'ybsl_125xueyi', 'ybsl_126xuezhen'],
+
 		content: function () {
 			'step 0';
 			player
@@ -10224,7 +10203,7 @@ const skill = {
 			}
 
 			('step 2');
-			if ((result.index = 2 && !result.cards)) {
+			if (result.index == 2 && !result.cards) {
 				event.not2 = true;
 				event.goto(0);
 			}
@@ -17003,7 +16982,7 @@ const skill = {
 		firstDo: true,
 		filter: function (event, player) {
 			if (!player.isTurnedOver()) return false;
-			return (event, player != player);
+			return event, player != player;
 		},
 		content: function () {},
 		mod: {
@@ -19997,7 +19976,7 @@ const skill = {
 			'step 0';
 			player.chooseToCompare(target);
 			('step 1');
-			((event.winer = []), (event.loser = []));
+			(event.winer = []), (event.loser = []);
 			event.wincard = [];
 			if (!result.tie) {
 				if (result.bool) {
@@ -20037,6 +20016,33 @@ const skill = {
 		},
 	},
 	yb123_bixin: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//-----------夜苍
+	yb124_xianqing: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	yb124_jiekun: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	yb124_sanmeng: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//-----------雪依
+	yb125_tunxue: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	yb125_sanmeng: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	//-----------雪桢
+	yb126_xilei: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	yb126_shuyun: {
+		audio: 'ext:夜白神略/audio/character:2',
+	},
+	yb126_sanmeng: {
 		audio: 'ext:夜白神略/audio/character:2',
 	},
 	//-------夜白示范的傲才

@@ -190,7 +190,9 @@ const character = {
 	ybsl_121tujing: ['female', 'YB_dream', 3, ['yb121_yuanjie', 'yb121_tiandu', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a', 'name:涂|静']], //涂静
 	ybsl_122wangbingyu: ['female', 'YB_dream', 4, ['yb122_yinjinsp', 'yb122_buchen', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a']], //王冰雨
 	ybsl_123xuelang: ['female', 'YB_memory', 4, ['yb123_zouhe', 'yb015_bixin'], ['rankAdd:epic', 'rankS:a']], //雪琅
-
+	// ybsl_124yecang: ['female', 'YB_dream', 3, ['yb124_xianqing', 'yb124_jiekun', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a']], //夜苍
+	// ybsl_125xueyi: ['female', 'YB_dream', 3, ['yb125_tunxue', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a']], //雪依
+	// ybsl_126xuezhen: ['female', 'YB_dream', 3, ['yb126_xilei', 'yb126_shuyun', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a']], //雪桢
 	//----------------------夜白界限突破（能更新出这个系列离不开大家不离不弃的支持）
 	ybnb_034zhoulianyuan: ['male', 'YB_dream', 3, ['yb034_rebifa', 'yb034_rejiandao', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a', 'name:周|怜渊', 'linkTo:ybsl_034zhoulianyuan']], //梦——界周怜渊
 	//----------------------忆包SP（所谓SP，其实是一种创意的异构，难免参差不齐）

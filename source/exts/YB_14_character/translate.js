@@ -306,6 +306,10 @@ const translate = {
 	ybsl_youyou_info: '转换技，每名角色出牌阶段限一次，其可以：①弃置两张手牌（不足不能用），然后令你恢复一点体力上限；②恢复一点体力，然后令你弃置两张手牌（不足全弃）。若不为该角色首次对你发动，则恢复改为失去。',
 	ybsl_shangli: '殇离',
 	ybsl_shangli_info: '每回合各限一次：当你的手牌数减少时，你可以将手牌数调整至已损体力值数；当你的已损体力值减少时，你可以将你的已损体力值调整至你的手牌数（可以选择令体力上限增加或者当前体力减少的方式）。',
+	ybsl_langwang: '狼望',
+	ybsl_langwang_info: '每名角色每回合限一次，体力上限最大的角色造成或受到伤害后，其可视为对你使用一张锦囊牌。',
+	ybsl_shanglix: '殇离',
+	ybsl_shanglix_info: '',
 
 	ybsl_key: '<img = src = "extension/夜白神略/image/card/group_key.png" />',
 
