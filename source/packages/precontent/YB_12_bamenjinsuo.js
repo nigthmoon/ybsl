@@ -302,14 +302,20 @@ const YB_12_bamenjinsuo = function () {
 					node.style.left = centerX + radius * Math.sin(radian) - 30 + 'px';
 					node.style.top = centerY - radius * Math.cos(radian) - 40 + 'px';
 
-					// 添加卡牌背景
+					// 添加阵门图片：有角色占据则显示武将图，否则显示卡牌图
 					var cardDiv = document.createElement('div');
 					cardDiv.style.width = '60px';
 					cardDiv.style.height = '60px';
-					cardDiv.style.backgroundImage = 'url(' + lib.card[card.name].image + ')';
 					cardDiv.style.backgroundSize = 'cover';
+					cardDiv.style.backgroundPositionX = 'center';
 					cardDiv.style.border = '3px solid transparent';
 					cardDiv.style.borderRadius = '5px';
+
+					if (occupant) {
+						cardDiv.setBackground(occupant.name, 'character');
+					} else {
+						cardDiv.style.backgroundImage = 'url(' + lib.card[card.name].image + ')';
+					}
 
 					// 根据阵门类型设置边框颜色
 					if (colorType === 'current') {
