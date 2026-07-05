@@ -298,14 +298,14 @@ span[data-nature="YB_rockmm"] {
     top: 327px;
 }
 
-#window > .dialog.popped {
+/* #window > .dialog.popped {
 	z-index: 5;
 	width: 358px;
 	background: rgba(0, 0, 0, 0.2);
 	box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 1px;
 	border-radius: 6px;
 	transition: opacity 0.3s;
-}
+} */
 
 .player>.zb_10202{
 	background-image: url(../../image/card/zb_10202.png);

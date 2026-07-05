@@ -263,7 +263,7 @@ const skill = {
 		prompt: function (player) {
 			var player = _status.event.player;
 			var str = '是否将一张手牌当【鹿鸣千转】使用？';
-			if (!player.storage.yb017_luming_block == []) {
+			if (player.storage.yb017_luming_block != []) {
 				str += '<br>不能使用以下花色：';
 				str += get.translation(player.storage.yb017_luming_block);
 			}
