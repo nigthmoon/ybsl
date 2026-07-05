@@ -93,8 +93,6 @@ const YB_12_bamenjinsuo = function () {
 		return map;
 	};
 
-
-
 	get.gateMapDisplay = function (player) {
 		var gateMap = get.gateMap(player);
 		var currentGate;
@@ -195,7 +193,6 @@ const YB_12_bamenjinsuo = function () {
 		return core;
 	};
 
-
 	lib.element.player.changeGate = function (gate) {
 		var next = game.createEvent('changeGate', false);
 		next.player = this;
@@ -204,19 +201,18 @@ const YB_12_bamenjinsuo = function () {
 		return next;
 	};
 	lib.element.content.changeGate = function () {
-
 		// let player = this;
 		// let gate = event.gate;
-		'step 0'
+		'step 0';
 		if (player.zhenmen && player.hasSkill('ybsl_gate_' + get.gateIndex(player.zhenmen))) {
 			player.removeSkill('ybsl_gate_' + get.gateIndex(player.zhenmen));
 		}
-		'step 1'
+		('step 1');
 		if (event.gate && lib.bamenjinsuozhen.includes(event.gate)) {
 			player.zhenmen = event.gate;
 			player.addSkill('ybsl_gate_' + get.gateIndex(event.gate));
 		} else player.zhenmen = null;
-	}
+	};
 	// 第123-159行，完整修改 _ybsl_yidongzhenmen 技能
 	lib.skill._ybsl_yidongzhenmen = {
 		usable: 1,
@@ -244,8 +240,8 @@ const YB_12_bamenjinsuo = function () {
 				core.style.width = '0';
 				core.style.height = '0';
 				core.style.position = 'absolute';
-				core.style.left = '150px';
-				core.style.top = '150px';
+				core.style.left = '38%';
+				core.style.top = '55%';
 
 				// 计算圆心和半径
 				var centerX = 0;
@@ -271,12 +267,17 @@ const YB_12_bamenjinsuo = function () {
 
 					// 查找占据该阵门的玩家
 					var occupant = null;
-					for (var j = 0; j < game.players.length; j++) {
-						if (game.players[j].zhenmen === gateName) {
-							occupant = game.players[j];
-							break;
+					// for (var j = 0; j < game.players.length; j++) {
+					// 	if (game.players[j].zhenmen === gateName) {
+					// 		occupant = game.players[j];
+					// 		break;
+					// 	}
+					// }
+					game.filterPlayer(function(current){
+						if(current.zhenmen === gateName){
+							occupant = current;
 						}
-					}
+					})
 
 					// 判断阵门类型
 					var colorType;
@@ -327,8 +328,9 @@ const YB_12_bamenjinsuo = function () {
 					var nameDiv = document.createElement('div');
 					nameDiv.innerText = gateName;
 					nameDiv.style.fontWeight = 'bold';
-					nameDiv.style.fontSize = '12px';
-					nameDiv.style.marginTop = '2px';
+					nameDiv.style.fontSize = '15px';
+					nameDiv.style.marginTop = '5px';
+					nameDiv.style.marginLeft = '5px';
 					if (colorType === 'current') {
 						nameDiv.style.color = '#ffff00';
 					} else if (colorType === 'adjacent') {
@@ -338,35 +340,39 @@ const YB_12_bamenjinsuo = function () {
 					}
 					node.appendChild(nameDiv);
 
-					// 添加占据者信息
+					// ✅ 新增：如果有角色占据该阵门，添加角色头像
 					if (occupant) {
 						var occDiv = document.createElement('div');
-						occDiv.innerText = '(' + (occupant.name || occupant._name || '未知') + ')';
-						occDiv.style.fontSize = '10px';
+						occDiv.innerText = get.translation(occupant.name || occupant._name)||'未知';
+
+						occDiv.style.fontSize = '12px';
 						occDiv.style.color = '#' + occupant.seat;
-						occDiv.style.marginTop = '2px';
+						// occDiv.style.marginTop = '2px';
+						occDiv.style.marginTop = '5px';
+						occDiv.style.marginLeft = '5px';
+						occDiv.style.width = '100%';
 						node.appendChild(occDiv);
 					}
 
 					// 添加点击事件（只有相邻的空阵门可点击）
 					if (colorType === 'adjacent' && !occupant) {
-						node.onclick = (function (gateName, dialog) {
-							return function () {
-								// 关闭对话框
-								dialog.close();
-								// 直接调用 player.changeGate
-								player.changeGate(gateName);
-								game.log(player, '移动至', gateName);
-							};
-						})(gateName, dialog);
+						// node.onclick = (function (gateName, dialog) {
+						// 	return function () {
+						// 		// 关闭对话框
+						// 		dialog.close();
+						// 		// 直接调用 player.changeGate
+						// 		player.changeGate(gateName);
+						// 		game.log(player, '移动至', gateName);
+						// 	};
+						// })(gateName, dialog);
 
-						// 鼠标悬停效果
-						node.onmouseenter = function () {
-							this.style.transform = 'scale(1.1)';
-						};
-						node.onmouseleave = function () {
-							this.style.transform = 'scale(1.0)';
-						};
+						// // 鼠标悬停效果
+						// node.onmouseenter = function () {
+						// 	this.style.transform = 'scale(1.1)';
+						// };
+						// node.onmouseleave = function () {
+						// 	this.style.transform = 'scale(1.0)';
+						// };
 					} else {
 						// 不可点击的阵门设置半透明
 						node.style.opacity = '0.5';
@@ -406,8 +412,6 @@ const YB_12_bamenjinsuo = function () {
 			},
 		},
 	};
-
-
 
 	lib.translate._ybsl_yidongzhenmen = '移动阵门';
 	lib.translate._ybsl_yidongzhenmen_backup = '移动阵门';
@@ -846,14 +850,14 @@ const YB_12_bamenjinsuo = function () {
 				});
 		},
 	};
-	lib.translate.ybsl_gate_0 = '休门';
-	lib.translate.ybsl_gate_1 = '惊门';
-	lib.translate.ybsl_gate_2 = '死门';
-	lib.translate.ybsl_gate_3 = '景门';
-	lib.translate.ybsl_gate_4 = '生门';
-	lib.translate.ybsl_gate_5 = '杜门';
-	lib.translate.ybsl_gate_6 = '伤门';
-	lib.translate.ybsl_gate_7 = '开门';
+	lib.translate.ybsl_gate_0 = '休';
+	lib.translate.ybsl_gate_1 = '惊';
+	lib.translate.ybsl_gate_2 = '死';
+	lib.translate.ybsl_gate_3 = '景';
+	lib.translate.ybsl_gate_4 = '生';
+	lib.translate.ybsl_gate_5 = '杜';
+	lib.translate.ybsl_gate_6 = '伤';
+	lib.translate.ybsl_gate_7 = '开';
 	lib.translate.ybsl_gate_0_info = '锁定技，你的手牌上限+1，你不能成为【过河拆桥】和【兵粮寸断】的目标。';
 	lib.translate.ybsl_gate_1_info = '出牌阶段限一次，你可以与一名手牌数不小于你的角色拼点，若你赢，视为你对该角色使用了一张【决斗】；若你没赢，直到回合结束，你不能使用锦囊牌。';
 	lib.translate.ybsl_gate_2_info = '锁定技，你对体力值多于你的角色使用的【杀】伤害+1。';
