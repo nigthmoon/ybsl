@@ -232,7 +232,7 @@ const YB_12_bamenjinsuo = function () {
 				dialog.content.style['overflow-x'] = 'visible';
 				dialog.content.style['overflow-y'] = 'visible';
 				dialog.content.style.width = '300px';
-				dialog.content.style.height = '300px';
+				dialog.content.style.height = '420px';
 				dialog.content.style.position = 'relative';
 
 				// 创建圆形阵盘核心容器
@@ -241,7 +241,7 @@ const YB_12_bamenjinsuo = function () {
 				core.style.height = '0';
 				core.style.position = 'absolute';
 				core.style.left = '38%';
-				core.style.top = '55%';
+				core.style.top = '40%';
 
 				// 计算圆心和半径
 				var centerX = 0;
@@ -354,36 +354,47 @@ const YB_12_bamenjinsuo = function () {
 						node.appendChild(occDiv);
 					}
 
-					// 添加点击事件（只有相邻的空阵门可点击）
-					if (colorType === 'adjacent' && !occupant) {
-						// node.onclick = (function (gateName, dialog) {
-						// 	return function () {
-						// 		// 关闭对话框
-						// 		dialog.close();
-						// 		// 直接调用 player.changeGate
-						// 		player.changeGate(gateName);
-						// 		game.log(player, '移动至', gateName);
-						// 	};
-						// })(gateName, dialog);
+				// 添加点击事件：点击更新描述区域
+				(function (gateName, node) {
+					node.onclick = function () {
+						var gateIndex = get.gateIndex(gateName);
+						if (gateIndex === -1) return;
 
-						// // 鼠标悬停效果
-						// node.onmouseenter = function () {
-						// 	this.style.transform = 'scale(1.1)';
-						// };
-						// node.onmouseleave = function () {
-						// 	this.style.transform = 'scale(1.0)';
-						// };
-					} else {
-						// 不可点击的阵门设置半透明
-						node.style.opacity = '0.5';
-						node.style.cursor = 'not-allowed';
-					}
+						var skillInfo = lib.translate['ybsl_gate_' + gateIndex + '_info'] || '暂无技能描述';
+						infoDiv.innerHTML = '<b>【' + gateName + '】</b><br>' + skillInfo;
+					};
+
+					// 鼠标悬停效果
+					node.onmouseenter = function () {
+						this.style.transform = 'scale(1.1)';
+					};
+					node.onmouseleave = function () {
+						this.style.transform = 'scale(1.0)';
+					};
+				})(gateName, node);
 
 					core.appendChild(node);
 				}
 
 				// 将阵盘添加到对话框
 				dialog.content.appendChild(core);
+
+				// 创建技能描述区域（初始为空）
+				var infoDiv = document.createElement('div');
+				infoDiv.style.position = 'absolute';
+				infoDiv.style.bottom = '10px';
+				infoDiv.style.left = '10px';
+				infoDiv.style.right = '10px';
+				infoDiv.style.minHeight = '80px';
+				infoDiv.style.padding = '8px';
+				infoDiv.style.border = '1px solid #888';
+				infoDiv.style.borderRadius = '5px';
+				infoDiv.style.color = '#ccc';
+				infoDiv.style.fontSize = '13px';
+				infoDiv.style.lineHeight = '1.6';
+				infoDiv.style.background = 'rgba(0,0,0,0.3)';
+				infoDiv.innerHTML = '点击阵门查看技能描述';
+				dialog.content.appendChild(infoDiv);
 
 				return dialog;
 			},
@@ -419,42 +430,34 @@ const YB_12_bamenjinsuo = function () {
 	lib.card.ybsl_gate_0 = {
 		fullskin: true,
 		// noname: true,
-		image: 'wuxie',
 	};
 	lib.card.ybsl_gate_1 = {
 		fullskin: true,
 		// noname: true,
-		image: 'juedou',
 	};
 	lib.card.ybsl_gate_2 = {
 		fullskin: true,
 		// noname: true,
-		image: 'jiu',
 	};
 	lib.card.ybsl_gate_3 = {
 		fullskin: true,
 		// noname: true,
-		image: 'bagua',
 	};
 	lib.card.ybsl_gate_4 = {
 		fullskin: true,
 		// noname: true,
-		image: 'taoyuan',
 	};
 	lib.card.ybsl_gate_5 = {
 		fullskin: true,
 		// noname: true,
-		image: 'sadouchengbing',
 	};
 	lib.card.ybsl_gate_6 = {
 		fullskin: true,
 		// noname: true,
-		image: 'sha',
 	};
 	lib.card.ybsl_gate_7 = {
 		fullskin: true,
 		// noname: true,
-		image: 'wuzhong',
 	};
 	lib.skill.ybsl_gate_0 = {
 		superCharlotte: true,

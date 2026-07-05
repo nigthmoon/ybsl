@@ -77,11 +77,11 @@ const YBSL_boom = function () {
 		};
 	}
 	//['spade','1','du',null,['yongjian']]
-	if (lib.config.extension_夜白神略_ybsl_du == true) {
+	if (lib.config.extension_夜白神略_ybsl_du == 'duzhan') {
 		lib.card.du = {
 			type: 'basic',
 			fullskin: true,
-			global: ['g_du', 'g_du_give'],
+			global: ['g_du' /*, 'g_du_give'*/],
 			// enable:true,
 			enable(card, player) {
 				if (get.cardtag(card, 'ybsl_duzhan')) {
@@ -90,12 +90,12 @@ const YBSL_boom = function () {
 				// else if (card)
 				return false;
 			},
-			cardPrompt(card) {
-				if (get.cardtag(card, 'ybsl_duzhan')) {
-					return '①出牌阶段，你可使用（无效果）②当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力。';
-				}
-				return '①当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力。②当你因摸牌或分发起始手牌而获得【毒】后，你可展示之并交给其他角色（不触发〖毒①〗）。';
-			},
+			// cardPrompt(card) {
+			// 	if (get.cardtag(card, 'ybsl_duzhan')) {
+			// 		return '①出牌阶段，你可使用（无效果）②当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力。';
+			// 	}
+			// 	return '①当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力。②当你因摸牌或分发起始手牌而获得【毒】后，你可展示之并交给其他角色（不触发〖毒①〗）。';
+			// },
 			content() {},
 			ai: {
 				value: -5,
@@ -258,5 +258,6 @@ const YBSL_boom = function () {
 			ai: { expose: 0.1 },
 		};
 		lib.translate.ybsl_duzhan_tag = '毒战';
+		lib.translate.du = '①出牌阶段，你可使用（无效果）②当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力。';
 	}
 };
