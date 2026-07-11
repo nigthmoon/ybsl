@@ -143,8 +143,8 @@ const YB_12_bamenjinsuo = function () {
 			// 创建阵门节点
 			var node = document.createElement('div');
 			node.style.position = 'absolute';
-			node.style.width = '60px';
-			node.style.height = '80px';
+			// node.style.width = '60px';
+			// node.style.height = '80px';
 			node.style.textAlign = 'center';
 			node.style.cursor = 'pointer';
 
@@ -237,10 +237,11 @@ const YB_12_bamenjinsuo = function () {
 
 				// 创建圆形阵盘核心容器
 				var core = document.createElement('div');
+				core.className = 'yb-bamen-core';
 				core.style.width = '0';
 				core.style.height = '0';
 				core.style.position = 'absolute';
-				core.style.left = '38%';
+				core.style.left = '46%';
 				core.style.top = '40%';
 
 				// 计算圆心和半径
@@ -273,11 +274,11 @@ const YB_12_bamenjinsuo = function () {
 					// 		break;
 					// 	}
 					// }
-					game.filterPlayer(function(current){
-						if(current.zhenmen === gateName){
+					game.filterPlayer(function (current) {
+						if (current.zhenmen === gateName) {
 							occupant = current;
 						}
-					})
+					});
 
 					// 判断阵门类型
 					var colorType;
@@ -292,8 +293,8 @@ const YB_12_bamenjinsuo = function () {
 					// 创建阵门节点
 					var node = document.createElement('div');
 					node.style.position = 'absolute';
-					node.style.width = '60px';
-					node.style.height = '80px';
+					// node.style.width = '60px';
+					// node.style.height = '80px';
 					node.style.textAlign = 'center';
 					node.style.cursor = 'pointer';
 
@@ -349,7 +350,7 @@ const YB_12_bamenjinsuo = function () {
 					// ✅ 新增：如果有角色占据该阵门，添加角色头像
 					if (occupant) {
 						var occDiv = document.createElement('div');
-						occDiv.innerText = get.translation(occupant.name || occupant._name)||'未知';
+						occDiv.innerText = get.translation(occupant.name || occupant._name) || '未知';
 
 						occDiv.style.fontSize = '12px';
 						occDiv.style.color = '#' + occupant.seat;
@@ -360,24 +361,24 @@ const YB_12_bamenjinsuo = function () {
 						node.appendChild(occDiv);
 					}
 
-				// 添加点击事件：点击更新描述区域
-				(function (gateName, node) {
-					node.onclick = function () {
-						var gateIndex = get.gateIndex(gateName);
-						if (gateIndex === -1) return;
+					// 添加点击事件：点击更新描述区域
+					(function (gateName, node) {
+						node.onclick = function () {
+							var gateIndex = get.gateIndex(gateName);
+							if (gateIndex === -1) return;
 
-						var skillInfo = lib.translate['ybsl_gate_' + gateIndex + '_info'] || '暂无技能描述';
-						infoDiv.innerHTML = '<b>【' + gateName + '】</b><br>' + skillInfo;
-					};
+							var skillInfo = lib.translate['ybsl_gate_' + gateIndex + '_info'] || '暂无技能描述';
+							infoDiv.innerHTML = '<b>【' + gateName + '】</b><br>' + skillInfo;
+						};
 
-					// 鼠标悬停效果
-					node.onmouseenter = function () {
-						this.style.transform = 'scale(1.1)';
-					};
-					node.onmouseleave = function () {
-						this.style.transform = 'scale(1.0)';
-					};
-				})(gateName, node);
+						// 鼠标悬停效果
+						node.onmouseenter = function () {
+							this.style.transform = 'scale(1.1)';
+						};
+						node.onmouseleave = function () {
+							this.style.transform = 'scale(1.0)';
+						};
+					})(gateName, node);
 
 					core.appendChild(node);
 				}
@@ -401,6 +402,48 @@ const YB_12_bamenjinsuo = function () {
 				infoDiv.style.background = 'rgba(0,0,0,0.3)';
 				infoDiv.innerHTML = '点击阵门查看技能描述';
 				dialog.content.appendChild(infoDiv);
+
+				// 对话框打开后清理框架生成的幽灵元素（不在 core 内但样式一致的阵门节点副本）
+				var cleanGhosts = function () {
+					// 尝试在 dialog.content 内查找
+					if (dialog.content) {
+						var allDivs = dialog.content.querySelectorAll('div[style]');
+						for (var k = 0; k < allDivs.length; k++) {
+							var d = allDivs[k];
+							if (!core.contains(d) && d !== core && d !== infoDiv) {
+								if (d.style.position === 'absolute' && d.style.width === '60px' && d.style.cursor === 'pointer') {
+									d.style.display = 'none';
+									d.style.pointerEvents = 'none';
+								}
+							}
+						}
+					}
+					// 尝试在整个 document 中查找（可能在 ui.control 或其他区域）
+					var gateNames = ['休', '生', '伤', '杜', '景', '死', '惊', '开'];
+					var allDivs2 = document.querySelectorAll('div[style*="position: absolute"][style*="width: 60px"][style*="cursor: pointer"]');
+					for (var m = 0; m < allDivs2.length; m++) {
+						var d2 = allDivs2[m];
+						if (!core.contains(d2) && d2 !== core) {
+							// 检查是否是阵门节点（包含背景图或阵门名）
+							var hasGateBg = d2.querySelector('div[style*="background-image"]');
+							var txt = d2.textContent.trim();
+							var isGateNode = false;
+							for (var n = 0; n < gateNames.length; n++) {
+								if (txt.indexOf(gateNames[n]) === 0) {
+									isGateNode = true;
+									break;
+								}
+							}
+							if (hasGateBg || isGateNode) {
+								d2.style.display = 'none';
+								d2.style.pointerEvents = 'none';
+							}
+						}
+					}
+				};
+				setTimeout(cleanGhosts, 50);
+				setTimeout(cleanGhosts, 200);
+				setTimeout(cleanGhosts, 500);
 
 				return dialog;
 			},
@@ -465,12 +508,119 @@ const YB_12_bamenjinsuo = function () {
 		fullskin: true,
 		// noname: true,
 	};
+	// 阵门技能标记中展示阵盘的共享函数
+	// 查看自己时渲染阵盘并用 addAuto 衔接文字；查看别人时直接返回描述文字
+	get.bamenMark = function (dialog, storage, player, gateIndex) {
+		if (player != game.me && !player.isUnderControl()) {
+			// 查看别人的阵门：返回描述文字，由框架渲染
+			// return lib.translate['ybsl_gate_' + gateIndex + '_info'];
+			var info = lib.translate['ybsl_gate_' + gateIndex + '_info'];
+			if (info) {
+				// dialog.add('<div style="text-align:center;margin-top:4px;"><b style="color:#ffff00;">【' + currentGate + '】</b></div>');
+				dialog.addAuto(info);
+			}
+		}
+		// 查看自己的阵门：渲染阵盘
+		dialog.content.style['overflow-x'] = 'visible';
+		dialog.content.style['overflow-y'] = 'visible';
+		// dialog.content.style.width = '280px';
+		dialog.content.style.position = 'relative';
+		// 阵盘独立占据一个盒子
+		var boardBox = document.createElement('div');
+		boardBox.style.width = '100%';
+		boardBox.style.height = '220px';
+		boardBox.style.left = '-8%';
+		boardBox.style.position = 'relative';
+		boardBox.style.marginBottom = '4px';
+		var core = document.createElement('div');
+		core.style.width = '0';
+		core.style.height = '0';
+		core.style.position = 'absolute';
+		core.style.left = '50%';
+		core.style.top = '50%';
+		var centerX = 0,
+			centerY = 0,
+			radius = 90;
+		var gateMap = get.gateMap(player);
+		var currentGate = player.zhenmen;
+		var directions = ['下', '左下', '左', '左上', '上', '右上', '右', '右下'];
+		for (var i = 0; i < directions.length; i++) {
+			var dir = directions[i];
+			if (!gateMap[dir]) continue;
+			var card = gateMap[dir].card;
+			var gateName = gateMap[dir].gateName;
+			var angle = gateMap[dir].angle;
+			var radian = angle * (Math.PI / 180);
+			var node = document.createElement('div');
+			node.style.position = 'absolute';
+			node.style.width = '50px';
+			node.style.height = '65px';
+			node.style.textAlign = 'center';
+			node.style.left = centerX + radius * Math.sin(radian) - 25 + 'px';
+			node.style.top = centerY - radius * Math.cos(radian) - 32 + 'px';
+			// 阵门图片
+			var cardDiv = document.createElement('div');
+			cardDiv.style.width = '50px';
+			cardDiv.style.height = '50px';
+			cardDiv.style.backgroundSize = 'cover';
+			cardDiv.style.backgroundPositionX = 'center';
+			cardDiv.style.borderRadius = '4px';
+			// 查找占据者
+			var occupant = null;
+			game.filterPlayer(function (current) {
+				if (current.zhenmen === gateName) occupant = current;
+			});
+			if (occupant) {
+				cardDiv.setBackground(occupant.name, 'character');
+			} else {
+				cardDiv.style.backgroundImage = 'url(' + lib.card[card.name].image + ')';
+			}
+			// 边框颜色
+			if (gateName === currentGate) {
+				cardDiv.style.border = '2px solid #ffff00';
+				cardDiv.style.boxShadow = '0 0 6px #ffff00';
+			} else {
+				cardDiv.style.border = '2px solid #888888';
+			}
+			node.appendChild(cardDiv);
+			// 阵门名称
+			var nameDiv = document.createElement('div');
+			nameDiv.innerText = gateName;
+			nameDiv.style.fontWeight = 'bold';
+			nameDiv.style.fontSize = '12px';
+			nameDiv.style.marginTop = '2px';
+			if (gateName === currentGate) {
+				nameDiv.style.color = '#ffff00';
+			} else {
+				nameDiv.style.color = '#ffffff';
+			}
+			node.appendChild(nameDiv);
+			core.appendChild(node);
+		}
+		boardBox.appendChild(core);
+		dialog.content.appendChild(boardBox);
+		// 用无名杀方法在阵盘下方衔接当前阵门描述文字
+		if (currentGate) {
+			var gateIdx = get.gateIndex(currentGate);
+			if (gateIdx !== -1) {
+				var info = lib.translate['ybsl_gate_' + gateIdx + '_info'];
+				if (info) {
+					// dialog.add('<div style="text-align:center;margin-top:4px;"><b style="color:#ffff00;">【' + currentGate + '】</b></div>');
+					dialog.addAuto(info);
+				}
+			}
+		}
+	};
+
 	lib.skill.ybsl_gate_0 = {
 		superCharlotte: true,
 		mark: true,
 		marktext: '休',
 		intro: {
 			content: '锁定技，你的手牌上限+1，你不能成为【过河拆桥】和【兵粮寸断】的目标。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 0);
+			},
 		},
 		mod: {
 			maxHandcard: function (player, num) {
@@ -487,6 +637,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '惊',
 		intro: {
 			content: '出牌阶段限一次，你可以与一名手牌数不小于你的角色拼点，若你赢，视为你对该角色使用了一张【决斗】；若你没赢，直到回合结束，你不能使用锦囊牌。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 1);
+			},
 		},
 		enable: 'phaseUse',
 		usable: 1,
@@ -534,6 +687,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '死',
 		intro: {
 			content: '锁定技，每当你对一名体力值大于你的角色使用一张杀，该角色受到的伤害+1。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 2);
+			},
 		},
 		forced: true,
 		trigger: { player: 'useCardToPlayered' },
@@ -551,6 +707,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '景',
 		intro: {
 			content: '准备阶段开始时，你可以摸3张牌，然后将3张手牌以任意顺序放置于牌库顶或牌库底。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 3);
+			},
 		},
 		trigger: {
 			player: 'phaseZhunbeiBegin',
@@ -705,6 +864,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '生',
 		intro: {
 			content: '出牌阶段限一次，你可以弃置一张手牌，视为使用了一张【桃园结义】，若有其他角色以此法回复了体力，你摸一张牌。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 4);
+			},
 		},
 		usable: 1,
 		enable: 'phaseUse',
@@ -742,6 +904,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '杜',
 		intro: {
 			content: '准备阶段开始时，你可以声明一个颜色，然后展示牌库顶的牌，若与你声明的颜色相同，你获得之，并重复此流程；若不同，弃置此牌。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 5);
+			},
 		},
 		trigger: { player: 'phaseZhunbeiBegin' },
 		filter(event, player) {
@@ -777,6 +942,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '伤',
 		intro: {
 			content: '若你打出的【杀】没有被【闪】响应，你可以失去一点体力，令此杀伤害+1。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 6);
+			},
 		},
 		trigger: { source: 'damageBegin1' },
 		filter(event, player) {
@@ -807,6 +975,9 @@ const YB_12_bamenjinsuo = function () {
 		marktext: '开',
 		intro: {
 			content: '摸牌阶段，你可以额外摸一张牌，然后将一张手牌交给任意一名其他角色。',
+			mark(dialog, storage, player) {
+				get.bamenMark(dialog, storage, player, 7);
+			},
 		},
 		trigger: {
 			player: 'phaseDrawBegin',
