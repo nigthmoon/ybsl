@@ -173,7 +173,7 @@ const character = {
 	ybsl_wangbi: ['male', 'wei', 4, ['ybsl_xijian', 'ybsl_yedun'], ['rankAdd:legend', 'rankS:s', 'name:王|必']], //王必
 	ybnb_wangbi: ['male', 'wei', 4, ['ybsl_xijian', 'ybsl_yedunx'], ['rankAdd:legend', 'rankS:s', 'name:王|必', 'linkTo:ybsl_wangbi']], //王必]
 	ybsl_jiangziwen: ['male', 'wu', 3, ['ybsl_fengcix', 'ybsl_youxiangx'], ['rankAdd:epic', 'name:蒋|歆']], //蒋歆
-	ybsl_suojing: ['male', 'jin', 4, ['ybsl_feimo', 'ybsl_benzhan'], ['rankAdd:epic', 'name:索|靖', 'unseen']], //索靖
+	ybsl_suojing: ['male', 'jin', 4, ['ybsl_feimo', 'ybsl_benzhan'], ['rankAdd:epic', 'name:索|靖']], //索靖
 	ybsl_wangpou: ['male', 'wei', 3, ['ybsl_zhelei', 'ybsl_xunxiao', 'ybsl_wanbie'], ['rankAdd:rare', 'border:jin']], //王裒
 	ybsl_yangxu: ['male', 'qun', 3, ['ybsl_kanxiao', 'ybsl_shipin'], ['rankAdd:epic']], //羊续
 	ybsl_shichong: ['male', 'jin', 3, ['ybsl_shehao', 'ybsl_jiegu', 'ybsl_daixin'], ['rankAdd:legend']], //石崇

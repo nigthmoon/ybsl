@@ -550,7 +550,8 @@ const card = {
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
 		zhuanhuanList: function (card) {
-			if (!card.storage || !card.storage.zhuanhuanList) {
+			card.storage = card.storage || {};
+			if (!card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
 			return card.storage.zhuanhuanList;
@@ -597,7 +598,8 @@ const card = {
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
 		zhuanhuanList: function (card) {
-			if (!card.storage || !card.storage.zhuanhuanList) {
+			card.storage = card.storage || {};
+			if (!card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null];
 			}
 			return card.storage.zhuanhuanList;
@@ -644,7 +646,8 @@ const card = {
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
 		zhuanhuanList: function (card) {
-			if (!card.storage || !card.storage.zhuanhuanList) {
+			card.storage = card.storage || {};
+			if (!card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null];
 			}
 			return card.storage.zhuanhuanList;
@@ -691,7 +694,8 @@ const card = {
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
 		zhuanhuanList: function (card) {
-			if (!card.storage || !card.storage.zhuanhuanList) {
+			card.storage = card.storage || {};
+			if (!card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null, null];
 			}
 			return card.storage.zhuanhuanList;
@@ -738,7 +742,8 @@ const card = {
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
 		zhuanhuanList: function (card) {
-			if (!card.storage || !card.storage.zhuanhuanList) {
+			card.storage = card.storage || {};
+			if (!card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
 			return card.storage.zhuanhuanList;

@@ -6471,10 +6471,10 @@ const skill = {
 	 * 索靖
 	 */
 	ybsl_feimo: {
-		trigger: { player: 'useCard' },
+		trigger: { player: 'useCardAfter' },
 		frequent: true,
 		filter(event) {
-			return get.suit(event.card) == 'club' && event.card.isCard;
+			return get.suit(event.card) == 'club' ;
 		},
 		content() {
 			player.draw();

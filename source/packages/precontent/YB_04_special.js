@@ -990,11 +990,12 @@ const YBSL_special = function () {
 				cardname(card, player) {
 					// console.log(card)
 					if (lib.card[card.name]?.zhuanhuanList) {
-						if (!card.storage || !card.storage.zhuanhuanList) {
+						card.storage = card.storage || {};
+						if (!card.storage.zhuanhuanList) {
 							card.storage.zhuanhuanList = lib.card[card.name]?.zhuanhuanList(card);
 						}
 
-						if (!card.storage || !card.storage.zhuanhuanNum) {
+						if (card.storage.zhuanhuanNum == undefined) {
 							card.storage.zhuanhuanNum = 0;
 						}
 						var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
@@ -1218,6 +1219,7 @@ const YBSL_special = function () {
 			chooseButton: {
 				dialog(event, player) {
 					var evt = _status.event;
+					console.log(evt)
 					var list = [];
 					for (var i of lib.inpile) {
 						if (
