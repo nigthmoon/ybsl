@@ -19451,7 +19451,7 @@ const skill = {
 		async content(event, trigger, player) {
 			//QQQ
 			var num = player.storage.QQQ107_taye;
-			const { result } = await player.chooseButton(['从弃牌堆中选择至多' + num + '张与此牌类型相同的其他牌', Array.from(ui.discardPile.childNodes).filter((q) => get.type(q) == get.type(trigger.card))], [1, num]).set('ai', (button) => get.buttonValue(button));
+			const result = await player.chooseButton(['从弃牌堆中选择至多' + num + '张与此牌类型相同的其他牌', Array.from(ui.discardPile.childNodes).filter((q) => get.type(q) == get.type(trigger.card))], [1, num]).set('ai', (button) => get.buttonValue(button)).forResult();
 			if (result.links && result.links[0]) {
 				player.storage.QQQ107_taye = 1;
 				for (var i of result.links) {
@@ -19470,9 +19470,9 @@ const skill = {
 					} else card1.push(i);
 				}
 				while (card1.length) {
-					const { result: result1 } = await player.chooseButton(['依次分配给场上角色', card1], [1, card1.length]);
+					const result1 = await player.chooseButton(['依次分配给场上角色', card1], [1, card1.length]).forResult();
 					if (result1.links && result1.links[0]) {
-						const { result: result2 } = await player.chooseTarget('依次分配给场上角色').set('ai', (t) => get.attitude(t, player));
+						const result2 = await player.chooseTarget('依次分配给场上角色').set('ai', (t) => get.attitude(t, player)).forResult();
 						if (result2.targets && result2.targets[0]) {
 							result2.targets[0].gain(result1.links, 'gain2');
 							card1 = card1.filter((q) => !result1.links.includes(q));
@@ -19614,7 +19614,7 @@ const skill = {
 			var card = player.getCards('h', 'ybsl_107xiaohu')[0];
 			if (card) cards.push(card);
 			if (cards[0]) {
-				const { result } = await player.chooseButton(['将【小狐】或非手牌区一张牌当做一张基本牌使用或打出', cards]);
+				const result = await player.chooseButton(['将【小狐】或非手牌区一张牌当做一张基本牌使用或打出', cards]).forResult();
 				if (result.links && result.links[0]) {
 					var list = [];
 					for (var i in lib.card) {
@@ -19637,7 +19637,7 @@ const skill = {
 							}
 						}
 					}
-					const { result: result1 } = await player.chooseButton(['使用或打出一张基本牌', [list, 'vcard']]);
+					const result1 = await player.chooseButton(['使用或打出一张基本牌', [list, 'vcard']]).forResult();
 					if (result1.links && result1.links[0]) {
 						var evt = event.getParent(2);
 						if (evt.name == 'chooseToUse' && result1.links[0][2] != 'shan') {

@@ -1776,7 +1776,7 @@ const skill = {
 				ai2(target) {
 					return -get.attitude(get.player(), target);
 				},
-			});
+			}).forResult();
 			event.result = {
 				bool: bool,
 				targets: targets?.sortBySeat(),
@@ -5638,7 +5638,7 @@ const skill = {
 					if (player.storage.baonu > 6) {
 						return 0;
 					}
-					if (player.hp + player.num('h', 'tao') > 3) {
+					if (player.hp + player.countCards('h', 'tao') > 3) {
 						return 1;
 					}
 					return 0;
@@ -14241,7 +14241,7 @@ const skill = {
 				var player = _status.event.player;
 				if (get.attitude(player, target) < 0) return '令其使用锦囊牌对你无效';
 				return '令其摸牌';
-			});
+			}).forResult();
 			if (result.control) {
 				if (result.control == '令其摸牌') {
 					await target.draw();

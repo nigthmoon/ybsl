@@ -974,9 +974,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							bool: false,
 						};
 					} else {
-						const { result } = await player.chooseButton([get.prompt('yb_wan_qiangyi'), cards], 1).set('ai', function () {
-							return 1;
-						});
+					const result = await player.chooseButton([get.prompt('yb_wan_qiangyi'), cards], 1).set('ai', function () {
+						return 1;
+					}).forResult();
 						if (result.bool)
 							event.result = {
 								bool: true,
@@ -3427,7 +3427,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					dialog.add(str);
 					var content = player.getExpansions('yb_wan_linzuo_mark1');
 					dialog.add(content);
-					const { result } = await player.chooseButton(dialog).forResult();
+					const result = await player.chooseButton(dialog).forResult();
 					if (result.bool) {
 						event.result = {
 							bool: true,

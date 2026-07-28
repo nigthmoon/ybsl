@@ -4028,13 +4028,13 @@ const skill = {
 		async content(event, trigger, player) {
 			await player.draw();
 			const target = trigger.player;
-			const { result } = await target.chooseCard(
+			const result = await target.chooseCard(
 				2,
 				'he',
 				`###数定###重铸两张${get.translation(get.color(trigger.card))}牌`,
 				(card) => get.color(card) == get.color(trigger.card) && target.canRecast(card),
 				(card) => 11 - get.value(card),
-			);
+			).forResult();
 			if (result.bool) target.recast(result.cards);
 			else target.loseHp();
 		},
@@ -4083,7 +4083,7 @@ const skill = {
 		async content(event, trigger, player) {
 			await trigger.player.discard(event.cards);
 			if (get.color(event.cards) == 'red') trigger.getParent().baseDamage++;
-			const { result } = await trigger.player.discardPlayerCard(trigger.targets[0]);
+			const result = await trigger.player.discardPlayerCard(trigger.targets[0]).forResult();
 			if (result?.bool && get.color(result.cards) == 'red') {
 				await player.draw();
 				trigger.directHit.addArray(game.players);
@@ -4865,13 +4865,13 @@ const skill = {
 			if (cards.length) {
 				const suits = [];
 				for (const card of cards) suits.add(get.suit(card));
-				const { result } = await player
-					.chooseButton(['紧气：获得不同花色的牌各一张', cards], true, suits.length)
-					.set('ai', (button) => {
-						const player = get.player();
-						return get.value(button.link, player);
-					})
-					.set('filterButton', (button) => get.links(ui.selected.buttons).every((card) => get.suit(card) != get.suit(button.link)));
+			const result = await player
+				.chooseButton(['紧气：获得不同花色的牌各一张', cards], true, suits.length)
+				.set('ai', (button) => {
+					const player = get.player();
+					return get.value(button.link, player);
+				})
+				.set('filterButton', (button) => get.links(ui.selected.buttons).every((card) => get.suit(card) != get.suit(button.link))).forResult();
 				await player.gain(result.links, 'gain2');
 			}
 			for (const phase of lib.phaseName) {
@@ -6817,7 +6817,7 @@ const skill = {
 				if (player.getStorage('ybsl_kanxiao') == 0) list.push('ybsl_kanxiao');
 				if (player.getStorage('ybsl_shipin') == 0) list.push('ybsl_shipin');
 				if (!list.length) return;
-				const { result } = await player.chooseControl(list);
+				const result = await player.chooseControl(list).forResult();
 				if (result.control) {
 					player.storage[result.control]++;
 					game.log(player, '修改了' + result.control + '的技能效果');
