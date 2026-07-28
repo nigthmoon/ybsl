@@ -1,0 +1,13 @@
+# 二进制/资源目录，禁止 Prettier 格式化
+node_modules/
+image/
+audio/
+skin/
+# 二进制资源文件
+*.mp3
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.emmx

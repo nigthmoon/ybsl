@@ -17,16 +17,16 @@ indent_size = 4
 
 # JSON files
 [*.json]
-indent_style = space
+indent_style = tab
 indent_size = 2
 
 # CSS files
 [*.css]
-indent_style = space
+indent_style = tab
 indent_size = 4
 
 # Markdown files
 [*.md]
-indent_style = space
+indent_style = tab
 indent_size = 2
 trim_trailing_whitespace = false
