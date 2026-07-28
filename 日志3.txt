@@ -1079,6 +1079,20 @@ get.type改写，为了律法锦囊牌的预热
 三个武将开出坑位
 前几天牢火催我传github，顺手格式化了代码
 
+2026.07.05
+无极乾坤：将八门金锁阵（阵盘）逻辑从 precontent.js 拆分为独立文件 precontent/YB_12_bamenjinsuo.js，新增相关配置（config.js）与样式（ybcss.css）
+阵盘优化（多次）：阵盘显示武将、阵盘代码若干次优化（precontent/YB_12_bamenjinsuo.js）
+毒改：毒/爆炸相关（YB_05_boom.js、config.js）调整
+
+2026.07.11
+阵盘（八门金锁）较大优化（precontent/YB_12_bamenjinsuo.js）
+
+2026.07.24
+索靖解放/重新启用
+星月系列武将整理（translate 名称与翻译重排，YB_12_character/translate.js）
+转化卡防御性编程优化（YB_07_card/card.js）
+nature/special 预内容补充（precontent/YB_02_nature.js、YB_04_special.js）
+
 2026.07.28
 检查并修复夜白神略对无名杀1.11.4.1的兼容问题（共5个文件）：
 - 适配新版异步API：chooseButton/chooseTarget/chooseCard/chooseControl/discardPlayerCard 的结果获取由 `const { result } = await ...` 改为 `await ...forResult()`（YB_one_character、YB_01、YB_12、YB_14）
