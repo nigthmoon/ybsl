@@ -1078,3 +1078,23 @@ get.type改写，为了律法锦囊牌的预热
 2026.07.01
 三个武将开出坑位
 前几天牢火催我传github，顺手格式化了代码
+
+2026.07.28
+检查并修复夜白神略对无名杀1.11.4.1的兼容问题（共5个文件）：
+- 适配新版异步API：chooseButton/chooseTarget/chooseCard/chooseControl/discardPlayerCard 的结果获取由 `const { result } = await ...` 改为 `await ...forResult()`（YB_one_character、YB_01、YB_12、YB_14）
+- 旧API `player.num(...)` 改为 `player.countCards(...)`（YB_12）
+- 修复 YB_one_character.js 一处 `const { result } = await ...forResult()` 误解构，导致 result 为 undefined 的崩溃
+- 修复未安装「十周年UI」扩展时，加载扩展在选将阶段因找不到 card-skins/caise 目录抛出 ENOENT 崩溃（YB_04_ccinit.js：素材导入前增加开关与扩展启用判断，并为 getFileList 增加 failure 回调）
+
+【提交信息】
+fix: 适配无名杀1.11.x新API并修复十周年UI素材导入崩溃
+- 异步prompt结果获取由 `const { result } = await ...` 改为 `await ...forResult()`
+- 旧API `player.num(...)` 替换为 `player.countCards(...)`
+- 修复 YB_one_character.js:3430 `const { result } = await ...forResult()` 误解构导致 result 为 undefined 的潜在崩溃
+- YB_04_ccinit.js：素材自动/手动导入前增加扩展启用判断与 failure 回调，避免未安装「十周年UI」时 getFileList 同步抛出 ENOENT 崩溃
+
+【更新日志文案】
+1. 适配无名杀1.11.4.1新版异步API：技能中 chooseButton/chooseTarget/chooseCard/chooseControl/discardPlayerCard 结果获取统一改为 .forResult()，修复旧解构写法导致的技能失效与报错。
+2. 修复旧版API调用 player.num() 在现版本不存在的问题，改为 player.countCards()。
+3. 修复未安装「十周年UI」扩展时，加载夜白神略在选将阶段报 ENOENT（card-skins/caise 目录不存在）崩溃；现仅在已启用十周年UI时才同步素材，未启用则安全跳过。
+4. 修复一处 .forResult() 结果被再次误解构导致崩溃的隐患（yb_wan 系列技能）。
