@@ -840,16 +840,24 @@ const translate = {
 	qmsgswkjsgj_re_dchuiji: "惠济",
 	qmsgswkjsgj_re_dchuiji_info: "出牌阶段限一次。你可以令一名角色摸两张牌或从牌堆中随机使用一张你指定牌名的装备牌，然后若其手牌数不小于存活角色数，其视为使用一张【五谷丰登】。系统不于此牌使用准备工作结束时执行亮出牌堆顶的牌的动作，改为你令其将所有手牌置于处理区，然后令所有目标角色依次获得其中一张牌。当这些牌因执行【五谷丰登】的执行动作而置于弃牌堆后，你令其获得这些牌。",
 
-	qmsgswkjsgj_mb_shen_jiangwei: "星月手杀神姜维",
+	qmsgswkjsgj_mb_shen_jiangwei: "星月手杀神姜维",//血上限+1即5
 	qmsgswkjsgj_mb_shen_jiangwei_prefix: "星月|手杀|神",
-	// qmsgswkjsgj_mbtiantao: "天涛",//无变化
-	// qmsgswkjsgj_mbtiantao_info: "锁定技，结束阶段，你选择一个区域并弃置其中所有牌，然后依次弃置任意名其他角色相同区域各一张牌，因此弃置牌且未弃置【杀】的角色失去1点体力。",
+	qmsgswkjsgj_mbtiantao: "天涛",
+	qmsgswkjsgj_mbtiantao_info: "锁定技，结束阶段，你选择一个区域并弃置其中所有牌，然后依次弃置任意名其他角色相同区域所有牌，因此弃置牌且未弃置【杀】的角色失去1点体力。",
 	qmsgswkjsgj_mbxinghun: "星魂",
-	qmsgswkjsgj_mbxinghun_info: "出牌阶段限一次，你可以观看牌堆顶X张牌，用任意张手牌与其中的等量张牌进行交换并任意排序，然后你令一名其他角色展示你的手牌与牌堆顶的共计X张牌，你对其依次使用其中的【杀】。（X为你体力上限）",
-	// qmsgswkjsgj_mbshenpei: "神霈",//毫无变化？
-	// qmsgswkjsgj_mbshenpei_info: `限定技，当你进入濒死状态时，你可以回复X点体力(X为你本局游戏进入过濒死状态的次数)，然后对一名角色造成等量点雷电伤害并获得${get.poptip("qmsgswkjsgj_mbhuitian")}。`,
-	// qmsgswkjsgj_mbhuitian: "回天",
-	// qmsgswkjsgj_mbhuitian_info: "一名角色的回合结束时，若其体力值大于你，你可以摸一张牌并执行一个额外的回合。每轮开始时，若你发动过此技能，你死亡。",
+	qmsgswkjsgj_mbxinghun_info: "出牌阶段限一次，你可以观看牌堆顶9张牌，用任意张手牌与其中的等量张牌进行交换并任意排序，然后你令一名其他角色展示你的手牌与牌堆顶的共计9张牌，你对其依次使用其中的【杀】。",
+	qmsgswkjsgj_mbshenpei: "神霈",
+	qmsgswkjsgj_mbshenpei_info: `限定技，当你进入濒死状态时，你可以回复X点体力(X为你本局游戏进入过濒死状态的次数)，然后对一名角色造成等量点雷电伤害并获得${get.poptip("qmsgswkjsgj_mbhuitian")}。`,
+	qmsgswkjsgj_mbhuitian: "回天",
+	qmsgswkjsgj_mbhuitian_info: "一名角色的回合开始时，你可以摸两张牌并执行一个额外的回合。每轮开始时，若你发动过此技能超过9次，你死亡。",
+	// qmsgswkjsgj_tiaoxin:'挑衅',
+	// qmsgswkjsgj
+	//同retiaoxin
+	qmsgswkjsgj_zhiji:'志继',
+	qmsgswkjsgj_zhiji_info: "觉醒技，准备阶段或结束阶段，若你没有手牌，你回复1点体力或摸两张牌，然后减一点体力上限，获得“观星”和“空城”。",
+	qmsgswkjsgj_jwguanxing:'观星',
+	qmsgswkjsgj_jwguanxing_info: "准备阶段，你可以观看牌堆顶5张牌，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。",
+
 
 	qmsgswkjsgj_re_liushan:'星月界刘禅',
 	qmsgswkjsgj_re_liushan_prefix: '星月|界',
@@ -859,7 +867,35 @@ const translate = {
 	qmsgswkjsgj_re_fangquan_info: "弃牌阶段开始时，你可以弃置一张牌并令一名其他角色获得一个额外的回合。",
 	// qmsgswkjsgj_re_ruoyu:'若愚',//同ol若愚
 	// qmsgswkjsgj_re_ruoyu_info: `主公技，觉醒技，准备阶段，若你的体力是全场最少的(或之一)，你须增加1点体力上限并回复体力至3点，然后获得技能${get.poptip("rejijiang")}和${get.poptip("sishu")}。`,
+
+	qmsgswkjsgj_caojinyu:'星月界曹金玉',
+	qmsgswkjsgj_caojinyu_prefix: '星月|界',
+	qmsgswkjsgj_yuqi:'隅泣',
+	qmsgswkjsgj_yuqi_info: "每回合限<span class=YB_snowtext>2</span>次。当有角色受到1点伤害后，若你至其的距离不大于<span class=thundertext>1</span>，则你可以观看牌堆顶的<span class=firetext>3</span>张牌。你将其中至多<span class=greentext>0</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>2</span>张牌，并将其余牌以原顺序放回牌堆顶。（所有具有颜色的数字至多为体力上限）（全民三国杀我开局神郭嘉的界曹金玉）",
+	qmsgswkjsgj_shanshen:'善身',
+	qmsgswkjsgj_shanshen_info:'当有角色进入濒死状态时，你可令你的〖隅泣〗中的一个具有颜色的数字+2。然后若不是你令该角色进入濒死状态，且进入濒死状态的角色不为你，你回复1点体力。（全民三国杀我开局神郭嘉的界曹金玉）',
+	qmsgswkjsgj_xianjing:'娴静',
+	qmsgswkjsgj_xianjing_info: '准备阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。若你的体力值等于体力上限，则你可以重复一次此流程。结束阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。',
+
+	qmsgswkjsgj_yue_zhouyu:'星月界乐周瑜',
+	qmsgswkjsgj_yue_zhouyu_prefix: '星月|神|乐',
+	qmsgswkjsgj_dcguyin: "顾音",
+	qmsgswkjsgj_dcguyin_info: "锁定技。①你的初始手牌数为0，其他角色的初始手牌数+1。②每轮开始时，所有人的手牌增加“琴音”标记，带有“琴音”标记的牌进入弃牌堆后，你摸一张牌。你没有手牌时，受到伤害-1。",
+	qmsgswkjsgj_dcpinglu: "平虏",
+	qmsgswkjsgj_dcpinglu_info: "出牌阶段，你可以获得攻击范围内所有其他角色各一张牌。若如此做，直到这些牌离开你的手牌区，本技能此阶段失效。",
+
+	qmsgswkjsgj_bolingyun:'星月界柏灵筠',
+	qmsgswkjsgj_bolingyun_prefix: '星月|界',
+	qmsgswkjsgj_dclinghui: "灵慧",
+	qmsgswkjsgj_dclinghui_info: "一名角色的结束阶段，若当前回合角色为你或本回合有角色受到过伤害，则你可以观看牌堆顶的X张牌（X为你的体力上限），然后你可以使用其中一张牌并获得其中一张剩余牌，然后将剩余牌以任意顺序放回牌堆顶。",
+	qmsgswkjsgj_dcxiace: "黠策",
+	qmsgswkjsgj_dcxiace_info: "当你造成/受到伤害后，你可以弃置一张牌并回复1点体力/令一名其他角色的非锁定技于本回合失效。",
+	qmsgswkjsgj_dcyuxin: "御心",
+	qmsgswkjsgj_dcyuxin_info: "限定技，一名角色进入濒死状态时，你可以令其将体力回复至3点。",
+
+
 	//魔炎
+
 
 	//----------------神赐章节-----------------
 	qmsgswkjsgj_shenci_wu_zhugeliang: '星月神赐武诸葛亮',
@@ -871,6 +907,9 @@ const translate = {
 	qmsgswkjsgj_shenci_dczhizhe: '智哲',
 	qmsgswkjsgj_shenci_dczhizhe_clear: 'invisible',
 	qmsgswkjsgj_shenci_dczhizhe_info: '限定技。出牌阶段，你可以选择一张手牌并复制之。此牌进入弃牌堆时，你获得之，然后你本回合不能再使用或打出此牌。',
+	qmsgswkjsgj_shenci_redczhizhe: '智哲',
+	qmsgswkjsgj_shenci_redczhizhe_clear: 'invisible',
+	qmsgswkjsgj_shenci_redczhizhe_info: '出牌阶段，若你没有“智哲”牌，你可以选择一张手牌并复制之。此牌进入弃牌堆时，你获得之，然后你本回合不能再使用或打出此牌。',
 
 	qmsgswkjsgj_shenci_re_duyu: '星月神赐界杜预',
 	qmsgswkjsgj_shenci_re_duyu_prefix: '星月神赐界',
