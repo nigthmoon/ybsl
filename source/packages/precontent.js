@@ -20,21 +20,27 @@ import { cyyydsgs } from '../pile/cyyydsgs.js';
 // import {ybrpg}from '../ybrpg/mode.js'
 // import { config } from './config.js';
 export async function precontent() {
-	game.getFileList('extension/夜白神略/source/ext', (folders, files) => {
-		// let scriptPaths=[
-		// 	'ext/YB_01_character.js','ext/YB_02_character.js','ext/YB_03_character.js','ext/YB_04_character.js',
-		// 	'ext/YB_05_card.js','ext/YB_06_card.js','ext/YB_07_card.js','ext/YB_08_character.js','ext/YB_09_character.js',
-		// 	'ext/YB_10_character.js','ext/YB_11_character.js','ext/YB_12_character.js','ext/YB_13_character.js',
-		// 	// 'ext/YB_01_character.js'
-		// ];
-		let scriptPaths = files;
-		Promise.all(scriptPaths.map((path) => import('../ext/' + path)))
-			.then((modules) => {})
-			.catch((error) => {
-				alert('error ' + error + '导入失败 !');
-				console.error(error.message);
-			});
-	});
+	game.getFileList(
+		'extension/夜白神略/source/ext',
+		(folders, files) => {
+			// let scriptPaths=[
+			// 	'ext/YB_01_character.js','ext/YB_02_character.js','ext/YB_03_character.js','ext/YB_04_character.js',
+			// 	'ext/YB_05_card.js','ext/YB_06_card.js','ext/YB_07_card.js','ext/YB_08_character.js','ext/YB_09_character.js',
+			// 	'ext/YB_10_character.js','ext/YB_11_character.js','ext/YB_12_character.js','ext/YB_13_character.js',
+			// 	// 'ext/YB_01_character.js'
+			// ];
+			let scriptPaths = files;
+			Promise.all(scriptPaths.map((path) => import('../ext/' + path)))
+				.then((modules) => {})
+				.catch((error) => {
+					alert('error ' + error + '导入失败 !');
+					console.error(error.message);
+				});
+		},
+		(err) => {
+			console.warn('夜白神略：读取 source/ext 目录失败', err);
+		},
+	);
 	// game.getFileList('extension/夜白神略/source/ontology/character', (folders,files) => {
 	// 	let scriptPaths = files;
 	// 	Promise.all(
@@ -49,19 +55,25 @@ export async function precontent() {
 	// 	});
 	// })
 
-	game.getFileList('extension/夜白神略/source/ontology/card', (folders, files) => {
-		let scriptPaths = files;
-		Promise.all(
-			scriptPaths.map((path) => {
-				lib.init.js(lib.assetURL + 'extension/夜白神略/source/ontology/card', path.slice(0, -3));
-			}),
-		)
-			.then((modules) => {})
-			.catch((error) => {
-				alert('error ' + error + '导入失败 !');
-				console.error(error.message);
-			});
-	});
+	game.getFileList(
+		'extension/夜白神略/source/ontology/card',
+		(folders, files) => {
+			let scriptPaths = files;
+			Promise.all(
+				scriptPaths.map((path) => {
+					lib.init.js(lib.assetURL + 'extension/夜白神略/source/ontology/card', path.slice(0, -3));
+				}),
+			)
+				.then((modules) => {})
+				.catch((error) => {
+					alert('error ' + error + '导入失败 !');
+					console.error(error.message);
+				});
+		},
+		(err) => {
+			console.warn('夜白神略：读取 source/ontology/card 目录失败', err);
+		},
+	);
 	//window.list24
 	{
 		// lib.translate['gujian_character_config']='古剑奇谭'
