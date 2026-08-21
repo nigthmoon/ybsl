@@ -1135,3 +1135,24 @@ fix: 适配无名杀1.11.x新API并修复十周年UI素材导入崩溃
 备注：群友安卓端仍报 EACCES（Permission denied），确认系 Android 11+ 作用域存储
 限制（手动将扩展塞入 Android/data/com.widget.noname 目录所致），非扩展代码问题；
 已建议群友改用无名杀内置「导入扩展」功能导入干净 zip 包。
+
+2026.08.21（translate.js 新增整理）
+YB_12_character/translate.js 本次新增约 289 行翻译词条，按类别记录如下：
+1. plus 补强系列（技能加强翻译）：
+   义争plus、霜怀plus、落宠plus/哀尘plus、强峙plus、节命plus、
+   慧识plusplus/天翊plusplus/佐幸plusplus/辉逝plusplus、武库plus、寤寐plus、
+   潜龙plus、业炎plus/英姿plus/反间plus/琴音plus。
+2. 新增武将（带 prefix 前缀）：
+   星月界乐周瑜、柏灵筠、威张辽、管宁、庞凤衣；
+   界关羽/界马超/界徐盛（界补强）、神张辽/神刘备/神关羽/神吕蒙；
+   势国渊/辛宪英/董昭、司马徽、缘孙权、合郭照、渭南张郃；
+   星月神赐界柏灵筠、星月神赐司马徽、星月神赐欧陆凯撒。
+3. 神赐司马徽嵌套技能：火计(_huoji/_huoji_effect)、连环(_lianhuan/_lianhuan_effect)、业炎、隐士、称好。
+4. 新模组「三国杀：开局关羽，但新三国」（作者：小猫种大鱼）：
+   新三国关羽（武圣、过江），并引用 6 条音频台词
+   （#ext:夜白神略/audio/character/sgskjgydxsg_wusheng1/2/3、guojiang1/2，
+   及 #ext:夜白神略/audio/die/sgskjgydxsg_guanyu）。
+
+注：上述「开局关羽」引用的 6 条 #ext:夜白神略/audio/... 仅为台词文本占位，
+并非语音定义，缺少对应 mp3 也不会报错；语音文件后续可直接补入对应坑位启用。
+其余新增词条无语法/冲突问题，前缀 qmsgswkjsgj_ 统一，未与本体冲突。
