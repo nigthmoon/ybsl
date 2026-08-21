@@ -1,2 +1,4 @@
 
 *.zip
+build_zip.js
+build_zip.ps1

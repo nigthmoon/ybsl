@@ -1128,4 +1128,10 @@ fix: 适配无名杀1.11.x新API并修复十周年UI素材导入崩溃
 分别是 source/ext 与 source/ontology/card 目录的读取。
 目的：安卓作用域存储权限不足导致目录读取失败时，静默 console.warn 降级，
 避免同步抛出 ENOENT/异常导致扩展加载白屏崩溃。
-本次仅新增失败回调，未改动任何 import 语句。
+
+2026.08.21
+更新 .gitignore：新增排除打包脚本 build_zip.js 与 build_zip.ps1，
+避免打包/构建脚本被 git 跟踪提交（原已忽略 *.zip）。
+备注：群友安卓端仍报 EACCES（Permission denied），确认系 Android 11+ 作用域存储
+限制（手动将扩展塞入 Android/data/com.widget.noname 目录所致），非扩展代码问题；
+已建议群友改用无名杀内置「导入扩展」功能导入干净 zip 包。
