@@ -1272,3 +1272,16 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 - YB_14_character/translate.js：女魃「不雨」info "出牌阶段"→"摸牌阶段"。
 - pile/cyyydsgs.js：前置代码块 `{` 改为 `if(false){`（禁用）。
 - pile/list24.js：修正 24 点游戏多组算式（修正无解/错误计算）。
+
+2026.09.27（文件结构拆分重构）
+
+一、YB_12_character 按 5 部小说拆分
+新建子文件夹：sgskjdbzjms、qmsgswkjsgj、sgsxjxfzmnl、zzrsqlkjygzz、sgskjgydxsg。
+将原 12 类数据（translate、character、skill、card、dynamicTranslate、characterCitetext、characterCopyright、characterIntro、characterTitle、characterUndertext、characterSort、perfectPair）各自移入对应子文件夹，按前缀归属到对应小说。
+
+二、父文件聚合方式内联
+12 个父文件改为直接 import 5 个子文件夹的同名导出，用 Object.assign 合并后再 export；删除原先独立的 12 个 *Aggregate.js 聚合文件。
+
+三、特殊合并
+- characterSort：各子文件夹以小说名为顶层键，父文件统一嵌套进 sgstrxs。
+- characterUndertext：characterUndertext 与 accessoryPacket 分别合并，双 export。

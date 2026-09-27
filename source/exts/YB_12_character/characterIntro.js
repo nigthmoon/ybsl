@@ -1,4 +1,7 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
-export { characterIntro };
+import { characterIntro as a } from './sgskjdbzjms/characterIntro.js';
+import { characterIntro as b } from './qmsgswkjsgj/characterIntro.js';
+import { characterIntro as c } from './sgsxjxfzmnl/characterIntro.js';
+import { characterIntro as d } from './zzrsqlkjygzz/characterIntro.js';
+import { characterIntro as e } from './sgskjgydxsg/characterIntro.js';
 
-const characterIntro = {};
+export const characterIntro = Object.assign({}, a, b, c, d, e);
