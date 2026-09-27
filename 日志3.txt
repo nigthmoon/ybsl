@@ -1285,3 +1285,9 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 三、特殊合并
 - characterSort：各子文件夹以小说名为顶层键，父文件统一嵌套进 sgstrxs。
 - characterUndertext：characterUndertext 与 accessoryPacket 分别合并，双 export。
+
+2026.09.27（function.js 新增 mergeObjectsOverride）
+
+- source/packages/function.js：导出新增 mergeObjectsOverride。
+- 功能：合并多个对象，后者覆盖前者（而非 mergeObjects 的 '<br>' 拼接），避免把数组/对象强制转成字符串；用于聚合 character / skill / card 等数据对象。
+- 配套 YB_12_character 的聚合内联改造，统一采用覆盖式合并。

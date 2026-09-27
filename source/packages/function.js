@@ -1,5 +1,5 @@
 import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
-export { YB_characterIntro, YBSL_characterIntro, mergeObjects, characterIntro, nodeintro, typeimage };
+export { YB_characterIntro, YBSL_characterIntro, mergeObjects, mergeObjectsOverride, characterIntro, nodeintro, typeimage };
 // export { typeimage }
 /**
  * 合并多个对象的键值对。
@@ -41,6 +41,42 @@ const mergeObjects = function (...objects) {
 		// else {
 		// 	console.log(`第 ${index + 1} 个对象没有键值对，跳过处理`);
 		// }
+	});
+
+	return result;
+};
+/**
+ * 合并多个对象的键值对，后者覆盖前者（而非拼接）。
+ * - 如果目标对象中已经存在某个键，则用源对象的值覆盖目标对象的值。
+ * - 如果目标对象中不存在某个键，则将源对象的键值对搬运到目标对象中。
+ * - 跳过没有键值对的对象。
+ * 适用于聚合各类数据对象（包括非字符串值，如 character / skill / card），
+ * 避免 mergeObjects 的 '<br>' 拼接把数组或对象强制转成字符串。
+ *
+ * @param {...Object} objects - 需要合并的多个对象（支持任意数量）。
+ * @returns {Object} - 返回合并后的结果对象。
+ *
+ * @example
+ * const a = { x: ['曹操'], y: ['吕布'] };
+ * const b = { y: ['字奉先'], z: ['刘备'] };
+ * const merged = mergeObjectsOverride(a, b);
+ * // 输出: { x: ['曹操'], y: ['字奉先'], z: ['刘备'] }  // y 被 b 覆盖，而非拼接
+ */
+const mergeObjectsOverride = function (...objects) {
+	// 目标对象，用于存储合并后的结果
+	const result = {};
+
+	// 遍历所有对象（后面的对象覆盖前面的对象）
+	objects.forEach((currentObj) => {
+		// 检查当前对象是否有键值对
+		if (currentObj && Object.keys(currentObj).length > 0) {
+			// 遍历当前对象的键值对
+			for (const subKey in currentObj) {
+				// 后者覆盖前者：直接用源对象的值覆盖
+				result[subKey] = currentObj[subKey];
+			}
+		}
+		// 没有键值对的对象直接跳过
 	});
 
 	return result;
