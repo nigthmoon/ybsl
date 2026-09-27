@@ -167,8 +167,8 @@ const translate = {
 	qmsgswkjsgj_juejing: '绝境',
 	qmsgswkjsgj_juejing_info: '锁定技。①你的手牌上限+2。②当你进入或脱离濒死状态时，你摸一张牌。③摸牌阶段，你令额定摸牌数+X（X为你已损失的体力值）。',
 	qmsgswkjsgj_juejing_append: '二代神赵云和三代神赵云取长补短的缝合品',
-	qmsgswkjsgj_longhun: '龙魂',
-	qmsgswkjsgj_longhun_info: '你可以将同花色的一至两张牌按下列规则使用或打出：红桃当【桃】，方块当火【杀】，梅花当【闪】，黑桃当普【无懈可击】。若你以此法转化了两张：红色牌，则此牌回复值或伤害值+1；黑色牌，则你弃置当前回合角色一张牌。',
+	// qmsgswkjsgj_longhun: '龙魂',
+	// qmsgswkjsgj_longhun_info: '你可以将同花色的一至两张牌按下列规则使用或打出：红桃当【桃】，方块当火【杀】，梅花当【闪】，黑桃当普【无懈可击】。若你以此法转化了两张：红色牌，则此牌回复值或伤害值+1；黑色牌，则你弃置当前回合角色一张牌。',
 
 	qmsgswkjsgj_gui_xuyou: '白无常赐福许攸',
 	qmsgswkjsgj_gui_xuyou_prefix: '白无常赐福',
@@ -778,6 +778,7 @@ const translate = {
 	qmsgswkjsgj_re_dcxiangmianplusplus_info: '出牌阶段限两次。你可以令一名其他角色判定，其获得以下效果：当其失去结果的花色的牌后，或当其失去点数不小于X的牌后（X为结果的点数），其失去等同于其体力值的体力。',
 	//作者不动声色，直接改前文描述，如果不是后文实战发现不对劲，我都没发现
 	//后文实战发现，对一个人发动两次后，会选择保留哪个结果。这个到时候也在代码里表现出来
+	//不实现了
 
 	qmsgswkjsgj_re_guotiying: '星月界郭缇萦',
 	qmsgswkjsgj_re_guotiying_prefix: '星月|界',
@@ -839,7 +840,7 @@ const translate = {
 	qmsgswkjsgj_re_dczhubi: '铸币',
 	qmsgswkjsgj_re_dczhubi_info: '当有♦牌因弃置而进入弃牌堆后，你可以令一名角色从牌堆或弃牌堆获得一张【无中生有】，然后其可以将【无中生有】置于牌堆顶。',
 	qmsgswkjsgj_re_dcliuzhuan: '流转',
-	// qmsgswkjsgj_re_dcliuzhuan_tag: "转",
+	qmsgswkjsgj_re_dcliuzhuan_tag: "转",
 	qmsgswkjsgj_re_dcliuzhuan_info: '锁定技，其他角色的回合内获得的牌无法对你使用，这些牌本回合进入弃牌堆后，你获得之<按照作者的解释，只是本回合不能对自己用，下回合是可以的。评价为：继承了新杀的描述含糊不清和云玩家的口胡>。',
 
 	qmsgswkjsgj_re_zhugejin: '星月界诸葛瑾',
@@ -853,8 +854,8 @@ const translate = {
 
 	qmsgswkjsgj_re_yuanyin: '星月界袁胤',
 	qmsgswkjsgj_re_yuanyin_prefix: '星月|界',
-	qmsgswkjsgj_re_moshou: '墨守',
-	qmsgswkjsgj_re_moshou_info: '当你成为一名角色使用的黑色牌的目标后，你可以摸体力上限张牌。',
+	qmsgswkjsgj_re_dcmoshou: '墨守',
+	qmsgswkjsgj_re_dcmoshou_info: '当你成为一名角色使用的黑色牌的目标后，你可以摸体力上限张牌。',
 	qmsgswkjsgj_re_dcyunjiu: '运柩',
 	qmsgswkjsgj_re_dcyunjiu_info: '一名角色死亡后，你可以加1点体力上限并回复1点体力，然后你可交给任意角色该角色死亡时弃置的牌。',
 
@@ -863,7 +864,7 @@ const translate = {
 	qmsgswkjsgj_re_dcjijie: '己诫',
 	qmsgswkjsgj_re_dcjijie_info: '锁定技。每回合每项各限X次（X为你的体力上限），其他角色于其回合外得到牌后/回复体力后，你摸等量的牌/回复等量的体力。',
 	qmsgswkjsgj_re_dchuiji: '惠济',
-	qmsgswkjsgj_re_dchuiji_info: '出牌阶段限一次。你可以令一名角色摸两张牌或从牌堆中随机使用一张你指定牌名的装备牌，然后若其手牌数不小于存活角色数，其视为使用一张【五谷丰登】。系统不于此牌使用准备工作结束时执行亮出牌堆顶的牌的动作，改为你令其将所有手牌置于处理区，然后令所有目标角色依次获得其中一张牌。当这些牌因执行【五谷丰登】的执行动作而置于弃牌堆后，你令其获得这些牌。',
+	qmsgswkjsgj_re_dchuiji_info: '出牌阶段限一次。你可以令一名角色摸两张牌或从牌堆中使用一张你指定牌名的装备牌，然后若其手牌数不小于存活角色数，其视为使用一张【五谷丰登】。系统不于此牌使用准备工作结束时执行亮出牌堆顶的牌的动作，改为你令其将所有手牌置于处理区，然后令所有目标角色依次获得其中一张牌。当这些牌因执行【五谷丰登】的执行动作而置于弃牌堆后，你令其获得这些牌。',
 
 	qmsgswkjsgj_mb_shen_jiangwei: '星月手杀神姜维', //血上限+1即5
 	qmsgswkjsgj_mb_shen_jiangwei_prefix: '星月|手杀|神',
@@ -899,10 +900,11 @@ const translate = {
 	qmsgswkjsgj_re_shanshen: '善身',
 	qmsgswkjsgj_re_shanshen_info: '当有角色进入濒死状态时，你可令你的〖隅泣〗中的一个具有颜色的数字+2。然后若不是你令该角色进入濒死状态，且进入濒死状态的角色不为你，你回复1点体力。（全民三国杀我开局神郭嘉的界曹金玉）',
 	qmsgswkjsgj_re_xianjing: '娴静',
-	qmsgswkjsgj_re_xianjing_info: '准备阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。若你的体力值等于体力上限，则你可以重复一次此流程。结束阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。',
+	qmsgswkjsgj_re_xianjing_info: '准备阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。若你的体力值等于体力上限，则你可以重复一次此流程。结束阶段，你可令你的〖隅泣〗中的一个具有颜色的数字+1。（全民三国杀我开局神郭嘉的界曹金玉）',
 
 	qmsgswkjsgj_re_yue_zhouyu: '星月界乐周瑜',
-	qmsgswkjsgj_re_yue_zhouyu_prefix: '星月|神|乐',
+	qmsgswkjsgj_re_yue_zhouyu_prefix: '星月|界|乐',
+	qmsgswkjsgj_re_dcguyin_tag:'琴音',
 	qmsgswkjsgj_re_dcguyin: '顾音',
 	qmsgswkjsgj_re_dcguyin_info: '锁定技。①你的初始手牌数为0，其他角色的初始手牌数+1。②每轮开始时，所有人的手牌增加“琴音”标记，带有“琴音”标记的牌进入弃牌堆后，你摸一张牌。你没有手牌时，受到伤害-1。',
 	qmsgswkjsgj_re_dcpinglu: '平虏',
@@ -1121,7 +1123,7 @@ const translate = {
 	qmsgswkjsgj_shenci_spmiewu: '灭吴',
 	qmsgswkjsgj_shenci_spmiewu_info: '你可弃置一枚“武库”并将一张牌当做任意基本牌或锦囊牌使用，然后摸一张牌。',
 	qmsgswkjsgj_shenci_spwukuplus: '武库',
-	qmsgswkjsgj_shenci_spwukuplus_info: '锁定技，当有角色使用装备牌时，则你获得一个“武库”。你使用装备时，额外获得一个“武库”。准备阶段，你从牌堆和弃牌堆获得一键指定的装备并使用',
+	qmsgswkjsgj_shenci_spwukuplus_info: '锁定技，当有角色使用装备牌时，则你获得一个“武库”。你使用装备时，额外获得一个“武库”。准备阶段，你从牌堆和弃牌堆获得一件指定的装备并使用',
 
 	qmsgswkjsgj_shenci_wu_luxun: '星月神赐武陆逊',
 	qmsgswkjsgj_shenci_wu_luxun_prefix: '星月|神赐|武',
@@ -2180,9 +2182,9 @@ const translate = {
 	sgskjgydxsg_guanyu:'新三国关羽',
 	sgskjgydxsg_guanyu_prefix:'新三国',
 	sgskjgydxsg_wusheng:'武圣',
-	sgskjgydxsg_wusheng_info:'武圣',
+	sgskjgydxsg_wusheng_info:'你可以将一张红色牌当【杀】使用或打出，你可以将一张黑色牌当【酒】使用，你使用未经转化的【酒】不计入次数限',
 	sgskjgydxsg_guojiang:'过江',
-	sgskjgydxsg_guojiang_info:'过江',
+	sgskjgydxsg_guojiang_info:'一名角色的回合结束后，若其发动过技能，你可以选择其中一个技能并获得此技能，持续到本局游戏结束',
 	'#ext:夜白神略/audio/character/sgskjgydxsg_wusheng1': '关某的大刀不斩老幼。',
 	'#ext:夜白神略/audio/character/sgskjgydxsg_wusheng2': '可惜关某的大刀，竟斩汝这鼠辈的首级！',
 	'#ext:夜白神略/audio/character/sgskjgydxsg_wusheng3': '我是不会客气的，来，换大盏！',

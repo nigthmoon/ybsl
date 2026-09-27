@@ -678,7 +678,7 @@ const YBSL_ybslf = function () {
 		lib.element.content.YB_button = function(){
 			'step 0'
 			var list6666=event.list6666,title=event.title;
-			
+
 			var switchToAuto=function(){
 				_status.imchoosing=false;
 				// var listn=['普通'].concat(lib.inpile_nature);
@@ -746,7 +746,7 @@ const YBSL_ybslf = function () {
 					}
 					dialog.content.appendChild(table);
 				}
-				
+
 				// dialog.addText('类型');
 				// var table2=document.createElement('div');
 				// table2.classList.add('add-setting');
@@ -779,7 +779,7 @@ const YBSL_ybslf = function () {
 				// dialog.content.appendChild(table2);
 				dialog.add('　　');
 				event.dialog.open();
-				
+
 				if(!event.switchToAuto){
 					event.switchToAuto=function(){
 						event._result={
@@ -799,10 +799,10 @@ const YBSL_ybslf = function () {
 						_status.imchoosing=false;
 					};
 				}
-				
+
 				if(event.ok){
 					event.control=event.ok;
-					
+
 				}
 				else {
 					event.control=ui.create.control('ok',function(link){
@@ -1650,7 +1650,7 @@ const YBSL_ybslf = function () {
 		// lib.element.player.YB_chooseY = function(card,viewAs,log){
 		// }
 		//-------------隅泣函数
-		lib.element.player.YB_yuqi = function (i, target) {
+		lib.element.player.YB_yuqi = function (i, target,bool=true) {
 			var next = game.createEvent('YB_yuqi', false);
 			next.player = this;
 			// if(get.itemtype(i)=='select'){
@@ -1658,6 +1658,7 @@ const YBSL_ybslf = function () {
 			// }
 			// else{next.list2=['隅泣',3,1,1];}
 			if (target) next.target = target;
+			next.bool=bool;
 			// next.log=log;//技能说明
 			// next.numa=numa;//展示数量
 			// next.numb=numb;//对方数量
@@ -1678,7 +1679,11 @@ const YBSL_ybslf = function () {
 			var str = event.list[0];
 			str += '（若对话框显示不完整，可下滑操作）';
 			var next = player.chooseToMove(true, str);
-			next.set('list', [['牌堆顶的牌', cards], ['交给' + get.translation(event.target) + '（至少一张' + (event.list[2] > 1 ? '，至多' + get.cnNumber(event.list[2]) + '张' : '') + '）'], ['交给自己（至多' + get.cnNumber(event.list[3]) + '张）']]);
+			next.set('list', [
+				['牌堆顶的牌', cards], 
+				['交给' + get.translation(event.target) + (event.bool==true?'至少一张，':'') + '至多' + get.cnNumber(event.list[2]) + '张'], 
+				['交给自己（至多' + get.cnNumber(event.list[3]) + '张）']
+			]);
 			next.set('filterMove', function (from, to, moved) {
 				var info = event.list2;
 				if (to == 1) return moved[1].length < info[2];
@@ -1699,6 +1704,7 @@ const YBSL_ybslf = function () {
 				return [cards, [card2], cards1];
 			});
 			next.set('filterOk', function (moved) {
+				if(event.bool==false)return true;
 				return moved[1].length > 0;
 			});
 			('step 1');

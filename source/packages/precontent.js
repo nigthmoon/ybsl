@@ -1119,10 +1119,10 @@ export async function precontent() {
 		}
 		{
 			//get.type改写
-			lib.type = {
-				delay: 'trick',
-				law: 'trick',
-				flower: 'basic',
+			lib.typeyb = {
+				delay: 'trick',//延时
+				law: 'trick',//律法
+				flower: 'basic',//花朵
 			};
 			get.type = function (obj, method, player) {
 				if (typeof obj == 'string') {
@@ -1145,8 +1145,8 @@ export async function precontent() {
 						return lib.card['sha'].type;
 					}
 				}
-				if (method == 'trick' && lib.card[name2].type && lib.type[lib.card[name2].type]) {
-					return lib.type[lib.card[name2].type];
+				if (method == 'trick' && lib.card[name2].type && lib.typeyb[lib.card[name2].type]) {
+					return lib.typeyb[lib.card[name2].type];
 				}
 				return lib.card[name2].type;
 			};

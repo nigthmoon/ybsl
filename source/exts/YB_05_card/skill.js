@@ -484,7 +484,7 @@ const skill = {
 		usable: 1,
 		audio: 'ext:夜白神略/audio/card:true',
 		filter: function (event) {
-			if (event.card.isCard && event.card.name == 'sha') return true;
+			if (event.card.isCard && event.card.name == 'sha'&&get.position(event.cards[0], true) == 'o') return true;
 		},
 		content: function () {
 			player.gain(trigger.cards, 'gain2');

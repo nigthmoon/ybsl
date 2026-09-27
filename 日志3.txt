@@ -1156,3 +1156,119 @@ YB_12_character/translate.js 本次新增约 289 行翻译词条，按类别记�
 注：上述「开局关羽」引用的 6 条 #ext:夜白神略/audio/... 仅为台词文本占位，
 并非语音定义，缺少对应 mp3 也不会报错；语音文件后续可直接补入对应坑位启用。
 其余新增词条无语法/冲突问题，前缀 qmsgswkjsgj_ 统一，未与本体冲突。
+
+2026.08.21（translate.js × skill.js 交叉匹配：未在 skill.js 定义的技能）
+方法：以 translate.js 的「武将→技能」归并（武将锚点 = 有同名 _prefix 的行 + 注释章节）
+为基准，与 skill.js 中已定义技能名（对象键 x: { 与 name:'x'）取差集。
+结果：59 个武将有缺失，合计 122 条技能翻译（已按 base 去重，仙界下凡组因其缺失多为技能辅助/额外描述已剔除）。下列每条均附 id 便于查找。
+
+⚠ 重要提醒：此「缺失」仅相对 skill.js 而言，其中多数为借用本体技能
+（武圣/克己/涉猎/攻心/仁德/武神/武魂/奸雄/雷击/鬼道/谦逊/连营/激昂/魂姿等，
+E* 系列明显指向本体）或可能定义在 character.js，并非真漏写。
+
+一、全民三国杀·开局神郭嘉（qmsgswkjsgj）
+【星月界系列】
+【0】 星月界杨彪 [qmsgswkjsgj_re_yangbiao]：qmsgswkjsgj_yizhengplus 义争
+【0】 星月界张绣 [qmsgswkjsgj_re_zhangxiu]：qmsgswkjsgj_xiongluanplus 雄乱
+【0】 星月界孙寒华 [qmsgswkjsgj_re_sunhanhua]：qmsgswkjsgj_miaojian1 妙剑·改 / qmsgswkjsgj_miaojian2 妙剑·极 / qmsgswkjsgj_shhlianhua1 莲华·改 / qmsgswkjsgj_shhlianhua2 莲华·极
+【略】 星月界裴秀 [qmsgswkjsgj_re_peixiu]：qmsgswkjsgj_xingtu 行图
+【略】 星月界十常侍 [qmsgswkjsgj_re_shichangshi]：qmsgswkjsgj_mbdanggu_faq 关于结党 / qmsgswkjsgj_mbdanggu_faq2 关于认可
+【略】 星月界沮授 [qmsgswkjsgj_re_jushou]：qmsgswkjsgj_rejianying 渐营
+【略】 星月界书张芝 [qmsgswkjsgj_re_mb_zhangzhi]：qmsgswkjsgj_mbshiju 势举
+【0】 星月界势陆郁生 [qmsgswkjsgj_mb_luyusheng]：qmsgswkjsgj_mbshuanghuaiplus 霜怀
+【略】 星月界势魏延 [qmsgswkjsgj_pot_weiyan]：qmsgswkjsgj_potkuanggu_pot_weiyan_achieve 狂骨·二级
+【0】 星月界滕芳兰 [qmsgswkjsgj_re_dc_tengfanglan]：qmsgswkjsgj_re_dcluochongplus 落宠 / qmsgswkjsgj_re_dcaichenplus 哀尘
+【0】 星月界朱建平 [qmsgswkjsgj_re_zhujianping]：qmsgswkjsgj_re_dcxiangmianplus 相面 / qmsgswkjsgj_re_dcxiangmianplusplus 相面
+【0】 星月界乐蔡琰 [qmsgswkjsgj_re_yue_caiwenji]：qmsgswkjsgj_re_dcshuangjia 霜笳
+【0】 星月界刘巴 [qmsgswkjsgj_re_dc_liuba]：qmsgswkjsgj_re_dczhubi 铸币 / qmsgswkjsgj_re_dcliuzhuan 流转
+【0】 星月界诸葛瑾 [qmsgswkjsgj_re_zhugejin]：qmsgswkjsgj_re_huanshi 缓释 / qmsgswkjsgj_re_hongyuan 弘援 / qmsgswkjsgj_re_mingzhe 明哲
+【0】 星月界袁胤 [qmsgswkjsgj_re_yuanyin]：qmsgswkjsgj_re_dcmoshou 墨守 / qmsgswkjsgj_re_dcyunjiu 运柩
+【0】 星月界SP甄宓 [qmsgswkjsgj_re_sp_zhenji]：qmsgswkjsgj_re_dcjijie 己诫 / qmsgswkjsgj_re_dchuiji 惠济 / qmsgswkjsgj_mbtiantao 天涛 / qmsgswkjsgj_mbxinghun 星魂 / qmsgswkjsgj_mbshenpei 神霈 / qmsgswkjsgj_mbhuitian 回天
+【0】 星月界刘禅 [qmsgswkjsgj_re_liushan]：qmsgswkjsgj_re_xiangle 享乐 / qmsgswkjsgj_re_fangquan 放权
+【0】 星月界曹金玉 [qmsgswkjsgj_re_caojinyu]：qmsgswkjsgj_re_yuqi 隅泣 / qmsgswkjsgj_re_shanshen 善身 / qmsgswkjsgj_re_xianjing 娴静
+【0】 星月界乐周瑜 [qmsgswkjsgj_re_yue_zhouyu]：qmsgswkjsgj_re_dcguyin 顾音 / qmsgswkjsgj_re_dcpinglu 平虏
+【0】 星月界柏灵筠 [qmsgswkjsgj_re_bolingyun]：qmsgswkjsgj_re_dclinghui 灵慧 / qmsgswkjsgj_re_dcxiace 黠策 / qmsgswkjsgj_re_dcyuxin 御心
+【0】 星月界威张辽 [qmsgswkjsgj_re_v_zhangliao]：qmsgswkjsgj_re_dcyuxi 驭袭 / qmsgswkjsgj_re_dcporong 破戎
+【】 星月界新杀谋司马懿 [qmsgswkjsgj_re_sb_simayi]：qmsgswkjsgj_re_dcsbquanmou 权谋 / qmsgswkjsgj_re_dcsbpingliao 平辽
+【】 星月界管宁 [qmsgswkjsgj_re_guanning]：qmsgswkjsgj_re_dunshi 遁世
+【】 星月界庞凤衣 [qmsgswkjsgj_re_pangfengyi]：qmsgswkjsgj_re_dcyitong 异瞳 / qmsgswkjsgj_re_dcpeiniang 醅酿
+【】 星月界马超 [qmsgswkjsgj_re_machao]：qmsgswkjsgj_re_tieji 铁骑
+【】 星月界徐盛 [qmsgswkjsgj_re_xusheng]：qmsgswkjsgj_re_pojun 破军
+【】 星月界势国渊 [qmsgswkjsgj_re_pot_guoyuan]：qmsgswkjsgj_re_mbqingdao 清蹈 / qmsgswkjsgj_re_mbxiugeng 休耕 / qmsgswkjsgj_re_mbchenshe 陈赦
+【】 星月界势辛宪英 [qmsgswkjsgj_re_pot_xinxianying]：qmsgswkjsgj_re_mbjiejie 诫节 / qmsgswkjsgj_re_mbqingshi 清识
+【】 星月界势董昭 [qmsgswkjsgj_re_pot_dongzhao]：qmsgswkjsgj_re_mbmiaolue 妙略 / qmsgswkjsgj_re_mbyingjia 迎驾
+【】 星月界司马徽 [qmsgswkjsgj_re_simahui]：qmsgswkjsgj_re_jianjie 荐杰
+【】 星月界缘孙权 [qmsgswkjsgj_re_o_sunquan]：qmsgswkjsgj_mbshizhong 势众 / qmsgswkjsgj_mbcaowei 操微
+【】 星月界合郭照 [qmsgswkjsgj_re_jsrg_guozhao]：qmsgswkjsgj_re_jsrgpianchong 偏宠 / qmsgswkjsgj_re_jsrgzunwei 尊位
+【】 渭南张郃 [qmsgswkjsgj_re_wn_zhanghe]：qmsgswkjsgj_re_wn_qiaobian 巧变
+【星月神系列】
+【略】 星月神赵云 [qmsgswkjsgj_shen_zhaoyun]：qmsgswkjsgj_longhun 龙魂
+【】 星月神鲁肃 [qmsgswkjsgj_shen_lusu]：qmsgswkjsgj_tamo_faq FAQ
+【】 星月神张辽 [qmsgswkjsgj_shen_zhangliao]：qmsgswkjsgj_drlt_tuxi 突袭 / qmsgswkjsgj_drlt_duorui 夺锐 / qmsgswkjsgj_drlt_zhiti 止啼
+【】 星月神刘备 [qmsgswkjsgj_shen_liubei]：qmsgswkjsgj_nzry_rende 仁德 / qmsgswkjsgj_nzry_longnu 龙怒 / qmsgswkjsgj_nzry_jieying 结营 / qmsgswkjsgj_rejiemingplus 节命
+【】 星月神关羽 [qmsgswkjsgj_shen_guanyu]：qmsgswkjsgj_shen_wusheng 武圣 / qmsgswkjsgj_wushen 武神 / qmsgswkjsgj_wuhun 武魂
+【】 星月神吕蒙 [qmsgswkjsgj_shen_lvmeng]：qmsgswkjsgj_shen_keji 克己 / qmsgswkjsgj_shelie 涉猎 / qmsgswkjsgj_gongxin 攻心
+【星月神赐系列（shenci）】
+【0】 星月神赐武诸葛亮 [qmsgswkjsgj_shenci_wu_zhugeliang]：qmsgswkjsgj_shenci_redczhizhe 智哲
+【0】 星月神赐界杜预 [qmsgswkjsgj_shenci_re_duyu]：qmsgswkjsgj_shenci_spwukuplus 武库
+【略】 星月神赐界孙寒华 [qmsgswkjsgj_shenci_re_sunhanhua]：qmsgswkjsgj_shenci_miaojian1 妙剑·改 / qmsgswkjsgj_shenci_miaojian2 妙剑·极 / qmsgswkjsgj_shenci_shhlianhua1 莲华·改 / qmsgswkjsgj_shenci_shhlianhua2 莲华·极
+【】 星月神赐曹髦 [qmsgswkjsgj_shenci_caomao]：qmsgswkjsgj_shenci_mbqianlongplus 潜龙
+【】 星月神赐武皇甫嵩 [qmsgswkjsgj_shenci_wu_huangfusong]：qmsgswkjsgj_shenci_dcchaozhen 朝镇 / qmsgswkjsgj_shenci_dclianjie 连捷 / qmsgswkjsgj_shenci_dcjiangxian 将贤
+【】 星月神赐武关羽 [qmsgswkjsgj_shenci_wu_guanyu]：qmsgswkjsgj_shenci_dcjuewu 绝武 / qmsgswkjsgj_shenci_dcwuyou 武佑 / qmsgswkjsgj_shenci_dcyixian 义贤
+【】 星月神赐界柏灵筠 [qmsgswkjsgj_shenci_bolingyun]：qmsgswkjsgj_shenci_dclinghui 灵慧 / qmsgswkjsgj_shenci_dcxiace 黠策 / qmsgswkjsgj_shenci_dcyuxin 御心
+【】 星月神赐司马徽 [qmsgswkjsgj_shenci_simahui]：qmsgswkjsgj_shenci_jianjie 荐杰 / qmsgswkjsgj_shenci_jianjie_huoji 火计 / qmsgswkjsgj_shenci_jianjie_lianhuan 连环 / qmsgswkjsgj_shenci_jianjie_yeyan 业炎 / qmsgswkjsgj_shenci_yinshi 隐士 / qmsgswkjsgj_shenci_chenghao 称好
+【】 星月神赐欧陆凯撒 [qmsgswkjsgj_shenci_eu_kaisa]：qmsgswkjsgj_shenci_eu_ducai 独裁 / qmsgswkjsgj_shenci_eu_zhitong 治统 / qmsgswkjsgj_shenci_eu_jiquan 集权
+
+二、氪界（zzrsqlkjygzz）略
+【】 氪界左慈 [zzrsqlkjygzz_re_zuoci]：zzrsqlkjygzz_Ejianxiong 奸雄 / zzrsqlkjygzz_Ewusheng 武圣
+【】 氪神关羽 [zzrsqlkjygzz_shen_guanyu]：zzrsqlkjygzz_wushen 武神 / zzrsqlkjygzz_wuhun 武神（显示名重复，实际应为武魂）
+【】 异张角 [zzrsqlkjygzz_yi_zhangjiao]：zzrsqlkjygzz_Eleiji 雷击 / zzrsqlkjygzz_Eguidao 鬼道
+【】 异张角 [zzrsqlkjygzz_yi2_zhangjiao]：zzrsqlkjygzz_Esanshou 三首
+【】 氪神张角 [zzrsqlkjygzz_shen_zhangjiao]：zzrsqlkjygzz_tianjie 天劫
+【】 异陆逊 [zzrsqlkjygzz_yi_luxun]：zzrsqlkjygzz_Eqianxun 谦逊 / zzrsqlkjygzz_Elianying 连营
+【】 氪神陆逊 [zzrsqlkjygzz_shen_luxun]：zzrsqlkjygzz_junlue 军略 / zzrsqlkjygzz_cuike 摧克
+【】 异孙策 [zzrsqlkjygzz_yi_sunce]：zzrsqlkjygzz_Ejiang 激昂 / zzrsqlkjygzz_Ehunzi 魂姿
+【】 氪神孙策 [zzrsqlkjygzz_shen_sunce]：zzrsqlkjygzz_yingba 英霸 / zzrsqlkjygzz_pinghe 冯河（显示名，base 为 pinghe）
+【】 氪虎牢神吕布 [zzrsqlkjygzz_boss_lvbu]：zzrsqlkjygzz_jiwu 极武
+
+三、开局关羽但新三国（sgskjgydxsg）
+【0】 新三国关羽 [sgskjgydxsg_guanyu]：sgskjgydxsg_wusheng 武圣 / sgskjgydxsg_guojiang 过江
+
+（注：未提交，仅供查看；仙界下凡组已剔除，因其缺失多为技能辅助/额外描述；
+待确认是否真漏写时可再交叉 character.js 的 skill:[...] 数组过滤假缺失）
+
+2026.09.27（本次更新改动情报）
+一、星月系列技能补全（YB_12_character/skill.js，+3088 行）
+补全星月界/星月神/星月神赐系列武将此前缺失的技能定义，覆盖此前 translate.js 交叉匹配标记的缺失项。
+涉及武将含：星月界SP甄宓、刘禅、曹金玉、乐周瑜、柏灵筠、威张辽、新杀谋司马懿、管宁、庞凤衣、马超、徐盛、
+势国渊/辛宪英/董昭、司马徽、缘孙权、合郭照、渭南张郃、乐蔡琰、刘巴、诸葛瑾、袁胤、势陆郁生、势魏延、滕芳兰、
+朱建平、裴秀、十常侍、沮授、书张芝、杨彪、张绣、孙寒华等；新增技能如：己诫/惠济、隅泣/善身/娴静、顾音/平虏、
+灵慧/黠策/御心、驭袭/破戎、权谋/平辽、遁世、异瞳/醅酿、铁骑、破军、清蹈/休耕/陈赦、诫节/清识、妙略/迎驾、
+荐杰、势众/操微、偏宠/尊位、巧变，及各类 plus 衍生技能。
+
+二、星月系列武将键值补全（YB_12_character/character.js，+51 行）
+新增上述武将的 character 键值（性别/势力/体力/技能/linkTo/YB_mjz 等）。
+
+三、翻译与动态描述修正
+- YB_12_character/translate.js：补全 sgskjgydxsg 新三国关羽「武圣/过江」技能描述；星月乐周瑜 prefix 由"星月|神|乐"修正为"星月|界|乐"并补琴音 tag；武库plus 文案"一键"→"一件"；娴静补出处注释。
+- YB_12_character/dynamicTranslate.js：新增 qmsgswkjsgj_re_yuqi 动态描述；曹金玉隅泣补出处注释。
+
+四、新增「连招宇宙」系统（precontent/YB_04_special.js，+81 行）
+新增连招机制核心：get.YB_lianzhaoFilterList / YB_lianzhaoFilter / lib.skill._ybsl_lianzhao，实现"连招就绪·箭在弦上"的连招触发与询问流程。
+
+五、新增武将包「连招宇宙」（YB_15_character/*，新增）
+通过 source/ext/YB_15_character.js 注册新武将包 ybllyz（连招宇宙），含威张辽（驭袭/破戎）、威吕布（骁武/霸关），
+配套 character/translate/skill/dynamicTranslate/card 及介绍文案文件；破戎、霸关为连招技。
+
+六、【毒】牌重写（packages/content/YB_05_boom.js）
+移除赠毒(g_du_give)与毒战(ybsl_duzhan)标签等复杂逻辑，enable 直接置 true，毒的描述迁移至 du_info。
+
+七、杂项修正
+- precontent.js：lib.type 改名 lib.typeyb（避免污染本体），补注释。
+- YB_02_nature.js：namePrefix 新增"新三国"前缀（showName 新，nature YB_dream）。
+- YB_08_ybslf.js：隅泣(YB_yuqi)函数新增 bool 参数（是否至少交一张），调整对话框文本与 filterOk。
+- YB_05_card/skill.js：某卡 filter 增加位置判定 get.position(event.cards[0],true)=='o'。
+- YB_05_card/translate.js：新增 ybsl_taoyao_ab '桃夭'。
+- YB_14_character/translate.js：女魃「不雨」info "出牌阶段"→"摸牌阶段"。
+- pile/cyyydsgs.js：前置代码块 `{` 改为 `if(false){`（禁用）。
+- pile/list24.js：修正 24 点游戏多组算式（修正无解/错误计算）。

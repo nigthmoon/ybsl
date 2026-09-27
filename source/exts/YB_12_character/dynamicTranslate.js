@@ -100,9 +100,13 @@ const dynamicTranslate = {
 		return `${start}阳：${yang}；阴：${yin}${end}`;
 	},
 
+	qmsgswkjsgj_re_yuqi(player) {
+		var info = lib.skill.qmsgswkjsgj_re_yuqi.getInfo(player);
+		return '每回合限<span class=YB_snowtext>' + info[0] + '</span>次。当有角色受到1点伤害后，若你至其的距离不大于<span class=thundertext>' + info[1] + '</span>，则你可以观看牌堆顶的<span class=firetext>' + info[2] + '</span>张牌。你将其中至多<span class=greentext>' + info[3] + '</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>' + info[4] + '</span>张牌，并将其余牌以原顺序放回牌堆顶。（所有具有颜色的数字至多为体力上限）（全民三国杀我开局神郭嘉的界曹金玉）';
+	},
 	sgsxjxfzmnl_yuqi(player) {
 		var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
-		return '锁定技，有角色受伤后，若你与其距离小于等于<span class=thundertext>' + info[0] + '</span>，你可以观看牌堆顶<span class=firetext>' + info[1] + '</span>张牌，将其中至多<span class=greentext>' + info[2] + '</span>张交给受伤角色，至多<span class=yellowtext>' + info[3] + '</span>张自己获得，其余的牌放回牌堆顶。';
+		return '锁定技，有角色受伤后，若你与其距离小于等于<span class=thundertext>' + info[0] + '</span>，你可以观看牌堆顶<span class=firetext>' + info[1] + '</span>张牌，将其中至多<span class=greentext>' + info[2] + '</span>张交给受伤角色，至多<span class=yellowtext>' + info[3] + '</span>张自己获得，其余的牌放回牌堆顶。（三国杀仙界下凡怎么你了的曹金玉）';
 	},
 	sgsxjxfzmnl_miaojian(player) {
 		return ['出牌阶段限一次，你可以使用[杀]当做一张不限次数的[刺杀]使用，或将一张锦囊牌当做[无中生有]使用。', '出牌阶段限两次，你可以将一张基本牌当做一张不限次数的[刺杀]使用，或将一张非基本牌当做[无中生有]使用。', '出牌阶段限三次，你可以视为使用一张不限次数的[刺杀]或视为使用一张[无中生有]。'][player.countMark('sgsxjxfzmnl_miaojian')];

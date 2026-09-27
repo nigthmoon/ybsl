@@ -3,7 +3,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 import { typeimage } from '../packages/function.js';
 export async function cyyydsgs() {
-	{
+	if(false){
 		//穿越也要打三国杀 前置必要代码
 		//技能等级的必要代码（后续可能没用了
 		{

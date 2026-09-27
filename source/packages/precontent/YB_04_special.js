@@ -23,6 +23,7 @@ export { YBSL_special };
  * 应变
  * 批量将一些技能加入界雷击禁止名单
  * 六艺
+ * 连招宇宙
  */
 const YBSL_special = function () {
 	_status.YB_jingxieList = ['bagua', 'baiyin', 'lanyinjia', 'renwang', 'tengjia', 'zhuge', 'ybsl_wangzhui', 'chitu', 'zhuque', 'wuxinghelingshan', 'yitianjian', 'shandian', 'fulei', 'taigongyinfu', 'ybsl_tianleiyubi', 'hongshui', 'huoshan', /*'du',*/ 'chiyanzhenhunqin', 'tongque', 'qinglong', 'fangtian', 'wutiesuolian', 'huxinjing', 'goujiangdesidai'];
@@ -1484,5 +1485,85 @@ const YBSL_special = function () {
 		};
 		lib.translate._ybsl_sixart = '六艺';
 		lib.translate._ybsl_sixart_info = '限拥有六艺技的角色使用。出牌阶段限一次，你可以将至多三张手牌置入你的六艺区。你可以将你六艺区的牌如手牌般使用或打出。六艺区的牌数至多以此法补充至六。';
+	}
+	{//连招宇宙
+		get.YB_lianzhaoFilterList = function (player) {
+			var skills = player.getSkills(null, false);
+			var skills2 = game.expandSkills(skills);
+			var skills3 = skills2.filter(function (i) {
+				if (i&&lib.skill[i]&&lib.skill[i].getLianzhao) return true;
+			});
+			return skills3;
+		}
+		get.YB_lianzhaoFilter = function (player, skill, event) {
+			if (!lib.skill[skill]||!lib.skill[skill].getLianzhao) return false;
+			var num = player.storage[skill] || 0;
+			if (lib.skill[skill].getLianzhao()[num](event,player)) return true;
+			return false;
+		}
+		lib.skill._ybsl_lianzhao={
+			trigger: {
+				player: ['useCard'/*, 'phaseAfter'*/,'useCardEnd','useCardAfter']
+			},
+			filter: (event, player, name) => {
+				let skills = get.YB_lianzhaoFilterList(player);
+				if (!skills || !skills.length) return false;
+				if (name != 'useCard') {
+					for (let i of skills) {
+						if (event.card['YB_' + i]) return true;
+					}
+					return false;
+				}
+				// useCard：仅当该牌能开启或推进某连招时才记录，避免无适配技能时污染
+				for (let i of skills) {
+					let num = player.storage[i] || 0;
+					if (num > 0 || get.YB_lianzhaoFilter(player, i, event)) return true;
+				}
+				return false;
+			},
+			direct: true,
+			content() {
+				let skills = get.YB_lianzhaoFilterList(player)
+				if (skills.length) {
+					if (event.triggername == 'phaseAfter') {
+						for (var i of skills) {
+							player.storage[i] = 0;
+							player.storage[i + '_lzasking'] = null;
+						}
+					}
+					else if(event.triggername=='useCard'){
+						for (var i of skills) {
+							let matched = get.YB_lianzhaoFilter(player, i, trigger);
+							if (!matched && !lib.skill[i].lianzhao_wushuang) {
+								player.storage[i] = 0;
+								player.storage[i + '_lzasking'] = null;
+							}
+							if (matched) {
+								player.storage[i]++;
+							}
+						}
+						for (var i of skills) {
+							if (lib.skill[i].getLianzhao().length == player.storage[i]) {
+								player.storage[i] = 0;
+								// 连招就绪：标记“箭在弦上”，随后由技能 content 弹出“是否发动”询问
+								player.storage[i + '_lzasking'] = true;
+								player.markSkill(i);
+								trigger.card['YB_' + i]=true;
+								trigger.trigger('YB_' + i);
+							}
+						}
+					}
+					else {
+						var str = event.triggername.slice(7);
+						for (var i of skills) {
+							if(trigger.card['YB_' + i]){
+								trigger.trigger('YB_' + i + str);
+							}
+						}
+					}
+				}
+			}
+		}
+		// lib.translate._ybsl_lianzhao='连招'
 	}
 };

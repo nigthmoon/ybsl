@@ -281,6 +281,7 @@ const translate = {
 	ybsl_fengqiuhuang_bg: '凰',
 	ybsl_fengqiuhuang_info: '锁定技，当你使用锦囊牌或基本牌后，令此牌额外结算一次。',
 	ybsl_taoyao: '桃之夭夭',
+	ybsl_taoyao_ab: '桃夭',
 	ybsl_taoyao_info: '你可以将一张红桃牌当【桃】使用。',
 	ybsl_zhiziyugui: '之子于归',
 	ybsl_zhiziyugui_bg: '归',

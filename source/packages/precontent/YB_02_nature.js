@@ -700,6 +700,11 @@ const YBSL_nature = function () {
 				return `${get.prefixSpan('鈺')}${get.prefixSpan('界')}`;
 			},
 		});
+		lib.namePrefix.set('新三国', {
+			showName: '新',
+			color: '#e3b0b0',
+			nature: 'YB_dream',
+		});
 	}
 	{
 		//校花包元素
