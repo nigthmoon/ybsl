@@ -84,4 +84,18 @@ const dynamicTranslate = {
 		var info = lib.skill.qmsgswkjsgj_re_yuqi.getInfo(player);
 		return '每回合限<span class=YB_snowtext>' + info[0] + '</span>次。当有角色受到1点伤害后，若你至其的距离不大于<span class=thundertext>' + info[1] + '</span>，则你可以观看牌堆顶的<span class=firetext>' + info[2] + '</span>张牌。你将其中至多<span class=greentext>' + info[3] + '</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>' + info[4] + '</span>张牌，并将其余牌以原顺序放回牌堆顶。（所有具有颜色的数字至多为体力上限）（全民三国杀我开局神郭嘉的界曹金玉）';
 	},
+	qmsgswkjsgj_re_dcsbquanmou(player) {
+		const bool = player.storage.qmsgswkjsgj_re_dcsbquanmou;
+		let yang = "当你于本阶段内下次对其造成伤害时，取消之",
+			yin = "当你于本阶段内下次对其造成伤害后，你可以选择至多X名其他角色，对这些角色依次造成1点伤害（X为你的体力上限）";
+		if (bool) {
+			yin = `<span class='bluetext'>${yin}</span>`;
+		} else {
+			yang = `<span class='firetext'>${yang}</span>`;
+		}
+		let start = "转换技。①游戏开始时，你可以转换此技能状态；②出牌阶段每名角色限一次，你可以令一名其他角色交给你一张牌。",
+			end = "。（全民三国杀我开局神郭嘉）";
+		return `${start}阳：${yang}；阴：${yin}${end}`;
+	},
+
 };

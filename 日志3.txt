@@ -1203,7 +1203,7 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 【】 渭南张郃 [qmsgswkjsgj_re_wn_zhanghe]：qmsgswkjsgj_re_wn_qiaobian 巧变
 【星月神系列】
 【略】 星月神赵云 [qmsgswkjsgj_shen_zhaoyun]：qmsgswkjsgj_longhun 龙魂
-【】 星月神鲁肃 [qmsgswkjsgj_shen_lusu]：qmsgswkjsgj_tamo_faq FAQ
+【略】 星月神鲁肃 [qmsgswkjsgj_shen_lusu]：qmsgswkjsgj_tamo_faq FAQ
 【】 星月神张辽 [qmsgswkjsgj_shen_zhangliao]：qmsgswkjsgj_drlt_tuxi 突袭 / qmsgswkjsgj_drlt_duorui 夺锐 / qmsgswkjsgj_drlt_zhiti 止啼
 【】 星月神刘备 [qmsgswkjsgj_shen_liubei]：qmsgswkjsgj_nzry_rende 仁德 / qmsgswkjsgj_nzry_longnu 龙怒 / qmsgswkjsgj_nzry_jieying 结营 / qmsgswkjsgj_rejiemingplus 节命
 【】 星月神关羽 [qmsgswkjsgj_shen_guanyu]：qmsgswkjsgj_shen_wusheng 武圣 / qmsgswkjsgj_wushen 武神 / qmsgswkjsgj_wuhun 武魂
@@ -1291,3 +1291,18 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 - source/packages/function.js：导出新增 mergeObjectsOverride。
 - 功能：合并多个对象，后者覆盖前者（而非 mergeObjects 的 '<br>' 拼接），避免把数组/对象强制转成字符串；用于聚合 character / skill / card 等数据对象。
 - 配套 YB_12_character 的聚合内联改造，统一采用覆盖式合并。
+
+2026.09.29
+新增星月神张辽（qmsgswkjsgj_shen_zhangliao，男，神势力，4血，群）：突袭、夺锐（含夺锐1标记技）、止啼。
+代码位于 source/exts/YB_12_character/qmsgswkjsgj/（character.js / skill.js / translate.js / characterSort.js / dynamicTranslate.js）。
+
+突袭：摸牌阶段，你可以少摸任意张牌并获得等量其他角色的牌。
+夺锐：当你对一名其他角色造成伤害后，你可以废除其一个装备栏，然后选择该角色武将牌上的一个技能，令其此技能无效，且你获得该技能（临时获得，随你阵亡解除）。
+止啼：①摸牌阶段你可以多摸X张牌（X为场上所有被废除的装备栏数）；②其他角色的弃牌阶段结束时，若其有被废除的装备栏，你可以弃置其等量张牌；③其他角色有被废除的装备栏时，其不可响应你使用的牌。
+
+本次针对神张辽的修正（skill.js）：
+- 夺锐：修复“多次夺取后仅第一个被夺技能失效”——夺锐1为临时技，已拥有时 addTempSkill 提前返回、init 只跑一次；改为每次夺取后立即 disableSkill 令对方该技能失效（源标签记为夺锐1）。
+- 夺锐：修复“可重复夺取同一技能”——候选来源读 lib.character[name][3] 原始技能表、未排除已夺技能；现排除 storage.qmsgswkjsgj_drlt_duorui_ban（.flat 兼容嵌套存储）。
+- 夺锐：duorui1.onremove 原只复原自身（duorui1），改为遍历 ban 列表逐个 enableSkill 复原对方被夺技能。
+- 止啼：cardRespondable 原取 event 形参，而引擎传入的是 "unchanged" 哨兵，导致 evt.name 永远不为 chooseToRespond、分支永不触发；改为以 _status.event 取真实响应事件（与引擎 lib.filter.cardRespondable 一致）。
+- 止啼：filter 内 game.forEachPlayer 不存在，改为 game.players.forEach；discard 子技 content 内裸用未定义的全局 result，改为 var result = await next.forResult()。

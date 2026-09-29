@@ -46,12 +46,12 @@ const translate = {
 	qmsgswkjsgj_gui_sunquan: '黑无常赐福孙权',
 	qmsgswkjsgj_gui_sunquan_prefix: '黑无常赐福',
 	//神鬼赐福
-	// qmsgswkjsgj_taiping: "太平",
-	// qmsgswkjsgj_taiping_info: "锁定技，摸牌阶段摸牌时，你的摸牌数量+2。",
-	// qmsgswkjsgj_taiping_append: "黑无常赐福。",
-	// qmsgswkjsgj_baolian:'暴敛',
-	// qmsgswkjsgj_baolian_info: "锁定技，结束阶段，你摸两张牌。",
-	// qmsgswkjsgj_baolian_append: "白无常赐福。",
+	qmsgswkjsgj_taiping: "太平",
+	qmsgswkjsgj_taiping_info: "锁定技，摸牌阶段摸牌时，你的摸牌数量+2。",
+	qmsgswkjsgj_taiping_append: "黑无常赐福。",
+	qmsgswkjsgj_baolian:'暴敛',
+	qmsgswkjsgj_baolian_info: "锁定技，结束阶段，你摸两张牌。",
+	qmsgswkjsgj_baolian_append: "白无常赐福。",
 
 	qmsgswkjsgj_shen_guojia: '星月神郭嘉',
 	qmsgswkjsgj_shen_guojia_prefix: '星月|神',
@@ -717,7 +717,7 @@ const translate = {
 	qmsgswkjsgj_re_hongyuan: '弘援',
 	qmsgswkjsgj_re_hongyuan_info: '摸牌阶段，你可以少摸一张牌并指定至多两名其他角色。若如此做，这些角色各摸两张牌。',
 	qmsgswkjsgj_re_mingzhe: '明哲',
-	qmsgswkjsgj_re_mingzhe_info: '当你于回合外一张红色牌后，你可以摸两张牌。',
+	qmsgswkjsgj_re_mingzhe_info: '当你于回合外失去一张红色牌后，你可以摸两张牌。',
 
 	qmsgswkjsgj_re_yuanyin: '星月界袁胤',
 	qmsgswkjsgj_re_yuanyin_prefix: '星月|界',
@@ -747,7 +747,7 @@ const translate = {
 	// qmsgswkjsgj
 	//同retiaoxin
 	qmsgswkjsgj_zhiji: '志继',
-	qmsgswkjsgj_zhiji_info: '觉醒技，准备阶段或结束阶段，若你没有手牌，你回复1点体力或摸两张牌，然后减一点体力上限，获得“观星”和“空城”。',
+	qmsgswkjsgj_zhiji_info: `觉醒技，准备阶段或结束阶段，若你没有手牌，你回复1点体力或摸两张牌，然后减1点体力上限，获得技能${get.poptip("qmsgswkjsgj_jwguanxing")}和${get.poptip("kongcheng")}。`,
 	qmsgswkjsgj_jwguanxing: '观星',
 	qmsgswkjsgj_jwguanxing_info: '准备阶段，你可以观看牌堆顶5张牌，然后将其中任意数量的牌置于牌堆顶，将其余的牌置于牌堆底。',
 
@@ -794,6 +794,8 @@ const translate = {
 	qmsgswkjsgj_re_dcporong_info: '连招技（非【杀】 + 【杀】）。你可以获得目标角色与其相邻角色的各一张牌，且此牌额外结算一次。',
 
 	//神郭嘉再加强
+	qmsgswkjsgj_plus_shen_guojia:'星月神神郭嘉',
+	qmsgswkjsgj_plus_shen_guojia_prefix: '星月|神|神',
 	qmsgswkjsgj_reshuishiplus: '慧识',
 	qmsgswkjsgj_reshuishiplus_info: '出牌阶段限一次。若你的体力上限小于15，你可进行判定。若判定结果与本次发动技能时的其他判定结果的点数均不相同且你的体力上限小于15，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。（全民三国杀我开局神郭嘉的慧识。据作者剧情实战，天妒回收后不计入已判定）',
 	qmsgswkjsgj_stianyiplus: '天翊',
@@ -803,6 +805,8 @@ const translate = {
 	qmsgswkjsgj_zuoxingplus_info: '每回合限一次，若令你获得〖佐幸〗的角色存活且体力上限大于1，则你可以令其减1点体力上限，并视为使用一张普通锦囊牌。',
 
 	//神荀彧再加强
+	qmsgswkjsgj_plus_shen_xunyu:'星月神神荀彧',
+	qmsgswkjsgj_plus_shen_xunyu_prefix: '星月|神|神',
 	qmsgswkjsgj_jiemingplus: '节命',
 	qmsgswkjsgj_jiemingplus_info: '当你受到1点伤害时，你可以令一名角色摸X张牌，然后你摸一张牌（X为其体力上限且至多为5）。',
 	qmsgswkjsgj_tianzuoplus: '天佐',
@@ -829,24 +833,27 @@ const translate = {
 
 	//界关羽补强
 	qmsgswkjsgj_re_guanyu: '星月界关羽',
-	qmsgswkjsgj_shenci_guanyu_prefix: '星月|界',
+	qmsgswkjsgj_re_guanyu_prefix: '星月|界',
 	qmsgswkjsgj_re_wusheng:'武圣',
 	qmsgswkjsgj_re_wusheng_info:'你可以将一张红色牌当无距离限制的【杀】使用或打出。',
 	qmsgswkjsgj_re_yijue:'义绝',
-	qmsgswkjsgj_re_yijue_info:'出牌阶段限一次，你可以弃置一名角色一张牌。若此牌未黑色，则其本回合非锁定技失效且不能使用或打出手牌，你对其使用的红桃【杀】伤害+1；若此牌未红色，则你获得之，然后你令该角色回复1点体力。',
+	qmsgswkjsgj_re_yijue_info:'出牌阶段限一次，你可以弃置一名角色一张牌。若此牌为黑色，则其本回合非锁定技失效且不能使用或打出手牌，你对其使用的红桃【杀】伤害+1；若此牌为红色，则你获得之，然后你可令该角色回复1点体力。',
 
 	//界马超补强
 	qmsgswkjsgj_re_machao: '星月界马超',
 	qmsgswkjsgj_re_machao_prefix: '星月|界',
 	qmsgswkjsgj_re_tieji:'铁骑',
-	qmsgswkjsgj_re_tieji_info:'当你使用【杀】指定目标后，你可令其直到其下个回合结束非锁定技失效，然后你进行判定，除非其弃置与结果花色相同的一张牌，否则其不能使用【闪】。',
+	qmsgswkjsgj_re_tieji_info:'当你使用【杀】指定目标后，你可令其直到其下个回合结束非锁定技失效，然后你进行判定，除非其弃置与结果花色相同的一张牌，否则其不能响应此杀。',//使用【闪】
 	//没写抵消此杀，干脆让目标永久不能用闪吧，作者描述不规范背大锅
+	//写起来太麻烦了，优化描述吧，仅不能响应此杀
 
 	//界徐盛补强
 	qmsgswkjsgj_re_xusheng: '星月界徐盛',
 	qmsgswkjsgj_re_xusheng_prefix: '星月|界',
 	qmsgswkjsgj_re_pojun:'破军',
 	qmsgswkjsgj_re_pojun_info:'当你使用【杀】指定目标后，你可以将其的至多X张牌置于其武将牌上（X为其体力上限），然后其于当前回合结束时获得这些牌。当你使用【杀】对一名角色造成伤害时，若该角色的手牌数和装备区内的牌数均不大于你，则此伤害+1。',
+	qmsgswkjsgj_re_pojun2:'破军',
+	qmsgswkjsgj_re_pojun3:'破军',
 
 	//神张辽
 	qmsgswkjsgj_shen_zhangliao: '星月神张辽',
@@ -854,6 +861,7 @@ const translate = {
 	qmsgswkjsgj_drlt_tuxi:'突袭',
 	qmsgswkjsgj_drlt_tuxi_info:'摸牌阶段，你可以少摸任意张牌并获得等量其他角色的牌',
 	qmsgswkjsgj_drlt_duorui:'夺锐',
+	qmsgswkjsgj_drlt_duorui1:'夺锐',
 	qmsgswkjsgj_drlt_duorui_info:'当你对一名其他角色造成伤害后，你可以废除其一个装备栏，然后选择该角色武将牌上的一个技能，令其此技能无效，且你获得该技能。',
 	qmsgswkjsgj_drlt_zhiti:'止啼',
 	qmsgswkjsgj_drlt_zhiti_info:'摸牌阶段你可以多摸X张牌（X为场上所有被废除的装备栏数），其他角色的弃牌阶段结束时，若其有被废除的装备栏，你可以弃置其等量张牌。其他角色有被废除的装备栏时，其不可响应你使用的牌。',
@@ -899,8 +907,10 @@ const translate = {
 
 
 	//神郭嘉再再加强
+	qmsgswkjsgj_plusplus_shen_guojia:'星月神神神郭嘉',
+	qmsgswkjsgj_plusplus_shen_guojia_prefix: '星月|神|神|神',
 	qmsgswkjsgj_reshuishiplusplus: '慧识',
-	qmsgswkjsgj_reshuishiplusplus_info: '出牌阶段限一次。若你的体力上限小于18，你可进行判定。若判定结果与本次发动技能时的其他判定结果的点数均不相同且你的体力上限小于15，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。（全民三国杀我开局神郭嘉的慧识。据作者剧情实战，天妒回收后不计入已判定）',
+	qmsgswkjsgj_reshuishiplusplus_info: '出牌阶段限一次。若你的体力上限小于18，你可进行判定。若判定结果与本次发动技能时的其他判定结果的点数均不相同且你的体力上限小于18，则你加1点体力上限，且可以重复此流程。然后你将所有位于处理区的判定牌交给一名角色。若其手牌数为全场最多，则你减1点体力上限。（全民三国杀我开局神郭嘉的慧识。据作者剧情实战，天妒回收后不计入已判定）',
 	qmsgswkjsgj_stianyiplusplus: '天翊',
 	qmsgswkjsgj_stianyiplusplus_info: `觉醒技，若你受到伤害，你加2点体力上限并回复1点体力，然后令一名角色获得技能${get.poptip('qmsgswkjsgj_zuoxingplusplus')}。`,
 	qmsgswkjsgj_zuoxingplusplus: '佐幸',
@@ -938,6 +948,8 @@ const translate = {
 	qmsgswkjsgj_re_jianjie_info: "①游戏开始时，你令一名其他角色获得“龙印”，然后令另一名其他角色获得“凤印”。②出牌阶段限一次。若当前回合不是你的第一个回合，则你可以移动场上的“龙印”或“凤印”。③拥有“龙印”或“凤印”的其他角色死亡时，你转移该角色的“龙印”和“凤印”。④拥有“龙印”/“凤印”的角色视为拥有〖火计〗/〖连环〗，且同时拥有这两种标记的角色视为拥有〖业炎〗。",
 
 	//神周瑜补强
+	qmsgswkjsgj_plusplus_shen_zhouyu:'星月神神周瑜',
+	qmsgswkjsgj_plusplus_shen_zhouyu_prefix: '星月|神|神',
 	qmsgswkjsgj_yeyanplus: '业炎',
 	qmsgswkjsgj_yeyanplus_info: '出牌阶段限一次，你可以选择至多三名角色，对这些角色造成共计至多3点火焰伤害。',
 	qmsgswkjsgj_reyingziplus: '英姿',
@@ -961,8 +973,8 @@ const translate = {
 	qmsgswkjsgj_re_jsrgzunwei: "尊位",
 	qmsgswkjsgj_re_jsrgzunwei_info: "出牌阶段限一次。你可以选择一名其他角色并选择执行一项：1.将手牌数摸至与该角色相同；2.将其装备牌移至你的装备区；3.将体力值回复至与该角色相同。",
 
-	qmsgswkjsgj_re_wn_zhanghe: "渭南张郃",
-	qmsgswkjsgj_re_wn_zhanghe_prefix: "渭南",
+	qmsgswkjsgj_re_wn_zhanghe: "星月界渭南张郃",
+	qmsgswkjsgj_re_wn_zhanghe_prefix: "星月|界|渭南",
 	qmsgswkjsgj_re_wn_qiaobian: "巧变",
 	qmsgswkjsgj_re_wn_qiaobian_info: "其他角色的准备阶段，你可以将一张牌置于武将牌上，称为“巧”。本回合其使用牌时，你展示一张“巧”，若这两张牌类型或花色或点数：相同，若此时在其出牌阶段内，结束此阶段；不同，你摸一张牌，其的结束阶段，你获得所有“巧”。",
 	//魔炎
