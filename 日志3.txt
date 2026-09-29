@@ -1189,11 +1189,11 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 【0】 星月界乐周瑜 [qmsgswkjsgj_re_yue_zhouyu]：qmsgswkjsgj_re_dcguyin 顾音 / qmsgswkjsgj_re_dcpinglu 平虏
 【0】 星月界柏灵筠 [qmsgswkjsgj_re_bolingyun]：qmsgswkjsgj_re_dclinghui 灵慧 / qmsgswkjsgj_re_dcxiace 黠策 / qmsgswkjsgj_re_dcyuxin 御心
 【0】 星月界威张辽 [qmsgswkjsgj_re_v_zhangliao]：qmsgswkjsgj_re_dcyuxi 驭袭 / qmsgswkjsgj_re_dcporong 破戎
-【】 星月界新杀谋司马懿 [qmsgswkjsgj_re_sb_simayi]：qmsgswkjsgj_re_dcsbquanmou 权谋 / qmsgswkjsgj_re_dcsbpingliao 平辽
-【】 星月界管宁 [qmsgswkjsgj_re_guanning]：qmsgswkjsgj_re_dunshi 遁世
-【】 星月界庞凤衣 [qmsgswkjsgj_re_pangfengyi]：qmsgswkjsgj_re_dcyitong 异瞳 / qmsgswkjsgj_re_dcpeiniang 醅酿
-【】 星月界马超 [qmsgswkjsgj_re_machao]：qmsgswkjsgj_re_tieji 铁骑
-【】 星月界徐盛 [qmsgswkjsgj_re_xusheng]：qmsgswkjsgj_re_pojun 破军
+【0】 星月界新杀谋司马懿 [qmsgswkjsgj_re_sb_simayi]：qmsgswkjsgj_re_dcsbquanmou 权谋 / qmsgswkjsgj_re_dcsbpingliao 平辽
+【0】 星月界管宁 [qmsgswkjsgj_re_guanning]：qmsgswkjsgj_re_dunshi 遁世
+【0】 星月界庞凤衣 [qmsgswkjsgj_re_pangfengyi]：qmsgswkjsgj_re_dcyitong 异瞳 / qmsgswkjsgj_re_dcpeiniang 醅酿
+【0】 星月界马超 [qmsgswkjsgj_re_machao]：qmsgswkjsgj_re_tieji 铁骑
+【0】 星月界徐盛 [qmsgswkjsgj_re_xusheng]：qmsgswkjsgj_re_pojun 破军
 【】 星月界势国渊 [qmsgswkjsgj_re_pot_guoyuan]：qmsgswkjsgj_re_mbqingdao 清蹈 / qmsgswkjsgj_re_mbxiugeng 休耕 / qmsgswkjsgj_re_mbchenshe 陈赦
 【】 星月界势辛宪英 [qmsgswkjsgj_re_pot_xinxianying]：qmsgswkjsgj_re_mbjiejie 诫节 / qmsgswkjsgj_re_mbqingshi 清识
 【】 星月界势董昭 [qmsgswkjsgj_re_pot_dongzhao]：qmsgswkjsgj_re_mbmiaolue 妙略 / qmsgswkjsgj_re_mbyingjia 迎驾
@@ -1204,7 +1204,7 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 【星月神系列】
 【略】 星月神赵云 [qmsgswkjsgj_shen_zhaoyun]：qmsgswkjsgj_longhun 龙魂
 【略】 星月神鲁肃 [qmsgswkjsgj_shen_lusu]：qmsgswkjsgj_tamo_faq FAQ
-【】 星月神张辽 [qmsgswkjsgj_shen_zhangliao]：qmsgswkjsgj_drlt_tuxi 突袭 / qmsgswkjsgj_drlt_duorui 夺锐 / qmsgswkjsgj_drlt_zhiti 止啼
+【0】 星月神张辽 [qmsgswkjsgj_shen_zhangliao]：qmsgswkjsgj_drlt_tuxi 突袭 / qmsgswkjsgj_drlt_duorui 夺锐 / qmsgswkjsgj_drlt_zhiti 止啼
 【】 星月神刘备 [qmsgswkjsgj_shen_liubei]：qmsgswkjsgj_nzry_rende 仁德 / qmsgswkjsgj_nzry_longnu 龙怒 / qmsgswkjsgj_nzry_jieying 结营 / qmsgswkjsgj_rejiemingplus 节命
 【】 星月神关羽 [qmsgswkjsgj_shen_guanyu]：qmsgswkjsgj_shen_wusheng 武圣 / qmsgswkjsgj_wushen 武神 / qmsgswkjsgj_wuhun 武魂
 【】 星月神吕蒙 [qmsgswkjsgj_shen_lvmeng]：qmsgswkjsgj_shen_keji 克己 / qmsgswkjsgj_shelie 涉猎 / qmsgswkjsgj_gongxin 攻心
@@ -1300,9 +1300,9 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 夺锐：当你对一名其他角色造成伤害后，你可以废除其一个装备栏，然后选择该角色武将牌上的一个技能，令其此技能无效，且你获得该技能（临时获得，随你阵亡解除）。
 止啼：①摸牌阶段你可以多摸X张牌（X为场上所有被废除的装备栏数）；②其他角色的弃牌阶段结束时，若其有被废除的装备栏，你可以弃置其等量张牌；③其他角色有被废除的装备栏时，其不可响应你使用的牌。
 
-本次针对神张辽的修正（skill.js）：
-- 夺锐：修复“多次夺取后仅第一个被夺技能失效”——夺锐1为临时技，已拥有时 addTempSkill 提前返回、init 只跑一次；改为每次夺取后立即 disableSkill 令对方该技能失效（源标签记为夺锐1）。
-- 夺锐：修复“可重复夺取同一技能”——候选来源读 lib.character[name][3] 原始技能表、未排除已夺技能；现排除 storage.qmsgswkjsgj_drlt_duorui_ban（.flat 兼容嵌套存储）。
-- 夺锐：duorui1.onremove 原只复原自身（duorui1），改为遍历 ban 列表逐个 enableSkill 复原对方被夺技能。
-- 止啼：cardRespondable 原取 event 形参，而引擎传入的是 "unchanged" 哨兵，导致 evt.name 永远不为 chooseToRespond、分支永不触发；改为以 _status.event 取真实响应事件（与引擎 lib.filter.cardRespondable 一致）。
-- 止啼：filter 内 game.forEachPlayer 不存在，改为 game.players.forEach；discard 子技 content 内裸用未定义的全局 result，改为 var result = await next.forResult()。
+本次撰写代码曾有以下bug，但已修复（skill.js）：
+- 夺锐：最初多次夺取后仅第一个被夺技能失效（夺锐1为临时技，已拥有时 addTempSkill 提前返回、init 只跑一次）；后改为每次夺取后立即 disableSkill 令对方该技能失效（源标签记为夺锐1）。
+- 夺锐：最初可重复夺取同一技能（候选来源读 lib.character[name][3] 原始技能表、未排除已夺技能）；后改为排除 storage.qmsgswkjsgj_drlt_duorui_ban（.flat 兼容嵌套存储）。
+- 夺锐：duorui1.onremove 最初只复原自身（duorui1）；后改为遍历 ban 列表逐个 enableSkill 复原对方被夺技能。
+- 止啼：cardRespondable 最初取 event 形参，而引擎传入的是 "unchanged" 哨兵，导致 evt.name 永远不为 chooseToRespond、分支永不触发；后改为以 _status.event 取真实响应事件（与引擎 lib.filter.cardRespondable 一致）。
+- 止啼：filter 内 game.forEachPlayer 不存在；后改为 game.players.forEach。discard 子技 content 最初裸用未定义的全局 result；后改为 var result = await next.forResult()。
