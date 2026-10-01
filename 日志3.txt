@@ -1306,3 +1306,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 - 夺锐：duorui1.onremove 最初只复原自身（duorui1）；后改为遍历 ban 列表逐个 enableSkill 复原对方被夺技能。
 - 止啼：cardRespondable 最初取 event 形参，而引擎传入的是 "unchanged" 哨兵，导致 evt.name 永远不为 chooseToRespond、分支永不触发；后改为以 _status.event 取真实响应事件（与引擎 lib.filter.cardRespondable 一致）。
 - 止啼：filter 内 game.forEachPlayer 不存在；后改为 game.players.forEach。discard 子技 content 最初裸用未定义的全局 result；后改为 var result = await next.forResult()。
+
+2026.10.01
+补全星月神刘备、神关羽、神吕蒙的代码（YB_12_character/qmsgswkjsgj/skill.js、translate.js）。
