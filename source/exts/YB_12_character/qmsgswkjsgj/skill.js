@@ -18782,14 +18782,711 @@ const skill = {
 		},
 	},
 
-	//神刘备
-	//神关羽
-	//神吕蒙
+	//星月神刘备
+	qmsgswkjsgj_nzry_rende: {
+		audio: 'rerende',
+		enable: 'phaseUse',
+		filter(event, player) {
+			return player.countCards('h') > 0 && game.hasPlayer(current => current != player);
+		},
+		filterTarget(card, player, target) {
+			return target != player;
+		},
+		filterCard: true,
+		selectCard: [1, Infinity],
+		allowChooseAll: true,
+		discard: false,
+		lose: false,
+		delay: false,
+		async content(event, trigger, player) {
+			const { target, cards } = event;
+			await player.give(cards, target);
+			const list = get.inpileVCardList(info => {
+				return info[0] == 'basic' && player.hasUseTarget(new lib.element.VCard({ name: info[2], nature: info[3], isCard: true }), null, true);
+			});
+			if (!list.length) {
+				return;
+			}
+			const result = await player
+				.chooseButton(['是否视为使用一张基本牌？', [list, 'vcard']])
+				.set('ai', button => {
+					return get.player().getUseValue({ name: button.link[2], nature: button.link[3], isCard: true });
+				})
+				.forResult();
+			if (!result?.links?.length) {
+				return;
+			}
+			const vcard = get.autoViewAs({ name: result.links[0][2], nature: result.links[0][3], isCard: true });
+			await player.chooseUseTarget({
+				card: vcard,
+				nodistance: true,
+				addCount: false,
+				prompt: '仁德：视为使用一张基本牌',
+			});
+		},
+		ai: {
+			order: 4,
+			result: {
+				target(player, target) {
+					return Math.max(1, 5 - target.countCards('h'));
+				},
+			},
+			threaten: 0.8,
+		},
+	},
+	qmsgswkjsgj_nzry_longnu: {
+		audio: 'nzry_longnu',
+		mark: true,
+		zhuanhuanji: true,
+		marktext: '☯',
+		intro: {
+			content(storage, player, skill) {
+				if (player.storage[skill] == true) {
+					return '阴：本回合你的锦囊牌均视为雷【杀】且无距离和次数限制；以此法造成伤害后，可增加等量体力上限并摸等量张牌';
+				}
+				return '阳：本回合你的红色手牌均视为火【杀】且无距离和次数限制；以此法造成伤害后，可回复等量体力并摸等量张牌';
+			},
+		},
+		enable: 'phaseUse',
+		async content(event, trigger, player) {
+			player.changeZhuanhuanji(event.name);
+			const isYin = player.storage[event.name] == true;
+			if (!isYin) {
+				await player.loseHp();
+			} else {
+				await player.loseMaxHp();
+			}
+			await player.draw(2);
+			if (!isYin) {
+				player.addTempSkill(event.name + '_1', 'phaseUseAfter');
+			} else {
+				player.addTempSkill(event.name + '_2', 'phaseUseAfter');
+			}
+		},
+		subSkill: {
+			1: {
+				mod: {
+					cardname(card, player) {
+						if (get.color(card) == 'red') {
+							return 'sha';
+						}
+					},
+					cardnature(card, player) {
+						if (get.color(card) == 'red') {
+							return 'fire';
+						}
+					},
+					targetInRange(card) {
+						if (get.color(card) == 'red') {
+							return true;
+						}
+					},
+				},
+				trigger: { global: 'damage' },
+				filter(event, player) {
+					return event.source == player && event.card && get.color(event.card) == 'red';
+				},
+				check(event, player) {
+					return true;
+				},
+				prompt2(event, player) {
+					return '龙怒：是否回复' + event.num + '点体力并摸' + event.num + '张牌？';
+				},
+				async content(event, trigger, player) {
+					await player.recover(trigger.num);
+					await player.draw(trigger.num);
+				},
+				ai: {
+					effect: {
+						target(card, player, target, current) {
+							if (get.tag(card, 'respondSha') && current < 0) {
+								return 0.6;
+							}
+						},
+					},
+					respondSha: true,
+				},
+			},
+			2: {
+				mod: {
+					cardname(card, player) {
+						if (['trick', 'delay'].includes(lib.card[card.name].type)) {
+							return 'sha';
+						}
+					},
+					cardnature(card, player) {
+						if (['trick', 'delay'].includes(lib.card[card.name].type)) {
+							return 'thunder';
+						}
+					},
+					targetInRange(card) {
+						if (['trick', 'delay'].includes(lib.card[card.name].type)) {
+							return true;
+						}
+					},
+					cardUsable(card, player) {
+						if (card.name == 'sha' && game.hasNature(card, 'thunder')) {
+							return Infinity;
+						}
+					},
+				},
+				trigger: { global: 'damage' },
+				filter(event, player) {
+					return event.source == player && event.card && lib.card[event.card.name] && ['trick', 'delay'].includes(lib.card[event.card.name].type);
+				},
+				check(event, player) {
+					return true;
+				},
+				prompt2(event, player) {
+					return '龙怒：是否增加' + event.num + '点体力上限并摸' + event.num + '张牌？';
+				},
+				async content(event, trigger, player) {
+					await player.gainMaxHp(trigger.num);
+					await player.draw(trigger.num);
+				},
+				ai: {
+					effect: {
+						target(card, player, target, current) {
+							if (get.tag(card, 'respondSha') && current < 0) {
+								return 0.6;
+							}
+						},
+					},
+					respondSha: true,
+				},
+			},
+		},
+		ai: {
+			fireAttack: true,
+			halfneg: true,
+			threaten: 1.05,
+		},
+	},
+	qmsgswkjsgj_nzry_jieying: {
+		audio: 'nzry_jieying',
+		locked: true,
+		mod: {
+			maxHandcard(player, num) {
+				if (player.hasSkill('qmsgswkjsgj_nzry_jieying')) {
+					return num + 4;
+				}
+			},
+		},
+		group: ['qmsgswkjsgj_nzry_jieying_1', 'qmsgswkjsgj_nzry_jieying_2'],
+		subSkill: {
+			1: {
+				audio: 'nzry_jieying',
+				trigger: {
+					player: ['linkBefore', 'enterGame'],
+					global: 'phaseBefore',
+				},
+				forced: true,
+				filter(event, player) {
+					if (event.name == 'link') {
+						return player.isLinked();
+					}
+					return (event.name != 'phase' || game.phaseNumber == 0) && !player.isLinked();
+				},
+				async content(event, trigger, player) {
+					if (trigger.name != 'link') {
+						await player.link(true);
+					} else {
+						trigger.cancel();
+					}
+				},
+				ai: {
+					noLink: true,
+				},
+			},
+			2: {
+				audio: 'nzry_jieying',
+				trigger: {
+					player: ['phaseZhunbeiBegin', 'phaseJieshuBegin'],
+				},
+				filter(event, player) {
+					return game.hasPlayer(function (current) {
+						return current != player && !current.isLinked();
+					});
+				},
+				async cost(event, trigger, player) {
+					const next = player.chooseTarget('请选择【结营】要横置的其他角色（可多选）');
+					next.set('forced', false);
+					next.set('selectTarget', [0,Infinity]);
+					next.set('filterTarget', (card, player, target) => target != player && !target.isLinked());
+					next.set('ai', () => 1 + Math.random());
+					event.result = await next.forResult();
+				},
+				async content(event, trigger, player) {
+					const { targets } = event;
+					if (!targets || !targets.length) {
+						return;
+					}
+					for (const target of targets) {
+						await target.link(true);
+					}
+				},
+			},
+		},
+		ai: {
+			effect: {
+				target(card) {
+					if (card.name == 'tiesuo') {
+						return 'zeroplayertarget';
+					}
+				},
+			},
+		},
+	},
+	//星月神关羽
+	qmsgswkjsgj_shen_wusheng: {
+		mod: {
+			targetInRange(card) {
+				if (get.suit(card) == 'diamond' && card.name == 'sha') {
+					return true;
+				}
+			},
+		},
+		audio: 'wusheng',
+		enable: ['chooseToRespond', 'chooseToUse'],
+		filterCard(card, player) {
+			return true;
+		},
+		position: 'hes',
+		viewAs: { name: 'sha' },
+		viewAsFilter(player) {
+			return player.countCards('hes') > 0;
+		},
+		prompt: '将一张牌当杀使用或打出',
+		ai: {
+			respondSha: true,
+		},
+	},
+	qmsgswkjsgj_wushen: {
+		mod: {
+			cardname(card, player, name) {
+				if (get.suit(card) == 'heart') {
+					return 'sha';
+				}
+			},
+			targetInRange(card) {
+				if (card.name === 'sha') {
+					const suit = get.suit(card);
+					if (suit === 'heart' || suit === 'unsure') {
+						return true;
+					}
+				}
+			},
+			cardUsable(card) {
+				if (card.name === 'sha') {
+					const suit = get.suit(card);
+					if (suit === 'heart' || suit === 'unsure') {
+						return Infinity;
+					}
+				}
+			},
+		},
+		audio: 'wushen',
+		locked: true,
+		trigger: { player: 'useCard2' },
+		forced: true,
+		filter(event, player) {
+			return event.card.name == "sha" && (get.suit(event.card) == "heart" || !player.hasSkill("qmsgswkjsgj_wushen_phase", null, null, false));
+		},
+		logTarget(event, player) {
+			if (get.suit(event.card) == "heart") {
+				var targets = game.filterPlayer(function (current) {
+					return !event.targets.includes(current) && current.hasMark("qmsgswkjsgj_wuhun") && lib.filter.targetEnabled(event.card, player, current);
+				});
+				if (targets.length) {
+					return targets.sortBySeat();
+				}
+			}
+			return null;
+		},
+		async content(event, trigger, player) {
+			if (!player.hasSkill("qmsgswkjsgj_wushen_phase", null, null, false)) {
+				trigger.directHit.addArray(game.players);
+				player.addTempSkill("qmsgswkjsgj_wushen_phase", [
+					"phaseZhunbeiAfter",
+					"phaseJudgeAfter",
+					"phaseDrawAfter",
+					"phaseUseAfter",
+					"phaseDiscardAfter",
+					"phaseJieshuAfter",
+				]);
+			}
+			if (get.suit(trigger.card) == "heart") {
+				if (trigger.addCount !== false) {
+					trigger.addCount = false;
+					if (player.stat[player.stat.length - 1].card.sha > 0) {
+						player.stat[player.stat.length - 1].card.sha--;
+					}
+				}
+				const targets = game.filterPlayer(current => {
+					return (
+						!trigger.targets.includes(current) &&
+						current.hasMark("qmsgswkjsgj_wuhun") &&
+						(lib.filter.targetEnabled(trigger.card, player, current) ?? false)
+					);
+				});
+				if (targets.length) {
+					trigger.targets.addArray(targets.sortBySeat());
+					game.log(targets, "也成为了", trigger.card, "的目标");
+				}
+			}
+		},
+		ai: {
+			directHit_ai: true,
+			skillTagFilter(player, tag, arg) {
+				return arg.card.name == 'sha' && !player.hasSkill('qmsgswkjsgj_wushen_phase', null, null, false);
+			},
+		},
+		subSkill: {
+			phase: {
+				charlotte: true
+			},
+		},
+	},
+	qmsgswkjsgj_wuhun: {
+		audio: 'wuhun',
+		trigger: { player: 'die' },
+		forceDie: true,
+		skillAnimation: true,
+		animationColor: 'soil',
+		locked: true,
+		check(event, player) {
+			return game.hasPlayer(function (current) {
+				return current != player && current.hasMark('qmsgswkjsgj_wuhun') && get.attitude(player, current) < 0;
+			});
+		},
+		async content(event, trigger, player) {
+			const judge = player.judge(card => {
+				const name = get.name(card, false);
+				return name === 'tao' || name === 'taoyuan' ? -25 : 15;
+			});
+			judge.set('forceDie', true);
+			judge.set('judge2', result => result.bool);
+
+			const judgeResult = await judge.forResult();
+			if (!judgeResult.bool) {
+				return;
+			}
+
+			const num = game.countPlayer(current => current !== player && current.hasMark('qmsgswkjsgj_wuhun'));
+			if (num === 0) {
+				return;
+			}
+
+			const prompt = '请选择【武魂】的目标';
+			const prompt2 = '选择至少一名拥有“梦魇”标记的角色。令这些角色各自失去X点体力（X为其“梦魇”标记数）';
+			const next = player.chooseTarget(prompt, prompt2, [1, num], true);
+			next.set('filterTarget', (card, _player, target) => target !== player && target.hasMark('qmsgswkjsgj_wuhun'));
+			next.set('forceDie', true);
+			next.set('ai', target => -get.attitude(get.player(), target));
+
+			const result = await next.forResult();
+			if (!result.targets?.length) {
+				return;
+			}
+
+			const targets = result.targets.sortBySeat();
+			player.line(targets);
+
+			for (const target of targets) {
+				const mNum = target.countMark('qmsgswkjsgj_wuhun');
+				if (mNum > 0) {
+					await target.loseHp(mNum);
+				}
+			}
+		},
+		marktext: '魇',
+		intro: {
+			name: '梦魇',
+			content: 'mark',
+			onunmark: true,
+		},
+		group: ['qmsgswkjsgj_wuhun_gain', 'qmsgswkjsgj_wuhun_recover', 'qmsgswkjsgj_wuhun_draw'],
+		global: ['qmsgswkjsgj_wuhun_mengyan'],
+		subSkill: {
+			gain: {
+				audio: 'wuhun',
+				trigger: {
+					player: 'damageEnd',
+					source: 'damageSource',
+				},
+				forced: true,
+				filter(event, player, name) {
+					if (event.player == event.source) {
+						return false;
+					}
+					var target = lib.skill.qmsgswkjsgj_wuhun_gain.logTarget(event, player);
+					if (!target || !target.isIn()) {
+						return false;
+					}
+					// 神吕蒙造成伤害（source: damageSource）与受到伤害（player: damageEnd）都要结算
+					return name == 'damageEnd' || name == 'damageSource';
+				},
+				logTarget(event, player) {
+					if (player == event.player) {
+						return event.source;
+					}
+					return event.player;
+				},
+				async content(event, trigger, player) {
+					const target = lib.skill.qmsgswkjsgj_wuhun_gain.logTarget(trigger, player);
+					target.addMark('qmsgswkjsgj_wuhun', player == trigger.source ? 1 : trigger.num);
+					// if (target.countMark('qmsgswkjsgj_wuhun') > 0 && !target.hasSkill('qmsgswkjsgj_wuhun_mengyan', null, null, false)) {
+					// 	target.addSkill('qmsgswkjsgj_wuhun_mengyan');
+					// }
+					await game.delayx();
+				},
+			},
+			// 梦魇附带效果：按标记数令持有者技能失效（1/3在神关羽回合内，5/7任意回合）
+			mengyan: {
+				init(player, skill) {
+					player.addSkillBlocker(skill);
+					player.addTip(skill, '梦魇');
+				},
+				onremove(player, skill) {
+					player.removeSkillBlocker(skill);
+					player.removeTip(skill);
+				},
+				charlotte: true,
+				locked: true,
+				skillBlocker(skill, player) {
+					if (skill == 'qmsgswkjsgj_wuhun_mengyan') {
+						return false;
+					}
+					const num = player.countMark('qmsgswkjsgj_wuhun');
+					if (num < 1 || !lib.skill[skill]) {
+						return false;
+					}
+					const gy = game.filterPlayer(p => p.hasSkill('qmsgswkjsgj_wuhun'))[0];
+					const gyTurn = gy && _status.currentPhase == gy;
+					if (gyTurn) {
+						if (num >= 3) {
+							return true;
+						}
+						if (num >= 1) {
+							return !lib.skill[skill].locked;
+						}
+					} else {
+						if (num >= 7) {
+							return true;
+						}
+						if (num >= 5) {
+							return !lib.skill[skill].locked;
+						}
+					}
+					return false;
+				},
+			},
+			// 回复体力时移动一枚“梦魇”标记
+			recover: {
+				trigger: { player: 'recoverAfter' },
+				filter(event, player) {
+					return game.hasPlayer(p => p != player && p.countMark('qmsgswkjsgj_wuhun') > 0);
+				},
+				async content(event, trigger, player) {
+					const next = player.chooseTarget('【武魂】选择一名拥有“梦魇”标记的角色，移出其一枚标记（可取消）', null, [1, 1], false);
+					next.set('filterTarget', (card, p, target) => target != p && target.countMark('qmsgswkjsgj_wuhun') > 0);
+					next.set('ai', () => 1 + Math.random());
+					const r1 = await next.forResult();
+					if (!r1.targets?.length) {
+						return;
+					}
+					const src = r1.targets[0];
+					const next2 = player.chooseTarget('【武魂】选择获得该“梦魇”标记的另一名角色（可取消）', null, [1, 1], false);
+					next2.set('filterTarget', (card, p, target) => target != src && target != p);
+					next2.set('ai', () => 1 + Math.random());
+					const r2 = await next2.forResult();
+					if (!r2.targets?.length) {
+						return;
+					}
+					const dst = r2.targets[0];
+					src.removeMark('qmsgswkjsgj_wuhun', 1);
+					dst.addMark('qmsgswkjsgj_wuhun', 1);
+					if (dst.countMark('qmsgswkjsgj_wuhun') > 0 && !dst.hasSkill('qmsgswkjsgj_wuhun_mengyan', null, null, false)) {
+						dst.addSkill('qmsgswkjsgj_wuhun_mengyan');
+					}
+					if (src.countMark('qmsgswkjsgj_wuhun') == 0 && src.hasSkill('qmsgswkjsgj_wuhun_mengyan', null, null, false)) {
+						src.removeSkill('qmsgswkjsgj_wuhun_mengyan');
+					}
+				},
+			},
+			// 梦魇附带效果：对拥有“梦魇”标记的其他角色造成伤害后，摸等量的牌
+			draw: {
+				audio: 'wuhun',
+				trigger: {
+					source: 'damageSource',
+				},
+				forced: true,
+				filter(event, player) {
+					// 对其他拥有“梦魇”标记且在场的角色造成伤害
+					return event.player != player && event.player.isIn() && event.player.hasMark('qmsgswkjsgj_wuhun');
+				},
+				async content(event, trigger, player) {
+					await player.draw(trigger.num);
+				},
+			},
+		},
+	},
+	//星月神吕蒙
+	qmsgswkjsgj_shen_keji: {
+		audio: 'keji',
+		audioname: ['shen_lvmeng'],
+		trigger: { player: 'phaseDiscardBefore' },
+		forced: true,
+		// frequent: true,
+		locked:false,
+		async content(event, trigger, player) {
+			trigger.cancel();
+		},
+	},
+	qmsgswkjsgj_shelie: {
+		audio: 'shelie',
+		trigger: { player: ['phaseZhunbeiBegin', 'phaseJieshuBegin'] },
+		// frequent: true,
+		filter(event, player) {
+			return true;
+		},
+		async content(event, trigger, player) {
+			// 涉准备阶段和结束阶段：亮出牌堆顶的五张牌，获得其中每种花色各一张
+			await player.YB_shelie(5,'涉猎',true)
+		},
+		group: ['qmsgswkjsgj_shelie_extra'],
+		subSkill: {
+			// 每回合结束时，若此回合内置入弃牌堆的牌包含四种花色，可获得一个额外回合
+			extra: {
+				audio: 'shelie',
+				trigger: { global: 'phaseAfter' },
+				check(event, player) {
+					return true;
+				},
+				filter(event, player) {
+					const suits = new Set();
+					for (const card of get.discarded()) {
+						const s = get.suit(card);
+						if (s) suits.add(s);
+					}
+					return suits.size >= 4;
+				},
+				prompt(event, player) {
+					return '涉猎：' + get.translation(event.player) + '的回合内弃牌堆含四种花色，是否获得一个额外回合？';
+				},
+				async content(event, trigger, player) {
+					player.insertPhase();
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_gongxin: {
+		audio: 'gongxin',
+		trigger: { global: 'phaseUseBegin' },
+		frequent: true,
+		async cost(event, trigger, player) {
+			const current = trigger.player || _status.currentPhase;
+			if (current == player) {
+				// 自己回合：先选择一名其他角色为目标，即默认发动，不再二次确认
+				const next = player.chooseTarget('攻心：观看一名其他角色的手牌', [1, 1], true);
+				next.set('filterTarget', (card, p, t) => t != player && t.countCards('h') > 0);
+				next.set('ai', () => 1 + Math.random());
+				event.result = await next.forResult();
+			} else {
+				// 他人回合：目标即该角色，需确认是否观看其手牌
+				const target = current;
+				if (target.countCards('h') == 0) return;
+				const nb = player.chooseBool('攻心：是否观看' + get.translation(target) + '的手牌并进行操作？');
+				nb.set('ai', () => true);
+				event.result = await nb.forResult();
+			}
+		},
+		async content(event, trigger, player) {
+			// 数据由 cost 经 event.result 传出，引擎脱壳后落到 event：target → event.target，bool → event.bool
+			const target = event.target || (event.targets && event.targets[0]) || _status.currentPhase;
+			// 第一步：选取其手牌中的一种花色（同时展示其手牌供查看）
+			const handCards = target.getCards('h');
+			const suitList = lib.suit.filter(s => target.countCards('h', { suit: s }) > 0);
+			if (!suitList.length) return;
+			const chooseSuit = player.chooseButton(
+				['攻心：选择' + get.translation(target) + '手牌中的一种花色',
+					[handCards, 'card'],
+					[suitList.map(s => [s, get.translation(s)]), 'tdnodes']],
+				1
+			);
+			// 手牌仅作展示不可选，只有花色按钮可选
+			chooseSuit.set('filterButton', button => lib.suit.includes(button.link));
+			chooseSuit.set('ai', (button) => {
+				const s = button.link;
+				return target.getCards('h', { suit: s }).reduce((sum, c) => sum + get.value(c, player), 0);
+			});
+			const suitResult = await chooseSuit.forResult();
+			if (!suitResult.bool) return;
+			const suit = suitResult.links[0];
+			if (!suit) return;
+			// 第二步：分配该花色所有牌的去向（获得 / 弃置 / 置于牌堆顶）
+			const cards = target.getCards('h', { suit });
+			if (!cards.length) return;
+			const result = await player.chooseToMove_new('攻心·' + get.translation(suit) + '牌')
+				.set('list', [
+					[get.translation(target) + '的' + get.translation(suit) + '牌', cards],
+					[['获得'], ['弃置'], ['置于牌堆顶']],
+				])
+				.set('filterOk', moved => moved[1].length + moved[2].length + moved[3].length >= 1)
+				.set('processAI', function (list) {
+					const hand = list[0][1].slice();
+					if (!hand.length) return false;
+					// AI：价值最高的牌归自己，其余弃置
+					const sorted = hand.slice().sort((a, b) => get.value(b) - get.value(a));
+					return [[], [sorted[0]], sorted.slice(1), []];
+				})
+				.forResult();
+			if (result.bool) {
+				if (result.moved[1].length) {
+					await player.gain(result.moved[1], 'gain2');
+				}
+				if (result.moved[2].length) {
+					await target.modedDiscard(result.moved[2]);
+				}
+				if (result.moved[3].length) {
+					await player.showCards(result.moved[3], get.translation(player) + '对' + get.translation(target) + '发动了【攻心】');
+					await target.lose(result.moved[3], ui.cardPile, 'visible', 'insert');
+				}
+				const shown = result.moved[1][0] || result.moved[2][0] || result.moved[3][0];
+				if (shown) {
+					const color = get.color(shown);
+					if (color != 'unsure') {
+						player.line(target);
+						target.addTempSkill('qmsgswkjsgj_gongxin_color', 'phaseAfter');
+						target.storage.qmsgswkjsgj_gongxin_color = [color];
+						target.markSkill('qmsgswkjsgj_gongxin_color');
+					}
+				}
+			}
+		},
+		subSkill: {
+			color: {
+				charlotte: true,
+				onremove: true,
+				intro: { content: '本回合内不能使用或打出$牌' },
+				mod: {
+					cardEnabled2(card, player) {
+						const color = get.color(card);
+						const list = player.getStorage('qmsgswkjsgj_gongxin_color');
+						if (color != 'unsure' && list && list.includes(color)) {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
+
 	//星月界势国渊
 	//星月界势辛宪英
 	//星月界势董昭
 	//星月界司马徽
-	//神周瑜补强
+	//星月神周瑜补强
 	//星月界缘孙权
 	//星月界合郭照
 	//星月界渭南张郃
