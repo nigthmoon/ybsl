@@ -1902,21 +1902,16 @@ const skill = {
 			threaten: 1.4,
 			noautowuxie: true,
 		},
-		mod: {
-			maxHandcard(player, num) {
-				return num + player.storage.ybmjz_jizhi_max;
-			},
-			cardUsable(card, player, num) {
-				if (card.name == 'sha') {
-					return num + player.storage.ybmjz_jizhi_sha;
-				}
-			},
-		},
 		subSkill: {
 			max: {
 				name: '囊',
 				intro: {
 					content: '本回合手牌上限+#',
+				},
+				mod:{
+					maxHandcard(player, num) {
+						return num + player.storage.ybmjz_jizhi_max;
+					},
 				},
 				onremove: true,
 			},
@@ -1924,6 +1919,13 @@ const skill = {
 				name: '杀',
 				intro: {
 					content: '本回合出杀次数+#',
+				},
+				mod:{
+					cardUsable(card, player, num) {
+						if (card.name == 'sha') {
+							return num + player.storage.ybmjz_jizhi_sha;
+						}
+					},
 				},
 				onremove: true,
 			},

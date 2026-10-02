@@ -17641,7 +17641,9 @@ const skill = {
 			}
 		},
 		hiddenCard(player, name) {
-			if (player.storage.qmsgswkjsgj_re_dunshi && player.storage.qmsgswkjsgj_re_dunshi[0].includes(name) && !player.getStat("skill").qmsgswkjsgj_re_dunshi) {
+			var storage = player.storage.qmsgswkjsgj_re_dunshi;
+			var used = player.storage.qmsgswkjsgj_re_dunshi_used;
+			if (storage && storage[0].includes(name) && !(used && used.includes(name))) {
 				return true;
 			}
 			return false;
@@ -17676,7 +17678,11 @@ const skill = {
 			if (!storage || !storage[0].length) {
 				return false;
 			}
+			var used = player.storage.qmsgswkjsgj_re_dunshi_used;
 			for (var i of storage[0]) {
+				if (used && used.includes(i)) {
+					continue;
+				}
 				var card = { name: i, isCard: true };
 				if (event.filterCard(card, player, event)) {
 					return true;
@@ -17694,6 +17700,10 @@ const skill = {
 				return ui.create.dialog("遁世", [list, "vcard"], "hidden");
 			},
 			filter(button, player) {
+				var used = player.storage.qmsgswkjsgj_re_dunshi_used;
+				if (used && used.includes(button.link[2])) {
+					return false;
+				}
 				var evt = _status.event.getParent();
 				return evt.filterCard({ name: button.link[2], isCard: true }, player, evt);
 			},
@@ -17723,17 +17733,12 @@ const skill = {
 					},
 					selectCard: -1,
 					async precontent(event, trigger, player2) {
-						var arr = player2.storage.qmsgswkjsgj_re_dunshi_damage;
-						if (!arr) {
-							arr = player2.storage.qmsgswkjsgj_re_dunshi_damage = [];
-							player2.addTempSkill("qmsgswkjsgj_re_dunshi_damage");
-						}
-						arr.push({ name: event.result.card.name, source: _status.currentPhase });
-						var storage = player2.storage.qmsgswkjsgj_re_dunshi;
-						if (storage && storage[0]) {
-							storage[0].remove(event.result.card.name);
-							player2.markSkill("qmsgswkjsgj_re_dunshi");
-						}
+						if(!player2.storage.qmsgswkjsgj_re_dunshi_damage )player2.storage.qmsgswkjsgj_re_dunshi_damage = [];
+
+						player2.addTempSkill("qmsgswkjsgj_re_dunshi_damage");
+						player2.storage.qmsgswkjsgj_re_dunshi_damage.push({ name: event.result.card.name, source: _status.currentPhase });
+						// 记录本回合已使用过的遁世牌名，回合结束后临时技能移除即自动刷新；不再从可用牌池中永久删除
+						player2.YB_tempz("qmsgswkjsgj_re_dunshi_used", event.result.card.name);
 					}
 				};
 			},
@@ -17749,19 +17754,17 @@ const skill = {
 				if (!storage || !storage[0].length) {
 					return false;
 				}
-				if (player.getStat("skill").qmsgswkjsgj_re_dunshi) {
-					return false;
-				}
+				var used = player.storage.qmsgswkjsgj_re_dunshi_used;
 				switch (tag) {
 					case "respondSha":
-						return (_status.event.type != "phase" || player == game.me || player.isUnderControl() || player.isOnline()) && storage[0].includes("sha");
+						return (_status.event.type != "phase" || player == game.me || player.isUnderControl() || player.isOnline()) && storage[0].includes("sha") && !(used && used.includes("sha"));
 					case "respondShan":
-						return storage[0].includes("shan");
+						return storage[0].includes("shan") && !(used && used.includes("shan"));
 					case "save":
-						if (arg == player && storage[0].includes("jiu")) {
+						if (arg == player && storage[0].includes("jiu") && !(used && used.includes("jiu"))) {
 							return true;
 						}
-						return storage[0].includes("tao");
+						return storage[0].includes("tao") && !(used && used.includes("tao"));
 				}
 			},
 			order: 2,
@@ -17826,11 +17829,7 @@ const skill = {
 					return event.player == player;
 				},
 				content() {
-					var storage = player.storage.qmsgswkjsgj_re_dunshi;
-					if (storage) {
-						storage[0] = ["sha", "shan", "tao", "jiu"];
-						player.markSkill("qmsgswkjsgj_re_dunshi");
-					}
+					// 每回合限一次的逻辑改由 qmsgswkjsgj_re_dunshi_used 临时技能在回合结束后自动清理，无需在此重置可用牌池
 					var queue = player.storage.qmsgswkjsgj_re_dunshi_damage;
 					if (queue && queue.length) {
 						player.removeSkill("qmsgswkjsgj_re_dunshi_damage");
@@ -17851,6 +17850,7 @@ const skill = {
 				logTarget: "source",
 				getIndex(event,player){
 					var queue = player.storage.qmsgswkjsgj_re_dunshi_damage;
+					console.log(queue)
 					return queue.length||1;
 				},
 				async content(event, trigger, player) {
@@ -17960,6 +17960,11 @@ const skill = {
 				}
 			}
 		}
+	},
+	qmsgswkjsgj_re_dunshi_used: {
+		charlotte: true,
+		onremove: true,
+		mark: false
 	},
 	//星月界庞凤衣
 	qmsgswkjsgj_re_dcyitong: {
