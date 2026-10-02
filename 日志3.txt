@@ -1320,3 +1320,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 
 2026.10.02（续）
 修复星月界灵慧（qmsgswkjsgj_re_dclinghui）获得牌不生效的bug：获得步骤取牌由 result2.card 改为 result2.links[0]，并显式从待放回牌池移除以免被一并放回牌堆顶；同时修正星月界缘孙权 势众/操微 的 audio 字段（数字改为技能名字符串）。
+
+2026.10.02（星月神赐批次1）
+星月神赐欧陆凯撒（qmsgswkjsgj_shenci_eu_kaisa）技能搬运完成：独裁、治统、集权（源 offline，加 qmsgswkjsgj_shenci_ 前缀并修正内部引用）；动态描述 qmsgswkjsgj_shenci_eu_zhitong 已并入 dynamicTranslate.js。治统阳面摸牌对齐为体力上限；阴面已实现“装备区所有牌 / 手牌区X张（X=体力上限）”二选一（手牌超X张时由玩家选至多X张）。

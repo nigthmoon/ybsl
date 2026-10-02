@@ -24979,6 +24979,163 @@ const skill = {
 		},
 	},
 
+	//星月神赐武皇甫嵩
+	//星月神赐武关羽
+	// 星月神赐界柏灵筠
+	//星月神赐司马徽
+	//星月神赐欧陆凯撒
+	qmsgswkjsgj_shenci_eu_ducai: {
+		init(player, skill) {
+			if (_status?.currentPhase !== player) {
+				return;
+			}
+			const targets = game.filterPlayer(current => current !== player);
+			for (const target of targets) {
+				target.addTempSkill(skill + "_block");
+			}
+		},
+		onremove(player, skill) {
+			if (_status?.currentPhase !== player) {
+				return;
+			}
+			const targets = game.filterPlayer(current => current !== player);
+			for (const target of targets) {
+				target.removeSkill(skill + "_block");
+			}
+		},
+		trigger: {
+			player: "phaseBeginStart",
+		},
+		persevereSkill: true,
+		forced: true,
+		firstDo: true,
+		priority: Infinity,
+		async content(event, trigger, player) {
+			get.info(event.name).init(player, event.name);
+		},
+		mod: {
+			targetInRange(card, player) {
+				if (player == _status.currentPhase) {
+					return true;
+				}
+			},
+			cardUsable(card, player) {
+				if (player == _status.currentPhase) {
+					return Infinity;
+				}
+			},
+		},
+		subSkill: {
+			block: {
+				inherit: "baiban",
+				intro: {
+					content(storage, player, skill) {
+						let str = "<li>不能使用牌";
+						const list = player.getSkills(null, false, false).filter(function (i) {
+							return lib.skill.baiban.skillBlocker(i, player);
+						});
+						if (list.length) {
+							str += "<br><li>" + get.translation(list) + "失效";
+						}
+						return str;
+					},
+				},
+				mod: {
+					cardEnabled(card) {
+						return false;
+					},
+					cardSavable(card) {
+						return false;
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_shenci_eu_zhitong: {
+		mark: true,
+		zhuanhuanji: true,
+		marktext: "☯",
+		intro: {
+			content(storage, player, skill) {
+				if (storage) {
+					return "转换技，当你使用牌时，若目标包含其他角色，你依次获得这些角色装备区的所有牌或手牌区X张牌并对其造成1点伤害。";
+				}
+				return "转换技，当你使用牌时，若目标包含自己，摸X张牌且回复1点体力。";
+			},
+		},
+		trigger: {
+			player: "useCard",
+		},
+		filter(event, player) {
+			if (!event?.targets?.length) {
+				return false;
+			}
+			const bool = player.storage?.qmsgswkjsgj_shenci_eu_zhitong;
+			return (bool && event.targets.some(current => current !== player)) || (!bool && event.targets.includes(player));
+		},
+		check(event, player) {
+			if (!player.storage?.qmsgswkjsgj_shenci_eu_zhitong) {
+				return true;
+			}
+			return event.targets.filter(target => target != player).reduce((eff, target) => eff + get.damageEffect(target, player, player), 0) > 0;
+		},
+		async content(event, trigger, player) {
+			player.changeZhuanhuanji(event.name);
+			if (player.storage?.qmsgswkjsgj_shenci_eu_zhitong) {
+				await player.draw(player.maxHp);
+				await player.recover();
+			} else {
+				const takeHand = async (target, hands) => {
+					const X = player.maxHp;
+					if (hands.length <= X) {
+						return hands;
+					}
+					const result = await player
+						.chooseCardButton("治统：选择获得" + get.translation(target) + "的至多" + X + "张手牌", false, hands, [1, X])
+						.set("ai", card => get.value(card))
+						.forResult();
+					return result.bool ? result.links : hands.randomSort().slice(0, X);
+				};
+				const targets = trigger.targets.filter(current => current !== player).sortBySeat();
+				for (const target of targets) {
+					const equips = target.getGainableCards(player, "e");
+					const hands = target.getCards("h");
+					let gainCards = [];
+					if (equips.length && hands.length) {
+						const { control } = await player
+							.chooseControl("获得装备区所有牌", "获得手牌区" + player.maxHp + "张牌")
+							.set("prompt", "治统：选择获得" + get.translation(target) + "的牌")
+							.set("forceDie", true)
+							.forResult();
+						gainCards = control.includes("装备") ? equips : await takeHand(target, hands);
+					} else if (equips.length) {
+						gainCards = equips;
+					} else if (hands.length) {
+						gainCards = await takeHand(target, hands);
+					}
+					if (gainCards.length) {
+						await player.gain(gainCards, target, "give", "bySelf");
+					}
+					await target.damage();
+				}
+			}
+		},
+	},
+	qmsgswkjsgj_shenci_eu_jiquan: {
+		trigger: {
+			global: "phaseBegin",
+		},
+		zhuSkill: true,
+		forced: true,
+		filter(event, player) {
+			return event.player?.group === "western" && event.player?.isIn();
+		},
+		async content(event, trigger, player) {
+			await player.recover();
+			await player.draw();
+		},
+	},
+
 
 	//以下内容搬运至太虚幻境了
 	// qmsgswkjsgj_zhenshen:{

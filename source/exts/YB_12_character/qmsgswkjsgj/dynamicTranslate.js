@@ -66,6 +66,20 @@ const dynamicTranslate = {
 		return `${get.poptip('rule_chihengji')}。当你受到1点伤害后，你可以令一名角色进行一次判定，若结果为红色，${list[storage]}；若结果为黑色，${list[storage ? 0 : 1]}。（X为此次伤害的伤害点数）`;
 	},
 
+	qmsgswkjsgj_shenci_eu_zhitong(player) {
+		const bool = player.storage.qmsgswkjsgj_shenci_eu_zhitong;
+		let yang = "自己，摸X张牌且回复1点体力",
+			yin = "其他角色，你获得其装备区所有牌或手牌区X张牌并对其造成1点伤害";
+		if (bool) {
+			yin = `<span class='bluetext'>${yin}</span>`;
+		} else {
+			yang = `<span class='firetext'>${yang}</span>`;
+		}
+		let start = "转换技，当你使用牌时，若目标包含，",
+			end = "。（X为你的体力上限）";
+		return `${start}阳：${yang}；阴：${yin}${end}`;
+	},
+
 	qmsgswkjsgj_re_dcpingzhi(player) {
 		const bool = player.storage.qmsgswkjsgj_re_dcpingzhi;
 		let yang = '你弃置此牌，然后其视为对你使用一张【火攻】，若其未因此造成伤害则此技能视为未发动过',
