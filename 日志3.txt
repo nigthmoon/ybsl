@@ -1326,3 +1326,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 
 2026.10.02（星月神赐批次2）
 星月神赐界柏灵筠（qmsgswkjsgj_shenci_bolingyun）技能实现完成：灵慧、黠策、御心（以 qmsgswkjsgj_re_ 版为蓝本，按神赐版强化描述改写，加 shenci_ 前缀）。灵慧：触发改为任意角色结束阶段（去前置条件），首步 chooseBool 决定是否发动，可多选使用/获得牌；黠策：受/造1点伤害分支，去弃牌cost，受伤令其他角色全技能失效（disabled 子技能采用 addSkillBlocker/skillBlocker 机制，至其下回合结束 phaseJieshu 自移除，排除自身与 charlotte/persevere 技能）；御心：由限定技改为 round:1（每轮限一次），回复至体力上限。
+
+2026.10.02（星月神赐批次3）
+星月神赐武皇甫嵩（qmsgswkjsgj_shenci_wu_huangfusong）技能实现完成：朝镇、连捷、将贤（以本体 character/xianding 的 dcchaozhen/dclianjie/dcjiangxian 为蓝本，加 shenci_ 前缀并按神赐描述差异改写）。朝镇：去“令〖朝镇〗本回合失效”（tempBanSkill）；连捷：去掉“每回合每名角色限放置一次”（dclianjie_used 追踪），触发改为“使用手牌指定目标后”即弹（可选置牌），摸牌条件改为“你无手牌或此牌点数不大于你的所有手牌”，gaintag 重命名为 qmsgswkjsgj_shenci_dclianjie 以免与本体冲突；将贤：去“因连捷获得的牌”限制与“回合结束失去连捷/朝镇”，伤害+X 对所有伤害生效、X 无上限（按 getHistory("sourceDamage") 计，damageBegin1 触发）。
