@@ -86,6 +86,45 @@ const characterTitle = {
 	qmsgswkjsgj_re_guozhao: "<span class = '" + qmsgswkjsgj_span + "'>碧海青天</span>",
 	qmsgswkjsgj_re_caomao: "<span class = '" + qmsgswkjsgj_span + "'>霸业的终耀</span>",
 
+	// 后续批次（新增，称号待补充）
+	qmsgswkjsgj_re_yue_caiwenji: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_dc_liuba: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_zhugejin: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_yuanyin: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_sp_zhenji: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_liushan: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_caojinyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_yue_zhouyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_bolingyun: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_v_zhangliao: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_sb_simayi: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_guanning: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_pangfengyi: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_guanyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_machao: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_xusheng: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_pot_guoyuan: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_pot_xinxianying: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_pot_dongzhao: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_simahui: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_o_sunquan: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_jsrg_guozhao: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_re_wn_zhanghe: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+
+	// 神批次（新增，称号待补充）
+	qmsgswkjsgj_shen_pangtong: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_shen_zhangliao: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_shen_liubei: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_shen_guanyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_shen_lvmeng: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_mb_shen_jiangwei: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+
+	// plus 批次（新增，称号待补充）
+	qmsgswkjsgj_plus_shen_guojia: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_plusplus_shen_guojia: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_plus_shen_xunyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+	qmsgswkjsgj_plus_shen_zhouyu: "<span class = '" + qmsgswkjsgj_span + "'></span>",
+
 	qmsgswkjsgj_shenci_wu_zhugeliang: "<span class = '" + qmsgswkjsgj_shenci_span + "'>忠武良弼</span>",
 	qmsgswkjsgj_shenci_re_duyu: "<span class = '" + qmsgswkjsgj_shenci_span + "'>文成武德</span>",
 	qmsgswkjsgj_shenci_wu_luxun: "<span class = '" + qmsgswkjsgj_shenci_span + "'>释武怀儒</span>",
@@ -94,5 +133,12 @@ const characterTitle = {
 	qmsgswkjsgj_shenci_dc_zhouxuān: "<span class = '" + qmsgswkjsgj_shenci_span + "'>夜华青乌</span>",
 	qmsgswkjsgj_shenci_caomao: "<span class = '" + qmsgswkjsgj_shenci_span + "'>霸业的终耀</span>",
 	qmsgswkjsgj_shenci_pot_yuji: "<span class = '" + qmsgswkjsgj_shenci_span + "'>夙仙望道</span>",
+
+	// 神赐批次（新增，称号待补充）
+	qmsgswkjsgj_shenci_wu_huangfusong: "<span class = '" + qmsgswkjsgj_shenci_span + "'></span>",
+	qmsgswkjsgj_shenci_wu_guanyu: "<span class = '" + qmsgswkjsgj_shenci_span + "'></span>",
+	qmsgswkjsgj_shenci_bolingyun: "<span class = '" + qmsgswkjsgj_shenci_span + "'></span>",
+	qmsgswkjsgj_shenci_simahui: "<span class = '" + qmsgswkjsgj_shenci_span + "'></span>",
+	qmsgswkjsgj_shenci_eu_kaisa: "<span class = '" + qmsgswkjsgj_shenci_span + "'></span>",
 
 };
