@@ -1323,3 +1323,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 
 2026.10.02（星月神赐批次1）
 星月神赐欧陆凯撒（qmsgswkjsgj_shenci_eu_kaisa）技能搬运完成：独裁、治统、集权（源 offline，加 qmsgswkjsgj_shenci_ 前缀并修正内部引用）；动态描述 qmsgswkjsgj_shenci_eu_zhitong 已并入 dynamicTranslate.js。治统阳面摸牌对齐为体力上限；阴面已实现“装备区所有牌 / 手牌区X张（X=体力上限）”二选一（手牌超X张时由玩家选至多X张）。
+
+2026.10.02（星月神赐批次2）
+星月神赐界柏灵筠（qmsgswkjsgj_shenci_bolingyun）技能实现完成：灵慧、黠策、御心（以 qmsgswkjsgj_re_ 版为蓝本，按神赐版强化描述改写，加 shenci_ 前缀）。灵慧：触发改为任意角色结束阶段（去前置条件），首步 chooseBool 决定是否发动，可多选使用/获得牌；黠策：受/造1点伤害分支，去弃牌cost，受伤令其他角色全技能失效（自定义 disabled 子技能，至其下回合结束 phaseJieshu 自移除）；御心：由限定技改为 round:1（每轮限一次），回复至体力上限。

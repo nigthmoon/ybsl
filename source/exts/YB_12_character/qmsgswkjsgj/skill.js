@@ -24982,6 +24982,156 @@ const skill = {
 	//星月神赐武皇甫嵩
 	//星月神赐武关羽
 	// 星月神赐界柏灵筠
+	qmsgswkjsgj_shenci_dclinghui: {
+		audio: 'dclinghui',
+		trigger: { global: "phaseJieshuBegin" },
+		async content(event, trigger, player) {
+			const { bool: use } = await player
+				.chooseBool(get.prompt("qmsgswkjsgj_shenci_dclinghui"), "观看牌堆顶的牌并可能使用或获得")
+				.set("ai", () => 1)
+				.forResult();
+			if (!use) {
+				return;
+			}
+			let num = player.maxHp;
+			let cards = get.cards(num);
+			await game.cardsGotoOrdering(cards);
+			const result1 = await player
+				.chooseCardButton("灵慧：选择要使用的牌（可多选）", false, cards, [0, cards.length])
+				.set("filterButton", button => player.hasUseTarget(button.link))
+				.set("ai", button => get.event().player.getUseValue(button.link))
+				.forResult();
+			const usedCards = result1.links || [];
+			for (const card of usedCards) {
+				cards.remove(card);
+				player.$gain2(card, false);
+				await game.delayx();
+				await player.chooseUseTarget(true, card, false);
+				cards = cards.filterInD();
+			}
+			cards = cards.filterInD();
+			if (cards.length) {
+				const result2 = await player
+					.chooseCardButton("灵慧：选择要获得的牌（可多选）", false, cards, [0, cards.length])
+					.set("ai", button => get.value(button.link))
+					.forResult();
+				const gainCards = result2.links || [];
+				for (const card of gainCards) {
+					cards.remove(card);
+					await player.gain(card, "gain2");
+				}
+				await game.delayx();
+				cards = cards.filterInD();
+			}
+			if (cards.length) {
+				const next = player.chooseToMove_new(get.translation(event.name), true);
+				const top = cards.filter(c => c);
+				next.set('list', [
+					[
+						['牌堆顶', top],
+					],
+				]);
+				const result = await next.forResult();
+				if (!result?.bool) {
+					return;
+				}
+				const [tops] = result.moved;
+				if (tops.length) {
+					tops.reverse();
+					for (let i = 0; i < tops.length; i++) {
+						ui.cardPile.insertBefore(tops[i], ui.cardPile.firstChild);
+					}
+				}
+				game.updateRoundNumber();
+				await game.delay();
+			}
+		},
+	},
+	qmsgswkjsgj_shenci_dcxiace: {
+		audio: 'dcxiace',
+		trigger: {
+			player: "damageEnd",
+			source: "damageSource",
+		},
+		filter(event, player) {
+			if (event.num !== 1) {
+				return false;
+			}
+			if (event.player === player) {
+				return game.hasPlayer(t => t !== player && !t.hasSkill("qmsgswkjsgj_shenci_dcxiace_disabled"));
+			}
+			if (event.source === player) {
+				return true;
+			}
+			return false;
+		},
+		direct: true,
+		async content(event, trigger, player) {
+			if (trigger.player === player) {
+				const { bool, targets } = await player
+					.chooseTarget((card, player, target) => target !== player)
+					.set("prompt", get.prompt("qmsgswkjsgj_shenci_dcxiace"))
+					.set("prompt2", "令一名其他角色的所有技能失效直到其下回合结束")
+					.set("ai", target => -get.sgn(get.attitude(player, target)) * (target === _status.currentPhase ? 10 : 1))
+					.forResult();
+				if (bool) {
+					const target = targets[0];
+					player.logSkill("qmsgswkjsgj_shenci_dcxiace", target);
+					target.addTempSkill("qmsgswkjsgj_shenci_dcxiace_disabled");
+				}
+			}
+			if (trigger.source === player) {
+				const { bool } = await player
+					.chooseBool(get.prompt("qmsgswkjsgj_shenci_dcxiace"), "回复1点体力")
+					.set("ai", () => get.recoverEffect(player, player, player) > 0 ? 1 : 0)
+					.forResult();
+				if (bool) {
+					player.logSkill("qmsgswkjsgj_shenci_dcxiace");
+					await player.recover();
+				}
+			}
+		},
+		subSkill: {
+			disabled: {
+				silent: true,
+				trigger: { player: "phaseJieshu" },
+				forced: true,
+				priority: 1,
+				content(event, trigger, player) {
+					player.removeSkill(event.name);
+				},
+				mod: {
+					skillEnabled(skill, player) {
+						if (skill === "qmsgswkjsgj_shenci_dcxiace_disabled") {
+							return;
+						}
+						return false;
+					},
+				},
+			},
+		},
+	},
+	qmsgswkjsgj_shenci_dcyuxin: {
+		audio: 'dcyuxin',
+		round: 1,
+		trigger: { global: "dying" },
+		prompt2(event, player) {
+			return "令其将体力值回复至上限";
+		},
+		check(event, player) {
+			if (get.recoverEffect(event.player, player, player) <= 0) {
+				return false;
+			}
+			return lib.skill.luanfeng.check(event, player);
+		},
+		logTarget: "player",
+		skillAnimation: true,
+		animationColor: "thunder",
+		async content(event, trigger, player) {
+			player.logSkill(event.name, trigger.player);
+			trigger.player.recover(trigger.player.maxHp - trigger.player.hp);
+		},
+	},
 	//星月神赐司马徽
 	//星月神赐欧陆凯撒
 	qmsgswkjsgj_shenci_eu_ducai: {
