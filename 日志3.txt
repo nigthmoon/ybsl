@@ -1333,5 +1333,8 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 2026.10.02（星月神赐批次4）
 星月神赐武关羽（qmsgswkjsgj_shenci_wu_guanyu）技能实现完成：绝武、武佑、义贤（以本体 character/xianding 的 dcjuewu/dcwuyou/dcyixian 为蓝本，加 shenci_ 前缀并按神赐描述差异改写，水淹七军牌名已保留）。绝武：去“每回合每种牌名限一次”（移除 dcjuewu_used 全部引用），保留 shuiyanqijuny（水淹七军）在伤害牌名列表；武佑：global 仍把 g 子技能分配全场，usable:2 实现“每名角色出牌阶段限两次”，牌名选择改为 lib.inpile 全部非装备（全部牌名）；义贤：limited 改 usable:1+enable:phaseUse（出牌阶段限一次），去 awakenSkill；所有内部 gaintag/子技能引用统一加 shenci_ 前缀以免与本体串台。
 
+2026.10.02
+qmsgswkjsgj 扩展补全 characterSort/characterCopyright/characterTitle：新建 characterCopyright.js、characterTitle.js（称号暂留空值待填），并将 character.js 中未注册的 39 名武将（re_ 后续批次、神批次、神赐批次、plus 批次）补入 characterSort.js。版权格式统一为数组：分包=全民三国杀，我开局神郭嘉（番茄小说）、设计者=天一笙水、插图/配音=三国杀官方、符号=❁；代码撰写者：原有武将沿用「夜白」，本次新增的 38 名改为联名「夜白&Hy3」。
+
 2026.10.02（星月神赐批次5）
 星月神赐司马徽（qmsgswkjsgj_shenci_simahui）技能实现完成：荐杰、神赐龙印(火计)、神赐凤印(连环)、业炎、隐士、称好。荐杰自带 shenci 前缀的 hasMark/addMark/removeMark（标记键 qmsgswkjsgj_shenci_jianjie_huoji/lianhuan），龙凤印/业炎作为 qmsgswkjsgj_shenci_jianjie 子技能（与本体龙凤印接口隔离，避免串台）；新增“每轮开始/准备阶段若无场上印则补发”逻辑（roundStart 仅限回合>1 防与首准备阶段重复发印）。隐士：继承本体 xinfu_yinshi 结构，引用改 shenci 接口。称好：由“铁索伤害”改为“任意属性伤害”（event.nature 判定），X=横置角色数且包含该受伤角色。
