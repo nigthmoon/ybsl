@@ -1194,10 +1194,10 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 【0】 星月界庞凤衣 [qmsgswkjsgj_re_pangfengyi]：qmsgswkjsgj_re_dcyitong 异瞳 / qmsgswkjsgj_re_dcpeiniang 醅酿
 【0】 星月界马超 [qmsgswkjsgj_re_machao]：qmsgswkjsgj_re_tieji 铁骑
 【0】 星月界徐盛 [qmsgswkjsgj_re_xusheng]：qmsgswkjsgj_re_pojun 破军
-【】 星月界势国渊 [qmsgswkjsgj_re_pot_guoyuan]：qmsgswkjsgj_re_mbqingdao 清蹈 / qmsgswkjsgj_re_mbxiugeng 休耕 / qmsgswkjsgj_re_mbchenshe 陈赦
-【】 星月界势辛宪英 [qmsgswkjsgj_re_pot_xinxianying]：qmsgswkjsgj_re_mbjiejie 诫节 / qmsgswkjsgj_re_mbqingshi 清识
-【】 星月界势董昭 [qmsgswkjsgj_re_pot_dongzhao]：qmsgswkjsgj_re_mbmiaolue 妙略 / qmsgswkjsgj_re_mbyingjia 迎驾
-【】 星月界司马徽 [qmsgswkjsgj_re_simahui]：qmsgswkjsgj_re_jianjie 荐杰
+【0】 星月界势国渊 [qmsgswkjsgj_re_pot_guoyuan]：qmsgswkjsgj_re_mbqingdao 清蹈 / qmsgswkjsgj_re_mbxiugeng 休耕 / qmsgswkjsgj_re_mbchenshe 陈赦
+【0】 星月界势辛宪英 [qmsgswkjsgj_re_pot_xinxianying]：qmsgswkjsgj_re_potjiejie 诫节 / qmsgswkjsgj_re_potqingshi 清识
+【0】 星月界势董昭 [qmsgswkjsgj_re_pot_dongzhao]：qmsgswkjsgj_re_mbmiaolue 妙略 / qmsgswkjsgj_re_mbyingjia 迎驾
+【0】 星月界司马徽 [qmsgswkjsgj_re_simahui]：qmsgswkjsgj_re_jianjie 荐杰
 【】 星月界缘孙权 [qmsgswkjsgj_re_o_sunquan]：qmsgswkjsgj_mbshizhong 势众 / qmsgswkjsgj_mbcaowei 操微
 【】 星月界合郭照 [qmsgswkjsgj_re_jsrg_guozhao]：qmsgswkjsgj_re_jsrgpianchong 偏宠 / qmsgswkjsgj_re_jsrgzunwei 尊位
 【】 渭南张郃 [qmsgswkjsgj_re_wn_zhanghe]：qmsgswkjsgj_re_wn_qiaobian 巧变
@@ -1309,3 +1309,11 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 
 2026.10.01
 补全星月神刘备、神关羽、神吕蒙的代码（YB_12_character/qmsgswkjsgj/skill.js、translate.js）。
+
+2026.10.02
+星月界势国渊 / 势辛宪英 / 势董昭 / 司马徽 技能代码补全，及星月神周瑜补强（YB_12_character/qmsgswkjsgj）。
+- 星月界势国渊：清蹈、休耕、陈赦。
+- 星月界势辛宪英：诫节、清识（技能改名整理 re_mbjiejie→re_potjiejie、re_mbqingshi→re_potqingshi）。
+- 星月界势董昭：妙略、迎驾。
+- 星月界司马徽：荐杰。
+- 星月神神周瑜（qmsgswkjsgj_plus_shen_zhouyu）：琴音plus、业炎plus、英姿plus、反间plus。

@@ -931,10 +931,10 @@ const translate = {
 
 	qmsgswkjsgj_re_pot_xinxianying:'星月界势辛宪英',
 	qmsgswkjsgj_re_pot_xinxianying_prefix: '星月|界|势',
-	qmsgswkjsgj_re_mbjiejie:'诫节',
-	qmsgswkjsgj_re_mbjiejie_info:'每名角色的出牌阶段限一次，当前回合角色可以令你观看其手牌，然后你可以选择一种花色，若其手牌：1.包含此花色，其弃置所有不为此花色的手牌，本回合使用此花色的牌无次数限制；2.不含此花色，其从牌堆或弃牌堆中获得一张此花色的牌。然后你视为对其发动“清识”。每轮开始时，你选择一名角色，其出牌阶段开始时，你对其发动“诫节”。',
-	qmsgswkjsgj_re_mbqingshi:'清识',
-	qmsgswkjsgj_re_mbqingshi_info:'当你受到1点伤害后，你可以选择一名角色，然后若你与其阵营：相同，你与其各摸两张牌；不同，你弃置其三张牌。',
+	qmsgswkjsgj_re_potjiejie:'诫节',
+	qmsgswkjsgj_re_potjiejie_info:'每名角色的出牌阶段限一次，当前回合角色可以令你观看其手牌，然后你可以选择一种花色，若其手牌：1.包含此花色，其弃置所有不为此花色的手牌，本回合使用此花色的牌无次数限制；2.不含此花色，其从牌堆或弃牌堆中获得一张此花色的牌。然后你视为对其发动“清识”。每轮开始时，你选择一名角色，其出牌阶段开始时，你对其发动“诫节”。',
+	qmsgswkjsgj_re_potqingshi:'清识',
+	qmsgswkjsgj_re_potqingshi_info:'当你受到1点伤害后，你可以选择一名角色，然后若你与其阵营：相同，你与其各摸两张牌；不同，你弃置其三张牌。',
 
 	qmsgswkjsgj_re_pot_dongzhao:'星月界势董昭',
 	qmsgswkjsgj_re_pot_dongzhao_prefix: '星月|界|势',
@@ -946,11 +946,11 @@ const translate = {
 	qmsgswkjsgj_re_simahui:'星月界司马徽',
 	qmsgswkjsgj_re_simahui_prefix: '星月|界',
 	qmsgswkjsgj_re_jianjie: "荐杰",
-	qmsgswkjsgj_re_jianjie_info: "①游戏开始时，你令一名其他角色获得“龙印”，然后令另一名其他角色获得“凤印”。②出牌阶段限一次。若当前回合不是你的第一个回合，则你可以移动场上的“龙印”或“凤印”。③拥有“龙印”或“凤印”的其他角色死亡时，你转移该角色的“龙印”和“凤印”。④拥有“龙印”/“凤印”的角色视为拥有〖火计〗/〖连环〗，且同时拥有这两种标记的角色视为拥有〖业炎〗。",
+	qmsgswkjsgj_re_jianjie_info: "①游戏开始时，你令一名其他角色获得“龙印”，然后令另一名其他角色获得“凤印”。②出牌阶段限一次。你可以移动场上的“龙印”或“凤印”。③拥有“龙印”或“凤印”的其他角色死亡时，你转移该角色的“龙印”和“凤印”。④拥有“龙印”/“凤印”的角色视为拥有〖火计〗/〖连环〗，且同时拥有这两种标记的角色视为拥有〖业炎〗。",
 
 	//神周瑜补强
-	qmsgswkjsgj_plusplus_shen_zhouyu:'星月神神周瑜',
-	qmsgswkjsgj_plusplus_shen_zhouyu_prefix: '星月|神|神',
+	qmsgswkjsgj_plus_shen_zhouyu:'星月神神周瑜',
+	qmsgswkjsgj_plus_shen_zhouyu_prefix: '星月|神|神',
 	qmsgswkjsgj_yeyanplus: '业炎',
 	qmsgswkjsgj_yeyanplus_info: '出牌阶段限一次，你可以选择至多三名角色，对这些角色造成共计至多3点火焰伤害。',
 	qmsgswkjsgj_reyingziplus: '英姿',
@@ -959,6 +959,10 @@ const translate = {
 	qmsgswkjsgj_refanjianplus_info: '出牌阶段每名其他角色限一次，你可以展示一张手牌并交给一名其他角色，令其展示所有手牌，然后依次执行：1.弃置其与此牌花色相同的所有牌；2.令其失去1点体力或对其造成1点伤害。',
 	qmsgswkjsgj_qinyinplus: '琴音',
 	qmsgswkjsgj_qinyinplus_info: '准备阶段和结束阶段，你可以选择任意名角色各回复1点体力，然后选择其他任意名角色各失去1点体力或对其各造成一点伤害。',
+	qmsgswkjsgj_qinyinplus_hp: '失去体力',
+	qmsgswkjsgj_qinyinplus_damage: '造成1点伤害',
+	qmsgswkjsgj_refanjianplus_hp: '失去体力',
+	qmsgswkjsgj_refanjianplus_damage: '造成1点伤害',
 
 	qmsgswkjsgj_re_o_sunquan:'星月界缘孙权',
 	qmsgswkjsgj_re_o_sunquan_prefix: '星月|神赐|缘',
