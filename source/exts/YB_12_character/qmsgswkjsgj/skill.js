@@ -25094,19 +25094,27 @@ const skill = {
 		subSkill: {
 			disabled: {
 				silent: true,
+				init(player, skill) {
+					player.addSkillBlocker(skill);
+				},
+				onremove(player, skill) {
+					player.removeSkillBlocker(skill);
+				},
+				skillBlocker(skill, player) {
+					if (skill === "qmsgswkjsgj_shenci_dcxiace_disabled") {
+						return false;
+					}
+					var info = lib.skill[skill];
+					if (info && (info.charlotte || info.persevereSkill)) {
+						return false;
+					}
+					return true;
+				},
 				trigger: { player: "phaseJieshu" },
 				forced: true,
 				priority: 1,
 				content(event, trigger, player) {
 					player.removeSkill(event.name);
-				},
-				mod: {
-					skillEnabled(skill, player) {
-						if (skill === "qmsgswkjsgj_shenci_dcxiace_disabled") {
-							return;
-						}
-						return false;
-					},
 				},
 			},
 		},
