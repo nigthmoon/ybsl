@@ -1342,3 +1342,11 @@ qmsgswkjsgj 扩展补全 characterSort/characterCopyright/characterTitle：新�
 2026.10.02（qmsgswkjsgj 收尾）
 武将 id 规范化改名，跨 character.js / characterCopyright.js / characterSort.js / characterTitle.js / translate.js 五处同步：re_bolingyun→re_bailingyun、re_pot_guoyuan→re_guoyuan、shenci_bolingyun→shenci_bailingyun（关联 linkTo / YB_mjz / tempname / prefix 一并更新）。
 characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 qmsgswkjsgj_span，神赐批次用 qmsgswkjsgj_shenci_span），仅 re_o_sunquan 暂留空待补。
+
+2026.10.02（发布 5.7.0-4.0）
+- 阵盘功能迭代：新增无极乾坤，阵盘显示武将并多处优化。
+- 星月神系列新增/重做：星月神张辽、刘备、关羽、吕蒙、周瑜（补强）。
+- 星月神赐系列实装：神赐武关羽、神赐武皇甫嵩、神赐司马徽、神赐界柏灵筠、神赐欧陆凯撒。
+- 星月界系列补全：缘孙权、郭照、渭南张郃、势国渊、势辛宪英、势董昭、司马徽。
+- 全民三国杀（qmsgswkjsgj）子包重构并按5部小说拆分；新增38名武将注册，版权署名联名「夜白&Hy3」并补全称号。
+- translate.js 翻译表补全（星月/神赐武将）。

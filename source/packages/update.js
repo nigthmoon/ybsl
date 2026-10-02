@@ -2,7 +2,52 @@ export { ybslb_update };
 window.ybslb_update = {
 	//这是从金庸里抄来的更新公告格式，不过我仿佛不会用……
 	//感谢狂神对于这种写法的帮助，
-	version: '5.7.0-3.0',
+	version: '5.7.0-4.0',
+	'5.7.0-4.0': {
+		changeLog: [
+			//----------------5.7.0-4.0--------------//
+			'理论上可联机，建议搭配1.11.5及以上本体使用',
+			'当前版本：5.7.0-4.0',
+			'更新日期：2026-10-02',
+			'本条公告可在扩展介绍页面查看',
+			'------------更新详情------------',
+			'- 阵盘功能迭代：新增无极乾坤，阵盘显示武将并多处优化；毒改等。',
+			'- 星月神系列新增/重做：星月神张辽、星月神刘备、星月神关羽、星月神吕蒙、星月神周瑜（补强）。',
+			'- 星月神赐系列实装：神赐武关羽（绝武/武佑/义贤）、神赐武皇甫嵩（朝镇/连捷/将贤）、神赐司马徽（荐杰/龙凤印/业炎/隐士/称好）、神赐界柏灵筠（灵慧/黠策/御心）、神赐欧陆凯撒（独裁/治统/集权）。',
+			'- 星月界系列补全：缘孙权、郭照、渭南张郃、势国渊、势辛宪英、势董昭、司马徽。',
+			'- 全民三国杀，我开局神郭嘉（qmsgswkjsgj）子包重构：12类数据按5部小说拆分至子文件夹；新增38名武将注册（后续/神/神赐/plus批次），补全版权署名（新增联名「夜白&Hy3」）与称号。',
+			'- translate.js 翻译表补全（星月/神赐武将）。',
+			'------------注意事项------------',
+			'- 本扩展需本体版本为1.11.5及以上，建议最新版！。',
+			'- 修复若干bug，可能添加若干bug。',
+			'------------鸣谢清单------------',
+			'- 狂神is NB！',
+			'- 经过我和B站up主鸣濑白羽酱的沟通，现本扩展包部分武将插图采用他的ai制图，具体被应用的武将在该角色的简介里备注。',
+			'- 代码中部分文字用ASCII和Unicode进行了转化，以避免剧透。',
+			'- 本扩展随时欢迎各路萌新及大佬点评和借鉴，引用或转录注明出处即可，最好告知（就是想高兴高兴……）',
+			'- 制作仓促，有bug烦请加群反馈。',
+			'- 进群答案合理即可。',
+			'- 交流QQ群：369015096。',
+			'- 感谢一直以来各位游玩者的关注与支持。',
+			'- 感谢狂神逆天对本扩展的优化。包括自动开启武将包的设置，扩展介绍的优化，武将第五栏显示武将评级等等',
+			'- 感谢火佬对本扩展的无私奉献',
+			'- 感谢子虚对本扩展的无私奉献',
+			'- 铝宝就是天使！。',
+			'- <span class=yellowtext>感谢Angle为本扩展的想去远方撰写ai，以及优化张晴。</span>',
+			'- <span class=yellowtext>感谢周子鱼为本扩展制作的十周年美化卡牌。</span>',
+			'- <span class=yellowtext>感谢鬼神易早期为本扩展撰写的几个武将。</span>',
+			//为什么用黄色？因为这些是我花钱搞的=w=
+			'- 铝宝就是天使！。',
+		],
+		players: [
+			'qmsgswkjsgj_re_yue_caiwenji', 'qmsgswkjsgj_re_dc_liuba', 'qmsgswkjsgj_re_zhugejin', 'qmsgswkjsgj_re_yuanyin', 'qmsgswkjsgj_re_sp_zhenji', 'qmsgswkjsgj_re_liushan', 'qmsgswkjsgj_re_caojinyu', 'qmsgswkjsgj_re_yue_zhouyu', 'qmsgswkjsgj_re_bailingyun', 'qmsgswkjsgj_re_v_zhangliao', 'qmsgswkjsgj_re_sb_simayi', 'qmsgswkjsgj_re_guanning', 'qmsgswkjsgj_re_pangfengyi', 'qmsgswkjsgj_re_guanyu', 'qmsgswkjsgj_re_machao', 'qmsgswkjsgj_re_xusheng', 'qmsgswkjsgj_re_guoyuan', 'qmsgswkjsgj_re_pot_xinxianying', 'qmsgswkjsgj_re_pot_dongzhao', 'qmsgswkjsgj_re_simahui', 'qmsgswkjsgj_re_o_sunquan', 'qmsgswkjsgj_re_jsrg_guozhao', 'qmsgswkjsgj_re_wn_zhanghe',
+			'qmsgswkjsgj_shen_pangtong', 'qmsgswkjsgj_shen_zhangliao', 'qmsgswkjsgj_shen_liubei', 'qmsgswkjsgj_shen_guanyu', 'qmsgswkjsgj_shen_lvmeng', 'qmsgswkjsgj_mb_shen_jiangwei',
+			'qmsgswkjsgj_shenci_wu_huangfusong', 'qmsgswkjsgj_shenci_wu_guanyu', 'qmsgswkjsgj_shenci_bailingyun', 'qmsgswkjsgj_shenci_simahui', 'qmsgswkjsgj_shenci_eu_kaisa',
+			'qmsgswkjsgj_plus_shen_guojia', 'qmsgswkjsgj_plusplus_shen_guojia', 'qmsgswkjsgj_plus_shen_xunyu', 'qmsgswkjsgj_plus_shen_zhouyu'
+		],
+		cards: [],
+		files: [],
+	},
 	'5.7.0-3.0': {
 		changeLog: [
 			//----------------5.7.0-1.8--------------//
