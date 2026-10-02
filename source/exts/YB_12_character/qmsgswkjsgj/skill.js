@@ -26301,7 +26301,7 @@ const skill = {
 		},
 	},
 	qmsgswkjsgj_shenci_yinshi: {
-		audio: 2,
+		audio: 'xinfu_yinshi',
 		trigger: { player: "damageBegin4" },
 		forced: true,
 		filter(event, player) {
@@ -26349,7 +26349,7 @@ const skill = {
 		},
 	},
 	qmsgswkjsgj_shenci_chenghao: {
-		audio: 2,
+		audio: 'xinfu_chenghao',
 		trigger: {
 			global: "damageEnd",
 		},

@@ -1150,5 +1150,7 @@ const translate = {
 	qmsgswkjsgj_shenci_eu_jiquan: "集权",
 	qmsgswkjsgj_shenci_eu_jiquan_info: "主公技，锁定技，其他角色均视为西势力；西势力角色的回合开始时，你回复1点体力并摸两张牌。",
 	//作者注解，可以触发集权，不改变原势力
+	//视为势力的方式可能无法达成，就写可以无条件触发后续效果吧
+
 
 };
