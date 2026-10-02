@@ -332,7 +332,7 @@ const character = {
 	qmsgswkjsgj_re_liushan: ['male', 'shu', 3, ['qmsgswkjsgj_re_xiangle', 'qmsgswkjsgj_re_fangquan','olruoyu'], ['rankAdd:legend', 'rankS:s', 'linkTo:ol_liushan', 'YB_mjz:ol_liushan', 'tempname:ol_liushan']],
 	qmsgswkjsgj_re_caojinyu: ['female', 'wei', 3, ['qmsgswkjsgj_re_yuqi', 'qmsgswkjsgj_re_shanshen', 'qmsgswkjsgj_re_xianjing'], ['rankAdd:legend', 'rankS:s', 'linkTo:caojinyu', 'YB_mjz:caojinyu', 'tempname:caojinyu']],
 	qmsgswkjsgj_re_yue_zhouyu: ['male', 'wu', 3, ['qmsgswkjsgj_re_dcguyin', 'qmsgswkjsgj_re_dcpinglu'], ['rankAdd:legend', 'rankS:s', 'linkTo:yue_zhouyu', 'YB_mjz:yue_zhouyu', 'tempname:yue_zhouyu']],
-	qmsgswkjsgj_re_bolingyun: ['female', 'wei', 3, ['qmsgswkjsgj_re_dclinghui', 'qmsgswkjsgj_re_dcxiace', 'qmsgswkjsgj_re_dcyuxin'], ['rankAdd:legend', 'rankS:s', 'linkTo:bolingyun', 'YB_mjz:bolingyun', 'tempname:bolingyun']],
+	qmsgswkjsgj_re_bailingyun: ['female', 'wei', 3, ['qmsgswkjsgj_re_dclinghui', 'qmsgswkjsgj_re_dcxiace', 'qmsgswkjsgj_re_dcyuxin'], ['rankAdd:legend', 'rankS:s', 'linkTo:bailingyun', 'YB_mjz:bailingyun', 'tempname:bailingyun']],
 	qmsgswkjsgj_re_v_zhangliao: ['male', 'qun', 4, ['qmsgswkjsgj_re_dcyuxi', 'qmsgswkjsgj_re_dcporong'], ['rankAdd:legend', 'rankS:s', 'linkTo:v_zhangliao', 'YB_mjz:v_zhangliao', 'tempname:v_zhangliao']],
 	qmsgswkjsgj_re_sb_simayi: ['male', 'wei', 3, ['qmsgswkjsgj_re_dcsbquanmou', 'qmsgswkjsgj_re_dcsbpingliao'], ['rankAdd:legend', 'rankS:s', 'linkTo:sb_simayi', 'YB_mjz:sb_simayi', 'tempname:sb_simayi','name:司马|懿']],
 	qmsgswkjsgj_re_guanning: ['male', 'qun', '3/7', ['qmsgswkjsgj_re_dunshi'], ['rankAdd:legend', 'rankS:s', 'linkTo:guanning', 'YB_mjz:guanning', 'tempname:guanning']],
@@ -340,7 +340,7 @@ const character = {
 	qmsgswkjsgj_re_guanyu: ['male', 'shu', 4, ['qmsgswkjsgj_re_wusheng','qmsgswkjsgj_re_yijue'], ['rankAdd:legend', 'rankS:s', 'linkTo:re_guanyu', 'YB_mjz:re_guanyu', 'tempname:re_guanyu']],
 	qmsgswkjsgj_re_machao: ['male', 'shu', 4, ['mashu','qmsgswkjsgj_re_tieji'], ['rankAdd:legend', 'rankS:s', 'linkTo:re_machao', 'YB_mjz:re_machao', 'tempname:re_machao']],
 	qmsgswkjsgj_re_xusheng: ['male', 'wu', 4, ['qmsgswkjsgj_re_pojun'], ['rankAdd:legend', 'rankS:s', 'linkTo:re_xusheng', 'YB_mjz:re_xusheng', 'tempname:re_xusheng']],
-	qmsgswkjsgj_re_pot_guoyuan: ['male', 'wei', 3, ['qmsgswkjsgj_re_mbqingdao', 'qmsgswkjsgj_re_mbxiugeng', 'qmsgswkjsgj_re_mbchenshe'], ['rankAdd:legend', 'rankS:s', 'linkTo:pot_guoyuan', 'YB_mjz:pot_guoyuan', 'tempname:pot_guoyuan']],
+	qmsgswkjsgj_re_guoyuan: ['male', 'wei', 3, ['qmsgswkjsgj_re_mbqingdao', 'qmsgswkjsgj_re_mbxiugeng', 'qmsgswkjsgj_re_mbchenshe'], ['rankAdd:legend', 'rankS:s', 'linkTo:guoyuan', 'YB_mjz:guoyuan', 'tempname:guoyuan']],
 	qmsgswkjsgj_re_pot_xinxianying: ['female', 'wei', 3, ['qmsgswkjsgj_re_potjiejie', 'qmsgswkjsgj_re_potqingshi'], ['rankAdd:legend', 'rankS:s', 'linkTo:pot_xinxianying', 'YB_mjz:pot_xinxianying', 'tempname:pot_xinxianying']],
 	qmsgswkjsgj_re_pot_dongzhao: ['male', 'wei', 3, ['qmsgswkjsgj_re_mbmiaolue', 'qmsgswkjsgj_re_mbyingjia'], ['rankAdd:legend', 'rankS:s', 'linkTo:pot_dongzhao', 'YB_mjz:pot_dongzhao', 'tempname:pot_dongzhao']],
 	qmsgswkjsgj_re_simahui: ['male', 'qun', 3, ['qmsgswkjsgj_re_jianjie', "xinfu_chenghao", "xinfu_yinshi"], ['rankAdd:legend', 'rankS:s', 'linkTo:simahui', 'YB_mjz:simahui', 'tempname:simahui']],
@@ -371,7 +371,7 @@ const character = {
 
 	qmsgswkjsgj_shenci_wu_huangfusong: ['male', 'qun', 4, ['qmsgswkjsgj_shenci_dcchaozhen', 'qmsgswkjsgj_shenci_dclianjie', 'qmsgswkjsgj_shenci_dcjiangxian'], ['rankAdd:legend', 'rankS:s', 'linkTo:wu_huangfusong', 'YB_mjz:wu_huangfusong', 'tempname:wu_huangfusong','name:皇甫|嵩']],
 	qmsgswkjsgj_shenci_wu_guanyu: ['male', 'shu', 4, ['qmsgswkjsgj_shenci_dcjuewu', 'qmsgswkjsgj_shenci_dcwuyou', 'qmsgswkjsgj_shenci_dcyixian'], ['rankAdd:legend', 'rankS:s', 'linkTo:wu_guanyu', 'YB_mjz:wu_guanyu', 'tempname:wu_guanyu']],
-	qmsgswkjsgj_shenci_bolingyun: ['female', 'wei', 3, ['qmsgswkjsgj_shenci_dclinghui', 'qmsgswkjsgj_shenci_dcxiace', 'qmsgswkjsgj_shenci_dcyuxin'], ['rankAdd:legend', 'rankS:s', 'linkTo:bolingyun', 'YB_mjz:bolingyun', 'tempname:bolingyun']],
+	qmsgswkjsgj_shenci_bailingyun: ['female', 'wei', 3, ['qmsgswkjsgj_shenci_dclinghui', 'qmsgswkjsgj_shenci_dcxiace', 'qmsgswkjsgj_shenci_dcyuxin'], ['rankAdd:legend', 'rankS:s', 'linkTo:bailingyun', 'YB_mjz:bailingyun', 'tempname:bailingyun']],
 	qmsgswkjsgj_shenci_simahui: ['male', 'qun', 3, ['qmsgswkjsgj_shenci_jianjie', 'qmsgswkjsgj_shenci_jianjie_huoji', 'qmsgswkjsgj_shenci_jianjie_lianhuan', 'qmsgswkjsgj_shenci_jianjie_yeyan', 'qmsgswkjsgj_shenci_yinshi', 'qmsgswkjsgj_shenci_chenghao'], ['rankAdd:legend', 'rankS:s', 'linkTo:simahui', 'YB_mjz:simahui', 'tempname:simahui']],
 	qmsgswkjsgj_shenci_eu_kaisa: ['male', 'qun', 3, ['qmsgswkjsgj_shenci_eu_ducai', 'qmsgswkjsgj_shenci_eu_zhitong', 'qmsgswkjsgj_shenci_eu_jiquan'], ['rankAdd:legend', 'rankS:s', 'linkTo:eu_kaisa', 'YB_mjz:eu_kaisa', 'tempname:eu_kaisa']],
 

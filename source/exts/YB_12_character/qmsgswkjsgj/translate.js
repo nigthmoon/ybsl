@@ -777,8 +777,8 @@ const translate = {
 	qmsgswkjsgj_re_dcpinglu: '平虏',
 	qmsgswkjsgj_re_dcpinglu_info: '出牌阶段，你可以获得攻击范围内所有其他角色各一张牌。若如此做，直到这些牌离开你的手牌区，本技能此阶段失效。',
 
-	qmsgswkjsgj_re_bolingyun: '星月界柏灵筠',
-	qmsgswkjsgj_re_bolingyun_prefix: '星月|界',
+	qmsgswkjsgj_re_bailingyun: '星月界柏灵筠',
+	qmsgswkjsgj_re_bailingyun_prefix: '星月|界',
 	qmsgswkjsgj_re_dclinghui: '灵慧',
 	qmsgswkjsgj_re_dclinghui_info: '一名角色的结束阶段，若当前回合角色为你或本回合有角色受到过伤害，则你可以观看牌堆顶的X张牌（X为你的体力上限），然后你可以使用其中一张牌并获得其中一张剩余牌，然后将剩余牌以任意顺序放回牌堆顶。',
 	qmsgswkjsgj_re_dcxiace: '黠策',
@@ -920,8 +920,8 @@ const translate = {
 	qmsgswkjsgj_resghuishiplusplus:'辉逝',
 	qmsgswkjsgj_resghuishiplusplus_info:'出牌阶段限一次，你可以选择一名角色，若其：有未触发的觉醒技，则你选择其中一个觉醒技，然后该角色直接觉醒；没有未触发的觉醒技，其摸四张牌，增加2点体力上限。若如此做，你减2点体力上限。',
 
-	qmsgswkjsgj_re_pot_guoyuan:'星月界势国渊',
-	qmsgswkjsgj_re_pot_guoyuan_prefix: '星月|界|势',
+	qmsgswkjsgj_re_guoyuan:'星月界势国渊',
+	qmsgswkjsgj_re_guoyuan_prefix: '星月|界|势',
 	qmsgswkjsgj_re_mbqingdao:'清蹈',
 	qmsgswkjsgj_re_mbqingdao_info: '当其他角色对你使用的卡牌结算结束后，若你因此牌受到伤害，你可以从牌堆或弃牌堆中获得一张【闪】并弃置一名角色区域里的一张牌；否则你可以从牌堆或弃牌堆中获得一张【杀】并使用一张手牌（无距离限制）。',
 	qmsgswkjsgj_re_mbxiugeng:'休耕',
@@ -1115,8 +1115,8 @@ const translate = {
 	qmsgswkjsgj_shenci_dcyixian_info: '出牌阶段限一次，你可以选择一项：⒈获得场上的所有装备牌；⒉获得弃牌堆中的所有装备牌。然后你依次选择是否令被你以此法获得牌的角色摸X张牌并回复1点体力（X为其以此法失去的牌数）。',
 
 
-	qmsgswkjsgj_shenci_bolingyun: '星月神赐界柏灵筠',
-	qmsgswkjsgj_shenci_bolingyun_prefix: '星月|神赐|界',
+	qmsgswkjsgj_shenci_bailingyun: '星月神赐界柏灵筠',
+	qmsgswkjsgj_shenci_bailingyun_prefix: '星月|神赐|界',
 	qmsgswkjsgj_shenci_dclinghui: '灵慧',
 	qmsgswkjsgj_shenci_dclinghui_info: '一名角色的结束阶段，你可以观看牌堆顶的X张牌（X为你的体力上限），然后你可以使用其中任意张牌并获得剩余任意张牌，然后将其余牌以任意顺序放回牌堆顶。',
 	qmsgswkjsgj_shenci_dcxiace: '黠策',

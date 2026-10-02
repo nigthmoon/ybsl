@@ -1338,3 +1338,7 @@ qmsgswkjsgj 扩展补全 characterSort/characterCopyright/characterTitle：新�
 
 2026.10.02（星月神赐批次5）
 星月神赐司马徽（qmsgswkjsgj_shenci_simahui）技能实现完成：荐杰、神赐龙印(火计)、神赐凤印(连环)、业炎、隐士、称好。荐杰自带 shenci 前缀的 hasMark/addMark/removeMark（标记键 qmsgswkjsgj_shenci_jianjie_huoji/lianhuan），龙凤印/业炎作为 qmsgswkjsgj_shenci_jianjie 子技能（与本体龙凤印接口隔离，避免串台）；新增“每轮开始/准备阶段若无场上印则补发”逻辑（roundStart 仅限回合>1 防与首准备阶段重复发印）。隐士：继承本体 xinfu_yinshi 结构，引用改 shenci 接口。称好：由“铁索伤害”改为“任意属性伤害”（event.nature 判定），X=横置角色数且包含该受伤角色。
+
+2026.10.02（qmsgswkjsgj 收尾）
+武将 id 规范化改名，跨 character.js / characterCopyright.js / characterSort.js / characterTitle.js / translate.js 五处同步：re_bolingyun→re_bailingyun、re_pot_guoyuan→re_guoyuan、shenci_bolingyun→shenci_bailingyun（关联 linkTo / YB_mjz / tempname / prefix 一并更新）。
+characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 qmsgswkjsgj_span，神赐批次用 qmsgswkjsgj_shenci_span），仅 re_o_sunquan 暂留空待补。
