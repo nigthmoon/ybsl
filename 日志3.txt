@@ -1329,3 +1329,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 
 2026.10.02（星月神赐批次3）
 星月神赐武皇甫嵩（qmsgswkjsgj_shenci_wu_huangfusong）技能实现完成：朝镇、连捷、将贤（以本体 character/xianding 的 dcchaozhen/dclianjie/dcjiangxian 为蓝本，加 shenci_ 前缀并按神赐描述差异改写）。朝镇：去“令〖朝镇〗本回合失效”（tempBanSkill）；连捷：去掉“每回合每名角色限放置一次”（dclianjie_used 追踪），触发改为“使用手牌指定目标后”即弹（可选置牌），摸牌条件改为“你无手牌或此牌点数不大于你的所有手牌”，gaintag 重命名为 qmsgswkjsgj_shenci_dclianjie 以免与本体冲突；将贤：去“因连捷获得的牌”限制与“回合结束失去连捷/朝镇”，伤害+X 对所有伤害生效、X 无上限（按 getHistory("sourceDamage") 计，damageBegin1 触发）。
+
+2026.10.02（星月神赐批次4）
+星月神赐武关羽（qmsgswkjsgj_shenci_wu_guanyu）技能实现完成：绝武、武佑、义贤（以本体 character/xianding 的 dcjuewu/dcwuyou/dcyixian 为蓝本，加 shenci_ 前缀并按神赐描述差异改写，水淹七军牌名已保留）。绝武：去“每回合每种牌名限一次”（移除 dcjuewu_used 全部引用），保留 shuiyanqijuny（水淹七军）在伤害牌名列表；武佑：global 仍把 g 子技能分配全场，usable:2 实现“每名角色出牌阶段限两次”，牌名选择改为 lib.inpile 全部非装备（全部牌名）；义贤：limited 改 usable:1+enable:phaseUse（出牌阶段限一次），去 awakenSkill；所有内部 gaintag/子技能引用统一加 shenci_ 前缀以免与本体串台。
