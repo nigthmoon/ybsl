@@ -1317,3 +1317,6 @@ E* 系列明显指向本体）或可能定义在 character.js，并非真漏写�
 - 星月界势董昭：妙略、迎驾。
 - 星月界司马徽：荐杰。
 - 星月神神周瑜（qmsgswkjsgj_plus_shen_zhouyu）：琴音plus、业炎plus、英姿plus、反间plus。
+
+2026.10.02（续）
+修复星月界灵慧（qmsgswkjsgj_re_dclinghui）获得牌不生效的bug：获得步骤取牌由 result2.card 改为 result2.links[0]，并显式从待放回牌池移除以免被一并放回牌堆顶；同时修正星月界缘孙权 势众/操微 的 audio 字段（数字改为技能名字符串）。

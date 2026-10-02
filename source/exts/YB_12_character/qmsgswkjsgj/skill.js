@@ -17028,7 +17028,11 @@ const skill = {
 							return get.value(button.link);
 						})
 						.forResult();
-					if(result2.bool)await player.gain(result2.card, "gain2");
+					if(result2.bool){
+						const gained = result2.links[0];
+						cards.remove(gained);
+						await player.gain(gained, "gain2");
+					}
 					await game.delayx();
 					cards = cards.filterInD();
 				}
@@ -20307,7 +20311,7 @@ const skill = {
 	},
 	//星月界缘孙权
 	qmsgswkjsgj_mbshizhong: {
-		audio: 3,
+		audio: 'mbshizhong',
 		logAudio: () => 2,
 		trigger: { player: ['phaseJieshuBegin', 'phaseZhunbeiBegin'] },
 		filter(event, player) {
@@ -20362,7 +20366,7 @@ const skill = {
 		},
 	},
 	qmsgswkjsgj_mbcaowei: {
-		audio: 2,
+		audio: 'mbcaowei',
 		trigger: { player: 'damageEnd' },
 		filter(event, player) {
 			const types = player
