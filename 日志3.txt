@@ -1355,3 +1355,6 @@ characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 
 - 修复管宁【遁世】“每回合每种牌名限一次”不刷新的bug：原实现直接复用可用牌池 storage[0] 并在用后永久删除，导致牌名用完不刷新；改为用临时技能 qmsgswkjsgj_re_dunshi_used（YB_tempz）记录本回合已用牌名，回合结束自动清理，可用牌池仅保留选项⒉的永久删除语义。
 - YB_08 集智（ybmjz_jizhi）：将“手牌上限+1/出杀次数+1”的加成由父技能 mod 下放到回合结束自动移除的子技能 max(囊)/sha(杀)，修正原父技能 mod 无条件读取标记数、未获得标记时导致bug 的问题；下放后仅获得对应子技能才计入，避免该 bug。
 - qmsgswkjsgj/character.js 角色修正：司马懿联动目标 sb_simayi→dc_sb_simayi；庞凤衣势力 群→蜀；董昭 YB_mjz pot_dongzhao→tw_dongzhao；神赐欧陆凯撒势力 群→西方。
+
+2026.10.03
+- 星月界张奂、星月手杀神马超技能代码完成。

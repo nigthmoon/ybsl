@@ -381,4 +381,41 @@ const character = {
 	qmsgswkjsgj_plus_shen_xunyu: ['male', 'shen', 3, ['qmsgswkjsgj_tianzuoplus', 'qmsgswkjsgj_lingce', 'qmsgswkjsgj_dinghan', 'qmsgswkjsgj_shenquhu', 'qmsgswkjsgj_jiemingplus'], ['rankAdd:legend', 'rankS:s', 'linkTo:shen_xunyu', 'YB_mjz:shen_xunyu', 'tempname:re_xunyu', 'wei']],
 
 	qmsgswkjsgj_plus_shen_zhouyu: ['male', 'shen', 4, ['qmsgswkjsgj_qinyinplus', 'qmsgswkjsgj_yeyanplus', 'qmsgswkjsgj_reyingziplus', 'qmsgswkjsgj_refanjianplus'], ['rankAdd:legend', 'rankS:s', 'linkTo:shen_zhouyu', 'YB_mjz:shen_zhouyu', 'tempname:shen_zhouyu', 'wu']],
+
+	//2026-10-03补
+	qmsgswkjsgj_re_yj_zhanghuan:['male','qun',4,["dcyiju", "qmsgswkjsgj_re_dcshuguo"],['rankAdd:legend', 'rankS:s', 'linkTo:yj_zhanghuan', 'YB_mjz:yj_zhanghuan', 'tempname:yj_zhanghuan']],
+	qmsgswkjsgj_plus_re_dc_tengfanglan: {
+		sex: 'female',
+		group: 'wu',
+		hp: 3,
+		skills: ['qmsgswkjsgj_re_dcluochongplus', 'qmsgswkjsgj_re_dcaichenplus'],
+		YB_mjz: 'dc_tengfanglan',
+		linkTo: 'dc_tengfanglan',
+		tempname: ['dc_tengfanglan'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	qmsgswkjsgj_plus_re_zhenghun: {
+		sex: 'male',
+		group: 'wei',
+		hp: 3,
+		skills: ['qmsgswkjsgj_re_dcqiangzhiplus', 'qmsgswkjsgj_re_dcpitian'],
+		YB_mjz: 'zhenghun',
+		linkTo: 'zhenghun',
+		tempname: ['zhenghun'],
+		rankAdd: 'legend',
+		rankS: 's',
+	},
+	qmsgswkjsgj_mb_shen_machao: {
+		sex: "male",
+		group: "shen",
+		hp: 4,
+		skills: ["qmsgswkjsgj_yuli", "qmsgswkjsgj_tingwei", "qmsgswkjsgj_jimie"],
+		groupInGuozhan: 'shu',
+		YB_mjz: "mb_shen_machao",
+		linkTo: "mb_shen_machao",
+		tempname: ["mb_shen_machao"],
+		rankAdd: "legend",
+		rankS: "s",
+	},
 };

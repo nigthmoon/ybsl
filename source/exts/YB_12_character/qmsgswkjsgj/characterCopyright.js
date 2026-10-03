@@ -119,4 +119,8 @@ const characterCopyright = {
 	qmsgswkjsgj_plusplus_shen_guojia: ['全民三国杀，我开局神郭嘉（番茄小说）', '', '天一笙水', '夜白&Hy3', '三国杀官方', '三国杀官方', '❁'],
 	qmsgswkjsgj_plus_shen_xunyu: ['全民三国杀，我开局神郭嘉（番茄小说）', '', '天一笙水', '夜白&Hy3', '三国杀官方', '三国杀官方', '❁'],
 	qmsgswkjsgj_plus_shen_zhouyu: ['全民三国杀，我开局神郭嘉（番茄小说）', '', '天一笙水', '夜白&Hy3', '三国杀官方', '三国杀官方', '❁'],
+
+	//2026-10-03补
+	qmsgswkjsgj_re_yj_zhanghuan: ['全民三国杀，我开局神郭嘉（番茄小说）', '', '天一笙水', '夜白&Hy3', '三国杀官方', '三国杀官方', '❁'],
+
 };

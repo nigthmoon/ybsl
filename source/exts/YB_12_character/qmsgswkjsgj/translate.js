@@ -563,6 +563,8 @@ const translate = {
 
 	qmsgswkjsgj_re_dc_tengfanglan: '星月界滕芳兰',
 	qmsgswkjsgj_re_dc_tengfanglan_prefix: '星月|界',
+	qmsgswkjsgj_plus_re_dc_tengfanglan: '星月界界滕芳兰',
+	qmsgswkjsgj_plus_re_dc_tengfanglan_prefix: '星月|界|界',
 	qmsgswkjsgj_re_dcluochong: '落宠',
 	qmsgswkjsgj_re_dcluochong_info: '每轮开始时，你可以弃置任意名角色区域里的共计至多[4]张牌。（全民三国杀我开局神郭嘉）',
 	qmsgswkjsgj_re_dcaichen: '哀尘',
@@ -574,7 +576,9 @@ const translate = {
 	//还能补强？
 
 	qmsgswkjsgj_re_zhenghun: '星月界郑浑',
-	qmsgswkjsgj_re_zhenghun_prefix: '星月界',
+	qmsgswkjsgj_re_zhenghun_prefix: '星月|界',
+	qmsgswkjsgj_plus_re_zhenghun: '星月界界郑浑',
+	qmsgswkjsgj_plus_re_zhenghun_prefix: '星月|界|界',
 	// qmsgswkjsgj_re_dcqiangzhi: "强峙",//原文提及，没变化
 	// qmsgswkjsgj_re_dcqiangzhi_info: "出牌阶段限一次。你可以弃置你和一名其他角色的共计三张牌。然后若你与其之中有角色因此失去了三张牌，该角色对另一名角色造成1点伤害。",
 	qmsgswkjsgj_re_dcpitian: '辟田',
@@ -982,6 +986,22 @@ const translate = {
 	qmsgswkjsgj_re_wn_zhanghe_prefix: "星月|界|渭南",
 	qmsgswkjsgj_re_wn_qiaobian: "巧变",
 	qmsgswkjsgj_re_wn_qiaobian_info: "其他角色的准备阶段，你可以将一张牌置于武将牌上，称为“巧”。本回合其使用牌时，你展示一张“巧”，若这两张牌类型或花色或点数：相同，若此时在其出牌阶段内，结束此阶段；不同，你摸一张牌，其的结束阶段，你获得所有“巧”。",
+
+	qmsgswkjsgj_re_yj_zhanghuan:'星月界张奂',
+	qmsgswkjsgj_re_yj_zhanghuan_prefix: '星月|界',
+	// dcyiju: "义拒",
+	// dcyiju_info: "锁定技，其他角色使用牌指定你为唯一目标后，你弃置一张牌。",
+	qmsgswkjsgj_re_dcshuguo: "戍国",
+	qmsgswkjsgj_re_dcshuguo_info: "每回合结束时，你可以依次使用本回合因弃置而置入弃牌堆的牌。然后每有一张本回合弃置的牌没有使用，你摸一张牌。",
+
+	qmsgswkjsgj_mb_shen_machao_prefix: "星月|手杀神",
+	qmsgswkjsgj_mb_shen_machao: "星月手杀神马超",
+	qmsgswkjsgj_yuli: "驭雳",
+	qmsgswkjsgj_yuli_info: "锁定技。①你的普通【杀】视为雷【杀】，你造成的伤害改为雷电伤害，已是雷电伤害则伤害+1；②其他角色对你使用的普通【杀】均视为雷【杀】，你受到雷电伤害时，防止之并摸等量牌。",
+	qmsgswkjsgj_tingwei: "霆威",
+	qmsgswkjsgj_tingwei_info: "你使用牌指定目标后，可获得4枚“霆”标记并选择一名目标角色，你选择任意项并令你弃等量的“霆”标记：1.令其技能失效至其下个回合结束；2.你获得其一张装备牌；3.本回合你对其造成的伤害+1；4.随机弃两张牌。然后其进入横置状态。",
+	qmsgswkjsgj_jimie: "寂灭",
+	qmsgswkjsgj_jimie_info: `出牌阶段限一次，你可以弃6枚“霆”标记，对一名角色造成等于其体力上限的雷属性伤害。然后当你${get.poptip("qmsgswkjsgj_yuli")}的两项均执行后，此技能视为未发动过。`,
 	//魔炎
 
 	//----------------神赐章节-----------------

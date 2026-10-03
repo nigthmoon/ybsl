@@ -119,5 +119,8 @@ const characterSort = {
 		'qmsgswkjsgj_plusplus_shen_guojia',
 		'qmsgswkjsgj_plus_shen_xunyu',
 		'qmsgswkjsgj_plus_shen_zhouyu',
+
+		//再次补充
+		'qmsgswkjsgj_re_yj_zhanghuan',
 	],
 };

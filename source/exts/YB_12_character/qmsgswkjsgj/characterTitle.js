@@ -141,4 +141,10 @@ const characterTitle = {
 	qmsgswkjsgj_shenci_simahui: "<span class = '" + qmsgswkjsgj_shenci_span + "'>水镜先生</span>",
 	qmsgswkjsgj_shenci_eu_kaisa: "<span class = '" + qmsgswkjsgj_shenci_span + "'>无冕之皇</span>",
 
+	//2026-10-03补
+	qmsgswkjsgj_re_yj_zhanghuan: "<span class = '" + qmsgswkjsgj_span + "'>正身洁己</span>",
+	qmsgswkjsgj_plus_re_dc_tengfanglan: "<span class = '" + qmsgswkjsgj_span + "'>铃兰零落</span>",
+	qmsgswkjsgj_plus_re_zhenghun: "<span class = '" + qmsgswkjsgj_span + "'>民安寇灭</span>",
+
+
 };
