@@ -80,7 +80,7 @@ const characterCopyright = {
 	ybsl_029dawn: ['忆', '029', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '◈'],
 	ybsl_030book: ['忆', '030', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '★'],
 	ybsl_018huanqing: ['忆', '018', '夜白', '夜白', shiroha + 'B站成品图片', '暂无', '◈'],
-	ybsl_032baiyichen: ['忆', '032', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '❀'],
+	ybsl_032baiyichen: ['忆', '032', '夜白', '夜白&CodeBuddy', shiroha + '群内半成品图片', '暂无', '❀'],
 
 	ybsl_033xiaohui: ['忆', '033', '夜白', '夜白', 'QQ小世界AI绘图', '暂无', '❅'],
 	ybsl_034zhoulianyuan: ['忆', '034', '夜白', '夜白', '暂无', '暂无', '◈'],
@@ -90,7 +90,7 @@ const characterCopyright = {
 	db_ybsl_038tengwu: ['忆', '038', '夜白', '夜白', shiroha + '成品图片', '暂无', '◈'],
 	ybsl_038bianqiuwen: ['忆', '038', '夜白', '夜白', '灵境AI绘图', '暂无', '❀'],
 	ybsl_039zhafu: ['忆', '039', '夜白', '夜白', '暂无', '暂无', '◈'],
-	ybsl_041mmuqin: ['忆', '041', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '❀'],
+	ybsl_041mmuqin: ['忆', '041', '夜白', '夜白&CodeBuddy', shiroha + '群内半成品图片', '暂无', '❀'],
 	ybsl_042pingzi: ['忆', '042', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '❀'],
 	ybsl_043fangjiayu: ['忆', '043', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '❀'],
 	ybsl_044huruihang: ['忆', '044', '夜白', '夜白', shiroha + '群内半成品图片', '暂无', '❀'],

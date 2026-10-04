@@ -1590,6 +1590,7 @@ const skill = {
 		},
 	},
 	//群里抄的双持
+	//随着版本更新，已经用不了了
 	// ybsl_doubleEquip: {
 	// 	silent: true,
 	// 	locked: true,
@@ -9904,12 +9905,127 @@ const skill = {
 	//----------------------白衣尘
 	yb032_tonglv: {
 		audio: 'ext:夜白神略/audio/character:2',
+		locked: true,
+		trigger: { player: 'gameStart' },
+		forced: true,
+		intro: {
+			content: function (content, player) {
+				var comp = player.yb032_getCompanion();
+				if (comp && comp.isIn()) return '伴：' + get.translation(comp);
+				return '尚未选择“伴”';
+			},
+		},
+		content: async function (event, trigger, player) {
+			var res = await player
+				.chooseTarget('同旅：请选择一名其他角色作为“伴”', lib.filter.notMe)
+				.set('ai', function (target) {
+					return get.attitude(player, target);
+				})
+				.forResult();
+			if (res.bool) {
+				var companion = res.targets[0];
+				player.storage.yb032_tonglv_companion = companion;
+				companion.storage.yb032_tonglv_companion = player;
+				player.storage.yb032_tonglv_limit = game.countPlayer() + 1;
+				player.logSkill('yb032_tonglv');
+				game.log(player, '选择了', companion, '作为“伴”');
+			}
+		},
+		group: ['yb032_tonglv_react', 'yb032_tonglv_end'],
+		subSkill: {
+			react: {
+				trigger: { global: 'useCardAfter' },
+				direct: true,
+				popup: false,
+				filter: function (event, player) {
+					var companion = player.yb032_getCompanion();
+					if (!companion || !companion.isIn()) return false;
+					if (event.player != player && event.player != companion) return false;
+					var card = event.card;
+					if (!card) return false;
+					if (get.type(card) == 'equip') return false;
+					if (get.yb032_isTransformed(event)) return false;
+					var other = event.player == player ? companion : player;
+					return other.countCards('h') > 0;
+				},
+				content: async function (event, trigger, player) {
+					var companion = player.yb032_getCompanion();
+					var other = trigger.player == player ? companion : player;
+					var targetName = trigger.card.name;
+					var res = await other
+						.chooseCard('h', function (card) { return true; }, '同旅：选择一张手牌当作' + get.translation(trigger.card) + '使用')
+						.set('ai', function (card) {
+							return 6 - get.value(card);
+						})
+						.forResult();
+					if (res.bool) {
+						other.logSkill('yb032_tonglv');
+						await other.yb032_useAsTransform(res.cards[0], targetName);
+					}
+				},
+			},
+			end: {
+				trigger: { player: 'die', global: ['die', 'roundStart'] },
+				forced: true,
+				popup: false,
+				forceDie: true,
+				filter: function (event, player) {
+					var comp = player.yb032_getCompanion();
+					if (!comp) return false;
+					if (event.name == 'die') {
+						return event.player == player || event.player == comp;
+					}
+					return game.roundNumber > game.countPlayer() + 1;
+				},
+				content: function () {
+					player.yb032_clearCompanion();
+				},
+			},
+		},
 	},
 	yb032_zhuiji: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: { global: 'useCardAfter' },
+		direct: true,
+		popup: false,
+		filter: function (event, player) {
+			var card = event.card;
+			if (!card) return false;
+			if (get.type(card) == 'equip') return false;
+			if (card.yb032_nochain) return false;
+			var companion = player.yb032_getCompanion();
+			if (companion && companion.isIn()) return false;
+			return player.countCards('h', function (c) { return c.name == card.name; }) > 0;
+		},
+		content: async function (event, trigger, player) {
+			var name = trigger.card.name;
+			var res = await player
+				.chooseCard('h', function (card) { return card.name == name; }, '追迹：选择一张手牌当作' + get.translation(trigger.card) + '使用')
+				.set('ai', function (card) {
+					return 6 - get.value(card);
+				})
+				.forResult();
+			if (res.bool) {
+				player.logSkill('yb032_zhuiji');
+				await player.yb032_useAs(res.cards[0]);
+			}
+		},
 	},
 	yb032_duanchang: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: { player: 'die' },
+		forced: true,
+		locked: true,
+		forceDie: true,
+		skillAnimation: true,
+		animationColor: 'gray',
+		filter: function (event, player) {
+			return event.source && event.source.isIn();
+		},
+		content: function () {
+			trigger.source.clearSkills();
+		},
+		logTarget: 'source',
 	},
 	//---------------------小慧
 	yb033_huiyue: {
@@ -11767,8 +11883,92 @@ const skill = {
 		charlotte: true,
 		forced: true,
 	},
-	yb041_fuxin: {},
-	yb041_qiancheng: {},
+	//--------------------慕琴041
+	//--------------------珠联璧合标记
+	//珠联璧合标记（ybsl_zhulianbihe）及其两个效果（_ybsl_zhulianbihe_use 弃置摸二、_ybsl_zhulianbihe_tao 当做桃）已移至：
+	//source/packages/precontent/YB_04_special.js（下划线开头＝全局技能，无需在此挂载）
+	//--------------------付心
+	yb041_fuxin: {
+		audio: 'ext:夜白神略/audio/character:2',
+		global: ['yb041_fuxin_give'],
+	},
+	yb041_fuxin_give: {
+		audio: 'ext:夜白神略/audio/character:2',
+		enable: 'phaseUse',
+		filterCard: true,
+		discard: false,
+		lose: false,
+		position: 'h',
+		selectCard: 1,
+		selectTarget: 1,
+		prompt: function () {
+			const player = get.player();
+			if (player && player.hasSkill('yb041_fuxin')) return '弃置一张手牌，然后获得一枚珠联璧合（此技能直到你的下回合开始失效）';
+			return '将一张手牌交给拥有【付心】的角色，然后其获得一枚珠联璧合';
+		},
+		filterTarget: function (card, player, target) {
+			//每个付心单独计次：本阶段已被交牌（或被其自己发动过）的付心不可再选
+			if (target.hasSkill('yb041_fuxin_used')) return false;
+			if (target.isTempBanned('yb041_fuxin')) return false;
+			if (player.hasSkill('yb041_fuxin')) return target == player;
+			return target.hasSkill('yb041_fuxin');
+		},
+		filter: function (event, player) {
+			if (player.countCards('h') == 0) return false;
+			return game.hasPlayer(function (current) {
+				return lib.skill.yb041_fuxin_give.filterTarget(null, player, current);
+			});
+		},
+		check: function (card) {
+			return 5 - get.value(card);
+		},
+		ai: {
+			order: 6,
+			result: {
+				player: 1,
+				target: function (player, target) {
+					return get.attitude(player, target);
+				},
+			},
+		},
+		content: function () {
+			'step 0';
+			//记在该付心身上，当前出牌阶段结束后清除：多个付心各自计次，互不共用
+			target.addTempSkill('yb041_fuxin_used', 'phaseUseEnd');
+			if (target == player) {
+				//自己对自己发动：改为弃置一张牌，且直到下回合开始此技能失效
+				player.discard(event.cards);
+				player.tempBanSkill('yb041_fuxin', { player: 'phaseBegin' });
+			} else {
+				player.give(event.cards, target, true);
+			}
+			('step 1');
+			target.addMark('ybsl_zhulianbihe');
+		},
+	},
+	yb041_fuxin_used: {
+		charlotte: true,
+	},
+	//--------------------谦承
+	yb041_qiancheng: {
+		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			player: 'gainAfter',
+		},
+		forced: true,
+		usable: 1,
+		filter: function (event, player) {
+			if (!event.cards || event.cards.length == 0) return false;
+			if (!_status.currentPhase || _status.currentPhase == player) return false;
+			return _status.currentPhase.isIn();
+		},
+		content: function () {
+			'step 0';
+			player.turnOver();
+			('step 1');
+			if (_status.currentPhase && _status.currentPhase.isIn()) _status.currentPhase.draw(2);
+		},
+	},
 	//--------------------蘋姉042
 	yb042_sizhi: {
 		audio: 'ext:夜白神略/audio/character:2',
@@ -18962,15 +19162,15 @@ const skill = {
 			}
 		},
 	},
-	yb014_fufeng: {
-		audio: 'ext:夜白神略/audio/character:2', //再靠近一点吧，让我听听你的呼吸
-	},
-	yb014_yongyue: {
-		audio: 'ext:夜白神略/audio/character:2', //世间悲欢离合，但无两全策
-	},
-	yb014_sanmeng: {
-		audio: 'ext:夜白神略/audio/character:2', //浮生如梦，你我皆是过客
-	},
+	// yb014_fufeng: {
+	// 	audio: 'ext:夜白神略/audio/character:2', //再靠近一点吧，让我听听你的呼吸
+	// },
+	// yb014_yongyue: {
+	// 	audio: 'ext:夜白神略/audio/character:2', //世间悲欢离合，但无两全策
+	// },
+	// yb014_sanmeng: {
+	// 	audio: 'ext:夜白神略/audio/character:2', //浮生如梦，你我皆是过客
+	// },
 	// ybsl_zhuyizhuyi:{
 
 	// },

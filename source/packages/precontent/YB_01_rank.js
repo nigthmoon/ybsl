@@ -114,21 +114,22 @@ const YBSL_rank = function () {
 
 		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者'; //<br>点击下方按钮可以开启或关闭鬼神赐福系统（调整后需重置游戏方可生效）（暂时重做，按钮关闭）
 
-		// sgstrxsstr += `
-		// 	<div style="position:relative;display:inline-block;width:200px;">
-		// 		<button id="guixieBtn"
-		// 				onclick="
-		// 					lib.config.YB_guixiecifu = !lib.config.YB_guixiecifu;
-		// 					var isOn = lib.config.YB_guixiecifu;
-		// 					this.textContent = isOn ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
-		// 					this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
-		// 					game.saveConfig('YB_guixiecifu',lib.config.YB_guixiecifu);
-		// 				"
-		// 				style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
-		// 			${booltext}
-		// 		</button>
-		// 	</div>
-		// `;
+		sgstrxsstr += `<br><br>小说里，主角的武将一般享有部分特权，不算做武将自身技能，但往往在小说内的强度偏和这些特权耦合，若没有特权，部分武将的强度将大打折扣。<span class="text center pointerdiv" style="color:#4CAF50;cursor:pointer;" onclick="lib.YB_openProtagonistPrivilegePanel()">点此打开主角特权面板进行设置。</span>`;
+
+		// 主角特权面板（占位：样式与内容待后续构思补充）
+		lib.YB_openProtagonistPrivilegePanel = function () {
+			var dialog = ui.create.dialog('主角特权面板', 'hidden');
+			dialog.classList.add('forcebutton');
+			dialog.forcebutton = true;
+			// TODO: 特权项、与武将强度的耦合逻辑等具体设计待补充
+			dialog.addText('（主角特权面板内容待设计，暂为占位）');
+			dialog.addText('—— 特权项设置、强度耦合逻辑等将在此处实现 ——');
+			dialog.open();
+			var control = ui.create.control('关闭', function () {
+				dialog.close();
+				control.close();
+			});
+		};
 
 		// // 初始化按钮状态（如果需要）
 		// if (typeof lib !== 'undefined' && lib.config) {

@@ -24,6 +24,8 @@ export { YBSL_special };
  * 批量将一些技能加入界雷击禁止名单
  * 六艺
  * 连招宇宙
+ * 白衣尘
+ * 珠联璧合标记（含弃置摸二、当做桃使用的两个全局技）
  */
 const YBSL_special = function () {
 	_status.YB_jingxieList = ['bagua', 'baiyin', 'lanyinjia', 'renwang', 'tengjia', 'zhuge', 'ybsl_wangzhui', 'chitu', 'zhuque', 'wuxinghelingshan', 'yitianjian', 'shandian', 'fulei', 'taigongyinfu', 'ybsl_tianleiyubi', 'hongshui', 'huoshan', /*'du',*/ 'chiyanzhenhunqin', 'tongque', 'qinglong', 'fangtian', 'wutiesuolian', 'huxinjing', 'goujiangdesidai'];
@@ -1565,5 +1567,127 @@ const YBSL_special = function () {
 			}
 		}
 		// lib.translate._ybsl_lianzhao='连招'
+	}
+	//-----------白衣尘 辅助
+	{
+		//获取白衣尘的“伴”
+		lib.element.player.yb032_getCompanion = function () {
+			return this.storage.yb032_tonglv_companion;
+		};
+		//清除白衣尘的“伴”
+		lib.element.player.yb032_clearCompanion = function () {
+			var comp = this.storage.yb032_tonglv_companion;
+			if (comp) {
+				if (comp.storage.yb032_tonglv_companion == this) delete comp.storage.yb032_tonglv_companion;
+				delete this.storage.yb032_tonglv_companion;
+			}
+		};
+		//判断该次使用是否为转化牌：使用的虚拟牌与实体牌不是同一张
+		get.yb032_isTransformed = function (event) {
+			return event.card && event.cards && event.cards.length && event.card !== event.cards[0];
+		};
+		//追迹用：直接使用一张同名牌（无距离和次数限制），并打防嵌套标记
+		lib.element.player.yb032_useAs = async function (card) {
+			var player = this;
+			var info = get.info(card);
+			card.yb032_nochain = true;
+			if (info.notarget) {
+				player.useCard(card, false);
+			} else if (info.selectTarget === -1) {
+				player.useCard(card, player, false);
+			} else {
+				var res = await player.chooseTarget('请选择' + get.translation(card) + '的目标', function (c, p, t) {
+					return t != p;
+				}).set('ai', function (target) {
+					return get.effect(target, card, player);
+				}).forResult();
+				if (res.bool) {
+					player.useCard(card, res.targets, false);
+				}
+			}
+		};
+		//同旅用：将一张手牌转化为 targetName 使用（视为转化牌，天然不可嵌套）
+		lib.element.player.yb032_useAsTransform = async function (handCard, targetName) {
+			var player = this;
+			var info = get.info(targetName);
+			if (info.notarget) {
+				player.useCard({ name: targetName, cards: [handCard] }, [handCard], false);
+			} else if (info.selectTarget === -1) {
+				player.useCard({ name: targetName, cards: [handCard] }, [handCard], player, false);
+			} else {
+				var res = await player.chooseTarget('请选择' + get.translation(targetName) + '的目标', function (c, p, t) {
+					return t != p;
+				}).set('ai', function (target) {
+					return get.effect(target, { name: targetName }, player);
+				}).forResult();
+				if (res.bool) {
+					player.useCard({ name: targetName, cards: [handCard] }, [handCard], res.targets, false);
+				}
+			}
+		};
+	}
+	{
+		//珠联璧合标记：由慕琴041【付心】等技能授予，持有者可使用下面两个全局技
+		lib.translate.ybsl_zhulianbihe = '珠联璧合';
+		lib.skill.ybsl_zhulianbihe = {
+			charlotte: true,
+			marktext: '璧',
+			intro: {
+				name: '珠联璧合',
+				content: '◇出牌阶段，你可以弃置一枚【珠联璧合】，然后摸两张牌。<br>◇你可以将一枚【珠联璧合】当做【桃】使用。',
+			},
+		};
+		//出牌阶段，弃置一枚珠联璧合，摸两张牌
+		lib.skill._ybsl_zhulianbihe_use = {
+			ruleSkill: true,
+			enable: 'phaseUse',
+			filter: function (event, player) {
+				return player.hasMark('ybsl_zhulianbihe');
+			},
+			content: function () {
+				'step 0';
+				player.removeMark('ybsl_zhulianbihe', 1);
+				('step 1');
+				player.draw(2);
+			},
+			ai: {
+				order: 6,
+				result: {
+					player: 1,
+				},
+			},
+		};
+		lib.translate._ybsl_zhulianbihe_use = '珠联璧合';
+		lib.translate._ybsl_zhulianbihe_use_info = '出牌阶段，你可以弃置一枚【珠联璧合】，然后摸两张牌。';
+		//将一枚珠联璧合当做【桃】使用
+		lib.skill._ybsl_zhulianbihe_tao = {
+			ruleSkill: true,
+			enable: 'chooseToUse',
+			filter: function (event, player) {
+				return player.hasMark('ybsl_zhulianbihe');
+			},
+			viewAsFilter: function (player) {
+				return player.hasMark('ybsl_zhulianbihe');
+			},
+			viewAs: {
+				name: 'tao',
+				isCard: true,
+			},
+			filterCard: function () {
+				return false;
+			},
+			selectCard: -1,
+			precontent: function () {
+				player.removeMark('ybsl_zhulianbihe', 1);
+			},
+			ai: {
+				order: 8,
+				result: {
+					player: 1,
+				},
+			},
+		};
+		lib.translate._ybsl_zhulianbihe_tao = '珠联璧合';
+		lib.translate._ybsl_zhulianbihe_tao_info = '你可以将一枚【珠联璧合】当做【桃】使用。';
 	}
 };

@@ -70,7 +70,7 @@ const character = {
 	ybsl_028crystal: ['male', 'YB_dream', '3/6', ['yb028_jianzhen', 'yb028_sheshen', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:legend', 'rankS:s', 'name:null|晶']], //梦——晶
 	ybsl_029dawn: ['female', 'YB_dream', 3, ['yb029_chonghui', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:rare', 'rankS:b', 'name:null|黎']], //梦——黎
 	//'ybsl_030book':['female','YB_dream',4,['yb030_jiangdao','ybsl_sanmeng'/*,'yb030_lunyi'*/,'ybsl_rumeng'],['YB_memory','rankAdd:legend','rankS:s','name:null|书']],//梦——书
-	//'ybsl_032baiyichen':['female','YB_memory',3,['yb032_tonglv','yb032_zhuiji','yb032_duanchang'],['rankAdd:epic','rankS:a','name:白|衣尘']],//白衣尘
+	'ybsl_032baiyichen':['female','YB_memory',3,['yb032_tonglv','yb032_zhuiji','yb032_duanchang'],['rankAdd:epic','rankS:a','name:白|衣尘']],//白衣尘
 	ybsl_033xiaohui: ['female', 'YB_memory', 3, ['yb033_huiyue' /*,'yb033_shuhui','yb033_yuqi','yb014_lvxin'*/], ['rankAdd:legend', 'rankS:s', 'name:null|小慧']], //小慧
 	ybsl_034zhoulianyuan: ['male', 'YB_dream', 3, ['yb034_bifa', 'yb034_jiandao', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:rare', 'rankS:b', 'name:周|怜渊']], //梦——周怜渊
 	ybsl_035stamp: ['male', 'shen', '2/3', ['yb035_zhengzhao', 'yb035_jitian', 'yb035_liuwang' /*,'yb035_weiyan'*/], ['YB_memory', 'rankAdd:legend', 'rankS:s', 'name:null|玺']], //梦——玺
@@ -81,6 +81,7 @@ const character = {
 	ybsl_039zhafu: ['male', 'YB_dream', 3, ['yb039_zhifu', 'yb039_feiyan', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a', 'name:查|符']], //梦——查符
 	ybsl_014ether: ['male', 'YB_dream', 3, ['reqicai', 'yb014_xuyuan', 'yb014_jumeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:legend', 'rankS:s', 'name:安|以']], //梦——安以
 	//原慕琴在此
+	ybsl_041mmuqin: ['female', 'YB_memory', 3, ['yb041_fuxin', 'yb041_qiancheng'], ['rankAdd:epic', 'rankS:a']], //慕琴
 	ybsl_042pingzi: ['female', 'YB_memory', 3, ['yb042_sizhi', 'yb042_mingtui', 'yb042_lisheng'], ['rankAdd:epic', 'rankS:a', 'name:李|蘋']], //蘋姉蘋姉蘋姉
 	ybsl_043fangjiayu: ['female', 'YB_memory', 3, ['yb043_zhishi', 'yb043_shuhai'], ['rankAdd:epic', 'rankS:a', 'name:房|佳谕']], //房佳谕
 	ybsl_044huruihang: [
