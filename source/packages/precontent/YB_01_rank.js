@@ -105,7 +105,7 @@ const YBSL_rank = function () {
 			}
 		});
 	}
-	{
+	{//同人小说
 		//神鬼赐福
 		var gxcfbool = lib.config.YB_guixiecifu;
 		var booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
@@ -114,21 +114,430 @@ const YBSL_rank = function () {
 
 		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库，里面不乏优秀或有趣的设计<br>本人在此立下宏愿：每看一本三国杀同人文，都要将其中可以复现的武将都复现出来！<br>提示：右键子将包或查看武将简介可查看作者'; //<br>点击下方按钮可以开启或关闭鬼神赐福系统（调整后需重置游戏方可生效）（暂时重做，按钮关闭）
 
-		sgstrxsstr += `<br><br>小说里，主角的武将一般享有部分特权，不算做武将自身技能，但往往在小说内的强度偏和这些特权耦合，若没有特权，部分武将的强度将大打折扣。<span class="text center pointerdiv" style="color:#4CAF50;cursor:pointer;" onclick="lib.YB_openProtagonistPrivilegePanel()">点此打开主角特权面板进行设置。</span>`;
+		sgstrxsstr += `<br><br>小说里，主角的武将一般享有部分特权，不算做武将自身技能，但往往在小说内的强度偏和这些特权耦合，若没有特权，部分武将的强度将大打折扣。<span class="text center pointerdiv" style="color:#4CAF50;cursor:pointer;" onclick="lib.YB_openProtagonistPrivilegePanel()">点此打开主角特权面板进行设置（施工中，无实际作用）。</span>`;
 
-		// 主角特权面板（占位：样式与内容待后续构思补充）
-		lib.YB_openProtagonistPrivilegePanel = function () {
-			var dialog = ui.create.dialog('主角特权面板', 'hidden');
-			dialog.classList.add('forcebutton');
-			dialog.forcebutton = true;
-			// TODO: 特权项、与武将强度的耦合逻辑等具体设计待补充
-			dialog.addText('（主角特权面板内容待设计，暂为占位）');
-			dialog.addText('—— 特权项设置、强度耦合逻辑等将在此处实现 ——');
-			dialog.open();
-			var control = ui.create.control('关闭', function () {
-				dialog.close();
-				control.close();
+		//----------主角特权面板（新版菜单样式，写法参考十周年UI的独立配置窗口）----------//
+		//特权项定义：type 支持 toggle/select/input，与十周年UI的 definitions 写法一致
+		//require 为所依赖项的 key（可为数组）：任一项未开启时，本项置灰且不可操作
+		//首页逐本小说列出开关以统管；各小说子页用于配置该小说的详细主角特权
+		//其他小说暂时没有主角特权，因此暂不收录
+		lib.YB_protagonistPrivilegeConfigs = {
+			qmsgswkjsgj: [
+				{ isTitle: true, name: '全民三国杀，我开局神郭嘉' },
+				{
+					key: 'qmsgswkjsgj_enabled',
+					name: '启用主角特权',
+					intro: '开启后，启用《全民三国杀，我开局神郭嘉》的主角特权。',
+					type: 'toggle',
+					init: false,
+				},
+				{
+					key: 'qmsgswkjsgj_all',
+					name: '特权对全体武将生效',
+					intro: '开启后，该主角特权对你选用的全体武将生效；关闭则仅当你选用该小说的武将时生效。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{ isTitle: true, name: '详细特权' },
+				{
+					key: 'qmsgswkjsgj_qingnangshu',
+					name: '青囊书',
+					intro: '开启后，每轮开始时若你没有装备【青囊书】，则获得并装备之。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_muniuliuma',
+					name: '木牛流马',
+					intro: '开启后，每轮开始时若你没有装备【木牛流马】，则获得并装备之。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_chuanguoyuxi',
+					name: '传国玉玺',
+					intro: '开启后，每轮开始时若你没有装备【传国玉玺】，则获得并装备之。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_taipingyaoshu',
+					name: '太平要术',
+					intro: '开启后，每轮开始时若你没有装备【太平要术】，则获得并装备之。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_hp',
+					name: '体力上限增加',
+					intro: '填写阿拉伯数字：开局时你的体力上限增加该数值（留空为不增加）。',
+					type: 'input',
+					numeric: true,
+					init: '',
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_mianyi',
+					name: '免疫武将牌翻面和横置',
+					intro: '开启后，你的武将牌不会被翻面，也不会被横置。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+				},
+				{
+					key: 'qmsgswkjsgj_cifu',
+					name: '游戏开始时，获得赐福技能',
+					intro: '开启后，游戏开始时你获得下方勾选的赐福技能。点「展开子项」可勾选具体技能（可多选）。',
+					type: 'toggle',
+					init: false,
+					require: 'qmsgswkjsgj_enabled',
+					//TODO: 赐福技能库待扩充，按下面格式继续添加即可
+					sub: [
+						{
+							key: 'qmsgswkjsgj_cifu_baolian',
+							name: '暴敛', //白无常赐福
+							intro: '锁定技，结束阶段，你摸两张牌。',
+							init: false,
+							require: 'qmsgswkjsgj_cifu',
+						},
+						{
+							key: 'qmsgswkjsgj_cifu_taiping',
+							name: '太平', //黑无常赐福
+							intro: '锁定技，摸牌阶段摸牌时，你的摸牌数量+2。',
+							init: false,
+							require: 'qmsgswkjsgj_cifu',
+						},
+					],
+				},
+				//详细特权项只在本子页显示（首页只汇总 key 以 _enabled/_all 结尾的开关），新增项示例：
+				// {
+				// 	key: 'qmsgswkjsgj_huishi', //配置键自动补前缀：lib.config.YB_zhujuetequan_qmsgswkjsgj_huishi
+				// 	name: '慧识·体力上限',
+				// 	intro: '点名字可展开说明。',
+				// 	type: 'select', //toggle 开关 / select 选项 / input 文本
+				// 	item: { off: '关闭', low: '10', high: '15' }, //type 为 select 时的选项
+				// 	init: 'off',
+				// 	require: 'qmsgswkjsgj_enabled', //该小说的特权未开启时置灰不可操作（可为数组）
+				// 	onclick: function (value) {}, //可选：自定义保存逻辑，不写则默认 game.saveConfig
+				// 	update: function (value) {}, //可选：保存后的额外处理
+				// },
+			],
+			sgsxjxfzmnl: [
+				{ isTitle: true, name: '三国杀，仙界下凡怎么你了' },
+				{
+					key: 'sgsxjxfzmnl_enabled',
+					name: '启用主角特权',
+					intro: '开启后，启用《三国杀，仙界下凡怎么你了》的主角特权。',
+					type: 'toggle',
+					init: false,
+				},
+				{
+					key: 'sgsxjxfzmnl_all',
+					name: '特权对全体武将生效',
+					intro: '开启后，该主角特权对你选用的全体武将生效；关闭则仅当你选用该小说的武将时生效。',
+					type: 'toggle',
+					init: false,
+					require: 'sgsxjxfzmnl_enabled',
+				},
+				//TODO: 该小说的详细主角特权项待后续补充
+			],
+		};
+		//pack 为该小说武将的前缀，供日后判断“玩家是否选用了该小说的武将”使用
+		lib.YB_protagonistPrivilegeTabs = [
+			{ id: 'home', name: '首页' },
+			{ id: 'qmsgswkjsgj', name: '全民三国杀，我开局神郭嘉', pack: 'qmsgswkjsgj' },
+			{ id: 'sgsxjxfzmnl', name: '三国杀，仙界下凡怎么你了', pack: 'sgsxjxfzmnl' },
+		];
+		//首页：按小说逐条列出「是否开启特权 / 是否对全体武将生效」，与各小说子页共用同一组配置键，两处始终同步
+		lib.YB_protagonistPrivilegeConfigs.home = (function () {
+			var home = [];
+			lib.YB_protagonistPrivilegeTabs.forEach(function (tab) {
+				if (!tab.pack) return;
+				if (!home.length) home.push({ isHint: true, name: '请进入每本小说的子页面配置详细设置' });
+				var list = lib.YB_protagonistPrivilegeConfigs[tab.id] || [];
+				home.push({ isTitle: true, name: list[0] && list[0].isTitle ? list[0].name : tab.name, tab: tab.id });
+				list.forEach(function (item) {
+					//首页只放开关；各小说的详细特权项留在其子页内
+					if (item.isTitle || !/_(enabled|all)$/.test(item.key)) return;
+					home.push(item);
+				});
 			});
+			return home;
+		})();
+		var YB_privilegeCssId = 'YB-privilege-panel-styles';
+		//由面板打开时赋值：切换到指定页签（供首页的小说标题跳转使用）
+		var YB_privilegeSelectTab = null;
+		var YB_getPrivilegeKey = function (key) {
+			return 'YB_zhujuetequan_' + key;
+		};
+		var YB_getPrivilegeItem = function (key) {
+			var result = null;
+			for (var tabId in lib.YB_protagonistPrivilegeConfigs) {
+				lib.YB_protagonistPrivilegeConfigs[tabId].forEach(function (item) {
+					if (item.key == key) result = item;
+				});
+			}
+			return result;
+		};
+		var YB_getPrivilegeValue = function (key) {
+			var configKey = YB_getPrivilegeKey(key);
+			if (lib.config[configKey] !== undefined) return lib.config[configKey];
+			var item = YB_getPrivilegeItem(key);
+			return item ? item.init : undefined;
+		};
+		//返回未满足的前置项名称（无前置或已全部满足时为空数组）
+		var YB_getPrivilegeLockedNames = function (item) {
+			if (!item.require) return [];
+			var requires = Array.isArray(item.require) ? item.require : [item.require];
+			var names = [];
+			requires.forEach(function (key) {
+				if (YB_getPrivilegeValue(key)) return;
+				var requireItem = YB_getPrivilegeItem(key);
+				names.push(requireItem ? requireItem.name : key);
+			});
+			return names;
+		};
+		var YB_setPrivilegeValue = function (item, key, value) {
+			if (item.onclick) item.onclick(value);
+			else game.saveConfig(key, value);
+			if (item.update) item.update(value);
+		};
+		var YB_renderPrivilegeContent = function (content, tabId, keepScroll) {
+			var lastScrollTop = content.scrollTop;
+			content.innerHTML = '';
+			content.scrollTop = 0;
+			var list = lib.YB_protagonistPrivilegeConfigs[tabId] || [];
+			if (!list.length) {
+				ui.create.div('.yb-config-empty', content).innerHTML = '（该分组暂无内容，待设计）';
+				return;
+			}
+			list.forEach(function (item) {
+				if (item.isHint) {
+					ui.create.div('.yb-config-hint', content).innerHTML = item.name;
+					return;
+				}
+				if (item.isTitle) {
+					var title = ui.create.div('.yb-config-section-title', content);
+					title.innerHTML = item.name;
+					//首页的小说标题可直接跳进该小说的子页面
+					if (item.tab) {
+						title.classList.add('yb-config-link');
+						title.innerHTML += '<span class="yb-config-linkmark">进入 »</span>';
+						title.onclick = function () {
+							if (typeof YB_privilegeSelectTab == 'function') YB_privilegeSelectTab(item.tab);
+						};
+					}
+					return;
+				}
+				var key = YB_getPrivilegeKey(item.key);
+				var value = lib.config[key] !== undefined ? lib.config[key] : item.init;
+				//前置开关未开启时，本项置灰不可操作
+				var lockedNames = YB_getPrivilegeLockedNames(item);
+				var locked = lockedNames.length > 0;
+				var node = ui.create.div('.yb-config-item', content);
+				var table = document.createElement('table');
+				table.className = 'yb-config-table';
+				var tr = document.createElement('tr');
+				var nameTd = document.createElement('td');
+				nameTd.className = 'yb-config-name';
+				nameTd.innerHTML = item.name;
+				if (locked) {
+					node.classList.add('yb-config-disabled');
+					nameTd.innerHTML += '<span class="yb-config-lock">（需先开启「' + lockedNames.join('」「') + '」）</span>';
+				}
+				var intro = null;
+				if (item.intro) {
+					intro = document.createElement('div');
+					intro.className = 'yb-config-intro';
+					intro.innerHTML = item.intro;
+					nameTd.onclick = function (e) {
+						e.stopPropagation();
+						intro.classList.toggle('show');
+					};
+				}
+				var ctrlTd = document.createElement('td');
+				ctrlTd.className = 'yb-config-control';
+				if (locked) ctrlTd.classList.add('yb-config-locked');
+				if (item.type == 'toggle') {
+					var toggle = document.createElement('div');
+					toggle.className = 'yb-config-toggle ' + (value ? 'on' : 'off');
+					var slider = document.createElement('div');
+					slider.className = 'yb-config-toggle-slider';
+					toggle.appendChild(slider);
+					toggle.onclick = function () {
+						if (locked) return;
+						var next = !(lib.config[key] !== undefined ? lib.config[key] : item.init);
+						toggle.className = 'yb-config-toggle ' + (next ? 'on' : 'off');
+						//有子选项时随主开关自动展开/收起
+						if (item.sub) item.subOpen = next;
+						YB_setPrivilegeValue(item, key, next);
+						//开关可能影响依赖它的项，重新渲染本页（保留滚动位置）
+						YB_renderPrivilegeContent(content, tabId, true);
+					};
+					ctrlTd.appendChild(toggle);
+				} else if (item.type == 'select') {
+					var options = document.createElement('div');
+					options.className = 'yb-config-options';
+					Object.keys(item.item).forEach(function (name) {
+						var option = document.createElement('div');
+						option.className = 'yb-config-option' + (name === value ? ' selected' : '');
+						option.innerHTML = item.item[name];
+						option.dataset.value = name;
+						option.onclick = function () {
+							if (locked) return;
+							if (this.dataset.value === value) return;
+							Array.from(options.children).forEach(function (child) {
+								child.classList.remove('selected');
+							});
+							this.classList.add('selected');
+							value = this.dataset.value;
+							YB_setPrivilegeValue(item, key, value);
+							YB_renderPrivilegeContent(content, tabId, true);
+						};
+						options.appendChild(option);
+					});
+					ctrlTd.appendChild(options);
+				} else if (item.type == 'input') {
+					var input = document.createElement('input');
+					input.type = item.numeric ? 'number' : 'text';
+					input.className = 'yb-config-input';
+					input.value = value === undefined ? '' : value;
+					input.disabled = !!locked;
+					input.addEventListener('blur', function () {
+						if (locked) return;
+						var str = this.value.trim();
+						//numeric 项只保留阿拉伯数字
+						if (item.numeric) str = str.replace(/[^\d]/g, '');
+						if (!str) return;
+						YB_setPrivilegeValue(item, key, str);
+						YB_renderPrivilegeContent(content, tabId, true);
+					});
+					input.addEventListener('keydown', function (e) {
+						if (e.key == 'Enter') this.blur();
+					});
+					ctrlTd.appendChild(input);
+				}
+				tr.appendChild(nameTd);
+				tr.appendChild(ctrlTd);
+				table.appendChild(tr);
+				if (intro) {
+					var introTr = document.createElement('tr');
+					var introTd = document.createElement('td');
+					introTd.colSpan = 2;
+					introTd.appendChild(intro);
+					introTr.appendChild(introTd);
+					table.appendChild(introTr);
+				}
+				node.appendChild(table);
+				//含子选项的项：展开后可多选（每个子项各存一个配置）
+				if (item.sub) {
+					var subToggle = ui.create.div('.yb-config-subtoggle', node);
+					subToggle.innerHTML = '展开子项 ▾';
+					var subBox = ui.create.div('.yb-config-subbox', node);
+					//默认跟随主开关：开启时自动展开，关闭时自动收起
+					item.subOpen = item.subOpen !== undefined ? item.subOpen : !!value;
+					subBox.style.display = item.subOpen ? 'block' : 'none';
+					subToggle.innerHTML = item.subOpen ? '收起子项 ▴' : '展开子项 ▾';
+					subToggle.onclick = function () {
+						item.subOpen = subBox.style.display == 'none';
+						subBox.style.display = item.subOpen ? 'block' : 'none';
+						subToggle.innerHTML = item.subOpen ? '收起子项 ▴' : '展开子项 ▾';
+					};
+					item.sub.forEach(function (sub) {
+						var subKey = YB_getPrivilegeKey(sub.key);
+						var subValue = lib.config[subKey] !== undefined ? lib.config[subKey] : sub.init;
+						var subLocked = false;
+						var subRequires = sub.require ? (Array.isArray(sub.require) ? sub.require : [sub.require]) : [];
+						subRequires.forEach(function (requireKey) {
+							if (!YB_getPrivilegeValue(requireKey)) subLocked = true;
+						});
+						var subRow = ui.create.div('.yb-config-subitem' + (subLocked ? ' yb-config-disabled' : ''), subBox);
+						var subName = ui.create.div('.yb-config-subname', subRow);
+						subName.innerHTML = sub.name;
+						var subSwitch = document.createElement('div');
+						subSwitch.className = 'yb-config-toggle ' + (subValue ? 'on' : 'off');
+						var subSlider = document.createElement('div');
+						subSlider.className = 'yb-config-toggle-slider';
+						subSwitch.appendChild(subSlider);
+						if (subLocked) subSwitch.classList.add('yb-config-locked');
+						subSwitch.onclick = function () {
+							if (subLocked) return;
+							subValue = !subValue;
+							subSwitch.className = 'yb-config-toggle ' + (subValue ? 'on' : 'off');
+							if (sub.onclick) sub.onclick(subValue);
+							else game.saveConfig(subKey, subValue);
+							if (sub.update) sub.update(subValue);
+						};
+						subRow.appendChild(subSwitch);
+						if (sub.intro) {
+							var subIntro = ui.create.div('.yb-config-intro', subRow);
+							subIntro.innerHTML = sub.intro;
+							subName.onclick = function (e) {
+								e.stopPropagation();
+								subIntro.classList.toggle('show');
+							};
+						}
+					});
+				}
+			});
+			//改动后的重渲染保留滚动位置（切换页签时不保留）
+			if (keepScroll) content.scrollTop = lastScrollTop;
+		};
+		lib.YB_openProtagonistPrivilegePanel = function () {
+			if (document.querySelector('.yb-config-overlay')) return;
+			if (!document.getElementById(YB_privilegeCssId)) {
+				var style = document.createElement('link');
+				style.id = YB_privilegeCssId;
+				style.rel = 'stylesheet';
+				style.href = lib.assetURL + 'extension/夜白神略/source/css/ybconfig.css';
+				document.head.appendChild(style);
+			}
+			var tabs = lib.YB_protagonistPrivilegeTabs;
+			var current = lib.YB_protagonistPrivilegeTab || tabs[0].id;
+			var overlay = ui.create.div('.yb-config-overlay');
+			var close = function () {
+				overlay.remove();
+				YB_privilegeSelectTab = null;
+			};
+			var dialog = ui.create.div('.yb-config-dialog', overlay);
+			ui.create.div('.yb-config-pattern', dialog);
+			ui.create.div('.yb-config-title', dialog).innerHTML = '主角特权面板';
+			var closeBtn = ui.create.div('.yb-config-close', dialog);
+			closeBtn.innerHTML = '✕';
+			closeBtn.onclick = close;
+			var sidebar = ui.create.div('.yb-config-sidebar', dialog);
+			var content = ui.create.div('.yb-config-content', dialog);
+			var tabNodes = {};
+			var selectTab = function (tabId) {
+				current = tabId;
+				lib.YB_protagonistPrivilegeTab = tabId;
+				Array.from(sidebar.children).forEach(function (child) {
+					child.classList.remove('active');
+				});
+				if (tabNodes[tabId]) tabNodes[tabId].classList.add('active');
+				YB_renderPrivilegeContent(content, tabId);
+			};
+			YB_privilegeSelectTab = selectTab;
+			tabs.forEach(function (tab) {
+				var node = ui.create.div('.yb-config-tab', sidebar);
+				tabNodes[tab.id] = node;
+				node.innerHTML = tab.name;
+				if (tab.id === current) node.classList.add('active');
+				node.onclick = function () {
+					if (current === tab.id) return;
+					selectTab(tab.id);
+				};
+			});
+			YB_renderPrivilegeContent(content, current);
+			overlay.addEventListener('click', function (e) {
+				if (e.target === overlay) close();
+			});
+			document.body.appendChild(overlay);
 		};
 
 		// // 初始化按钮状态（如果需要）
@@ -136,7 +545,7 @@ const YBSL_rank = function () {
 		// 	lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
 		// }
 	}
-	{
+	{//斗罗
 		//斗罗大陆
 		var whjxbool = lib.config.YB_wuhunjuexing;
 		var booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
@@ -172,6 +581,33 @@ const YBSL_rank = function () {
 			lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
 		}
 	}
+	{//符咒世界的咒文是否翻译为中文？默认翻译
+		var magicConfigbool = lib.config.YB_magicConfig;
+		var magicConfigbooltext = magicConfigbool ? '现在咒文音译为中文' : '现在咒文为日文原文';
+		// 根据状态设置不同颜色
+		var magicConfigbtnColor = magicConfigbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色，关=红色
+		var magicConfig = `
+			<div style="position:relative;display:inline-block;width:200px;">
+				<button id="magicConfigBtn"
+						onclick="
+							lib.config.YB_magicConfig = !lib.config.YB_magicConfig;
+							var isOn = lib.config.YB_magicConfig;
+							game.YB_magicTranslate(isOn);
+							this.textContent = isOn ? '现在咒文音译为中文' : '现在咒文为日文原文';
+							this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
+							game.saveConfig('YB_magicConfig',lib.config.YB_magicConfig);
+						"
+						style="background:${magicConfigbtnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
+					${magicConfigbooltext}
+				</button>
+			</div>
+		`
+		// 初始化按钮状态（如果需要）
+		if (typeof lib !== 'undefined' && lib.config) {
+			lib.config.YB_magicConfig = lib.config.YB_magicConfig || true;
+			game.YB_magicTranslate(lib.config.YB_magicConfig);
+		}
+	}
 	/**
  * 开局根据初始列表设定重置列表
 
@@ -200,7 +636,7 @@ const YBSL_rank = function () {
 	lib.translate['ybdd' + '_charactersInfo'] = '本人接单制作的武将';
 	lib.translate['ybnew3' + '_charactersInfo'] = '杂设，部分为闲暇之余的设计，部分为参与其他投稿的落榜之作';
 	lib.translate['ybmjz' + '_charactersInfo'] = '夜白自己的界限突破……';
-	lib.translate['ybMagic' + '_charactersInfo'] = '理论上应该有武将的，但没设计好呢，再等等';
+	lib.translate['ybMagic' + '_charactersInfo'] = '理论上应该有武将的，但没设计好呢，再等等<br>'+magicConfig;
 	lib.translate['yhky' + '_charactersInfo'] = '永恒刻印，意为永恒的持恒技。不出意外的话，本包武将均为持恒技道心值武将';
 	lib.translate['ybllyz' + '_charactersInfo'] = '连招宇宙，以夜白自己设计的连招技框架构成';
 	lib.translate['sgstrxs' + '_charactersInfo'] = sgstrxsstr;

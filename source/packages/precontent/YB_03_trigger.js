@@ -862,4 +862,7 @@ const YBSL_trigger = function () {
 			}
 		});
 	}
+	{//这里放置小说主角特权技能
+
+	}
 };

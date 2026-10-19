@@ -11120,7 +11120,7 @@ const skill = {
 					return 3 - get.value(card);
 				})
 				.set('target', target)
-				.set('chooseOnly', true)
+				.set('chooseonly', true)
 				.forResult();
 			event.result.targets = [target];
 		},
@@ -11175,7 +11175,7 @@ const skill = {
 					return 3 - get.value(card);
 				})
 				.set('target', target)
-				.set('chooseOnly', true)
+				.set('chooseonly', true)
 				.forResult();
 			event.result.targets = [target];
 		},

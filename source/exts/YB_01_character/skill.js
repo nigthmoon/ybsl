@@ -8953,29 +8953,35 @@ const skill = {
 			player: 'phaseZhunbeiBegin',
 		},
 		groupSkill: 'YB_dream',
-		direct: true,
+		// direct: true,
 		filter: function (event, player) {
 			return player.group == 'YB_dream';
 		},
 		audioname: ['ybsl_014liutianyu', 'ybsl_026can', 'ybsl_027rain', 'ybsp_027rain', 'ybsl_029dawn', 'ybsl_018huanqing', 'ybsl_034zhoulianyuan', 'ybnb_034zhoulianyuan', 'ybsl_036bright', 'ybsl_037diamondqueen', 'ybsl_038tengwu', 'db_ybsp_038tengwu', 'ybsl_039zhafu', 'db_ybsl_067snake', 'ybsl_069xiangzi', 'ybsl_076zhujun', 'ybsl_077yangqixu', 'ybsb_077yangqixu', 'ybsl_078zhuyahai', 'ybsl_083xiaozhu', 'ybsl_122wangbingyu', 'ybsl_124yecang', 'ybsl_125xueyi', 'ybsl_126xuezhen'],
-
+		prompt: function () {
+			return '是否摸两张牌，令本回合手牌上限-1';
+		},
+		check: function (event,player) {
+			if(player.hasJudge('lubu'))return false;
+			return true;
+		},
 		content: function () {
 			'step 0';
-			player
-				.chooseControl('是', 'cancel2')
-				.set('prompt', '是否摸两张牌，令本回合手牌上限-1')
-				.set('ai', function () {
-					if (player.hasJudge('lubu')) {
-						return 'cancel2';
-					}
-					return '是';
-				});
-			('step 1');
-			if (result.control == 'cancel2') {
-				event.finish();
-				return;
-			}
-			player.logSkill('ybsl_sanmeng');
+			// player
+			// 	.chooseControl('是', 'cancel2')
+			// 	.set('prompt', '是否摸两张牌，令本回合手牌上限-1')
+			// 	.set('ai', function () {
+			// 		if (player.hasJudge('lubu')) {
+			// 			return 'cancel2';
+			// 		}
+			// 		return '是';
+			// 	});
+			// ('step 1');
+			// if (result.control == 'cancel2') {
+			// 	event.finish();
+			// 	return;
+			// }
+			// player.logSkill('ybsl_sanmeng');
 			player.draw(2);
 			player.addTempSkill('ybsl_sanmeng_buff');
 		},
@@ -9003,27 +9009,40 @@ const skill = {
 					player: 'phaseDiscardBefore',
 				},
 				groupSkill: 'YB_dream',
-				direct: true,
+				cost(){
+					event.result = player
+					.chooseToDiscard(2, 'he')
+					.set('chooseonly',true)
+					.set('prompt', '是否弃置两张牌，令手牌上限+1？')
+					.set('ai', function (card) {
+						var trigger = _status.event.getTrigger();
+						var player = _status.event.player;
+						if (trigger.player.countCards('h') - 2 >= trigger.player.getHandcardLimit()) return -get.value(card);
+						else return 6 - get.value(card);
+					}).forResult();
+				},
+				// direct: true,
 				content: function () {
 					'step 0';
-					// if(player.countDiscardableCards('he')>=2){
-					player
-						.chooseToDiscard(2, 'he')
-						.set('prompt', '是否弃置两张牌，令手牌上限+1？')
-						.set('ai', function (card) {
-							var trigger = _status.event.getTrigger();
-							var player = _status.event.player;
-							if (trigger.player.countCards('h') - 2 >= trigger.player.getHandcardLimit()) return -get.value(card);
-							else return 6 - get.value(card);
-						});
+					player.discard(event.cards);
+					// // if(player.countDiscardableCards('he')>=2){
+					// player
+					// 	.chooseToDiscard(2, 'he')
+					// 	.set('prompt', '是否弃置两张牌，令手牌上限+1？')
+					// 	.set('ai', function (card) {
+					// 		var trigger = _status.event.getTrigger();
+					// 		var player = _status.event.player;
+					// 		if (trigger.player.countCards('h') - 2 >= trigger.player.getHandcardLimit()) return -get.value(card);
+					// 		else return 6 - get.value(card);
+					// 	});
 
-					// }
+					// // }
 					('step 1');
-					if (result.bool) {
-						player.logSkill('ybsl_sanmeng_add');
+					// if (result.bool) {
+						// player.logSkill('ybsl_sanmeng_add');
 						// player.removeSkill('ybsl_sanmeng_buff');
-						lib.skill.chenliuwushi.change(player, 1);
-					}
+					lib.skill.chenliuwushi.change(player, 1);
+					// }
 				},
 			},
 		},
@@ -15593,6 +15612,43 @@ const skill = {
 			if (player.isMinHp()) player.recover();
 		},
 	},
+	yb070_fuyix: {
+		audio: 'yb070_fuyi',
+		group: ['yb070_fuyix_use', 'yb070_fuyix_die'],
+		subSkill: {
+			use: {
+				enable: 'phaseUse',
+				audio: 'yb070_fuyi',
+				usable: 1,
+				superCharlotte: true,
+				charlotte: true,
+				content: () => {
+					var skill = player.getSkills()[0];
+					player.removeSkill(skill);
+					game.log(player, '失去了', get.translation(skill));
+				},
+			},
+			die: {
+				trigger: { player: ['dying']},
+				audio: 'yb070_fuyi',
+				// usable:1,
+				superCharlotte: true,
+				charlotte: true,
+				content: () => {
+					var skill = player.getSkills()[0];
+					player.removeSkill(skill);
+					game.log(player, '失去了', get.translation(skill));
+				},
+			},
+		},
+		onremove:function(player){
+			var list1 = ['YB_dream', 'YB_memory'];
+			var numa = Math.max(4, game.countPlayer());
+			var numb = get.translation('yb070_fuyix');
+			player.YB_fuhan([list1, numa, numb, [], 'all'], 'tw');
+
+		},
+	},
 	ybsl_zhezhiqiang: {
 		charlotte: true,
 		equipSkill: true,
@@ -20231,6 +20287,99 @@ const skill = {
 	//-----------雪依
 	yb125_tunxue: {
 		audio: 'ext:夜白神略/audio/character:2',
+		mod:{
+			YB_yzdel_maxMana(player){
+				return 20;
+			},
+			// YB_yzdel_maxManaAdd(player){
+			// 	return 20;
+			// },
+		},
+		init:function(player){
+			player.YB_gainMana(5);
+		},
+		forced:true,
+		locked:false,
+		trigger:{
+			player:['damageEnd','phaseZhunbeiBegin'],
+		},
+		filter(event,player){
+			return player.YB_yzdel_noneMana();
+		},
+		content(){
+			player.YB_gainMana(3);
+		},
+		group:['yb125_tunxue_iceMagic'],
+		subSkill:{
+			iceMagic:{
+				enable:'phaseUse',
+				usable:1,
+				audio:'yb125_tunxue',
+				filter(event,player){
+					if(player.isSilence)return false;
+					var magList = [];
+					let cardL = lib.card;
+					for(var i in cardL){
+						var cardarr = cardL[i]
+						if(cardarr.type=='ybsl_magicSkill'&&(cardarr.subtype=='iceMagic')){
+							magList.add(i);
+						}
+					}
+					if(!magList.length)return false;
+					if(player.noManaCost)return true;
+					for(var k of magList){
+						if(cardL[k].manaCost<=player.YB_manaNum()){
+							return true;
+						}
+					}
+					return false;
+				},
+				chooseButton: {
+					dialog: function (event, player) {
+						var magList = [];
+						let cardL = lib.card;
+						for(var i in cardL){
+							var cardarr = cardL[i]
+							if(cardarr.type=='ybsl_magicSkill'&&(cardarr.subtype=='iceMagic')){
+								magList.add(['耗蓝',cardarr.manaCost,i]);
+							}
+						}
+						var cards = [magList,'vcard'];
+						return ui.create.dialog('吞雪', cards);
+					},
+					filter: function (button, player) {
+						var card = button.name;
+						return (lib.card[card].manaCost<=player.YB_manaNum());
+					},
+					check: function (button) {
+						return _status.event.player.getUseValue({ name: button.link['name'], isCard: true });
+					},
+					backup: function (links, player) {
+						var skill = _status.event.buttoned;
+						return {
+							audio:'yb125_tunxue',
+							filterCard: function () {
+								return false;
+							},
+							selectCard: -1,
+							filterTarget: lib.card[links[0][2]].filterTarget,
+							selectTarget: lib.card[links[0][2]].selectTarget,
+							delay: false,
+							card: links[0],
+							YBcard: links[0],
+							content: lib.card[links[0][2]].content,
+							// nopop:true,
+							precontent: function () {
+								var cardv = lib.skill.yb125_tunxue_iceMagic_backup.YBcard;
+								player.YB_loseMana(cardv[1])
+								game.log(player,'咏唱了','#y'+cardv[2])
+								// lib.translate.yb125_tunxue_iceMagic_backup=lib.translate[cardv[2]];
+							},
+						};
+					},
+				},
+			},
+		},
 	},
 	yb125_sanmeng: {
 		audio: 'ext:夜白神略/audio/character:2',

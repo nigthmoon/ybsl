@@ -704,6 +704,10 @@ const YBSL_special = function () {
 			player.removeMark('_yzdel_mana', num);
 			player.YB_updateMana();
 		};
+		lib.element.player.YB_manaNum=function(){
+			const player = this;
+			return player.countMark('_yzdel_mana');
+		}
 		/**
 		 * 更新Mana条
 		 */

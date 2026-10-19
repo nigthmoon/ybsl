@@ -16499,49 +16499,40 @@ const skill = {
 	},
 	qmsgswkjsgj_re_fangquan: {
 		audio: 'olfangquan',
-		trigger: { player: "phaseUseBefore" },
+		trigger: { player: "phaseDiscardBefore" },
 		filter(event, player) {
-			return player.countCards("h") > 0 && !player.hasSkill("qmsgswkjsgj_re_fangquan3");
+			return player.countCards("h") > 0;
 		},
 		direct: true,
 		async content(event, trigger, player) {
-			// step 0
-			event.count = player.countMark(event.name);
-			player.removeMark(event.name, event.count, false);
-			while (event.count > 0) {
-				// step 1
-				event.count--;
-				const result = await player
-					.chooseToDiscard("是否弃置一张手牌并令一名其他角色进行一个额外回合？")
-					.set("logSkill", "qmsgswkjsgj_re_fangquan")
-					.set("ai", card => {
-						return 20 - get.value(card);
+			const result = await player
+				.chooseToDiscard("是否弃置一张手牌并令一名其他角色进行一个额外回合？")
+				.set("logSkill", "qmsgswkjsgj_re_fangquan")
+				.set("ai", card => {
+					return 20 - get.value(card);
+				})
+				.forResult();
+			// step 2
+			if (result.bool) {
+				const result2 = await player
+					.chooseTarget(true, "请选择进行额外回合的目标角色", lib.filter.notMe)
+					.set("ai", target => {
+						if (target.hasJudge("lebu")) {
+							return -1;
+						}
+						if (get.attitude(player, target) > 4) {
+							return get.threaten(target) / Math.sqrt(target.hp + 1) / Math.sqrt(target.countCards("h") + 1);
+						}
+						return -1;
 					})
 					.forResult();
-				// step 2
-				if (result.bool) {
-					const result2 = await player
-						.chooseTarget(true, "请选择进行额外回合的目标角色", lib.filter.notMe)
-						.set("ai", target => {
-							if (target.hasJudge("lebu")) {
-								return -1;
-							}
-							if (get.attitude(player, target) > 4) {
-								return get.threaten(target) / Math.sqrt(target.hp + 1) / Math.sqrt(target.countCards("h") + 1);
-							}
-							return -1;
-						})
-						.forResult();
-					// step 3
-					if (result2.bool) {
-						var target = result2.targets[0];
-						player.line(target, "fire");
-						target.markSkillCharacter("qmsgswkjsgj_re_fangquan", player, "放权", "进行一个额外回合");
-						target.insertPhase();
-						target.addSkill("qmsgswkjsgj_re_fangquan3");
-					}
-				} else {
-					break;
+				// step 3
+				if (result2.bool) {
+					var target = result2.targets[0];
+					player.line(target, "fire");
+					target.markSkillCharacter("qmsgswkjsgj_re_fangquan", player, "放权", "进行一个额外回合");
+					target.insertPhase();
+					target.addSkill("qmsgswkjsgj_re_fangquan3");
 				}
 			}
 		},
@@ -26337,14 +26328,10 @@ const skill = {
 	qmsgswkjsgj_shenci_dclinghui: {
 		audio: 'dclinghui',
 		trigger: { global: "phaseJieshuBegin" },
+		filter(event, player) {
+			return true;
+		},
 		async content(event, trigger, player) {
-			const { bool: use } = await player
-				.chooseBool(get.prompt("qmsgswkjsgj_shenci_dclinghui"), "观看牌堆顶的牌并可能使用或获得")
-				.set("ai", () => 1)
-				.forResult();
-			if (!use) {
-				return;
-			}
 			let num = player.maxHp;
 			let cards = get.cards(num);
 			await game.cardsGotoOrdering(cards);
@@ -26413,34 +26400,34 @@ const skill = {
 				return game.hasPlayer(t => t !== player && !t.hasSkill("qmsgswkjsgj_shenci_dcxiace_disabled"));
 			}
 			if (event.source === player) {
-				return true;
+				return player.isDamaged();
 			}
 			return false;
 		},
-		direct: true,
-		async content(event, trigger, player) {
+		// direct: true,
+		async cost(event, trigger, player){
 			if (trigger.player === player) {
-				const { bool, targets } = await player
+				event.result = await player
 					.chooseTarget((card, player, target) => target !== player)
 					.set("prompt", get.prompt("qmsgswkjsgj_shenci_dcxiace"))
 					.set("prompt2", "令一名其他角色的所有技能失效直到其下回合结束")
 					.set("ai", target => -get.sgn(get.attitude(player, target)) * (target === _status.currentPhase ? 10 : 1))
 					.forResult();
-				if (bool) {
-					const target = targets[0];
-					player.logSkill("qmsgswkjsgj_shenci_dcxiace", target);
-					target.addTempSkill("qmsgswkjsgj_shenci_dcxiace_disabled");
-				}
 			}
 			if (trigger.source === player) {
-				const { bool } = await player
+				event.result = await player
 					.chooseBool(get.prompt("qmsgswkjsgj_shenci_dcxiace"), "回复1点体力")
 					.set("ai", () => get.recoverEffect(player, player, player) > 0 ? 1 : 0)
 					.forResult();
-				if (bool) {
-					player.logSkill("qmsgswkjsgj_shenci_dcxiace");
-					await player.recover();
-				}
+			}
+		},
+		async content(event, trigger, player) {
+			if (event.targets) {
+				const target = event.targets[0];
+				target.addTempSkill("qmsgswkjsgj_shenci_dcxiace_disabled");
+			}
+			else{
+				await player.recover();
 			}
 		},
 		subSkill: {
@@ -26461,6 +26448,11 @@ const skill = {
 						return false;
 					}
 					return true;
+				},
+				mark:true,
+				marktext:'靈',
+				intro:{
+					content: '所有技能失效'
 				},
 				trigger: { player: "phaseJieshu" },
 				forced: true,

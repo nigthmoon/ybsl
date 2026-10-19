@@ -16,6 +16,20 @@ import { content } from './source/packages/content.js';
 //此代码结构借鉴自裸睡天依（代码：狗妈）和温柔一刀（火）
 export let type = 'extension';
 
+game.YB_magicTranslate=function(bool){
+	for(var i in lib.translate){
+		if(bool){
+			if(lib.translate[i+'_cnt']){
+				lib.translate[i]=lib.translate[i+'_cnt'];
+			}
+		}
+		else{
+			if(lib.translate[i+'_jpt']){
+				lib.translate[i]=lib.translate[i+'_jpt'];
+			}
+		}
+	}
+}
 export default async function () {
 	/**@type {importExtensionConfig} */
 	let extension = {

@@ -6,6 +6,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'fireMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -36,6 +37,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'fireMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -66,6 +68,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'fireMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -97,6 +100,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'flameMagic',
 		fullskin: true,
 		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
@@ -127,6 +131,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'flameMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -157,6 +162,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'flameMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -188,6 +194,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'boomMagic',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
@@ -217,6 +224,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'boomMagic',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
@@ -246,6 +254,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'boomMagic',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
@@ -277,6 +286,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'iceMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -307,6 +317,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'iceMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -337,6 +348,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'iceMagic',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
@@ -367,6 +379,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'iceMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -398,6 +411,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'thunderMagic',
 		fullskin: true,
 		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
@@ -428,6 +442,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'thunderMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -454,10 +469,11 @@ const card = {
 			},
 		},
 	},
-	yzdel_bagikerosu: {
+	yzdel_minadein: {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'thunderMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -501,6 +517,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'windMagic',
 		fullskin: true,
 		selectTarget: [1, 2],
 		filterTarget: function (card, player, target) {
@@ -531,6 +548,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'windMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -561,6 +579,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'windMagic',
 		fullskin: true,
 		selectTarget: -1,
 		filterTarget: function (card, player, target) {
@@ -592,6 +611,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'recoverMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -622,6 +642,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'recoverMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -652,6 +673,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'recoverMagic',
 		fullskin: true,
 		selectTarget: 1,
 		filterTarget: function (card, player, target) {
@@ -682,6 +704,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'recoverMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -712,6 +735,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'recoverMagic',
 		fullskin: true,
 		selectTarget: [1, 3],
 		filterTarget: function (card, player, target) {
@@ -743,6 +767,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'reviveMagic',
 		fullskin: true,
 		deadTarget: true,
 		savable: true,
@@ -779,6 +804,7 @@ const card = {
 		audio: true,
 		enable: true,
 		type: 'ybsl_magicSkill',
+		subtype:'reviveMagic',
 		fullskin: true,
 		deadTarget: true,
 		savable: true,
@@ -812,9 +838,3 @@ const card = {
 		},
 	},
 };
-// if(player&&player.name1&&lib.characterLightext&&lib.characterLightext[player.name1]&&lib.characterLightext[player.name1](player)){
-// 	var ybstr = lib.characterLightext[player.name1](player)[lib.characterLightext[player.name1](player).length-1]
-// 	// ui.create.div(".xcaption", "武将缘分", rightPane.firstChild);
-// 	ui.create.div(".xskill", ybstr, rightPane.firstChild)
-// 	// ui.create.div(".xskill","<div data-color>" + ybstr+ "</div>", rightPane.firstChild)
-// }

@@ -1366,3 +1366,30 @@ characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 
 - 同人小说子包简介新增「主角特权面板」入口（占位，内容待设计）。
 - 版权署名：白衣尘、慕琴的代码编写者改为联名「夜白&Auto」。
 - 杂项：注释已失效的双持说明与 yb014 三个占位音频技能。
+2026.10.19
+一、主角特权面板重做（source/packages/precontent/YB_01_rank.js）
+- 原 ui.create.dialog 占位版改为参考十周年UI独立配置窗口的新版菜单样式：遮罩层+渐变对话框（标题+✕关闭+左侧页签栏+右侧内容区），点击遮罩关闭，记住上次所在页签。
+- 新增 source/css/ybconfig.css：搬运十周年UI src/config/config-window.css，类名前缀 decade-config- 改为 yb-config-，另加 yb-config-disabled/yb-config-locked/yb-config-lock/yb-config-empty 等样式；首次打开面板时按 id 懒加载，不依赖十周年UI。
+- 配置项改为定义对象驱动（{isTitle}/{key,name,intro,type,init,item,onclick,update}），支持 toggle/select/input 三种控件；值统一走 game.saveConfig('YB_zhujuetequan_'+key) 持久化。
+- 新增 require 依赖机制：被依赖的开关未开启时本项置灰且控件不可点，名字后提示需先开启的项；每次改动重新渲染当前页。
+- 页签结构：首页（统管全部小说的特权开关与“特权对全体武将生效”）、全民三国杀我开局神郭嘉（含详细特权项：青囊书/木牛流马/传国玉玺/太平要术/体力上限增加/免疫翻面横置/游戏开始获得赐福，赐福含白无常暴敛、黑无常太平两个子选项）、三国杀仙界下凡怎么你了；其他小说暂无主角特权不收录。页签带 pack 字段记录该小说武将前缀，供日后判断“玩家是否选用该小说武将”。
+
+二、神郭嘉技能调整（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 灵慧（qmsgswkjsgj_shenci_dclinghui）：去掉发动前的 chooseBool 二次确认，触发进入流程即默认执行（观牌→选择使用→选择获得→其余置牌堆顶）；新增恒真 filter。
+- 放权（qmsgswkjsgj_re_fangquan）：触发时机 phaseUseBefore 改为 phaseDiscardBefore；去掉标记计数与循环，简化为单次“是否弃一张手牌令一名其他角色额外回合”。
+- 下策（qmsgswkjsgj_shenci_dcxiace）：改为 cost 写法；event.source 为玩家时增加已受伤（isDamaged）条件；去掉 direct。
+
+三、YB_01_character
+- skill.js：散梦（ybsl_sanmeng）去掉 chooseControl 二次选择，改为 prompt+check 直接摸牌执行；散梦追加效果由 content 内选择改为 cost 写法（chooseToDiscard+chooseonly）；新增 yb070_fuyix（傲寒简化版：出牌阶段限一次或濒死时移去第一个技能并回复1点体力，失去该技能时进行扶汉）；雪依吞雪（yb125_tunxue）新增能量上限 mod（20）、init 获得5能量、forced/locked 结构调整。
+- translate.js：新增 yb070_fuyix 译名与描述；yb070_fuyi_info 改回“进行一次扶汉”；补 yb125_tunxue_iceMagic_backup；补全雪桢昔泪/舒云技能描述。
+- character.js：启用雪依（ybsl_125xueyi）。
+
+四、YB_10_character（咒文）
+- translate.js：为所有带中文译名（_cnt）的咒文补 _jpt 日文原名（メラ、メラミ、メラゾーマ、ギラ、ベギラマ、ベギラゴン、イオ、イオラ、イオナズン、ヒヤド、ヒヤダルコ、ヒヤダイン、マヒヤド、ライデイン、ギガデイン、ミナデイン、バギ、バギマ、バギクロス、ホイミ、ベホイミ、ベホマ、ベホマラー、ベホマズン、ザオラル、ザオリク），共24条。
+- card.js：治疗系（ホイミ系、ベホイミ系）与复活系（ザオラル、ザオリク）魔法卡补 subtype（recoverMagic/reviveMagic）；清理文件末尾废弃注释。
+- extension.js：新增 game.YB_magicTranslate(bool)，可在中文译名（_cnt）与日文原名（_jpt）之间切换技能显示名。
+
+五、杂项修正
+- YB_14_character/skill.js：两处 set('chooseOnly') 大小写修正为 set('chooseonly')。
+- YB_03_trigger.js：新增“这里放置小说主角特权技能”占位代码块。
+- YB_04_special.js：新增 lib.element.player.YB_manaNum()，返回 _yzdel_mana 标记数。

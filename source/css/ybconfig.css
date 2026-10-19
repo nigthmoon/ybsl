@@ -1,0 +1,466 @@
+/**
+ * @fileoverview 夜白神略·新版菜单面板样式
+ * @description 主角特权面板等“新版菜单”窗口的样式，搬运自十周年UI的 config-window.css（类名前缀改为 yb-config-）
+ */
+
+/* 遮罩层 */
+.yb-config-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	writing-mode: horizontal-tb;
+}
+
+/* 对话框容器 */
+.yb-config-dialog {
+	width: 80%;
+	height: 85%;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+	border-radius: 20px;
+	box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+	position: relative;
+	writing-mode: horizontal-tb !important;
+}
+
+/* 装饰图案 */
+.yb-config-pattern {
+	position: absolute;
+	top: -50%;
+	right: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+	background-size: 30px 30px;
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* 标题 */
+.yb-config-title {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	font-size: 32px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	z-index: 10;
+}
+
+/* 关闭按钮 */
+.yb-config-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 22px;
+	color: #fff;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	z-index: 10;
+}
+
+.yb-config-close:hover {
+	background: rgba(255, 255, 255, 0.4);
+	transform: scale(1.1);
+}
+
+/* 左侧标签栏 */
+.yb-config-sidebar {
+	position: absolute;
+	left: 30px;
+	top: 90px;
+	bottom: 30px;
+	width: 220px;
+	z-index: 10;
+	writing-mode: horizontal-tb;
+}
+
+/* 标签按钮 */
+.yb-config-tab {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 12px 14px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	width: 100%;
+	box-sizing: border-box;
+	white-space: nowrap;
+	flex-shrink: 0;
+	writing-mode: horizontal-tb;
+}
+
+.yb-config-tab:not(.active) {
+	color: rgba(255, 255, 255, 0.7);
+	background: transparent;
+}
+
+.yb-config-tab.active {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.yb-config-tab:not(.active):hover {
+	background: rgba(255, 255, 255, 0.1);
+	color: #fff;
+}
+
+/* 右侧内容区 */
+.yb-config-content {
+	position: absolute;
+	left: 280px;
+	top: 90px;
+	right: 30px;
+	bottom: 30px;
+	overflow-y: auto;
+	padding-right: 10px;
+	z-index: 10;
+	writing-mode: horizontal-tb;
+}
+
+/* 配置分组标题 */
+.yb-config-section-title {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	margin: 20px 0 12px 0;
+	padding-bottom: 8px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+	writing-mode: horizontal-tb !important;
+}
+
+.yb-config-section-title:first-child {
+	margin-top: 0;
+}
+
+/* 可点击跳转的分组标题（首页的小说标题） */
+.yb-config-section-title.yb-config-link {
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.yb-config-section-title.yb-config-link:hover {
+	color: #a8edea;
+	border-bottom-color: rgba(168, 237, 234, 0.8);
+	padding-left: 6px;
+}
+
+.yb-config-linkmark {
+	float: right;
+	font-size: 12px;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.7);
+	padding-top: 3px;
+}
+
+/* 提示文字（无名杀全局把 div 设为 absolute，故内容类必须显式 position/display） */
+.yb-config-hint {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 1.6;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.12);
+	border-left: 4px solid rgba(168, 237, 234, 0.9);
+	border-radius: 8px;
+	padding: 14px 18px;
+	margin-bottom: 16px;
+	writing-mode: horizontal-tb !important;
+}
+
+/* 空分组提示 */
+.yb-config-empty {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.7);
+	padding: 20px 0;
+	text-align: center;
+	writing-mode: horizontal-tb !important;
+}
+
+/* 配置项容器 */
+.yb-config-item {
+	position: relative;
+	padding: 16px 18px;
+	margin-bottom: 12px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	writing-mode: horizontal-tb !important;
+}
+
+.yb-config-item:hover {
+	background: rgba(255, 255, 255, 0.15);
+	transform: translateY(-2px);
+}
+
+/* 未满足前置条件的配置项 */
+.yb-config-item.yb-config-disabled {
+	opacity: 0.45;
+}
+
+.yb-config-item.yb-config-disabled:hover {
+	background: rgba(255, 255, 255, 0.1);
+	transform: none;
+}
+
+/* 被锁定的控件：不可点击 */
+.yb-config-locked {
+	pointer-events: none;
+}
+
+/* 锁定原因提示 */
+.yb-config-lock {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.6);
+	margin-left: 6px;
+}
+
+/* 配置项表格 */
+.yb-config-table {
+	width: 100%;
+	writing-mode: horizontal-tb !important;
+	table-layout: fixed;
+}
+
+.yb-config-table tr {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+/* 配置项名称 */
+.yb-config-name {
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	writing-mode: horizontal-tb !important;
+	cursor: pointer;
+	flex: 0 0 auto;
+}
+
+/* 配置项介绍 */
+.yb-config-intro {
+	position: relative;
+	display: none;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.7);
+	margin-top: -5px;
+	padding-top: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	writing-mode: horizontal-tb !important;
+	text-align: left;
+}
+
+.yb-config-intro.show {
+	display: block;
+}
+
+/* 配置项控件容器 */
+.yb-config-control {
+	text-align: right;
+	writing-mode: horizontal-tb !important;
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	min-width: 0;
+}
+
+/* 开关控件 */
+.yb-config-toggle {
+	width: 50px;
+	height: 26px;
+	border-radius: 13px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.yb-config-toggle.off {
+	background: rgba(200, 200, 200, 0.5);
+}
+
+.yb-config-toggle.on {
+	background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.yb-config-toggle-slider {
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 3px;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.yb-config-toggle.off .yb-config-toggle-slider {
+	left: 3px;
+}
+
+.yb-config-toggle.on .yb-config-toggle-slider {
+	left: 27px;
+}
+
+/* 选项容器 */
+.yb-config-options {
+	position: relative;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	flex-direction: row-reverse !important;
+	justify-content: flex-start !important;
+	writing-mode: horizontal-tb !important;
+	align-items: center !important;
+}
+
+/* 单个选项 */
+.yb-config-option {
+	padding: 5px 10px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	writing-mode: horizontal-tb !important;
+	white-space: nowrap;
+	display: inline-flex !important;
+	position: relative !important;
+}
+
+.yb-config-option:first-child {
+	margin-right: 0 !important;
+}
+
+.yb-config-option:hover {
+	background: rgba(255, 255, 255, 0.3);
+	color: #fff;
+	transform: translateY(-1px);
+}
+
+.yb-config-option.selected {
+	background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+	border-color: rgba(255, 255, 255, 0.5);
+	color: #333;
+	font-weight: 500;
+	box-shadow: 0 2px 8px rgba(168, 237, 234, 0.4) !important;
+}
+
+/* 子选项（可多选框） */
+.yb-config-subtoggle {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+	margin-top: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	writing-mode: horizontal-tb !important;
+}
+
+.yb-config-subtoggle:hover {
+	color: #a8edea;
+}
+
+.yb-config-subbox {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: 8px;
+	padding-top: 6px;
+	border-top: 1px dashed rgba(255, 255, 255, 0.25);
+	writing-mode: horizontal-tb !important;
+}
+
+.yb-config-subitem {
+	position: relative;
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px 0;
+	writing-mode: horizontal-tb !important;
+}
+
+/* 子项展开的说明独占一行，避免挤动右侧开关 */
+.yb-config-subitem .yb-config-intro {
+	order: 3;
+	flex: 0 0 100%;
+	margin: 6px 0 2px;
+	padding-top: 6px;
+}
+
+.yb-config-subitem + .yb-config-subitem {
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.yb-config-subitem.yb-config-disabled {
+	opacity: 0.45;
+}
+
+.yb-config-subname {
+	position: relative;
+	display: block;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+	flex: 1;
+	min-width: 0;
+	padding-right: 12px;
+	writing-mode: horizontal-tb !important;
+}
+
+/* 输入框 */
+.yb-config-input {
+	padding: 8px 14px;
+	background: rgba(255, 255, 255, 0.9);
+	border: none;
+	border-radius: 8px;
+	color: #333;
+	font-size: 14px;
+	min-width: 100px;
+	writing-mode: horizontal-tb !important;
+	outline: none;
+	transition: all 0.3s ease;
+}
+
+.yb-config-input:focus {
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
