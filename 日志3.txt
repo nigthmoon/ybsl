@@ -1407,3 +1407,12 @@ characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 
 
 四、星月界刘巴 铸币（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
 - 修复选择目标后 content 取用目标报错（event.target 未定义），导致技能失效的问题。
+五、星月界郭照 偏宠（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复同时失去红色与黑色牌时仅结算首张、另一颜色不摸牌的问题，现红黑均可正常摸牌。
+
+六、星月手杀神马超 驭雳（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复驭雳子技能雷杀的 cardnature 修饰递归导致进回合爆栈的问题，技能可正常使用。
+
+七、星月手杀神马超 霆威（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复霆威“伤害+1”选项实际仅对当前出牌生效、与描述“本回合你对其造成的伤害+1”不符的问题，改为本回合内对该目标所有伤害+1。
+- 该伤害加成现可叠加：每选一次对同一目标额外+1。

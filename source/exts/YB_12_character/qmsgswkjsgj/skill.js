@@ -14864,7 +14864,6 @@ const skill = {
 									break;
 								}
 							}
-							break;
 						}
 						if (get.color(precard, false) == 'black') {
 							for (var k = 0; k < num2; k++) {
@@ -14875,7 +14874,6 @@ const skill = {
 									break;
 								}
 							}
-							break;
 						}
 					}
 
@@ -21027,11 +21025,11 @@ const skill = {
 				audio: 'qmsgswkjsgj_yuli',
 				trigger: { player: "useCard1", source: "useCard1" },
 				filter(event, player) {
-					return event.card?.name == "sha" && !game.hasNature(event.card);
+					return event.card?.name == "sha" && !event.card.nature;
 				},
 				mod:{
 					cardnature(card) {
-						if (game.hasNature(card)) {
+						if (card.nature) {
 							return;
 						}
 						if (card.name == "sha") {
@@ -21122,7 +21120,7 @@ const skill = {
 						[
 							["fengyin", "技能失效至下个回合结束"],
 							["equip", `交给${get.translation(player2)}一张装备牌`],
-							["damage", `${get.translation(trigger.card)}对${get.translation(target2)}造成伤害+1`],
+							["damage", "本回合你对其造成的伤害+1"],
 							["discard", "随机弃两张牌"]
 						],
 						"textbutton"
@@ -21335,21 +21333,12 @@ const skill = {
 						break;
 					}
 					case "damage": {
+						if (!player2.storage.qmsgswkjsgj_tingwei_dmgmap) {
+							player2.storage.qmsgswkjsgj_tingwei_dmgmap = {};
+						}
+						player2.addTempSkill("qmsgswkjsgj_tingwei_dmg", { player: "phaseEnd" });
 						const id = target2.playerid;
-						if (id == null) {
-							break;
-						}
-						const map = trigger.getParent()?.customArgs;
-						if (map == null) {
-							break;
-						}
-						if (!map[id]) {
-							map[id] = {};
-						}
-						if (typeof map[id].extraDamage !== "number") {
-							map[id].extraDamage = 0;
-						}
-						map[id].extraDamage++;
+						player2.storage.qmsgswkjsgj_tingwei_dmgmap[id] = (player2.storage.qmsgswkjsgj_tingwei_dmgmap[id] || 0) + 1;
 						break;
 					}
 					case "discard": {
@@ -21381,6 +21370,18 @@ const skill = {
 				skillBlocker(skill, player) {
 					return skill !== "qmsgswkjsgj_tingwei_fengyin";
 				},
+			},
+			dmg: {
+				trigger: { source: "damageBegin1" },
+				forced: true,
+				filter(event, player) {
+					const map = player.storage.qmsgswkjsgj_tingwei_dmgmap;
+					return event.source == player && map && map[event.player?.playerid] > 0;
+				},
+				async content(event, trigger, player) {
+					const map = player.storage.qmsgswkjsgj_tingwei_dmgmap;
+					trigger.num += map[trigger.player?.playerid] || 0;
+				}
 			}
 		}
 	},

@@ -676,7 +676,7 @@ const translate = {
 	qmsgswkjsgj_re_zunwei: '尊位',
 	qmsgswkjsgj_re_zunwei_backup: '尊位',
 	qmsgswkjsgj_re_zunwei_info: "出牌阶段限一次，你可选择一项：①若你已受伤，则你可以选择一名体力值大于你的其他角色，你将体力值回复至X（X为你的体力上限与其体力值中的较小值）②选择一名手牌数大于你的其他角色，你将手牌数摸至与其相同（至多摸五张）③选择一名装备区内牌数大于你的其他角色。你令X=1。若你装备区内的('equip'+X)栏为空，则你使用牌堆中的一张副类别为('equip'+X)，且能对自己使用的装备牌。你令X+1。若X不大于5，且你装备区内的牌数仍小于目标角色，则你重复此流程。",
-	qmsgswkjsgj_re_zunwei_append: '实际描述是先选目标再选效果。不过距离效果大差不差，就这么地了',
+	qmsgswkjsgj_re_zunwei_append: '实际描述是先选目标再选效果。不过具体效果大差不差，就这么地了',
 
 	qmsgswkjsgj_re_caomao: '星月界曹髦',
 	qmsgswkjsgj_re_caomao_prefix: '星月|界',
