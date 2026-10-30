@@ -1393,3 +1393,17 @@ characterTitle.js 为本次新增武将补全称号（普通/神/plus 批次用 
 - YB_14_character/skill.js：两处 set('chooseOnly') 大小写修正为 set('chooseonly')。
 - YB_03_trigger.js：新增“这里放置小说主角特权技能”占位代码块。
 - YB_04_special.js：新增 lib.element.player.YB_manaNum()，返回 _yzdel_mana 标记数。
+
+2026.10.30
+一、星月渭南张郃 巧变（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复巧变打出牌时崩溃、牌不同无法摸牌的问题（取牌点数函数误用导致 content 中断，两处改为正确取点数写法）。
+
+二、星月乐蔡文姬 霜茄 / 悲愤（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 霜茄触发时机由非法时机改为合法轮开始时机，修复初始手牌未附加标记、防御距离不生效。
+- 悲愤 filter 修正，修复标记牌打出后不摸牌。
+
+三、星月界郭照 偏宠（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复仅声明单一颜色时，失去对应颜色牌不摸牌的问题。
+
+四、星月界刘巴 铸币（source/exts/YB_12_character/qmsgswkjsgj/skill.js）
+- 修复选择目标后 content 取用目标报错（event.target 未定义），导致技能失效的问题。
