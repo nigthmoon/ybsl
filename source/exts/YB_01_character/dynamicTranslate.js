@@ -218,4 +218,9 @@ const dynamicTranslate = {
 		}
 		return str + '当你使用牌指定目标时，若此是你本回合首次指定其为目标，你横置自身并执行列表中的一项，然后若你不为目标，则令目标也执行此项。';
 	},
+	yb124_jiekun: function (player) {
+		if (!player.storage.yb124_jiekun) return '转换技，<span class="bluetext">阳：你可以将红桃牌当桃使用；</span>阴：你可以将非红桃牌当无懈可击使用。';
+		return '转换技，阳：你可以将红桃牌当桃使用；<span class="bluetext">阴：你可以将非红桃牌当无懈可击使用。</span>';
+	},
+
 };

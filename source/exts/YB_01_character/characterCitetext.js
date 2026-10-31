@@ -149,10 +149,13 @@ const characterCitetext = {
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
 	// 'ybsl_093cat':['female','YB_memory',3,[],['epic']],//猫猫
-	// 'ybsl_107tushanshuili': '引文待填写。',
-	// ybsl_121tujing:'引文待填写。',
-	// ybsl_122wangbingyu:'引文待填写。',
-	// ybsl_123xuelang:'引文待填写。',
+	ybsl_107tushanshuili: '想摸摸我的狐狸吗？',
+	ybsl_121tujing: '你可不是药材，你是我最珍重的伙伴。',
+	ybsl_122wangbingyu: '我好像在哪见过你。',
+	ybsl_123xuelang: '回忆最为美好，它将你思念的对象不断美化。',
+	ybsl_124yecang: '摸着我的心，告诉我，你是否会忘记我。',
+	ybsl_125xueyi: '将袋子装满风雪，这便不是袋子，而是风雪。',
+	ybsl_126xuezhen: '过往的伤痕都将化为如今的诗句。',
 	//---------------------------------//忆包SP
 	// 'db_ybsp_014liutianyu':'引文待填写。',
 	ybsp_016manchengqi: '若思悔不及，则万念俱成枯。趁你还年轻，他还未老。',

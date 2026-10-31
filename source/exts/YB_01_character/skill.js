@@ -20051,6 +20051,9 @@ const skill = {
 	yb121_tiandu: {
 		audio: 'ext:夜白神略/audio/character:2',
 		inherit: 'ybmjz_tiandu',
+		audioname2:{
+			ybsl_124yecang:'yb124_tiandu',
+		},
 	},
 	//------------王冰雨
 	yb122_yinjin: {
@@ -20277,8 +20280,112 @@ const skill = {
 	//-----------夜苍
 	yb124_xianqing: {
 		audio: 'ext:夜白神略/audio/character:2',
+		locked: true,
+		mark: true,
+		marktext: '陷',
+		intro: {
+			content(storage, player, skill) {
+				if (!storage || !storage.length) return '尚未记录花色';
+				return '记录的花色：' + storage.map((s) => get.translation(s)).join('、');
+			}
+		},
+		init(player, skill) {
+			player.storage[skill] = [];
+		},
+		mod: {
+			cardsuit(card, player) {
+				const list = player.storage.yb124_xianqing;
+				if (!list || !list.length) return;
+				if (list.includes(card.suit)) return 'heart';
+			}
+		},
+		group: ['yb124_xianqing_record', 'yb124_xianqing_settle'],
+		subSkill: {
+			record: {
+				trigger: { player: 'damageAfter' },
+				forced: true,
+				filter(event, player) {
+					return event.card;
+				},
+				content() {
+					'step 0';
+					player.storage.yb124_xianqing.push(get.suit(trigger.card));
+					player.updateMark('yb124_xianqing');
+				}
+			},
+			settle: {
+				trigger: { player: 'phaseJieshuBegin', source: 'damageSource' },
+				forced: true,
+				content() {
+					'step 0';
+					player.judge('陷情');
+					('step 1');
+					const judged = result.card.suit;
+					const list = player.storage.yb124_xianqing;
+					if (!player.getCards('h').some((c) => get.suit(c, player) == judged)) {
+						const count = list.length;
+						player.draw(count);
+					}
+				}
+			}
+		}
 	},
 	yb124_jiekun: {
+		audio: 'ext:夜白神略/audio/character:2',
+		zhuanhuanji: true,
+		mark: true,
+		marktext: '☯',
+		intro: {
+			markcount:'解',
+			content(storage, player, skill) {
+				return player.storage.yb124_jiekun == true
+					? '阴：你可以将非红桃牌当【无懈可击】使用。'
+					: '阳：你可以将红桃牌当【桃】使用。';
+			}
+		},
+		enable: ['chooseToUse', 'chooseToRespond'],
+		// usable: 1,
+		filter(event, player) {
+			const name = player.storage.yb124_jiekun == true ? 'wuxie' : 'tao';
+			return player.countCards('h', (card) => (player.storage.yb124_jiekun == true ? get.suit(card) != 'heart' : get.suit(card) == 'heart')) > 0 && event.filterCard({ name: name, isCard: true }, player, event);
+		},
+		filterCard(card, player) {
+			return player.storage.yb124_jiekun == true ? get.suit(card) != 'heart' : get.suit(card) == 'heart';
+		},
+		check(card) {
+			return 7 - get.value(card);
+		},
+		position: 'h',
+		hiddenCard(player, name) {
+			if (player.storage.yb124_jiekun == true) {
+				if (name == 'wuxie') return player.countCards('h', (card) => get.suit(card) != 'heart') > 0;
+			} else {
+				if (name == 'tao') return player.countCards('h', (card) => get.suit(card) == 'heart') > 0;
+			}
+		},
+		precontent(){
+			player.changeZhuanhuanji('yb124_jiekun');
+		},
+		viewAs(cards, player) {
+			return { name: player.storage.yb124_jiekun == true ? 'wuxie' : 'tao' };
+		},
+		selectCard: 1,
+		prompt: function (event, player) {
+			return player.storage.yb124_jiekun == true ? '将一张非红桃牌当做【无懈可击】使用' : '将一张红桃牌当做【桃】使用';
+		},
+		ai: {
+			order: 7,
+			result: {
+				player: function (player, target) {
+					if (player.storage.yb124_jiekun == true) {
+						return 1;
+					}
+					return player.isDamaged() ? 3 : 0;
+				}
+			}
+		}
+	},
+	yb124_tiandu:{
 		audio: 'ext:夜白神略/audio/character:2',
 	},
 	yb124_sanmeng: {
@@ -20387,9 +20494,157 @@ const skill = {
 	//-----------雪桢
 	yb126_xilei: {
 		audio: 'ext:夜白神略/audio/character:2',
+		locked: true,
+		trigger: {
+			player: ['phaseZhunbeiBegin', 'damageEnd', 'dying'],
+		},
+		// forced: true,
+
+		filter(event, player,name) {
+			if (name == 'dying') {
+				return !player.storage.yb126_xilei_saved && player.isDying();
+			}
+			return player.countCards('h') > 0;
+		},
+		cost() {
+			if (event.triggername == 'dying') {
+				event.result={bool :true};
+			}
+			else {
+				if (player.storage.yb126_xilei_keeyi) {
+					event.result = player.chooseBool('〖昔泪〗你可以弃置一张牌，是否弃置？').forResult();
+				}
+				else {
+					event.result={bool :true};
+				}
+			}
+		},
+		content() {
+			if (event.triggername == 'dying') {
+				player.storage.yb126_xilei_saved = true;
+				player.recover(player.maxHp - player.hp);
+				player.storage.yb126_xilei_keeyi = true;
+				game.log(player, '〖昔泪〗恢复体力至上限，此后弃置牌变为可选');
+				return;
+			}
+			else{
+				player.chooseToDiscard(1, 'h', true).set('prompt', '〖昔泪〗请弃置一张牌').set('logSkill', 'yb126_xilei');
+			}
+		},
 	},
 	yb126_shuyun: {
 		audio: 'ext:夜白神略/audio/character:2',
+		trigger: {
+			global: 'phaseJieshuBegin',
+		},
+		filter(event, player) {
+			return true;
+		},
+		async content(event, trigger, player) {
+			var x = Math.min(5, player.maxHp - player.hp);
+			var n = x + 1;
+			event.showCards = get.cards(n, true);
+			if (!event.showCards || !event.showCards.length) {
+				event.finish();
+				return;
+			}
+			await game.cardsGotoOrdering(event.showCards);
+			await player.showCards(event.showCards, '〖舒云〗展示牌堆顶' + n + '张牌', true).set('clearArena', false);
+			var suitSet = {};
+			var curPhase = trigger.getParent('phase');
+			var list = game.getGlobalHistory('everything', function (e) {
+				return e.name == 'lose' && e.type == 'discard' && e.getParent('phase') == curPhase;
+			});
+			for (var i = 0; i < list.length; i++) {
+				var cs = list[i].cards2 || list[i].cards || [];
+				for (var j = 0; j < cs.length; j++) {
+					var s = get.suit(cs[j]);
+					if (s) suitSet[s] = true;
+				}
+			}
+			var gainCards = [];
+			for (var k = 0; k < event.showCards.length; k++) {
+				if (suitSet[get.suit(event.showCards[k])]) gainCards.push(event.showCards[k]);
+			}
+			event.showCards.removeArray(gainCards);
+			if (gainCards.length) {
+				await player.gain({ cards: gainCards });
+				game.log(player, '〖舒云〗获得了', gainCards);
+			}
+			game.broadcastAll(ui.clear);
+			if (event.showCards.length) {
+				await game.cardsGotoPile(event.showCards.reverse(), 'insert');
+			}
+		},
+	},
+	yb126_shuyunx: {
+		audio: 'yb126_shuyun',
+		trigger: {
+			global: 'phaseJieshuBegin',
+		},
+		filter(event, player) {
+			var curPhase = event.getParent('phase');
+			var list = game.getGlobalHistory('everything', function (e) {
+				return e.name == 'lose' && e.type == 'discard' && e.getParent('phase') == curPhase;
+			});
+			return list.length > 0;
+		},
+		async content(event, trigger, player) {
+			var curPhase = trigger.getParent('phase');
+			var list = game.getGlobalHistory('everything', function (e) {
+				return e.name == 'lose' && e.type == 'discard' && e.getParent('phase') == curPhase;
+			});
+			var x = 0;
+			for (var i = 0; i < list.length; i++) {
+				var cs = list[i].cards2 || list[i].cards || [];
+				x += cs.length;
+			}
+			x = Math.min(5, x);
+			if (x == 0) {
+				event.finish();
+				return;
+			}
+			var gainNum = Math.min(5, (player.maxHp - player.hp) + 1);
+			gainNum = Math.min(gainNum, x);
+			event.cards = get.cards(x, true);
+			if (!event.cards || !event.cards.length) {
+				event.finish();
+				return;
+			}
+			gainNum = Math.min(gainNum, event.cards.length);
+			await game.cardsGotoOrdering(event.cards);
+			event.videoId = lib.status.videoId++;
+			game.broadcastAll(
+				function (player, id, cards, num) {
+					var dialog = ui.create.dialog('〖舒云〗展示牌堆顶' + cards.length + '张牌，选择' + num + '张获得', cards);
+					dialog.videoId = id;
+				},
+				player,
+				event.videoId,
+				event.cards,
+				gainNum
+			);
+			game.addVideo('showCards', player, ['〖舒云〗', get.cardsInfo(event.cards)]);
+			var next = player.chooseButton([0, gainNum], true);
+			next.set('dialog', event.videoId);
+			next.set('ai', function (button) {
+				return get.value(button.link, player);
+			});
+			var res = await next.forResult();
+			var gained = (res.bool && res.links) ? res.links : [];
+			if (gained.length) {
+				await player.gain(gained, false, 'gain2');
+				game.log(player, '〖舒云〗获得了', gained);
+			}
+			game.broadcastAll('closeDialog', event.videoId);
+			game.broadcastAll(ui.clear);
+			var rest = event.cards.filter(function (c) {
+				return gained.indexOf(c) < 0;
+			});
+			if (rest.length) {
+				await game.cardsGotoPile(rest.reverse(), 'insert');
+			}
+		},
 	},
 	yb126_sanmeng: {
 		audio: 'ext:夜白神略/audio/character:2',

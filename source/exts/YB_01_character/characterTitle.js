@@ -102,6 +102,13 @@ const characterTitle = {
 	ybsl_085DGY: '<font color=cyan>雨漫孤城</font>',
 	ybsl_086GJ: '<font color=cyan>幻想的奇缘</font>',
 	ybsl_092handan: '<font color=cyan>似水流年</font>',
+	ybsl_107tushanshuili: '<font color=cyan>遍寻归路</font>',
+	ybsl_121tujing: '<font color=cyan>桀厄之躯</font>',
+	ybsl_122wangbingyu: '<font color=cyan>不得归路</font>',
+	ybsl_123xuelang: '<font color=cyan>无猜的赌斗</font>',
+	ybsl_124yecang: '<font color=cyan>梦里沉沦</font>',
+	ybsl_125xueyi: '<font color=cyan>绝雪的精灵</font>',
+	ybsl_126xuezhen: '<font color=cyan>往事皆为云烟</font>',
 	//---------------------------------//忆包SP
 	db_ybsp_014liutianyu: '<font color=cyan>暗流涌动</font>',
 	ybsp_016manchengqi: '<font color=cyan>强饰的丽影</font>',
